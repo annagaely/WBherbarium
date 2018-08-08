@@ -62,7 +62,7 @@
         <!--ADD EDIT PHYLUM MODAL-->
                
         <!-- Modal-->
-        <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+        <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -123,6 +123,12 @@
       </main>
 
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+          <script>
+function resetForm() {
+    document.getElementById("addPhylumForm").reset();
+}
+
+</script>
      <script type="text/javascript" >  
     
      function disableMyText(){  
@@ -141,12 +147,7 @@
           }  
      }
      </script>
-     <script>
-function resetForm() {
-    document.getElementById("addPhylumForm").reset();
-}
-
-</script>
+ 
     <script type="text/javascript">  
     $(function(){
 
