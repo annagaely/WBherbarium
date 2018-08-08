@@ -356,6 +356,7 @@ public function updateFamilyBox(){
 		//if($result){
 		//	$msg['success'] = true;
 		//}
+		//eto yung nabago
 		echo json_encode($result);
 	}
 		public function editCollector(){

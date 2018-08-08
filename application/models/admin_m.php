@@ -644,7 +644,7 @@ BEGIN
 		}else{
 			return false;
 		}
-
+//eto yung nabago
 		//if($this->db->affected_rows() > 0){
 		//	return true;
 		//}else{
