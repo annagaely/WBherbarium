@@ -678,7 +678,7 @@ public function showAllCollector(){
 			->join('tblPerson pe', 'pe.intPersonID = co.intPersonID')
 			->get('tblCollector co');
 		if($query->num_rows() > 0){
-			return $query->result();
+			return $query->row();
 		}else{
 			return false;
 		}
