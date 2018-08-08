@@ -34,7 +34,7 @@
                     
                     <label>Island:</label><br>
                     <select id ="sisland"  class="form-control">
-                      <option value="islan0">--Select an Item--</option>
+                      <option value="island0">--Select an Item--</option>
                       <option Value="Luzon"> Luzon</option>
                       <option Value="Visayas">Visayas</option>
                       <option Value="Mindanao">Mindanao</option>
@@ -43,13 +43,13 @@
                   <div class="form-group col-sm-4">
                     <label>Region:</label><br>
                     <select id="sregion" class="form-control">
-                      <option value="">-- select one -- </option>
+                      <option value="region0">-- select one -- </option>
                     </select>
                   </div>
                   <div class="form-group col-sm-4">
                     <label>Province:</label><br>
                     <select id="sprov" class="form-control">
-
+                     
                     </select>
                   </div>
                 </div>
@@ -111,19 +111,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>
       $(document).ready(function () {
-    $("#sisland").change(function () {
-        var val = $(this).val();
-        if (val == "Luzon") {
-            $("#sregion").html("<option value='Region I'>Ilocos Region (Region 1)</option><option value='CAR'>Cordillera Administrative Region</option><option value='Region II'>Cagayan Valley (Region II)</option><option value='Region III'>Central Luzon (Region III)</option><option value='NCR'>National Capital Region (NCR)</option><option value='Region IV-A'>CALABARZON (Region IV-A)</option><option value='Region IV-B'>MIMAROPA (Region IV-B)</option><option value='Region V'>Bicol Region (Region V)</option>");
-        } else if (val == "Visayas") {
-            $("#sregion").html("<option value='Region VI'>Western Visayas(Region VI)</option><option value='Region VII'>Central Visayas (Region VII)</option><option value='Region VIII'>Eastern Visayas (Region VIII)</option>");
-        } else if (val == "Mindanao") {
-            $("#sregion").html("<option value='Region IX'>Zamboanga Peninsula (Region IX)</option><option value='Region X'>Northern Mindanao (Region X)</option><option value='Region XI'>Davao Region (Region XI)</option><option value='Region XII'>SOCCSKSARGEN (Region XII)</option><option value='Region XIII'>Caraga Region (Region XIII)</option><option value='ARMM'>Autonomous Region in Muslim Mindanao (ARMM)</option>");
-        } else if (val == "islan0") {
+        $("#sisland").change(function () {
+          var val = $(this).val();
+          if (val == "Luzon") {
+            $("#sregion").html("<option value='region0'>-- select one --</option><option value='Region I'>Ilocos Region (Region 1)</option><option value='CAR'>Cordillera Administrative Region</option><option value='Region II'>Cagayan Valley (Region II)</option><option value='Region III'>Central Luzon (Region III)</option><option value='NCR'>National Capital Region (NCR)</option><option value='Region IV-A'>CALABARZON (Region IV-A)</option><option value='Region IV-B'>MIMAROPA (Region IV-B)</option><option value='Region V'>Bicol Region (Region V)</option>");
+          } else if (val == "Visayas") {
+            $("#sregion").html("<option value='region0'>-- select one --</option><option value='Region VI'>Western Visayas(Region VI)</option><option value='Region VII'>Central Visayas (Region VII)</option><option value='Region VIII'>Eastern Visayas (Region VIII)</option>");
+          } else if (val == "Mindanao") {
+            $("#sregion").html("<option value='region0'>-- select one --</option><option value='Region IX'>Zamboanga Peninsula (Region IX)</option><option value='Region X'>Northern Mindanao (Region X)</option><option value='Region XI'>Davao Region (Region XI)</option><option value='Region XII'>SOCCSKSARGEN (Region XII)</option><option value='Region XIII'>Caraga Region (Region XIII)</option><option value='ARMM'>Autonomous Region in Muslim Mindanao (ARMM)</option>");
+          } else if (val == "island0") {
+            $("#sregion").html("<option value='region0'>-- select one --</option>");
+          }
+        });
+        $("#sregion").change(function () {
+          var val2 = $(this).val2();
+          if (val2 == "Region I") {
+            $("#sprov").html("<option value='region0'>-- select one --</option><option value='Ilocos Norte Province'>Ilocos Norte Province</option><option value='Ilocos Sur Province'>Ilocos Sur Province</option><option value='La Union Province'>La Union Province</option><option value='Pangasinan Province'>Pangasinan Province</option>");
+          } else if (val == "Region II") {
+            $("#sprov").html("<option value=' Batanes Province'>Batanes Province</option><option value='Cagayan Province'>Cagayan Province</option><option value='Isabela Province'>Isabela Province</option><option value='Nueva Vizcaya Province'>Nueva Vizcaya Province</option><option value='Quirino Province'>Quirino Province</option>");
+          }
+        });
+      });
 
-        }
-    });
-});
     </script>
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
