@@ -325,10 +325,26 @@ public function updateFamilyBox(){
 		$this->load->view('maintenance/Locality');
 		$this->load->view('templates/footer');
 	}
-		public function showAllLocality(){
+	public function showAllLocality(){
 		$result = $this->m->showAllLocality();
 		echo json_encode($result);
-		}
+	}
+	public function addLocality(){
+		$result = $this->m->addLocality();
+		echo json_encode($result);
+		
+	}public function updateLocality(){
+		$result = $this->m->updateLocality();
+		echo json_encode($result);
+		
+	}
+	public function editLocality(){
+		$result = $this->m->editLocality();
+		echo json_encode($result);
+	}
+
+	/****** END LOCALITY!!!!! ******/
+	/****** COLLECTOR START!!!!! ******/
 	public function Collector()
 	{
 		$title['title'] = "PUPHerbarium | Collector";
@@ -351,13 +367,8 @@ public function updateFamilyBox(){
 	}
 	public function updateCollector(){
 		$result = $this->m->updateCollector();
-		//$msg['success'] = false;
-		//$msg['type'] = 'update';
-		//if($result){
-		//	$msg['success'] = true;
-		//}
-		//eto yung nabago
 		echo json_encode($result);
+		
 	}
 		public function editCollector(){
 		$result = $this->m->editCollector();

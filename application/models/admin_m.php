@@ -482,7 +482,100 @@ public function showAllFamilyBoxes(){
 			return false;
 		}
 	}
+	public function addLocality(){
+	$island = $this->input->post('sislandname');
+	$region = $this->input->post('sregionname');
+	$province = $this->input->post('sprovname');
+	$citymuni = $this->input->post('cmName');
+	$area = $this->input->post('aName');
+	$specificLocation = $this->input->post('spLocName');
+	$shortLocation = $this->input->post('spShorName');
 
+
+
+	$query="
+	DECLARE @island				VARCHAR(50);
+	DECLARE @region				VARCHAR(50);
+	DECLARE @province			VARCHAR(50);
+	DECLARE @city				VARCHAR(50);
+	DECLARE @area				VARCHAR(50);
+	DECLARE @specificLocation	VARCHAR(255);
+	DECLARE @shortLocation		VARCHAR(255);
+
+	SET @island	='$island'			
+	SET @region	='$region'			
+	SET @province ='$province'			
+	SET @city ='$citymuni'				
+	SET @area ='$area'				
+	SET @specificLocation ='$specificLocation'	
+	SET @shortLocation ='$shortLocation'	
+
+	SET NOCOUNT ON;
+	
+
+		BEGIN
+			INSERT INTO tblLocality(strIsland, strRegion, strProvince, strCity, strArea, strSpecificLocation, strShortLocation)
+			VALUES (@island, @region, @province, @city, @area, @specificLocation, @shortLocation)
+		END
+		";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function updateLocality(){
+	$island = $this->input->post('sislandname');
+	$region = $this->input->post('sregionname');
+	$province = $this->input->post('sprovname');
+	$citymuni = $this->input->post('cmName');
+	$area = $this->input->post('aName');
+	$specificLocation = $this->input->post('spLocName');
+	$shortLocation = $this->input->post('spShorName');
+
+
+
+	$query="
+	DECLARE @island				VARCHAR(50);
+	DECLARE @region				VARCHAR(50);
+	DECLARE @province			VARCHAR(50);
+	DECLARE @city				VARCHAR(50);
+	DECLARE @area				VARCHAR(50);
+	DECLARE @specificLocation	VARCHAR(255);
+	DECLARE @shortLocation		VARCHAR(255);
+
+	SET @island	='$island'			
+	SET @region	='$region'			
+	SET @province ='$province'			
+	SET @city ='$citymuni'				
+	SET @area ='$area'				
+	SET @specificLocation ='$specificLocation'	
+	SET @shortLocation ='$shortLocation'	
+
+	SET NOCOUNT ON;
+	
+
+		BEGIN
+			INSERT INTO tblLocality(strIsland, strRegion, strProvince, strCity, strArea, strSpecificLocation, strShortLocation)
+			VALUES (@island, @region, @province, @city, @area, @specificLocation, @shortLocation)
+		END
+		";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function editLocality(){
+		$id = $this->input->get('id');
+		$this->db->where('intLocalityID', $id);
+		$query = $this->db->get('tblLocality');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
 	/****** END LOCALITY BOXES!!!!! ******/
 	/****** COLLECTOR START!!!!! ******/
 public function showAllCollector(){
@@ -644,12 +737,6 @@ BEGIN
 		}else{
 			return false;
 		}
-//eto yung nabago
-		//if($this->db->affected_rows() > 0){
-		//	return true;
-		//}else{
-		//	return false;
-		//}
 	}
 	public function editCollector(){
 		$id = $this->input->get('id');
@@ -674,6 +761,5 @@ BEGIN
 		}
 	}
 
-
-
+	
 }?>

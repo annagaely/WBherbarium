@@ -23,17 +23,11 @@
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
               </div>
               <div class="modal-body">
-                <form><!--dito ka magbabago sa loob nito-->
-                  <div class="form-group">
-                    <label>Locality ID:</label>
-                    <input type="text" name="LID" placeholder="Locality ID" class="form-control" disabled>
-                  </div>
+                <form id= "addLocalityForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="row">
-
-                  <div class="form-group col-sm-4">
-                    
+                  <div class="form-group col-sm-4">             
                     <label>Island:</label><br>
-                    <select id ="sisland"  class="form-control">
+                    <select id ="sisland" name ="sislandname"  class="form-control">
                       <option value="island0">--Select an Item--</option>
                       <option Value="Luzon"> Luzon</option>
                       <option Value="Visayas">Visayas</option>
@@ -42,13 +36,13 @@
                   </div>
                   <div class="form-group col-sm-4">
                     <label>Region:</label><br>
-                    <select id="sregion" class="form-control">
+                    <select id="sregion" name ="sregionname" class="form-control">
                       
                     </select>
                   </div>
                   <div class="form-group col-sm-4">
                     <label>Province:</label><br>
-                    <select id="sprov" class="form-control">
+                    <select id="sprov" name ="sprovname" class="form-control">
                      
                     </select>
                   </div>
@@ -56,24 +50,24 @@
                 <div class="row">
                   <div class="form-group col-sm-6">
                     <label>City/Municipality:</label>
-                    <input type="text" name="cName" placeholder="Municipality" class="form-control">
+                    <input type="text" name="cmName" placeholder="Municipality" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Area:</label>
-                    <input type="text" name="cName" placeholder="Area" class="form-control">
+                    <input type="text" name="aName" placeholder="Area" class="form-control">
                   </div>
                 </div>
                   <div class="form-group">
                     <label>Specific Location:</label>
-                    <input type="text" name="cName" placeholder="Specific Location" class="form-control">
+                    <input type="text" name="spLocName" placeholder="Specific Location" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Shortcut Location:</label>
-                    <input type="text" name="cName" placeholder="Shortcut Location" class="form-control">
+                    <input type="text" name="spShorName" placeholder="Shortcut Location" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-primary">       
-                    <input type="submit" value="Save" class="btn btn-primary">
+                    <input type="submit" ID = "btnSave" value="Save" class="btn btn-primary">
                   </div>
                 </form>
               </div>
@@ -194,7 +188,7 @@
                   '<td>'+data[i].strShortLocation+'</td>'+
 
                   '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary item-edit" data="'+data[i].intLocalityID+'">Edit</a>'+
+                    '<a href="javascript:;" class="btn btn-primary locality-edit" data="'+data[i].intLocalityID+'">Edit</a>'+
                   '</td>'+
                   '</tr>';
           }
@@ -225,6 +219,68 @@ function regionchange(selectObj){
   }
 }
 
+
+/////////////adding locality//////////
+    $('#btnSave').click(function(){
+      var data = $('#addLocalityForm').serialize();
+      //validate form
+
+        $.ajax({
+          type: 'ajax',
+          method: 'post',
+          url: '<?php echo base_url() ?>admin/addLocality',
+          data: data,
+          async: false,
+          dataType: 'json',
+          success: function($response){
+            if(response.success){
+              $('#addLocalityForm').modal('hide');
+              $('#addLocalityForm')[0].reset();
+              showAllLocality();
+              }else{
+              alert('Error');
+            }
+          },
+          error: function(){
+            alert('Could not save Data');
+          }
+        });
+      
+    });
+
+
+
+    $('#showdata').on('click', '.locality-edit', function(){
+      var id = $(this).attr('data');
+      $('#myEditModal').modal('show');
+      $('#myEditModal').find('.modal-title').text('Edit Collector');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/editCollector',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=feName]').val(data.strFirstname);
+          $('input[name=meName]').val(data.strMiddlename);
+          $('input[name=meInitial]').val(data.strMiddleInitial);
+          $('input[name=leName]').val(data.strLastname);
+          $('input[name=neSuffix]').val(data.strNameSuffix);
+          $('input[name=ceName]').val(data.strContactNumber);
+          $('input[name=eeMail]').val(data.strEmailAddress);
+          $('input[name=cdeName]').val(data.strCollege);
+          $('input[name=seceName]').val(data.strSection);
+          $('input[name=txtId]').val(data.intCollectorID);
+          
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+      
+    });
+
+  })
 
 
 
