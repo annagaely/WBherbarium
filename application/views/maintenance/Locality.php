@@ -43,7 +43,7 @@
                   <div class="form-group col-sm-4">
                     <label>Region:</label><br>
                     <select id="sregion" class="form-control">
-                      <option value="region0">-- select one -- </option>
+                      
                     </select>
                   </div>
                   <div class="form-group col-sm-4">
@@ -114,7 +114,7 @@
         $("#sisland").change(function () {
           var val = $(this).val();
           if (val == "Luzon") {
-            $("#sregion").html("<option value='region0'>-- select one --</option><option value='Region I'>Ilocos Region (Region 1)</option><option value='CAR'>Cordillera Administrative Region</option><option value='Region II'>Cagayan Valley (Region II)</option><option value='Region III'>Central Luzon (Region III)</option><option value='NCR'>National Capital Region (NCR)</option><option value='Region IV-A'>CALABARZON (Region IV-A)</option><option value='Region IV-B'>MIMAROPA (Region IV-B)</option><option value='Region V'>Bicol Region (Region V)</option>");
+            $("#sregion").html("<option value='region0'>-- select one --</option><option value='Region I'>Ilocos Region (Region 1)</option><option value='CAR'>Cordillera Administrative Region</option><option value='Region II'>Cagayan Valley (Region II)</option><option value='Region III'>Central Luzon (Region III)</option><option value='Region IV-A'>CALABARZON (Region IV-A)</option><option value='Region IV-B'>MIMAROPA (Region IV-B)</option><option value='NCR'>National Capital Region (NCR)</option><option value='Region V'>Bicol Region (Region V)</option>");
           } else if (val == "Visayas") {
             $("#sregion").html("<option value='region0'>-- select one --</option><option value='Region VI'>Western Visayas(Region VI)</option><option value='Region VII'>Central Visayas (Region VII)</option><option value='Region VIII'>Eastern Visayas (Region VIII)</option>");
           } else if (val == "Mindanao") {
@@ -124,11 +124,41 @@
           }
         });
         $("#sregion").change(function () {
-          var val2 = $(this).val2();
-          if (val2 == "Region I") {
-            $("#sprov").html("<option value='region0'>-- select one --</option><option value='Ilocos Norte Province'>Ilocos Norte Province</option><option value='Ilocos Sur Province'>Ilocos Sur Province</option><option value='La Union Province'>La Union Province</option><option value='Pangasinan Province'>Pangasinan Province</option>");
+          var val = $(this).val();
+          if (val == "Region I") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Ilocos Norte'>Ilocos Norte</option><option value='Ilocos Sur'>Ilocos Sur</option><option value='La Union'>La Union</option><option value='Pangasinan'>Pangasinan</option>");
           } else if (val == "Region II") {
-            $("#sprov").html("<option value=' Batanes Province'>Batanes Province</option><option value='Cagayan Province'>Cagayan Province</option><option value='Isabela Province'>Isabela Province</option><option value='Nueva Vizcaya Province'>Nueva Vizcaya Province</option><option value='Quirino Province'>Quirino Province</option>");
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Batanes'>Batanes</option><option value='Cagayan'>Cagayan</option><option value='Isabela'>Isabela</option><option value='Nueva Vizcaya'>Nueva Vizcaya</option><option value='Quirino'>Quirino</option>");
+          } else if (val == "CAR") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Abra'>Abra</option><option value='Apayao'>Apayao</option><option value='Benguet'>Benguet</option><option value='Ifugao'>Ifugao</option><option value='Kalinga'>Kalinga</option><option value='Mountain Province'>Mountain Province</option>")
+          } else if (val == "Region III") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Aurora'>Aurora</option><option value='Bataan'>Bataan</option><option value='Bulacan'>Bulacan</option><option value='Nueva Ecija'>Nueva Ecija</option><option value='Pampanga'>Pampanga</option><option value='Tarlac'>Tarlac</option><option value='Zambales'>Zambales</option>")
+          } else if (val == "Region IV-A") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Batangas'>Batangas</option><option value='Cavite'>Cavite</option><option value='Rizal'>Rizal</option><option value='Quezon'>Quezon</option>")
+          } else if (val == "Region IV-B") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Marinduque'>Marinduque</option><option value='Occidental Mindoro'>Occidental Mindoro</option><option value='Oriental Mindoro'>Oriental Mindoro</option><option value='Palawan'>Palawan</option><option value='Romblon'>Romblon</option>")
+          } else if (val == "Region V") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Albay'>Albay</option><option value='Camarines Norte'>Camarines Norte</option><option value='Camarines Sur'>Camarines Sur</option><option value='Catanduanes'>Catanduanes</option><option value='Masbate'>Masbate</option><option value='Sorsogon'>Sorsogon</option>")
+          } else if (val == "Region VI") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Aklan'>Aklan</option><option value='Antique'>Antique</option><option value='Capiz'>Capiz</option><option value='Guimaras'>Guimaras</option><option value='Iloilo'>Iloilo</option><option value='Negros Occidental'>Negros Occidental</option>")
+          } else if (val == "Region VII") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Bohol'>Bohol</option><option value='Cebu'>Cebu</option><option value='Negros Oriental'>Negros Oriental</option><option value='Siquijor'>Siquijor</option>")
+          } else if (val == "Region VIII") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Biliran'>Biliran</option><option value='Eastern Samar'>Eastern Samar</option><option value='Leyte'>Leyte</option><option value='Northern Samar'>Northern Samar</option><option value='Southern Leyte'>Southern Leyte</option><option value='Western Samar'>Western Samar (Samar)</option>")
+          } else if (val == "Region IX") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Zamboanga del Norte'>Zamboanga del Norte</option><option value='Zamboanga Sibugay'>Zamboanga Sibugay</option><option value='Zamboanga del Sur'>Zamboanga del Sur</option>")
+          } else if (val == "Region X") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Bukidnon'>Bukidnon</option><option value='Camiguin'>Camiguin</option><option value='Lanao del Norte'>Lanao del Norte</option><option value='Misamis Occidental'>Misamis Occidental</option><option value='Misamis Oriental'>Misamis Oriental</option>")
+          } else if (val == "Region XI") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Compostella Valley'>Compostella Valley</option><option value='Davao del Norte'>Davao del Norte</option><option value='Davao del Sur'>Davao del Sur</option><option value='Davao Oriental'>Davao Oriental</option>")
+          } else if (val == "Region XII") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Cotabato'>North Cotabato</option><option value='Sarangani'>Sarangani</option><option value='South Cotabato'>South Cotabato</option><option value='Sultan Kudarat'>Sultan Kudarat</option>")
+          } else if (val == "Region XIIIII") {
+            $("#sprov").html("<optioa value='prov0'>-- select one --</option><option value='Agusan del Norte'>Agusan del Norte</option><option value='Agusan del Sur';>hi</option><option value='Dinagat Islands'>Surigao del Norte/option><option value='Siguridao del Sur'>Surigao del Sur</option>")
+          } else if (val == "ARMM") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Basilan'>Basilan</option><option value='Lanao del Sur'>Lanao del Sur</option><option value='Maguindanao'>Maguindanao</option><option value='Shariff Kabunsuan'>Shariff Kabunsuan</option><option value='Sulu'>Sulu</option><option value='Tawi-Tawi'>Tawi-Tawi</option>")
+          } else if (val == "NCR") {
+            $("#sprov").html("<option value='prov0'>-- select one --</option>")
           }
         });
       });
