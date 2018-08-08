@@ -115,6 +115,7 @@
                 <form id= "editCollectorForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="row">
                     <div class="form-group col-sm-8">
+                       <input type="hidden" name="txtId" value="0">
                       <label>First Name:</label>
                       <input type="text" name="feName" placeholder="First Name " class="form-control">
                     </div>
@@ -316,7 +317,7 @@ $('#btnEditSave').click(function(){
       $.ajax({
         type: 'ajax',
         method: 'get',
-        url: '<?php echo base_url() ?>admin/editSpecies',
+        url: '<?php echo base_url() ?>admin/editCollector',
         data: {id: id},
         async: false,
         dataType: 'json',
@@ -330,7 +331,7 @@ $('#btnEditSave').click(function(){
           $('input[name=eeMail]').val(data.strEmailAddress);
           $('input[name=cdeName]').val(data.strCollege);
           $('input[name=seceName]').val(data.strSection);
-          $('input[name=Id]').val(data.intCollectorID);
+          $('input[name=txtId]').val(data.intCollectorID);
           
         },
         error: function(){

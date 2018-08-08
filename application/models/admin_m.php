@@ -591,6 +591,8 @@ public function showAllCollector(){
 	$email = $this->input->post('eeMail');
 	$cdname = $this->input->post('cdeName');
 	$secname = $this->input->post('seceName');
+	$collectorid = $this->input->post('txtId');
+
 
 
 	$query="
@@ -603,6 +605,7 @@ public function showAllCollector(){
 	DECLARE @email			VARCHAR(255);
 	DECLARE @college		VARCHAR(100);
 	DECLARE @section		VARCHAR(50);
+	DECLARE @collectorID		INT;
 	
 	set @firstname = '$fname'
 	set @middlename = '$mname'
@@ -613,46 +616,26 @@ public function showAllCollector(){
 	set @email = '$email'
 	set @college = '$cdname'
 	set @section = '$secname'
+	set @collectorID = '$collectorid'
 
 
 		DECLARE @personID INT;
-		DECLARE @duplicateID INT;
+		SET @personID = (SELECT intPersonID FROM tblCollector WHERE intCollectorID = @collectorID)
 
-		SELECT @duplicateID = intPersonID
-		FROM tblPerson 
-		WHERE strFirstname = @firstname
-			AND strMiddlename = @middlename
-			AND strLastname = @lastname
-			AND strMiddleInitial = @middleinitial
-			AND strNameSuffix = @namesuffix
+		UPDATE tblPerson
+		SET strFirstname = @firstname,
+			strMiddlename = @middlename,
+			strLastname = @lastname,
+			strMiddleInitial = @middleinitial,
+			strNameSuffix = @namesuffix,
+			strContactNumber = @contactno,
+			strEmailAddress = @email
+		WHERE intPersonID = @personID;
 
-		IF @duplicateID IS NULL
-			BEGIN
-				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname, 
-									  strMiddleInitial, strNameSuffix, 
-									  strContactNumber, strEmailAddress)
-				VALUES(@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email)
-
-				SELECT @personID = intPersonID
-				FROM tblPerson 
-				WHERE strFirstname = @firstname
-					AND strMiddlename = @middlename
-					AND strLastname = @lastname
-					AND strMiddleInitial = @middleinitial
-					AND strNameSuffix = @namesuffix
-					AND strContactNumber = @contactno
-					AND strEmailAddress = @email 
-			END
-		ELSE
-			SET @personID = @duplicateID
-
-		IF NOT EXISTS (SELECT intCollectorID
-					   FROM tblCollector
-					   WHERE intPersonID = @personID AND strCollege = @college AND strSection = @section)
-		BEGIN
-			INSERT INTO tblCollector (intPersonID, strCollege, strSection)
-			VALUES (@personID, @college, @section)
-		END";
+		UPDATE tblCollector
+		SET strCollege = @college,
+			strSection = @section
+		WHERE intCollectorID = @collectorID";
 		$this->db->query($query);
 
 		if($this->db->affected_rows() > 0){
