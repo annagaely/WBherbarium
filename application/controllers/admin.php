@@ -351,12 +351,12 @@ public function updateFamilyBox(){
 	}
 	public function updateCollector(){
 		$result = $this->m->updateCollector();
-		$msg['success'] = false;
-		$msg['type'] = 'add';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
+		//$msg['success'] = false;
+		//$msg['type'] = 'update';
+		//if($result){
+		//	$msg['success'] = true;
+		//}
+		echo json_encode($result);
 	}
 		public function editCollector(){
 		$result = $this->m->editCollector();

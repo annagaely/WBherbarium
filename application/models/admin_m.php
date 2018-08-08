@@ -490,6 +490,7 @@ public function showAllCollector(){
 			 pe.intPersonID,
 			 pe.strFirstName,
 			 pe.strMiddleInitial,
+			 pe.strNameSuffix,
 			 pe.strLastName,
 			 strSection')
 			->join('tblPerson pe', 'pe.intPersonID = co.intPersonID')
@@ -621,7 +622,7 @@ public function showAllCollector(){
 
 		DECLARE @personID INT;
 		SET @personID = (SELECT intPersonID FROM tblCollector WHERE intCollectorID = @collectorID)
-
+BEGIN
 		UPDATE tblPerson
 		SET strFirstname = @firstname,
 			strMiddlename = @middlename,
@@ -631,18 +632,24 @@ public function showAllCollector(){
 			strContactNumber = @contactno,
 			strEmailAddress = @email
 		WHERE intPersonID = @personID;
-
+END
+BEGIN
 		UPDATE tblCollector
 		SET strCollege = @college,
 			strSection = @section
-		WHERE intCollectorID = @collectorID";
-		$this->db->query($query);
-
-		if($this->db->affected_rows() > 0){
+		WHERE intCollectorID = @collectorID
+		END";
+		if($this->db->query($query)){
 			return true;
 		}else{
 			return false;
 		}
+
+		//if($this->db->affected_rows() > 0){
+		//	return true;
+		//}else{
+		//	return false;
+		//}
 	}
 	public function editCollector(){
 		$id = $this->input->get('id');

@@ -201,6 +201,7 @@
                   <th>First Name</th>
                   <th>Middle Initial</th>
                   <th>Last Name</th>
+                  <th>Name Suffix</th>
                   <th>Institution/Section</th>
                   <th>Actions</th>
                 </tr>
@@ -236,6 +237,7 @@
                   '<td>'+data[i].strFirstName+'</td>'+
                   '<td>'+data[i].strMiddleInitial+'</td>'+
                   '<td>'+data[i].strLastName+'</td>'+
+                  '<td>'+data[i].strNameSuffix+'</td>'+
                   '<td>'+data[i].strSection+'</td>'+
 
                   '<td>'+
@@ -291,17 +293,18 @@ $('#btnEditSave').click(function(){
           async: false,
           dataType: 'json',
           success: function(response){
-            if(response.success){
-              $('#editCollectorForm').modal('hide');
+            if(response==true){
+              $('#myEditModal').modal('hide');
               $('#editCollectorForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
-              }
-              showAllPhylum();
-            }else{
-              alert('Error');
+         //     if(response.type=='add'){
+           //     var type = 'added'
+       //       }else if(response.type=='update'){
+          //      var type ="updated"
+              //}
+              showAllCollector();
+            }
+            else{
+             alert('Error');
             }
           },
           error: function(){
