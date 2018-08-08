@@ -9,7 +9,7 @@
           </ul>
         </div>
       </div>
-<!--ADD Collector MODAL-->
+<!--ADD Collector MODAL asdadsasd -->
       <div class="card">
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Collector</button>
