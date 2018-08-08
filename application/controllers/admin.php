@@ -65,7 +65,7 @@ class admin extends CI_Controller {
 		echo json_encode($msg);
 	}
 
-	/****** END PHYLUM!!!!! sample change******/
+	/****** END PHYLUM!!!!! this changes were by anna******/
 	/****** CLASS START!!!!! ******/
 	public function Class()
 	{
