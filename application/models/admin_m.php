@@ -491,8 +491,6 @@ public function showAllFamilyBoxes(){
 	$specificLocation = $this->input->post('spLocName');
 	$shortLocation = $this->input->post('spShorName');
 
-
-
 	$query="
 	DECLARE @island				VARCHAR(50);
 	DECLARE @region				VARCHAR(50);

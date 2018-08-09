@@ -53,7 +53,7 @@
               </div>
 
       
-              <div class="form-group text-center"><a id="login" href="<?php echo base_url(); ?>Maintenance/Dashboard" class="btn btn-primary">Login</a>
+              <div class="form-group text-center"><a id="login" href="<?php echo base_url(); ?>admin/Dashboard" class="btn btn-primary">Login</a>
                 <!-- This should be submit button but I replaced it with <a> for demo purposes-->
               </div>
             </form><a href="#" class="forgot-pass">Forgot Password?</a>
