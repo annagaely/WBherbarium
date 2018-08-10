@@ -673,6 +673,23 @@ BEGIN
 			return false;
 		}
 	}
+	/****** END COLLECTOR!!!!! ******/
+	/****** EXTERNAL VALIDATOR START!!!!! ******/
+
+	public function showAllValidator(){
+
+		$query=$this->get('tblValidator');
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+
+
+	/****** END  EXTERNAL VALIDATOR!!!!! ******/
+	/******  START!!!!! ******/
 
 
 

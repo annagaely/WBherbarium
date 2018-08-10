@@ -351,11 +351,6 @@ public function updateFamilyBox(){
 	}
 	public function updateCollector(){
 		$result = $this->m->updateCollector();
-		//$msg['success'] = false;
-		//$msg['type'] = 'update';
-		//if($result){
-		//	$msg['success'] = true;
-		//}
 		echo json_encode($result);
 	}
 		public function editCollector(){
@@ -370,6 +365,11 @@ public function updateFamilyBox(){
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Externalvalidator');
 		$this->load->view('templates/footer');
+
+	}
+		public function showAllValidator(){
+		$result = $this->m->showAllValidator();
+		echo json_encode($result);
 	}
 	public function Staffmgt()
 	{
