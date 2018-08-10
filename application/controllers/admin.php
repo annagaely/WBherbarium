@@ -397,8 +397,17 @@ public function updateFamilyBox(){
 		}
 		echo json_encode($msg);
 	}
+	public function editValidator(){
+		$result = $this->m->editValidator();
+		echo json_encode($result);
+	}
+	public function updateValidator(){
+		$result = $this->m->updateValidator();
+		echo json_encode($result);
+		
+	}
 
-		/****** END VALIDATOR!!!!! ******/
+	/****** END VALIDATOR!!!!! ******/
 	/****** COLLECTOR START!!!!! ******/
 	public function Staffmgt()
 	{

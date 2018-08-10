@@ -774,7 +774,7 @@ BEGIN
 	$minitial = $this->input->post('txtMInitial');
 	$lname = $this->input->post('txtLName');
 	$nsuffix = $this->input->post('txtNSuffix');
-	$cname = $this->input->post('txtCnumber');
+	$cname = $this->input->post('txtCNumber');
 	$email = $this->input->post('txtEMail');
 	$institution = $this->input->post('txtInstitution');
 
@@ -847,7 +847,87 @@ BEGIN
 		}
 	}
 
+public function editValidator(){
+		$id = $this->input->get('id');
+		$this->db->where('intValidatorID', $id);
+		$query = $this->db->select('intValidatorID,
+			 pe.intPersonID
+      ,pe.strFirstname
+      ,pe.strMiddlename
+      ,pe.strLastname
+      ,pe.strMiddleInitial
+      ,pe.strNameSuffix
+      ,pe.strContactNumber
+      ,pe.strEmailAddress,
+			 strInstitution')
+			->join('tblPerson pe', 'pe.intPersonID = v.intPersonID')
+			->get('tblValidator v');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+	public function updateValidator(){
+	$fname = $this->input->post('txteFName');
+	$mname = $this->input->post('txteMName');
+	$minitial = $this->input->post('txteMInitial');
+	$lname = $this->input->post('txteLName');
+	$nsuffix = $this->input->post('txteNSuffix');
+	$cname = $this->input->post('txteCNumber');
+	$email = $this->input->post('txteEMail');
+	$institution = $this->input->post('txteInstitution');
+	$validatorid = $this->input->post('txtId');
 
+
+
+	$query="
+	DECLARE @firstname		VARCHAR(50);
+	DECLARE @middlename		VARCHAR(50);
+	DECLARE @lastname		VARCHAR(50);
+	DECLARE @middleinitial	VARCHAR(3);
+	DECLARE @namesuffix		VARCHAR(5);
+	DECLARE @contactno		VARCHAR(15);
+	DECLARE @email			VARCHAR(255);
+	DECLARE @college		VARCHAR(100);
+	DECLARE @institution	VARCHAR(50);
+	DECLARE @validatorID	INT;
+	
+	set @firstname = '$fname'
+	set @middlename = '$mname'
+	set @lastname = '$lname'
+	set @middleinitial = '$minitial'
+	set @namesuffix = '$nsuffix'
+	set @contactno = '$cname'
+	set @email = '$email'
+	set @institution = '$institution'
+	set @validatorID = '$validatorid'
+
+
+		
+		DECLARE @personID INT;
+		
+		SET @personID = (SELECT intPersonID FROM tblValidator WHERE intValidatorID = @validatorID)
+
+		UPDATE tblPerson
+		SET strFirstname = @firstname,
+			strMiddlename = @middlename,
+			strLastname = @lastname,
+			strMiddleInitial = @middleinitial,
+			strNameSuffix = @namesuffix,
+			strContactNumber = @contactno,
+			strEmailAddress = @email
+		WHERE intPersonID = @personID;
+
+		UPDATE tblValidator
+		SET strInstitution = @institution
+		WHERE intValidatorID = @validatorID";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	/****** END EXTERNALVALIDATOR!!!!! ******/
 	/******  START!!!!! ******/
 }?>
