@@ -94,7 +94,7 @@
     $(function(){
     
       //show
-showAllValidator    
+showAllValidator();   
 
     function showAllValidator(){
       $.ajax({

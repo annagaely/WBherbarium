@@ -677,14 +677,13 @@ BEGIN
 	/****** EXTERNAL VALIDATOR START!!!!! ******/
 
 	public function showAllValidator(){
-
-		$query=$this->get('tblValidator');
-		if($this->db->query($query)){
-			return true;
+		$query = $this->db->get('tblValidator');
+		if($query->num_rows() > 0){
+			return $query->result();
 		}else{
 			return false;
 		}
-
+		
 	}
 
 
