@@ -760,4 +760,17 @@ BEGIN
 	}
 
 	
+	public function showAllValidator(){
+		
+$result = array();
+		$query = $this->db->query("select Concat(pe.strLastname,', ',pe.strFirstname,' ',pe.strMiddlename,' ',pe.strNameSuffix) as strFullName, strInstitution, intValidatorID
+		from tblValidator v join tblPerson pe
+		on v.intPersonID = pe.intPersonID
+		where strValidatorType = 'External'");
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
 }?>
