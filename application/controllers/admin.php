@@ -382,6 +382,11 @@ public function updateFamilyBox(){
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Externalvalidator');
 		$this->load->view('templates/footer');
+
+	}
+		public function showAllValidator(){
+		$result = $this->m->showAllValidator();
+		echo json_encode($result);
 	}
 	public function Staffmgt()
 	{

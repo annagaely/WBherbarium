@@ -71,7 +71,12 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Validator Name</th>
+                  <th>External Validator ID</th>
+                  <th>First Name</th>
+                  <th>Middle Name</th>
+                  <th>Last Name</th>
+                  <th>Contact Number</th>
+                  <th>Email Address</th>
                   <th>Institution</th>
                   <th>Actions</th>
                 </tr>
@@ -89,13 +94,12 @@
     $(function(){
     
       //show
-    showAllFamilyBoxes();
-    
+showAllValidator();   
 
-    function showAllFamilyBoxes(){
+    function showAllValidator(){
       $.ajax({
         type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllFamilyBoxes',
+        url: '<?php echo base_url() ?>admin/showAllValidator',
         async: false,
         dataType: 'json',
         success: function(data){

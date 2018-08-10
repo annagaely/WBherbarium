@@ -758,6 +758,22 @@ BEGIN
 			return false;
 		}
 	}
+	/****** END COLLECTOR!!!!! ******/
+	/****** EXTERNAL VALIDATOR START!!!!! ******/
+
+	public function showAllValidator(){
+		$query = $this->db->get('tblValidator');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+		
+	}
+
+
+	/****** END  EXTERNAL VALIDATOR!!!!! ******/
+	/******  START!!!!! ******/
 
 	
 }?>
