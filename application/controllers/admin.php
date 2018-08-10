@@ -375,7 +375,8 @@ public function updateFamilyBox(){
 		echo json_encode($result);
 	}
 
-
+	/****** END COLLECTOR!!!!! ******/
+	/****** EXTERNAL VALIDATOR START!!!!! ******/
 	public function Externalvalidator()
 	{
 		$title['title'] = "PUPHerbarium | External Validator";
@@ -387,6 +388,18 @@ public function updateFamilyBox(){
 		$result = $this->m->showAllValidator();
 		echo json_encode($result);
 	}
+	public function addValidator(){
+		$result = $this->m->addValidator();
+		$msg['success'] = false;
+		$msg['type'] = 'add';
+		if($result){
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
+
+		/****** END VALIDATOR!!!!! ******/
+	/****** COLLECTOR START!!!!! ******/
 	public function Staffmgt()
 	{
 		$title['title'] = "PUPHerbarium | Staff Management";
