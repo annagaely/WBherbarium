@@ -193,6 +193,8 @@
             $("#smunicipality").html("<option value=''></option><option value='Anao'>Anao</option><option value='Bamban'>Bamban</option><option value='Camiling'>Camiling</option><option value='Capas'>Capas</option><option value='Concepcion'>Concepcion</option><option value='Gerona'>Gerona</option><option value='La Paz'>La Paz</option><option value='Mayantoc'>Mayantoc</option><option value='Moncada'>Moncada</option><option value='Paniqui'>Paniqui</option><option value='Pura'>Pura</option><option value='Ramos'>Ramos</option><option value='San Clemente'>San Clemente</option><option value='San Jose'>San Jose</option><option value='San Manuel'>San Manuel</option><option value='Santa Ignacia'>Santa Ignacia</option><option value='Tarlac City'>Tarlac City</option><option value='Victoria'>Victoria</option>")
           } else if (val == "Zambales") {
             $("#smunicipality").html("<option value=''></option><option value='Botolan'>Botolan</option><option value='Cabangan'>Cabangan</option><option value='Candelaria'>Candelaria</option><option value='Castillejos'>Castillejos</option><option value='Iba'>Iba</option><option value='Masinloc'>Masinloc</option><option value='Olongapo'>Olongapo</option><option value='Palauig'>Palauig</option><option value='San Antonio'>San Antonio</option><option value='San Felipe'>San Felipe</option><option value='San Marcelino'>San Marcelino</option><option value='San Narciso'>San Narciso</option><option value='Santa Cruz'>Santa Cruz</option><option value='Subic'>Subic</option>")
+          } else if (val == "Batangas") {
+            $("#smunicipality").html("")
           }
         });
       });
