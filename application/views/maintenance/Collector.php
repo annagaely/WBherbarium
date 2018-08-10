@@ -198,10 +198,7 @@
               <thead>
                 <tr>
                   <th>CollectorID</th>
-                  <th>First Name</th>
-                  <th>Middle Initial</th>
-                  <th>Last Name</th>
-                  <th>Name Suffix</th>
+                  <th>Full Name</th>
                   <th>Institution/Section</th>
                   <th>Actions</th>
                 </tr>
@@ -234,10 +231,7 @@
           for(i=0; i<data.length; i++){
             html +='<tr>'+
                   '<td>'+data[i].intCollectorID+'</td>'+
-                  '<td>'+data[i].strFirstName+'</td>'+
-                  '<td>'+data[i].strMiddleInitial+'</td>'+
-                  '<td>'+data[i].strLastName+'</td>'+
-                  '<td>'+data[i].strNameSuffix+'</td>'+
+                  '<td>'+data[i].strFullName+'</td>'+
                   '<td>'+data[i].strSection+'</td>'+
 
                   '<td>'+

@@ -577,15 +577,9 @@ public function showAllFamilyBoxes(){
 	/****** END LOCALITY BOXES!!!!! ******/
 	/****** COLLECTOR START!!!!! ******/
 public function showAllCollector(){
-		$query = $this->db->select('intCollectorID,
-			 pe.intPersonID,
-			 pe.strFirstName,
-			 pe.strMiddleInitial,
-			 pe.strNameSuffix,
-			 pe.strLastName,
-			 strSection')
-			->join('tblPerson pe', 'pe.intPersonID = co.intPersonID')
-			->get('tblCollector co');
+		$query = $this->db->query("select Concat(pe.strLastname,', ',pe.strFirstname,' ',pe.strMiddlename,' ',pe.strNameSuffix) as strFullName, strSection, intCollectorID, pe.intPersonID
+		from tblCollector co join tblPerson pe
+		on pe.intPersonID = co.intPersonID");
 		if($query->num_rows() > 0){
 			return $query->result();
 		}else{
@@ -759,10 +753,9 @@ BEGIN
 		}
 	}
 
-	
+	/****** END COLLECTOR!!!!! ******/
+	/****** EXTERNAL VALIDATOR START!!!!! ******/
 	public function showAllValidator(){
-		
-$result = array();
 		$query = $this->db->query("select Concat(pe.strLastname,', ',pe.strFirstname,' ',pe.strMiddlename,' ',pe.strNameSuffix) as strFullName, strInstitution, intValidatorID
 		from tblValidator v join tblPerson pe
 		on v.intPersonID = pe.intPersonID
@@ -773,4 +766,168 @@ $result = array();
 			return false;
 		}
 	}
+
+	public function addValidator(){
+	
+	$fname = $this->input->post('txtFName');
+	$mname = $this->input->post('txtMName');
+	$minitial = $this->input->post('txtMInitial');
+	$lname = $this->input->post('txtLName');
+	$nsuffix = $this->input->post('txtNSuffix');
+	$cname = $this->input->post('txtCNumber');
+	$email = $this->input->post('txtEMail');
+	$institution = $this->input->post('txtInstitution');
+
+
+
+	$query="
+	DECLARE @firstname		VARCHAR(50);
+	DECLARE @middlename		VARCHAR(50);
+	DECLARE @lastname		VARCHAR(50);
+	DECLARE @middleinitial	VARCHAR(3);
+	DECLARE @namesuffix		VARCHAR(5);
+	DECLARE @contactno		VARCHAR(15);
+	DECLARE @email			VARCHAR(255);
+	DECLARE @college		VARCHAR(100);
+	DECLARE @institution	VARCHAR(50);
+	
+	set @firstname = '$fname'
+	set @middlename = '$mname'
+	set @lastname = '$lname'
+	set @middleinitial = '$minitial'
+	set @namesuffix = '$nsuffix'
+	set @contactno = '$cname'
+	set @email = '$email'
+	set @institution = '$institution'
+
+	DECLARE @personID INT;
+		DECLARE @duplicateID INT;
+
+		SELECT @duplicateID = intPersonID
+		FROM tblPerson 
+		WHERE strFirstname = @firstname
+			AND strMiddlename = @middlename
+			AND strLastname = @lastname
+			AND strMiddleInitial = @middleinitial
+			AND strNameSuffix = @namesuffix
+
+		IF @duplicateID IS NULL
+			BEGIN
+				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname, 
+									  strMiddleInitial, strNameSuffix, 
+									  strContactNumber, strEmailAddress)
+				VALUES(@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email)
+
+				SELECT @personID = intPersonID
+				FROM tblPerson 
+				WHERE strFirstname = @firstname
+					AND strMiddlename = @middlename
+					AND strLastname = @lastname
+					AND strMiddleInitial = @middleinitial
+					AND strNameSuffix = @namesuffix
+					AND strContactNumber = @contactno
+					AND strEmailAddress = @email 
+			END
+		ELSE
+			SET @personID = @duplicateID
+
+		IF NOT EXISTS (SELECT intValidatorID
+					   FROM tblValidator
+					   WHERE intPersonID = @personID AND @institution = @institution)
+		BEGIN
+			INSERT INTO tblValidator(intPersonID, strInstitution, strValidatorType)
+			VALUES (@personID, @institution, 'External')
+		END";
+		$this->db->query($query);
+
+		if($this->db->affected_rows() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+public function editValidator(){
+		$id = $this->input->get('id');
+		$this->db->where('intValidatorID', $id);
+		$query = $this->db->select('intValidatorID,
+			 pe.intPersonID
+      ,pe.strFirstname
+      ,pe.strMiddlename
+      ,pe.strLastname
+      ,pe.strMiddleInitial
+      ,pe.strNameSuffix
+      ,pe.strContactNumber
+      ,pe.strEmailAddress,
+			 strInstitution')
+			->join('tblPerson pe', 'pe.intPersonID = v.intPersonID')
+			->get('tblValidator v');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+	public function updateValidator(){
+	$fname = $this->input->post('txteFName');
+	$mname = $this->input->post('txteMName');
+	$minitial = $this->input->post('txteMInitial');
+	$lname = $this->input->post('txteLName');
+	$nsuffix = $this->input->post('txteNSuffix');
+	$cname = $this->input->post('txteCNumber');
+	$email = $this->input->post('txteEMail');
+	$institution = $this->input->post('txteInstitution');
+	$validatorid = $this->input->post('txtId');
+
+
+
+	$query="
+	DECLARE @firstname		VARCHAR(50);
+	DECLARE @middlename		VARCHAR(50);
+	DECLARE @lastname		VARCHAR(50);
+	DECLARE @middleinitial	VARCHAR(3);
+	DECLARE @namesuffix		VARCHAR(5);
+	DECLARE @contactno		VARCHAR(15);
+	DECLARE @email			VARCHAR(255);
+	DECLARE @college		VARCHAR(100);
+	DECLARE @institution	VARCHAR(50);
+	DECLARE @validatorID	INT;
+	
+	set @firstname = '$fname'
+	set @middlename = '$mname'
+	set @lastname = '$lname'
+	set @middleinitial = '$minitial'
+	set @namesuffix = '$nsuffix'
+	set @contactno = '$cname'
+	set @email = '$email'
+	set @institution = '$institution'
+	set @validatorID = '$validatorid'
+
+
+		
+		DECLARE @personID INT;
+		
+		SET @personID = (SELECT intPersonID FROM tblValidator WHERE intValidatorID = @validatorID)
+
+		UPDATE tblPerson
+		SET strFirstname = @firstname,
+			strMiddlename = @middlename,
+			strLastname = @lastname,
+			strMiddleInitial = @middleinitial,
+			strNameSuffix = @namesuffix,
+			strContactNumber = @contactno,
+			strEmailAddress = @email
+		WHERE intPersonID = @personID;
+
+		UPDATE tblValidator
+		SET strInstitution = @institution
+		WHERE intValidatorID = @validatorID";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/****** END EXTERNALVALIDATOR!!!!! ******/
+	/******  START!!!!! ******/
 }?>
