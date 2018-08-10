@@ -50,7 +50,9 @@
                 <div class="row">
                   <div class="form-group col-sm-6">
                     <label>City/Municipality:</label>
-                    <input type="text" name="cmName" placeholder="Municipality" class="form-control">
+                    <select id="smunicipality" name ="sprovname" class="form-control">
+                     
+                    </select>
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Area:</label>
@@ -153,6 +155,16 @@
             $("#sprov").html("<option value='prov0'>-- select one --</option><option value='Basilan'>Basilan</option><option value='Lanao del Sur'>Lanao del Sur</option><option value='Maguindanao'>Maguindanao</option><option value='Shariff Kabunsuan'>Shariff Kabunsuan</option><option value='Sulu'>Sulu</option><option value='Tawi-Tawi'>Tawi-Tawi</option>")
           } else if (val == "NCR") {
             $("#sprov").html("<option value='prov0'>-- select one --</option>")
+          }
+        });
+        $("#sprov").change(function () {
+          var val = $(this).val();
+          if (val == "Ilocos Norte") {
+            $("#smunicipality").html("<option value='mun0'>-- select one --</option><option value='Adams'>Adams</option><option value='Bacarra'>Bacarra</option><option value='Badoc'>Badoc</option><option value='Bangui'>Bangui</option><option value='Batac'>Batac</option><option value='Burgos'>Burgos</option><option value='Carasi'>Carasi</option><option value='Currimao'>Currimao</option><option value='Dingras'>Dingras</option><option value='Dumalneg'>Dumalneg</option><option value='Espiritu'>Espiritu</option><option value='Laoag City'>Laoag City</option><option value='Marcos'>Marcos</option><option value='Nueva Era'>Nueva Era</option><option value='Pagudpud'>Pagudpud</option><option value='Paoay'>Paoay</option><option value='Pasuquin'>Pasuquin</option><option value='Piddig'>Piddig</option><option value='Pinili'>Pinili</option><option value='San Nicolas'>San Nicolas</option><option value='Sarrat'>Sarrat</option><option value='Solsona'>Solsona</option><option value='Vintar'>Vintar</option>")
+          } else if (val == "Ilocos Sur") {
+            $("#smunicipality").html("<option value='mun0'>-- select one --</option><option value='Alilem'>Alilem</option><option value='Banayoyo'>Banayoyo</option><option value='Bantay'>Bantay</option><option value='Burgos'>Burgos</option><option value='Cabugao'>Cabugao</option><option value='Candon'>Candon</option><option value='Caoayan'>Caoayan</option><option value='Cervantes'>Cervantes</option><option value='Galimuyod'>Galimuyod</option><option value='Gergorio del Pilar'>Gergorio del Pilar</option><option value='Lidlida'>Lidlida</option><option value='Magsingal'>Magsingal</option><option value='Nagbukel'>Nagbukel</option><option value='Narvacan'>Narvacan</option><option value='Quirino'>Quirino</option><option value='Salcedo'>Salcedo</option><option value='San Emilio'>San Emilio</option><option value='San Esteban'>San Esteban</option><option value='San Ildefonso'>San Ildefonso</option><option value='San Juan'>San Juan</option><option value='San Vicente'>San Vicente</option><option value='Santa'>Santa</option><option value='Santa Catalina'>Santa Catalina</option><option value='Santa Cruz'>Santa Cruz</option><option value='Santa Lucia'>Santa Lucia</option><option value='Santa Maria'>Santa Maria</option><option value='Santiago'>Santiago</option><option value='Santo Domingo'>Santo Domingo</option><option value='Sicay'>Sicay</option><option value='Sinait'>Sinait</option><option value='Sugpon'>Sugpon</option><option value='Suyo'>Suyo</option><option value='Tagudin'>Tagudin</option>")
+          } else if (val == "La Union") {
+            $("#smunicipality").html("<option value='mun0'>-- select one --</option><option value='Agoo'>Agoo</option><option value='Aringay'>Aringay</option><option value='Bacnotan'>Bacnotan</option><option value='Bagulin'>Bagulin</option><option value='Balaoan'>Balaoan</option><option value='Bangar'>Bangar</option><option value='Bauang'>Bauang</option><option value='Burgos'>Burgos</option><option value='Caba'>Caba</option><option value='Damortis'>Damortis</option><option value='Luna'>Luna</option><option value='Naguilian'>Naguilian</option><option value='Pugo'>Pugo</option><option value='Rosario'>Rosario</option><option value='San Fernando'>San Fernando</option><option value='San Gabriel'>San Gabriel</option><option value='San Juan'>San Juan</option><option value='Santol'>Santol</option><option value='Sto. Tomas'>Sto. Tomas</option><option value='Sudipen'>Sudipen</option><option value='Tubao'>Tubao</option>")
           }
         });
       });
