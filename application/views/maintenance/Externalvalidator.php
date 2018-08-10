@@ -95,7 +95,7 @@
     function showAllFamilyBoxes(){
       $.ajax({
         type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllFamilyBoxes',
+        url: '<?php echo base_url() ?>admin/showAllValidator',
         async: false,
         dataType: 'json',
         success: function(data){
@@ -103,12 +103,11 @@
           var i;
           for(i=0; i<data.length; i++){
             html +='<tr>'+
-                  '<td>'+data[i].intBoxID+'</td>'+
-                  '<td>'+data[i].strBoxNumber+'</td>'+
-                  '<td>'+data[i].strFamilyName+'</td>'+
-                  '<td>'+data[i].intBoxLimit+'</td>'+
+                  '<td>'+data[i].intValidatorID+'</td>'+
+                  '<td>'+data[i].strFullName+'</td>'+
+                  '<td>'+data[i].strInstitution+'</td>'+
                   '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary item-edit" data="'+data[i].intSpeciesID+'">Edit</a>'+
+                    '<a href="javascript:;" class="btn btn-primary item-edit" data="'+data[i].intValidatorID+'">Edit</a>'+
                   '</td>'+
                   '</tr>';
           }

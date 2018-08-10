@@ -355,8 +355,8 @@ public function updateFamilyBox(){
 	public function showAllCollector(){
 		$result = $this->m->showAllCollector();
 		echo json_encode($result);
-		}
-		public function addCollector(){
+	}
+	public function addCollector(){
 		$result = $this->m->addCollector();
 		$msg['success'] = false;
 		$msg['type'] = 'add';
@@ -382,6 +382,10 @@ public function updateFamilyBox(){
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Externalvalidator');
 		$this->load->view('templates/footer');
+	}
+	public function showAllValidator(){
+		$result = $this->m->showAllValidator();
+		echo json_encode($result);
 	}
 	public function Staffmgt()
 	{
