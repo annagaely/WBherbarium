@@ -355,8 +355,8 @@ public function updateFamilyBox(){
 	public function showAllCollector(){
 		$result = $this->m->showAllCollector();
 		echo json_encode($result);
-		}
-		public function addCollector(){
+	}
+	public function addCollector(){
 		$result = $this->m->addCollector();
 		$msg['success'] = false;
 		$msg['type'] = 'add';
@@ -375,7 +375,8 @@ public function updateFamilyBox(){
 		echo json_encode($result);
 	}
 
-
+	/****** END COLLECTOR!!!!! ******/
+	/****** EXTERNAL VALIDATOR START!!!!! ******/
 	public function Externalvalidator()
 	{
 		$title['title'] = "PUPHerbarium | External Validator";
@@ -383,6 +384,31 @@ public function updateFamilyBox(){
 		$this->load->view('maintenance/Externalvalidator');
 		$this->load->view('templates/footer');
 	}
+	public function showAllValidator(){
+		$result = $this->m->showAllValidator();
+		echo json_encode($result);
+	}
+	public function addValidator(){
+		$result = $this->m->addValidator();
+		$msg['success'] = false;
+		$msg['type'] = 'add';
+		if($result){
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
+	public function editValidator(){
+		$result = $this->m->editValidator();
+		echo json_encode($result);
+	}
+	public function updateValidator(){
+		$result = $this->m->updateValidator();
+		echo json_encode($result);
+		
+	}
+
+	/****** END VALIDATOR!!!!! ******/
+	/****** COLLECTOR START!!!!! ******/
 	public function Staffmgt()
 	{
 		$title['title'] = "PUPHerbarium | Staff Management";
@@ -442,14 +468,14 @@ public function updateFamilyBox(){
 
 	function view_calendar()
 	{
-		$this->load->view('maintenance/fullcalendar');
+		$this->load->view('maintenance/fullcalendar2');
 	}
 
 	public function CalendarManagement()
 	{
 		$title['title'] = "PUPHerbarium | Calendar Management";
 		$this->load->view('templates/header', $title);
-		$this->load->view('maintenance/fullcalendar');
+		$this->load->view('maintenance/fullcalendar2');
 		$this->load->view('maintenance/CalendarManagement');
 		$this->load->view('templates/footer');
 	}
