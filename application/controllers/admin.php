@@ -468,14 +468,14 @@ public function updateFamilyBox(){
 
 	function view_calendar()
 	{
-		$this->load->view('maintenance/fullcalendar');
+		$this->load->view('maintenance/fullcalendar2');
 	}
 
 	public function CalendarManagement()
 	{
 		$title['title'] = "PUPHerbarium | Calendar Management";
 		$this->load->view('templates/header', $title);
-		$this->load->view('maintenance/fullcalendar');
+		$this->load->view('maintenance/fullcalendar2');
 		$this->load->view('maintenance/CalendarManagement');
 		$this->load->view('templates/footer');
 	}
