@@ -486,7 +486,7 @@ public function showAllFamilyBoxes(){
 	$island = $this->input->post('sislandname');
 	$region = $this->input->post('sregionname');
 	$province = $this->input->post('sprovname');
-	$citymuni = $this->input->post('cmName');
+	$citymuni = $this->input->post('smunicipalityname');
 	$area = $this->input->post('aName');
 	$specificLocation = $this->input->post('spLocName');
 	$shortLocation = $this->input->post('spShorName');
@@ -523,14 +523,14 @@ public function showAllFamilyBoxes(){
 		}
 	}
 	public function updateLocality(){
-	$island = $this->input->post('sislandname');
-	$region = $this->input->post('sregionname');
-	$province = $this->input->post('sprovname');
-	$citymuni = $this->input->post('cmName');
-	$area = $this->input->post('aName');
-	$specificLocation = $this->input->post('spLocName');
-	$shortLocation = $this->input->post('spShorName');
-
+	$island = $this->input->post('seislandname');
+	$region = $this->input->post('seregionname');
+	$province = $this->input->post('seprovname');
+	$citymuni = $this->input->post('semunicipalityname');
+	$area = $this->input->post('eaName');
+	$specificLocation = $this->input->post('espLocName');
+	$shortLocation = $this->input->post('espShorName');
+	$localityid = $this->input->post('txtId');
 
 
 	$query="
@@ -541,6 +541,7 @@ public function showAllFamilyBoxes(){
 	DECLARE @area				VARCHAR(50);
 	DECLARE @specificLocation	VARCHAR(255);
 	DECLARE @shortLocation		VARCHAR(255);
+	DECLARE @localityID 		INT;
 
 	SET @island	='$island'			
 	SET @region	='$region'			
@@ -549,21 +550,27 @@ public function showAllFamilyBoxes(){
 	SET @area ='$area'				
 	SET @specificLocation ='$specificLocation'	
 	SET @shortLocation ='$shortLocation'	
+	SET @localityID ='$localityid'
 
-	SET NOCOUNT ON;
-	
-
-		BEGIN
-			INSERT INTO tblLocality(strIsland, strRegion, strProvince, strCity, strArea, strSpecificLocation, strShortLocation)
-			VALUES (@island, @region, @province, @city, @area, @specificLocation, @shortLocation)
-		END
-		";
+	BEGIN
+		UPDATE tblLocality
+		SET strIsland = @island,
+			strRegion = @region,
+			strProvince = @province,
+			strCity = @city,
+			strArea = @area,
+			strSpecificLocation = @specificLocation,
+			strShortLocation = @shortLocation
+		WHERE intLocalityID = @localityID
+	END";
 		if($this->db->query($query)){
 			return true;
 		}else{
 			return false;
 		}
 	}
+
+	
 	public function editLocality(){
 		$id = $this->input->get('id');
 		$this->db->where('intLocalityID', $id);
