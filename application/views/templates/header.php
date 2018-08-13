@@ -91,8 +91,8 @@
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
               <ul id="TransactionDropdown" class="collapse list-unstyled ">
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant" class="nav-link <?php if($this->uri->segment(2)=="Depositplant"){echo "active";}?>">Deposit Plant</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Rsplantdeposit" class="nav-link <?php if($this->uri->segment(2)=="Rsplantdeposit"){echo "active";}?>">Re-submit Plant Deposit</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Plantreceiving" class="nav-link <?php if($this->uri->segment(2)=="Plantreceiving"){echo "active";}?>">Plant Receiving</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Rsplantdeposit" class="nav-link <?php if($this->uri->segment(2)=="Rsplantdeposit"){echo "active";}?>">Loan Plant</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Loanplant" class="nav-link <?php if($this->uri->segment(2)=="Plantreceiving"){echo "active";}?>">Plant Receiving</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Plantverification" class="nav-link <?php if($this->uri->segment(2)=="Plantverification"){echo "active";}?>">Plant Verification</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Plantclassification" class="nav-link <?php if($this->uri->segment(2)=="Plantclassification"){echo "active";}?>">Plant Classification</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Loanplant" class="nav-link <?php if($this->uri->segment(2)=="Loanplant"){echo "active";}?>">Loan Plant</a></li>
