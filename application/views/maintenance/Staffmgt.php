@@ -26,20 +26,15 @@
         
          <div class="modal-body">
 
-                <form>
+                <form id= "addStaffForm" method="POST" enctype="multipart/form-data">
                   <div class="row">
-                    <div class="col-sm-6">
-                    <label>Staff ID:</label>
-                    <input type="text" name="StaffID" placeholder="Staff ID" class="form-control" disabled>
-                  </div>
 
                     <div class="col-sm-6">
                     <label>Role:</label>
-                    <select class="form-control">
+                    <select name="sRole" class="form-control">
                       <option value= "Super Administrator"> Super Administrator</option>
                       <option value= "Curator"> Curator</option>
                       <option value= "Student Assistant"> Student Assistant</option>
-                      <option value= "User"> User</option>
                     </select>
                   </div>
                   </div>
@@ -74,7 +69,7 @@
                   <div class="row">
                     <div class="col-sm-6">
                     <label>College Department:</label>
-                    <select class="form-control">
+                    <select name = "sCollege" class="form-control">
                       <option value= "College of Accountancy and Finance"> College of Accountancy and Finance</option>
                       <option value= "College of Architecture and Fine Arts"> College of Architecture and Fine Arts</option>
                       <option value= "College of Arts and Letters"> College of Arts and Letters</option>
@@ -106,7 +101,8 @@
 
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-primary">       
-                    <input type="submit" value="Save" class="btn btn-primary">
+                    <input type="submit" id="btnSave" value="Save" class="btn btn-primary">
+
                   </div>
                 </form>
               </div>
@@ -122,9 +118,11 @@
             <table class="table table-striped">
               <thead>
                 <tr>
+                  <th>Staff ID</th>
                   <th>Staff Name</th>
-                  <th>Position/Section</th>
                   <th>Role</th>
+                  <th>College</th>
+                  <th>Position</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -141,13 +139,13 @@
     $(function(){
     
       //show
-    showAllFamilyBoxes();
+    showAllStaff();
     
 
-    function showAllFamilyBoxes(){
+    function showAllStaff(){
       $.ajax({
         type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllFamilyBoxes',
+        url: '<?php echo base_url() ?>admin/showAllStaff',
         async: false,
         dataType: 'json',
         success: function(data){
@@ -155,10 +153,11 @@
           var i;
           for(i=0; i<data.length; i++){
             html +='<tr>'+
-                  '<td>'+data[i].intBoxID+'</td>'+
-                  '<td>'+data[i].strBoxNumber+'</td>'+
-                  '<td>'+data[i].strFamilyName+'</td>'+
-                  '<td>'+data[i].intBoxLimit+'</td>'+
+                  '<td>'+data[i].intStaffID+'</td>'+
+                  '<td>'+data[i].strFullName+'</td>'+
+                  '<td>'+data[i].strRole+'</td>'+
+                  '<td>'+data[i].strCollegeDepartment+'</td>'+
+                  '<td>'+data[i].strPosition+'</td>'+
                   '<td>'+
                     '<a href="javascript:;" class="btn btn-primary item-edit" data="'+data[i].intSpeciesID+'">Edit</a>'+
                   '</td>'+
@@ -171,5 +170,45 @@
         }
       });
     }
+
+
+    ///////adding//////
+$('#btnSave').click(function(){
+      var data = $('#addStaffForm').serialize();
+      //validate form
+
+        $.ajax({
+          type: 'ajax',
+          method: 'post',
+          url: '<?php echo base_url() ?>admin/addStaff',
+          data: data,
+          async: false,
+          dataType: 'json',
+          success: function($response){
+            if(response.success){
+              $('#addStaffForm').modal('hide');
+              $('#addStaffForm')[0].reset();
+              if(response.type=='add'){
+                var type = 'added'
+                alert('asd');
+              }else if(response.type=='update'){
+                var type ="updated"
+              }
+            }else{
+              alert('Error');
+            }
+          },
+          error: function(){
+            alert('Could not save Data');
+          }
+        });
+      
+    });
+
+
+
+
+
+
     });
 </script>

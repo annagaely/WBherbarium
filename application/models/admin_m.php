@@ -936,5 +936,117 @@ public function editValidator(){
 		}
 	}
 	/****** END EXTERNALVALIDATOR!!!!! ******/
-	/******  START!!!!! ******/
+	/******  STAFF MGT START!!!!! ******/
+	public function showAllStaff(){
+		$query = $this->db->query("select intStaffID,Concat(pe.strLastname,', ',pe.strFirstname,' ',pe.strMiddlename,' ',pe.strNameSuffix) as strFullName, strRole, strCollegeDepartment, strPosition
+		from tblHerbariumStaff hs join tblPerson pe
+		on hs.intPersonID = pe.intPersonID
+		");
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
+	public function addStaff(){
+	
+	$fname = $this->input->post('SMgtFName');
+	$mname = $this->input->post('SMgtMName');
+	//$minitial = $this->input->post('txtMInitial');
+	$lname = $this->input->post('SMgtLName');
+	//$nsuffix = $this->input->post('txtNSuffix');
+	$cname = $this->input->post('SMgtCNumber');
+	$email = $this->input->post('SMgtEAdd');
+	$role = $this->input->post('sRole');
+	$department = $this->input->post('sCollege');
+	$position = $this->input->post('SMgtCYS');
+
+
+	$query="
+	DECLARE @firstname		VARCHAR(50);
+	DECLARE @middlename		VARCHAR(50);
+	DECLARE @lastname		VARCHAR(50);
+	DECLARE @middleinitial	VARCHAR(3);
+	DECLARE @namesuffix		VARCHAR(5);
+	DECLARE @contactno		VARCHAR(15);
+	DECLARE @email			VARCHAR(255);
+	DECLARE @role			VARCHAR(50);
+	DECLARE @department		VARCHAR(100);
+	DECLARE @position		VARCHAR(50);
+	set @firstname = '$fname'
+	set @middlename = '$mname'
+	set @lastname = '$lname'
+	set @contactno = '$cname'
+	set @email = '$email'
+	set @role = '$role'
+	set @department = '$department'
+	set @position = '$position'
+	set @middleinitial ='Q.'
+	set @namesuffix	='Jr.'
+
+		DECLARE @personID INT
+		DECLARE @duplicateID INT
+
+		SELECT @duplicateID = intPersonID
+		FROM tblPerson 
+		WHERE strFirstname = @firstname
+			AND strMiddlename = @middlename
+			AND strLastname = @lastname
+			AND strMiddleInitial = @middleinitial
+			AND strNameSuffix = @namesuffix
+
+		IF @duplicateID IS NULL
+			BEGIN
+				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname, 
+									  strMiddleInitial, strNameSuffix, 
+									  strContactNumber, strEmailAddress)
+				VALUES(@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email)
+
+				SELECT @personID = intPersonID
+				FROM tblPerson 
+				WHERE strFirstname = @firstname
+					AND strMiddlename = @middlename
+					AND strLastname = @lastname
+					AND strMiddleInitial = @middleinitial
+					AND strNameSuffix = @namesuffix
+					AND strContactNumber = @contactno
+					AND strEmailAddress = @email 
+			END
+		ELSE
+			SET @personID = @duplicateID
+
+		
+		IF NOT EXISTS (SELECT intStaffID
+					   FROM tblHerbariumStaff
+					   WHERE intPersonID = @personID AND strRole = @role AND strPosition = @position)
+		BEGIN
+			INSERT INTO tblHerbariumStaff (intPersonID, strRole, strCollegeDepartment, strPosition)
+			VALUES (@personID, @role, @department, @position)
+
+			IF @role IN ('CURATOR', 'SUPER-ADMINISTRATOR') AND 
+				NOT EXISTS(SELECT intValidatorID FROM tblValidator WHERE intPersonID = @personID)
+			BEGIN
+				INSERT INTO tblValidator(intPersonID, strInstitution, strValidatorType)
+				VALUES (@personID, 'Polytechnic University of the Philippines', 'Internal')
+			END
+		END
+	";
+		$this->db->query($query);
+
+		if($this->db->affected_rows() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+	/****** END STAFF MGT!!!!! ******/
+	/******  ACCOUNTS START!!!!! ******/
+
+
+	/****** END ACCOUNTS!!!!! ******/
+	/******  CALENDAR START!!!!! ******/
+
+
 }?>
