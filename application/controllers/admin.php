@@ -430,34 +430,6 @@ public function updateFamilyBox(){
 		$this->load->view('transaction/Depositplant');
 		$this->load->view('templates/footer');
 	}
-	public function Rsplantdeposit()
-	{
-		$title['title'] = "PUPHerbarium | Re-Submit Plant Deposit";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/Rsplantdeposit');
-		$this->load->view('templates/footer');
-	}
-	public function Plantreceiving()
-	{
-		$title['title'] = "PUPHerbarium | Plant Receiving";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/Plantreceiving');
-		$this->load->view('templates/footer');
-	}
-	public function Plantverification()
-	{
-		$title['title'] = "PUPHerbarium | Plant Verification";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/Plantverification');
-		$this->load->view('templates/footer');
-	}
-	public function Plantclassification()
-	{
-		$title['title'] = "PUPHerbarium | Plant Classification";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/Plantclassification');
-		$this->load->view('templates/footer');
-	}
 	public function Loanplant()
 	{
 		$title['title'] = "PUPHerbarium | Loan Plant";
@@ -465,6 +437,29 @@ public function updateFamilyBox(){
 		$this->load->view('transaction/Loanplant');
 		$this->load->view('templates/footer');
 	}
+	public function Manageappointment()
+	{
+		$title['title'] = "PUPHerbarium | Manage Appointment";
+		$this->load->view('templates/header', $title);
+		$this->load->view('transaction/Manageappointment');
+		$this->load->view('templates/footer');
+	}
+	public function Searchplant()
+	{
+		$title['title'] = "PUPHerbarium | Search Plant";
+		$this->load->view('templates/header', $title);
+		$this->load->view('transaction/Searchplant');
+		$this->load->view('templates/footer');
+	}
+	public function Externalvalidation()
+	{
+		$title['title'] = "PUPHerbarium | External Validation";
+		$this->load->view('templates/header', $title);
+		$this->load->view('transaction/Externalvalidation');
+		$this->load->view('templates/footer');
+	}
+
+
 
 	function view_calendar()
 	{
