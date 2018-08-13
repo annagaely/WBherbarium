@@ -413,7 +413,7 @@
             $("#sregion1").html("<option value='region0'>-- select one --</option>");
           }
         });
-        $("#sregion").change(function () {
+        $("#sregion1").change(function () {
           var val = $(this).val();
           if (val == "Region I") {
             $("#sprov1").html("<option value='prov0'>-- select one --</option><option value='Ilocos Norte'>Ilocos Norte</option><option value='Ilocos Sur'>Ilocos Sur</option><option value='La Union'>La Union</option><option value='Pangasinan'>Pangasinan</option>");
@@ -485,7 +485,7 @@
           } else if(val == "Quirino") {
             $("#smunicipality1").html("<option value='mun0'>-- select one --</option><option value='Aglipay'>Aglipay</option><option value='Cabarroguis'>Cabarroguis</option><option value='Diffun'>Diffun</option><option value='Maddela'>Maddela</option><option value='Nagptipunan'>Nagtipunan</option><option value='Saguday'>Saguday</option>")
           } else if (val == "Aurora") {
-            $("#smunicipality").html("<option value='mun0'>-- select one --</option><option value='Baler'>Baler</option><option value='Casiguran'>Casiguran</option><option value='Dilasag'>Dilasag</option><option value='Dinalungan'>Dinalungan</option><option value='Dingalan'>Dingalan</option><option value='Dipaculao'>Dipaculao</option><option value='Maria Aurora'>Maria Aurora</option><option value='San Luis'>San Luis</option>")
+            $("#smunicipality1").html("<option value='mun0'>-- select one --</option><option value='Baler'>Baler</option><option value='Casiguran'>Casiguran</option><option value='Dilasag'>Dilasag</option><option value='Dinalungan'>Dinalungan</option><option value='Dingalan'>Dingalan</option><option value='Dipaculao'>Dipaculao</option><option value='Maria Aurora'>Maria Aurora</option><option value='San Luis'>San Luis</option>")
           } else if (val == "Bataan") {
             $("#smunicipality1").html("<option value='mun0'>-- select one --</option><option value='Abucay'>Abucay</option><option value='Bagac'>Bagac</option><option value='Balanga City'>Balanga City</option><option value='Dinalupihan'>Dinalupihan</option><option value='Hermosa'>Hermosa</option><option value='Limay'>Limay</option><option value='Mariveles'>Mariveles</option><option value='Morong'>Morong</option><option value='Orani'>Orani</option><option value='Orion'>Orion</option><option value='Pilar'>Pilar</option><option value='Samal'>Samal</option>")
           } else if (val == "Bulacan") {
