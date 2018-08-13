@@ -30,6 +30,7 @@
         </div>
         <div class="row">
           <div class="col-lg-7 mx-auto mt-5"><img src="<?php echo base_url();?>assets/bower_components/userside/img/illustration-1.png" alt="..." class="intro-image img-fluid"></div>
+
         </div>
       </div>
     </section>
@@ -62,6 +63,7 @@
             <div class="col-lg-4">
               <div class="box text-center">
                 <div class="icon d-flex align-items-end"><img src="<?php echo base_url();?>assets/bower_components/userside/img/monitor.png" alt="..." class="img-fluid"></div>
+
                 <h3 class="h4">Web desgin</h3>
                 <p class="text-small font-weight-light">Lorem Ipsum has been the industry's standard dummy text ever.</p>
               </div>
@@ -69,6 +71,7 @@
             <div class="col-lg-4">
               <div class="box text-center">
                 <div class="icon d-flex align-items-end"><img src="<?php echo base_url();?>assets/bower_components/userside/img/target.png" alt="..." class="img-fluid"></div>
+
                 <h3 class="h4">Print</h3>
                 <p class="text-small font-weight-light">Lorem Ipsum has been the industry's standard dummy text ever.</p>
               </div>
@@ -124,7 +127,6 @@
             <div class="col-lg-2"><img src="<?php echo base_url();?>assets/bower_components/userside/img/client-4.png" alt="" class="client-image img-fluid"></div>
             <div class="col-lg-2"><img src="<?php echo base_url();?>assets/bower_components/userside/img/client-5.png" alt="" class="client-image img-fluid"></div>
             <div class="col-lg-2"><img src="<?php echo base_url();?>assets/bower_components/userside/img/client-6.png" alt="" class="client-image img-fluid"></div>
-
           </div>
         </div>
       </div>
@@ -198,4 +200,3 @@
         </div>
       </div>
     </section>
-    

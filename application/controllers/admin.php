@@ -415,47 +415,74 @@ public function updateFamilyBox(){
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Staffmgt');
 		$this->load->view('templates/footer');
+
 	}
-	public function Accessaccounts()
+		public function showAllStaff(){
+		$result = $this->m->showAllStaff();
+		echo json_encode($result);
+	}
+	public function addStaff(){
+		$result = $this->m->addStaff();
+		$msg['success'] = false;
+		$msg['type'] = 'add';
+		if($result){
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
+	public function editStaff(){
+		$result = $this->m->editStaff();
+		echo json_encode($result);
+	}
+	public function updateStaff(){
+		$result = $this->m->updateStaff();
+		echo json_encode($result);
+		
+	}
+	/****** END VALIDATOR!!!!! ******/
+	/****** account START!!!!! ******/
+	public function accounts()
 	{
 		$title['title'] = "PUPHerbarium | Access Acounts";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Accessaccounts');
 		$this->load->view('templates/footer');
 	}
+		public function showAllAccounts(){
+		$result = $this->m->showAllAccounts();
+		echo json_encode($result);
+	}
+	public function addAccounts(){
+		$result = $this->m->addAccounts();
+		$msg['success'] = false;
+		$msg['type'] = 'add';
+		if($result){
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
+	public function editAccounts(){
+		$result = $this->m->editAccounts();
+		echo json_encode($result);
+	}
+	public function updateAccounts(){
+		$result = $this->m->updateAccounts();
+		echo json_encode($result);
+		
+	}
+		public function showStaffName(){
+		$result = $this->m->showStaffName();
+		echo json_encode($result);
+	}
+
+	/****** END account!!!!! ******/
+	/****** account START!!!!! ******/
+
 	public function Depositplant()
 	{
 		$title['title'] = "PUPHerbarium | Deposit Plant";
 		$this->load->view('templates/header', $title);
 		$this->load->view('transaction/Depositplant');
-		$this->load->view('templates/footer');
-	}
-	public function Rsplantdeposit()
-	{
-		$title['title'] = "PUPHerbarium | Re-Submit Plant Deposit";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/Rsplantdeposit');
-		$this->load->view('templates/footer');
-	}
-	public function Plantreceiving()
-	{
-		$title['title'] = "PUPHerbarium | Plant Receiving";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/Plantreceiving');
-		$this->load->view('templates/footer');
-	}
-	public function Plantverification()
-	{
-		$title['title'] = "PUPHerbarium | Plant Verification";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/Plantverification');
-		$this->load->view('templates/footer');
-	}
-	public function Plantclassification()
-	{
-		$title['title'] = "PUPHerbarium | Plant Classification";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/Plantclassification');
 		$this->load->view('templates/footer');
 	}
 	public function Loanplant()
@@ -465,6 +492,29 @@ public function updateFamilyBox(){
 		$this->load->view('transaction/Loanplant');
 		$this->load->view('templates/footer');
 	}
+	public function Manageappointment()
+	{
+		$title['title'] = "PUPHerbarium | Manage Appointment";
+		$this->load->view('templates/header', $title);
+		$this->load->view('transaction/Manageappointment');
+		$this->load->view('templates/footer');
+	}
+	public function Searchplant()
+	{
+		$title['title'] = "PUPHerbarium | Search Plant";
+		$this->load->view('templates/header', $title);
+		$this->load->view('transaction/Searchplant');
+		$this->load->view('templates/footer');
+	}
+	public function Externalvalidation()
+	{
+		$title['title'] = "PUPHerbarium | External Validation";
+		$this->load->view('templates/header', $title);
+		$this->load->view('transaction/Externalvalidation');
+		$this->load->view('templates/footer');
+	}
+
+
 
 	function view_calendar()
 	{
