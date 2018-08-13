@@ -84,7 +84,7 @@
                 <li><a href="<?php echo base_url(); ?>admin/Collector" class="nav-link <?php if($this->uri->segment(2)=="Collector"){echo "active";}?>">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator" class="nav-link <?php if($this->uri->segment(2)=="Externalvalidator"){echo "active";}?>">External Validator</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt" class="nav-link <?php if($this->uri->segment(2)=="Staffmgt"){echo "active";}?>">Staff Management</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Accessaccounts" class="nav-link <?php if($this->uri->segment(2)=="Accessaccounts"){echo "active";}?>">Access Accounts</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/accounts" class="nav-link <?php if($this->uri->segment(2)=="Accessaccounts"){echo "active";}?>">Access Accounts</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement" class="nav-link <?php if($this->uri->segment(2)=="CalendarManagement"){echo "active";}?>">Calendar Management</a></li>
               </ul>
             </li>
