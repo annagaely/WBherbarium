@@ -415,14 +415,69 @@ public function updateFamilyBox(){
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Staffmgt');
 		$this->load->view('templates/footer');
+
 	}
-	public function Accessaccounts()
+		public function showAllStaff(){
+		$result = $this->m->showAllStaff();
+		echo json_encode($result);
+	}
+	public function addStaff(){
+		$result = $this->m->addStaff();
+		$msg['success'] = false;
+		$msg['type'] = 'add';
+		if($result){
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
+	public function editStaff(){
+		$result = $this->m->editStaff();
+		echo json_encode($result);
+	}
+	public function updateStaff(){
+		$result = $this->m->updateStaff();
+		echo json_encode($result);
+		
+	}
+	/****** END VALIDATOR!!!!! ******/
+	/****** account START!!!!! ******/
+	public function accounts()
 	{
 		$title['title'] = "PUPHerbarium | Access Acounts";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Accessaccounts');
 		$this->load->view('templates/footer');
 	}
+		public function showAllAccounts(){
+		$result = $this->m->showAllAccounts();
+		echo json_encode($result);
+	}
+	public function addAccounts(){
+		$result = $this->m->addAccounts();
+		$msg['success'] = false;
+		$msg['type'] = 'add';
+		if($result){
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
+	public function editAccounts(){
+		$result = $this->m->editAccounts();
+		echo json_encode($result);
+	}
+	public function updateAccounts(){
+		$result = $this->m->updateAccounts();
+		echo json_encode($result);
+		
+	}
+		public function showStaffName(){
+		$result = $this->m->showStaffName();
+		echo json_encode($result);
+	}
+
+	/****** END account!!!!! ******/
+	/****** account START!!!!! ******/
+
 	public function Depositplant()
 	{
 		$title['title'] = "PUPHerbarium | Deposit Plant";
