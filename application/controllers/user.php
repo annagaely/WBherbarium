@@ -11,7 +11,24 @@ class user extends CI_Controller {
 
    	public function index()
 	{
-		$this->load->view('userside/index');
+		$title['title'] = "PUPHerbarium | Home";
+		$this->load->view('userside/navbar', $title);
+		$this->load->view('userside/Index');
+		$this->load->view('userside/footer');
+	}
+	public function faq()
+	{
+		$title['title'] = "PUPHerbarium | FAQ";
+		$this->load->view('userside/navbar', $title);
+		$this->load->view('userside/Faq');
+		$this->load->view('userside/footer');
+	}
+	public function contact()
+	{
+		$title['title'] = "PUPHerbarium | Contact";
+		$this->load->view('userside/navbar', $title);
+		$this->load->view('userside/Contact');
+		$this->load->view('userside/footer');
 	}
 }
 
