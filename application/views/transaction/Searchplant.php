@@ -4,7 +4,7 @@
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>Maintenance/Dashboard" >Home</a></li>
             <li class="breadcrumb-item">Transaction</li>
-            <li class="breadcrumb-item">Plant Receiving</li>
+            <li class="breadcrumb-item">Search Plant</li>
           </ul>
         </div>
       </div>

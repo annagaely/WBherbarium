@@ -39,19 +39,30 @@
                   </div>
                   </div>
 
-                  <div class="form-group">
-                    <label>First Name:</label>
-                    <input type="text" name= "SMgtFName" placeholder="First Name" class="form-control">
-                  </div>
-
-                   <div class="form-group">
-                    <label>Middle Name:</label>
-                    <input type="text" name= "SMgtMName" placeholder="Middle Name" class="form-control">
-                  </div>
+                 <label>First Name:</label>
+                    
+                      <input type="text" name="fName" placeholder="First Name " class="form-control">
+                    
                   
-                  <div class="form-group">
-                    <label>Last Name:</label>
-                    <input type="text" name= "SMgtLName" placeholder="Last Name" class="form-control">
+                  <div class="row">
+                    <div class="form-group col-sm-8">
+                      <label>Middle Name:</label>
+                      <input type="text" name="mName" placeholder="Middle Name" class="form-control">
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label>Middle Initial:</label>
+                      <input type="text" name="mInitial" placeholder="Middle Initial" class="form-control">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-sm-8">
+                      <label>Last Name:</label>
+                      <input type="text" name="lName" placeholder="Last Name" class="form-control">
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label>Name Suffix:</label>
+                      <input type="text" name="nSuffix" placeholder="Name Suffix" class="form-control">
+                    </div>
                   </div>
 
                   <div class="row">
