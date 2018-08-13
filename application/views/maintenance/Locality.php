@@ -413,7 +413,7 @@
             $("#sregion1").html("<option value='region0'>-- select one --</option>");
           }
         });
-        $("#sregion1").change(function () {
+        $("#sregion").change(function () {
           var val = $(this).val();
           if (val == "Region I") {
             $("#sprov1").html("<option value='prov0'>-- select one --</option><option value='Ilocos Norte'>Ilocos Norte</option><option value='Ilocos Sur'>Ilocos Sur</option><option value='La Union'>La Union</option><option value='Pangasinan'>Pangasinan</option>");
