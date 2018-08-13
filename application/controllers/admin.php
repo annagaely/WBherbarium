@@ -440,14 +440,44 @@ public function updateFamilyBox(){
 		
 	}
 	/****** END VALIDATOR!!!!! ******/
-	/****** COLLECTOR START!!!!! ******/
-	public function Accessaccounts()
+	/****** account START!!!!! ******/
+	public function accounts()
 	{
 		$title['title'] = "PUPHerbarium | Access Acounts";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Accessaccounts');
 		$this->load->view('templates/footer');
 	}
+		public function showAllAccounts(){
+		$result = $this->m->showAllAccounts();
+		echo json_encode($result);
+	}
+	public function addAccounts(){
+		$result = $this->m->addAccounts();
+		$msg['success'] = false;
+		$msg['type'] = 'add';
+		if($result){
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
+	public function editAccounts(){
+		$result = $this->m->editAccounts();
+		echo json_encode($result);
+	}
+	public function updateAccounts(){
+		$result = $this->m->updateAccounts();
+		echo json_encode($result);
+		
+	}
+		public function showStaffName(){
+		$result = $this->m->showStaffName();
+		echo json_encode($result);
+	}
+
+	/****** END account!!!!! ******/
+	/****** account START!!!!! ******/
+
 	public function Depositplant()
 	{
 		$title['title'] = "PUPHerbarium | Deposit Plant";

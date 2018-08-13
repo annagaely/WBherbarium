@@ -1145,8 +1145,111 @@ public function updateStaff(){
 	}
 	/****** END STAFF MGT!!!!! ******/
 	/******  ACCOUNTS START!!!!! ******/
+	public function showAllAccounts(){
+		$query = $this->db->query("select * from viewAccounts
+		");
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
+	public function addAccounts(){
+	
+	$staffname = $this->input->post('StaffName');
+	$username = $this->input->post('AAUName');
+	$password = $this->input->post('AAPass');
 
 
+
+	$query="
+
+	DECLARE @staffID 		INT;
+	DECLARE @staffName		VARCHAR(MAX);
+	DECLARE @username		VARCHAR(50);
+	DECLARE @password		VARCHAR(50);
+
+	Set @staffName ='$staffname'
+	Set @username ='$username'
+	Set @password ='$password'
+
+		SET @staffID = (SELECT intStaffID FROM viewHerbariumStaff WHERE strFullName = @staffName)
+
+		IF NOT EXISTS (SELECT intAccountID
+					   FROM tblAccounts
+					   WHERE intStaffID = @staffID AND strUsername = @username AND strPassword = @password)
+		BEGIN
+			INSERT INTO tblAccounts(intStaffID, strUsername, strPassword)
+			VALUES (@staffID, @username, @password)
+		END
+	";
+		$this->db->query($query);
+
+		if($this->db->affected_rows() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function editAccounts(){
+		$id = $this->input->get('id');
+		$this->db->where('intAccountID', $id);
+		$query = $this->db->select('*')
+			->get('viewAccounts');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+public function updateAccounts(){
+	$staffname = $this->input->post('eStaffName');
+	$username = $this->input->post('eAAUName');
+	$password = $this->input->post('eAAPass');
+	$accountid = $this->input->post('txtId');
+
+
+	$query="
+
+	DECLARE @accountID 		INT;
+	DECLARE @staffName		VARCHAR(MAX);
+	DECLARE @username		VARCHAR(50);
+	DECLARE @password		VARCHAR(50);
+
+	Set @staffName ='$staffname'
+	Set @username ='$username'
+	Set @password ='$password'
+	Set @accountID ='$accountid'
+
+DECLARE @staffID INT;
+
+		SET @staffID = (SELECT intStaffID FROM viewHerbariumStaff WHERE strFullName = @staffName);
+
+		UPDATE tblAccounts
+		SET intStaffID = @staffID,
+			strUsername = @username,
+			strPassword = @password
+		WHERE intAccountID = @accountID;
+	";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+	public function showStaffName(){
+		$query = $this->db->query("select * from viewHerbariumStaff
+		");
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
 	/****** END ACCOUNTS!!!!! ******/
 	/******  CALENDAR START!!!!! ******/
 
