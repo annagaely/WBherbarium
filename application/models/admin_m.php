@@ -952,9 +952,9 @@ public function editValidator(){
 	
 	$fname = $this->input->post('SMgtFName');
 	$mname = $this->input->post('SMgtMName');
-	//$minitial = $this->input->post('txtMInitial');
+	$minitial = $this->input->post('mInitial');
 	$lname = $this->input->post('SMgtLName');
-	//$nsuffix = $this->input->post('txtNSuffix');
+	$nsuffix = $this->input->post('txtNSuffix');
 	$cname = $this->input->post('SMgtCNumber');
 	$email = $this->input->post('SMgtEAdd');
 	$role = $this->input->post('sRole');
@@ -981,8 +981,8 @@ public function editValidator(){
 	set @role = '$role'
 	set @department = '$department'
 	set @position = '$position'
-	set @middleinitial ='Q.'
-	set @namesuffix	='Jr.'
+	set @middleinitial ='$minitial'
+	set @namesuffix	='$nsuffix'
 
 		DECLARE @personID INT
 		DECLARE @duplicateID INT
@@ -1040,7 +1040,109 @@ public function editValidator(){
 		}
 	}
 
+	public function editStaff(){
+		$id = $this->input->get('id');
+		$this->db->where('intStaffID', $id);
+		$query = $this->db->select('intStaffID,
+			 pe.intPersonID
+      ,pe.strFirstname
+      ,pe.strMiddlename
+      ,pe.strLastname
+      ,pe.strMiddleInitial
+      ,pe.strNameSuffix
+      ,pe.strContactNumber
+      ,pe.strEmailAddress,
+			 strRole,
+			 strCollegeDepartment,
+			 strPosition')
+			->join('tblPerson pe', 'pe.intPersonID = hs.intPersonID')
+			->get('tblHerbariumStaff hs');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
 
+public function updateStaff(){
+	
+	$fname = $this->input->post('eSMgtFName');
+	$mname = $this->input->post('eSMgtMName');
+	$minitial = $this->input->post('emInitial');
+	$lname = $this->input->post('eSMgtLName');
+	$nsuffix = $this->input->post('etxtNSuffix');
+	$cname = $this->input->post('eSMgtCNumber');
+	$email = $this->input->post('eSMgtEAdd');
+	$role = $this->input->post('esRole');
+	$department = $this->input->post('esCollege');
+	$position = $this->input->post('eSMgtCYS');
+	$staffid=$this->input->post('txtId');
+
+	$query="
+	DECLARE @firstname		VARCHAR(50);
+	DECLARE @middlename		VARCHAR(50);
+	DECLARE @lastname		VARCHAR(50);
+	DECLARE @middleinitial	VARCHAR(3);
+	DECLARE @namesuffix		VARCHAR(5);
+	DECLARE @contactno		VARCHAR(15);
+	DECLARE @email			VARCHAR(255);
+	DECLARE @role			VARCHAR(50);
+	DECLARE @department		VARCHAR(100);
+	DECLARE @position		VARCHAR(50);
+	DECLARE @staffID		VARCHAR(50);
+
+	set @firstname = '$fname'
+	set @middlename = '$mname'
+	set @lastname = '$lname'
+	set @contactno = '$cname'
+	set @email = '$email'
+	set @role = '$role'
+	set @department = '$department'
+	set @position = '$position'
+	set @middleinitial ='$minitial'
+	set @namesuffix	='$nsuffix'
+	set @staffID	='$staffid'
+
+	
+		DECLARE @personID INT
+		DECLARE @prevRole VARCHAR(50)
+		DECLARE @validatorID INT
+
+		SELECT @personID = intPersonID, @prevRole = strRole FROM tblHerbariumStaff WHERE intStaffID = @staffID
+
+		UPDATE tblPerson
+		SET strFirstname = @firstname,
+			strMiddlename = @middlename,
+			strLastname = @lastname,
+			strMiddleInitial = @middleinitial,
+			strNameSuffix = @namesuffix,
+			strContactNumber = @contactno,
+			strEmailAddress = @email
+		WHERE intPersonID = @personID
+
+		UPDATE tblHerbariumStaff
+		SET strRole = @role,
+			strCollegeDepartment = @department,
+			strPosition = @position
+		WHERE intStaffID = @staffID
+		
+		IF (@prevRole <> @role) AND (@role IN ('CURATOR', 'SUPER-ADMINISTRATOR'))
+			BEGIN 
+				SET @validatorID = (SELECT intValidatorID FROM tblValidator WHERE intPersonID = @personID);
+
+				IF @validatorID IS NULL
+				BEGIN
+					INSERT INTO tblValidator (intPersonID, strInstitution, strValidatorType)
+					VALUES (@personID, 'Polytechnic University of the Philippines', 'Internal');
+				END
+			END
+	";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	/****** END STAFF MGT!!!!! ******/
 	/******  ACCOUNTS START!!!!! ******/
 
