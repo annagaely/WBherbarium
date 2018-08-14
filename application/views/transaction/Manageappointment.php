@@ -8,3 +8,33 @@
           </ul>
         </div>
       </div>
+
+     <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Appointment Date</th>
+                  <th>Appointment Reason</th>
+
+                <th>Actions</th>
+                </tr>
+                <tr>
+                <td>hehe</td>
+                <td>hehe</td>
+                <td>hehe</td>
+
+                <td>
+                <button type="button" id="btnAccept "  class="btn btn-primary" style="background-color: green;border-color: green">Accept</button>
+                <button type="button" id="btnReject "  class="btn btn-primary">Reject</button>
+               </td>
+                <tr>
+              </thead>
+              <tbody tbody id="showdata">    
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
