@@ -519,8 +519,9 @@ public function updateFamilyBox(){
 	{
 		$title['title'] = "PUPHerbarium | Calendar Management";
 		$this->load->view('templates/header', $title);
-		$this->load->view('maintenance/fullcalendar2');
 		$this->load->view('maintenance/CalendarManagement');
+	
+		
 		$this->load->view('templates/footer');
 	}
 	public function get_events()
