@@ -30,6 +30,13 @@ class user extends CI_Controller {
 		$this->load->view('userside/Contact');
 		$this->load->view('userside/footer');
 	}
+	public function collection()
+	{
+		$title['title'] = "PUPHerbarium | Collection";
+		$this->load->view('userside/navbar', $title);
+		$this->load->view('userside/Collection');
+		$this->load->view('userside/footer');
+	}
 }
 
 

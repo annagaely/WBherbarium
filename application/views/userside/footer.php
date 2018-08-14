@@ -57,5 +57,15 @@
     <script src="<?php echo base_url();?>assets/bower_components/userside/vendor/jquery.cookie/jquery.cookie.js"> </script>
     <script src="<?php echo base_url();?>assets/bower_components/userside/vendor/lightbox2/js/lightbox.js"></script>
     <script src="<?php echo base_url();?>assets/bower_components/userside/js/front.js"></script>
+
+     <script>
+      function resetForm() {
+        document.getElementById("loginForm").reset();
+      }
+      function resetForm2() {
+        document.getElementById("signupForm").reset();
+      }
+
+</script>
   </body>
 </html>
