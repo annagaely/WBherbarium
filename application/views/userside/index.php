@@ -156,7 +156,7 @@
               </div>
             </div><a href="#" class="btn btn-primary">Learn More</a>
           </div>
-          <div class="col-lg-5 mt-5 mt-lg-0"><img src="<?php echo base_url();?>assets/bower_components/userside/img/illustration-2.svg" alt="" class="divider-image img-fluid"></div>
+          <div class="col-lg-5 mt-5 mt-lg-0"><img src="<?php echo base_url();?>assets/bower_components/userside/img/illustration-2.png" alt="" class="divider-image img-fluid"></div>
         </div>
       </div>
     </section>
