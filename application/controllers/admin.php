@@ -499,13 +499,7 @@ public function updateFamilyBox(){
 		$this->load->view('transaction/Manageappointment');
 		$this->load->view('templates/footer');
 	}
-	public function Searchplant()
-	{
-		$title['title'] = "PUPHerbarium | Search Plant";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/Searchplant');
-		$this->load->view('templates/footer');
-	}
+
 	public function Externalvalidation()
 	{
 		$title['title'] = "PUPHerbarium | External Validation";

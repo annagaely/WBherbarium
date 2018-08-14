@@ -39,40 +39,82 @@
 
     <!-- FOR DESGN PURPOSES ONLY-->
         <!-- Modal-->
-        <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
-          <div role="document" class="modal-dialog modal-lg">
-            <div class="modal-content" >
-              <div class="modal-header">
-
-                <h5 id="exampleModalLabel" class="modal-title">Plant Deposit</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">×</span></button>
+    <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
+      <div role="document" class="modal-dialog modal-lg" >
+        <div class="modal-content" >
+          <div class="modal-header">
+            <h5 id="exampleModalLabel" class="modal-title">Plant Deposit</h5>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body"> 
+            <div class="row">
+              <div class="card col-md-6" style="max-width: 20rem;margin-bottom: 2px;" >
+                <img class="card-img-center" src="<?php echo base_url();?>assets/bower_components/1.jpg" alt="Card image cap" style="height: 30rem;object-fit: cover">
               </div>
-
-              <div class="modal-body"> 
-              <div class="row">
-                   <div class="card col-md-6" style="max-width: 20rem;margin-bottom: 2px">
-                      <img class="card-img-center" src="<?php echo base_url();?>assets/bower_components/1.jpg" alt="Card image cap" style="height: 30rem;object-fit: cover">
+              <div class="col-md-6" style="margin-left: auto; margin-right: auto;">
+                <form class="form-horizontal">
+                  <div class="form-group row">
+                    <div class="col-sm-4">
+                      <label style="font-size: 14px;">Scientific Name:</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <input type="text" name="txtdName" id="strDomainName" class="form-control" disabled>
+                    </div>
                   </div>
-
-                <div class="col-md-6">
-                  <label>Scientific Name:</label><br>
-                  <label>Common Name:</label><br>
-                  <label>Date Collected:</label><br>
-                  <label>Locality:</label><br>
-                  <label>Full Locality:</label><br>
-                  <label>Collector:</label><br>
-                  <label>Description:</label>
-                </div>
-              </div>
-             </div>
-    
-                  <div class="modal-footer">      
-                    <input type="submit" value="Save" id='btnSave' class="btn btn-primary">
+                  <div class="form-group row">
+                    <div class="col-sm-4">
+                      <label style="font-size: 14px;">Common Name:</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <input type="text" name="txtdName" id="strDomainName" class="form-control" disabled="">
+                    </div>
                   </div>
-                  
+                  <div class="form-group row">
+                    <div class="col-sm-4">
+                      <label style="font-size: 14px;">Locality:</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <input type="text" name="txtdName" id="strDomainName" class="form-control" disabled="">
+                    </div>
+                  </div>
+                   <div class="form-group row">
+                    <div class="col-sm-4">
+                      <label style="font-size: 14px;">Full Locality:</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <input type="text" name="txtdName" id="strDomainName" class="form-control" disabled="">
+                    </div>
+                  </div>
+                   <div class="form-group row">
+                    <div class="col-sm-4">
+                      <label style="font-size: 14px;">Date Collected:</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <input type="text" name="txtdName" id="strDomainName"  class="form-control" disabled="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-4">
+                      <label style="font-size: 14px;">Collector:</label>
+                    </div>
+                    <div class="col-sm-8">
+                      <input type="text" name="txtdName" id="strDomainName"  class="form-control" disabled="">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-4">
+                      <label style="font-size: 14px;">Description:</label>
+                    </div>
+                    <div class="col-sm-8">
+                     <textarea class="form-control" rows="5" id="comment" disabled=""></textarea>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
           </div>
         </div>
-      </div> 
+      </div>
+    </div>

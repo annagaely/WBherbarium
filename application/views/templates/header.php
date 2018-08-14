@@ -93,7 +93,6 @@
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant" class="nav-link <?php if($this->uri->segment(2)=="Depositplant"){echo "active";}?>">Deposit Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Loanplant" class="nav-link <?php if($this->uri->segment(2)=="Loanplant"){echo "active";}?>">Loan Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Manageappointment" class="nav-link <?php if($this->uri->segment(2)=="Manageappointment"){echo "active";}?>">Manage Appointment</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Searchplant" class="nav-link <?php if($this->uri->segment(2)=="Searchplant"){echo "active";}?>">Search Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidation" class="nav-link <?php if($this->uri->segment(2)=="Externalvalidation"){echo "active";}?>">External Validation</a></li>
 
 

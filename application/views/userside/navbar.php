@@ -26,6 +26,9 @@
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+
+
   </head>
   <body>
     <!-- navbar-->
@@ -42,94 +45,100 @@
                   <!-- Link-->
                   <li class="nav-item"> <a href="<?php echo base_url();?>user/Contact" class="nav-link">Contact</a></li>
                   <!-- Link-->
-                  <li class="nav-item"> <a href="<?php echo base_url();?>assets/bower_components/userside/text.html" class="nav-link">Text Page</a></li>
-              <li class="nav-item dropdown"><a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
-                <div class="dropdown-menu"><a href="<?php echo base_url();?>assets/bower_components/userside/faq.html" class="dropdown-item">FAQ</a><a href="contact.html" class="dropdown-item">Contact</a><a href="<?php echo base_url();?>assets/bower_components/userside/text.html" class="dropdown-item">Text Page</a></div>
+                  <li class="nav-item"> <a href="<?php echo base_url();?>user/Collection" class="nav-link">Collection</a></li>
+                  <li class="nav-item dropdown"><a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
+                    <div class="dropdown-menu">
+                      <a href="<?php echo base_url();?>user/Faq" class="dropdown-item">FAQ</a>
+                      <a href="<?php echo base_url();?>user/Contact" class="dropdown-item">Contact</a>
+                      <a href="<?php echo base_url();?>assets/bower_components/userside/text.html" class="dropdown-item">Text Page</a></div>
               </li>
-            </ul><a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Login </a>
+            </ul><a href="#accModal" class="btn btn-primary navbar-btn ml-0 ml-lg-3" data-toggle="modal">Login</a>
+
           </div>
         </div>
       </nav>
     </header>
-    <!-- Login Modal-->
-    <div id="loginModal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bd-example-modal-lg" >
+
+
+    <div id="accModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" data-backdrop="static" data-keyboard="false">
       <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content" >
-          <div class="modal-header border-bottom-0">
-            <h3>Login</h3>
-            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-          </div>
-          <div class="modal-body p-4 p-lg-5" >
-            <form action="#" class="login-form text-left">
+            <ul class="nav nav-pills nav-justified">
+            <li class="nav-item"><a class="nav-link active" href="#tab1" data-toggle="tab" onclick="resetForm()"><h5>Log In</h5></a></li>
+            <li class="nav-item"><a class="nav-link" href="#tab2" data-toggle="tab" onclick="resetForm2()"><h5>Sign Up</h5></a></li>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm(); resetForm2()"><span aria-hidden="true">×</span></button>
+          </ul>
+            
+          
+          <div class="modal-body p-4 p-lg-5">
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab1">
+                <form action="#" class="login-form text-left" id="loginForm">
               <div class="form-group mb-4">
-                <label>Email address</label>
-                <input type="email" name="email" placeholder="name@email.com" class="form-control">
+                <label>Email Address</label>
+                <input type="email" name="stremailAdd" placeholder="name@email.com" class="form-control formm">
               </div>
               <div class="form-group mb-4">
                 <label>Password</label>
-                <input type="password" name="password" placeholder="Min 6 characters" class="form-control">
+                <input type="password" name="password" placeholder="Min 6 characters" class="form-control formm">
               </div>
               <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-primary">
               </div>
-              <p>Doesn't have an account yet? Sign up <a href="#" aria-label="Close" data-dismiss="modal" data-toggle="modal" data-target="#regModal">here</a>.</p>
+             
             </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Register Modal -->
-    <div id="regModal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bd-example-modal-lg">
-      <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header border-bottom-0">
-            <h3>Sign Up</h3>
-            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-          </div>
-          <div class="modal-body p-4 p-lg-6">
-            <form action="#" class="login-form text-left">
+              </div>
+              <div class="tab-pane" id="tab2">
+                 <form action="#" class="login-form text-left" id="signupForm">
               <div class="row">
                 <div class="form-group col-sm-6">
                   <label>First Name</label>
-                  <input type="text" name="strFirstname" placeholder="" class="form-control">
+                  <input type="text" name="strFirstname" placeholder="" class="form-control formm">
                 </div>
                 <div class="form-group col-sm-6">
                   <label>Middle Name</label>
-                  <input type="text" name="strMiddlename" placeholder="" class="form-control">
+                  <input type="text" name="strMiddlename" placeholder="" class="form-control formm">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-8">
                   <label style="">Last Name</label>
-                  <input type="text" name="strLastname" placeholder="" class="form-control">
+                  <input type="text" name="strLastname" placeholder="" class="form-control formm">
                 </div>
                 <div class="form-group col-sm-4">
                   <label style="">Name Suffix</label>
-                  <input type="text" name="strNamesuffix" placeholder="" class="form-control">
+                  <input type="text" name="strNamesuffix" placeholder="ex. Jr., Sr." class="form-control formm">
                 </div>
               </div>
               <div class="row">
-                <div class="form-group col-sm-12">
-                  <label style="">Username</label>
-                  <input type="text" name="strUsername" placeholder="" class="form-control">
+                <div class="form-group col-sm-6">
+                  <label style="">Email Address</label>
+                  <input type="email" name="strUsername" placeholder="name@email.com" class="form-control formm">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label style="">Contact Number</label>
+                  <input type="email" name="strUsername" placeholder="" class="form-control formm">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-sm-6">
                   <label>Password</label>
-                  <input type="password" name="pword" placeholder="Min 6 characters" class="form-control">
+                  <input type="password" name="pword" placeholder="Min 6 characters" class="form-control formm">
                 </div>
                 <div class="form-group col-sm-6">
                   <label>Re-enter Password</label>
-                  <input type="password" name="pword2" placeholder="Min 6 characters" class="form-control">
+                  <input type="password" name="pword2" placeholder="Min 6 characters" class="form-control formm">
                 </div>
               </div>
               <div class="form-group">
                 <input type="submit" value="Sign Up" class="btn btn-primary">
               </div>
-              <p>Already have an account? Log in <a href="" data-dismiss="modal" data-toggle="modal" data-target="#loginModal">here</a>.</p>
             </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+ 
+
