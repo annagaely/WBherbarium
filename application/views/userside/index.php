@@ -1,6 +1,6 @@
 
     <!-- Hero Section-->
-    <section class="hero">
+    <section class="heroo">
       <div class="container mb-5">
         <div class="row align-items-center">
           <div class="col-lg-6">
