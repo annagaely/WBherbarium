@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin - Sign Up</title>
+    <title>Deposit Plant</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -14,7 +14,7 @@
     <!-- Fontastic Custom icon font-->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/distribution/css/fontastic.css">
     <!-- Google fonts - Roboto -->
-    <link rel="stylesheet" href="<?php echo base_url();?>https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="<?php echo base_url();?> https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <!-- jQuery Circle-->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/distribution/css/grasp_mobile_progress_circle-1.0.0.min.css">
     <!-- Custom Scrollbar-->
@@ -30,45 +30,25 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
-    <div class="page login-page" >
-      <div class="container">
+
+    <div class="container">
         <div class="form-outer text-center d-flex align-items-center">
-          <div class="form-inner"><img src="<?php echo base_url();?>assets/bower_components/logoto.png" alt="logo"  style= "height: 110px; width: 100px">
-            <div class="logo text-uppercase"><strong class="text-primary">PUP</strong><span>Herbarium</span></div>
-            <p>
-             &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
-            </p>
-            <form class="text-left form-validate">
-              <div class="form-group-material">
-                <input id="register-username" type="text" name="registerUsername" required data-msg="Please enter your username" class="input-material">
-                <label for="register-username" class="label-material">Username</label>
-              </div>
-              <div class="form-group-material">
-                <input id="register-email" type="email" name="registerEmail" required data-msg="Please enter a valid email address" class="input-material">
-                <label for="register-email" class="label-material">Email Address      </label>
-              </div>
-              <div class="form-group-material">
-                <input id="register-password" type="password" name="registerPassword" required data-msg="Please enter your password" class="input-material">
-                <label for="register-password" class="label-material">Password        </label>
-              </div>
-              <!-- <div class="form-group terms-conditions text-center">
-                <input id="register-agree" name="registerAgree" type="checkbox" required value="1" data-msg="Your agreement is required" class="form-control-custom">
-                <label for="register-agree">I agree with the terms and policy</label>
-              </div> -->
-              <div class="form-group text-center">
-                <input id="register" type="submit" value="Sign Up" class="btn btn-primary">
-              </div>
-            </form><small>Already have an account? </small><a href="<?php echo base_url(); ?>Maintenance" class="signup <?php if($this->uri->segment(2)=="login"){echo "active";}?>">Login</a>
+            <form>
+            <div class="form-group">
+                    <label>Domain Name:</label>
+                    <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Kingdom Name:</label>
+                    <input type="text" name="txtkName" id="strKingdomName" placeholder="Kingdom Name" class="form-control">
+                  </div>
+              </form>
           </div>
-
-         <!--  <div class="copyrights text-center">
-            <p>Design by <a href="https://bootstrapious.com" class="external">Sad Rhatbuz</a></p>
-          </div> -->
-
-        </div>
       </div>
-    </div>
-    <!-- JavaScript files-->
+
+
+
+           <!-- JavaScript files-->
     <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
     <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -80,4 +60,4 @@
     <!-- Main File-->
     <script src="<?php echo base_url();?>assets/bower_components/distribution/js/front.js"></script>
   </body>
-</html>
+  </html>
