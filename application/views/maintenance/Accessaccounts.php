@@ -8,12 +8,11 @@
           </ul>
         </div>
       </div>
-
       <!-- ADD ACCES ACC MODAL-->
       <div class="card">
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Account</button>
-        </div>  
+        </div>
 
         <!-- Modal-->
         <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
@@ -23,18 +22,18 @@
                 <h5 id="exampleModalLabel" class="modal-title">Add Account</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
               </div>
-        
+
          <div class="modal-body">
-              
+
                <form id= "addAccountForm" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label>Staff Name:</label>
                      <select id="showStaffName" name ="StaffName" class="form-control">
                      </select>
                   </div>
-                  
-                   <div class = "row"> 
-          
+
+                   <div class = "row">
+
                     <div class="col-sm-6" >
                     <label>Username:</label>
                     <input type="text" name="AAUName" placeholder="Username" class="form-control">
@@ -44,13 +43,13 @@
                   <div class="col-sm-6" >
                     <label>Password:</label>
                     <input type="Password" name="AAPass" placeholder="Password" class="form-control">
-                  </div>   
+                  </div>
                 </div>
                 <br>
 
 
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">       
+                    <input type="reset" value="Clear" class="btn btn-primary">
                     <input type="submit" id="btnSave" value="Save" class="btn btn-primary">
                   </div>
                 </form>
@@ -60,7 +59,7 @@
         </div>
       </div>
       <!--END ACCESS ACCOUNT MODAL-->
-      <!--start edit ACCESS ACCOUNT MODAL-->   
+      <!--start edit ACCESS ACCOUNT MODAL-->
               <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
             <div class="modal-content">
@@ -68,18 +67,18 @@
                 <h5 id="exampleModalLabel" class="modal-title">Add Account</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
               </div>
-        
+
          <div class="modal-body">
-              
+
                <form id= "editAccountForm" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label>Staff Name:</label>
                      <select id="showStaffName2" name ="eStaffName" class="form-control">
                      </select>
                   </div>
-                  
-                   <div class = "row"> 
-          
+
+                   <div class = "row">
+
                     <div class="col-sm-6" >
                     <label>Username:</label>
                     <input type="text" name="eAAUName" placeholder="Username" class="form-control">
@@ -90,21 +89,21 @@
                   <div class="col-sm-6" >
                     <label>Password:</label>
                     <input type="Password" name="eAAPass" placeholder="Password" class="form-control">
-                  </div>   
+                  </div>
                 </div>
                 <br>
 
 
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">       
+                    <input type="reset" value="Clear" class="btn btn-primary">
                     <input type="submit" id="btnEditSave" value="Save" class="btn btn-primary">
                   </div>
                 </form>
               </div>
             </div>
           </div>
-        </div>      
-      
+        </div>
+
       <div class="card">
         <div class="card-body">
           <div class="table-responsive">
@@ -119,7 +118,7 @@
                 </tr>
               </thead>
               <tbody tbody id="showdata">
-                        
+
             </tbody>
             </table>
         </div>
@@ -127,12 +126,12 @@
     </div>
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript">  
+    <script type="text/javascript">
     $(function(){
-    
+
       //show
     showAllAccounts();
-    
+
 
     function showAllAccounts(){
       $.ajax({
@@ -191,7 +190,7 @@ $('#btnSave').click(function(){
             alert('Could not save Data');
           }
         });
-      
+
     });
 showStaffName();
  function showStaffName(){
@@ -219,7 +218,7 @@ showStaffName();
 $('#showdata').on('click', '.account-edit', function(){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
-      
+
       $.ajax({
         type: 'ajax',
         method: 'get',
@@ -236,7 +235,7 @@ $('#showdata').on('click', '.account-edit', function(){
         error: function(){
           alert('Could not Edit Data');
         }
-      
+
     });
 
   });
