@@ -14,11 +14,7 @@ class admin extends CI_Controller {
 		$this->load->view('login');
 	}
 
-	public function signup()
-	{
-		$this->load->view('signup');
-	}
-	
+
 	public function Dashboard()
 	{
 		$title['title'] = "PUPHerbarium | Dashboard";
@@ -522,6 +518,21 @@ public function updateFamilyBox(){
 		$this->load->view('maintenance/fullcalendar2');
 		$this->load->view('maintenance/CalendarManagement');
 		$this->load->view('templates/footer');
+	}
+
+	public function TemporaryDepositForm()
+	{
+		$title['title'] = "TEMPORARY";
+
+		$this->load->view('transaction/temporaryDepositForm');
+
+	}
+		public function TemporaryLoaningForm()
+	{
+		$title['title'] = "TEMPORARY";
+
+		$this->load->view('transaction/temporaryLoaningForm');
+
 	}
 }
 

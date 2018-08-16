@@ -16,9 +16,9 @@
               <thead>
                 <tr>
                   <th>Loan ID</th>
-                  <th>Accession Number</th>
-                  <th>Scientific Name</th>
-                  <th>Status</th>
+                  <th>Collector</th>
+                  <th>Taxon Name</th>
+                  <th>Duration</th>
                   <th>Actions</th>
                 </tr>
                 <tr>
