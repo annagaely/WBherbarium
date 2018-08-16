@@ -1,144 +1,101 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title><?php echo $title; ?></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/userside/vendor/bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/userside/vendor/font-awesome/css/font-awesome.min.css">
-    <!-- Google fonts - Poppins-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,600">
-    <!-- Lightbox-->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/userside/vendor/lightbox2/css/lightbox.css">
-    <!-- Custom font icons-->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/userside/css/fontastic.css">
-    <!-- theme stylesheet-->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/userside/css/style.default.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/userside/css/custom.css">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="<?php echo base_url();?>assets/bower_components/logo1.ico">
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>PUP Herbarium | Home</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/logo1.ico">
+
+</head>
+
+<body>
 
 
-
-  </head>
-  <body>
-    <!-- navbar-->
-    <header class="header">
-      <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container"><a href="./" class="navbar-brand"><img src="img/logo.svg" alt="" class="img-fluid"></a>
-          <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
-          <div id="navbarSupportedContent" class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                  <!-- Link-->
-                  <li class="nav-item"> <a href="<?php echo base_url();?>user/Index" class="nav-link active">Home</a></li>
-                  <!-- Link-->
-                  <li class="nav-item"> <a href="<?php echo base_url();?>user/Faq" class="nav-link">FAQ</a></li>
-                  <!-- Link-->
-                  <li class="nav-item"> <a href="<?php echo base_url();?>user/Contact" class="nav-link">Contact</a></li>
-                  <!-- Link-->
-                  <li class="nav-item"> <a href="<?php echo base_url();?>user/Collection" class="nav-link">Collection</a></li>
-                  <li class="nav-item dropdown"><a id="pages" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Dropdown</a>
-                    <div class="dropdown-menu">
-                      <a href="<?php echo base_url();?>user/Faq" class="dropdown-item">FAQ</a>
-                      <a href="<?php echo base_url();?>user/Contact" class="dropdown-item">Contact</a>
-                      <a href="<?php echo base_url();?>assets/bower_components/userside/text.html" class="dropdown-item">Text Page</a></div>
-              </li>
-            </ul><a href="#accModal" class="btn btn-primary navbar-btn ml-0 ml-lg-3" data-toggle="modal">Login</a>
-
-          </div>
-        </div>
-      </nav>
-    </header>
-
-
-    <div id="accModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="windowTitleLabel" data-backdrop="static" data-keyboard="false">
-      <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content" >
-            <ul class="nav nav-pills nav-justified">
-            <li class="nav-item"><a class="nav-link active" href="#tab1" data-toggle="tab" onclick="resetForm()"><h5>Log In</h5></a></li>
-            <li class="nav-item"><a class="nav-link" href="#tab2" data-toggle="tab" onclick="resetForm2()"><h5>Sign Up</h5></a></li>
-            <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm(); resetForm2()"><span aria-hidden="true">×</span></button>
-          </ul>
+    <!-- Start your project here-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="#"><strong>PUP Herbarium</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mr-auto smooth-scroll">
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light" href="#home">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light" href="#about" data-offset="90">Collection</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light" href="#features" data-offset="90">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light" href="#services" data-offset="90">FAQs</a>
+            </li>
             
-          
-          <div class="modal-body p-4 p-lg-5">
-            <div class="tab-content">
-              <div class="tab-pane active" id="tab1">
-                <form action="#" class="login-form text-left" id="loginForm">
-              <div class="form-group mb-4">
-                <label>Email Address</label>
-                <input type="email" name="stremailAdd" placeholder="name@email.com" class="form-control formm">
-              </div>
-              <div class="form-group mb-4">
-                <label>Password</label>
-                <input type="password" name="password" placeholder="Min 6 characters" class="form-control formm">
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary">
-              </div>
-             
-            </form>
-              </div>
-              <div class="tab-pane" id="tab2">
-                 <form action="#" class="login-form text-left" id="signupForm">
-              <div class="row">
-                <div class="form-group col-sm-6">
-                  <label>First Name</label>
-                  <input type="text" name="strFirstname" placeholder="" class="form-control formm">
-                </div>
-                <div class="form-group col-sm-6">
-                  <label>Middle Name</label>
-                  <input type="text" name="strMiddlename" placeholder="" class="form-control formm">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-sm-8">
-                  <label style="">Last Name</label>
-                  <input type="text" name="strLastname" placeholder="" class="form-control formm">
-                </div>
-                <div class="form-group col-sm-4">
-                  <label style="">Name Suffix</label>
-                  <input type="text" name="strNamesuffix" placeholder="ex. Jr., Sr." class="form-control formm">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-sm-6">
-                  <label style="">Email Address</label>
-                  <input type="email" name="strUsername" placeholder="name@email.com" class="form-control formm">
-                </div>
-                <div class="form-group col-sm-6">
-                  <label style="">Contact Number</label>
-                  <input type="email" name="strUsername" placeholder="" class="form-control formm">
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-sm-6">
-                  <label>Password</label>
-                  <input type="password" name="pword" placeholder="Min 6 characters" class="form-control formm">
-                </div>
-                <div class="form-group col-sm-6">
-                  <label>Re-enter Password</label>
-                  <input type="password" name="pword2" placeholder="Min 6 characters" class="form-control formm">
-                </div>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Sign Up" class="btn btn-primary">
-              </div>
-            </form>
-              </div>
-            </div>
-          </div>
+          </ul>
+          <!-- Social Icon  -->
+          <ul class="navbar-nav nav-flex-icons">
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light">
+                <i class="fa fa-facebook light-green-text-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light">
+                <i class="fa fa-twitter light-green-text-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light">
+                <i class="fa fa-instagram light-green-text-2"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+                <button type="button" data-toggle="modal" data-target="#modalLoginForm" class=" btn btn-outline-light py-2" style="border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; border-top-left-radius: 25px; border-top-right-radius: 25px;">Login</button>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
- 
+    </nav>
+    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input type="email" id="defaultForm-email" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+                    </div>
+                    <div class="md-form mb-4">
+                        <i class="fa fa-lock prefix grey-text"></i>
+                        <input type="password" id="defaultForm-pass" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                                            <center>Doesn't have an account yet? Sign up <a href="register.html">here.</a></center>
 
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>

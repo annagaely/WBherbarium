@@ -70,10 +70,35 @@
 </style>
 </head>
 <body>
-  <div class="col-md-12">
-    <div id="calendar"></div>
-  </div>
+  <div class="card-body mx-auto" style="width: 20rem;">
+    <!-- Modal-->
+            <form id= "addOrderForm" method="POST" enctype="multipart/form-data"> <!--dito ka magbabago sa loob nito-->
+              <div class="form-group">
+                <label>Event Name:</label>
+                <input type="text" name="txtOName" placeholder="Order Name" class="form-control">
+              </div>
+              <div class="row">
+              <div class="form-group col-sm-6">
+                <label>Start Date</label>
+                <input type="date" name="txtOName" placeholder="Order Name" class="form-control">
+              </div><div class="form-group col-sm-6">
+                <label>End Date</label>
+                <input type="date" name="txtOName" placeholder="Order Name" class="form-control">
+              </div>
+            </div>
 
+              <!--HANGGANG DITO LANG BOI-->
+              <div class="modal-footer">
+                <input type="reset" value="Clear" class="btn btn-primary">       
+                <input type="submit" value="Save" id="btnSave" class="btn btn-primary">
+              </div>
+            </form>
+          </div>
+    
+<div class="container">
+    <div id="calendar"></div>
+
+</div>
 </body>
 <script type="text/javascript">
 $(document).ready(function() {
