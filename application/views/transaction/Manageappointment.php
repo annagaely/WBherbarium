@@ -19,7 +19,7 @@
                   <th>Appointment Date</th>
                   <th>Appointment Reason</th>
 
-                <th>Actions</th>
+                <th>&nbsp &nbsp &nbsp &nbsp Actions</th>
                 </tr>
                 <tr>
                 <td>hehe</td>
