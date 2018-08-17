@@ -529,21 +529,6 @@ public function updateFamilyBox(){
 	}
 
 
-	public function TemporaryDepositForm()
-	{
-		$title['title'] = "TEMPORARY";
-
-		$this->load->view('transaction/temporaryDepositForm');
-
-	}
-		public function TemporaryLoaningForm()
-	{
-		$title['title'] = "TEMPORARY";
-
-		$this->load->view('transaction/temporaryLoaningForm');
-
-	}
-
 
 	 public function EMAIL()
 	 {
