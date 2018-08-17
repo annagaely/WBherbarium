@@ -11,7 +11,7 @@
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <div class="view">
-                    <img class="d-block w-100" style="height: 70vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner.jpg" alt="First slide">
+                    <img class="d-block w-100" style="height: 100vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner.jpg" alt="First slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">
@@ -22,7 +22,7 @@
             <div class="carousel-item">
             <!--Mask color-->
                 <div class="view">
-                    <img class="d-block w-100" style="height: 70vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner2.jpg" alt="Second slide">
+                    <img class="d-block w-100" style="height: 100vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner2.jpg" alt="Second slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">
@@ -33,14 +33,14 @@
             <div class="carousel-item">
                 <!--Mask color-->
                 <div class="view">
-                    <img class="d-block w-100" style="height: 70vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner3.jpg" alt="Third slide">
+                    <img class="d-block w-100" style="height: 100vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner3.jpg" alt="Third slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">
                     <h3 class="h3-responsive">Title</h3>
                     <p>Third text</p>
                 </div>
-            </div>              
+            </div>
         </div>
        <!--/.Slides-->
        <!--Controls-->
@@ -54,6 +54,69 @@
        </a>
             <!--/.Controls-->
     </div>
+    <div class="px-5 py-5 mx-0"  style="height: 100vh;">
+    <section class="text-center mx-5 pb-5">
+    <!-- Section heading -->
+      <h2 class="h1-responsive font-weight-bold my-5">Why is it so great?</h2>
+      <!-- Section description -->
+      <p class="lead grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-4">
+
+          <i class="fa fa-area-chart fa-3x red-text"></i>
+          <h5 class="font-weight-bold my-4">Analytics</h5>
+          <p class="grey-text mb-md-0 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores aperiam minima assumenda deleniti hic.
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4">
+
+          <i class="fa fa-book fa-3x cyan-text"></i>
+          <h5 class="font-weight-bold my-4">Tutorials</h5>
+          <p class="grey-text mb-md-0 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores aperiam minima assumenda deleniti hic.
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4">
+
+          <i class="fas fa-comments fa-3x orange-text"></i>
+          <h5 class="font-weight-bold my-4">Support</h5>
+          <p class="grey-text mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores aperiam minima assumenda deleniti hic.
+          </p>
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </section>
+    </div>
+    <section class="text-white mx-0 px-0" style="background-color: #800000; padding: 5rem 0;">
+        <div class="container py-5">
+            <div class="text-center">
+                <h2>Do great things together</h2>
+                <div class="row">
+                    <div class="col-lg-9 mx-auto">
+                        <p class="lead text-white mt-2">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. eiusmod tempor incididunt ut labore et dolore.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
     <!-- Projects section v.3 -->
     <div class="pt-0 pb-5 px-5">
         <section class="my-5 mx-5">
@@ -171,72 +234,45 @@
   <!-- Grid row -->
 
 </section></div>
-<section class="text-white" style="background-color: #800000; padding: 5rem 0;">
-    <div class="container py-5">
-        <div class="text-center">
-            <h2>Do great things together</h2>
-            <div class="row">
-                <div class="col-lg-9 mx-auto">
-                    <p class="lead text-white mt-2">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. eiusmod tempor incididunt ut labore et dolore.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-</section>
+
 <!-- Projects section v.3 -->
 <!-- Section: Features v.1 -->
-<div class="px-5 py-5"  style="height: 100vh;">
-<section class="text-center mx-5 pb-5">
-<!-- Section heading -->
-  <h2 class="h1-responsive font-weight-bold my-5">Why is it so great?</h2>
+<section class="text-center mt-4">
+
+  <!-- Section heading -->
+  <h2 class="h1-responsive font-weight-bold text-center my-5">Articles</h2>
   <!-- Section description -->
-  <p class="lead grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
 
   <!-- Grid row -->
   <div class="row">
 
     <!-- Grid column -->
-    <div class="col-md-4">
+    <div class="col-md-12 mb-0">
+      <div class="card card-image" style="background-image: url('<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner.jpg');">
+        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
+          <div>
 
-      <i class="fa fa-area-chart fa-3x red-text"></i>
-      <h5 class="font-weight-bold my-4">Analytics</h5>
-      <p class="grey-text mb-md-0 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores aperiam minima assumenda deleniti hic.
-      </p>
-
+            <h3 class="py-3 font-weight-bold">
+              <strong>This is news title</strong>
+            </h3>
+            <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum!
+            </p>
+            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> View Article</a>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Grid column -->
 
-    <!-- Grid column -->
-    <div class="col-md-4">
-
-      <i class="fa fa-book fa-3x cyan-text"></i>
-      <h5 class="font-weight-bold my-4">Tutorials</h5>
-      <p class="grey-text mb-md-0 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores aperiam minima assumenda deleniti hic.
-      </p>
-
-    </div>
-    <!-- Grid column -->
-
-    <!-- Grid column -->
-    <div class="col-md-4">
-
-      <i class="fa fa-comments-o fa-3x orange-text"></i>
-      <h5 class="font-weight-bold my-4">Support</h5>
-      <p class="grey-text mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores aperiam minima assumenda deleniti hic.
-      </p>
-
-    </div>
     <!-- Grid column -->
 
   </div>
   <!-- Grid row -->
 
 </section>
-</div>
-<!-- Card --><section class="text-center mx-5 pl-5 py-5" style="background-color: #f5f5f5;">
+
+<!-- Card -->
+<section class="text-center mx-5 pl-5 py-5" >
     <div class="row mx-auto">
         <div class="col">
             <div class="card" style="width: 20rem;">
@@ -300,42 +336,9 @@
         </div>
     </div>
 </section>
+
 <!-- Card -->
     <!-- /Start your project here-->
 
 <!-- Projects section v.4 -->
-<section class="text-center my-5">
-
-  <!-- Section heading -->
-  <h2 class="h1-responsive font-weight-bold text-center my-5">Our best projects</h2>
-  <!-- Section description -->
-  <p class="grey-text text-center w-responsive mx-auto mb-5">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit est laborum.</p>
-
-  <!-- Grid row -->
-  <div class="row">
-
-    <!-- Grid column -->
-    <div class="col-md-12 mb-4">
-      <div class="card card-image" style="background-image: url('<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner.jpg');">
-        <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
-          <div>
-           
-            <h3 class="py-3 font-weight-bold">
-              <strong>This is news title</strong>
-            </h3>
-            <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum!
-            </p>
-            <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> View Article</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Grid column -->
-
-    <!-- Grid column -->
-
-  </div>
-  <!-- Grid row -->
-
-</section>
 <!-- Projects section v.4 -->

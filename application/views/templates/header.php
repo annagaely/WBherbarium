@@ -1,4 +1,4 @@
- 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +44,7 @@
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
              <h2 class="h5">Anna Balingit</h2><span>Curator</span>
           </div>
-          
+
           <!-- Small Brand information, appears on minimized sidebar-->
           <div class="sidenav-header-logo"><a href="{{ url('/home') }}" class="brand-small text-center"> <strong>A</strong><strong class="text-primary">B</strong></a></div>
           </div>
@@ -52,14 +52,16 @@
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
           <h5 class="sidenav-heading">Main</h5>
+
           <ul id="side-main-menu" class="side-menu list-unstyled">                  
             <li class="active"><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="icon-home"></i>Home</a></li>
             
             <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
-               
+
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
                   <ul id="TaxHierDropdown" class="collapse list-unstyled">
+
                     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Phylum"> &nbsp; &nbsp; &nbsp; &nbsp; Phylum</a></li>
 
                     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Class"> &nbsp; &nbsp; &nbsp; &nbsp; Class</a></li>
@@ -84,12 +86,27 @@
             </li>
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
               <ul id="TransactionDropdown" class="collapse list-unstyled ">
+
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Manageappointment">Manage Appointment</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidation">External Validation</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/EMAIL">EMAIL</a></li>
 
+                <li><a href="<?php echo base_url(); ?>admin/Depositplant" class="nav-link <?php if($this->uri->segment(2)=="Depositplant"){echo "active";}?>">Deposit Plant</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Loanplant" class="nav-link <?php if($this->uri->segment(2)=="Loanplant"){echo "active";}?>">Loan Plant</a></li>
+
+                <li><a href="#DdownManageAppointment" aria-expanded="false" data-toggle="collapse">Manage Appointment</a>
+                  <ul id="DdownManageAppointment" class="collapse list-unstyled ">
+                    <li><a style="background-color: #393836;" href="<?php echo base_url(); ?>admin/Depositplant" class="nav-link ">&nbsp; &nbsp; &nbsp; &nbsp; Pending</a></li>
+                    <li><a style="background-color: #393836;" href="<?php echo base_url(); ?>admin/Loanplant" class="nav-link">&nbsp; &nbsp; &nbsp; &nbsp; History</a></li>
+                  </ul>
+                </li>
+
+                <li><a href="<?php echo base_url(); ?>admin/Manageappointment" class="nav-link <?php if($this->uri->segment(2)=="Manageappointment"){echo "active";}?>">Manage Appointment</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Externalvalidation" class="nav-link <?php if($this->uri->segment(2)=="Externalvalidation"){echo "active";}?>">External Validation</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/TemporaryDepositForm" class="nav-link <?php if($this->uri->segment(2)=="TemporaryDepositForm"){echo "active";}?>">Temp Deposit form</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/TemporaryLoaningForm" class="nav-link <?php if($this->uri->segment(2)=="TemporaryLoaningForm"){echo "active";}?>">Temp Loaning form</a></li>
 
               </ul>
             </li>
@@ -116,18 +133,18 @@
                   </div></a>
               </div>
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-            
+
                 <!-- Notifications dropdown-->
                 <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i onclick="myFunction()" class="fa fa-bell"></i><span id="BellIcon" class="badge badge-warning">2</span></a>
                   <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> 
+                    <li><a rel="nofollow" href="#" class="dropdown-item">
                         <div class="notification d-flex justify-content-between">
-                          <div class="notification-content"><i class="fa fa-envelope"></i>You have 2 new messages 
+                          <div class="notification-content"><i class="fa fa-envelope"></i>You have 2 new messages
                           </div>
                           <div class="notification-time"><small>4 minutes ago</small></div>
                         </div></a></li>
 
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> 
+                    <li><a rel="nofollow" href="#" class="dropdown-item">
                         <div class="notification d-flex justify-content-between">
                           <div class="notification-content"><i class="fa fa-upload"></i>Server Rebooted</div>
                           <div class="notification-time"><small>4 minutes ago</small></div>
@@ -139,17 +156,17 @@
                 <!-- Messages dropdown-->
                 <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i onclick="myFunction1()" class="fa fa-envelope"></i><span id= "MessageIcon" class="badge badge-info">3</span></a>
                   <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/Nins.png" alt="..." class="img-fluid rounded-circle"></div>
                         <div class="msg-body">
                           <h3 class="h5">Niño Escueta</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
                         </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/sheng.png" alt="..." class="img-fluid rounded-circle"></div>
                         <div class="msg-body">
                           <h3 class="h5">Rhisiel Valle</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
                         </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/mai.png" alt="..." class="img-fluid rounded-circle"></div>
                         <div class="msg-body">
                           <h3 class="h5">Maica Opeña</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
@@ -157,18 +174,18 @@
                     <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
                   </ul>
                 </li>
-            
+
                 <!-- Log out-->
                  <li class="nav-item"><a href="<?php echo base_url(); ?>Maintenance" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();" > 
+                        document.getElementById('logout-form').submit();" >
                         <span class="d-none d-sm-inline-block">Logout</span>&nbsp<i class="fa fa-sign-out"></i></a>
 
                            <form id="logout-form" action="<?php echo base_url(); ?>Maintenance" method="POST" style="display: none;">
-                        
+
                            </form>
                   </li>
               </ul>
-   
+
 <script>
 
 function myFunction() {
@@ -197,7 +214,3 @@ function myFunction1() {
       </div>
       </nav>
       </header>
- 
-
-
-
