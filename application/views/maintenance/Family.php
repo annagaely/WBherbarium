@@ -26,12 +26,12 @@
 
                 <form id= "addFamilyForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
-                    <label>Order Name:</label>
+                    <label>Order Name:</label> <label style="color: red">*</label>
                     <select id="showFamilyOrderName" name ="txtoID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Family Name:</label>
+                    <label>Family Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txtfName" placeholder="Family Name" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
@@ -65,12 +65,12 @@
                     <label>
                       <input type="hidden" name="txtId" value="0">
                     </label>
-                    <label>Order Name:</label>
+                    <label>Order Name:</label> <label style="color: red">*</label>
                      <select id="showFamilyOrderName1" name ="seOID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Family Name:</label>
+                    <label>Family Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txteFName" placeholder="Class Name" class="form-control">
                   </div> 
                   <div class="modal-footer">

@@ -24,11 +24,11 @@
     font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
     font-size: 14px;
   }
-
-  #calendar {
+    #calendar {
     max-width: 900px;
     margin: 0 auto;
   }
+
 
 .modal2 {
     display: none; /* Hidden by default */
@@ -40,8 +40,8 @@
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    
+    background-color: #fefefe; /* Black w/ opacity */
 }
 
 /* Modal Content */
@@ -70,30 +70,98 @@
 </style>
 </head>
 <body>
-  <div class="card-body mx-auto" style="width: 20rem;">
-    <!-- Modal-->
-            <form id= "addOrderForm" method="POST" enctype="multipart/form-data"> <!--dito ka magbabago sa loob nito-->
-              <div class="form-group">
-                <label>Event Name:</label>
-                <input type="text" name="txtOName" placeholder="Order Name" class="form-control">
-              </div>
-              <div class="row">
-              <div class="form-group col-sm-6">
-                <label>Start Date</label>
-                <input type="date" name="txtOName" placeholder="Order Name" class="form-control">
-              </div><div class="form-group col-sm-6">
-                <label>End Date</label>
-                <input type="date" name="txtOName" placeholder="Order Name" class="form-control">
-              </div>
+  <div class="modal" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Add Calendar Event</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+      <?php echo form_open(base_url("admin/add_event"), array("class" => "form-horizontal")) ?>
+      <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Event Name</label>
+                <div class="col-md-8 ui-front">
+                    <input type="text" class="form-control" name="name" value="">
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Description</label>
+                <div class="col-md-8 ui-front">
+                    <input type="text" class="form-control" name="description">
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Start Date</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" name="start_date">
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">End Date</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" name="end_date">
+                </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value="Add Event">
+        <?php echo form_close() ?>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Update Calendar Event</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+      <?php echo form_open(base_url("admin/edit_event"), array("class" => "form-horizontal")) ?>
+      <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Event Name</label>
+                <div class="col-md-8 ui-front">
+                    <input type="text" class="form-control" name="name" value="" id="name">
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Description</label>
+                <div class="col-md-8 ui-front">
+                    <input type="text" class="form-control" name="description" id="description">
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Start Date</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="start_date" id="start_date">
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">End Date</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="end_date" id="end_date">
+                </div>
+        </div>
+        <div class="form-group">
+                    <label for="p-in" class="col-md-4 label-heading">Delete Event</label>
+                    <div class="col-md-8">
+                        <input type="checkbox" name="delete" value="1">
+                    </div>
             </div>
-
-              <!--HANGGANG DITO LANG BOI-->
-              <div class="modal-footer">
-                <input type="reset" value="Clear" class="btn btn-primary">       
-                <input type="submit" value="Save" id="btnSave" class="btn btn-primary">
-              </div>
-            </form>
-          </div>
+            <input type="hidden" name="eventid" id="event_id" value="0" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value="Update Event">
+        <?php echo form_close() ?>
+      </div>
+    </div>
+  </div>
+</div>
     
 <div class="container">
     <div id="calendar"></div>
@@ -123,8 +191,27 @@ $(document).ready(function() {
       }
     },
     ],
+    dayClick: function(date, jsEvent, view) {
+        date_last_clicked = $(this);
+        $(this).css('background-color', '#bed7f3');
+        $('#addModal').modal();
+    },
+    eventClick: function(event, jsEvent, view) {
+          $('#name').val(event.title);
+          $('#description').val(event.description);
+          $('#start_date').val(moment(event.start).format('YYYY/MM/DD HH:mm'));
+          if(event.end) {
+            $('#end_date').val(moment(event.end).format('YYYY/MM/DD HH:mm'));
+          } else {
+            $('#end_date').val(moment(event.start).format('YYYY/MM/DD HH:mm'));
+          }
+          $('#event_id').val(event.id);
+          $('#editModal').modal();
+},
 
   });
+
+
 });
 
 

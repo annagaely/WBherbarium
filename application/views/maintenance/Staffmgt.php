@@ -30,7 +30,7 @@
                   <div class="row">
 
                     <div class="col-sm-6">
-                    <label>Role:</label>
+                    <label>Role:</label> <label style="color: red">*</label>
                     <select name="sRole" class="form-control">
                       <option value= "Super Administrator"> Super Administrator</option>
                       <option value= "Curator"> Curator</option>
@@ -38,7 +38,7 @@
                     </select>
                   </div>
                   </div>
-                 <label>First Name:</label>
+                 <label>First Name:</label> <label style="color: red">*</label>
                       <input type="text" name="SMgtFName" placeholder="First Name " class="form-control">
                   <div class="row">
                     <div class="form-group col-sm-8">
@@ -52,30 +52,30 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Last Name:</label>
+                      <label>Last Name:</label> <label style="color: red">*</label>
                       <input type="text" name="SMgtLName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
-                      <label>Name Suffix:</label>
+                      <label>Name Suffix:</label> <label style="color: red">*</label>
                       <input type="text" name="txtNSuffix" placeholder="Name Suffix" class="form-control">
                     </div>
                   </div>
 
                   <div class="row">
                   <div class="col-sm-6">
-                    <label>Contact Number:</label>
+                    <label>Contact Number:</label> <label style="color: red">*</label>
                     <input type="text" name= "SMgtCNumber" placeholder="Contact Number" class="form-control">
                   </div>
 
                      <div class="col-sm-6">
-                    <label>Email Address:</label>
+                    <label>Email Address:</label> <label style="color: red">*</label>
                     <input type="text" name= "SMgtEAdd"placeholder="emailaddress@example.com" class="form-control">
                   </div>
                 </div>
 
                   <div class="row">
                     <div class="col-sm-6">
-                    <label>College Department:</label>
+                    <label>College Department:</label> <label style="color: red">*</label>
                     <select name = "sCollege" class="form-control">
                       <option value= "College of Accountancy and Finance"> College of Accountancy and Finance</option>
                       <option value= "College of Architecture and Fine Arts"> College of Architecture and Fine Arts</option>
@@ -99,7 +99,7 @@
                   </div>
 
                     <div class="col-sm-6">
-                    <label>Course/Year/Section:</label>
+                    <label>Course/Year/Section:</label> <label style="color: red">*</label>
                     <input type="text" name= "SMgtCYS" placeholder="Course/Year/Section" class="form-control">
                   </div>
                 </div>
@@ -141,12 +141,12 @@
                     </select>
                   </div>
                   </div>
-                 <label>First Name:</label>
+                 <label>First Name:</label> <label style="color: red">*</label>
                       <input type="text" name="eSMgtFName" placeholder="First Name " class="form-control">
                       <input type="hidden" name="txtId" value="0">
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Middle Name:</label>
+                      <label>Middle Name:</label> 
                       <input type="text" name="eSMgtMName" placeholder="Middle Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
@@ -156,22 +156,22 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Last Name:</label>
+                      <label>Last Name:</label> <label style="color: red">*</label>
                       <input type="text" name="eSMgtLName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
-                      <label>Name Suffix:</label>
+                      <label>Name Suffix:</label> <label style="color: red">*</label>
                       <input type="text" name="etxtNSuffix" placeholder="Name Suffix" class="form-control">
                     </div>
                   </div>
 
                   <div class="row">
                   <div class="col-sm-6">
-                    <label>Contact Number:</label>
+                    <label>Contact Number:</label> <label style="color: red">*</label>
                     <input type="text" name= "eSMgtCNumber" placeholder="Contact Number" class="form-control">
                   </div>
 
-                     <div class="col-sm-6">
+                     <div class="col-sm-6"> <label style="color: red">*</label>
                     <label>Email Address:</label>
                     <input type="text" name= "eSMgtEAdd"placeholder="emailaddress@example.com" class="form-control">
                   </div>
@@ -179,7 +179,7 @@
 
                   <div class="row">
                     <div class="col-sm-6">
-                    <label>College Department:</label>
+                    <label>College Department:</label> <label style="color: red">*</label>
                     <select name = "esCollege" class="form-control">
                       <option value= "College of Accountancy and Finance"> College of Accountancy and Finance</option>
                       <option value= "College of Architecture and Fine Arts"> College of Architecture and Fine Arts</option>

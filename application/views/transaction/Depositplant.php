@@ -110,6 +110,9 @@
                     <div class="col-sm-8">
                      <textarea class="form-control" rows="5" id="comment" disabled=""></textarea>
                     </div>
+                    <div class="modal-footer">     
+                    <input type="submit" value="Proceed" id='btnEditSave' class="btn btn-primary" style="margin-left: 300px">
+                  </div>
                   </div>
                 </form>
               </div>

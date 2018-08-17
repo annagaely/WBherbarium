@@ -27,12 +27,12 @@
 
                 <form id= "addClassForm" method="POST" enctype="multipart/form-data"> <!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
-                    <label>Phylum Name:</label>
+                    <label>Phylum Name:</label> <label style="color: red">*</label>
                     <select id="showClassPhylumName" name ="spID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Class Name:</label>
+                    <label>Class Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txtCName" placeholder="Class Name" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
@@ -66,12 +66,12 @@
                     <label>
                       <input type="hidden" name="txtId" value="0">
                     </label>
-                    <label>Phylum Name:</label>
+                    <label>Phylum Name:</label> <label style="color: red">*</label>
                      <select id="showClassPhylumName2" name ="speID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Class Name:</label>
+                    <label>Class Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txteCName" placeholder="Class Name" class="form-control">
                   </div>
                   <div class="modal-footer">

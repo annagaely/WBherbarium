@@ -26,11 +26,11 @@
 
                 <form id= "addGenusForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->s
                   <div class="form-group">
-                    <label>Family Name:</label>
+                    <label>Family Name:</label> <label style="color: red">*</label>
                     <select id="showGenusFamilyName" name ="txtoID" class="form-control">
                     </select>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group"> <label style="color: red">*</label>
                     <label>Genus Name:</label>
                     <input type="text" name="txtgName" placeholder="Genus Name" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
@@ -65,12 +65,12 @@
                     <label>
                       <input type="hidden" name="txtId" value="0">
                     </label>
-                    <label>Order Name:</label>
+                    <label>Order Name:</label> <label style="color: red">*</label>
                      <select id="showGenusFamilyName1" name ="segFID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Family Name:</label>
+                    <label>Family Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txteGName" placeholder="Class Name" class="form-control">
                   </div> 
                   <div class="modal-footer">
