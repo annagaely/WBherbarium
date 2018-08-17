@@ -520,6 +520,13 @@ public function updateFamilyBox(){
 		
 		$this->load->view('templates/footer');
 	}
+	public function Featuredplant()
+	{
+		$title['title'] = "PUPHerbarium | Featured Plant";
+		$this->load->view('templates/header', $title);
+		$this->load->view('maintenance/Featuredplant');		
+		$this->load->view('templates/footer');
+	}
 
 
 	public function TemporaryDepositForm()
@@ -537,11 +544,20 @@ public function updateFamilyBox(){
 
 	}
 
+
+	 public function EMAIL()
+	 {
+		$title['title'] = "TEMPORARY";
+
+	 	$this->load->view('transaction/EMAIL');
+
+	 }
+
 }
 
 
 
 
 
-}
+
 ?>

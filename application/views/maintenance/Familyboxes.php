@@ -27,13 +27,13 @@
 
                 <form id= "addFBForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div>
-                    <label>Plant Family:</label>
+                    <label>Plant Family:</label> <label style="color: red">*</label>
                      <select id="showFBFamilyName" name ="sfbFID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Box Limit:</label>
-                    <input type="text" name="txtBLLimit" placeholder="Plant Family" class="form-control">
+                    <label>Box Limit:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtBLLimit" placeholder="Box Limit" class="form-control">
                   </div>
                   <!--HANGGANG DITO LANG BOI-->
 
@@ -68,13 +68,13 @@
                     <label>
                       <input type="hidden" name="txtId" value="0">
                     </label>
-                    <label>Family Name:</label>
+                    <label>Family Name:</label> <label style="color: red">*</label>
                      <select id="showFBFamilyName1" name ="sefbFID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Box Limit:</label>
-                    <input type="text" name="txteBLLimit" placeholder="Class Name" class="form-control">
+                    <label>Box Limit:</label> <label style="color: red">*</label>
+                    <input type="text" name="txteBLLimit" placeholder="Box Limit" class="form-control">
                   </div> 
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-primary">       

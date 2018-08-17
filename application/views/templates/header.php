@@ -86,6 +86,7 @@
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt" class="nav-link <?php if($this->uri->segment(2)=="Staffmgt"){echo "active";}?>">Staff Management</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/accounts" class="nav-link <?php if($this->uri->segment(2)=="Accessaccounts"){echo "active";}?>">Access Accounts</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement" class="nav-link <?php if($this->uri->segment(2)=="CalendarManagement"){echo "active";}?>">Calendar Management</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant" class="nav-link <?php if($this->uri->segment(2)=="Featuredplant"){echo "active";}?>">Featured Plant</a></li>
               </ul>
             </li>
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
@@ -96,6 +97,7 @@
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidation" class="nav-link <?php if($this->uri->segment(2)=="Externalvalidation"){echo "active";}?>">External Validation</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/TemporaryDepositForm" class="nav-link <?php if($this->uri->segment(2)=="TemporaryDepositForm"){echo "active";}?>">Temp Deposit form</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/TemporaryLoaningForm" class="nav-link <?php if($this->uri->segment(2)=="TemporaryLoaningForm"){echo "active";}?>">Temp Loaning form</a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/EMAIL" class="nav-link <?php if($this->uri->segment(2)=="EMAIL"){echo "active";}?>">EMAIL</a></li>
 
 
               </ul>

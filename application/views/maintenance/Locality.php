@@ -26,7 +26,7 @@
                 <form id= "addLocalityForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="row">
                   <div class="form-group col-sm-4">             
-                    <label>Island:</label><br>
+                    <label>Island:</label> <label style="color: red">*</label> <br>
                     <select id ="sisland" name ="sislandname"  class="form-control">
                       <option value="island0">--Select an Item--</option>
                       <option Value="Luzon"> Luzon</option>
@@ -35,13 +35,13 @@
                     </select>
                   </div>
                   <div class="form-group col-sm-4">
-                    <label>Region:</label><br>
+                    <label>Region:</label> <label style="color: red">*</label> <br>
                     <select id="sregion" name ="sregionname" class="form-control">
                       
                     </select>
                   </div>
                   <div class="form-group col-sm-4">
-                    <label>Province:</label><br>
+                    <label>Province:</label> <label style="color: red">*</label> <br>
                     <select id="sprov" name ="sprovname" class="form-control">
                      
                     </select>
@@ -49,9 +49,8 @@
                 </div>
                 <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>City/Municipality:</label>
+                  <label>City/Municipality:</label>  <label style="color: red">*</label> 
                     <select id="smunicipality" name ="smunicipalityname" class="form-control">
-                     
                     </select>
                   </div>
                   <div class="form-group col-sm-6">
@@ -60,13 +59,21 @@
                   </div>
                 </div>
                   <div class="form-group">
-                    <label>Specific Location:</label>
+                    <label>Specific Location:</label> <label style="color: red">*</label> 
                     <input type="text" name="spLocName" placeholder="Specific Location" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label>Shortcut Location:</label>
+                    <label>Shortcut Location:</label> <label style="color: red">*</label> 
                     <input type="text" name="spShorName" placeholder="Shortcut Location" class="form-control">
-                  </div><!--HANGGANG DITO LANG BOI-->
+                  </div>
+                  <div class="form-group">
+                    <label>Country:</label> <label style="color: red">*</label> 
+                    <input type="text" name="spCountry" class="form-control" placeholder="Country">
+                    <!--<select class="form-control"><option>Philippines</option></select>-->
+                  </div>
+
+
+                  <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-primary">       
                     <input type="submit" ID = "btnSave" value="Save" class="btn btn-primary">
