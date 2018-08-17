@@ -40,7 +40,7 @@
                   </div>
                   <div class="form-group">
                     <label>
-                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText(); disableMyText1();"> Under the Plant Category
+                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText();"> Under the Plant Category
                     </label>
                   </div>
                   <div class="form-group">
@@ -85,7 +85,7 @@
                   </div>
                   <div class="form-group">
                     <label>
-                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText(); disableMyText1();"> Under the Plant Category
+                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText1(); "> Under the Plant Category
                       <input type="hidden" name="txtId" value="0">
                     </label>
                   </div>
@@ -135,18 +135,24 @@ function resetForm() {
      function disableMyText(){
           if(document.getElementById("plantCategory").checked == true)
           {
-              document.getElementById("strDomainName").value = "Eukaryota";  
+              document.getElementById("strDomainName").value = "Eukaryota";
+              document.getElementById("strKingdomName").value = "Plantae";
           }
           else
           {
             document.getElementById("strDomainName").value = "";
+            document.getElementById("strKingdomName").value = "";
           }
      }
-
      function disableMyText1(){
-      if(document.getElementById("plantCategory").checked == true){
+          if(document.getElementById("plantCategory").checked == true)
+          {
+              document.getElementById("strDomainName").value = "Eukaryota";
               document.getElementById("strKingdomName").value = "Plantae";
-          }else{
+          }
+          else
+          {
+            document.getElementById("strDomainName").value = "";
             document.getElementById("strKingdomName").value = "";
           }
      }
