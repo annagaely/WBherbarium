@@ -31,20 +31,20 @@
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                   <div class="form-group">
-                    <label>Domain Name:</label>
+                    <label>Domain Name:</label> <label style="color: red">*</label> 
                     <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label>Kingdom Name:</label>
+                    <label>Kingdom Name:</label> <label style="color: red">*</label> 
                     <input type="text" name="txtkName" id="strKingdomName" placeholder="Kingdom Name" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>
-                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText(); disableMyText1();"> Under the Plant Category
+                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText(); "> Under the Plant Category
                     </label>
                   </div>
                   <div class="form-group">
-                    <label>Phylum Name:</label>
+                    <label>Phylum Name:</label> <label style="color: red">*</label> 
                     <input type="text" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control">
                   </div>
                   <div class="modal-footer">
@@ -76,21 +76,21 @@
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                   <div class="form-group">
-                    <label>Domain Name:</label>
+                    <label>Domain Name:</label> <label style="color: red">*</label> 
                     <input type="text" name="txtedName" id="strDomainName" placeholder="Domain Name" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label>Kingdom Name:</label>
+                    <label>Kingdom Name:</label> <label style="color: red">*</label> 
                     <input type="text" name="txtekName" id="strKingdomName" placeholder="Kingdom Name" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>
-                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText(); disableMyText1();"> Under the Plant Category
+                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText();"> Under the Plant Category
                       <input type="hidden" name="txtId" value="0">
                     </label>
                   </div>
                   <div class="form-group">
-                    <label>Phylum Name:</label>
+                    <label>Phylum Name:</label> <label style="color: red">*</label> 
                     <input type="text" name="txtepName" id="pNameid" placeholder="Phylum Name" class="form-control">
                   </div>
                   <div class="modal-footer">
@@ -130,6 +130,7 @@ function resetForm() {
 }
 
 </script>
+
      <script type="text/javascript" >
 
      function disableMyText(){
@@ -147,9 +148,11 @@ function resetForm() {
       if(document.getElementById("plantCategory").checked == true){
               document.getElementById("strKingdomName").value = "Plantae";
           }else{
+            document.getElementById("strDomainName").value = "",
             document.getElementById("strKingdomName").value = "";
           }
      }
+
      </script>
 
     <script type="text/javascript">

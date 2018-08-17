@@ -23,10 +23,22 @@
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
               </div>
               <div class="modal-body">
-                <form id= "addLocalityForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
+                <form id= "addLocalityForm" method="POST" enctype="multipart/form-data">
+                  <!--dito ka magbabago sa loob nito-->
+                 <div class="row form-group">
+                  <div class="col-sm-6">
+                     <input type="radio" id="radioPH"  name="radioChoose" onclick="radioCountry()">
+                     <label for="radioPH">&nbsp; From the Philippines</label>
+                   </div>
+                   <div class="col-sm-6">
+                     <input type="radio" id="radioOthers" name="radioChoose" onclick="radioCountry()">
+                     <label for="radioOthers">&nbsp; From the other Country</label>
+                  </div>
+                </div>
                   <div class="row">
-                  <div class="form-group col-sm-4">             
-                    <label>Island:</label><br>
+                 
+                  <div class="form-group col-sm-4">   
+                    <label>Island:</label> <label style="color: red">*</label> <br>
                     <select id ="sisland" name ="sislandname"  class="form-control">
                       <option value="island0">--Select an Item--</option>
                       <option Value="Luzon"> Luzon</option>
@@ -35,13 +47,13 @@
                     </select>
                   </div>
                   <div class="form-group col-sm-4">
-                    <label>Region:</label><br>
+                    <label>Region:</label> <label style="color: red">*</label> <br>
                     <select id="sregion" name ="sregionname" class="form-control">
                       
                     </select>
                   </div>
                   <div class="form-group col-sm-4">
-                    <label>Province:</label><br>
+                    <label>Province:</label> <label style="color: red">*</label> <br>
                     <select id="sprov" name ="sprovname" class="form-control">
                      
                     </select>
@@ -49,24 +61,33 @@
                 </div>
                 <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>City/Municipality:</label>
+                  <label>City/Municipality:</label>  <label style="color: red">*</label> 
                     <select id="smunicipality" name ="smunicipalityname" class="form-control">
-                     
                     </select>
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Area:</label>
-                    <input type="text" name="aName" placeholder="Area" class="form-control">
+                    <input type="text" id= "sarea" name="aName" placeholder="Area" class="form-control">
                   </div>
                 </div>
                   <div class="form-group">
-                    <label>Specific Location:</label>
-                    <input type="text" name="spLocName" placeholder="Specific Location" class="form-control">
+                    <label>Specific Location:</label> <label style="color: red">*</label> 
+                    <input type="text" id="sspecificloc" name="spLocName" placeholder="Specific Location" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label>Shortcut Location:</label>
-                    <input type="text" name="spShorName" placeholder="Shortcut Location" class="form-control">
-                  </div><!--HANGGANG DITO LANG BOI-->
+                    <label>Shortcut Location:</label> <label style="color: red">*</label> 
+                    <input type="text" id="sshortcutloc" name="spShorName" placeholder="Shortcut Location" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Country:</label> <label style="color: red">*</label> <br>
+                    <input type="text" id="scountry" value="Philippines" name="scountry" class="form-control"><br>
+                   
+                    <label id="sotherlocalitylabel">Locality:</label> <label style="color: red">*</label> <br>
+                    <input type="text" id = "sotherlocality" class="form-control" placeholder="Input full locality">
+                  </div>
+
+
+                  <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-primary">       
                     <input type="submit" ID = "btnSave" value="Save" class="btn btn-primary">
@@ -88,9 +109,20 @@
               </div>
               <div class="modal-body">
                 <form id= "editLocalityForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
-                  <div class="row">
-                  <div class="form-group col-sm-4">             
-                    <label>Island:</label><br>
+                   <div class="row form-group">
+                  <div class="col-sm-6">
+                     <input type="radio" id="radioPH1"  name="radioChoose1"  onclick="radioCountry1()">
+                     <label for="radioPH1">&nbsp; From the Philippines</label>
+                   </div>
+                   <div class="col-sm-6">
+                     <input type="radio" id="radioOthers1" name="radioChoose1" onclick="radioCountry1()">
+                     <label for="radioOthers1">&nbsp; From the other Country</label>
+                  </div>
+                </div>
+                 <div class="row">
+                  <div class="form-group col-sm-4"> 
+        
+                    <label>Island:</label> <label style="color: red">*</label> <br> 
                     
                     <select id ="sisland1" name ="seislandname"  class="form-control">
                       <option value="island0">--Select an Item--</option>
@@ -100,14 +132,14 @@
                     </select>
                   </div>
                   <div class="form-group col-sm-4">
-                    <label>Region:</label><br>
+                    <label>Region:</label> <label style="color: red">*</label> <br>
                     <select id="sregion1" name ="seregionname" class="form-control">
                       
                     </select>
                     <input type="hidden" name="txtId" value="0">
                   </div>
                   <div class="form-group col-sm-4">
-                    <label>Province:</label><br>
+                    <label>Province:</label> <label style="color: red">*</label> <br>
                     <select id="sprov1" name ="seprovname" class="form-control">
                      
                     </select>
@@ -115,24 +147,33 @@
                 </div>
                 <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>City/Municipality:</label>
+                    <label>City/Municipality:</label> <label style="color: red">*</label> 
                     <select id="smunicipality1" name ="semunicipalityname" class="form-control">
                      
                     </select>
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Area:</label>
-                    <input type="text" name="eaName" placeholder="Area" class="form-control">
+                    <input type="text" name="eaName" id="sarea1" placeholder="Area" class="form-control">
                   </div>
                 </div>
                   <div class="form-group">
-                    <label>Specific Location:</label>
-                    <input type="text" name="espLocName" placeholder="Specific Location" class="form-control">
+                    <label>Specific Location:</label> <label style="color: red">*</label> 
+                    <input type="text" name="espLocName" id="sspecificloc1" placeholder="Specific Location" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label>Shortcut Location:</label>
-                    <input type="text" name="espShorName" placeholder="Shortcut Location" class="form-control">
-                  </div><!--HANGGANG DITO LANG BOI-->
+                    <label>Shortcut Location:</label> 
+                    <input type="text" name="espShorName" id ="sshortcutloc1" placeholder="Shortcut Location" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Country:</label> <label style="color: red">*</label> <br>
+                    <input type="text" id="scountry1" value="Philippines" name="scountry" class="form-control"><br>
+                   
+
+                    <label id="sotherlocalitylabel">Locality:</label> <label style="color: red">*</label> <br>
+                    <input type="text" id = "sotherlocality1" class="form-control" placeholder="Input full locality">
+                  </div>
+                  <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-primary">       
                     <input type="submit" ID = "btnEditSave" value="Save"class="btn btn-primary">
@@ -627,6 +668,70 @@
     </script>
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+     function radioCountry()
+     { 
+        if(document.getElementById("radioOthers").checked == true )
+          {
+              document.getElementById("sisland").disabled=true;
+              document.getElementById("sregion").disabled=true;
+              document.getElementById("sprov").disabled=true;
+              document.getElementById("smunicipality").disabled=true;
+              document.getElementById("sarea").disabled=true;
+              document.getElementById("sspecificloc").disabled=true;
+              document.getElementById("sshortcutloc").disabled=true;
+              document.getElementById("scountry").value = "";
+              document.getElementById("sotherlocality").disabled = false;
+
+
+          }
+      else {
+        document.getElementById("sisland").disabled=false;
+              document.getElementById("sregion").disabled=false;
+              document.getElementById("sprov").disabled=false;
+              document.getElementById("smunicipality").disabled=false;
+              document.getElementById("sarea").disabled=false;
+              document.getElementById("sspecificloc").disabled=false;
+              document.getElementById("sshortcutloc").disabled=false;
+              document.getElementById("scountry").disabled=false;
+              document.getElementById("scountry").value = "Philippines";
+              document.getElementById("sotherlocality").disabled=true;
+
+          }
+      }
+</script>
+<script type="text/javascript">
+     function radioCountry1()
+     { 
+        if(document.getElementById("radioOthers1").checked == true )
+          {
+              document.getElementById("sisland1").disabled=true;
+              document.getElementById("sregion1").disabled=true;
+              document.getElementById("sprov1").disabled=true;
+              document.getElementById("smunicipality1").disabled=true;
+              document.getElementById("sarea1").disabled=true;
+              document.getElementById("sspecificloc1").disabled=true;
+              document.getElementById("sshortcutloc1").disabled=true;
+              document.getElementById("scountry1").value = "";
+              document.getElementById("sotherlocality1").disabled=false;
+
+
+          }
+      else {
+              document.getElementById("sisland1").disabled=false;
+              document.getElementById("sregion1").disabled=false;
+              document.getElementById("sprov1").disabled=false;
+              document.getElementById("smunicipality1").disabled=false;
+              document.getElementById("sarea1").disabled=false;
+              document.getElementById("sspecificloc1").disabled=false;
+              document.getElementById("sshortcutloc1").disabled=false;
+              document.getElementById("scountry1").disabled=false;
+              document.getElementById("scountry1").value = "Philippines";
+              document.getElementById("sotherlocality1").disabled=true;
+
+          }
+      }
+</script>
     <script type="text/javascript">  
     $(function(){
     

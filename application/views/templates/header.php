@@ -52,44 +52,47 @@
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
           <h5 class="sidenav-heading">Main</h5>
-          <ul id="side-main-menu" class="side-menu list-unstyled">
-            <li class="active"><a href="<?php echo base_url(); ?>admin/Dashboard" class="nav-link <?php if($this->uri->segment(2)=="Dashboard"){echo "active";}?>"> <i class="icon-home"></i>Home</a></li>
 
+          <ul id="side-main-menu" class="side-menu list-unstyled">                  
+            <li class="active"><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="icon-home"></i>Home</a></li>
+            
             <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
                   <ul id="TaxHierDropdown" class="collapse list-unstyled">
-                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Phylum"
-                      class="nav-link <?php if($this->uri->segment(2)=="Phylum"){echo "active";}?>"> &nbsp; &nbsp; &nbsp; &nbsp; Phylum</a></li>
 
-                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Class"
-                      class="nav-link <?php if($this->uri->segment(2)=="Class"){echo "active";}?>"> &nbsp; &nbsp; &nbsp; &nbsp; Class</a></li>
+                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Phylum"> &nbsp; &nbsp; &nbsp; &nbsp; Phylum</a></li>
 
-                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Order"
-                      class="nav-link <?php if($this->uri->segment(2)=="Order"){echo "active";}?>"> &nbsp; &nbsp; &nbsp; &nbsp; Order</a></li>
+                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Class"> &nbsp; &nbsp; &nbsp; &nbsp; Class</a></li>
 
-                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Family"
-                      class="nav-link <?php if($this->uri->segment(2)=="Family"){echo "active";}?>"> &nbsp; &nbsp; &nbsp; &nbsp; Family</a></li>
+                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Order"> &nbsp; &nbsp; &nbsp; &nbsp; Order</a></li>
 
-                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Genus"
-                      class="nav-link <?php if($this->uri->segment(2)=="Genus"){echo "active";}?>"> &nbsp; &nbsp; &nbsp; &nbsp; Genus</a></li>
+                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Family"> &nbsp; &nbsp; &nbsp; &nbsp; Family</a></li>
 
-                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Species"
-                      class="nav-link <?php if($this->uri->segment(2)=="Species"){echo "active";}?>"> &nbsp; &nbsp; &nbsp; &nbsp; Species</a></li>
+                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Genus"> &nbsp; &nbsp; &nbsp; &nbsp; Genus</a></li>
+
+                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Species"> &nbsp; &nbsp; &nbsp; &nbsp; Species</a></li>
                   </ul>
                 </li>
-                <li><a href="<?php echo base_url(); ?>admin/Familyboxes" class="nav-link <?php if($this->uri->segment(2)=="Familyboxes"){echo "active";}?>">Family Boxes</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Locality" class="nav-link <?php if($this->uri->segment(2)=="Locality"){echo "active";}?>">Locality</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Collector" class="nav-link <?php if($this->uri->segment(2)=="Collector"){echo "active";}?>">Collector</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Externalvalidator" class="nav-link <?php if($this->uri->segment(2)=="Externalvalidator"){echo "active";}?>">External Validator</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Staffmgt" class="nav-link <?php if($this->uri->segment(2)=="Staffmgt"){echo "active";}?>">Staff Management</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/accounts" class="nav-link <?php if($this->uri->segment(2)=="Accessaccounts"){echo "active";}?>">Access Accounts</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/CalendarManagement" class="nav-link <?php if($this->uri->segment(2)=="CalendarManagement"){echo "active";}?>">Calendar Management</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validator</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/accounts">Calendar Management</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
               </ul>
             </li>
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
               <ul id="TransactionDropdown" class="collapse list-unstyled ">
+
+                <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Manageappointment">Manage Appointment</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Externalvalidation">External Validation</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/EMAIL">EMAIL</a></li>
+
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant" class="nav-link <?php if($this->uri->segment(2)=="Depositplant"){echo "active";}?>">Deposit Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Loanplant" class="nav-link <?php if($this->uri->segment(2)=="Loanplant"){echo "active";}?>">Loan Plant</a></li>
 
@@ -104,7 +107,6 @@
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidation" class="nav-link <?php if($this->uri->segment(2)=="Externalvalidation"){echo "active";}?>">External Validation</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/TemporaryDepositForm" class="nav-link <?php if($this->uri->segment(2)=="TemporaryDepositForm"){echo "active";}?>">Temp Deposit form</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/TemporaryLoaningForm" class="nav-link <?php if($this->uri->segment(2)=="TemporaryLoaningForm"){echo "active";}?>">Temp Loaning form</a></li>
-
 
               </ul>
             </li>
@@ -126,7 +128,7 @@
         <nav class="navbar">
           <div class="container-fluid">
             <div class="navbar-holder d-flex align-items-center justify-content-between">
-              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
+              <div class="navbar-header"><a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="<?php echo base_url(); ?>admin/Dashboard" class="navbar-brand">
                   <div class="brand-text d-none d-md-inline-block"><span>PUP</span><strong class="text-primary">HERBARIUM</strong>
                   </div></a>
               </div>

@@ -645,21 +645,26 @@ public function edit_event()
 
 
 	public function TemporaryDepositForm()
+
 	{
+		$title['title'] = "PUPHerbarium | Featured Plant";
+		$this->load->view('templates/header', $title);
+		$this->load->view('maintenance/Featuredplant');		
+		$this->load->view('templates/footer');
+	}
+
+
+
+	 public function EMAIL()
+	 {
 		$title['title'] = "TEMPORARY";
 
-		$this->load->view('transaction/temporaryDepositForm');
+	 	$this->load->view('transaction/EMAIL');
 
-	}
-		public function TemporaryLoaningForm()
-	{
-		$title['title'] = "TEMPORARY";
-
-		$this->load->view('transaction/temporaryLoaningForm');
-
-	}
+	 }
 
 }
+
 
 
 
