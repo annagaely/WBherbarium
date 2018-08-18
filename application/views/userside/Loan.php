@@ -10,23 +10,25 @@
               <th>Family Name</th>
               <th>Genus Name</th>
               <th>Specie Name</th>
+              <th width="5%"></th>
             </tr>
             <tr>
-              <td class="item_name">
+              <td class="FamName">
                 <select class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
                   <option></option>
                 </select>
               </td>
-              <td class="item_code">
+              <td class="GenusName">
                 <select class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
                   <option></option>
                 </select>
               </td>
-              <td class="item_desc">
+              <td class="SpecieName">
                 <select class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
                   <option></option>
                 </select>
               </td>
+              <td></td>
             </tr>
           </table>
           <div align="right">
@@ -70,3 +72,76 @@
     </form>
   </div>
 </div>
+<script>
+$(document).ready(function(){
+ var count = 1;
+ $('#add').click(function(){
+  count = count + 1;
+  var html_code = "<tr id='row"+count+"'>";
+   html_code += "<td class='FamName'>"+
+                "<select class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
+                  "<option></option>"+
+                "</select>"+"</td>";
+   html_code += "<td class='GenusName'>"+
+                "<select class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
+                  "<option></option>"+
+                "</select>"+"</td>";
+   html_code += "<td class='SpecieName'>"+
+                "<select class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
+                  "<option></option>"+
+                "</select>"+"</td>";
+   html_code += "<td><button type='button' name='remove' data-row='row"+count+"' class='btn btn-danger btn-xs remove'>-</button></td>";
+   html_code += "</tr>";
+   $('#crud_table').append(html_code);
+ });s
+
+ $(document).on('click', '.remove', function(){
+  var delete_row = $(this).data("row");
+  $('#' + delete_row).remove();
+ });
+
+ $('#save').click(function(){
+  var item_name = [];
+  var item_code = [];
+  var item_desc = [];
+  var item_price = [];
+  $('.FamName').each(function(){
+   item_name.push($(this).text());
+  });
+  $('.GenusName').each(function(){
+   item_code.push($(this).text());
+  });
+  $('.SpecieName').each(function(){
+   item_desc.push($(this).text());
+  });
+  $.ajax({
+   url:"insert.php", //lol dikolam tooo :<
+   method:"POST",
+   data:{FamName:FamName, GenusName:GenusName, SpecieName:SpecieName},
+   success:function(data){
+    alert(data);
+    $("td[contentEditable='true']").text(""); //oy ito din. hindi na kasi siya contenteditable!!! select na kasi nasa loob ng td
+    for(var i=2; i<= count; i++)
+    {
+     $('tr#'+i+'').remove();
+    }
+    fetch_item_data();
+   }
+  });
+ });
+
+ function fetch_item_data()
+ {
+  $.ajax({
+   url:"fetch.php",
+   method:"POST",
+   success:function(data)
+   {
+    $('#inserted_item_data').html(data);
+   }
+  })
+ }
+ fetch_item_data();
+
+});
+</script>
