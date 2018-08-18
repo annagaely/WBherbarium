@@ -11,9 +11,10 @@
         <div class="col-md-4 mx-auto">
 
           <!-- Content -->
-          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Footer Content</h5>
-          <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit.</p>
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Contact Us</h5>
+          <p>PUP Herbarium Center<br>
+            Polytechnic University of the Philippines<br>
+          Sta. Mesa, Manila</p>
 
         </div>
         <!-- Grid column -->

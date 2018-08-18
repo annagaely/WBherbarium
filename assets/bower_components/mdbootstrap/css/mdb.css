@@ -1489,7 +1489,13 @@ button.bg-light:focus {
 
 body {
   font-family: "Roboto", sans-serif;
-  font-weight: 300; }
+  font-weight: 300;
+<<<<<<< HEAD
+    overflow-x: hidden;
+ }
+=======
+  overflow-x: hidden; }
+>>>>>>> bd7df4f7cabb6479f541838b4855dfa35868a68d
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 300; }

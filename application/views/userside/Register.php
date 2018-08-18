@@ -115,7 +115,8 @@
 
 
             <div class="text-center py-4 mt-3">
-                <button class="btn btn-danger" type="submit">Register</button>
+              <button class="btn btn-danger" type="reset">Reset</button>
+                <button class="btn btn-primary" type="submit">Register</button>
             </div>
         </form>
         <!-- Material form register -->

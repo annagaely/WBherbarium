@@ -54,12 +54,12 @@
        </a>
             <!--/.Controls-->
     </div>
-    <div class="px-5 py-5 mx-0"  style="height: 100vh;">
+    <div class="px-5 py-5 mx-0"  >
     <section class="text-center mx-5 pb-5">
     <!-- Section heading -->
-      <h2 class="h1-responsive font-weight-bold my-5">Why is it so great?</h2>
+      <h2 class="h1-responsive font-weight-bold my-5">Welcome to PUP Herbarium</h2>
       <!-- Section description -->
-      <p class="lead grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+      <p class="lead grey-text w-responsive mx-auto mb-5">Come and explore the first Polytechnic University in the Philippines' herbarium specimen collections.</p>
 
       <!-- Grid row -->
       <div class="row">
@@ -68,8 +68,8 @@
         <div class="col-md-4">
 
           <i class="fa fa-area-chart fa-3x red-text"></i>
-          <h5 class="font-weight-bold my-4">Analytics</h5>
-          <p class="grey-text mb-md-0 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores aperiam minima assumenda deleniti hic.
+          <h5 class="font-weight-bold my-4">Loan</h5>
+          <p class="grey-text mb-md-0 mb-5">Loaning of specimen is available here at PUP Herbarium. Send your loaning request and wait for it to be approved.
           </p>
 
         </div>
@@ -79,9 +79,9 @@
         <div class="col-md-4">
 
           <i class="fa fa-book fa-3x cyan-text"></i>
-          <h5 class="font-weight-bold my-4">Tutorials</h5>
-          <p class="grey-text mb-md-0 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores aperiam minima assumenda deleniti hic.
-          </p>
+          <h5 class="font-weight-bold my-4">Search</h5>
+          <p class="grey-text mb-md-0 mb-5">Get access to PUP herbarium specimens and descriptions by clicking here.
+          </p> 
 
         </div>
         <!-- Grid column -->
@@ -90,8 +90,8 @@
         <div class="col-md-4">
 
           <i class="fas fa-comments fa-3x orange-text"></i>
-          <h5 class="font-weight-bold my-4">Support</h5>
-          <p class="grey-text mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores aperiam minima assumenda deleniti hic.
+          <h5 class="font-weight-bold my-4">Visit</h5>
+          <p class="grey-text mb-0">PUP Herbarium Center is open for visitors. Just set an appointment prior to your visit.
           </p>
 
         </div>
@@ -105,11 +105,11 @@
     <section class="text-white mx-0 px-0" style="background-color: #800000; padding: 5rem 0;">
         <div class="container py-5">
             <div class="text-center">
-                <h2>Do great things together</h2>
+                <h2>What is PUP Herbarium?</h2>
                 <div class="row">
                     <div class="col-lg-9 mx-auto">
                         <p class="lead text-white mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. eiusmod tempor incididunt ut labore et dolore.
+                            The PUP Herbarium Center serves as a local point for botanical interactions of students a faculty. It provides documented flora as repository of preserved herbarium specimens. It is also serve as a venue for plant identification, information and education. It collects services for bioprospecting or other specialized projects. Lastly, it serves as a training ground for a budding plant biologist and taxonomist. 
                         </p>
                     </div>
                 </div>
