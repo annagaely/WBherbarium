@@ -1,4 +1,5 @@
 <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/loan.jpg" style="height: 50vh; width: 100%;"  class="banner">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <div class="py-5">
   <div class="card mx-auto px-4" style="width: 80%;">
     <div class="card-body">
@@ -106,7 +107,7 @@ $(document).ready(function(){
    html_code += "<td><button type='button' name='remove' data-row='row"+count+"' class='btn btn-danger btn-xs remove'>-</button></td>";
    html_code += "</tr>";
    $('#crud_table').append(html_code);
- });s
+ });
 
  $(document).on('click', '.remove', function(){
   var delete_row = $(this).data("row");
