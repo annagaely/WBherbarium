@@ -1,7 +1,7 @@
 /* Required for full background image */
-html,body
+body
 {
-overflow-x: auto;
+overflow-x: hidden;
 }
 .top-nav-collapse {
   background-color: #800000 !important;

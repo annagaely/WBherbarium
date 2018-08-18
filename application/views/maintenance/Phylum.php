@@ -40,7 +40,11 @@
                   </div>
                   <div class="form-group">
                     <label>
+<<<<<<< HEAD
+                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText();"> Under the Plant Category
+=======
                       <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText(); "> Under the Plant Category
+>>>>>>> 7768b30cd86d0cd8f229cdd129184eacb692a3ed
                     </label>
                   </div>
                   <div class="form-group">
@@ -85,7 +89,11 @@
                   </div>
                   <div class="form-group">
                     <label>
+<<<<<<< HEAD
+                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText1(); "> Under the Plant Category
+=======
                       <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText();"> Under the Plant Category
+>>>>>>> 7768b30cd86d0cd8f229cdd129184eacb692a3ed
                       <input type="hidden" name="txtId" value="0">
                     </label>
                   </div>
@@ -136,19 +144,29 @@ function resetForm() {
      function disableMyText(){
           if(document.getElementById("plantCategory").checked == true)
           {
-              document.getElementById("strDomainName").value = "Eukaryota";  
+              document.getElementById("strDomainName").value = "Eukaryota";
+              document.getElementById("strKingdomName").value = "Plantae";
           }
           else
           {
             document.getElementById("strDomainName").value = "";
+            document.getElementById("strKingdomName").value = "";
           }
      }
-
      function disableMyText1(){
-      if(document.getElementById("plantCategory").checked == true){
+          if(document.getElementById("plantCategory").checked == true)
+          {
+              document.getElementById("strDomainName").value = "Eukaryota";
               document.getElementById("strKingdomName").value = "Plantae";
+<<<<<<< HEAD
+          }
+          else
+          {
+            document.getElementById("strDomainName").value = "";
+=======
           }else{
             document.getElementById("strDomainName").value = "",
+>>>>>>> 7768b30cd86d0cd8f229cdd129184eacb692a3ed
             document.getElementById("strKingdomName").value = "";
           }
      }

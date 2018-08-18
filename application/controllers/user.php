@@ -27,7 +27,7 @@ class user extends CI_Controller {
 	{
 		$title['title'] = "PUPHerbarium | Contact";
 		$this->load->view('userside/navbar', $title);
-		$this->load->view('userside/Contact');
+
 		$this->load->view('userside/footer');
 	}
 	public function register()

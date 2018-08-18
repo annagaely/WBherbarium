@@ -95,7 +95,8 @@
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <a href="<?php echo base_url()?>user/Home"><button class="btn btn-danger">Login</button></a>
+                  <button class="btn btn-danger" type="reset">Reset</button>
+                  <a href="<?php echo base_url()?>user/Home"><button class="btn btn-primary">Login</button></a>
                 </div>
             </div>
         </div>

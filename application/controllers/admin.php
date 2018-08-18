@@ -6,7 +6,7 @@ class admin extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
-        $this->load->model('admin_m', 'm');		
+        $this->load->model('admin_m', 'm');
     }
 
    	public function index()
@@ -123,7 +123,7 @@ class admin extends CI_Controller {
 	$result = $this->m->showOrderClassName();
 	echo json_encode($result);
 	}
-	
+
 	//add Order
 	public function addOrder(){
 		$result = $this->m->addOrder();
@@ -166,7 +166,7 @@ class admin extends CI_Controller {
 	$result = $this->m->showFamilyOrderName();
 	echo json_encode($result);
 	}
-	
+
 	//add Order
 	public function addFamily(){
 		$result = $this->m->addFamily();
@@ -249,7 +249,7 @@ public function updateGenus(){
 	$result = $this->m->showSpeciesGenusName();
 	echo json_encode($result);
 	}
-		
+
 	//add Order
 	public function addSpecies(){
 		$result = $this->m->addSpecies();
@@ -328,11 +328,11 @@ public function updateFamilyBox(){
 	public function addLocality(){
 		$result = $this->m->addLocality();
 		echo json_encode($result);
-		
+
 	}public function updateLocality(){
 		$result = $this->m->updateLocality();
 		echo json_encode($result);
-		
+
 	}
 	public function editLocality(){
 		$result = $this->m->editLocality();
@@ -347,7 +347,7 @@ public function updateFamilyBox(){
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Collector');
 		$this->load->view('templates/footer');
-	}	
+	}
 	public function showAllCollector(){
 		$result = $this->m->showAllCollector();
 		echo json_encode($result);
@@ -364,7 +364,7 @@ public function updateFamilyBox(){
 	public function updateCollector(){
 		$result = $this->m->updateCollector();
 		echo json_encode($result);
-		
+
 	}
 		public function editCollector(){
 		$result = $this->m->editCollector();
@@ -400,7 +400,7 @@ public function updateFamilyBox(){
 	public function updateValidator(){
 		$result = $this->m->updateValidator();
 		echo json_encode($result);
-		
+
 	}
 
 	/****** END VALIDATOR!!!!! ******/
@@ -433,7 +433,7 @@ public function updateFamilyBox(){
 	public function updateStaff(){
 		$result = $this->m->updateStaff();
 		echo json_encode($result);
-		
+
 	}
 	/****** END VALIDATOR!!!!! ******/
 	/****** account START!!!!! ******/
@@ -464,7 +464,7 @@ public function updateFamilyBox(){
 	public function updateAccounts(){
 		$result = $this->m->updateAccounts();
 		echo json_encode($result);
-		
+
 	}
 		public function showStaffName(){
 		$result = $this->m->showStaffName();
@@ -516,8 +516,8 @@ public function updateFamilyBox(){
 		$title['title'] = "PUPHerbarium | Calendar Management";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/CalendarManagement');
-	
-		
+
+
 		$this->load->view('templates/footer');
 	}
  public function get_events()
@@ -553,7 +553,7 @@ public function updateFamilyBox(){
      exit();
  }
 
-public function add_event() 
+public function add_event()
 {
     /* Our calendar data */
     $name = $this->input->post("name", TRUE);
@@ -563,7 +563,7 @@ public function add_event()
 
     if(!empty($start_date)) {
        $start_date = DateTime::createFromFormat('Y-m-d', $start_date)->format('Y-m-d H:i:s');
-       //$start_date_timestamp = $sd->getTimestamp();   	
+       //$start_date_timestamp = $sd->getTimestamp();
        	//$start_date = DateTime::createFromFormat('Y-m-d', $start_date)->format('Y-m-d H:i:s');
     	//echo '<script>alert("'.$start_date.'")</script>';
     } else {
@@ -649,7 +649,7 @@ public function edit_event()
 	{
 		$title['title'] = "PUPHerbarium | Featured Plant";
 		$this->load->view('templates/header', $title);
-		$this->load->view('maintenance/Featuredplant');		
+		$this->load->view('maintenance/Featuredplant');
 		$this->load->view('templates/footer');
 	}
 

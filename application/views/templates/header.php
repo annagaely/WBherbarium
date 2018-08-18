@@ -53,9 +53,9 @@
         <div class="main-menu">
           <h5 class="sidenav-heading">Main</h5>
 
-          <ul id="side-main-menu" class="side-menu list-unstyled">                  
+          <ul id="side-main-menu" class="side-menu list-unstyled">
             <li class="active"><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="icon-home"></i>Home</a></li>
-            
+
             <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
@@ -80,7 +80,7 @@
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validator</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/accounts">Calendar Management</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
               </ul>
             </li>
