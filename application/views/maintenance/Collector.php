@@ -27,13 +27,13 @@
                 <form id= "addCollectorForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>First Name:</label>
+                      <label>First Name:</label> <label style="color: red">*</label>
                       <input type="text" name="fName" placeholder="First Name " class="form-control">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Middle Name:</label>
+                      <label>Middle Name:</label> 
                       <input type="text" name="mName" placeholder="Middle Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
@@ -43,7 +43,7 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Last Name:</label>
+                      <label>Last Name:</label> <label style="color: red">*</label>
                       <input type="text" name="lName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
@@ -53,17 +53,17 @@
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>Contact Number:</label>
+                    <label>Contact Number:</label> <label style="color: red">*</label>
                     <input type="text" name="cName" placeholder="Contact Number" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
-                    <label>Email Address:</label>
+                    <label>Email Address:</label> <label style="color: red">*</label>
                     <input type="text" name="eMail" placeholder="Email Address" class="form-control">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>College Department:</label>
+                    <label>College Department:</label> <label style="color: red">*</label>
                     <select name="cdName" class="form-control">
                       <option value= "College of Accountancy and Finance"> College of Accountancy and Finance</option>
                       <option value= "College of Architecture and Fine Arts"> College of Architecture and Fine Arts</option>
@@ -87,7 +87,7 @@
                   </div>
                   </div>
                   <div class="form-group col-sm-6">
-                    <label>Course/Year/Section:</label>
+                    <label>Course/Year/Section:</label> <label style="color: red">*</label>
                     <input type="text" name="secName" placeholder="Course/Year/Section" class="form-control">
                   </div>
                   <!--HANGGANG DITO LANG BOI-->
@@ -116,13 +116,13 @@
                   <div class="row">
                     <div class="form-group col-sm-8">
                        <input type="hidden" name="txtId" value="0">
-                      <label>First Name:</label>
+                      <label>First Name:</label> <label style="color: red">*</label>
                       <input type="text" name="feName" placeholder="First Name " class="form-control">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Middle Name:</label>
+                      <label>Middle Name:</label> 
                       <input type="text" name="meName" placeholder="Middle Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
@@ -132,27 +132,27 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Last Name:</label>
+                      <label>Last Name:</label> <label style="color: red">*</label>
                       <input type="text" name="leName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
-                      <label>Name Suffix:</label>
+                      <label>Name Suffix:</label> <label style="color: red">*</label>
                       <input type="text" name="neSuffix" placeholder="Name Suffix" class="form-control">
                     </div>
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>Contact Number:</label>
+                    <label>Contact Number:</label> <label style="color: red">*</label>
                     <input type="text" name="ceName" placeholder="Contact Number" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
-                    <label>Email Address:</label>
+                    <label>Email Address:</label> <label style="color: red">*</label>
                     <input type="text" name="eeMail" placeholder="Email Address" class="form-control">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>College Department:</label>
+                    <label>College Department:</label> <label style="color: red">*</label>
                     <select name="cdName" class="form-control">
                       <option value= "College of Accountancy and Finance"> College of Accountancy and Finance</option>
                       <option value= "College of Architecture and Fine Arts"> College of Architecture and Fine Arts</option>
@@ -176,7 +176,7 @@
                   </div>
                   </div>
                   <div class="form-group col-sm-6">
-                    <label>Course/Year/Section:</label>
+                    <label>Course/Year/Section:</label> <label style="color: red">*</label>
                     <input type="text" name="seceName" placeholder="Course/Year/Section" class="form-control">
                   </div>
                   <!--HANGGANG DITO LANG BOI-->

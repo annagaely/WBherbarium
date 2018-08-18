@@ -1,4 +1,4 @@
- 
+
   <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
@@ -14,8 +14,8 @@
      <div class="card">
         <div class="card-header d-flex align-items-center" >
           <button type="button" id="btnAdd " data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Phylum</button>
-        </div>  
-               
+        </div>
+
         <!-- Modal-->
         <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
@@ -25,11 +25,11 @@
                 <h5 id="exampleModalLabel" class="modal-title">Add Phylum</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">×</span></button>
               </div>
-              <div class="modal-body">  
+              <div class="modal-body">
 
-                <form id= "addPhylumForm" method="POST" enctype="multipart/form-data"> 
+                <form id= "addPhylumForm" method="POST" enctype="multipart/form-data">
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
-                  
+
                   <div class="form-group">
                     <label>Domain Name:</label>
                     <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control">
@@ -40,27 +40,27 @@
                   </div>
                   <div class="form-group">
                     <label>
-                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText(); disableMyText1();"> Under the Plant Category
+                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText();"> Under the Plant Category
                     </label>
                   </div>
                   <div class="form-group">
                     <label>Phylum Name:</label>
                     <input type="text" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control">
-                  </div>   
+                  </div>
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">       
+                    <input type="reset" value="Clear" class="btn btn-primary">
                     <input type="submit" value="Save" id='btnSave' class="btn btn-primary">
                   </div>
-                  
+
                 </form>
               </div>
             </div>
           </div>
         </div>
-      </div> 
+      </div>
       <!--END PHYLUM MODAL-->
         <!--ADD EDIT PHYLUM MODAL-->
-               
+
         <!-- Modal-->
         <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
@@ -70,11 +70,11 @@
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
               </div>
-              <div class="modal-body">  
+              <div class="modal-body">
 
-                <form id= "editPhylumForm" method="POST" enctype="multipart/form-data"> 
+                <form id= "editPhylumForm" method="POST" enctype="multipart/form-data">
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
-                  
+
                   <div class="form-group">
                     <label>Domain Name:</label>
                     <input type="text" name="txtedName" id="strDomainName" placeholder="Domain Name" class="form-control">
@@ -85,19 +85,19 @@
                   </div>
                   <div class="form-group">
                     <label>
-                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText(); disableMyText1();"> Under the Plant Category
+                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText1(); "> Under the Plant Category
                       <input type="hidden" name="txtId" value="0">
                     </label>
                   </div>
                   <div class="form-group">
                     <label>Phylum Name:</label>
                     <input type="text" name="txtepName" id="pNameid" placeholder="Phylum Name" class="form-control">
-                  </div>   
+                  </div>
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">       
+                    <input type="reset" value="Clear" class="btn btn-primary">
                     <input type="submit" value="Save" id='btnEditSave' class="btn btn-primary">
                   </div>
-                  
+
                 </form>
               </div>
             </div>
@@ -115,7 +115,7 @@
                   <th>Phylum Name</th>
                   <th>Actions</th>
                 </tr>
-              </thead> 
+              </thead>
               <tbody tbody id="showdata">
               </tbody>
             </table>
@@ -130,26 +130,35 @@ function resetForm() {
 }
 
 </script>
-     <script type="text/javascript" >  
-    
-     function disableMyText(){  
-          if(document.getElementById("plantCategory").checked == true){  
-              document.getElementById("strDomainName").value = "Eukaryota";  
-          }else{
-            document.getElementById("strDomainName").value = "";
-          }  
-     }
+     <script type="text/javascript" >
 
-     function disableMyText1(){
-      if(document.getElementById("plantCategory").checked == true){
-              document.getElementById("strKingdomName").value = "Plantae";    
-          }else{
+     function disableMyText(){
+          if(document.getElementById("plantCategory").checked == true)
+          {
+              document.getElementById("strDomainName").value = "Eukaryota";
+              document.getElementById("strKingdomName").value = "Plantae";
+          }
+          else
+          {
+            document.getElementById("strDomainName").value = "";
             document.getElementById("strKingdomName").value = "";
-          }  
+          }
+     }
+     function disableMyText1(){
+          if(document.getElementById("plantCategory").checked == true)
+          {
+              document.getElementById("strDomainName").value = "Eukaryota";
+              document.getElementById("strKingdomName").value = "Plantae";
+          }
+          else
+          {
+            document.getElementById("strDomainName").value = "";
+            document.getElementById("strKingdomName").value = "";
+          }
      }
      </script>
- 
-    <script type="text/javascript">  
+
+    <script type="text/javascript">
     $(function(){
 
     //show
@@ -181,7 +190,7 @@ function resetForm() {
         }
       });
     }
-  
+
 
     //add
     $('#btnSave',).click(function(){
@@ -217,7 +226,7 @@ function resetForm() {
             alert('Could not save Data');
           }
         });
-      
+
     });
 
     $('#btnEditSave').click(function(){
@@ -269,11 +278,11 @@ function resetForm() {
         error: function(){
           alert('Could not Edit Data');
         }
-      
+
     });
 
   });
 
 
     });
-     </script> 
+     </script>

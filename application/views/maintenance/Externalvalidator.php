@@ -25,7 +25,7 @@
               <form id= "addValidatorForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>First Name:</label>
+                      <label>First Name:</label> <label style="color: red">*</label>
                       <input type="text" name="txtFName" placeholder="First Name " class="form-control">
                     </div>
                   </div>
@@ -41,26 +41,26 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Last Name:</label>
+                      <label>Last Name:</label> <label style="color: red">*</label>
                       <input type="text" name="txtLName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
-                      <label>Name Suffix:</label>
+                      <label>Name Suffix:</label> <label style="color: red">*</label>
                       <input type="text" name="txtNSuffix" placeholder="Name Suffix" class="form-control">
                     </div>
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>Contact Number:</label>
+                    <label>Contact Number:</label> <label style="color: red">*</label>
                     <input type="text" name="txtCNumber" placeholder="Contact Number" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
-                    <label>Email Address:</label>
+                    <label>Email Address:</label> <label style="color: red">*</label>
                     <input type="text" name="txtEMail" placeholder="Email Address" class="form-control">
                   </div>
                 </div>
                   <div class="form-group">
-                    <label>Institution:</label>
+                    <label>Institution:</label> <label style="color: red">*</label>
                     <input type="text" name="txtInstitution" placeholder="Institution" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
@@ -87,7 +87,7 @@
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <input type="hidden" name="txtId" value="0">
-                      <label>First Name:</label>
+                      <label>First Name:</label> <label style="color: red">*</label>
                       <input type="text" name="txteFName" placeholder="First Name " class="form-control">
                     </div>
                   </div>
@@ -103,26 +103,26 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Last Name:</label>
+                      <label>Last Name:</label> <label style="color: red">*</label>
                       <input type="text" name="txteLName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
-                      <label>Name Suffix:</label>
+                      <label>Name Suffix:</label> <label style="color: red">*</label>
                       <input type="text" name="txteNSuffix" placeholder="Name Suffix" class="form-control">
                     </div>
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>Contact Number:</label>
+                    <label>Contact Number:</label> <label style="color: red">*</label>
                     <input type="text" name="txteCNumber" placeholder="Contact Number" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
-                    <label>Email Address:</label>
+                    <label>Email Address:</label> <label style="color: red">*</label>
                     <input type="text" name="txteEMail" placeholder="Email Address" class="form-control">
                   </div>
                 </div>
                   <div class="form-group">
-                    <label>Institution:</label>
+                    <label>Institution:</label> <label style="color: red">*</label>
                     <input type="text" name="txteInstitution" placeholder="Institution" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">

@@ -1,35 +1,56 @@
-<section class="heroo">
-	<div class="container ">
-    <div class="text-center">
-      <img src="<?php echo base_url();?>assets/bower_components/logoname.png" class="img-fluid" style="margin-top: 0; padding-bottom: 2%;">
-    </div>
-    <div class="row align-items-center  d-flex justify-content-center">
-      <div class="input-group" style="width: 70%;">
-        <input type="text" class="form-control" placeholder="Search this blog">
-        <div class="input-group-append">
-          <button class="btn btn-secondary" type="button">
-            <i class="fa fa-search"></i>
-          </button>
+<!--Carousel Wrapper-->
+    <div id="carousel-example-2" class="carousel slide carousel-fadev h-100" data-ride="carousel">
+        <!--Indicators-->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-2" data-slide-to="1"></li>
+            <li data-target="#carousel-example-2" data-slide-to="2"></li>
+        </ol>
+        <!--/.Indicators-->
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <div class="view">
+                    <img class="d-block w-100" style="height: 50vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner.jpg" alt="First slide">
+                    <div class="mask rgba-black-light"></div>
+                </div>
+                <div class="carousel-caption">
+                    <a href=""><h3 class="h3-responsive">Title</h3></a>
+                    <p>First text</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+            <!--Mask color-->
+                <div class="view">
+                    <img class="d-block w-100" style="height: 50vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner2.jpg" alt="Second slide">
+                    <div class="mask rgba-black-light"></div>
+                </div>
+                <div class="carousel-caption">
+                    <a href=""><h3 class="h3-responsive">Title</h3></a>
+                    <p>Secondary text</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <!--Mask color-->
+                <div class="view">
+                    <img class="d-block w-100" style="height: 50vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner3.jpg" alt="Third slide">
+                    <div class="mask rgba-black-light"></div>
+                </div>
+                <div class="carousel-caption">
+                    <a href=""><h3 class="h3-responsive">Title</h3></a>
+                    <p>Third text</p>
+                </div>
+            </div>
         </div>
-      </div>
+       <!--/.Slides-->
+       <!--Controls-->
+       <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+           <span class="sr-only">Previous</span>
+       </a>
+       <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+           <span class="sr-only">Next</span>
+       </a>
+            <!--/.Controls-->
     </div>
-  </div>
-</section>
-<!-- JavaScript files-->
-<script src="<?php echo base_url();?>assets/bower_components/userside/vendor/jquery/jquery.min.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/userside/vendor/popper.js/umd/popper.min.js"> </script>
-<script src="<?php echo base_url();?>assets/bower_components/userside/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/userside/vendor/jquery.cookie/jquery.cookie.js"> </script>
-<script src="<?php echo base_url();?>assets/bower_components/userside/vendor/lightbox2/js/lightbox.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/userside/js/front.js"></script>
-<script>
-  function resetForm() {
-    document.getElementById("loginForm").reset();
-  }
-  function resetForm2() {
-    document.getElementById("signupForm").reset();
-  }
-
-</script>
-</body>
-</html>
