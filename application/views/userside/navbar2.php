@@ -60,6 +60,7 @@
             <li class="nav-item">
               <a class="nav-link waves-effect waves-light">
                 <i class="fab fa-facebook light-green-text-2"></i>
+                <!--<?php echo '<script type="text/javascript">alert('.$this->session->userdata('strUserName').') </script>'?>-->
               </a>
             </li>
             <li class="nav-item">
@@ -80,7 +81,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="<?php echo base_url()?>user/Account">My Account</a>
                     <a class="dropdown-item" href="<?php echo base_url()?>user/Collection">Settings</a>
-                    <a class="dropdown-item" href="<?php echo base_url()?>user/index">Logout</a>
+                    <a class="dropdown-item" href="<?php echo base_url()?>user/logout">Logout</a>
                 </div>
               </li>
             </ul>

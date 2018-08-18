@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+
 <head>
 <meta charset='utf-8' />
 <link href='<?php echo base_url();?>assets/bower_components/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
@@ -217,4 +216,3 @@ $(document).ready(function() {
 
 </script>
 
-</html>
