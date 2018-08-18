@@ -49,15 +49,21 @@
                 <label for="numDuration" class="font-weight-light ml-3">Duration</label>
               </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <div class="text-center py-4 mt-3">
                 <button class="btn" style="background-color: #800000;" type="reset">Clear</button>
                 <button class="btn" style="background-color: #800000;" type="submit">Submit</button>
 
 =======
+=======
+>>>>>>> bd7df4f7cabb6479f541838b4855dfa35868a68d
               <div class="col-md-6 pt-1">
                 <select class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
                   <option value="1">Collector</option>
                 </select>
+<<<<<<< HEAD
+>>>>>>> bd7df4f7cabb6479f541838b4855dfa35868a68d
+=======
 >>>>>>> bd7df4f7cabb6479f541838b4855dfa35868a68d
               </div>
             </div>

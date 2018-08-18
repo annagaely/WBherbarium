@@ -1491,8 +1491,12 @@ body {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
 <<<<<<< HEAD
+<<<<<<< HEAD
     overflow-x: hidden;
  }
+=======
+  overflow-x: hidden; }
+>>>>>>> bd7df4f7cabb6479f541838b4855dfa35868a68d
 =======
   overflow-x: hidden; }
 >>>>>>> bd7df4f7cabb6479f541838b4855dfa35868a68d
