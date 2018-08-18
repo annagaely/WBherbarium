@@ -57,7 +57,7 @@
     <div class="px-5 py-5 mx-0"  >
     <section class="text-center mx-5 pb-5">
     <!-- Section heading -->
-      <h2 class="h1-responsive font-weight-bold my-5">Welcome to PUP Herbarium</h2>
+      <h2 class="h1-responsive font-weight-bold my-5">Why is it so great?</h2>
       <!-- Section description -->
       <p class="lead grey-text w-responsive mx-auto mb-5">Come and explore the first Polytechnic University in the Philippines' herbarium specimen collections.</p>
 

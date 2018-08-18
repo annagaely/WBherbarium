@@ -669,13 +669,7 @@ public function edit_event()
 
 
 
-	 public function EMAIL()
-	 {
-		$title['title'] = "TEMPORARY";
 
-	 	$this->load->view('transaction/EMAIL');
-
-	 }
 
 }
 
