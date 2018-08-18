@@ -64,6 +64,12 @@ class user extends CI_Controller {
 		$this->load->view('userside/Loan');
 		$this->load->view('userside/footer');
 	}
+	public function visits() {
+	 $title['title'] = "PUPHerbarium | Appointment";
+	 $this->load->view('userside/navbar2', $title);
+	 $this->load->view('userside/Visits');
+	 $this->load->view('userside/footer');
+	}
 }
 
 
