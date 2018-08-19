@@ -45,7 +45,7 @@
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Deposits" data-offset="90">Deposits</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Visits" data-offset="90">Visits</a>
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Appointment" data-offset="90">Appointment</a>
             </li>
             <li class="nav-item">
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Contact" data-offset="90">Contact</a>

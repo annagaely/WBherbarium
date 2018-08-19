@@ -50,7 +50,6 @@
               <option>Day/s</option>
               <option>Weeks</option>
               <option>Months</option>
-
             </select>
           </div>
           <div class="col-md-8">

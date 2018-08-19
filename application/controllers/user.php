@@ -64,12 +64,17 @@ class user extends CI_Controller {
 		$this->load->view('userside/Loan');
 		$this->load->view('userside/footer');
 	}
-	public function visits() {
+	function view_calendar()
+	{
+		$this->load->view('userside/fullcalendar');
+	}
+	public function appointment() {
 	 $title['title'] = "PUPHerbarium | Appointment";
 	 $this->load->view('userside/navbar2', $title);
-	 $this->load->view('userside/Visits');
+	 $this->load->view('userside/Appointment');
 	 $this->load->view('userside/footer');
 	}
+
 }
 
 
