@@ -217,8 +217,7 @@
     
       //show
     showAllCollector();
-    
-
+  
     function showAllCollector(){
       $.ajax({
         type: 'ajax',

@@ -67,7 +67,7 @@
         <!-- Grid column -->
         <div class="col-md-4">
 
-          <i class="fa fa-area-chart fa-3x red-text"></i>
+          <i class="fas fa-file-alt fa-3x red-text"></i>
           <h5 class="font-weight-bold my-4">Loan</h5>
           <p class="grey-text mb-md-0 mb-5">Loaning of specimen is available here at PUP Herbarium. Send your loaning request and wait for it to be approved.
           </p>
@@ -78,7 +78,7 @@
         <!-- Grid column -->
         <div class="col-md-4">
 
-          <i class="fa fa-book fa-3x cyan-text"></i>
+          <i class="fas fa-search fa-3x cyan-text"></i>
           <h5 class="font-weight-bold my-4">Search</h5>
           <p class="grey-text mb-md-0 mb-5">Get access to PUP herbarium specimens and descriptions by clicking here.
           </p> 
@@ -89,7 +89,7 @@
         <!-- Grid column -->
         <div class="col-md-4">
 
-          <i class="fas fa-comments fa-3x orange-text"></i>
+          <i class="fas fa-map-marked-alt fa-3x orange-text"></i>
           <h5 class="font-weight-bold my-4">Visit</h5>
           <p class="grey-text mb-0">PUP Herbarium Center is open for visitors. Just set an appointment prior to your visit.
           </p>

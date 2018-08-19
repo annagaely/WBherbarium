@@ -1282,4 +1282,66 @@ public function delete_event($id)
 
 	/****** END CALENDAR!!!!! ******/
 
-}?>
+//view deposit request
+
+public function showAllDepositReq()
+{
+	$query = $this->db->get('tblDepositReq');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else
+		{
+			return false;
+		}
+}
+public function viewDepositReq(){
+		$id = $this->input->get('id');
+		$this->db->where('intDepositReqID', $id);
+		$query = $this->db->get('tblDepositReq');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+public function updateAcceptStatus(){
+	
+ //   $id = $this->input->post('txtDepositReqID');
+  //  $field = array(
+ //   'strStatus'=> $this->input->post('txtStatus'),
+
+   // );
+  //  $this->db->where('intDepositReqID', $id);
+  //  $this->db->update('tblDepositReq', $field);
+  //  if($this->db->affected_rows() > 0){
+  //    return true;
+   // }else{
+   //   return false;
+    //}
+    $depositid = $this->input->post('txtDepositReqID');
+	$status = $this->input->post('txtStatus');
+
+
+	$query="
+
+	DECLARE @depositid 		INT;
+	DECLARE @status		VARCHAR(50);
+
+	Set @depositid ='$depositid'
+	Set @status ='$status'
+
+
+		UPDATE tblDepositReq
+		SET strStatus = @Status
+		WHERE intDepositReqID = @depositid;
+	";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+  
+
+}
+?>

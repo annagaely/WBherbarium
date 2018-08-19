@@ -80,6 +80,7 @@
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validator</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/accounts">Access Account</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
               </ul>

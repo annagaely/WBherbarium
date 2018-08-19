@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin extends CI_Controller {
@@ -439,9 +439,9 @@ public function updateFamilyBox(){
 	/****** account START!!!!! ******/
 	public function accounts()
 	{
-		$title['title'] = "PUPHerbarium | Access Acounts";
+		$title['title'] = "PUPHerbarium | Access Accounts";
 		$this->load->view('templates/header', $title);
-		$this->load->view('maintenance/Accessaccounts');
+		$this->load->view('maintenance/accounts');
 		$this->load->view('templates/footer');
 	}
 		public function showAllAccounts(){
@@ -668,13 +668,27 @@ public function edit_event()
 	}
 
 
+//ADMIN DEPOSIT PLANT//
+	//show depositreq
+	public function showAllDepositReq(){
+		$result = $this->m->showAllDepositReq();
+		echo json_encode($result);
+	}
+
+	public function viewDepositReq(){
+		$result = $this->m->viewDepositReq();
+		echo json_encode($result);
+
+	}
+	public function updateAcceptStatus(){
+		$result = $this->m->updateAcceptStatus();
+		echo json_encode($result);
+
+	}
+
 
 
 
 }
-
-
-
-
 
 ?>

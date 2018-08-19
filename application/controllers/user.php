@@ -6,7 +6,7 @@ class user extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
-        $this->load->model('admin_m', 'm');
+        $this->load->model('user_m', 'm');
     }
 
    	public function index()
@@ -64,7 +64,12 @@ class user extends CI_Controller {
 		$this->load->view('userside/Loan');
 		$this->load->view('userside/footer');
 	}
-}
 
+	public function addDeposit(){
+		$result = $this->m->addDeposit();
+		echo json_encode($result);
+
+	}
+}
 
 ?>
