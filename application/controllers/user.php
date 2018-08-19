@@ -110,7 +110,18 @@ public function userRegister(){
 		}
 		echo json_encode($msg);
 	}
+	function view_calendar()
+	{
+		$this->load->view('userside/fullcalendar');
+	}
+	public function appointment() {
+	 $title['title'] = "PUPHerbarium | Appointment";
+	 $this->load->view('userside/navbar2', $title);
+	 $this->load->view('userside/Appointment');
+	 $this->load->view('userside/footer');
+	}
 
+}
 
 
 
