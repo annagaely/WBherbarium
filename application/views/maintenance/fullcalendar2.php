@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html>
+
 <head>
 <meta charset='utf-8' />
 <link href='<?php echo base_url()?>assets/bower_components/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
@@ -95,4 +94,56 @@
 <body>
     <div id='calendar'></div>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+<script type="text/javascript">
+$(document).ready(function() {
+  var date_last_clicked = null;
+  $('#calendar').fullCalendar({
+    eventSources: [
+    {
+      events: function(start, end, timezone, callback) {
+        $.ajax({
+          url: '<?php echo base_url() ?>admin/get_events',
+          dataType: 'json',
+          data: {
+          // our hypothetical feed requires UNIX timestamps
+          start: start.unix(),
+          end: end.unix()
+        },
+        success: function(msg) {
+          var events = msg.events;
+          callback(events);
+        }
+      });
+      }
+    },
+    ],
+    dayClick: function(date, jsEvent, view) {
+        date_last_clicked = $(this);
+        $(this).css('background-color', '#bed7f3');
+        $('#addModal').modal();
+    },
+    eventClick: function(event, jsEvent, view) {
+          $('#name').val(event.title);
+          $('#description').val(event.description);
+          $('#start_date').val(moment(event.start).format('YYYY/MM/DD HH:mm'));
+          if(event.end) {
+            $('#end_date').val(moment(event.end).format('YYYY/MM/DD HH:mm'));
+          } else {
+            $('#end_date').val(moment(event.start).format('YYYY/MM/DD HH:mm'));
+          }
+          $('#event_id').val(event.id);
+          $('#editModal').modal();
+},
+
+  });
+
+
+});
+
+
+</script>
+
+>>>>>>> 5db944bf332f24b2fded4c8650cf8163f11d37dd

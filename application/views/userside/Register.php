@@ -27,24 +27,28 @@
     <div class="card-body">
 
         <!-- Material form register -->
-        <form>
+        <form id= "RegisterForm" method="POST" enctype="multipart/form-data">
             <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Sign Up</p>
 
             <!-- Material input text -->
             <div class="md-form">
               <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <i class="fa fa-user prefix grey-text"></i>
-                    <input type="text" id="strFirstName" class="form-control">
+                    <input type="text" id="strFirstName" name="txtfirstname" class="form-control">
                     <label for="strFirstName" class="font-weight-light" style="margin-left: 55px;">First Name</label>
                   </div>
-                  <div class="col-md-4">
-                    <input type="text" id="strMiddleName" class="form-control">
+                  <div class="col-md-3">
+                    <input type="text" id="strMiddleName" name="txtmidname" class="form-control">
                     <label for="strMiddleName" class="font-weight-light ml-3">Middle Name</label>
                   </div>
-                  <div class="col-md-4">
-                    <input type="text" id="strLastName" class="form-control">
+                  <div class="col-md-3">
+                    <input type="text" id="strLastName" name="txtlastname" class="form-control">
                     <label for="strLastName" class="font-weight-light ml-3">Last Name</label>
+                  </div>
+                    <div class="col-md-2">
+                    <input type="text" id="strLastName" name="txtnamesuffix" class="form-control">
+                    <label for="strLastName" class="font-weight-light ml-3">Name Suffix</label>
                   </div>
                 </div>
               </div>
@@ -53,12 +57,12 @@
                 <div class="row">
                   <div class="col-md-6">
                     <i class="fa fa-envelope prefix grey-text"></i>
-                    <input type="email" id="strEmailAdd" class="form-control">
+                    <input type="email" id="strEmailAdd" name="txtemail" class="form-control">
                     <label for="strEmailAdd" class="font-weight-light" style="margin-left: 55px;">Email Address</label>
                   </div>
                   <div class="col-md-6">
                     <i class="fa fa-phone prefix grey-text"></i>
-                    <input type="email" id="strPhoneNum" class="form-control">
+                    <input type="text" id="strPhoneNum" name="txtphonenum" class="form-control">
                     <label for="strPhoneNum" class="font-weight-light" style="margin-left: 55px;">Phone Number</label>
                   </div>
 
@@ -66,12 +70,12 @@
               </div>
               <div class="md-form">
                 <i class="fas fa-map-marker-alt prefix grey-text"></i>
-                <input type="text" id="strPresentAdd" class="form-control">
+                <input type="text" id="strPresentAdd" name="txtpresentadd" class="form-control">
                 <label for="strPresentAdd" class="font-weight-light">Present Address</label>
               </div>
               <div class="md-form">
                 <i class="fa fa-home prefix grey-text"></i>
-                <input type="text" id="strPermanentAdd" class="form-control">
+                <input type="text" id="strPermanentAdd" name="txtpermaadd" class="form-control">
                 <label for="strPermanentAdd" class="font-weight-light">Permanent Address</label>
               </div>
               <div class="custom-control custom-checkbox" style="margin-left: 38px;">
@@ -82,31 +86,34 @@
                 <div class="row">
                   <div class="col-md-6">
                     <i class="fa fa-users prefix grey-text"></i>
-                    <input type="text" id="strAffiliation" class="form-control">
+                    <input type="text" id="strAffiliation" name="txtaffname" class="form-control">
                     <label for="strAffiliation" class="font-weight-light" style="margin-left: 55px;">Affiliation</label>
                   </div>
                   <div class="col-md-6">
                     <i class="fas fa-street-view prefix grey-text"></i>
-                    <input type="text" id="strAffiliation" class="form-control">
+                    <input type="text" id="strAffiliation" name="txtaffpos" class="form-control">
                     <label for="strAffiliation" class="font-weight-light" style="margin-left: 55px;">Position</label>
                   </div>
                 </div>
               </div>
               <div class="md-form">
                 <i class="fa fa-map-pin prefix grey-text"></i>
-                <input type="text" id="strAffiliationAdd" class="form-control">
+                <input type="text" id="strAffiliationAdd" name="txtaffaddress" class="form-control">
                 <label for="strAffiliationAdd" class="font-weight-light">Affiliation Address</label>
               </div>
               <div class="md-form">
                 <div class="row">
                   <div class="col-md-6">
                     <i class="fa fa-user-circle prefix grey-text"></i>
-                    <input type="text" id="strUsername" class="form-control">
+                    <input type="text" id="strUsername" name="txtusername" class="form-control">
                     <label for="strUsername" class="font-weight-light" style="margin-left: 55px;">Username</label>
+                    <?php 
+                      
+                    ?>
                   </div>
                   <div class="col-md-6">
                     <i class="fa fa-key prefix grey-text"></i>
-                    <input type="password" id="strPassword" class="form-control">
+                    <input type="password" id="strPassword" name="txtpassword" class="form-control">
                     <label for="strPassword" class="font-weight-light" style="margin-left: 55px;">Password</label>
                   </div>
                 </div>
@@ -116,7 +123,7 @@
 
             <div class="text-center py-4 mt-3">
               <button class="btn btn-danger" type="reset">Reset</button>
-                <button class="btn btn-primary" type="submit">Register</button>
+                <button class="btn btn-primary" id="btnSave" type="submit">Register</button>
             </div>
         </form>
         <!-- Material form register -->
@@ -129,3 +136,41 @@
 <!-- Card -->
 
 <!-- Footer -->
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+
+$('#btnSave').click(function(){
+      var data = $('#RegisterForm').serialize();
+      //validate form
+
+        $.ajax({
+          type: 'ajax',
+          method: 'post',
+          url: '<?php echo base_url() ?>user/userRegister',
+          data: data,
+          async: false,
+          dataType: 'json',
+          success: function($response){
+            alert(data)
+            if(response.success){
+              $('#RegisterForm').modal('hide');
+              $('#RegisterForm')[0].reset();
+              if(response.type=='add'){
+                var type = 'added'
+                alert('asd');
+              }else if(response.type=='update'){
+                var type ="updated"
+              }
+            }else{
+              alert('Error');
+            }
+          },
+          error: function(){
+            alert('Could not save Data');
+          }
+        });
+
+    });
+});
+</script>
