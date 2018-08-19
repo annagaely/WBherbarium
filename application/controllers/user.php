@@ -123,9 +123,4 @@ public function userRegister(){
 	 $this->load->view('userside/footer');
 	}
 
-
-
-
-
-
 }?>
