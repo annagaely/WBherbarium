@@ -100,5 +100,19 @@ class user extends CI_Controller {
 		$this->session->unset_userdata('strUserName');
 		redirect(base_url().'user/index');
 	}
-}
-?>
+
+public function userRegister(){
+		$result = $this->m->userRegister();
+		$msg['success'] = false;
+		$msg['type'] = 'add';
+		if($result){
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
+
+
+
+
+
+}?>
