@@ -3,7 +3,7 @@
 <div class="py-5">
   <div class="card mx-auto px-4" style="width: 80%;">
     <div class="card-body">
-      <form>
+       <form id= "addLoanReqForm" method="POST" enctype="multipart/form-data">
         <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Loan</p>
         <div class="md-form">
           <table class="table table-bordered" id="crud_table">
@@ -15,18 +15,18 @@
             </tr>
             <tr>
               <td class="FamName">
-                <select class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
-                  <option></option>
+                <select name="sFamilyName[]" class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
+                  <option value="1">1</option>
                 </select>
               </td>
               <td class="GenusName">
-                <select class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
-                  <option></option>
+                <select  name="sGenusName[]" class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
+                  <option value="1">1</option>
                 </select>
               </td>
               <td class="SpecieName">
-                <select class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
-                  <option></option>
+                <select  name="sSpeciesName[]" class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
+                  <option value="1">1</option>
                 </select>
               </td>
               <td></td>
@@ -41,21 +41,22 @@
       <div class="md-form">
         <div class="row">
           <div class="col-md-2">
-            <input type="number" id="numDuration" class="form-control">
+            <input type="number" name="txtnumdur" class="form-control" value='1'>
             <label for="numDuration" class="font-weight-light ml-3">Duration</label>
           </div>
           <div class="col-md-2 pt-1">
-            <select class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
-              <option value="1">-- select one --</option>
-              <option>Day/s</option>
-              <option>Weeks</option>
-              <option>Months</option>
+            <select name="txtdayweekmonth" class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
+              <!--<option value="1">-- select one --</option>-->
+              <option value="Day/s">Day/s</option>
+              <option value="Weeks">Weeks</option>
+              <option value="Months">Months</option>
             </select>
+           
           </div>
           <div class="col-md-8">
             <div class="md-form">
               <i class="fas fa-pencil-alt prefix grey-text"></i>
-              <textarea type="text" id="purpose" class="md-textarea form-control" rows="3"></textarea>
+              <textarea type="text" name="txtpurpose"  class="md-textarea form-control" rows="3"></textarea>
               <label for="purpose" class="font-weight-light">Purpose of Loan</label>
             </div>
           </div>
@@ -65,7 +66,7 @@
       </div>
 
       <div class="text-center py-4 mt-3">
-        <button class="btn" style="background-color: #800000;" type="submit">Submit</button>
+        <button class="btn" style="background-color: #800000;"   id="save">Submit</button>
       </div>
     </form>
   </div>
@@ -77,16 +78,16 @@ $(document).ready(function(){
   count = count + 1;
   var html_code = "<tr id='row"+count+"'>";
    html_code += "<td class='FamName'>"+
-                "<select class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
-                  "<option></option>"+
+                "<select name='sFamilyName[]' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
+                  "<option value='1'>1</option>"+
                 "</select>"+"</td>";
    html_code += "<td class='GenusName'>"+
-                "<select class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
-                  "<option></option>"+
+                "<select name='sGenusName[]' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
+                  "<option value='1'>1</option>"+
                 "</select>"+"</td>";
    html_code += "<td class='SpecieName'>"+
-                "<select class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
-                  "<option></option>"+
+                "<select name='sSpeciesName[]' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
+                  "<option value='1'>1</option>"+
                 "</select>"+"</td>";
    html_code += "<td><button type='button' name='remove' data-row='row"+count+"' class='btn btn-danger btn-sm remove'>-</button></td>";
    html_code += "</tr>";
@@ -99,47 +100,20 @@ $(document).ready(function(){
  });
 
  $('#save').click(function(){
-  var item_name = [];
-  var item_code = [];
-  var item_desc = [];
-  var item_price = [];
-  $('.FamName').each(function(){
-   item_name.push($(this).text());
-  });
-  $('.GenusName').each(function(){
-   item_code.push($(this).text());
-  });
-  $('.SpecieName').each(function(){
-   item_desc.push($(this).text());
-  });
+var data = $('#addLoanReqForm').serialize();
   $.ajax({
-   url:"insert.php", //lol dikolam tooo :<
+   url:'<?php echo base_url() ?>user/addLoanReq', //lol dikolam tooo :<
    method:"POST",
-   data:{FamName:FamName, GenusName:GenusName, SpecieName:SpecieName},
+   data:data,
    success:function(data){
-    alert(data);
-    $("td[contentEditable='true']").text(""); //oy ito din. hindi na kasi siya contenteditable!!! select na kasi nasa loob ng td
-    for(var i=2; i<= count; i++)
-    {
-     $('tr#'+i+'').remove();
+    if(response==false){
+      alert('mali');
     }
-    fetch_item_data();
+    
    }
   });
  });
 
- function fetch_item_data()
- {
-  $.ajax({
-   url:"fetch.php",
-   method:"POST",
-   success:function(data)
-   {
-    $('#inserted_item_data').html(data);
-   }
-  })
- }
- fetch_item_data();
 
 });
 </script>

@@ -123,4 +123,10 @@ public function userRegister(){
 	 $this->load->view('userside/footer');
 	}
 
+
+	public function addLoanReq(){
+		$result = $this->m->addLoanReq();
+		echo json_encode($result);
+	}
+
 }?>

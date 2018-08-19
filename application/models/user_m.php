@@ -77,5 +77,61 @@ $query="
 		}
 	}
 
+	public function addLoanReq(){
+		$family=$this->input->post('sFamilyName');
+		$genus=$this->input->post('sGenusName');
+		$species=$this->input->post('sSpeciesName');
+		$numdur=$this->input->post('txtnumdur');
+		$dwm=$this->input->post('txtdayweekmonth');
+		$purpose=$this->input->post('txtpurpose');
+		//$sessionusername=$this->session->userdata('strUserName');
+		//set @sessionname= '$sessionusername'
+		//declare @sessionname varchar(255);
+		$query="
+		declare @ouserid varchar(255);
+		declare @numdur int;
+		declare @dwm varchar(255);
+		declare @purpose varchar(255);
+
+		
+
+		set @ouserid = 1000
+		set @numdur ='$numdur'
+		set @dwm = '$dwm'
+		set @purpose ='$purpose'
+
+		insert into tblLoanReq(intOUserID,strDtWkMt,strStatus) values ('@ouserid','@dwm',,Pending)
+
+
+	";if($this->db->query($query)){
+			//$last_id = $this->db->insert_id();
+
+			//$i=0;
+
+			//foreach($family as $f){
+
+			//	$data=array(
+
+			//		'intFamilyID' => $family[$i],
+			//		'intGenusID' => $genus[$i],
+			//		'intSpecieID' => $specie[$i],
+			//		'intLoanReqID' => $last_id
+			////	);
+//
+			//	$this->db->insert('tblLoanList',$data);
+				//$i++;
+
+			//}
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+
+	
+
+
 
 }?>
