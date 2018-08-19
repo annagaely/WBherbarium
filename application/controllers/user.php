@@ -6,7 +6,7 @@ class user extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
-        $this->load->model('admin_m', 'm');
+        $this->load->model('user_m', 'm');
     }
 
    	public function index()
@@ -38,10 +38,16 @@ class user extends CI_Controller {
 	}
 	public function home()
 	{
+	if($this->session->userdata('strUserName')!=''){
+
 		$title['title'] = "PUPHerbarium | Home";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/index');
 		$this->load->view('userside/footer');
+	}else{
+	redirect(base_url().'user/index');
+	}	
+	
 	}
 	public function collection()
 	{
@@ -64,6 +70,48 @@ class user extends CI_Controller {
 		$this->load->view('userside/Loan');
 		$this->load->view('userside/footer');
 	}
+
+
+	public function login_validation(){
+		$this->load->Library('form_validation');
+		$this->form_validation->set_rules('loginUsername','Username','required');
+		$this->form_validation->set_rules('loginPassword','Password','required');
+		if($this->form_validation->run()){
+			$username = $this->input->post('loginUsername');
+			$password = $this->input->post('loginPassword');
+		
+			$this->load->model('user_m');
+			if($this->user_m->can_login($username,$password)){
+				$session_data=array(
+					'strUserName' => $username,
+					
+				);
+				$this->session->set_userdata($session_data);
+				redirect(base_url().'user/home');
+			}else{
+				$this->session->set_flashdata('error','Invalid Username and Password');
+				redirect(base_url().'user/index');
+			}
+		}
+		else{
+			redirect(base_url().'user/index');
+		}
+	}
+	public function logout(){
+		$this->session->unset_userdata('strUserName');
+		redirect(base_url().'user/index');
+	}
+
+public function userRegister(){
+		$result = $this->m->userRegister();
+		$msg['success'] = false;
+		$msg['type'] = 'add';
+		if($result){
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
+
 	function view_calendar()
 	{
 		$this->load->view('userside/fullcalendar');
@@ -78,4 +126,6 @@ class user extends CI_Controller {
 }
 
 
-?>
+
+
+}?>

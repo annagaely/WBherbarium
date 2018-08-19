@@ -80,24 +80,32 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form method ="post" action="<?php echo base_url();?>user/login_validation">
                 <div class="modal-body mx-3">
                     <div class="md-form mb-5">
                         <i class="fa fa-envelope prefix grey-text"></i>
-                        <input type="email" id="defaultForm-email" class="form-control validate">
-                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+                        <input type="text" id="defaultForm-text" name="loginUsername" class="form-control validate">
+                        <label  for="defaultForm-text">Your Username</label>
+                        <span class="text-danger"><?php echo form_error('loginUsername');?></span>
                     </div>
                     <div class="md-form mb-4">
                         <i class="fa fa-lock prefix grey-text"></i>
-                        <input type="password" id="defaultForm-pass" class="form-control validate">
-                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                        <input type="password" id="defaultForm-pass" name="loginPassword" class="form-control validate">
+                        <label for="defaultForm-pass">Your password</label>
+                        <span class="text-danger"><?php echo form_error('loginPassword');?></span>
                           <center>Doesn't have an account yet? Sign up <a href="<?php echo base_url(); ?>user/Register">here.</a></center>
 
                     </div>
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                   <button class="btn btn-danger" type="reset">Reset</button>
-                  <a href="<?php echo base_url()?>user/Home"><button class="btn btn-primary">Login</button></a>
+                  <!--<a href="<?php echo base_url()?>user/Home"><button class="btn btn-primary">Login</button></a>-->
+                  <button class="btn btn-primary" type="submit" name="insert" value="Login">Login</button>
+                  <?php 
+                   echo '<span class="text-danger">'.$this->session->flashdata("error");
+                  ?>
                 </div>
+              </form>
             </div>
         </div>
     </div>
