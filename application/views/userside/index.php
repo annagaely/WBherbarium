@@ -54,7 +54,7 @@
        </a>
             <!--/.Controls-->
     </div>
-    <div class="px-5 py-5 mx-0"  style="height: 100vh;">
+    <div class="px-5 py-5 mx-0" >
     <section class="text-center mx-5 pb-5">
     <!-- Section heading -->
       <h2 class="h1-responsive font-weight-bold my-5">Why is it so great?</h2>

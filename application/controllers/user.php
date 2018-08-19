@@ -71,6 +71,7 @@ class user extends CI_Controller {
 		$this->load->view('userside/footer');
 	}
 
+
 	public function login_validation(){
 		$this->load->Library('form_validation');
 		$this->form_validation->set_rules('loginUsername','Username','required');
@@ -110,6 +111,7 @@ public function userRegister(){
 		}
 		echo json_encode($msg);
 	}
+
 	function view_calendar()
 	{
 		$this->load->view('userside/fullcalendar');
