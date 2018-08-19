@@ -685,7 +685,8 @@ public function edit_event()
 		echo json_encode($result);
 
 	}
-	//SENDING EMAILpublic function sendMail()
+	//SENDING EMAIL NOT YET FINAL
+	public function sendMail()
 {
     $config = Array(
   'protocol' => 'smtp',
