@@ -152,7 +152,7 @@ $('#btnSave').click(function(){
           async: false,
           dataType: 'json',
           success: function($response){
-            alert(data)
+          
             if(response.success){
               $('#RegisterForm').modal('hide');
               $('#RegisterForm')[0].reset();

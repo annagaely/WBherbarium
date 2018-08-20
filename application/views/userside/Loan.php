@@ -1,11 +1,11 @@
 <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/loan.jpg" style="height: 50vh; width: 100%;"  class="banner">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <div class="py-5">
   <div class="card mx-auto px-4" style="width: 80%;">
     <div class="card-body">
-       <form id= "addLoanReqForm" method="POST" enctype="multipart/form-data">
+       
         <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Loan</p>
         <div class="md-form">
+          <form id= "tableForm" method="POST" enctype="multipart/form-data">
           <table class="table table-bordered" id="crud_table">
             <tr>
               <th>Family Name</th>
@@ -35,13 +35,17 @@
           <div align="right">
             <button type="button" name="add" id="add" class="btn btn-primary btn-sm">+</button>
           </div>
+          </form>
           <div id="inserted_item_data"></div>
         </div>
       </div>
+    
+
       <div class="md-form">
+        <form id= "textForms" method="POST" enctype="multipart/form-data">
         <div class="row">
           <div class="col-md-2">
-            <input type="number" name="txtnumdur" class="form-control" value='1'>
+            <input type="number" id="numDuration" name="txtNumDuration" class="form-control" >
             <label for="numDuration" class="font-weight-light ml-3">Duration</label>
           </div>
           <div class="col-md-2 pt-1">
@@ -56,21 +60,22 @@
           <div class="col-md-8">
             <div class="md-form">
               <i class="fas fa-pencil-alt prefix grey-text"></i>
-              <textarea type="text" name="txtpurpose"  class="md-textarea form-control" rows="3"></textarea>
+              <textarea type="text" id="purpose" name="txtpurpose"  class="md-textarea form-control" rows="3"></textarea>
               <label for="purpose" class="font-weight-light">Purpose of Loan</label>
             </div>
           </div>
 
-
         </div>
-      </div>
-
       <div class="text-center py-4 mt-3">
-        <button class="btn" style="background-color: #800000;"   id="save">Submit</button>
+        <button class="btn" style="background-color: #800000;" type="submit"  id="save">Submit</button>
       </div>
     </form>
   </div>
 </div>
+</div>
+
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+
 <script>
 $(document).ready(function(){
  var count = 1;
@@ -99,19 +104,27 @@ $(document).ready(function(){
   $('#' + delete_row).remove();
  });
 
- $('#save').click(function(){
-var data = $('#addLoanReqForm').serialize();
+ $('#save').click(function(event){
+
+var data=$('#tableForm').serialize()+ "&"+ $('#textForms').serialize();
+
+event.preventDefault();
+
   $.ajax({
    url:'<?php echo base_url() ?>user/addLoanReq', //lol dikolam tooo :<
    method:"POST",
-   data:data,
-   success:function(data){
-    if(response==false){
-      alert('mali');
-    }
+ data:data,
+  success:function(data){
+  if(data=true){
+    // $('#numDuration').val('');
+    // $('#purpose').val('');
+     alert('Request Sent');
+     location.reload(); 
+
+   }
     
    }
-  });
+ });
  });
 
 

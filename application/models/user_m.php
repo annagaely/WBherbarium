@@ -81,47 +81,39 @@ $query="
 		$family=$this->input->post('sFamilyName');
 		$genus=$this->input->post('sGenusName');
 		$species=$this->input->post('sSpeciesName');
-		$numdur=$this->input->post('txtnumdur');
+		$numdur=$this->input->post('txtNumDuration');
 		$dwm=$this->input->post('txtdayweekmonth');
 		$purpose=$this->input->post('txtpurpose');
+		$ouserid=1000;
+		//s
 		//$sessionusername=$this->session->userdata('strUserName');
 		//set @sessionname= '$sessionusername'
 		//declare @sessionname varchar(255);
 		$query="
-		declare @ouserid varchar(255);
-		declare @numdur int;
-		declare @dwm varchar(255);
-		declare @purpose varchar(255);
 
-		
 
-		set @ouserid = 1000
-		set @numdur ='$numdur'
-		set @dwm = '$dwm'
-		set @purpose ='$purpose'
-
-		insert into tblLoanReq(intOUserID,strDtWkMt,strStatus) values ('@ouserid','@dwm',,Pending)
+		insert into tblLoanReq(intOUserID,intDuration,strDtWkMt,strPurpose,strStatus) values ('".$ouserid."','".$numdur."','".$dwm."','".$purpose."','Pending')
 
 
 	";if($this->db->query($query)){
-			//$last_id = $this->db->insert_id();
+			$last_id = $this->db->insert_id();
 
-			//$i=0;
+			$i=0;
 
-			//foreach($family as $f){
+			foreach($family as $f){
 
-			//	$data=array(
+				$data=array(
 
-			//		'intFamilyID' => $family[$i],
-			//		'intGenusID' => $genus[$i],
-			//		'intSpecieID' => $specie[$i],
-			//		'intLoanReqID' => $last_id
-			////	);
-//
-			//	$this->db->insert('tblLoanList',$data);
-				//$i++;
+					'intFamilyID' => $family[$i],
+					'intGenusID' => $genus[$i],
+					'intSpeciesID' => $species[$i],
+					'intLoanReqID' => $last_id
+				);
 
-			//}
+				$this->db->insert('tblLoanList',$data);
+				$i++;
+
+			}
 			return true;
 		}else{
 			return false;
