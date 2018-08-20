@@ -65,10 +65,14 @@ class user extends CI_Controller {
 	}
 	public function loans()
 	{
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium |  Loans";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/Loan');
 		$this->load->view('userside/footer');
+	}else{
+	redirect(base_url().'user/index');
+	}
 	}
 
 
@@ -79,12 +83,13 @@ class user extends CI_Controller {
 		if($this->form_validation->run()){
 			$username = $this->input->post('loginUsername');
 			$password = $this->input->post('loginPassword');
+			$id = $this->input->post('txtId');
 		
 			$this->load->model('user_m');
 			if($this->user_m->can_login($username,$password)){
 				$session_data=array(
 					'strUserName' => $username,
-					
+
 				);
 				$this->session->set_userdata($session_data);
 				redirect(base_url().'user/home');
@@ -128,5 +133,20 @@ public function userRegister(){
 		$result = $this->m->addLoanReq();
 		echo json_encode($result);
 	}
+
+	public function showFamilyName(){
+	$result = $this->m->showFamilyName();
+	echo json_encode($result);
+	}
+	public function showGenusName(){
+	$result = $this->m->showGenusName();
+	echo json_encode($result);
+	}
+	public function showSpeciesName(){
+	$result = $this->m->showSpeciesName();
+	echo json_encode($result);
+	}
+
+
 
 }?>
