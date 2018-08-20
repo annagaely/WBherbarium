@@ -121,8 +121,8 @@ event.preventDefault();
  data:data,
   success:function(data){
   if(data=true){
-     $('#numDuration').val('');
-     $('#purpose').val('');
+     //$('#numDuration').val('');
+     //$('#purpose').val('');
      alert('Request Sent');
      location.reload(); 
 
