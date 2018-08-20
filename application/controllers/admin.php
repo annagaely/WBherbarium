@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin extends CI_Controller {
@@ -439,9 +439,9 @@ public function updateFamilyBox(){
 	/****** account START!!!!! ******/
 	public function accounts()
 	{
-		$title['title'] = "PUPHerbarium | Access Acounts";
+		$title['title'] = "PUPHerbarium | Access Accounts";
 		$this->load->view('templates/header', $title);
-		$this->load->view('maintenance/Accessaccounts');
+		$this->load->view('maintenance/accounts');
 		$this->load->view('templates/footer');
 	}
 		public function showAllAccounts(){
@@ -495,6 +495,20 @@ public function updateFamilyBox(){
 		$this->load->view('transaction/Manageappointment');
 		$this->load->view('templates/footer');
 	}
+		public function ManageappPending()
+	{
+		$title['title'] = "PUPHerbarium | Pending";
+		$this->load->view('templates/header', $title);
+		$this->load->view('transaction/ManageappPending');
+		$this->load->view('templates/footer');
+	}
+		public function ManageappHistory()
+	{
+		$title['title'] = "PUPHerbarium | History";
+		$this->load->view('templates/header', $title);
+		$this->load->view('transaction/ManageappHistory');
+		$this->load->view('templates/footer');
+	}
 
 	public function Externalvalidation()
 	{
@@ -516,6 +530,8 @@ public function updateFamilyBox(){
 		$title['title'] = "PUPHerbarium | Calendar Management";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/CalendarManagement');
+
+
 		$this->load->view('templates/footer');
 	}
  public function get_events()
@@ -642,7 +658,7 @@ public function edit_event()
 
 
 
-	public function TemporaryDepositForm()
+	public function Featuredplant()
 
 	{
 		$title['title'] = "PUPHerbarium | Featured Plant";
@@ -652,20 +668,55 @@ public function edit_event()
 	}
 
 
+//ADMIN DEPOSIT PLANT//
+	//show depositreq
+	public function showAllDepositReq(){
+		$result = $this->m->showAllDepositReq();
+		echo json_encode($result);
+	}
 
-	 public function EMAIL()
-	 {
-		$title['title'] = "TEMPORARY";
+	public function viewDepositReq(){
+		$result = $this->m->viewDepositReq();
+		echo json_encode($result);
 
-	 	$this->load->view('transaction/EMAIL');
+	}
+	public function updateAcceptStatus(){
+		$result = $this->m->updateAcceptStatus();
+		echo json_encode($result);
 
-	 }
+	}
+	//SENDING EMAIL NOT YET FINAL
+	public function sendMail()
+{
+    $config = Array(
+  'protocol' => 'smtp',
+  'smtp_host' => 'ssl://smtp.googlemail.com',
+  'smtp_port' => 465,
+  'smtp_user' => 'agbtolentino@gmail.com', // change it to yours
+  'smtp_pass' => 'Beeanna072299', // change it to yours
+  'mailtype' => 'html',
+  'charset' => 'iso-8859-1',
+  'wordwrap' => TRUE
+);
+
+        $message = 'WHATTTT';
+        $this->load->library('email', $config);
+      $this->email->set_newline("\r\n");
+      $this->email->from('agbtolentino@gmail.com'); // change it to yours
+      $this->email->to('bannagabriella@gmail.com');// change it to yours
+      $this->email->subject('YES IT IS WORKING');
+      $this->email->message($message);
+      if($this->email->send())
+     {
+      echo 'Email sent.';
+     }
+     else
+    {
+     show_error($this->email->print_debugger());
+    }
+
 
 
 }
-
-
-
-
 
 ?>
