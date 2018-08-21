@@ -77,5 +77,79 @@ $query="
 		}
 	}
 
+	public function addLoanReq(){
+		$getusername = $this->session->userdata['strUserName'];
+
+
+		$family=$this->input->post('sFamilyName');
+		$genus=$this->input->post('sGenusName');
+		$species=$this->input->post('sSpeciesName');
+		$numdur=$this->input->post('txtNumDuration');
+		$dwm=$this->input->post('txtdayweekmonth');
+		$purpose=$this->input->post('txtpurpose');
+		$sessionid=$this->session->userdata('intOUserID');
+		//set @sessionname= '$sessionusername'
+		
+
+		$query="
+		declare @sessionid int;
+		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
+
+		insert into tblLoanReq(intOUserID,intDuration,strDtWkMt,strPurpose,strStatus) values (@sessionid,'".$numdur."','".$dwm."','".$purpose."','Pending')
+
+
+	";if($this->db->query($query)){
+			$last_id = $this->db->insert_id();
+
+			$i=0;
+
+			foreach($family as $f){
+
+				$data=array(
+
+					'intFamilyID' => $family[$i],
+					'intGenusID' => $genus[$i],
+					'intSpeciesID' => $species[$i],
+					'intLoanReqID' => $last_id
+				);
+
+				$this->db->insert('tblLoanList',$data);
+				$i++;
+
+			}
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function showFamilyName(){
+		$query = $this->db->get('tblFamily');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
+	public function showGenusName(){
+		$query = $this->db->get('tblGenus');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
+	public function showSpeciesName(){
+		$query = $this->db->get('tblSpecies');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
+
+	
+
+
 
 }?>

@@ -24,7 +24,6 @@
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">×</span></button>
               </div>
               <div class="modal-body">
-
                 <form id= "addClassForm" method="POST" enctype="multipart/form-data"> <!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Phylum Name:</label> <label style="color: red">*</label>
