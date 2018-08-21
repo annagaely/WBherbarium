@@ -16,6 +16,15 @@
     <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/logo1.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <script>
+      function disableSubmit(){
+        var fname = document.forms["regForm"]["txtfirstname"].value;
+        if (fname == "") {
+          document.getElementById("btnSubmit").disabled = true;
+        }
+      }
+    </script>
+
 </head>
 <body>
 
@@ -27,7 +36,7 @@
     <div class="card-body">
 
         <!-- Material form register -->
-        <form name="regForm" id= "RegisterForm" method="POST" enctype="multipart/form-data">
+        <form name="regForm" id= "RegisterForm" method="POST" enctype="multipart/form-data" onsubmit="return disableSubmit();">
             <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Sign Up</p>
 
             <!-- Material input text -->
@@ -47,7 +56,7 @@
                     <label for="strLastName" class="font-weight-light ml-3">Last Name</label>
                   </div>
                     <div class="col-md-2">
-                    <input type="text" id="strLastName" name="txtnamesuffix" class="form-control">
+                    <input type="text" id="strNameSuffix" name="txtnamesuffix" class="form-control">
                     <label for="strLastName" class="font-weight-light ml-3">Name Suffix</label>
                   </div>
                 </div>
@@ -91,8 +100,8 @@
                   </div>
                   <div class="col-md-6">
                     <i class="fas fa-street-view prefix grey-text"></i>
-                    <input type="text" id="strAffiliation" name="txtaffpos" class="form-control">
-                    <label for="strAffiliation" class="font-weight-light" style="margin-left: 55px;">Position</label>
+                    <input type="text" id="strAffiliationPosition" name="txtaffpos" class="form-control">
+                    <label for="strAffiliationPosition" class="font-weight-light" style="margin-left: 55px;">Position</label>
                   </div>
                 </div>
               </div>
@@ -123,7 +132,7 @@
 
             <div class="text-center py-4 mt-3">
               <button class="btn btn-danger" type="reset">Reset</button>
-              <button class="btn btn-primary" type="submit">Submit</button>
+              <button class="btn btn-primary" type="submit" id="btnSave">Submit</button>
 
             </div>
         </form>
@@ -153,6 +162,7 @@ $('#btnSave').click(function(){
           async: false,
           dataType: 'json',
           success: function($response){
+
 
             if(response.success){
               $('#RegisterForm').modal('hide');
