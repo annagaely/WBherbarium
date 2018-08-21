@@ -40,11 +40,9 @@
                   </div>
                   <div class="form-group">
                     <label>
-<<<<<<< HEAD
+
                       <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText();"> Under the Plant Category
-=======
-                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText(); "> Under the Plant Category
->>>>>>> 7768b30cd86d0cd8f229cdd129184eacb692a3ed
+
                     </label>
                   </div>
                   <div class="form-group">
@@ -81,19 +79,19 @@
 
                   <div class="form-group">
                     <label>Domain Name:</label> <label style="color: red">*</label> 
-                    <input type="text" name="txtedName" id="strDomainName" placeholder="Domain Name" class="form-control">
+                    <input type="text" name="txtedName" id="strDomainName1" placeholder="Domain Name" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Kingdom Name:</label> <label style="color: red">*</label> 
-                    <input type="text" name="txtekName" id="strKingdomName" placeholder="Kingdom Name" class="form-control">
+                    <input type="text" name="txtekName" id="strKingdomName1" placeholder="Kingdom Name" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>
-<<<<<<< HEAD
-                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText1(); "> Under the Plant Category
-=======
-                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText();"> Under the Plant Category
->>>>>>> 7768b30cd86d0cd8f229cdd129184eacb692a3ed
+
+                      <input type="checkbox" name="check1" id="plantCategory1" onclick="disableMyText1(); "> Under the Plant Category
+
+
+
                       <input type="hidden" name="txtId" value="0">
                     </label>
                   </div>
@@ -154,20 +152,16 @@ function resetForm() {
           }
      }
      function disableMyText1(){
-          if(document.getElementById("plantCategory").checked == true)
+          if(document.getElementById("plantCategory1").checked == true)
           {
-              document.getElementById("strDomainName").value = "Eukaryota";
-              document.getElementById("strKingdomName").value = "Plantae";
-<<<<<<< HEAD
+              document.getElementById("strDomainName1").value = "Eukaryota";
+              document.getElementById("strKingdomName1").value = "Plantae";
+
           }
-          else
-          {
-            document.getElementById("strDomainName").value = "";
-=======
-          }else{
-            document.getElementById("strDomainName").value = "",
->>>>>>> 7768b30cd86d0cd8f229cdd129184eacb692a3ed
-            document.getElementById("strKingdomName").value = "";
+
+          else{
+            document.getElementById("strDomainName1").value = "";  
+            document.getElementById("strKingdomName1").value = "";
           }
      }
 
