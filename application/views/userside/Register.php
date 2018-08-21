@@ -26,9 +26,6 @@
     <!-- Card body -->
     <div class="card-body">
 
-      <?php echo validation_errors();?>
-
-      <?php echo form_open();?>
         <!-- Material form register -->
         <form name="regForm" id= "RegisterForm" method="POST" enctype="multipart/form-data">
             <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Sign Up</p>

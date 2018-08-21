@@ -54,7 +54,7 @@
           <h5 class="sidenav-heading">Main</h5>
 
           <ul id="side-main-menu" class="side-menu list-unstyled">
-            <li class="active"><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="icon-home"></i>Home</a></li>
+            <li class="active"><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
 
             <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
@@ -89,32 +89,13 @@
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Manageappointment">Manage Appointment</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidation">External Validation</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/EMAIL">EMAIL</a></li>
-
-                <li><a href="<?php echo base_url(); ?>admin/Depositplant" class="nav-link <?php if($this->uri->segment(2)=="Depositplant"){echo "active";}?>">Deposit Plant</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Loanplant" class="nav-link <?php if($this->uri->segment(2)=="Loanplant"){echo "active";}?>">Loan Plant</a></li>
-
                 <li><a href="#DdownManageAppointment" aria-expanded="false" data-toggle="collapse">Manage Appointment</a>
                   <ul id="DdownManageAppointment" class="collapse list-unstyled ">
                     <li><a style="background-color: #393836;" href="<?php echo base_url(); ?>admin/Depositplant" class="nav-link ">&nbsp; &nbsp; &nbsp; &nbsp; Pending</a></li>
                     <li><a style="background-color: #393836;" href="<?php echo base_url(); ?>admin/Loanplant" class="nav-link">&nbsp; &nbsp; &nbsp; &nbsp; History</a></li>
                   </ul>
                 </li>
-
-                <li><a href="<?php echo base_url(); ?>admin/Manageappointment" class="nav-link <?php if($this->uri->segment(2)=="Manageappointment"){echo "active";}?>">Manage Appointment</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Externalvalidation" class="nav-link <?php if($this->uri->segment(2)=="Externalvalidation"){echo "active";}?>">External Validation</a></li>
-                 <li><a href="<?php echo base_url(); ?>admin/TemporaryDepositForm" class="nav-link <?php if($this->uri->segment(2)=="TemporaryDepositForm"){echo "active";}?>">Temp Deposit form</a></li>
-                 <li><a href="<?php echo base_url(); ?>admin/TemporaryLoaningForm" class="nav-link <?php if($this->uri->segment(2)=="TemporaryLoaningForm"){echo "active";}?>">Temp Loaning form</a></li>
-
-              </ul>
-            </li>
-            <li><a href="#MToolsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-wrench"></i>Management Tools </a>
-              <ul id="MToolsDropdown" class="collapse list-unstyled ">
-                <li><a href="#">Herbarium Inventory</a></li>
-                <li><a href="#">Herbarium Specimen Tracking</a></li>
-                <li><a href="#">Audit Trailing</a></li>
               </ul>
             </li>
               <li><a href="#"> <i class="fa fa-database"></i>Query</a></li>
