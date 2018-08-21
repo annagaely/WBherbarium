@@ -27,7 +27,7 @@
     <div class="card-body">
 
         <!-- Material form register -->
-        <form id= "RegisterForm" method="POST" enctype="multipart/form-data">
+        <form name="regForm" id= "RegisterForm" method="POST" enctype="multipart/form-data">
             <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Sign Up</p>
 
             <!-- Material input text -->
@@ -107,8 +107,8 @@
                     <i class="fa fa-user-circle prefix grey-text"></i>
                     <input type="text" id="strUsername" name="txtusername" class="form-control">
                     <label for="strUsername" class="font-weight-light" style="margin-left: 55px;">Username</label>
-                    <?php 
-                      
+                    <?php
+
                     ?>
                   </div>
                   <div class="col-md-6">
@@ -123,7 +123,8 @@
 
             <div class="text-center py-4 mt-3">
               <button class="btn btn-danger" type="reset">Reset</button>
-                <button class="btn btn-primary" id="btnSave" type="submit">Register</button>
+              <button class="btn btn-primary" type="submit">Submit</button>
+
             </div>
         </form>
         <!-- Material form register -->
@@ -152,7 +153,7 @@ $('#btnSave').click(function(){
           async: false,
           dataType: 'json',
           success: function($response){
-          
+
             if(response.success){
               $('#RegisterForm').modal('hide');
               $('#RegisterForm')[0].reset();

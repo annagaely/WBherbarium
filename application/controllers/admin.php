@@ -699,16 +699,16 @@ public function edit_event()
   'wordwrap' => TRUE
 );
 
-        $message = 'WHATTTT';
+        $message = 'cutting na tayo. wag na IT soc';
         $this->load->library('email', $config);
       $this->email->set_newline("\r\n");
       $this->email->from('agbtolentino@gmail.com'); // change it to yours
       $this->email->to('bannagabriella@gmail.com');// change it to yours
-      $this->email->subject('YES IT IS WORKING');
+      $this->email->subject('qt ko');
       $this->email->message($message);
       if($this->email->send())
      {
-      echo 'Email sent.';
+      echo 'nagsend na pare';
      }
      else
     {
@@ -717,7 +717,7 @@ public function edit_event()
 
 
 
-}
+}}
 
 public function showLoanReq(){
 		$result = $this->m->showLoanReq();

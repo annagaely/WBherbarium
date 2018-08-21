@@ -46,8 +46,8 @@ class user extends CI_Controller {
 		$this->load->view('userside/footer');
 	}else{
 	redirect(base_url().'user/index');
-	}	
-	
+	}
+
 	}
 	public function collection()
 	{
@@ -84,7 +84,7 @@ class user extends CI_Controller {
 			$username = $this->input->post('loginUsername');
 			$password = $this->input->post('loginPassword');
 			$id = $this->input->post('txtId');
-		
+
 			$this->load->model('user_m');
 			if($this->user_m->can_login($username,$password)){
 				$session_data=array(
