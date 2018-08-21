@@ -1281,5 +1281,38 @@ public function delete_event($id)
 
 
 	/****** END CALENDAR!!!!! ******/
+public function showLoanReq(){
+$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, concat(intDuration,' ',strDtWkMt) as strDuration,strPurpose, lr.intOUserID,intLoanReqID 
+		from tblLoanReq lr join tblOnlineUser ou
+		on lr.intOUserID = ou.intOUserID
+		where strStatus ='Pending'");
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+		}
+
+public function editLoanReq(){
+
+		$id = $this->input->get('id');
+		$this->db->where('intLoanReqID', $id);
+		$query = $this->db->select("Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, concat(intDuration,' ',strDtWkMt) as strDuration,strPurpose, lr.intOUserID,lr.intLoanReqID")
+			->join('tblOnlineUser ou', 'lr.intOUserID = ou.intOUserID')
+			->get('tblLoanReq lr');
+		if($query->num_rows() > 0){
+			return $query->row();
+
+		}
+		else{
+			return false;
+		}
+		}
+
+
+
+
+
+
 
 }?>
