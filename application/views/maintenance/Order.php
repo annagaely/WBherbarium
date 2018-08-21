@@ -15,7 +15,7 @@
           <button type="button" button data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Order</button>
         </div>         
         <!-- Modal-->
-        <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+        <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -26,12 +26,12 @@
 
                 <form id= "addOrderForm" method="POST" enctype="multipart/form-data"> <!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
-                    <label>Class Name:</label>
+                    <label>Class Name:</label> <label style="color: red">*</label>
                     <select id="showOrderClassName" name ="txtcID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Order Name:</label>
+                    <label>Order Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txtOName" placeholder="Order Name" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
@@ -49,7 +49,7 @@
             <!--ADD EDIT CLASS MODAL-->
                
         <!-- Modal-->
-        <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+        <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -64,13 +64,13 @@
                   <div class="form-group">
                     <label>
                       <input type="hidden" name="txtId" value="0">
-                    </label>
+                    </label> <label style="color: red">*</label>
                     <label>Class Name:</label>
                      <select id="showOrderClassName2" name ="sceID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Order Name:</label>
+                    <label>Order Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txteOName" placeholder="Class Name" class="form-control">
                   </div> 
                   <div class="modal-footer">

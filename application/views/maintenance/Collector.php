@@ -9,13 +9,13 @@
           </ul>
         </div>
       </div>
-<!--ADD Collector MODAL-->
+<!--ADD Collector MODAL asdadsasd -->
       <div class="card">
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Collector</button>
         </div>       
         <!-- Modal-->
-        <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+        <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -27,13 +27,13 @@
                 <form id= "addCollectorForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>First Name:</label>
+                      <label>First Name:</label> <label style="color: red">*</label>
                       <input type="text" name="fName" placeholder="First Name " class="form-control">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Middle Name:</label>
+                      <label>Middle Name:</label> 
                       <input type="text" name="mName" placeholder="Middle Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
@@ -43,7 +43,7 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Last Name:</label>
+                      <label>Last Name:</label> <label style="color: red">*</label>
                       <input type="text" name="lName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
@@ -53,17 +53,17 @@
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>Contact Number:</label>
+                    <label>Contact Number:</label> <label style="color: red">*</label>
                     <input type="text" name="cName" placeholder="Contact Number" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
-                    <label>Email Address:</label>
+                    <label>Email Address:</label> <label style="color: red">*</label>
                     <input type="text" name="eMail" placeholder="Email Address" class="form-control">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>College Department:</label>
+                    <label>College Department:</label> <label style="color: red">*</label>
                     <select name="cdName" class="form-control">
                       <option value= "College of Accountancy and Finance"> College of Accountancy and Finance</option>
                       <option value= "College of Architecture and Fine Arts"> College of Architecture and Fine Arts</option>
@@ -87,7 +87,7 @@
                   </div>
                   </div>
                   <div class="form-group col-sm-6">
-                    <label>Course/Year/Section:</label>
+                    <label>Course/Year/Section:</label> <label style="color: red">*</label>
                     <input type="text" name="secName" placeholder="Course/Year/Section" class="form-control">
                   </div>
                   <!--HANGGANG DITO LANG BOI-->
@@ -103,7 +103,7 @@
       </div>
       <!--END PHYLUM MODAL-->
       <!-- update collector modal -->
-          <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+          <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -115,13 +115,14 @@
                 <form id= "editCollectorForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>First Name:</label>
+                       <input type="hidden" name="txtId" value="0">
+                      <label>First Name:</label> <label style="color: red">*</label>
                       <input type="text" name="feName" placeholder="First Name " class="form-control">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Middle Name:</label>
+                      <label>Middle Name:</label> 
                       <input type="text" name="meName" placeholder="Middle Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
@@ -131,27 +132,27 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Last Name:</label>
+                      <label>Last Name:</label> <label style="color: red">*</label>
                       <input type="text" name="leName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
-                      <label>Name Suffix:</label>
+                      <label>Name Suffix:</label> <label style="color: red">*</label>
                       <input type="text" name="neSuffix" placeholder="Name Suffix" class="form-control">
                     </div>
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>Contact Number:</label>
+                    <label>Contact Number:</label> <label style="color: red">*</label>
                     <input type="text" name="ceName" placeholder="Contact Number" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
-                    <label>Email Address:</label>
+                    <label>Email Address:</label> <label style="color: red">*</label>
                     <input type="text" name="eeMail" placeholder="Email Address" class="form-control">
                   </div>
                 </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>College Department:</label>
+                    <label>College Department:</label> <label style="color: red">*</label>
                     <select name="cdName" class="form-control">
                       <option value= "College of Accountancy and Finance"> College of Accountancy and Finance</option>
                       <option value= "College of Architecture and Fine Arts"> College of Architecture and Fine Arts</option>
@@ -175,13 +176,13 @@
                   </div>
                   </div>
                   <div class="form-group col-sm-6">
-                    <label>Course/Year/Section:</label>
+                    <label>Course/Year/Section:</label> <label style="color: red">*</label>
                     <input type="text" name="seceName" placeholder="Course/Year/Section" class="form-control">
                   </div>
                   <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-primary">       
-                    <input type="submit" id="editbtnSave" value="Save" class="btn btn-primary">
+                    <input type="submit" id="btnEditSave" value="Save" class="btn btn-primary">
                   </div>
                 </form>
               </div>
@@ -197,9 +198,7 @@
               <thead>
                 <tr>
                   <th>CollectorID</th>
-                  <th>First Name</th>
-                  <th>Middle Initial</th>
-                  <th>Last Name</th>
+                  <th>Full Name</th>
                   <th>Institution/Section</th>
                   <th>Actions</th>
                 </tr>
@@ -232,9 +231,7 @@
           for(i=0; i<data.length; i++){
             html +='<tr>'+
                   '<td>'+data[i].intCollectorID+'</td>'+
-                  '<td>'+data[i].strFirstName+'</td>'+
-                  '<td>'+data[i].strMiddleInitial+'</td>'+
-                  '<td>'+data[i].strLastName+'</td>'+
+                  '<td>'+data[i].strFullName+'</td>'+
                   '<td>'+data[i].strSection+'</td>'+
 
                   '<td>'+
@@ -290,17 +287,18 @@ $('#btnEditSave').click(function(){
           async: false,
           dataType: 'json',
           success: function(response){
-            if(response.success){
-              $('#editCollectorForm').modal('hide');
+            if(response==true){
+              $('#myEditModal').modal('hide');
               $('#editCollectorForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
-              }
-              showAllPhylum();
-            }else{
-              alert('Error');
+         //     if(response.type=='add'){
+           //     var type = 'added'
+       //       }else if(response.type=='update'){
+          //      var type ="updated"
+              //}
+              showAllCollector();
+            }
+            else{
+             alert('Error');
             }
           },
           error: function(){
@@ -316,7 +314,7 @@ $('#btnEditSave').click(function(){
       $.ajax({
         type: 'ajax',
         method: 'get',
-        url: '<?php echo base_url() ?>admin/editSpecies',
+        url: '<?php echo base_url() ?>admin/editCollector',
         data: {id: id},
         async: false,
         dataType: 'json',
@@ -330,7 +328,7 @@ $('#btnEditSave').click(function(){
           $('input[name=eeMail]').val(data.strEmailAddress);
           $('input[name=cdeName]').val(data.strCollege);
           $('input[name=seceName]').val(data.strSection);
-          $('input[name=Id]').val(data.intCollectorID);
+          $('input[name=txtId]').val(data.intCollectorID);
           
         },
         error: function(){

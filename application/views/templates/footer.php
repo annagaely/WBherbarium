@@ -27,7 +27,6 @@
     <script src="<?php echo base_url();?>assets/bower_components/distribution/js/charts-home.js"></script>
     <!-- Main File-->
     <script src="<?php echo base_url();?>assets/bower_components/distribution/js/front.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
    </body>

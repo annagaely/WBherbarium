@@ -16,7 +16,7 @@
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Species</button>
         </div>         
         <!-- Modal-->
-        <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+        <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -26,16 +26,16 @@
               <div class="modal-body">
                 <form id= "addSpeciesForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
-                    <label>Genus Name:</label>
+                    <label>Genus Name:</label> <label style="color: red">*</label>
                     <select id="showSpeciesGenusName" name ="txtgID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Species Name:</label> 
+                    <label>Species Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txtsName" placeholder="Family Name" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label>Common Name:</label> 
+                    <label>Common Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txtcoName" placeholder="Common Name" class="form-control">
                   </div>
                   <!--HANGGANG DITO LANG BOI-->
@@ -53,7 +53,7 @@
       <!--ADD EDIT CLASS MODAL-->
                
         <!-- Modal-->
-        <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+        <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -69,16 +69,16 @@
                     <label>
                       <input type="hidden" name="txtId" value="0">
                     </label>
-                    <label>Genus Name:</label>
+                    <label>Genus Name:</label> <label style="color: red">*</label>
                      <select id="showSpeciesGenusName1" name ="sesGID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Species Name:</label>
+                    <label>Species Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txteSName" placeholder="Class Name" class="form-control">
                   </div> 
                   <div class="form-group">
-                    <label>Common Name:</label>
+                    <label>Common Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txtecName" placeholder="Class Name" class="form-control">
                   </div> 
                   <div class="modal-footer">

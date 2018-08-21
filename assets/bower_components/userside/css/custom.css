@@ -1,0 +1,12 @@
+.formm {
+	padding: 1%;
+}
+.heroo {
+	padding: 5rem 0;
+  	background: url(../img/hero-bg.svg) no-repeat;
+  	background-size: cover;
+  	background-position: bottom left;
+}
+.active2 {
+	background-color: white;
+}
