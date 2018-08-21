@@ -70,6 +70,40 @@ class user extends CI_Controller {
 		echo json_encode($result);
 
 	}
+
+	public function uploadPic()
+	{
+		$config = [
+			'upload_path' => ' ./uploads',
+			'allowed_types' => 'jpg'
+		];
+
+		$this->load->library('upload', $config);
+		$this->form_validation->set_error_delimiters();
+
+			if($this->upload->do_upload()) 
+			  {
+				$data = $this->input -> post(); 
+				$info = $this->upload -> data();
+				$image_path = base_ur;("uploads/".$info['raw_name'].$info['file_ext']);
+				$data['avatar'] = $image_path;
+
+				$this->load->model('addDeposit');
+
+				if($this->queries->insertImage($data)) 
+				{
+					echo 'Image uploaded sucessfully';
+				}
+				else {
+					echo 'Failed to add Image';
+				}
+
+		      }
+		    else
+		      {
+		 		$this->deposits();
+		}
+	}
 }
 
 ?>

@@ -7,7 +7,7 @@ class user_m extends CI_Model{
 //USER DEPOSIT//
 public function addDeposit(){
 	
-	// $pimg = $this->input->post('picPlant');
+
 	$sName = $this->input->post('txtScientificName');
 	$cName = $this->input->post('txtCommonName');
 	$loc = $this->input->post('txtLocation');
@@ -24,7 +24,6 @@ public function addDeposit(){
 	DECLARE @datecollected DATE;
 	DECLARE @collector VARCHAR(255);
 	DECLARE @plantdescription VARCHAR(255);
-
 
 	set @scientificname = '$sName'
 	set @commonname = '$cName'

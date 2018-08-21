@@ -27,12 +27,12 @@
               </div>
               <div class="modal-body">
 
-                <form id= "addPhylumForm" method="POST" enctype="multipart/form-data">
+                <form id= "addPhylumForm" method="POST" enctype="multipart/form-data" class="needs-validation" >
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                   <div class="form-group">
                     <label>Domain Name:</label> <label style="color: red">*</label> 
-                    <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control">
+                    <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>Kingdom Name:</label> <label style="color: red">*</label> 
@@ -74,12 +74,12 @@
               </div>
               <div class="modal-body">
 
-                <form id= "editPhylumForm" method="POST" enctype="multipart/form-data">
+                <form id= "editPhylumForm" method="POST" enctype="multipart/form-data" class="needs-validation" >
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                   <div class="form-group">
                     <label>Domain Name:</label> <label style="color: red">*</label> 
-                    <input type="text" name="txtedName" id="strDomainName" placeholder="Domain Name" class="form-control">
+                    <input type="text" name="txtedName" id="strDomainName" placeholder="Domain Name" class="form-control" required="">
                   </div>
                   <div class="form-group">
                     <label>Kingdom Name:</label> <label style="color: red">*</label> 
@@ -88,7 +88,7 @@
                   <div class="form-group">
                     <label>
 
-                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText1(); "> Under the Plant Category
+                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText(); "> Under the Plant Category
 
                       <input type="hidden" name="txtId" value="0">
                     </label>

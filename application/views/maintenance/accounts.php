@@ -28,7 +28,7 @@
                <form id= "addAccountForm" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label>Staff Name:</label> <label style="color: red">*</label>
-                     <select id="showStaffName" name ="StaffName" class="form-control">
+                     <select id="showStaffName" name ="StaffName" class="form-control" required>
                      </select>
                   </div>
 
@@ -36,13 +36,13 @@
 
                     <div class="col-sm-6" >
                     <label>Username:</label> <label style="color: red">*</label>
-                    <input type="text" name="AAUName" placeholder="Username" class="form-control">
+                    <input type="text" name="AAUName" placeholder="Username" class="form-control" required>
                   </div>
 
 
                   <div class="col-sm-6" >
                     <label>Password:</label> <label style="color: red">*</label>
-                    <input type="Password" name="AAPass" placeholder="Password" class="form-control">
+                    <input type="Password" name="AAPass" placeholder="Password" class="form-control" required>
                   </div>
                 </div>
                 <br>
@@ -73,7 +73,7 @@
                <form id= "editAccountForm" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label>Staff Name:</label> <label style="color: red">*</label>
-                     <select id="showStaffName2" name ="eStaffName" class="form-control">
+                     <select id="showStaffName2" name ="eStaffName" class="form-control" required>>
                      </select>
                   </div>
 
@@ -81,14 +81,14 @@
 
                     <div class="col-sm-6" >
                     <label>Username:</label> <label style="color: red">*</label>
-                    <input type="text" name="eAAUName" placeholder="Username" class="form-control">
+                    <input type="text" name="eAAUName" placeholder="Username" class="form-control" required>>
                     <input type="hidden" name="txtId" value="0">
                   </div>
 
 
                   <div class="col-sm-6" >
                     <label>Password:</label> <label style="color: red">*</label>
-                    <input type="Password" name="eAAPass" placeholder="Password" class="form-control">
+                    <input type="Password" name="eAAPass" placeholder="Password" class="form-control" required>>
                   </div>
                 </div>
                 <br>
