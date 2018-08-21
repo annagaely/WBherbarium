@@ -719,4 +719,17 @@ public function edit_event()
 
 }}
 
-?>
+public function showLoanReq(){
+		$result = $this->m->showLoanReq();
+		echo json_encode($result);
+}
+public function editLoanReq(){
+		$result = $this->m->editLoanReq();
+		echo json_encode($result);
+	
+}
+
+
+
+
+}?>
