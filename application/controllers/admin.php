@@ -717,7 +717,7 @@ public function edit_event()
 
 
 
-}}
+}
 
 public function showLoanReq(){
 		$result = $this->m->showLoanReq();
