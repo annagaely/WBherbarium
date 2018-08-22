@@ -24,14 +24,14 @@
               </div>
               <div class="modal-body">
 
-                <form id= "addGenusForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->s
+                <form id= "addGenusForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
                     <select id="showGenusFamilyName" name ="txtoID" class="form-control">
                     </select>
                   </div>
-                  <div class="form-group"> <label style="color: red">*</label>
-                    <label>Genus Name:</label>
+                  <div class="form-group"> 
+                    <label>Genus Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txtgName" placeholder="Genus Name" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">

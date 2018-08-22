@@ -57,9 +57,9 @@
     <div class="px-5 py-5 mx-0" >
     <section class="text-center mx-5 pb-5">
     <!-- Section heading -->
-      <h2 class="h1-responsive font-weight-bold my-5">Why is it so great?</h2>
+      <h2 class="h1-responsive font-weight-bold my-5">Welcome to PUP Herbarium</h2>
       <!-- Section description -->
-      <p class="lead grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+      <p class="lead grey-text w-responsive mx-auto mb-5">>Come and explore the first Polytechnic University in the Philippines' herbarium specimen collections.</p>
 
       <!-- Grid row -->
       <div class="row">
@@ -67,9 +67,9 @@
         <!-- Grid column -->
         <div class="col-md-4">
 
-          <i class="fa fa-area-chart fa-3x red-text"></i>
-          <h5 class="font-weight-bold my-4">Analytics</h5>
-          <p class="grey-text mb-md-0 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores aperiam minima assumenda deleniti hic.
+          <i class="fas fa-file-alt fa-3x red-text"></i>
+          <h5 class="font-weight-bold my-4">Loan</h5>
+          <p class="grey-text mb-md-0 mb-5">Loaning of specimen is available here at PUP Herbarium. Send your loaning request and wait for it to be approved.
           </p>
 
         </div>
@@ -78,10 +78,10 @@
         <!-- Grid column -->
         <div class="col-md-4">
 
-          <i class="fa fa-book fa-3x cyan-text"></i>
-          <h5 class="font-weight-bold my-4">Tutorials</h5>
-          <p class="grey-text mb-md-0 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores aperiam minima assumenda deleniti hic.
-          </p>
+          <i class="fas fa-search fa-3x cyan-text"></i>
+          <h5 class="font-weight-bold my-4">Search</h5>
+          <p class="grey-text mb-md-0 mb-5">Get access to PUP herbarium specimens and descriptions by clicking here.
+          </p> 
 
         </div>
         <!-- Grid column -->
@@ -89,9 +89,9 @@
         <!-- Grid column -->
         <div class="col-md-4">
 
-          <i class="fas fa-comments fa-3x orange-text"></i>
-          <h5 class="font-weight-bold my-4">Support</h5>
-          <p class="grey-text mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores aperiam minima assumenda deleniti hic.
+          <i class="fas fa-map-marked-alt fa-3x orange-text"></i>
+          <h5 class="font-weight-bold my-4">Visit</h5>
+          <p class="grey-text mb-0">PUP Herbarium Center is open for visitors. Just set an appointment prior to your visit.
           </p>
 
         </div>
@@ -105,11 +105,11 @@
     <section class="text-white mx-0 px-0" style="background-color: #800000; padding: 5rem 0;">
         <div class="container py-5">
             <div class="text-center">
-                <h2>Do great things together</h2>
+                <h2>What is PUP Herbarium?</h2>
                 <div class="row">
                     <div class="col-lg-9 mx-auto">
                         <p class="lead text-white mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. eiusmod tempor incididunt ut labore et dolore.
+                            The PUP Herbarium Center serves as a local point for botanical interactions of students a faculty. It provides documented flora as repository of preserved herbarium specimens. It is also serve as a venue for plant identification, information and education. It collects services for bioprospecting or other specialized projects. Lastly, it serves as a training ground for a budding plant biologist and taxonomist. 
                         </p>
                     </div>
                 </div>
@@ -248,14 +248,14 @@
 
     <!-- Grid column -->
     <div class="col-md-12 mb-0">
-      <div class="card card-image" style="background-image: url('<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner.jpg');">
+      <div class="card card-image" style="background-image: url('<?php echo base_url();?>assets/bower_components/puno1.jpg'); background-repeat: no-repeat; background-size: cover;">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
           <div>
 
             <h3 class="py-3 font-weight-bold">
-              <strong>This is news title</strong>
+              <strong>Goodbye Fire Tree</strong>
             </h3>
-            <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem, optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos. Odit sed qui, dolorum!
+            <p class="pb-3">Tanggapin na natin na hindi lahat ng bagay mags-stay. Yung akala mo kapit na kapit pa sya. Bes hindi ganon. Akala mo masaya pa sya? Kala mo lang yun! Sa huli, bibitaw din sya at iiwan ka. Ganon talaga ang buhay mga ka-PUPian.....
             </p>
             <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> View Article</a>
           </div>

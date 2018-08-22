@@ -11,9 +11,16 @@
         <div class="col-md-4 mx-auto">
 
           <!-- Content -->
-          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Footer Content</h5>
-          <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit.</p>
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">VISIT US</h5>
+          <p>Polytechnic University of the Philippines<br>
+             A. Mabini Campus, Anonas Street, Sta. Mesa<br>
+             Manila, Philippines 1016 <br>
+             <br>
+             <strong>PUP HERBARIUM CENTER</strong><br>
+             South Wing, Room 403-B
+        
+        </p> 
+
 
         </div>
         <!-- Grid column -->

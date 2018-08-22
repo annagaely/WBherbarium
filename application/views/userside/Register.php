@@ -56,6 +56,7 @@
                     <label for="strLastName" class="font-weight-light ml-3">Last Name</label>
                   </div>
                     <div class="col-md-2">
+
                     <input type="text" id="strNameSuffix" name="txtnamesuffix" class="form-control">
                     <label for="strLastName" class="font-weight-light ml-3">Name Suffix</label>
                   </div>
@@ -102,6 +103,7 @@
                     <i class="fas fa-street-view prefix grey-text"></i>
                     <input type="text" id="strAffiliationPosition" name="txtaffpos" class="form-control">
                     <label for="strAffiliationPosition" class="font-weight-light" style="margin-left: 55px;">Position</label>
+
                   </div>
                 </div>
               </div>
@@ -132,7 +134,9 @@
 
             <div class="text-center py-4 mt-3">
               <button class="btn btn-danger" type="reset">Reset</button>
+
               <button class="btn btn-primary" type="submit" id="btnSave">Submit</button>
+
 
             </div>
         </form>
@@ -162,8 +166,6 @@ $('#btnSave').click(function(){
           async: false,
           dataType: 'json',
           success: function($response){
-
-
             if(response.success){
               $('#RegisterForm').modal('hide');
               $('#RegisterForm')[0].reset();
