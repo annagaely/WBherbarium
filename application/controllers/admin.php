@@ -596,7 +596,7 @@ public function add_event()
        "title" => $name,
        "description" => $desc,
        "start" => $start_date,
-       "end" => $end_date
+       "end" => $start_date
        )
     );
 
@@ -624,7 +624,7 @@ public function edit_event()
           if(!$delete) {
 
                if(!empty($start_date)) {
-                    $sd = DateTime::createFromFormat("Y/m/d H:i", $start_date);
+                    $sd = DateTime::createFromFormat("Y/m/d", $start_date);
                     $start_date = $sd->format('Y-m-d H:i:s');
                     $start_date_timestamp = $sd->getTimestamp();
                } else {
@@ -633,7 +633,7 @@ public function edit_event()
                }
 
                if(!empty($end_date)) {
-                    $ed = DateTime::createFromFormat("Y/m/d H:i", $end_date);
+                    $ed = DateTime::createFromFormat("Y/m/d", $end_date);
                     $end_date = $ed->format('Y-m-d H:i:s');
                     $end_date_timestamp = $ed->getTimestamp();
                } else {
@@ -645,7 +645,7 @@ public function edit_event()
                     "title" => $name,
                     "description" => $desc,
                     "start" => $start_date,
-                    "end" => $end_date,
+                    "end" => $start_date,
                     )
                );
 
