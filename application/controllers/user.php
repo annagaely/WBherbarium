@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class user extends CI_Controller {
@@ -121,11 +121,15 @@ public function userRegister(){
 	{
 		$this->load->view('userside/fullcalendar');
 	}
-	public function appointment() {
+	public function appointment() {	
+	if($this->session->userdata('strUserName')!=''){
 	 $title['title'] = "PUPHerbarium | Appointment";
 	 $this->load->view('userside/navbar2', $title);
 	 $this->load->view('userside/Appointment');
 	 $this->load->view('userside/footer');
+	 	}else{
+	redirect(base_url().'user/index');
+	}
 	}
 
 
@@ -147,6 +151,10 @@ public function userRegister(){
 	echo json_encode($result);
 	}
 
+public function addAppointment(){
+		$result = $this->m->addAppointment();
+		echo json_encode($result);
 
+	}
 
 }?>

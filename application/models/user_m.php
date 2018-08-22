@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class user_m extends CI_Model{
@@ -150,6 +150,46 @@ $query="
 
 	
 
+public function addAppointment(){
+	
 
+	$aType = $this->input->post('appType');
+	$doA = $this->input->post('dateofappointment');
+	$appdesc = $this->input->post('txtappdesc');
+
+
+
+	$query="
+
+	DECLARE @appointmenttype VARCHAR(50);
+	DECLARE @dateofappointment DATE;
+	DECLARE @applicationdesc VARCHAR(255);
+
+	
+	set @appointmenttype = '$aType'
+	set @dateofappointment = '$doA'
+	set @applicationdesc = '$appdesc'
+
+	
+SET NOCOUNT ON;
+	
+
+		
+			INSERT INTO tblAppointments(strAppointmentType, dtAppointmentDate, strVisitDescription,intOUserID,strStatus)VALUES(@appointmenttype, @dateofappointment,@applicationdesc,1000,'Pending')
+		";
+
+		if($this->db->query($query))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	
+	
+		
+	}
 
 }?>
+
