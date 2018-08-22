@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-sm-8">
                       <input type='hidden' name='txtId' id="txtID" value=0>
-                      <input type="text" name="txtloanreqid" id="loanreqid" class="form-control" >
+                      <input type="text" name="txtLoanreqID" id="intLoanReqID" class="form-control">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -58,7 +58,7 @@
                       <label style="font-size: 14px;">Borrower's Name:</label>
                     </div>
                     <div class="col-sm-8">
-                      <input type="text" name="txtborrowername" id="borrowername" class="form-control" >
+                      <input type="text" name="txtBorrowerName" id="strFullName" class="form-control" >
                     </div>
                   </div>
                   <div class="form-group row">
@@ -66,7 +66,7 @@
                       <label style="font-size: 14px;">Duration:</label>
                     </div>
                     <div class="col-sm-8">
-                      <input type="text" name="txtduration" id="duration" class="form-control" >
+                      <input type="text" name="txtDuration" id="strDuration" class="form-control" >
                     </div>
                   </div>
                    <div class="form-group row">
@@ -74,18 +74,32 @@
                       <label style="font-size: 14px;">Purpose:</label>
                     </div>
                     <div class="col-sm-8">
-                     <textarea class="form-control" rows="3" id="purpose" ></textarea>
+                     <textarea class="form-control" rows="3" name="txtPurpose" id="strPurpose" ></textarea>
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-sm-4">
-                      <label style="font-size: 14px;">Specimens:</label>
+                      <label style="font-size: 14px;margin-top: 10px">Specimens:</label>
                     </div>
                     <div class="col-sm-8">
-                     <textarea name="txtSpecimen" id="strSpecimen" class="form-control" rows="5" id="Specimens" ></textarea>
+                     <!--      <div class="card"> -->
+                           <!--  <div class="card-body"> -->
+                               <div class="table-responsive">
+                                <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Family Name</th>
+                                      <th>Genus Name</th>
+                                      <th>Species Name</th>
+                                    </tr>
+                                   </thead>
+                                  <tbody tbody id="showplants">    
+                                  </tbody>
+                                </table>
+                               </div>
+                        <!--     </div> -->
+                          <!-- </div> -->
                     </div>
-                    <div class="modal-footer">     
-                  </div>
                   </div>
                 </form>
               </div>
@@ -137,7 +151,6 @@
 $('#showdata').on('click', '.loanreq-edit', function(){
       var id = $(this).attr('data');
       $('#myModal').modal('show');
-
       $.ajax({
         type: 'ajax',
         method: 'get',
@@ -146,12 +159,14 @@ $('#showdata').on('click', '.loanreq-edit', function(){
         async: false,
         dataType: 'json',
         success: function(data){
-          $('#loanreqid').val(data.intLoanReqID);
-          $('#borrowername').val(data.strFullName);
-          $('#duration').val(data.strDuration);
-          $('#purpose').val(data.strPurpose);
+          $('#intLoanReqID').val(data.intLoanReqID);
+          $('#strFullName').val(data.strFullName);
+          $('#strDuration').val(data.strDuration);
+          $('#strPurpose').val(data.strPurpose);
           $('#txtID').val(data.intLoanReqID);
-          
+  
+
+          // $('#strSpecimen').val(data.strFamilyName);
         },
         error: function(){
           alert('Could not Edit Data');
@@ -161,35 +176,66 @@ $('#showdata').on('click', '.loanreq-edit', function(){
 
   });
 
-$('#btnEditSave').click(function(){
-      var data = $('#editAccountForm').serialize();
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/editLoanReq',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response==true){
-              $('#myEditModal').modal('hide');
-              $('#editAccountForm')[0].reset();
+$('#showdata').on('click', '.loanreq-edit', function(){
+      var id = $(this).attr('data');
+      $('#myModal').modal('show');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/showloanlist',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html +='<tr>'+
+                  '<td>'+data[i].strFamilyName+'</td>'+
+                  '<td>'+data[i].strGenusName+'</td>'+
+                  '<td>'+data[i].strSpeciesName+'</td>'+
+                  '</tr>';
+          }
+          $('#showplants').html(html);
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+
+  });
+
+
+//$('#btnEditSave').click(function(){
+  //    var data = $('#editAccountForm').serialize();
+   //     $.ajax({
+   //       type: 'ajax',
+     //     method: 'post',
+    //      url: '<?php echo base_url() ?>admin/editLoanReq',
+     //     data: data,
+     //     async: false,
+     //     dataType: 'json',
+     //     success: function(response){
+     //       if(response==true){
+    //          $('#myEditModal').modal('hide');
+     //         $('#editAccountForm')[0].reset();
          //     if(response.type=='add'){
            //     var type = 'added'
        //       }else if(response.type=='update'){
           //      var type ="updated"
               //}
-              showAllCollector();
-            }
-            else{
-             alert('Error');
-            }
-          },
-          error: function(){
-            alert('Could not update data');
-          }
-        });
-    });
+      //        showAllCollector();
+       //     }
+      //      else{
+    //         alert('Error');
+    //        }
+    //      },
+     //     error: function(){
+     ///       alert('Could not update data');
+       //   }
+     //   });
+  //  });
 
 
 

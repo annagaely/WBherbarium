@@ -1300,18 +1300,37 @@ public function editLoanReq(){
 		$id = $this->input->get('id');
 		$this->db->where('intLoanReqID', $id);
 		$query = $this->db->select("Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, concat(intDuration,' ',strDtWkMt) as strDuration,strPurpose, lr.intOUserID,lr.intLoanReqID")
-			->join('tblOnlineUser ou', 'lr.intOUserID = ou.intOUserID')
-			->get('tblLoanReq lr');
+		->join('tblOnlineUser ou','ou.intOUserID = lr.intOUserID')
+		->get('tblLoanReq lr');
 		if($query->num_rows() > 0){
-			return $query->row();+
-
-		}
-		else{
+			return $query->row();
+		}else{
 			return false;
 		}
+	}
+
+public function showloanlist(){
+
+		$id = $this->input->get('id');
+		$this->db->where('lr.intLoanReqID', $id);
+	$query= $this->db->select("strFamilyName,strGenusName,strSpeciesName")
+		->join('tblLoanReq lr','lr.intLoanReqID = ll.intLoanReqID')
+		->join('tblFamily f','f.intFamilyID = ll.intFamilyID')
+		->join('tblGenus g','g.intGenusID = ll.intGenusID')
+		->join('tblSpecies s','s.intSpeciesID = ll.intSpeciesID')
+		->get('tblLoanList ll');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else
+		{
+			return false;
 		}
 
 
+
+	}
+		
+			 
 
 //DEPOSIT REQUEST
 public function showAllDepositReq()
