@@ -11,7 +11,7 @@ class admin_m extends CI_Model{
 		}else{
 			return false;
 		}
-		
+
 	}
 
 	 public function addPhylum(){
@@ -74,9 +74,9 @@ class admin_m extends CI_Model{
 		}else{
 			return false;
 		}
-		
+
 	}
-		
+
 	public function addClass(){
 		$field = array(
 			'intPhylumID'=>$this->input->post('spID'),
@@ -104,7 +104,7 @@ class admin_m extends CI_Model{
 		}else{
 			return false;
 		}
-	}	
+	}
 	public function updateClass(){
     $id = $this->input->post('txtId');
     $field = array(
@@ -136,13 +136,13 @@ class admin_m extends CI_Model{
 	public function showOrderClassName(){
 		$query = $this->db->get('tblClass');
 		if($query->num_rows() > 0){
-			return $query->result();	
+			return $query->result();
 		}else{
 			return false;
 		}
-		
+
 	}
-	
+
 		public function addOrder(){
 		$field = array(
 			'intClassID'=>$this->input->post('txtcID'),
@@ -170,7 +170,7 @@ class admin_m extends CI_Model{
 		}else{
 			return false;
 		}
-	}	
+	}
 	public function updateOrder(){
     $id = $this->input->post('txtId');
     $field = array(
@@ -207,7 +207,7 @@ public function showAllFamily(){
 			return false;
 		}
 	}
-			
+
 	public function addFamily(){
 		$field = array(
 			'intOrderID'=>$this->input->post('txtoID'),
@@ -235,7 +235,7 @@ public function showAllFamily(){
 		}else{
 			return false;
 		}
-	}	
+	}
     public function updateFamily(){
     $id = $this->input->post('txtId');
     $field = array(
@@ -272,7 +272,7 @@ public function showAllGenus(){
 			return false;
 		}
 	}
-	
+
 	public function addGenus(){
 		$field = array(
 			'intFamilyID'=>$this->input->post('txtoID'),
@@ -300,7 +300,7 @@ public function showAllGenus(){
 		}else{
 			return false;
 		}
-	}	
+	}
     public function updateGenus(){
     $id = $this->input->post('txtId');
     $field = array(
@@ -339,7 +339,7 @@ public function showAllSpecies(){
 			return false;
 		}
 	}
-	
+
 	public function addSpecies(){
 		$field = array(
 			'intGenusID'=>$this->input->post('txtgID'),
@@ -369,7 +369,7 @@ public function showAllSpecies(){
 		}else{
 			return false;
 		}
-	}	
+	}
     public function updateSpecies(){
     $id = $this->input->post('txtId');
     $field = array(
@@ -427,7 +427,7 @@ public function showAllFamilyBoxes(){
 
 		IF @identifier IS NULL
 			SET @boxNumber = 'BOX-001'
-		ELSE 
+		ELSE
 			SET @boxNumber = 'BOX-' + FORMAT(@identifier + 1, '00#')
 
 		INSERT INTO tblFamilyBox (strBoxNumber, intFamilyID, intBoxLimit)
@@ -457,7 +457,7 @@ public function showAllFamilyBoxes(){
 		}else{
 			return false;
 		}
-	}	
+	}
     public function updateFamilyBox(){
     $id = $this->input->post('txtId');
     $field = array(
@@ -500,16 +500,16 @@ public function showAllFamilyBoxes(){
 	DECLARE @specificLocation	VARCHAR(255);
 	DECLARE @shortLocation		VARCHAR(255);
 
-	SET @island	='$island'			
-	SET @region	='$region'			
-	SET @province ='$province'			
-	SET @city ='$citymuni'				
-	SET @area ='$area'				
-	SET @specificLocation ='$specificLocation'	
-	SET @shortLocation ='$shortLocation'	
+	SET @island	='$island'
+	SET @region	='$region'
+	SET @province ='$province'
+	SET @city ='$citymuni'
+	SET @area ='$area'
+	SET @specificLocation ='$specificLocation'
+	SET @shortLocation ='$shortLocation'
 
 	SET NOCOUNT ON;
-	
+
 
 		BEGIN
 			INSERT INTO tblLocality(strIsland, strRegion, strProvince, strCity, strArea, strSpecificLocation, strShortLocation)
@@ -543,13 +543,13 @@ public function showAllFamilyBoxes(){
 	DECLARE @shortLocation		VARCHAR(255);
 	DECLARE @localityID 		INT;
 
-	SET @island	='$island'			
-	SET @region	='$region'			
-	SET @province ='$province'			
-	SET @city ='$citymuni'				
-	SET @area ='$area'				
-	SET @specificLocation ='$specificLocation'	
-	SET @shortLocation ='$shortLocation'	
+	SET @island	='$island'
+	SET @region	='$region'
+	SET @province ='$province'
+	SET @city ='$citymuni'
+	SET @area ='$area'
+	SET @specificLocation ='$specificLocation'
+	SET @shortLocation ='$shortLocation'
 	SET @localityID ='$localityid'
 
 	BEGIN
@@ -570,7 +570,7 @@ public function showAllFamilyBoxes(){
 		}
 	}
 
-	
+
 	public function editLocality(){
 		$id = $this->input->get('id');
 		$this->db->where('intLocalityID', $id);
@@ -594,7 +594,7 @@ public function showAllCollector(){
 		}
 	}
 	public function addCollector(){
-	
+
 	$fname = $this->input->post('fName');
 	$mname = $this->input->post('mName');
 	$minitial = $this->input->post('mInitial');
@@ -616,7 +616,7 @@ public function showAllCollector(){
 	DECLARE @email			VARCHAR(255);
 	DECLARE @college		VARCHAR(100);
 	DECLARE @section		VARCHAR(50);
-	
+
 	set @firstname = '$fname'
 	set @middlename = '$mname'
 	set @lastname = '$lname'
@@ -632,7 +632,7 @@ public function showAllCollector(){
 		DECLARE @duplicateID INT;
 
 		SELECT @duplicateID = intPersonID
-		FROM tblPerson 
+		FROM tblPerson
 		WHERE strFirstname = @firstname
 			AND strMiddlename = @middlename
 			AND strLastname = @lastname
@@ -641,20 +641,20 @@ public function showAllCollector(){
 
 		IF @duplicateID IS NULL
 			BEGIN
-				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname, 
-									  strMiddleInitial, strNameSuffix, 
+				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname,
+									  strMiddleInitial, strNameSuffix,
 									  strContactNumber, strEmailAddress)
 				VALUES(@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email)
 
 				SELECT @personID = intPersonID
-				FROM tblPerson 
+				FROM tblPerson
 				WHERE strFirstname = @firstname
 					AND strMiddlename = @middlename
 					AND strLastname = @lastname
 					AND strMiddleInitial = @middleinitial
 					AND strNameSuffix = @namesuffix
 					AND strContactNumber = @contactno
-					AND strEmailAddress = @email 
+					AND strEmailAddress = @email
 			END
 		ELSE
 			SET @personID = @duplicateID
@@ -699,7 +699,7 @@ public function showAllCollector(){
 	DECLARE @college		VARCHAR(100);
 	DECLARE @section		VARCHAR(50);
 	DECLARE @collectorID		INT;
-	
+
 	set @firstname = '$fname'
 	set @middlename = '$mname'
 	set @lastname = '$lname'
@@ -775,7 +775,7 @@ BEGIN
 	}
 
 	public function addValidator(){
-	
+
 	$fname = $this->input->post('txtFName');
 	$mname = $this->input->post('txtMName');
 	$minitial = $this->input->post('txtMInitial');
@@ -797,7 +797,7 @@ BEGIN
 	DECLARE @email			VARCHAR(255);
 	DECLARE @college		VARCHAR(100);
 	DECLARE @institution	VARCHAR(50);
-	
+
 	set @firstname = '$fname'
 	set @middlename = '$mname'
 	set @lastname = '$lname'
@@ -811,7 +811,7 @@ BEGIN
 		DECLARE @duplicateID INT;
 
 		SELECT @duplicateID = intPersonID
-		FROM tblPerson 
+		FROM tblPerson
 		WHERE strFirstname = @firstname
 			AND strMiddlename = @middlename
 			AND strLastname = @lastname
@@ -820,20 +820,20 @@ BEGIN
 
 		IF @duplicateID IS NULL
 			BEGIN
-				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname, 
-									  strMiddleInitial, strNameSuffix, 
+				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname,
+									  strMiddleInitial, strNameSuffix,
 									  strContactNumber, strEmailAddress)
 				VALUES(@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email)
 
 				SELECT @personID = intPersonID
-				FROM tblPerson 
+				FROM tblPerson
 				WHERE strFirstname = @firstname
 					AND strMiddlename = @middlename
 					AND strLastname = @lastname
 					AND strMiddleInitial = @middleinitial
 					AND strNameSuffix = @namesuffix
 					AND strContactNumber = @contactno
-					AND strEmailAddress = @email 
+					AND strEmailAddress = @email
 			END
 		ELSE
 			SET @personID = @duplicateID
@@ -899,7 +899,7 @@ public function editValidator(){
 	DECLARE @college		VARCHAR(100);
 	DECLARE @institution	VARCHAR(50);
 	DECLARE @validatorID	INT;
-	
+
 	set @firstname = '$fname'
 	set @middlename = '$mname'
 	set @lastname = '$lname'
@@ -911,9 +911,9 @@ public function editValidator(){
 	set @validatorID = '$validatorid'
 
 
-		
+
 		DECLARE @personID INT;
-		
+
 		SET @personID = (SELECT intPersonID FROM tblValidator WHERE intValidatorID = @validatorID)
 
 		UPDATE tblPerson
@@ -949,7 +949,7 @@ public function editValidator(){
 		}
 	}
 	public function addStaff(){
-	
+
 	$fname = $this->input->post('SMgtFName');
 	$mname = $this->input->post('SMgtMName');
 	$minitial = $this->input->post('mInitial');
@@ -988,7 +988,7 @@ public function editValidator(){
 		DECLARE @duplicateID INT
 
 		SELECT @duplicateID = intPersonID
-		FROM tblPerson 
+		FROM tblPerson
 		WHERE strFirstname = @firstname
 			AND strMiddlename = @middlename
 			AND strLastname = @lastname
@@ -997,25 +997,25 @@ public function editValidator(){
 
 		IF @duplicateID IS NULL
 			BEGIN
-				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname, 
-									  strMiddleInitial, strNameSuffix, 
+				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname,
+									  strMiddleInitial, strNameSuffix,
 									  strContactNumber, strEmailAddress)
 				VALUES(@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email)
 
 				SELECT @personID = intPersonID
-				FROM tblPerson 
+				FROM tblPerson
 				WHERE strFirstname = @firstname
 					AND strMiddlename = @middlename
 					AND strLastname = @lastname
 					AND strMiddleInitial = @middleinitial
 					AND strNameSuffix = @namesuffix
 					AND strContactNumber = @contactno
-					AND strEmailAddress = @email 
+					AND strEmailAddress = @email
 			END
 		ELSE
 			SET @personID = @duplicateID
 
-		
+
 		IF NOT EXISTS (SELECT intStaffID
 					   FROM tblHerbariumStaff
 					   WHERE intPersonID = @personID AND strRole = @role AND strPosition = @position)
@@ -1023,7 +1023,7 @@ public function editValidator(){
 			INSERT INTO tblHerbariumStaff (intPersonID, strRole, strCollegeDepartment, strPosition)
 			VALUES (@personID, @role, @department, @position)
 
-			IF @role IN ('CURATOR', 'SUPER-ADMINISTRATOR') AND 
+			IF @role IN ('CURATOR', 'SUPER-ADMINISTRATOR') AND
 				NOT EXISTS(SELECT intValidatorID FROM tblValidator WHERE intPersonID = @personID)
 			BEGIN
 				INSERT INTO tblValidator(intPersonID, strInstitution, strValidatorType)
@@ -1065,7 +1065,7 @@ public function editValidator(){
 	}
 
 public function updateStaff(){
-	
+
 	$fname = $this->input->post('eSMgtFName');
 	$mname = $this->input->post('eSMgtMName');
 	$minitial = $this->input->post('emInitial');
@@ -1103,7 +1103,7 @@ public function updateStaff(){
 	set @namesuffix	='$nsuffix'
 	set @staffID	='$staffid'
 
-	
+
 		DECLARE @personID INT
 		DECLARE @prevRole VARCHAR(50)
 		DECLARE @validatorID INT
@@ -1125,9 +1125,9 @@ public function updateStaff(){
 			strCollegeDepartment = @department,
 			strPosition = @position
 		WHERE intStaffID = @staffID
-		
+
 		IF (@prevRole <> @role) AND (@role IN ('CURATOR', 'SUPER-ADMINISTRATOR'))
-			BEGIN 
+			BEGIN
 				SET @validatorID = (SELECT intValidatorID FROM tblValidator WHERE intPersonID = @personID);
 
 				IF @validatorID IS NULL
@@ -1155,7 +1155,7 @@ public function updateStaff(){
 		}
 	}
 	public function addAccounts(){
-	
+
 	$staffname = $this->input->post('StaffName');
 	$username = $this->input->post('AAUName');
 	$password = $this->input->post('AAPass');
@@ -1284,7 +1284,7 @@ public function delete_event($id)
 
 // LOAN REQUEST //
 public function showLoanReq(){
-$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, concat(intDuration,' ',strDtWkMt) as strDuration,strPurpose, lr.intOUserID,intLoanReqID 
+$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, concat(intDuration,' ',strDtWkMt) as strDuration,strPurpose, lr.intOUserID,intLoanReqID
 		from tblLoanReq lr join tblOnlineUser ou
 		on lr.intOUserID = ou.intOUserID
 		where strStatus ='Pending'");
@@ -1303,7 +1303,7 @@ public function editLoanReq(){
 			->join('tblOnlineUser ou', 'lr.intOUserID = ou.intOUserID')
 			->get('tblLoanReq lr');
 		if($query->num_rows() > 0){
-			return $query->row();+
+			return $query->row();
 
 		}
 		else{
@@ -1335,7 +1335,7 @@ public function viewDepositReq(){
 		}
 	}
 public function updateAcceptStatus(){
-	
+
  //   $id = $this->input->post('txtDepositReqID');
   //  $field = array(
  //   'strStatus'=> $this->input->post('txtStatus'),
@@ -1371,7 +1371,7 @@ public function updateAcceptStatus(){
 			return false;
 		}
 	}
-  
+
 
 
 
