@@ -59,7 +59,7 @@
     <!-- Section heading -->
       <h2 class="h1-responsive font-weight-bold my-5">Welcome to PUP Herbarium</h2>
       <!-- Section description -->
-      <p class="lead grey-text w-responsive mx-auto mb-5">>Come and explore the first Polytechnic University in the Philippines' herbarium specimen collections.</p>
+      <p class="lead grey-text w-responsive mx-auto mb-5">Come and explore the first Polytechnic University in the Philippines' herbarium specimen collections.</p>
 
       <!-- Grid row -->
       <div class="row">
