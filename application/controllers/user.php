@@ -121,7 +121,7 @@ public function userRegister(){
 	{
 		$this->load->view('userside/fullcalendar');
 	}
-	public function appointment() {	
+	public function appointment() {
 	if($this->session->userdata('strUserName')!=''){
 	 $title['title'] = "PUPHerbarium | Appointment";
 	 $this->load->view('userside/navbar2', $title);
@@ -154,7 +154,7 @@ public function userRegister(){
 public function addAppointment(){
 		$result = $this->m->addAppointment();
 		echo json_encode($result);
-
+}
 	public function addDeposit(){
 		$result = $this->m->addDeposit();
 		echo json_encode($result);

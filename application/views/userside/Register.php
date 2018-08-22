@@ -16,14 +16,7 @@
     <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/logo1.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <script>
-      function disableSubmit(){
-        var fname = document.forms["regForm"]["txtfirstname"].value;
-        if (fname == "") {
-          document.getElementById("btnSubmit").disabled = true;
-        }
-      }
-    </script>
+
 
 </head>
 <body>
@@ -150,6 +143,7 @@
 <!-- Card -->
 
 <!-- Footer -->
+
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
     $(function(){
