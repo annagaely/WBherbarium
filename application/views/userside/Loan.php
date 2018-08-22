@@ -52,8 +52,8 @@
             <select name="txtdayweekmonth" class="form-control grey-text font-weight-light" style="font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;">
               <!--<option value="1">-- select one --</option>-->
               <option value="Day/s">Day/s</option>
-              <option value="Weeks">Weeks</option>
-              <option value="Months">Months</option>
+              <option value="Weeks">Week/s</option>
+              <option value="Months">Month/s</option>
             </select>
            
           </div>

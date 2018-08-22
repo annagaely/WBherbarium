@@ -82,7 +82,7 @@
                       <label style="font-size: 14px;">Specimens:</label>
                     </div>
                     <div class="col-sm-8">
-                     <textarea class="form-control" rows="5" id="Specimens" ></textarea>
+                     <textarea name="txtSpecimen" id="strSpecimen" class="form-control" rows="5" id="Specimens" ></textarea>
                     </div>
                     <div class="modal-footer">     
                   </div>
@@ -151,6 +151,7 @@ $('#showdata').on('click', '.loanreq-edit', function(){
           $('#duration').val(data.strDuration);
           $('#purpose').val(data.strPurpose);
           $('#txtID').val(data.intLoanReqID);
+          
         },
         error: function(){
           alert('Could not Edit Data');

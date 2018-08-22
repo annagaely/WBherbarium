@@ -155,6 +155,10 @@ public function addAppointment(){
 		$result = $this->m->addAppointment();
 		echo json_encode($result);
 
-	}
+	public function addDeposit(){
+		$result = $this->m->addDeposit();
+		echo json_encode($result);
 
+
+	}
 }?>

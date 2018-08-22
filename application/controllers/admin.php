@@ -685,6 +685,7 @@ public function edit_event()
 		echo json_encode($result);
 
 	}
+
 	//SENDING EMAIL NOT YET FINAL
 	public function sendMail()
 {
@@ -726,7 +727,7 @@ public function showLoanReq(){
 public function editLoanReq(){
 		$result = $this->m->editLoanReq();
 		echo json_encode($result);
-	
+
 }
 
 

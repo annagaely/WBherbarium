@@ -1281,6 +1281,8 @@ public function delete_event($id)
 
 
 	/****** END CALENDAR!!!!! ******/
+
+// LOAN REQUEST //
 public function showLoanReq(){
 $query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, concat(intDuration,' ',strDtWkMt) as strDuration,strPurpose, lr.intOUserID,intLoanReqID 
 		from tblLoanReq lr join tblOnlineUser ou
@@ -1301,7 +1303,7 @@ public function editLoanReq(){
 			->join('tblOnlineUser ou', 'lr.intOUserID = ou.intOUserID')
 			->get('tblLoanReq lr');
 		if($query->num_rows() > 0){
-			return $query->row();
+			return $query->row();+
 
 		}
 		else{
@@ -1311,6 +1313,65 @@ public function editLoanReq(){
 
 
 
+//DEPOSIT REQUEST
+public function showAllDepositReq()
+{
+	$query = $this->db->get('tblDepositReq');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else
+		{
+			return false;
+		}
+}
+public function viewDepositReq(){
+		$id = $this->input->get('id');
+		$this->db->where('intDepositReqID', $id);
+		$query = $this->db->get('tblDepositReq');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+public function updateAcceptStatus(){
+	
+ //   $id = $this->input->post('txtDepositReqID');
+  //  $field = array(
+ //   'strStatus'=> $this->input->post('txtStatus'),
+
+   // );
+  //  $this->db->where('intDepositReqID', $id);
+  //  $this->db->update('tblDepositReq', $field);
+  //  if($this->db->affected_rows() > 0){
+  //    return true;
+   // }else{
+   //   return false;
+    //}
+    $depositid = $this->input->post('txtDepositReqID');
+	$status = $this->input->post('txtStatus');
+
+
+	$query="
+
+	DECLARE @depositid 		INT;
+	DECLARE @status		VARCHAR(50);
+
+	Set @depositid ='$depositid'
+	Set @status ='$status'
+
+
+		UPDATE tblDepositReq
+		SET strStatus = @Status
+		WHERE intDepositReqID = @depositid;
+	";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+  
 
 
 
