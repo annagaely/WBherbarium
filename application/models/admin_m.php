@@ -1303,7 +1303,7 @@ public function editLoanReq(){
 			->join('tblOnlineUser ou', 'lr.intOUserID = ou.intOUserID')
 			->get('tblLoanReq lr');
 		if($query->num_rows() > 0){
-			return $query->row();+
+			return $query->row();
 
 		}
 		else{

@@ -58,11 +58,17 @@ class user extends CI_Controller {
 	}
 	public function deposits()
 	{
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium |  Deposits";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/Deposit');
 		$this->load->view('userside/footer');
 	}
+	else{
+	redirect(base_url().'user/index');
+	}
+}
+
 	public function loans()
 	{
 	if($this->session->userdata('strUserName')!=''){
@@ -151,9 +157,10 @@ public function userRegister(){
 	echo json_encode($result);
 	}
 
-public function addAppointment(){
+	public function addAppointment(){
 		$result = $this->m->addAppointment();
 		echo json_encode($result);
+}
 
 	public function addDeposit(){
 		$result = $this->m->addDeposit();
