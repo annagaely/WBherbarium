@@ -729,6 +729,13 @@ public function editLoanReq(){
 		echo json_encode($result);
 
 }
+public function showloanlist(){
+		//$result = $this->m->showloanlist();
+		$result = $this->m->showloanlist();
+		echo json_encode($result);
+		
+
+}
 
 
 
