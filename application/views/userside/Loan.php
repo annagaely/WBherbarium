@@ -72,22 +72,6 @@
           <div id="inserted_item_data"></div>
         </div>
       </div>
-
-
-      <div class="md-form">
-        <form id= "textForms" method="POST" enctype="multipart/form-data">
-        <div class="row">
-          <div class="col-md-3">
-              <input type="date" id="startDate" name="dateStart" class="form-control" style="width: 65%; margin-left: 35%">
-              <label for="startDate" class="font-weight-light ml-3">Start Date: </label>
-          </div>
-          <div class="col-md-3">
-              <input type="date" id="endDate" name="dateEnd" class="form-control" style=" width: 65%; margin-left:35%;">
-              <label for="endDate" class="font-weight-light ml-3">End Date: </label>
-          </div>
-
-</div>
-</div>
 <div class="md-form">
   <label>Purpose of Loan: </label>
 </div>
