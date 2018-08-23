@@ -137,7 +137,7 @@
     </div>
   </div>
 </div>
-      <div class="col-md-13 mx-0 px-0 py-1f">
+      <div class="col-md-13 mx-0 px-0">
 <div class="container">
     <div id="calendar"></div></div>   
 
