@@ -338,8 +338,4 @@
     </div>
 </section>
 
-<!-- Card -->
-    <!-- /Start your project here-->
-
-<!-- Projects section v.4 -->
-<!-- Projects section v.4 -->
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1365.0846300626363!2d121.01038434500167!3d14.596660128798504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9dd5ee0e457%3A0xe1e45b9db34d61a9!2sPUP+Main+Building!5e0!3m2!1sen!2sph!4v1535047021119" width="100%" height="450" style="border:none; padding-bottom:0; margin-bottom:0;" allowfullscreen></iframe>
