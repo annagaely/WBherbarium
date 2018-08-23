@@ -29,7 +29,9 @@
             <input type="date" name="txtDateCollected" id= "dtDateCollected" class="form-control grey-text font-weight-light" value="">
         </div>
 
+
         <!--<div class="md-form">
+
           <input type="text" id="strCollector" name="txtCollector" class="form-control">
           <label for="strCollector" class="font-weight-light">Collector's Name</label>
         </div>-->

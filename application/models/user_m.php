@@ -157,9 +157,9 @@ public function addDeposit(){
 	$cName = $this->input->post('txtCommonName');
 	$loc = $this->input->post('txtLocation');
 	$datecoll = $this->input->post('txtDateCollected');
-	$coll = $this->input->post('txtCollector');
+	//$coll = $this->input->post('txtCollector');
 	$plantDesc = $this->input->post('txtplantDesc');
-
+$getusername = $this->session->userdata['strUserName'];
 
 	$query="
 
@@ -174,8 +174,9 @@ public function addDeposit(){
 	set @commonname = '$cName'
 	set @location = '$loc'
 	set @datecollected = '$datecoll'
-	set @collector = '$coll'
 	set @plantdescription = '$plantDesc'
+			declare @sessionid int;
+		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
 
 SET NOCOUNT ON;
@@ -209,6 +210,7 @@ $getusername = $this->session->userdata['strUserName'];
 	$doA = $this->input->post('dateofappointment');
 	$appdesc = $this->input->post('txtappdesc');
 
+$getusername = $this->session->userdata['strUserName'];
 
 
 	$query="
@@ -221,7 +223,8 @@ $getusername = $this->session->userdata['strUserName'];
 	set @appointmenttype = '$aType'
 	set @dateofappointment = '$doA'
 	set @applicationdesc = '$appdesc'
-
+declare @sessionid int;
+		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 	
 SET NOCOUNT ON;
 	declare @sessionid int;
