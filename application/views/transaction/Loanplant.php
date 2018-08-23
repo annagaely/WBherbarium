@@ -6,9 +6,134 @@
             <li class="breadcrumb-item">Transaction</li>
             <li class="breadcrumb-item">Loan Plant</li>
           </ul>
+
+      <!-- Modal-->
+      <div id="viewLoanPlant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+        <div role="document" class="modal-dialog modal-lg">
+          <div class="modal-content" >
+            <div class="modal-header">
+              <h5 id="exampleModalLabel" class="modal-title">Loan Plant</h5>
+               <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
+                <span aria-hidden="true">×</span>
+               </button>
+            </div>
+          <div class="modal-body">
+          <div class="row">
+            <div class="col-md-10" style="margin-left: auto; margin-right: auto;">
+              <form id= "updateStatusForm" method="POST" enctype="multipart/form-data"class="form-horizontal">
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                    <label style="font-size: 14px;">Loan Request ID:</label>
+                  </div>
+                  <div class="col-sm-8">
+                    <input type='hidden' name='txtId' id="txtID" value="">
+                    <input type="text" name="txtLoanreqID" id="intLoanReqID" class="form-control" disabled>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                    <label style="font-size: 14px;">Borrower's Name:</label>
+                  </div>
+                  <div class="col-sm-8">
+                    <input type="text" name="txtBorrowerName" id="strFullName" class="form-control" disabled>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                    <label style="font-size: 14px;">Duration:</label>
+                  </div>
+                  <div class="col-sm-8">
+                    <input type="text" name="txtDuration" id="strDuration" class="form-control" disabled>
+                  </div>
+                </div>
+                 <div class="form-group row">
+                  <div class="col-sm-4">
+                    <label style="font-size: 14px;">Purpose:</label>
+                  </div>
+                  <div class="col-sm-8">
+                   <textarea class="form-control" rows="3" name="txtPurpose" id="strPurpose" disabled></textarea>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                    <label style="font-size: 14px;margin-top: 10px">Specimens:</label>
+                  </div>
+                  <div class="col-sm-8">
+                   <!--      <div class="card"> -->
+                         <!--  <div class="card-body"> -->
+                             <div class="table-responsive">
+                              <table class="table table-striped">
+                                <thead>
+                                  <tr>
+                                    <th>Family Name</th>
+                                    <th>Genus Name</th>
+                                    <th>Species Name</th>
+                                  </tr>
+                                 </thead>
+                                <tbody tbody id="showplants">
+                                </tbody>
+                              </table>
+                             </div>
+                      <!--     </div> -->
+                        <!-- </div> -->
+                  </div>
+                </div>
+                    <div class="form-group row">
+                    <div class="col-sm-4">
+                     <label style="font-size: 14px;">Status:</label>
+                   </div>
+                   <div class="col-sm-4">
+                    <select name="txtStatus" id="strStatus"  class="form-control">
+                      <option value="Accepted">Accept</option>
+                      <option value="Rejected">Reject</option>
+                    </select>
+                   </div>
+                 </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+              <div class="modal-footer">
+              <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 200px" data-dismiss="modal" data-toggle="modal" data-target="#msgModal">
+                  <!--<input type="reject" value="Reject" id='btnReject' class="btn btn-primary">-->
+              </div>
+          </div>
+         </div>
+        </div>
+        <!-- Modal-->
+        <div id="msgModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+          <div role="document" class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 id="exampleModalLabel" class="modal-title">Send</h5>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group row pr-4">
+                    <label class="col-sm-2">To:</label>
+                    <input type="email" class="form-control col-sm-10" disabled>
+                  </div>
+                  <div class="form-group row pr-4">
+                    <label class="col-sm-2">From:</label>
+                    <input type="email" class="form-control col-sm-10" disabled>
+                  </div>
+                  <div class="form-group pr-2">
+                    <label>Message:</label>
+                    <textarea class="form-control"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                <button type="button" class="btn btn-primary">Send</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
+    </div>
        <div class="card">
         <div class="card-body">
           <div class="table-responsive">
@@ -23,7 +148,7 @@
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdata">    
+              <tbody tbody id="showdata">
             </tbody>
             </table>
         </div>
@@ -31,101 +156,7 @@
     </div>
 
     <!-- FOR DESiGN PURPOSES ONLY-->
-        <!-- Modal-->
-        <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
-          <div role="document" class="modal-dialog modal-lg">
-            <div class="modal-content" >
-              <div class="modal-header">
-                <h5 id="exampleModalLabel" class="modal-title">Loan Plant</h5>
-                 <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
-                  <span aria-hidden="true">×</span>
-                 </button>
-              </div>
-            <div class="modal-body"> 
-            <div class="row">
-              <div class="col-md-10" style="margin-left: auto; margin-right: auto;">
-                <form id= "updateStatusForm" method="POST" enctype="multipart/form-data"class="form-horizontal">
-                  <div class="form-group row">
-                    <div class="col-sm-4">
-                      <label style="font-size: 14px;">Loan Request ID:</label>
-                    </div>
-                    <div class="col-sm-8">
-                      <input type='hidden' name='txtId' id="txtID" value="">
 
-                      <input type="text" name="txtLoanreqID" id="intLoanReqID" class="form-control" disabled>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-sm-4">
-                      <label style="font-size: 14px;">Borrower's Name:</label>
-                    </div>
-                    <div class="col-sm-8">
-                      <input type="text" name="txtBorrowerName" id="strFullName" class="form-control" disabled>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-sm-4">
-                      <label style="font-size: 14px;">Duration:</label>
-                    </div>
-                    <div class="col-sm-8">
-                      <input type="text" name="txtDuration" id="strDuration" class="form-control" disabled>
-                    </div>
-                  </div>
-                   <div class="form-group row">
-                    <div class="col-sm-4">
-                      <label style="font-size: 14px;">Purpose:</label>
-                    </div>
-                    <div class="col-sm-8">
-                     <textarea class="form-control" rows="3" name="txtPurpose" id="strPurpose" disabled></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-sm-4">
-                      <label style="font-size: 14px;">Specimens:</label>
-                    </div>
-                      <div class="col-sm-8">
-                     <!--      <div class="card"> -->
-                           <!--  <div class="card-body"> -->
-                               <div class="table-responsive">
-                                <table class="table table-striped">
-                                  <thead>
-                                    <tr>
-                                      <th>Family Name</th>
-                                      <th>Genus Name</th>
-                                      <th>Species Name</th>
-                                    </tr>
-                                   </thead>
-                                  <tbody tbody id="showplants">    
-                                  </tbody>
-                                </table>
-                              </div>
-                       </div>
-                  </div>
-
-                      <div class="form-group row">
-                      <div class="col-sm-4">
-                       <label style="font-size: 14px;">Status:</label>
-                     </div>
-                     <div class="col-sm-4">
-                     <select name="txtStatus" id="strStatus"  class="form-control">
-                        <option value="Accepted">Accept</option>
-                        <option value="Rejected">Reject</option>
-                      </select>
-                     </div>
-                   </div>
-                </form>
-              </div>
-            </div>
-          </div>
-
-
-                <div class="modal-footer">      
-                <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 200px">
-                    <!--<input type="reject" value="Reject" id='btnReject' class="btn btn-primary">-->
-                </div>
-            </div>
-           </div>
-          </div>
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
     $(function(){
@@ -165,7 +196,7 @@
 
 $('#showdata').on('click', '.loanreq-edit', function(){
       var id = $(this).attr('data');
-      $('#myModal').modal('show');
+      $('#viewLoanPlant').modal('show');
       $.ajax({
         type: 'ajax',
         method: 'get',
@@ -179,7 +210,7 @@ $('#showdata').on('click', '.loanreq-edit', function(){
           $('#strDuration').val(data.strDuration);
           $('#strPurpose').val(data.strPurpose);
           $('#txtID').val(data.intLoanReqID);
-  
+
 
           // $('#strSpecimen').val(data.strFamilyName);
         },
@@ -239,8 +270,8 @@ $('#btnSave').click(function(){
              //// }else if(response.type=='update'){
              //   var type ="updated"
             //  }
-                 alert('Request Sent');
-     location.reload(); 
+
+
 
             }else{
               alert('Error');

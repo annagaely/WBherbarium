@@ -78,12 +78,14 @@
                 <li><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
+
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
 
 
 <!--                  <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
+
               </ul>
             </li>
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>

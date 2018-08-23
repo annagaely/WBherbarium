@@ -441,7 +441,9 @@ public function updateFamilyBox(){
 	{
 		$title['title'] = "PUPHerbarium | Access Accounts";
 		$this->load->view('templates/header', $title);
+
 		$this->load->view('maintenance/Accessaccounts');
+
 		$this->load->view('templates/footer');
 	}
 		public function showAllAccounts(){
@@ -720,7 +722,8 @@ public function editLoanReq(){
 public function showloanlist(){
 		//$result = $this->m->showloanlist();
 		$result = $this->m->showloanlist();
-		echo json_encode($result);		
+		echo json_encode($result);
+
 }
 	public function updateLoanStatus(){
 		$result = $this->m->updateLoanStatus();
