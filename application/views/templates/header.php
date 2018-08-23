@@ -46,7 +46,7 @@
           </div>
 
           <!-- Small Brand information, appears on minimized sidebar-->
-          <div class="sidenav-header-logo"><a href="{{ url('/home') }}" class="brand-small text-center"> <strong>A</strong><strong class="text-primary">B</strong></a></div>
+          <div class="sidenav-header-logo"><a href="<?php echo base_url(); ?>admin/Dashboard" class="brand-small text-center"> <strong>A</strong><strong class="text-primary">B</strong></a></div>
           </div>
 
         <!-- Sidebar Navigation Menus-->

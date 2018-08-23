@@ -727,11 +727,6 @@ public function showloanlist(){
 		echo json_encode($result);
 
 }
-	public function updateLoanStatus(){
-		$result = $this->m->updateLoanStatus();
-		echo json_encode($result);
-
-	}
 
 
 //APPOINTMENT

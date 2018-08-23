@@ -41,22 +41,18 @@
          <div class="modal-body">
 
                <form id= "addAccountForm" method="POST" enctype="multipart/form-data">
-                  <div class="form-group">
-                    <label>To:</label> <label style="color: red">*</label>
-                     <input type="text" id="AccTo" name ="AcceptTo" class="form-control">
-                   
-                  </div>
-
-                   <div class="form-group">
-                    <label>From:</label> <label style="color: red">*</label>
-                    <input type = "text" id="AccFrom" name ="AcceptFrom" class="form-control">
-                  </div>
-
-                  <div class="form-group">
-                    <label>Message:</label> <label style="color: red">*</label>
-                    <textarea row = "5" id="AccMessage" name ="AcceptMessage" class="form-control"></textarea>
-                  </div>
-
+                      <div class="form-group row pr-4">
+                      <label class="col-sm-2">To:</label>
+                      <input type="email" class="form-control col-sm-10" disabled>
+                    </div>
+                    <div class="form-group row pr-4">
+                      <label class="col-sm-2">From:</label>
+                      <input type="email" class="form-control col-sm-10" disabled>
+                    </div>
+                    <div class="form-group pr-2">
+                      <label>Message:</label>
+                      <textarea class="form-control"></textarea>
+                    </div>
 
                   <div class="modal-footer">
                     <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
@@ -80,24 +76,19 @@
          <div class="modal-body">
 
                <form id= "addAccountForm" method="POST" enctype="multipart/form-data">
-                  <div class="form-group">
-                    <label>To:</label> <label style="color: red">*</label>
-                     <input type="text" id="AccTo" name ="AcceptTo" class="form-control">
-                   
-                  </div>
-
-                   <div class="form-group">
-                    <label>From:</label> <label style="color: red">*</label>
-                    <input type = "text" id="AccFrom" name ="AcceptFrom" class="form-control">
-                  </div>
-
-                  <div class="form-group">
-                    <label>Message:</label> <label style="color: red">*</label>
-                    <textarea row = "5" id="AccMessage" name ="AcceptMessage" class="form-control"></textarea>
-                  </div>
-
-
-                  <div class="modal-footer">
+                                      <div class="form-group row pr-4">
+                      <label class="col-sm-2">To:</label>
+                      <input type="email" class="form-control col-sm-10" disabled>
+                    </div>
+                    <div class="form-group row pr-4">
+                      <label class="col-sm-2">From:</label>
+                      <input type="email" class="form-control col-sm-10" disabled>
+                    </div>
+                    <div class="form-group pr-2">
+                      <label>Message:</label>
+                      <textarea class="form-control"></textarea>
+                    </div>
+                      <div class="modal-footer">
                     <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
                   </div>
                 </form>
