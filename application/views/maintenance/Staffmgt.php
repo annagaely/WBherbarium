@@ -107,7 +107,7 @@
 
 
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">       
                     <input type="submit" id="btnSave" value="Save" class="btn btn-primary">
 
                   </div>
@@ -211,7 +211,7 @@
 
 
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">       
                     <input type="submit" id="btnEditSave" value="Save" class="btn btn-primary">
 
                   </div>

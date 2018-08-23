@@ -64,7 +64,7 @@
                     <input type="text" name="txtInstitution" placeholder="Institution" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">       
                     <input type="submit" value="Save" id="btnSave" class="btn btn-primary">
                   </div>
                 </form>
@@ -126,7 +126,7 @@
                     <input type="text" name="txteInstitution" placeholder="Institution" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">       
                     <input type="submit" value="Save" id="btnEditSave" class="btn btn-primary">
                   </div>
                 </form>

@@ -29,53 +29,100 @@ public function can_login($username,$password){
 			$affposition=$this->input->post('txtaffpos');
 			$username=$this->input->post('txtusername');
 			$password=$this->input->post('txtpassword');
-$query="
 
-	DECLARE @firstname		VARCHAR(50);
-	DECLARE @middlename		VARCHAR(50);
-	DECLARE @lastname		VARCHAR(50);
-	DECLARE @middleinitial	VARCHAR(3);
-	DECLARE @namesuffix		VARCHAR(5);
-	DECLARE @contactno		VARCHAR(15);
-	DECLARE @email			VARCHAR(255);
-	DECLARE @presentadd		VARCHAR(100);
-	DECLARE @permaddress	VARCHAR(50);
 
-	DECLARE @affname		VARCHAR(255);
-	DECLARE @affaddress		VARCHAR(255);
-	DECLARE @affposition	VARCHAR(255);
-	DECLARE @username		VARCHAR(100);
-	DECLARE @password		VARCHAR(50);
+      if($firstname!=''){
+        if($lastname!=''){
+          if($contactno!=''){
+            if($email!=''){
+              if($presentadd!=''){
+                if($permaddress!=''){
+                  if($affname!=''){
+                    if($affaddress!=''){
+                      if($affposition!=''){
+                        if($username!=''){
+                          if($password!=''){
+                            $query="
 
-	SET @firstname	= '$firstname'
-	SET @middlename	= '$middlename'
-	SET @lastname	= '$lastname'
-	SET @middleinitial	= SUBSTRING(@middlename, 1, 1)
-	SET @namesuffix		= '$namesuffix'
-	SET @contactno		= '$contactno'
-	SET @email			= '$email'
-	SET @presentadd		= '$presentadd'
-	SET @permaddress	= '$permaddress'
+                            	DECLARE @firstname		VARCHAR(50);
+                            	DECLARE @middlename		VARCHAR(50);
+                            	DECLARE @lastname		VARCHAR(50);
+                            	DECLARE @middleinitial	VARCHAR(3);
+                            	DECLARE @namesuffix		VARCHAR(5);
+                            	DECLARE @contactno		VARCHAR(15);
+                            	DECLARE @email			VARCHAR(255);
+                            	DECLARE @presentadd		VARCHAR(100);
+                            	DECLARE @permaddress	VARCHAR(50);
 
-	SET @affname		= '$affname'
-	SET @affaddress		= '$affaddress'
-	SET @affposition	= '$affposition'
-	SET @username		= '$username'
-	SET @password		= '$password'
+                            	DECLARE @affname		VARCHAR(255);
+                            	DECLARE @affaddress		VARCHAR(255);
+                            	DECLARE @affposition	VARCHAR(255);
+                            	DECLARE @username		VARCHAR(100);
+                            	DECLARE @password		VARCHAR(50);
 
-	SET NOCOUNT ON;
+                            	SET @firstname	= '$firstname'
+                            	SET @middlename	= '$middlename'
+                            	SET @lastname	= '$lastname'
+                            	SET @middleinitial	= SUBSTRING(@middlename, 1, 1)
+                            	SET @namesuffix		= '$namesuffix'
+                            	SET @contactno		= '$contactno'
+                            	SET @email			= '$email'
+                            	SET @presentadd		= '$presentadd'
+                            	SET @permaddress	= '$permaddress'
 
-			INSERT INTO tblOnlineUser 
-			VALUES (@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email,@presentadd,@permaddress, @affname, @affaddress, @affposition, @username,@password)
-	
+                            	SET @affname		= '$affname'
+                            	SET @affaddress		= '$affaddress'
+                            	SET @affposition	= '$affposition'
+                            	SET @username		= '$username'
+                            	SET @password		= '$password'
 
-	";
-	if($this->db->query($query)){
-			return true;
-		}else{
-			return false;
-		}
-	}
+                            	SET NOCOUNT ON;
+
+                            			INSERT INTO tblOnlineUser
+                            			VALUES (@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email,@presentadd,@permaddress, @affname, @affaddress, @affposition, @username,@password)
+
+
+                            	";
+                            	if($this->db->query($query)){
+                            			return true;
+                            		} else{
+                            			return false;
+                            		}
+
+                          } else{
+                            return false;
+                          }
+                        } else{
+                          return false;
+                        }
+                      } else{
+                        return false;
+                      }
+                    } else{
+                      return false;
+                    }
+                  } else{
+                    return false;
+                  }
+                } else{
+                  return false;
+                }
+              } else{
+                return false;
+              }
+            } else{
+              return false;
+            }
+          } else{
+            return false;
+          }
+        } else{
+          return false;
+        }
+      } else{
+        return false;
+      }
+    }
 
 	public function addLoanReq(){
 		$getusername = $this->session->userdata['strUserName'];
@@ -89,7 +136,7 @@ $query="
 		$purpose=$this->input->post('txtpurpose');
 		$sessionid=$this->session->userdata('intOUserID');
 		//set @sessionname= '$sessionusername'
-		
+
 
 		$query="
 		declare @sessionid int;
@@ -148,7 +195,7 @@ $query="
 		}
 	}
 
-	
+
 //USER DEPOSIT//
 public function addDeposit(){
 	$getusername = $this->session->userdata['strUserName'];
@@ -180,7 +227,7 @@ $getusername = $this->session->userdata['strUserName'];
 
 
 SET NOCOUNT ON;
-	
+
 		declare @sessionid int;
 		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
@@ -198,13 +245,13 @@ SET NOCOUNT ON;
 		{
 			return false;
 		}
-	
-	
-		
+
+
+
 	}
 
 public function addAppointment(){
-	
+
 $getusername = $this->session->userdata['strUserName'];
 	$aType = $this->input->post('appType');
 	$doA = $this->input->post('dateofappointment');
@@ -219,18 +266,18 @@ $getusername = $this->session->userdata['strUserName'];
 	DECLARE @dateofappointment DATE;
 	DECLARE @applicationdesc VARCHAR(255);
 
-	
+
 	set @appointmenttype = '$aType'
 	set @dateofappointment = '$doA'
 	set @applicationdesc = '$appdesc'
 declare @sessionid int;
 		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
-	
+
 SET NOCOUNT ON;
 	declare @sessionid int;
 		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
-		
+
 			INSERT INTO tblAppointments(strAppointmentType, dtAppointmentDate, strVisitDescription,intOUserID,strStatus)VALUES(@appointmenttype, @dateofappointment,@applicationdesc,@sessionid,'Pending')
 		";
 
@@ -242,10 +289,9 @@ SET NOCOUNT ON;
 		{
 			return false;
 		}
-	
-	
-		
+
+
+
 	}
 
 }?>
-

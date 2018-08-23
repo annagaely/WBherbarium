@@ -19,7 +19,7 @@
              </button>
            </div>
 
-          <div class="modal-body"> 
+          <div class="modal-body">
              <div class="row">
                <div class="card col-md-6" style="max-width: 20rem;margin-bottom: 2px;" >
                  <img id="imgPlant" name="txtPlantImg" class="card-img-center"  style="height: 30rem;object-fit: cover">
@@ -51,7 +51,7 @@
                       <input type="text" name="txtCommonName" id="strCommonName" class="form-control" disabled="">
                      </div>
                    </div>
-                  
+
                     <div class="form-group row">
                      <div class="col-sm-4">
                        <label style="font-size: 14px;">Full Locality:</label>
@@ -94,10 +94,12 @@
                         <option value="Rejected">Reject</option>
                       </select>
                      </div>
-                   
-                     <div class="modal-footer">     
+
+                     <div class="modal-footer">
                     <!--<button id ="btnSave">Save</button>-->
-                     <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 200px">
+
+                     <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 200px" data-dismiss="modal" data-toggle="modal" data-target="#msgModal">
+
 <!--                      <input type="submit" value="Reject" id='btnReject' class="btn btn-primary" style=""> -->
                    </div>
                    </div>
@@ -108,8 +110,42 @@
          </div>
        </div>
      </div>
+     <!-- Modal-->
+     <div id="msgModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
+       <div role="document" class="modal-dialog">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 id="exampleModalLabel" class="modal-title">Send</h5>
+             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+           </div>
+           <div class="modal-body">
+             <form>
+               <div class="form-group row pr-4">
+                 <label class="col-sm-2">To:</label>
+                 <input type="email" class="form-control col-sm-10" disabled>
+               </div>
+               <div class="form-group row pr-4">
+                 <label class="col-sm-2">From:</label>
+                 <input type="email" class="form-control col-sm-10" disabled>
+               </div>
+               <div class="form-group pr-2">
+                 <label>Message:</label>
+                 <textarea class="form-control"></textarea>
+               </div>
+             </form>
+           </div>
+           <div class="modal-footer">
+             <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
+             <button type="button" class="btn btn-primary">Send</button>
+           </div>
+         </div>
+       </div>
+     </div>
         </div>
       </div>
+
+
+
       <div class="card">
         <div class="card-body">
           <div class="table-responsive">
@@ -139,7 +175,7 @@
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
-    
+
     $(function(){
 
     //show
@@ -223,6 +259,7 @@
           async: false,
           dataType: 'json',
           success: function(response){
+            alert(data);
             if(response==true){
              // $('#viewDepositReq').modal('hide');
             //  $('#updateStatusForm')[0].reset();
@@ -245,4 +282,3 @@
 
   });
 </script>
-
