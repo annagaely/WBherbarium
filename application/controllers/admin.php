@@ -441,7 +441,9 @@ public function updateFamilyBox(){
 	{
 		$title['title'] = "PUPHerbarium | Access Accounts";
 		$this->load->view('templates/header', $title);
-		$this->load->view('maintenance/accessaccounts');
+
+		$this->load->view('maintenance/Accessaccounts');
+
 		$this->load->view('templates/footer');
 	}
 		public function showAllAccounts(){
@@ -495,20 +497,7 @@ public function updateFamilyBox(){
 		$this->load->view('transaction/Manageappointment');
 		$this->load->view('templates/footer');
 	}
-		public function ManageappPending()
-	{
-		$title['title'] = "PUPHerbarium | Pending";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/ManageappPending');
-		$this->load->view('templates/footer');
-	}
-		public function ManageappHistory()
-	{
-		$title['title'] = "PUPHerbarium | History";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/ManageappHistory');
-		$this->load->view('templates/footer');
-	}
+
 
 	public function Externalvalidation()
 	{
@@ -668,6 +657,7 @@ public function edit_event()
 	}
 
 
+
 //ADMIN DEPOSIT PLANT//
 	//show depositreq
 	public function showAllDepositReq(){
@@ -734,15 +724,19 @@ public function showloanlist(){
 		$result = $this->m->showloanlist();
 		echo json_encode($result);
 
-
 }
 	public function updateLoanStatus(){
 		$result = $this->m->updateLoanStatus();
 		echo json_encode($result);
 
-	}
+}
 
 
+//APPOINTMENT
+public function showAllAppointment(){
+		$result = $this->m->showAllAppointment();
+		echo json_encode($result);
+}
 
 
 }?>

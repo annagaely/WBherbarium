@@ -130,7 +130,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="button" class="btn btn-secondary" value="Close" data-dismiss="modal">
         <input type="submit" class="btn btn-primary" value="Add Event">
         <?php echo form_close() ?>
       </div>

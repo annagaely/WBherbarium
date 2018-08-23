@@ -89,7 +89,7 @@
 
                   <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">       
                     <input type="submit" ID = "btnSave" value="Save" class="btn btn-primary">
                   </div>
                 </form>
@@ -175,7 +175,7 @@
                   </div>
                   <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">       
                     <input type="submit" ID = "btnEditSave" value="Save"class="btn btn-primary">
                   </div>
                 </form>

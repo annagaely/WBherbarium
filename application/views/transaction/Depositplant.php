@@ -97,7 +97,9 @@
 
                      <div class="modal-footer">
                     <!--<button id ="btnSave">Save</button>-->
+
                      <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 200px" data-dismiss="modal" data-toggle="modal" data-target="#msgModal">
+
 <!--                      <input type="submit" value="Reject" id='btnReject' class="btn btn-primary" style=""> -->
                    </div>
                    </div>
@@ -257,6 +259,7 @@
           async: false,
           dataType: 'json',
           success: function(response){
+            alert(data);
             if(response==true){
              // $('#viewDepositReq').modal('hide');
             //  $('#updateStatusForm')[0].reset();

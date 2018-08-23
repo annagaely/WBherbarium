@@ -69,7 +69,7 @@
                
                	 	<div class="modal-footer">
                    <!--  <button type="button" value="Reset" class="btn btn-primary" onclick="clearFileInput();">Clear</button> -->
-                   	<input type="reset" value="Reset" class="btn btn-primary">
+                   	<input type="reset" value="Reset" class="btn btn-secondary">
                     <input type="submit" id="btnSave" value="Save" class="btn btn-primary">
                 	</div>
                 </form>

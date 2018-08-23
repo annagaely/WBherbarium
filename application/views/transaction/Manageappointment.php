@@ -17,20 +17,11 @@
                 <tr>
                   <th>Name</th>
                   <th>Appointment Date</th>
+                  <th>Appointment Time</th>
                   <th>Appointment Reason</th>
-
-                <th>&nbsp &nbsp &nbsp &nbsp Actions</th>
+                  <th>Status</th>
+                  <th>Actions</th>
                 </tr>
-                <tr>
-                <td>hehe</td>
-                <td>hehe</td>
-                <td>hehe</td>
-
-                <td>
-                <button type="button" id="btnAccept "  class="btn btn-primary" style="background-color: green;border-color: green">Accept</button>
-                <button type="button" id="btnReject "  class="btn btn-primary">Reject</button>
-               </td>
-                <tr>
               </thead>
               <tbody tbody id="showdata">    
             </tbody>
@@ -38,3 +29,112 @@
         </div>
       </div>
     </div>
+
+           <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+          <div role="document" class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 id="exampleModalLabel" class="modal-title">Email</h5>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+              </div>
+
+         <div class="modal-body">
+
+               <form id= "addAccountForm" method="POST" enctype="multipart/form-data">
+                      <div class="form-group row pr-4">
+                      <label class="col-sm-2">To:</label>
+                      <input type="email" class="form-control col-sm-10" disabled>
+                    </div>
+                    <div class="form-group row pr-4">
+                      <label class="col-sm-2">From:</label>
+                      <input type="email" class="form-control col-sm-10" disabled>
+                    </div>
+                    <div class="form-group pr-2">
+                      <label>Message:</label>
+                      <textarea class="form-control"></textarea>
+                    </div>
+
+                  <div class="modal-footer">
+                    <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+           <div id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+          <div role="document" class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 id="exampleModalLabel" class="modal-title">Email</h5>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+              </div>
+
+         <div class="modal-body">
+
+               <form id= "addAccountForm" method="POST" enctype="multipart/form-data">
+                                      <div class="form-group row pr-4">
+                      <label class="col-sm-2">To:</label>
+                      <input type="email" class="form-control col-sm-10" disabled>
+                    </div>
+                    <div class="form-group row pr-4">
+                      <label class="col-sm-2">From:</label>
+                      <input type="email" class="form-control col-sm-10" disabled>
+                    </div>
+                    <div class="form-group pr-2">
+                      <label>Message:</label>
+                      <textarea class="form-control"></textarea>
+                    </div>
+                      <div class="modal-footer">
+                    <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+    
+    $(function(){
+
+    //show
+    showAllAppointment();
+    function showAllAppointment(){
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url() ?>admin/showAllAppointment',
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html +='<tr>'+
+                  '<td>'+data[i].strFullName+'</td>'+
+                  '<td>'+data[i].dtAppointmentDate+'</td>'+
+                  '<td>'+data[i].tmAppTime+'</td>'+
+                  '<td>'+data[i].strVisitDescription+'</td>'+
+                  '<td>'+data[i].strStatus+'</td>'+
+
+                  '<td>'+
+                    '<a href="javascript:;" data-toggle="modal" data-target="#myModal" class="btn btn-primary accept-Appoinment" data="'+data[i].intAppointmentID+'">Accept</a>'+
+                    '<a href="javascript:;" data-toggle="modal" data-target="#myModal1" class="btn btn-secondary reject-Appoinment" data="'+data[i].intAppointmentID+'" style="margin-left: 10px">Reject</a>'+
+                  '</td>'+
+                  '</tr>';
+          }
+          $('#showdata').html(html);
+        },
+        error: function(){
+          alert('Could not get Data from Database');
+        }
+      });
+    }
+  });
+</script>

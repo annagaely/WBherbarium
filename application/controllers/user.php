@@ -160,7 +160,6 @@ public function userRegister(){
 }
 
 
-
 	public function addDeposit(){
 		$result = $this->m->addDeposit();
 		echo json_encode($result);
