@@ -660,8 +660,17 @@ public function edit_event()
 
 //ADMIN DEPOSIT PLANT//
 	//show depositreq
-	public function showAllDepositReq(){
-		$result = $this->m->showAllDepositReq();
+	public function showAllDepositReqPending(){
+		$result = $this->m->showAllDepositReqPending();
+		echo json_encode($result);
+	}
+
+	public function showAllDepositReqOkay(){
+		$result = $this->m->showAllDepositReqOkay();
+		echo json_encode($result);
+	}
+	public function showAllDepositReqAll(){
+		$result = $this->m->showAllDepositReqAll();
 		echo json_encode($result);
 	}
 
@@ -675,6 +684,7 @@ public function edit_event()
 		echo json_encode($result);
 
 	}
+	
 
 	//SENDING EMAIL NOT YET FINAL
 	public function sendMail()
@@ -733,10 +743,19 @@ public function showloanlist(){
 
 
 //APPOINTMENT
-public function showAllAppointment(){
-		$result = $this->m->showAllAppointment();
+public function showAllAppointmentPending(){
+		$result = $this->m->showAllAppointmentPending();
 		echo json_encode($result);
 }
 
+public function showAllAppointmentExpect(){
+		$result = $this->m->showAllAppointmentExpect();
+		echo json_encode($result);
+}
+
+public function showAllAppointmentAll(){
+		$result = $this->m->showAllAppointmentAll();
+		echo json_encode($result);
+}
 
 }?>

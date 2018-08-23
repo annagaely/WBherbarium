@@ -1341,15 +1341,51 @@ public function showloanlist(){
 			 
 
 //DEPOSIT REQUEST
-public function showAllDepositReq()
+public function showAllDepositReqPending()
 {
 	//->where('strStatus','Pending')
-	$query = $this->db
-	->get('tblDepositReq');
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID
+
+		from tblDepositReq td join tblOnlineUser ou
+		on td.intOUserID = ou.intOUserID
+		where strStatus ='Pending'");
+
 		if($query->num_rows() > 0){
 			return $query->result();
-		}else
-		{
+		}else{
+			return false;
+		}
+		
+}
+
+public function showAllDepositReqOkay()
+{
+
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID
+
+		from tblDepositReq td join tblOnlineUser ou
+		on td.intOUserID = ou.intOUserID
+		where strStatus ='Okay'");
+
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+		
+}
+
+public function showAllDepositReqAll()
+{
+	//->where('strStatus','Pending')
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID
+
+		from tblDepositReq td join tblOnlineUser ou
+		on td.intOUserID = ou.intOUserID");
+
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
 			return false;
 		}
 }
@@ -1410,8 +1446,10 @@ public function updateAcceptStatus(){
 			return false;
 		}
 	}
+
+
 //APPOINTMENT
-	public function showAllAppointment(){
+	public function showAllAppointmentPending(){
 $query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate, tmAppTime, strVisitDescription,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
@@ -1423,7 +1461,35 @@ $query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' '
 		}else{
 			return false;
 		}
+	}
+
+
+	public function showAllAppointmentExpect(){
+$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate, tmAppTime, strVisitDescription,strStatus
+
+		from tblAppointments ap join tblOnlineUser ou
+		on ap.intOUserID = ou.intOUserID
+		where strStatus ='For Visitation'");
+
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
 		}
+		}
+
+	public function showAllAppointmentAll(){
+$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate, tmAppTime, strVisitDescription,strStatus
+
+		from tblAppointments ap join tblOnlineUser ou
+		on ap.intOUserID = ou.intOUserID");
+
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+		}	
 
 public function updateLoanStatus(){
 		
