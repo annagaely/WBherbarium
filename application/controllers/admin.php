@@ -441,7 +441,7 @@ public function updateFamilyBox(){
 	{
 		$title['title'] = "PUPHerbarium | Access Accounts";
 		$this->load->view('templates/header', $title);
-		$this->load->view('maintenance/accounts');
+		$this->load->view('maintenance/accessaccounts');
 		$this->load->view('templates/footer');
 	}
 		public function showAllAccounts(){
