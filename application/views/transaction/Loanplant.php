@@ -50,11 +50,8 @@
                       <label style="font-size: 14px;">Loan Request ID:</label>
                     </div>
                     <div class="col-sm-8">
-<<<<<<< HEAD
-                      <input type='hidden' name='txtId' id="txtID" value=0>
-=======
                       <input type='hidden' name='txtId' id="txtID" value="">
->>>>>>> 84a39538115f2af728d99d991f8f3fb3777f7067
+
                       <input type="text" name="txtLoanreqID" id="intLoanReqID" class="form-control" disabled>
                     </div>
                   </div>
@@ -79,11 +76,7 @@
                       <label style="font-size: 14px;">Purpose:</label>
                     </div>
                     <div class="col-sm-8">
-<<<<<<< HEAD
-                     <textarea class="form-control" rows="3" name="txtPurpose" id="strPurpose" disabled ></textarea>
-=======
                      <textarea class="form-control" rows="3" name="txtPurpose" id="strPurpose" disabled></textarea>
->>>>>>> 84a39538115f2af728d99d991f8f3fb3777f7067
                     </div>
                   </div>
                   <div class="form-group row">
@@ -108,20 +101,13 @@
                               </div>
                        </div>
                   </div>
-<<<<<<< HEAD
-                     <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;margin-top: 0px">Status:</label>
-                     </div>
-                     <div class="col-sm-8">
-=======
+
                       <div class="form-group row">
                       <div class="col-sm-4">
                        <label style="font-size: 14px;">Status:</label>
                      </div>
                      <div class="col-sm-4">
->>>>>>> 84a39538115f2af728d99d991f8f3fb3777f7067
-                      <select name="txtStatus" id="strStatus"  class="form-control">
+                     <select name="txtStatus" id="strStatus"  class="form-control">
                         <option value="Accepted">Accept</option>
                         <option value="Rejected">Reject</option>
                       </select>
@@ -131,15 +117,11 @@
               </div>
             </div>
           </div>
-<<<<<<< HEAD
-                <div class="modal-footer" style="margin-top: 0px">      
-                    <input type="submit" value="Save" id='btnAccept' class="btn btn-primary">
-=======
+
 
                 <div class="modal-footer">      
                 <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 200px">
                     <!--<input type="reject" value="Reject" id='btnReject' class="btn btn-primary">-->
->>>>>>> 84a39538115f2af728d99d991f8f3fb3777f7067
                 </div>
             </div>
            </div>

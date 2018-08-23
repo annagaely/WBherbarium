@@ -31,12 +31,8 @@
                        <label style="font-size: 14px;">Deposit ID:</label>
                      </div>
                      <div class="col-sm-8">
-<<<<<<< HEAD
-                       <input type="text" name="txtDepositReqID" id="intDepositReqID" class="form-control" disabled>
-=======
                       <input type="hidden" name="txtId" id="txtID" value="0">
                        <input type="text" name="txtDepositReqID" id="intDepositReqID" class="form-control" disabled="">
->>>>>>> 84a39538115f2af728d99d991f8f3fb3777f7067
                      </div>
                    </div>
                   <div class="form-group row">

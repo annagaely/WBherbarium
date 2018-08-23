@@ -1285,6 +1285,9 @@ public function delete_event($id)
 // LOAN REQUEST //
 public function showLoanReq(){
 
+
+
+
 $query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, concat(intDuration,' ',strDtWkMt) as strDuration,strPurpose, lr.intOUserID,intLoanReqID,strStatus
 		from tblLoanReq lr join tblOnlineUser ou
 		on lr.intOUserID = ou.intOUserID
@@ -1407,8 +1410,6 @@ public function updateAcceptStatus(){
 			return false;
 		}
 	}
-
-<<<<<<< HEAD
 //APPOINTMENT
 	public function showAllAppointment(){
 $query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate, tmAppTime, strVisitDescription,strStatus
@@ -1423,7 +1424,7 @@ $query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' '
 			return false;
 		}
 		}
-=======
+
 public function updateLoanStatus(){
 		
 	$depositid = $this->input->post('txtId');
@@ -1449,10 +1450,6 @@ public function updateLoanStatus(){
 			return false;
 		}
 	}
-
->>>>>>> 84a39538115f2af728d99d991f8f3fb3777f7067
-
-	
 
 
 
