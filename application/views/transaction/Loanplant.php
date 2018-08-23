@@ -84,7 +84,7 @@
                    </div>
                    <div class="col-sm-4">
                     <select name="txtStatus" id="strStatus"  class="form-control">
-                      <option value="Accepted">Accept</option>
+                      <option value="Okay">Accept</option>
                       <option value="Rejected">Reject</option>
                     </select>
                    </div>

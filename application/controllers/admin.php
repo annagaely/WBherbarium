@@ -684,6 +684,7 @@ public function edit_event()
 		echo json_encode($result);
 
 	}
+	
 
 	//SENDING EMAIL NOT YET FINAL
 	public function sendMail()

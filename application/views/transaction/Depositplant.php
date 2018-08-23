@@ -43,7 +43,7 @@
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>Maintenance/Dashboard" >Home</a></li>
             <li class="breadcrumb-item">Transaction</li>
-            <li class="breadcrumb-item">Manage Appointment</li>
+            <li class="breadcrumb-item active">Deposit Plant</li>
           </ul>
         </div>
       </div>
@@ -51,7 +51,7 @@
 
 <div class="tab" >
   <button id = "defaultOpen" class="tablinks" onclick="openCity(event, 'FirstTab')" style="color:white;">Pending</button>
-  <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">For.. dalhin sa PUP</button>
+  <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">For Deposit</button>
   <button class="tablinks" onclick="openCity(event, 'ThirdTab') " style="color:white;">All</button>
 </div>
 
@@ -163,7 +163,7 @@
                      </div>
                      <div class="col-sm-8">
                       <select name="txtStatus" id="strStatus"  class="form-control">
-                        <option value="Accepted">Accept</option>
+                        <option value="Okay">Accept</option>
                         <option value="Rejected">Reject</option>
                       </select>
                      </div>
@@ -171,7 +171,7 @@
                      <div class="modal-footer">
                     <!--<button id ="btnSave">Save</button>-->
 
-                     <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 200px" data-dismiss="modal" data-toggle="modal" data-target="#msgModal">
+                     <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 300px" data-dismiss="modal" data-toggle="modal" data-target="#myModal">
 
                    </div>
                    </div>
@@ -183,36 +183,37 @@
        </div>
      </div>
      <!-- Modal-->
-     <div id="msgModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-       <div role="document" class="modal-dialog">
-         <div class="modal-content">
-           <div class="modal-header">
-             <h5 id="exampleModalLabel" class="modal-title">Send</h5>
-             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-           </div>
-           <div class="modal-body">
-             <form>
-               <div class="form-group row pr-4">
-                 <label class="col-sm-2">To:</label>
-                 <input type="email" class="form-control col-sm-10" disabled>
-               </div>
-               <div class="form-group row pr-4">
-                 <label class="col-sm-2">From:</label>
-                 <input type="email" class="form-control col-sm-10" disabled>
-               </div>
-               <div class="form-group pr-2">
-                 <label>Message:</label>
-                 <textarea class="form-control"></textarea>
-               </div>
-             </form>
-           </div>
-           <div class="modal-footer">
-             <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
-             <button type="button" class="btn btn-primary">Send</button>
-           </div>
-         </div>
-       </div>
-     </div>
+  <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+    <div role="document" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="exampleModalLabel" class="modal-title">Email</h5>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+        </div>
+
+        <div class="modal-body">
+          <form id= "addAccountForm" method="POST" enctype="multipart/form-data">
+            <div class="form-group row pr-4">
+              <label class="col-sm-2">To:</label>
+              <input type="email" class="form-control col-sm-10" disabled>
+            </div>
+            <div class="form-group row pr-4">
+                      <label class="col-sm-2">From:</label>
+                      <input type="email" class="form-control col-sm-10" disabled>
+                    </div>
+                    <div class="form-group pr-2">
+                      <label>Message:</label>
+                      <textarea class="form-control"></textarea>
+                    </div>
+
+                  <div class="modal-footer">
+                     <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
+                  </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
         
 </div>
 
@@ -254,7 +255,7 @@
                   <th>Date Collected</th>
                   <th>Full Location</th>
                   <th>Status</th>
-                  <th>Action</th>
+
                 </tr>
               </thead>
                 <tbody tbody id="showdata2">
@@ -293,7 +294,7 @@
                   '<td>'+data[i].strFullLocation+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary view-depositReq" data="'+data[i].intDepositReqID+'">View</a>'+
+                    '<a href="javascript:;" data-toggle="modal" data-target="#myModal1" class="btn btn-primary view-depositReq" data="'+data[i].intDepositReqID+'">View</a>'+
                   '</td>'+
                   '</tr>';
           }

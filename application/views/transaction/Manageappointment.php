@@ -291,7 +291,6 @@
                   '<td>'+data[i].tmAppTime+'</td>'+
                   '<td>'+data[i].strVisitDescription+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
-
                   '</tr>';
           }
           $('#showdata2').html(html);

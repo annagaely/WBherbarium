@@ -1378,12 +1378,14 @@ public function showAllDepositReqOkay()
 public function showAllDepositReqAll()
 {
 	//->where('strStatus','Pending')
-	$query = $this->db
-	->get('tblDepositReq');
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID
+
+		from tblDepositReq td join tblOnlineUser ou
+		on td.intOUserID = ou.intOUserID");
+
 		if($query->num_rows() > 0){
 			return $query->result();
-		}else
-		{
+		}else{
 			return false;
 		}
 }
@@ -1444,6 +1446,8 @@ public function updateAcceptStatus(){
 			return false;
 		}
 	}
+
+
 //APPOINTMENT
 	public function showAllAppointmentPending(){
 $query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate, tmAppTime, strVisitDescription,strStatus
