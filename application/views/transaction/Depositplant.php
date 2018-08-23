@@ -22,7 +22,7 @@
           <div class="modal-body"> 
              <div class="row">
                <div class="card col-md-6" style="max-width: 20rem;margin-bottom: 2px;" >
-                 <img id="imgPlant" name="txtPlantImg" class="card-img-center" src="<?php echo base_url();?>assets/bower_components/1.jpg" alt="Card image cap" style="height: 30rem;object-fit: cover">
+                 <img id="imgPlant" name="txtPlantImg" class="card-img-center"  style="height: 30rem;object-fit: cover">
              </div>
               <div class="col-md-6" style="margin-left: auto; margin-right: auto;">
                  <form id= "updateStatusForm" method="POST" enctype="multipart/form-data"class="form-horizontal">
@@ -31,7 +31,8 @@
                        <label style="font-size: 14px;">Deposit ID:</label>
                      </div>
                      <div class="col-sm-8">
-                       <input type="text" name="txtDepositReqID" id="intDepositReqID" class="form-control">
+                      <input type="hidden" name="txtId" id="txtID" value="0">
+                       <input type="text" name="txtDepositReqID" id="intDepositReqID" class="form-control" disabled="">
                      </div>
                    </div>
                   <div class="form-group row">
@@ -77,6 +78,14 @@
                    </div>
                    <div class="form-group row">
                      <div class="col-sm-4">
+                       <label style="font-size: 14px;">Description:</label>
+                    </div>
+                     <div class="col-sm-8">
+                      <textarea name="txtDescription" class="form-control" rows="3" id="strPlantDesc" disabled=""></textarea>
+                     </div>
+                     </div>
+                      <div class="form-group row">
+                     <div class="col-sm-4">
                        <label style="font-size: 14px;">Status:</label>
                      </div>
                      <div class="col-sm-8">
@@ -85,14 +94,7 @@
                         <option value="Rejected">Reject</option>
                       </select>
                      </div>
-                   </div>
-                   <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Description:</label>
-                    </div>
-                     <div class="col-sm-8">
-                      <textarea name="txtDescription" class="form-control" rows="3" id="strPlantDesc" disabled=""></textarea>
-                     </div>
+                   
                      <div class="modal-footer">     
                     <!--<button id ="btnSave">Save</button>-->
                      <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 200px">
@@ -189,7 +191,7 @@
         async: false,
         dataType: 'json',
         success: function(data){
-          $('input[name=txtCollector').val(data.intOUserID);
+          $('input[name=txtCollector').val(data.strFullName);
           //$('input[name=txtStatus').val(data.strStatus);
           $('input[name=txtDepositReqID]').val(data.intDepositReqID);
           $('input[name=txtScientificName').val(data.strScientificName);
@@ -197,6 +199,8 @@
           $('input[name=txtdDateCollected]').val(data.dtDateCollected);
           $('input[name=txtFullLocation').val(data.strFullLocation);
           $('textarea[name=txtDescription]').val(data.strPlantDesc);
+          $('textarea[name=txtDescription]').val(data.strPlantDesc);
+          $('input[name=txtId]').val(data.intDepositReqID)
 
 
         },

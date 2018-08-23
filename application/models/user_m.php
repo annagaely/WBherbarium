@@ -151,15 +151,15 @@ $query="
 	
 //USER DEPOSIT//
 public function addDeposit(){
-	
+	$getusername = $this->session->userdata['strUserName'];
 
 	$sName = $this->input->post('txtScientificName');
 	$cName = $this->input->post('txtCommonName');
 	$loc = $this->input->post('txtLocation');
 	$datecoll = $this->input->post('txtDateCollected');
-	$coll = $this->input->post('txtCollector');
+	//$coll = $this->input->post('txtCollector');
 	$plantDesc = $this->input->post('txtplantDesc');
-
+$getusername = $this->session->userdata['strUserName'];
 
 	$query="
 
@@ -174,16 +174,20 @@ public function addDeposit(){
 	set @commonname = '$cName'
 	set @location = '$loc'
 	set @datecollected = '$datecoll'
-	set @collector = '$coll'
 	set @plantdescription = '$plantDesc'
+			declare @sessionid int;
+		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
 
 SET NOCOUNT ON;
 	
+		declare @sessionid int;
+		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
+
 
 		BEGIN
 			INSERT INTO tblDepositReq(strScientificName, strCommonName, strFullLocation,dtDateCollected, intOUserID, strStatus,strPlantDesc)
-			VALUES (@scientificname	, @commonname, @location, @datecollected, @collector,'Pending',@plantdescription)
+			VALUES (@scientificname	, @commonname, @location, @datecollected, @sessionid,'Pending',@plantdescription)
 		END
 		";
 		if($this->db->query($query))
@@ -201,11 +205,12 @@ SET NOCOUNT ON;
 
 public function addAppointment(){
 	
-
+$getusername = $this->session->userdata['strUserName'];
 	$aType = $this->input->post('appType');
 	$doA = $this->input->post('dateofappointment');
 	$appdesc = $this->input->post('txtappdesc');
 
+$getusername = $this->session->userdata['strUserName'];
 
 
 	$query="
@@ -218,13 +223,15 @@ public function addAppointment(){
 	set @appointmenttype = '$aType'
 	set @dateofappointment = '$doA'
 	set @applicationdesc = '$appdesc'
-
+declare @sessionid int;
+		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 	
 SET NOCOUNT ON;
-	
+	declare @sessionid int;
+		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
 		
-			INSERT INTO tblAppointments(strAppointmentType, dtAppointmentDate, strVisitDescription,intOUserID,strStatus)VALUES(@appointmenttype, @dateofappointment,@applicationdesc,1000,'Pending')
+			INSERT INTO tblAppointments(strAppointmentType, dtAppointmentDate, strVisitDescription,intOUserID,strStatus)VALUES(@appointmenttype, @dateofappointment,@applicationdesc,@sessionid,'Pending')
 		";
 
 		if($this->db->query($query))
