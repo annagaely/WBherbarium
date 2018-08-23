@@ -151,7 +151,7 @@ $query="
 	
 //USER DEPOSIT//
 public function addDeposit(){
-	
+	$getusername = $this->session->userdata['strUserName'];
 
 	$sName = $this->input->post('txtScientificName');
 	$cName = $this->input->post('txtCommonName');
@@ -181,6 +181,9 @@ $getusername = $this->session->userdata['strUserName'];
 
 SET NOCOUNT ON;
 	
+		declare @sessionid int;
+		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
+
 
 		BEGIN
 			INSERT INTO tblDepositReq(strScientificName, strCommonName, strFullLocation,dtDateCollected, intOUserID, strStatus,strPlantDesc)
@@ -202,7 +205,7 @@ SET NOCOUNT ON;
 
 public function addAppointment(){
 	
-
+$getusername = $this->session->userdata['strUserName'];
 	$aType = $this->input->post('appType');
 	$doA = $this->input->post('dateofappointment');
 	$appdesc = $this->input->post('txtappdesc');
@@ -224,7 +227,8 @@ declare @sessionid int;
 		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 	
 SET NOCOUNT ON;
-	
+	declare @sessionid int;
+		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
 		
 			INSERT INTO tblAppointments(strAppointmentType, dtAppointmentDate, strVisitDescription,intOUserID,strStatus)VALUES(@appointmenttype, @dateofappointment,@applicationdesc,@sessionid,'Pending')

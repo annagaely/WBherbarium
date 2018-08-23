@@ -78,10 +78,12 @@
                 <li><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validator</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
-                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+
+
+<!--                  <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
               </ul>
             </li>
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
@@ -90,11 +92,11 @@
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidation">External Validation</a></li>
-                <li><a href="#DdownManageAppointment" aria-expanded="false" data-toggle="collapse">Manage Appointment</a>
-                  <ul id="DdownManageAppointment" class="collapse list-unstyled ">
+                <li><a href="<?php echo base_url(); ?>admin/Manageappointment">Manage Appointment</a>
+<!--                   <ul id="DdownManageAppointment" class="collapse list-unstyled ">
                     <li><a style="background-color: #393836;" href="<?php echo base_url(); ?>admin/Depositplant" class="nav-link ">&nbsp; &nbsp; &nbsp; &nbsp; Pending</a></li>
                     <li><a style="background-color: #393836;" href="<?php echo base_url(); ?>admin/Loanplant" class="nav-link">&nbsp; &nbsp; &nbsp; &nbsp; History</a></li>
-                  </ul>
+                  </ul> -->
                 </li>
               </ul>
             </li>
@@ -155,7 +157,6 @@
                     <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
                   </ul>
                 </li>
-
                 <!-- Log out-->
                  <li class="nav-item"><a href="<?php echo base_url(); ?>Maintenance" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
