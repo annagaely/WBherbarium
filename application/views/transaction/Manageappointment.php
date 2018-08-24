@@ -269,7 +269,7 @@
                   '<td>'+data[i].strStatus+'</td>'+
 
                   '<td>'+
-                    '<a href="javascript:;"  class="btn btn-primary accept-Appoinment" data="'+data[i].intAppointmentID+'">View</a>'+
+                    '<a href="javascript:;"  class="btn btn-primary accept-Appointment" data="'+data[i].intAppointmentID+'">View</a>'+
      
                   '</td>'+
                   '</tr>';
@@ -285,7 +285,7 @@
 </script>
 
 <script type="text/javascript">
-      $('#showdata').on('click', '.accept-Appoinment', function(){
+      $('#showdata').on('click', '.accept-Appointment', function(){
       var id = $(this).attr('data');
       $('#acceptReq').modal('show');
       $('#acceptReq').find('.modal-title').text('View Appointments');
@@ -299,17 +299,16 @@
         success: function(data){
           $('input[name=txtCollector]').val(data.strFullName);
           $('input[name=txtDepositReqID]').val(data.intDepositReqID);
-          $('input[name=txtScientificName').val(data.strScientificName);
-          $('input[name=txtCommonName').val(data.strCommonName);
-          $('input[name=txtdDateCollected]').val(data.dtDateCollected);
-          $('input[name=txtFullLocation').val(data.strFullLocation);
-          $('textarea[name=txtDescription]').val(data.strPlantDesc);
-          $('input[name=txtId]').val(data.intDepositReqID)
+          $('input[name=txtScientificName').val(data.dtAppointmentDate);
+          $('input[name=txtCommonName').val(data.strVisitDescription);
+          $('input[name=txtdDateCollected]').val(data.strMessage);
+          $('input[name=txtFullLocation').val(data.tmAppTime);
+
 
         },
-        error: function(){
-          alert('Could not Edit Data');
-        }
+        // error: function(){
+        //   alert('Could not Edit Data');
+        // }
 
     });
     });

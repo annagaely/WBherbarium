@@ -1585,5 +1585,4 @@ $query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' '
 		}	
 
 
-
 }?>

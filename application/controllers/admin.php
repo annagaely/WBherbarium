@@ -695,6 +695,7 @@ public function edit_event()
 
 	}
 
+	
 
 	//SENDING EMAIL NOT YET FINAL
 	public function sendMail()
