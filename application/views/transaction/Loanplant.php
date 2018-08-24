@@ -65,7 +65,7 @@
                 <tr>
                   <th>Loan ID</th>
                   <th>Borrower Name</th>
-                  <th>Duration</th>
+
                   <th>Purpose</th>
                   <th>Status</th>
                   <th>Actions</th>
@@ -110,14 +110,7 @@
                     <input type="text" name="txtBorrowerName" id="strFullName" class="form-control" disabled>
                   </div>
                 </div>
-                <div class="form-group row">
-                  <div class="col-sm-4">
-                    <label style="font-size: 14px;">Duration:</label>
-                  </div>
-                  <div class="col-sm-8">
-                    <input type="text" name="txtDuration" id="strDuration" class="form-control" disabled>
-                  </div>
-                </div>
+
                  <div class="form-group row">
                   <div class="col-sm-4">
                     <label style="font-size: 14px;">Purpose:</label>
@@ -184,7 +177,7 @@
                 <tr>
                   <th>Loan ID</th>
                   <th>Borrower Name</th>
-                  <th>Duration</th>
+
                   <th>Purpose</th>
                   <th>Status</th>
                   <th>Actions</th>
@@ -239,7 +232,7 @@
                 <tr>
                   <th>Loan ID</th>
                   <th>Borrower Name</th>
-                  <th>Duration</th>
+
                   <th>Purpose</th>
                   <th>Status</th>
                 </tr>
@@ -273,7 +266,7 @@
             html +='<tr>'+
                   '<td>'+data[i].intLoanReqID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].strDuration+'</td>'+
+
                   '<td>'+data[i].strPurpose+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
@@ -333,7 +326,7 @@ $('#showdata').on('click', '.loanreq-edit', function(){
         success: function(data){
           $('#intLoanReqID').val(data.intLoanReqID);
           $('#strFullName').val(data.strFullName);
-          $('#strDuration').val(data.strDuration);
+
           $('#strPurpose').val(data.strPurpose);
           $('#txtID').val(data.intLoanReqID);
         },
@@ -370,7 +363,7 @@ $('#showdata').on('click', '.loanreq-edit', function(){
             html +='<tr>'+
                   '<td>'+data[i].intLoanReqID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].strDuration+'</td>'+
+
                   '<td>'+data[i].strPurpose+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
@@ -409,7 +402,7 @@ $('#showdata').on('click', '.loanreq-edit', function(){
             html +='<tr>'+
                   '<td>'+data[i].intLoanReqID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].strDuration+'</td>'+
+
                   '<td>'+data[i].strPurpose+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '</tr>';
