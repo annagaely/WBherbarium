@@ -65,7 +65,7 @@
             <tr>
               <th>Name</th>
               <th>Appointment Date</th>
-              <th>Appointment Time</th>
+              
               <th>Appointment Reason</th>
               <th>Status</th>
               <th>Actions</th>
@@ -207,7 +207,7 @@
                 <tr>
                   <th>Name</th>
                   <th>Appointment Date</th>
-                  <th>Appointment Time</th>
+                 
                   <th>Appointment Reason</th>
                   <th>Status</th>
                   <th>Actions</th>
@@ -231,7 +231,7 @@
                 <tr>
                   <th>Name</th>
                   <th>Appointment Date</th>
-                  <th>Appointment Time</th>
+                  
                   <th>Appointment Reason</th>
                   <th>Status</th>
                 </tr>
@@ -264,7 +264,7 @@
             html +='<tr>'+
                   '<td>'+data[i].strFullName+'</td>'+
                   '<td>'+data[i].dtAppointmentDate+'</td>'+
-                  '<td>'+data[i].tmAppTime+'</td>'+
+                  
                   '<td>'+data[i].strVisitDescription+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
 
@@ -333,7 +333,7 @@
             html +='<tr>'+
                   '<td>'+data[i].strFullName+'</td>'+
                   '<td>'+data[i].dtAppointmentDate+'</td>'+
-                  '<td>'+data[i].tmAppTime+'</td>'+
+                  
                   '<td>'+data[i].strVisitDescription+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
 
@@ -371,7 +371,7 @@
             html +='<tr>'+
                   '<td>'+data[i].strFullName+'</td>'+
                   '<td>'+data[i].dtAppointmentDate+'</td>'+
-                  '<td>'+data[i].tmAppTime+'</td>'+
+                  
                   '<td>'+data[i].strVisitDescription+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '</tr>';
