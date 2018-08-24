@@ -35,7 +35,7 @@
                     <input type="text" name="txtgName" placeholder="Genus Name" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">       
                     <input type="submit" id = "btnSave" value="Save" class="btn btn-primary">
                   </div>
                 </form>
@@ -74,7 +74,7 @@
                     <input type="text" name="txteGName" placeholder="Class Name" class="form-control">
                   </div> 
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">       
                     <input type="submit" value="Save" id='btnEditSave' class="btn btn-primary">
                   </div>
                   

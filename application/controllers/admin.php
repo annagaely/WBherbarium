@@ -441,7 +441,9 @@ public function updateFamilyBox(){
 	{
 		$title['title'] = "PUPHerbarium | Access Accounts";
 		$this->load->view('templates/header', $title);
-		$this->load->view('maintenance/accounts');
+
+
+		$this->load->view('maintenance/Accessaccounts');
 		$this->load->view('templates/footer');
 	}
 		public function showAllAccounts(){
@@ -495,20 +497,7 @@ public function updateFamilyBox(){
 		$this->load->view('transaction/Manageappointment');
 		$this->load->view('templates/footer');
 	}
-		public function ManageappPending()
-	{
-		$title['title'] = "PUPHerbarium | Pending";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/ManageappPending');
-		$this->load->view('templates/footer');
-	}
-		public function ManageappHistory()
-	{
-		$title['title'] = "PUPHerbarium | History";
-		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/ManageappHistory');
-		$this->load->view('templates/footer');
-	}
+
 
 	public function Externalvalidation()
 	{
@@ -668,10 +657,20 @@ public function edit_event()
 	}
 
 
+
 //ADMIN DEPOSIT PLANT//
 	//show depositreq
-	public function showAllDepositReq(){
-		$result = $this->m->showAllDepositReq();
+	public function showAllDepositReqPending(){
+		$result = $this->m->showAllDepositReqPending();
+		echo json_encode($result);
+	}
+
+	public function showAllDepositReqOkay(){
+		$result = $this->m->showAllDepositReqOkay();
+		echo json_encode($result);
+	}
+	public function showAllDepositReqAll(){
+		$result = $this->m->showAllDepositReqAll();
 		echo json_encode($result);
 	}
 
@@ -685,6 +684,7 @@ public function edit_event()
 		echo json_encode($result);
 
 	}
+	
 
 	//SENDING EMAIL NOT YET FINAL
 	public function sendMail()
@@ -733,16 +733,29 @@ public function showloanlist(){
 		//$result = $this->m->showloanlist();
 		$result = $this->m->showloanlist();
 		echo json_encode($result);
-		
 
 }
 	public function updateLoanStatus(){
 		$result = $this->m->updateLoanStatus();
 		echo json_encode($result);
 
-	}
+}
 
 
+//APPOINTMENT
+public function showAllAppointmentPending(){
+		$result = $this->m->showAllAppointmentPending();
+		echo json_encode($result);
+}
 
+public function showAllAppointmentExpect(){
+		$result = $this->m->showAllAppointmentExpect();
+		echo json_encode($result);
+}
+
+public function showAllAppointmentAll(){
+		$result = $this->m->showAllAppointmentAll();
+		echo json_encode($result);
+}
 
 }?>

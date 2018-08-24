@@ -8,10 +8,11 @@
         </ol>
         <!--/.Indicators-->
         <!--Slides-->
+
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <div class="view">
-                    <img class="d-block w-100" style="height: 100vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner.jpg" alt="First slide">
+                    <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner.jpg" alt="First slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">
@@ -22,7 +23,7 @@
             <div class="carousel-item">
             <!--Mask color-->
                 <div class="view">
-                    <img class="d-block w-100" style="height: 100vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner2.jpg" alt="Second slide">
+                    <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner2.jpg" alt="Second slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">
@@ -33,7 +34,7 @@
             <div class="carousel-item">
                 <!--Mask color-->
                 <div class="view">
-                    <img class="d-block w-100" style="height: 100vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner3.jpg" alt="Third slide">
+                    <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner3.jpg" alt="Third slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">
@@ -59,7 +60,7 @@
     <!-- Section heading -->
       <h2 class="h1-responsive font-weight-bold my-5">Welcome to PUP Herbarium</h2>
       <!-- Section description -->
-      <p class="lead grey-text w-responsive mx-auto mb-5">Come and explore the first Polytechnic University in the Philippines' herbarium specimen collections.</p>
+      <p class="lead black-text w-responsive mx-auto mb-5">Come and explore the first Polytechnic University in the Philippines' herbarium specimen collections.</p>
 
       <!-- Grid row -->
       <div class="row">
@@ -69,7 +70,7 @@
 
           <i class="fas fa-file-alt fa-3x red-text"></i>
           <h5 class="font-weight-bold my-4">Loan</h5>
-          <p class="grey-text mb-md-0 mb-5">Loaning of specimen is available here at PUP Herbarium. Send your loaning request and wait for it to be approved.
+          <p class="black-text mb-md-0 mb-5">Loaning of specimen is available here at PUP Herbarium. Send your loaning request and wait for it to be approved.
           </p>
 
         </div>
@@ -80,8 +81,8 @@
 
           <i class="fas fa-search fa-3x cyan-text"></i>
           <h5 class="font-weight-bold my-4">Search</h5>
-          <p class="grey-text mb-md-0 mb-5">Get access to PUP herbarium specimens and descriptions by clicking here.
-          </p> 
+          <p class="black-text mb-md-0 mb-5">Get access to PUP herbarium specimens and descriptions by clicking here.
+          </p>
 
         </div>
         <!-- Grid column -->
@@ -91,7 +92,7 @@
 
           <i class="fas fa-map-marked-alt fa-3x orange-text"></i>
           <h5 class="font-weight-bold my-4">Visit</h5>
-          <p class="grey-text mb-0">PUP Herbarium Center is open for visitors. Just set an appointment prior to your visit.
+          <p class="black-text mb-0">PUP Herbarium Center is open for visitors. Just set an appointment prior to your visit.
           </p>
 
         </div>
@@ -109,7 +110,7 @@
                 <div class="row">
                     <div class="col-lg-9 mx-auto">
                         <p class="lead text-white mt-2">
-                            The PUP Herbarium Center serves as a local point for botanical interactions of students a faculty. It provides documented flora as repository of preserved herbarium specimens. It is also serve as a venue for plant identification, information and education. It collects services for bioprospecting or other specialized projects. Lastly, it serves as a training ground for a budding plant biologist and taxonomist. 
+                            The PUP Herbarium Center serves as a local point for botanical interactions of students a faculty. It provides documented flora as repository of preserved herbarium specimens. It is also serve as a venue for plant identification, information and education. It collects services for bioprospecting or other specialized projects. Lastly, it serves as a training ground for a budding plant biologist and taxonomist.
                         </p>
                     </div>
                 </div>
@@ -337,8 +338,4 @@
     </div>
 </section>
 
-<!-- Card -->
-    <!-- /Start your project here-->
-
-<!-- Projects section v.4 -->
-<!-- Projects section v.4 -->
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1365.0846300626363!2d121.01038434500167!3d14.596660128798504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9dd5ee0e457%3A0xe1e45b9db34d61a9!2sPUP+Main+Building!5e0!3m2!1sen!2sph!4v1535047021119" width="100%" height="450" style="border:none; padding-bottom:0; margin-bottom:0;" allowfullscreen></iframe>

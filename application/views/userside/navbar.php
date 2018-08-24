@@ -49,21 +49,7 @@
           </ul>
           <!-- Social Icon  -->
           <ul class="navbar-nav nav-flex-icons">
-            <li class="nav-item">
-              <a class="nav-link waves-effect waves-light">
-                <i class="fab fa-facebook light-green-text-2"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect waves-light">
-                <i class="fab fa-twitter light-green-text-2"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect waves-light">
-                <i class="fab fa-instagram light-green-text-2"></i>
-              </a>
-            </li>
+
             <li class="nav-item">
                 <button type="button" data-toggle="modal" data-target="#modalLoginForm" class=" btn btn-outline-light py-2" style="border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; border-top-left-radius: 25px; border-top-right-radius: 25px;">Login</button>
             </li>
@@ -93,7 +79,7 @@
                         <input type="password" id="defaultForm-pass" name="loginPassword" class="form-control validate">
                         <label for="defaultForm-pass">Your password</label>
                         <span class="text-danger"><?php echo form_error('loginPassword');?></span>
-                          <center>Doesn't have an account yet? Sign up <a href="<?php echo base_url(); ?>user/Register">here.</a></center>
+                          <center>Doesn't have an account yet? Register <a href="<?php echo base_url(); ?>user/Register">here.</a></center>
 
                     </div>
                 </div>
@@ -101,7 +87,7 @@
                   <button class="btn btn-danger" type="reset">Reset</button>
                   <!--<a href="<?php echo base_url()?>user/Home"><button class="btn btn-primary">Login</button></a>-->
                   <button class="btn btn-primary" type="submit" name="insert" value="Login">Login</button>
-                  <?php 
+                  <?php
                    echo '<span class="text-danger">'.$this->session->flashdata("error");
                   ?>
                 </div>

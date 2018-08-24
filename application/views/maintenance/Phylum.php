@@ -27,16 +27,16 @@
               </div>
               <div class="modal-body">
 
-                <form id= "addPhylumForm" method="POST" enctype="multipart/form-data">
+                <form id= "addPhylumForm" method="POST" enctype="multipart/form-data" class="needs-validation">
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                   <div class="form-group">
-                    <label>Domain Name:</label> <label style="color: red">*</label> 
-                    <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control">
+                    <label>Domain Name:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control" required>
                   </div>
                   <div class="form-group">
-                    <label>Kingdom Name:</label> <label style="color: red">*</label> 
-                    <input type="text" name="txtkName" id="strKingdomName" placeholder="Kingdom Name" class="form-control">
+                    <label>Kingdom Name:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtkName" id="strKingdomName" placeholder="Kingdom Name" class="form-control" required>
                   </div>
                   <div class="form-group">
                     <label>
@@ -46,11 +46,11 @@
                     </label>
                   </div>
                   <div class="form-group">
-                    <label>Phylum Name:</label> <label style="color: red">*</label> 
+                    <label>Phylum Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control">
                   </div>
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" value="Save" id='btnSave' class="btn btn-primary">
                   </div>
 
@@ -78,11 +78,11 @@
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                   <div class="form-group">
-                    <label>Domain Name:</label> <label style="color: red">*</label> 
+                    <label>Domain Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txtedName" id="strDomainName1" placeholder="Domain Name" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label>Kingdom Name:</label> <label style="color: red">*</label> 
+                    <label>Kingdom Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txtekName" id="strKingdomName1" placeholder="Kingdom Name" class="form-control">
                   </div>
                   <div class="form-group">
@@ -96,11 +96,11 @@
                     </label>
                   </div>
                   <div class="form-group">
-                    <label>Phylum Name:</label> <label style="color: red">*</label> 
+                    <label>Phylum Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txtepName" id="pNameid" placeholder="Phylum Name" class="form-control">
                   </div>
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-primary">
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" value="Save" id='btnEditSave' class="btn btn-primary">
                   </div>
 
@@ -160,7 +160,7 @@ function resetForm() {
           }
 
           else{
-            document.getElementById("strDomainName1").value = "";  
+            document.getElementById("strDomainName1").value = "";
             document.getElementById("strKingdomName1").value = "";
           }
      }

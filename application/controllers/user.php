@@ -115,20 +115,15 @@ class user extends CI_Controller {
 
 public function userRegister(){
 		$result = $this->m->userRegister();
-		$msg['success'] = false;
-		$msg['type'] = 'add';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
-	}
+    echo json_encode($result);
+}
 
 	function view_calendar()
 	{
 		$this->load->view('userside/fullcalendar');
 	}
 
-	
+
 	public function appointment() {
 	if($this->session->userdata('strUserName')!=''){
 	 $title['title'] = "PUPHerbarium | Appointment";
@@ -163,7 +158,6 @@ public function userRegister(){
 		$result = $this->m->addAppointment();
 		echo json_encode($result);
 }
-
 
 
 	public function addDeposit(){
