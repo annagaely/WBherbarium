@@ -16,7 +16,27 @@
     <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/logo1.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <script src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/reg"></script>
+    <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+'use strict';
+window.addEventListener('load', function() {
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.getElementsByClassName('needs-validation');
+  // Loop over them and prevent submission
+  var validation = Array.prototype.filter.call(forms, function(form) {
+    form.addEventListener('submit', function(event) {
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+}, false);
+})();
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 
@@ -37,7 +57,7 @@
                 <div class="col-md-3">
                   <i class="fa fa-user prefix grey-text"></i>
                   <input type="text" id="strFirstName" name="txtfirstname" class="form-control" required>
-                  <label for="strFirstName" class="font-weight-light" style="margin-left: 55px;">First Name</label>
+                  <label for="strFirstName" class="font-weight-light" style="margin-left: 55px;">First Name<span style="color: red"> *</span></label>
                   <div class="invalid-feedback">
                     Please enter your first name.
                   </div>
@@ -54,7 +74,7 @@
                 </div>
                 <div class="col-md-3">
                   <input type="text" id="strLastName" name="txtlastname" class="form-control" required>
-                  <label for="strLastName" class="font-weight-light ml-3">Last Name</label>
+                  <label for="strLastName" class="font-weight-light ml-3">Last Name<span style="color: red"> *</span></label>
                   <div class="invalid-feedback">
                     Please enter your last name.
                   </div>
@@ -64,7 +84,7 @@
                 </div>
                 <div class="col-md-2">
                   <input type="text" id="strNameSuffix" name="txtnamesuffix" class="form-control">
-                  <label for="strLastName" class="font-weight-light ml-3">Name Suffix</label>
+                  <label for="strNameSuffix" class="font-weight-light ml-3">Name Suffix</label>
                   <div class="valid-feedback">
                     Looks good!
                   </div>
@@ -77,7 +97,7 @@
                   <div class="col-md-6">
                     <i class="fa fa-envelope prefix grey-text"></i>
                     <input type="email" id="strEmailAdd" name="txtemail" class="form-control" required>
-                    <label for="strEmailAdd" class="font-weight-light" style="margin-left: 55px;">Email Address</label>
+                    <label for="strEmailAdd" class="font-weight-light" style="margin-left: 55px;">Email Address<span style="color: red"> *</span></label>
                     <div class="invalid-feedback">
                       Please enter your valid email address.
                     </div>
@@ -88,7 +108,7 @@
                   <div class="col-md-6">
                     <i class="fa fa-phone prefix grey-text"></i>
                     <input type="text" id="strPhoneNum" name="txtphonenum" class="form-control" required>
-                    <label for="strPhoneNum" class="font-weight-light" style="margin-left: 55px;">Phone Number</label>
+                    <label for="strPhoneNum" class="font-weight-light" style="margin-left: 55px;">Phone Number<span style="color: red"> *</span></label>
                   </div>
                   <div class="invalid-feedback">
                     Please enter your active phone number.
@@ -102,7 +122,7 @@
               <div class="md-form">
                 <i class="fas fa-map-marker-alt prefix grey-text"></i>
                 <input type="text" id="strPresentAdd" name="txtpresentadd" class="form-control" onkeyup="enableCheck();" required>
-                <label for="strPresentAdd" class="font-weight-light">Present Address</label>
+                <label for="strPresentAdd" class="font-weight-light">Present Address<span style="color: red"> *</span></label>
                 <div class="invalid-feedback">
                   Please enter your present address.
                 </div>
@@ -113,7 +133,7 @@
               <div class="md-form">
                 <i class="fa fa-home prefix grey-text"></i>
                 <input type="text" id="strPermanentAdd" name="txtpermaadd"  class="form-control" required>
-                <label for="strPermanentAdd" class="font-weight-light">Permanent Address</label>
+                <label for="strPermanentAdd" class="font-weight-light">Permanent Address<span style="color: red"> *</span></label>
                 <div class="invalid-feedback">
                   Please enter your permanent.
                 </div>
@@ -130,7 +150,7 @@
                   <div class="col-md-6">
                     <i class="fa fa-users prefix grey-text"></i>
                     <input type="text" id="strAffiliation" name="txtaffname" class="form-control" required>
-                    <label for="strAffiliation" class="font-weight-light" style="margin-left: 55px;">Affiliation</label>
+                    <label for="strAffiliation" class="font-weight-light" style="margin-left: 55px;">Affiliation<span style="color: red"> *</span></label>
                     <div class="invalid-feedback">
                       Please enter the affiliation name you are associated with.
                     </div>
@@ -141,7 +161,7 @@
                   <div class="col-md-6">
                     <i class="fas fa-street-view prefix grey-text"></i>
                     <input type="text" id="strAffiliationPosition" name="txtaffpos" class="form-control" required>
-                    <label for="strAffiliationPosition" class="font-weight-light" style="margin-left: 55px;">Position</label>
+                    <label for="strAffiliationPosition" class="font-weight-light" style="margin-left: 55px;">Position<span style="color: red"> *</span></label>
                     <div class="invalid-feedback">
                       Please enter your position in your affiliation.
                     </div>
@@ -154,7 +174,7 @@
               <div class="md-form">
                 <i class="fa fa-map-pin prefix grey-text"></i>
                 <input type="text" id="strAffiliationAdd" name="txtaffaddress" class="form-control" required>
-                <label for="strAffiliationAdd" class="font-weight-light">Affiliation Address</label>
+                <label for="strAffiliationAdd" class="font-weight-light">Affiliation Address<span style="color: red"> *</span></label>
                 <div class="invalid-feedback">
                   Please enter your affiliation's address.
                 </div>
@@ -167,7 +187,7 @@
                   <div class="col-md-6">
                     <i class="fa fa-user-circle prefix grey-text"></i>
                     <input type="text" id="strUsername" name="txtusername" class="form-control" required>
-                    <label for="strUsername" class="font-weight-light" style="margin-left: 55px;">Username</label>
+                    <label for="strUsername" class="font-weight-light" style="margin-left: 55px;">Username<span style="color: red"> *</span></label>
                     <div class="invalid-feedback">
                       Please enter unique username.
                     </div>
@@ -177,8 +197,8 @@
                   </div>
                   <div class="col-md-6">
                     <i class="fa fa-key prefix grey-text"></i>
-                    <input type="password" id="strPassword" name="txtpassword" class="form-control" required>
-                    <label for="strPassword" class="font-weight-light" style="margin-left: 55px;">Password</label>
+                    <input type="password" id="strPassword" name="txtpassword" class="form-control" pattern=".{6,}" required>
+                    <label for="strPassword" class="font-weight-light" style="margin-left: 55px;">Password (6 or more characters)<span style="color: red"> *</span></label>
                     <div class="invalid-feedback">
                       Please enter your password.
                     </div>
@@ -186,13 +206,24 @@
                       Looks good!
                     </div>
                   </div>
+
+                </div>
+
+              </div>
+              <div class="custom-control custom-checkbox" style="margin-left: 38px;">
+                <input type="checkbox" class="custom-control-input" id="checkbox2" name="checkbox2" required>
+                <label class="custom-control-label font-weight-light" for="checkbox2">I have read and agree to the terms of service.</label>
+              </div>
+              <div class="md-form">
+                <div class="alert alert-danger font-weight-light" role="alert">
+                    * Indicates required fields.
                 </div>
               </div>
 
 
 
             <div class="text-center py-4 mt-3">
-              <button class="btn btn-danger" type="reset">Reset</button>
+              <a href="<?php echo base_url()?>user/index"><button class="btn btn-danger" type="button" >Back to Home</button></a>
               <button class="btn btn-primary" type="submit" id="btnSave">Submit</button>
             </div>
         </form>
@@ -210,11 +241,10 @@
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
     $(function(){
-
-$('#btnSave').click(function(){
-      var data = $('#RegisterForm').serialize();
-      //validate form
-
+      $('#btnSave').click(function(e){
+      event.preventDefault();
+        var data = $('#RegisterForm').serialize();
+        //validate form
         $.ajax({
           type: 'ajax',
           method: 'post',
@@ -222,22 +252,31 @@ $('#btnSave').click(function(){
           data: data,
           async: false,
           dataType: 'json',
-          success: function($response){
-            if(response==true){
-              $('#RegisterForm').modal('hide');
-              $('#RegisterForm')[0].reset();
-
-            }else{
-              alert('Fill up all FIELDS');
+          success: function(data){
+            if(data==true){
+              swal({
+                title: "Good job!",
+                text: "Congratulations! Your account has been created.",
+                icon: "success",
+                button: "OK!"
+              }).then(function(){
+                location.reload();
+              });
+            } else {
+              swal({
+                title: "Incomplete input!",
+                text: "Please fill up all the required fields.",
+                icon: "warning",
+                button: "OK!"
+              })
             }
           },
           error: function(){
             alert('Could not save Data');
           }
         });
-
+      });
     });
-});
 </script>
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields

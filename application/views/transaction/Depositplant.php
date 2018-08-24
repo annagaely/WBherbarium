@@ -214,7 +214,7 @@
       </div>
     </div>
   </div>
-        
+
 </div>
 
 
@@ -421,7 +421,7 @@
           async: false,
           dataType: 'json',
           success: function(response){
-         
+
             if(response==true){
              // $('#viewDepositReq').modal('hide');
             //  $('#updateStatusForm')[0].reset();

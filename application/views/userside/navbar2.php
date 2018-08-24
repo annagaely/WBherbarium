@@ -57,22 +57,10 @@
           </ul>
           <!-- Social Icon  -->
           <ul class="navbar-nav nav-flex-icons">
-            <li class="nav-item">
-              <a class="nav-link waves-effect waves-light">
-                <i class="fab fa-facebook light-green-text-2"></i>
+
                 <!--<?php echo '<script type="text/javascript">alert('.$this->session->userdata('strUserName').') </script>'?>-->
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect waves-light">
-                <i class="fab fa-twitter light-green-text-2"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect waves-light">
-                <i class="fab fa-instagram light-green-text-2"></i>
-              </a>
-            </li>
+            
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
