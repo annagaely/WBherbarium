@@ -7,9 +7,9 @@
 
         <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Deposit</p>
         
-        <div class="md-form">
+<!--         <div class="md-form">
           <input type="file" id="picHerbariumSheet" name="picPlant" class="font-weight-light">
-        </div>
+        </div> -->
 
         <div class="md-form">
           <input type="text" name="txtScientificName" id="strScientificName" class="form-control">
@@ -24,6 +24,9 @@
         <div class="md-form">
           <input type="text" id="strLocation" name="txtLocation" class="form-control">
           <label for="strLocation" class="font-weight-light">Location</label>
+        </div>
+        <div class="md-form">
+          <label class="font-weight-light">Date Collected:</label><br />
         </div>
         <div class="md-form">
             <input type="date" name="txtDateCollected" id= "dtDateCollected" class="form-control grey-text font-weight-light" value="">

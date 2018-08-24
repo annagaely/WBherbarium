@@ -47,20 +47,17 @@
             </tr>
             <tr>
               <td class="FamName">
-                <input type="text" id="famName" style="width: 100%;">
+                <select name='sFamilyName[]'  id='family' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>
               </td>
               <td class="GenusName">
-                <input type="text" id="genusName" style="width: 100%;" disabled>
+                <select name='sGenusName[]'  id='genus' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>
               </td>
               <td class="SpecieName">
-                <input type="text" id="speciesName" style="width: 100%;" disabled>
+                <select name='sSpeciesName[]'  id='species' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>
               </td>
               <td class="CommonName">
-                <input type="text" id="commonName" style="width: 100%;">
+                <select name='sCommonName[]'  id='commonname' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>
               </td>
-
-
-
 
               <td></td>
             </tr>
@@ -69,35 +66,22 @@
             <button type="button" name="add" id="add" class="btn btn-primary btn-sm">+</button>
           </div>
           </form>
-          <div id="inserted_item_data"></div>
         </div>
       </div>
 <div class="md-form">
+  <form id= "textForms" method="POST" enctype="multipart/form-data" autocomplete="off">
   <label>Purpose of Loan: </label>
 </div>
 <div class="md-form">
-  <div class="custom-control custom-checkbox" style="margin-left: 38px;">
-    <input type="checkbox" class="custom-control-input" id="checkbox1" name="checkAcademic">
-    <label class="custom-control-label font-weight-light" for="checkbox1">Academic</label>
+  <div class="custom-control custom-radio" style="margin-left: 38px;">
+    <input type="radio" class="custom-control-input" id="radioAcademic" name="strPurpose" value="Academic">
+    <label class="custom-control-label font-weight-light" for="radioAcademic">Academic</label>
   </div>
-  <div class="custom-control custom-checkbox" style="margin-left: 38px;">
-    <input type="checkbox" class="custom-control-input" id="checkbox2" name="checkResearch">
-    <label class="custom-control-label font-weight-light" for="checkbox2">Research</label>
+  <div class="custom-control custom-radio" style="margin-left: 38px;">
+    <input type="radio" class="custom-control-input" id="radioResearch" name="strPurpose" value="Research">
+    <label class="custom-control-label font-weight-light" for="radioResearch">Research</label>
   </div>
-  <div class="custom-control custom-checkbox" style="margin-left: 38px;">
-    <input type="checkbox" class="custom-control-input" id="checkbox3" name="checkOthers">
-    <label class="custom-control-label font-weight-light" for="checkbox3">Others</label>
-  </div>
-</div>
-<div class="md-form">
-  <i class="fas fa-pencil-alt prefix grey-text"></i>
-  <textarea type="text" id="purpose" name="txtpurpose"  class="md-textarea form-control" rows="3"></textarea>
-  <label for="purpose" class="font-weight-light">Others</label>
-</div>
-
-
-
-        </div>
+ </div>
       <div class="text-center py-4 mt-3">
         <button class="btn" style="background-color: #800000;" type="submit"  id="save">Submit</button>
       </div>
@@ -114,17 +98,21 @@ $(document).ready(function(){
  $('#add').click(function(){
 
   count = count + 1;
-  var html_code = "<tr id='row"+count+"'>";
+  var html_code ="<tr id='row"+count+"'>";
    html_code += "<td class='FamName'>"+
                 "<select name='sFamilyName[]'  id='family"+count+"' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
 
                 "</select>"+"</td>";
    html_code += "<td class='GenusName'>"+
-                "<select name='sGenusName[]'  id='genus1"+count+"' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
+                "<select name='sGenusName[]'  id='genus"+count+"' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
 
                 "</select>"+"</td>";
    html_code += "<td class='SpecieName'>"+
                 "<select name='sSpeciesName[]'  id='species"+count+"' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
+
+                "</select>"+"</td>";
+  html_code += "<td class='SpecieName'>"+
+                "<select name='sCommonName[]'  id='commonname"+count+"' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
 
                 "</select>"+"</td>";
    html_code += "<td><button type='button' name='remove' data-row='row"+count+"' class='btn btn-danger btn-sm remove'>-</button></td>";
@@ -133,7 +121,11 @@ $(document).ready(function(){
     showFamilyName(count);
     showGenusName(count);
     showSpeciesName(count);
+    showCommonName(count);
+$("#family"+count).change(function () {
 
+  alert('sad')
+});
  });
 
  $(document).on('click', '.remove', function(){
@@ -146,7 +138,6 @@ $(document).ready(function(){
 var data=$('#tableForm').serialize()+ "&"+ $('#textForms').serialize();
 
 event.preventDefault();
-
   $.ajax({
    url:'<?php echo base_url() ?>user/addLoanReq', //lol dikolam tooo :<
    method:"POST",
@@ -163,11 +154,33 @@ event.preventDefault();
    }
  });
  });
-
+$("#family").change(function () {
+var data=document.getElementById('family').value
+  alert(x)
+        $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url() ?>user/showFamilyName',
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html +='<option value="'+data[i].intFamilyID+'">'+data[i].strFamilyName+'</option>';
+          }
+          $('#family').html(html);
+          $('#family'+count).html(html);
+        },
+        error: function(){
+          alert('Could not get Data from Database');
+        }
+      });
+});
 
     showFamilyName();
     showGenusName();
     showSpeciesName();
+    showCommonName();
       function showFamilyName(count){
       $.ajax({
         type: 'ajax',
@@ -188,6 +201,26 @@ event.preventDefault();
         }
       });
     }
+    function showCommonName(count){
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url() ?>user/showSpeciesName',
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html +='<option value="'+data[i].intSpeciesID+'">'+data[i].strCommonName+'</option>';
+          }
+          $('#commonname').html(html);
+          $('#commonname'+count).html(html);
+        },
+        error: function(){
+          alert('Could not get Data from Database');
+        }
+      });
+    }
 
       function showGenusName(count){
       $.ajax({
@@ -202,7 +235,7 @@ event.preventDefault();
             html +='<option value="'+data[i].intGenusID+'">'+data[i].strGenusName+'</option>';
           }
           $('#genus').html(html);
-           $('#genus1'+count).html(html);
+           $('#genus'+count).html(html);
 
         },
         error: function(){
@@ -332,14 +365,14 @@ function autocomplete(inp, arr) {
 }
 
 /*An array containing all the country names in the world:*/
-var fname = ["heh"];
-var gname = ["whatHAHAHAHAH"];
+
+var gname = ["whatHAHAHAHAH"]['sad'];
 var sname = ["whyHAHAHAHAH"];
 var cname = ["HAHAHAHAH"];
 
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("famName"), fname);
+
 autocomplete(document.getElementById("genusName"), gname);
 autocomplete(document.getElementById("speciesName"), sname);
 autocomplete(document.getElementById("commonName"), cname);
