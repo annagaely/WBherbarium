@@ -131,18 +131,19 @@ public function can_login($username,$password){
 		$family=$this->input->post('sFamilyName');
 		$genus=$this->input->post('sGenusName');
 		$species=$this->input->post('sSpeciesName');
-		$numdur=$this->input->post('txtNumDuration');
-		$dwm=$this->input->post('txtdayweekmonth');
-		$purpose=$this->input->post('txtpurpose');
+		$purpose=$this->input->post('strPurpose');
 		$sessionid=$this->session->userdata('intOUserID');
 		//set @sessionname= '$sessionusername'
 
 
 		$query="
+		DECLARE @prps	VARCHAR(255);
+		set @prps = '$purpose'
+
 		declare @sessionid int;
 		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
-		insert into tblLoanReq(intOUserID,intDuration,strDtWkMt,strPurpose,strStatus) values (@sessionid,'".$numdur."','".$dwm."','".$purpose."','Pending')
+		insert into tblLoanReq(intOUserID,strPurpose,strStatus) values (@sessionid,@prps,'Pending')
 
 
 	";if($this->db->query($query)){
@@ -228,8 +229,7 @@ $getusername = $this->session->userdata['strUserName'];
 
 SET NOCOUNT ON;
 
-		declare @sessionid int;
-		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
+
 
 
 		BEGIN
@@ -270,15 +270,16 @@ $getusername = $this->session->userdata['strUserName'];
 	set @appointmenttype = '$aType'
 	set @dateofappointment = '$doA'
 	set @applicationdesc = '$appdesc'
-declare @sessionid int;
-		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
 SET NOCOUNT ON;
 	declare @sessionid int;
 		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
+		if @appointmenttype ='Loan' OR @appointmenttype ='Deposit'
+INSERT INTO tblAppointments(strAppointmentType, dtAppointmentDate, strVisitDescription,intOUserID)VALUES(@appointmenttype, @dateofappointment,@applicationdesc,@sessionid)
+else
 
-			INSERT INTO tblAppointments(strAppointmentType, dtAppointmentDate, strVisitDescription,intOUserID,strStatus)VALUES(@appointmenttype, @dateofappointment,@applicationdesc,@sessionid,'Pending')
+	INSERT INTO tblAppointments(strAppointmentType, dtAppointmentDate, strVisitDescription,intOUserID,strStatus)VALUES(@appointmenttype, @dateofappointment,@applicationdesc,@sessionid,'Pending')
 		";
 
 		if($this->db->query($query))
@@ -293,5 +294,12 @@ SET NOCOUNT ON;
 
 
 	}
+
+public function getgenusname(){
+
+
+}
+
+
 
 }?>
