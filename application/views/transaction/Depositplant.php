@@ -94,9 +94,6 @@
 
           <div class="modal-body">
              <div class="row">
-               <div class="card col-md-6" style="max-width: 20rem;margin-bottom: 2px;" >
-                 <img id="imgPlant" name="txtPlantImg" class="card-img-center"  style="height: 30rem;object-fit: cover">
-             </div>
               <div class="col-md-6" style="margin-left: auto; margin-right: auto;">
                  <form id= "updateStatusForm" method="POST" enctype="multipart/form-data"class="form-horizontal">
                   <div class="form-group row">
@@ -163,16 +160,14 @@
                      </div>
                      <div class="col-sm-8">
                       <select name="txtStatus" id="strStatus"  class="form-control">
-                        <option value="Okay">Accept</option>
+                        <option value="For Passing">For Passing</option>
                         <option value="Rejected">Reject</option>
                       </select>
                      </div>
 
                      <div class="modal-footer">
-                    <!--<button id ="btnSave">Save</button>-->
 
-                     <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 300px" data-dismiss="modal" data-toggle="modal" data-target="#myModal">
-
+                     <input type="submit" id="btnSave" value="Save" class="btn btn-primary" style="margin-left: 300px">
                    </div>
                    </div>
                  </form>
@@ -183,7 +178,33 @@
        </div>
      </div>
      <!-- Modal-->
-  <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+ </div>
+
+
+<div id="SecondTab" class="tabcontent">
+  <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Deposit ID</th>
+                  <th>Collector's Name</th>
+                  <th>Common Name</th>
+                  <th>Date Collected</th>
+                  <th>Full Location</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+                <tbody tbody id="showdata1">
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+
+ <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
     <div role="document" class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -218,30 +239,6 @@
 </div>
 
 
-<div id="SecondTab" class="tabcontent">
-  <div class="card">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Deposit ID</th>
-                  <th>Collector's Name</th>
-                  <th>Common Name</th>
-                  <th>Date Collected</th>
-                  <th>Full Location</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-                <tbody tbody id="showdata1">
-                </tbody>
-            </table>
-        </div>
-      </div>
-    </div>
- </div>
-
  <div id="ThirdTab" class="tabcontent">
   <div class="card">
         <div class="card-body">
@@ -266,9 +263,59 @@
     </div>
  </div>
 
+ <div id="Confirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+    <div role="document" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="exampleModalLabel" class="modal-title">Confirmation</h5>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+        </div>
 
+        <div class="modal-body">
+          <form id= "ConfirmForm" method="POST" enctype="multipart/form-data">
+            <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Deposit ID:</label>
+                     </div>
+                     <div class="col-sm-8">
+                      <input type="hidden" name="txtId" id="txtID" value="0">
+                       <input type="text" name="txtDepositReqID" id="intDepositReqID" class="form-control" disabled="">
+                     </div>
+            </div>
+           <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Collector's Name:</label>
+                     </div>
+                     <div class="col-sm-8">
+                      <input type="hidden" name="txtId" id="txtID" value="0">
+                       <input type="text" name="txtCollectorName" id="strFullName" class="form-control" disabled="">
+                     </div>
+            </div>
+            <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Scientific Name:</label>
+                     </div>
+                     <div class="col-sm-8">
+                       <input type="text" name="txtScientificName" id="strScientificName" class="form-control" disabled>
+                     </div>
+                   </div>
+                  <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Common Name:</label>
+                     </div>
+                    <div class="col-sm-8">
+                      <input type="text" name="txtCommonName" id="strCommonName" class="form-control" disabled="">
+                     </div>
+                   </div>
 
-
+                  <div class="modal-footer">
+                     <input type="submit" id="btnConfirm" value="Pass to HBMIS" class="btn btn-primary">
+                  </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
 
@@ -294,7 +341,8 @@
                   '<td>'+data[i].strFullLocation+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
-                    '<a href="javascript:;" data-toggle="modal" data-target="#myModal1" class="btn btn-primary view-depositReq" data="'+data[i].intDepositReqID+'">View</a>'+
+                    '<a href="javascript:;" class="btn btn-primary view-depositReq" data="'+data[i].intDepositReqID+'">View</a>'+
+
                   '</td>'+
                   '</tr>';
           }
@@ -306,8 +354,8 @@
       });
     }
   });
-
-    $(function(){
+</script>
+<script>
 
     //show
     showAllDepositReqOkay();
@@ -329,7 +377,8 @@
                   '<td>'+data[i].strFullLocation+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary view-depositReq" data="'+data[i].intDepositReqID+'">Okay</a>'+
+                    '<a href="javascript:;" data-toggle="modal" data-target="#Confirmation"  class="btn btn-primary" data="'+data[i].intDepositReqID+'">Confirmation</a>'+
+                    '<a href="javascript:;" data-toggle="modal" data-target="#myModal" style="margin-left: 10px" class="btn btn-primary" data="'+data[i].intDepositReqID+'">Email</a>'+
                   '</td>'+
                   '</tr>';
           }
@@ -340,7 +389,8 @@
         }
       });
     }
-  });
+</script>
+<script>
 
     $(function(){
 
@@ -375,30 +425,28 @@
     }
   });
 
+</script>
+<script >
+
 
 //view depositreq
-    $('#showdata').on('click', '.view-depositReq', function(){
+    $('#showdata1').on('click', '.view-depositcon', function(){
       var id = $(this).attr('data');
-      $('#viewDepositReq').modal('show');
-      $('#viewDepositReq').find('.modal-title').text('View Deposit Request');
+      $('#Confirmation').modal('show');
+      $('#Confirmation').find('.Confirmation').text('View Confirmation');
       $.ajax({
         type: 'ajax',
         method: 'get',
-        url: '<?php echo base_url() ?>admin/viewDepositReq',
+        url: '<?php echo base_url() ?>admin/Confirmation',
         data: {id: id},
         async: false,
         dataType: 'json',
         success: function(data){
-          $('input[name=txtCollector').val(data.strFullName);
-          //$('input[name=txtStatus').val(data.strStatus);
+          $('input[name=txtCollectorName').val(data.strFullName);
           $('input[name=txtDepositReqID]').val(data.intDepositReqID);
           $('input[name=txtScientificName').val(data.strScientificName);
           $('input[name=txtCommonName').val(data.strCommonName);
-          $('input[name=txtdDateCollected]').val(data.dtDateCollected);
-          $('input[name=txtFullLocation').val(data.strFullLocation);
-          $('textarea[name=txtDescription]').val(data.strPlantDesc);
-          $('textarea[name=txtDescription]').val(data.strPlantDesc);
-          $('input[name=txtId]').val(data.intDepositReqID)
+          $('input[name=txtId]').val(data.intDepositReqID);
 
 
         },
@@ -407,30 +455,22 @@
         }
 
     });
-
-
-
-//update status
-    $('#btnSave').click(function(){
-      var data = $('#updateStatusForm').serialize();
+    }
+</script>
+<script>
+    $('#btnConfirm').click(function(){
+      var data = $('#ConfirmForm').serialize();
         $.ajax({
           type: 'ajax',
           method: 'post',
-          url: '<?php echo base_url() ?>admin/updateAcceptStatus',
+          url: '<?php echo base_url() ?>admin/updateConfirmation',
           data: data,
           async: false,
           dataType: 'json',
           success: function(response){
          
             if(response==true){
-             // $('#viewDepositReq').modal('hide');
-            //  $('#updateStatusForm')[0].reset();
-             // if(response.type=='add'){
-             //   var type = 'added'
-             //// }else if(response.type=='update'){
-             //   var type ="updated"
-            //  }
-              //showAllDepositReq();
+
 
             }else{
               alert('Error');
@@ -442,8 +482,73 @@
         });
     });
 
-  });
 </script>
+
+<script>
+//update status
+    $(function(){
+          $('#btnSave').click(function(){
+      var data = $('#updateStatusForm').serialize();
+      alert(data)
+        $.ajax({
+          type: 'ajax',
+          method: 'post',
+          url: '<?php echo base_url() ?>admin/updateAcceptStatus',
+          data: data,
+          async: false,
+          dataType: 'json',
+          success: function(response){
+         
+            if(response==true){
+
+
+            }else{
+              alert('Error');
+            }
+          },
+          error: function(){
+            alert('Could not update data');
+          }
+        });
+    });
+        });
+
+  
+
+
+
+</script>
+<script type="text/javascript">
+      $('#showdata').on('click', '.view-depositReq', function(){
+      var id = $(this).attr('data');
+      $('#viewDepositReq').modal('show');
+      $('#viewDepositReq').find('.modal-title').text('View Deposit Request');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/viewDepositReq',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtCollector]').val(data.strFullName);
+          $('input[name=txtDepositReqID]').val(data.intDepositReqID);
+          $('input[name=txtScientificName').val(data.strScientificName);
+          $('input[name=txtCommonName').val(data.strCommonName);
+          $('input[name=txtdDateCollected]').val(data.dtDateCollected);
+          $('input[name=txtFullLocation').val(data.strFullLocation);
+          $('textarea[name=txtDescription]').val(data.strPlantDesc);
+          $('input[name=txtId]').val(data.intDepositReqID)
+
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+    });
+</script>
+
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
