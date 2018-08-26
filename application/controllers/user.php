@@ -7,6 +7,7 @@ class user extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('user_m', 'm');
+
     }
 
    	public function index()
@@ -157,6 +158,8 @@ public function userRegister(){
 	public function addAppointment(){
 		$result = $this->m->addAppointment();
 		echo json_encode($result);
+		$this->load->helper('url');
+		redirect('/user/loans', 'refresh');
 }
 
 
@@ -164,6 +167,8 @@ public function userRegister(){
 		$result = $this->m->addDeposit();
 		echo json_encode($result);
 
-
 	}
+
+
+
 }?>
