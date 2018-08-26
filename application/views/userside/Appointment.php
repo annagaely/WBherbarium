@@ -38,7 +38,7 @@
 
             <div class="text-center py-4 mt-3">
               <button class="btn btn-danger" type="reset">Reset</button>
-              <button id = "btnSubmit" class="btn btn-primary" type="submit"  onclick="Redirect();">Submit</button>
+              <button id = "btnSubmit" class="btn btn-primary" type="submit" >Submit</button>
             </div>
           </form>
         </div>
@@ -54,42 +54,41 @@
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 
     <script type="text/javascript">
+
+$(function(){
     $('#btnSubmit').click(function(){
       var data = $('#addAppointmentForm').serialize();
       //validate form
-      $('input[name=appType]').change(function() {
-      if($(this).val() == "Loan") {
-      $('#addAppointmentForm').attr(action,"user/loans");
-      } else{
-        alert('ayaw')
-      });
-
-//  $.ajax({
-//    type: 'ajax',
-  //  method: 'post',
-//    url: '<?php echo base_url() ?>user/addAppointment',
-//    data: data,
-  //  async: false,
-  //  dataType: 'json',
-//  success: function($response){
-  //    if(response.success){
-  //      $('#addAppointmentForm').modal('hide');
-  //      $('#addAppointmentForm')[0].reset();
-  //      if(response.type=='add'){
-  //        var type = 'added'
-  //      }else if(response.type=='update'){
-  //        var type ="updated"
-  //      }
-  //    }else{
-//        alert('Error');
-  //    }
-//    },
-  //  error: function(){
-  //    alert('Could not save Data');
-//    }
-  //});
-}
-
-
+     // $('input[name=appType]').change(function() {
+   //   if($(this).val() == "Loan") {
+    //  window.location.href = "http://localhost:8080/WBherbarium/user/Loans";
+   //   } else{
+    //    alert('ayaw')
+   //   });
+  $.ajax({
+    type: 'ajax',
+    method: 'post',
+    url: '<?php echo base_url() ?>user/addAppointment',
+    data: data,
+    async: false,
+    dataType: 'json',
+  success: function($response){
+      if(response.success){
+        $('#addAppointmentForm').modal('hide');
+        $('#addAppointmentForm')[0].reset();
+        if(response.type=='add'){
+          var type = 'added'
+        }else if(response.type=='update'){
+          var type ="updated"
+     }
+   }else{
+        alert('Error');
+      }
+    },
+    error: function(){
+      alert('Could not save Data');
+    }
+});
+});
     });
 </script>

@@ -65,7 +65,7 @@
             <tr>
               <th>Name</th>
               <th>Appointment Date</th>
-              <th>Appointment Time</th>
+              
               <th>Appointment Reason</th>
               <th>Status</th>
               <th>Actions</th>
@@ -78,7 +78,60 @@
     </div>
   </div>
 
-  <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+ <div id="acceptReq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+    <div role="document" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="exampleModalLabel" class="modal-title">Confirmation</h5>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+        </div>
+
+        <div class="modal-body">
+          <form id= "ConfirmForm" method="POST" enctype="multipart/form-data">
+            <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Deposit ID:</label>
+                     </div>
+                     <div class="col-sm-8">
+                      <input type="hidden" name="txtId" id="txtID" value="0">
+                       <input type="text" name="txtDepositReqID" id="intDepositReqID" class="form-control" disabled="">
+                     </div>
+            </div>
+           <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Collector's Name:</label>
+                     </div>
+                     <div class="col-sm-8">
+                      <input type="hidden" name="txtId" id="txtID" value="0">
+                       <input type="text" name="txtCollectorName" id="strFullName" class="form-control" disabled="">
+                     </div>
+            </div>
+            <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Scientific Name:</label>
+                     </div>
+                     <div class="col-sm-8">
+                       <input type="text" name="txtScientificName" id="strScientificName" class="form-control" disabled>
+                     </div>
+                   </div>
+                  <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Common Name:</label>
+                     </div>
+                    <div class="col-sm-8">
+                      <input type="text" name="txtCommonName" id="strCommonName" class="form-control" disabled="">
+                     </div>
+                   </div>
+
+                  <div class="modal-footer">
+                     <input type="submit" id="btnConfirm" value="Pass to HBMIS" class="btn btn-primary">
+                  </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<!--   <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
     <div role="document" class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -142,7 +195,7 @@
         </div>
       </div>
     </div>
-
+ -->
 </div>
 
 <div id="SecondTab" class="tabcontent">
@@ -154,7 +207,7 @@
                 <tr>
                   <th>Name</th>
                   <th>Appointment Date</th>
-                  <th>Appointment Time</th>
+                 
                   <th>Appointment Reason</th>
                   <th>Status</th>
                   <th>Actions</th>
@@ -178,7 +231,7 @@
                 <tr>
                   <th>Name</th>
                   <th>Appointment Date</th>
-                  <th>Appointment Time</th>
+                  
                   <th>Appointment Reason</th>
                   <th>Status</th>
                 </tr>
@@ -211,13 +264,13 @@
             html +='<tr>'+
                   '<td>'+data[i].strFullName+'</td>'+
                   '<td>'+data[i].dtAppointmentDate+'</td>'+
-                  '<td>'+data[i].tmAppTime+'</td>'+
+                  
                   '<td>'+data[i].strVisitDescription+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
 
                   '<td>'+
-                    '<a href="javascript:;" data-toggle="modal" data-target="#myModal" class="btn btn-primary accept-Appoinment" data="'+data[i].intAppointmentID+'">Accept</a>'+
-                    '<a href="javascript:;" data-toggle="modal" data-target="#myModal1" class="btn btn-secondary reject-Appoinment" data="'+data[i].intAppointmentID+'" style="margin-left: 0px">Reject</a>'+
+                    '<a href="javascript:;"  class="btn btn-primary accept-Appointment" data="'+data[i].intAppointmentID+'">View</a>'+
+     
                   '</td>'+
                   '</tr>';
           }
@@ -229,6 +282,36 @@
       });
     }
   });
+</script>
+
+<script type="text/javascript">
+      $('#showdata').on('click', '.accept-Appointment', function(){
+      var id = $(this).attr('data');
+      $('#acceptReq').modal('show');
+      $('#acceptReq').find('.modal-title').text('View Appointments');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/viewDepositReq',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtCollector]').val(data.strFullName);
+          $('input[name=txtDepositReqID]').val(data.intDepositReqID);
+          $('input[name=txtScientificName').val(data.dtAppointmentDate);
+          $('input[name=txtCommonName').val(data.strVisitDescription);
+          $('input[name=txtdDateCollected]').val(data.strMessage);
+          $('input[name=txtFullLocation').val(data.tmAppTime);
+
+
+        },
+        // error: function(){
+        //   alert('Could not Edit Data');
+        // }
+
+    });
+    });
 </script>
 
     <script type="text/javascript">
@@ -250,7 +333,7 @@
             html +='<tr>'+
                   '<td>'+data[i].strFullName+'</td>'+
                   '<td>'+data[i].dtAppointmentDate+'</td>'+
-                  '<td>'+data[i].tmAppTime+'</td>'+
+                  
                   '<td>'+data[i].strVisitDescription+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
 
@@ -288,7 +371,7 @@
             html +='<tr>'+
                   '<td>'+data[i].strFullName+'</td>'+
                   '<td>'+data[i].dtAppointmentDate+'</td>'+
-                  '<td>'+data[i].tmAppTime+'</td>'+
+                  
                   '<td>'+data[i].strVisitDescription+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '</tr>';
