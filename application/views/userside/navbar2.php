@@ -38,14 +38,14 @@
             <li class="nav-item">
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Collection" data-offset="90">Collection</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Loans" data-offset="90">Loans</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Deposits" data-offset="90">Deposits</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Appointment" data-offset="90">Appointment</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link waves-effect waves-light dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-hospopup="true" aria-expanded="false">sched shits</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="<?php echo base_url()?>user/Loans" data-offset="90">Loans</a>
+                <a class="dropdown-item" href="<?php echo base_url()?>user/Deposits" data-offset="90">Deposits</a>
+                <a class="dropdown-item" href="<?php echo base_url()?>user/Appointment" data-offset="90">Appointment</a>
+
+              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Contact" data-offset="90">Contact</a>
@@ -60,7 +60,7 @@
 
                 <!--<?php echo '<script type="text/javascript">alert('.$this->session->userdata('strUserName').') </script>'?>-->
               </a>
-            
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
