@@ -679,11 +679,22 @@ public function edit_event()
 		echo json_encode($result);
 
 	}
+	public function Confirmation(){
+		$result = $this->m->Confirmation();
+		echo json_encode($result);
+
+	}
 	public function updateAcceptStatus(){
 		$result = $this->m->updateAcceptStatus();
 		echo json_encode($result);
 
 	}
+		public function updateConfirmation(){
+		$result = $this->m->updateConfirmation();
+		echo json_encode($result);
+
+	}
+
 	
 
 	//SENDING EMAIL NOT YET FINAL
@@ -720,8 +731,16 @@ public function edit_event()
 
 }
 
-public function showLoanReq(){
-		$result = $this->m->showLoanReq();
+public function showLoanReqPending(){
+		$result = $this->m->showLoanReqPending();
+		echo json_encode($result);
+}
+public function showLoanReqOkay(){
+		$result = $this->m->showLoanReqOkay();
+		echo json_encode($result);
+}
+public function showLoanReqAll(){
+		$result = $this->m->showLoanReqAll();
 		echo json_encode($result);
 }
 public function editLoanReq(){
