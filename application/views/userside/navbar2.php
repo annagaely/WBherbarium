@@ -39,11 +39,11 @@
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Collection" data-offset="90">Collection</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link waves-effect waves-light dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-hospopup="true" aria-expanded="false">sched shits</a>
+              <a class="nav-link waves-effect waves-light dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-hospopup="true" aria-expanded="false">Appointment</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="<?php echo base_url()?>user/Loans" data-offset="90">Loans</a>
-                <a class="dropdown-item" href="<?php echo base_url()?>user/Deposits" data-offset="90">Deposits</a>
-                <a class="dropdown-item" href="<?php echo base_url()?>user/Appointment" data-offset="90">Appointment</a>
+                <a class="dropdown-item" href="<?php echo base_url()?>user/Loans" data-offset="90">Borrow Specimen (Loan)</a>
+                <a class="dropdown-item" href="<?php echo base_url()?>user/Deposits" data-offset="90">Deposit Specimen</a>
+                <a class="dropdown-item" href="<?php echo base_url()?>user/Appointment" data-offset="90">Visit Herbarium Center</a>
 
               </div>
             </li>

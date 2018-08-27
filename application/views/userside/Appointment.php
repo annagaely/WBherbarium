@@ -1,39 +1,40 @@
 <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/calendar.jpg" style="height: 50vh; width: 100%;"  class="banner">
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-5 pt-5">
     <div class="py-5 pl-5">
       <div class="card px-auto">
         <div class="card-body">
           <form id="addAppointmentForm">
-            <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Appointment</p>
-            <div class="md-form pl-5">
+            <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Visit</p>
 
-              <label>Type of Appointment:</label><br />
-              <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" id="typeVisit" name="appType" value="Visit">
-                <label class="custom-control-label" for="typeVisit">Visit</label></div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" id="typeLoan" name="appType" value="Loan">
-                  <label class="custom-control-label" for="typeLoan">Loan</label>
+
+            <div class="md-form">
+              <div class="row">
+                <div class="col-md-5 pl-4">
+                  <p class="font-weight-light">Date of Visit:<span style="color: red"> *</span></p>
+                  <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px;">
                 </div>
-                <div class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" id="typeDeposit" name="appType" value="Deposit">
-                  <label class="custom-control-label" for="typeDeposit">Deposit</label>
+                <div class="col-md-7 pl-4">
+                  <p class="font-weight-light mb-0">Purpose of Loan:<span style="color: red"> *</span></p>
+                  <div class="custom-checkbox custom-control mt-0" style="margin-left: 38px;">
+                    <input type="checkbox" class="custom-control-input" id="chkAppointment" name="checkbox2" required>
+                    <label class="custom-control-label font-weight-light" for="chkAppointment">Academic</label>
+                  </div>
+                  <div class="custom-control custom-checkbox" style="margin-left: 38px;">
+                    <input type="checkbox" class="custom-control-input" id="chkResearch" name="checkResearch">
+                    <label class="custom-control-label font-weight-light" for="chkResearch">Research</label>
+                  </div>
+                  <div class="custom-control custom-checkbox" style="margin-left: 38px;">
+                    <input type="checkbox" class="custom-control-input" id="chkOthers" name="checkOthers" onchange="others()">
+                    <label class="custom-control-label font-weight-light" for="chkOthers">Others</label>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <div class="md-form">
-              <label>Date of Appointment</label><br /><br />
-
-              <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" value="">
-
-              </label>
-            </div>
-
             <div class="md-form">
               <i class="fas fa-pencil-alt prefix grey-text"></i>
-              <textarea type="text"  id="strVisitDescription" name = "txtappdesc" class="md-textarea form-control" rows="3" blur> </textarea>
-              <label for="strPlantDesc" class="font-weight-light">Appointment Description</label>
+              <input type="text" id="strOthers" name="txtaffpos" class="form-control" disabled>
+              <label for="strOthers" class="font-weight-light">Others</label>
             </div>
 
             <div class="text-center py-4 mt-3">
@@ -45,9 +46,8 @@
       </div>
     </div>
   </div>
-  <div class="col-md-7">
+  <div class="col-md-7 py-5">
     <iframe src="<?php echo site_url('user/view_calendar');?>" width="100%" height="800px" style="border: none;"></iframe>
-
   </div>
 </div>
 
@@ -92,4 +92,16 @@
 
 
     });
+</script>
+<script>
+function others() {
+  var check = document.getElementById('chkOthers');
+  var area = document.getElementById('strOthers');
+
+  if (check.checked) {
+    area.disabled = false;
+  } else {
+    area.disabled = true;
+  }
+}
 </script>
