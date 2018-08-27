@@ -30,6 +30,14 @@
 }
 </style>
 <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/loan.jpg" style="height: 50vh; width: 100%;"  class="banner">
+<div class="row">
+  <div class="col-md-5 py-5 mr-0">
+    <div class="pl-5 pr-0">
+      <div class="card px-4">
+        <div class="card-body">
+            <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Loan</p>
+            <form id= "tableForm" method="POST" enctype="multipart/form-data" autocomplete="off">
+
 
 <div class="py-5">
   <div class="card mx-auto px-4" style="width: 80%;">
@@ -65,45 +73,48 @@
             <div class="col-md-3">
               <p class="font-weight-light">Date of Loaning:<span style="color: red"> *</span></p>
                 <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px">
-
               </div>
 
               <div id="inserted_item_data"></div>
             </div>
             <div class="md-form">
-              <div class="row">
-                <div class="col-md-6">
-                  <p class="font-weight-light">Date of Loaning:<span style="color: red"> *</span></p>
-                    <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px">
-                  </div>
-                  <div class="col-md-6">
-                    <p class="font-weight-light mb-0">Purpose of Loan:<span style="color: red"> *</span> </p>
-                    <div class="custom-checkbox custom-control mt-0" style="margin-left: 38px;">
-                      <input type="checkbox" class="custom-control-input" id="chkAppointment" name="checkbox2" required>
-                      <label class="custom-control-label font-weight-light" for="chkAppointment">Academic</label>
-                    </div>
-                    <div class="custom-control custom-checkbox" style="margin-left: 38px;">
-                      <input type="checkbox" class="custom-control-input" id="chkResearch" name="checkResearch">
-                      <label class="custom-control-label font-weight-light" for="chkResearch">Research</label>
-                    </div>
 
+                <div class="md-form">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="font-weight-light">Date of Loaning:<span style="color: red"> *</span></p>
+                        <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px">
+                      </div>
+                      <div class="col-md-6">
+                        <p class="font-weight-light mb-0">Purpose of Loan:<span style="color: red"> *</span> </p>
+                        <div class="custom-checkbox custom-control mt-0" style="margin-left: 38px;">
+                          <input type="checkbox" class="custom-control-input" id="chkAppointment" name="checkbox2" required>
+                          <label class="custom-control-label font-weight-light" for="chkAppointment">Academic</label>
+                        </div>
+                        <div class="custom-control custom-checkbox" style="margin-left: 38px;">
+                          <input type="checkbox" class="custom-control-input" id="chkResearch" name="checkResearch">
+                          <label class="custom-control-label font-weight-light" for="chkResearch">Research</label>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center pt-4 mt-3">
+                    <button class="btn btn-danger" type="reset">Clear</button>
+                    <button class="btn btn-primary" style="background-color: #800000;" type="submit"  id="save">Submit</button>
                   </div>
                 </div>
-              </div>
-              <div class="text-center py-4 mt-3">
-                <button class="btn btn-danger" type="reset">Clear</button>
-                <button class="btn btn-primary" style="background-color: #800000;" type="submit"  id="save">Submit</button>
-              </div>
+              </form>
             </div>
-          </form>
+
         </div>
-      </form>
-    </div>
+      </div>
   </div>
-  <div class="col-md-5 pt-5 pr-5 pl-0">
+  <div class="col-md-7 py-5">
     <iframe src="<?php echo site_url('user/view_calendar');?>" width="100%" height="100%" style="border: none;"></iframe>
   </div>
 </div>
+
 
 
 
