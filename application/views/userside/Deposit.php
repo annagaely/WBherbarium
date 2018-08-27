@@ -7,12 +7,6 @@
 
         <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Deposit</p>
 
-
-        <div class="md-form">
-          <input type="file" id="picHerbariumSheet" name="picPlant" class="font-weight-light">
-        </div>
-
-
 <!--         <div class="md-form">
           <input type="file" id="picHerbariumSheet" name="picPlant" class="font-weight-light">
         </div> -->

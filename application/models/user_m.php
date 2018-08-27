@@ -186,23 +186,6 @@ public function can_login($username,$password){
 			return false;
 		}
 	}
-	public function showGenusName(){
-		$query = $this->db->get('tblGenus');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-		}
-	}
-	public function showSpeciesName(){
-		$query = $this->db->get('tblSpecies');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-		}
-	}
-
 
 //USER DEPOSIT//
 public function addDeposit(){
