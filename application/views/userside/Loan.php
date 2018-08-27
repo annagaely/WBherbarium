@@ -36,15 +36,6 @@
       <div class="card px-4">
         <div class="card-body">
             <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Loan</p>
-            <form id= "tableForm" method="POST" enctype="multipart/form-data" autocomplete="off">
-
-
-<div class="py-5">
-  <div class="card mx-auto px-4" style="width: 80%;">
-    <div class="card-body">
-        <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Loan</p>
-        <form id= "tableForm" method="POST" enctype="multipart/form-data" autocomplete="off">
-        <div class="md-form">
 
           <form id= "tableForm" method="POST" enctype="multipart/form-data" autocomplete="off">
 
@@ -65,24 +56,12 @@
           <div align="right">
             <button type="button" name="add" id="add" class="btn btn-primary btn-sm">+</button>
           </div>
-
-          <div id="inserted_item_data"></div>
-        </div>
-        <div class="md-form">
-          <div class="row">
-            <div class="col-md-3">
-              <p class="font-weight-light">Date of Loaning:<span style="color: red"> *</span></p>
-                <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px">
-              </div>
-
-              <div id="inserted_item_data"></div>
-            </div>
             <div class="md-form">
 
                 <div class="md-form">
                   <div class="row">
                     <div class="col-md-6">
-                      <p class="font-weight-light">Date of Loaning:<span style="color: red"> *</span></p>
+                      <p class="font-weight-light">Desired Date of Claiming:<span style="color: red"> *</span></p>
                         <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px">
                       </div>
                       <div class="col-md-6">
