@@ -33,8 +33,8 @@
             </div>
             <div class="md-form">
               <i class="fas fa-pencil-alt prefix grey-text"></i>
-              <input type="text" id="strOthers" name="txtaffpos" class="form-control" disabled>
-              <label for="strOthers" class="font-weight-light">Others</label>
+              <input type="text" id="strVisitDescription"  class="form-control" disabled>
+              <label for="strOthers" class="font-weight-light">Visit Description</label>
             </div>
 
             <div class="text-center py-4 mt-3">
