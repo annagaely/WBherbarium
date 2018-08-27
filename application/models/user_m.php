@@ -149,13 +149,11 @@ public function can_login($username,$password){
 
 			$i=0;
 
-			foreach($family as $f){
+			foreach($sciname as $s){
 
 				$data=array(
 
-					'intFamilyID' => $family[$i],
-					'intGenusID' => $genus[$i],
-					'intSpeciesID' => $species[$i],
+					'strScientificName' => $sciname[$i],
 					'intLoanReqID' => $last_id
 				);
 
