@@ -736,7 +736,7 @@ $id=$this->input->post('txtId');
 }
 
 
-	public function depositsendMail()
+public function depositsendMail()
 {
     $config = Array(
   'protocol' => 'smtp',
@@ -767,6 +767,39 @@ $id=$this->input->post('txtId');
 
  }
 }
+
+public function visitsendMail()
+{
+    $config = Array(
+  'protocol' => 'smtp',
+  'smtp_host' => 'ssl://smtp.googlemail.com',
+  'smtp_port' => 465,
+  'smtp_user' => 'WBHerbariumTA@gmail.com', // change it to yours
+  'smtp_pass' => 'WBHerbarium2018', // change it to yours
+  'mailtype' => 'html',
+  'charset' => 'iso-8859-1',
+  'wordwrap' => TRUE
+);
+$email=$this->input->post('txtEmail');
+$id=$this->input->post('txtId');
+        
+        $this->load->library('email', $config);
+      $this->email->set_newline("\r\n");
+      $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
+      $this->email->to($email);// change it to yours
+      $this->email->subject('PUP Herbarium Visiting');
+      $this->email->message("Your Visit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Visit Request ID:" . $id);
+      if($this->email->send())
+     {
+     	return true;
+     }
+     else
+    {
+     show_error($this->email->print_debugger());
+
+ }
+}
+
 //LOAN
 
 

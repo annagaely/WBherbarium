@@ -218,7 +218,7 @@
                      <script type="text/javascript">
                             $('#btnSend').click(function(){
                                 var data = $('#emailform').serialize();
-                                alert(data)
+                                
                                   $.ajax({
                                   type: 'ajax',
                                   method: 'post',
