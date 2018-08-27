@@ -703,38 +703,73 @@ public function edit_event()
 	
 
 	//SENDING EMAIL NOT YET FINAL
-	public function sendMail()
+	public function loansendMail()
 {
     $config = Array(
   'protocol' => 'smtp',
   'smtp_host' => 'ssl://smtp.googlemail.com',
   'smtp_port' => 465,
-  'smtp_user' => 'agbtolentino@gmail.com', // change it to yours
-  'smtp_pass' => 'Beeanna072299', // change it to yours
+  'smtp_user' => 'WBHerbariumTA@gmail.com', // change it to yours
+  'smtp_pass' => 'WBHerbarium2018', // change it to yours
   'mailtype' => 'html',
   'charset' => 'iso-8859-1',
   'wordwrap' => TRUE
 );
-
-        $message = 'cutting na tayo. wag na IT soc';
+$email=$this->input->post('txtEmail');
+$id=$this->input->post('txtId');
+        
         $this->load->library('email', $config);
       $this->email->set_newline("\r\n");
-      $this->email->from('agbtolentino@gmail.com'); // change it to yours
-      $this->email->to('bannagabriella@gmail.com');// change it to yours
-      $this->email->subject('qt ko');
-      $this->email->message($message);
+      $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
+      $this->email->to($email);// change it to yours
+      $this->email->subject('PUP Herbarium Loaning of Specimen');
+      $this->email->message("Your loan request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Loan Request ID:" . $id);
       if($this->email->send())
      {
-      echo 'nagsend na pare';
+     	return true;
      }
      else
     {
      show_error($this->email->print_debugger());
-    }
 
-
-
+ }
 }
+
+
+	public function depositsendMail()
+{
+    $config = Array(
+  'protocol' => 'smtp',
+  'smtp_host' => 'ssl://smtp.googlemail.com',
+  'smtp_port' => 465,
+  'smtp_user' => 'WBHerbariumTA@gmail.com', // change it to yours
+  'smtp_pass' => 'WBHerbarium2018', // change it to yours
+  'mailtype' => 'html',
+  'charset' => 'iso-8859-1',
+  'wordwrap' => TRUE
+);
+$email=$this->input->post('txtEmail');
+$id=$this->input->post('txtId');
+        
+        $this->load->library('email', $config);
+      $this->email->set_newline("\r\n");
+      $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
+      $this->email->to($email);// change it to yours
+      $this->email->subject('PUP Herbarium Depositing of Specimen');
+      $this->email->message("Your deposit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Deposit Request ID:" . $id);
+      if($this->email->send())
+     {
+     	return true;
+     }
+     else
+    {
+     show_error($this->email->print_debugger());
+
+ }
+}
+
+
+
 
 public function showLoanReqPending(){
 		$result = $this->m->showLoanReqPending();

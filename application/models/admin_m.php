@@ -95,11 +95,25 @@ class admin_m extends CI_Model{
 	}
 
 	public function addClass(){
-		$field = array(
-			'intPhylumID'=>$this->input->post('spID'),
-			'strClassName'=>$this->input->post('txtCName'),
-			);
-		$this->db->insert('tblClass', $field);
+
+			$phylumID=$this->input->post('spID');
+			$className=$this->input->post('txtCName');
+
+			$query="
+			insert into tblClass(intPhylumID,strClassname) VALUES ('".$phylumID."','".$className."')
+
+			";
+
+			if($phylumID!=''){
+				if($className!=''){
+					$this->db->query($query);
+				}else{
+					return false;
+				}
+			}else {
+				return false;
+			}
+		
 		if($this->db->affected_rows() > 0){
 			return true;
 		}else{
@@ -1316,7 +1330,7 @@ $query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' '
 public function showLoanReqOkay(){
 
 
-$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName ,strPurpose, lr.intOUserID,intLoanReqID,strStatus
+$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName ,strPurpose, lr.intOUserID,intLoanReqID,strStatus,ou.strEmailAddress
 		from tblLoanReq lr join tblOnlineUser ou
 		on lr.intOUserID = ou.intOUserID
 		where strStatus ='For Claiming'");
