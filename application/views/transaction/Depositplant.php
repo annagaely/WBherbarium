@@ -155,19 +155,10 @@
                      </div>
                      </div>
                       <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Status:</label>
-                     </div>
-                     <div class="col-sm-8">
-                      <select name="txtStatus" id="strStatus"  class="form-control">
-                        <option value="For Passing">For Passing</option>
-                        <option value="Rejected">Reject</option>
-                      </select>
-                     </div>
 
                      <div class="modal-footer">
 
-                     <input type="submit" id="btnSave" value="Save" class="btn btn-primary" style="margin-left: 300px">
+                     <input type="submit" id="btnSave" value="Proceed" class="btn btn-primary" style="margin-left: 300px">
                    </div>
                    </div>
                  </form>
@@ -204,7 +195,7 @@
       </div>
     </div>
 
- <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+ <div id="EmailCon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
     <div role="document" class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -216,11 +207,11 @@
           <form id= "addAccountForm" method="POST" enctype="multipart/form-data">
             <div class="form-group row pr-4">
               <label class="col-sm-2">To:</label>
-              <input type="email" class="form-control col-sm-10" disabled>
+              <input type="email" name="txtEmailCon" id="strEmailAdress" class="form-control col-sm-10" disabled>
             </div>
             <div class="form-group row pr-4">
                       <label class="col-sm-2">From:</label>
-                      <input type="email" class="form-control col-sm-10" disabled>
+                      <input type="email" class="form-control col-sm-10" value= "WBHerbariumTA@gmail.com" disabled>
                     </div>
                     <div class="form-group pr-2">
                       <label>Message:</label>
@@ -293,23 +284,18 @@
             </div>
             <div class="form-group row">
                      <div class="col-sm-4">
-                       <label style="font-size: 14px;">Scientific Name:</label>
+                       <label style="font-size: 14px;">Status:</label>
                      </div>
                      <div class="col-sm-8">
-                       <input type="text" name="txtScientificName" id="strScientificName" class="form-control" disabled>
+                     <select name="txtStatus" id="strStatus"  class="form-control">
+                        <option value="Arrived">Arrived</option>
+                        <option value="Did not arrive">Did not arrive</option>
+                      </select>
                      </div>
-                   </div>
-                  <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Common Name:</label>
-                     </div>
-                    <div class="col-sm-8">
-                      <input type="text" name="txtCommonName" id="strCommonName" class="form-control" disabled="">
-                     </div>
-                   </div>
-
+            </div>
+                    
                   <div class="modal-footer">
-                     <input type="submit" id="btnConfirm" value="Pass to HBMIS" class="btn btn-primary">
+                     <input type="submit" id="btnConfirm" value="Confirm" class="btn btn-primary">
                   </div>
           </form>
         </div>
@@ -354,10 +340,37 @@
       });
     }
   });
+
+
+        $(function(){
+          $('#btnSave').click(function(){
+      var data = $('#updateStatusForm').serialize();
+      // alert(data)
+        $.ajax({
+          type: 'ajax',
+          method: 'post',
+          url: '<?php echo base_url() ?>admin/updateAcceptStatus',
+          data: data,
+          async: false,
+          dataType: 'json',
+          success: function(response){
+
+            if(response==true){
+
+
+            }else{
+              alert('Error');
+            }
+          },
+          error: function(){
+            alert('Could not update data');
+          }
+        });
+    });
+        });
+
 </script>
 <script>
-
-    //show
     showAllDepositReqOkay();
     function showAllDepositReqOkay(){
       $.ajax({
@@ -377,8 +390,8 @@
                   '<td>'+data[i].strFullLocation+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
-                    '<a href="javascript:;" data-toggle="modal" data-target="#Confirmation"  class="btn btn-primary" data="'+data[i].intDepositReqID+'">Confirmation</a>'+
-                    '<a href="javascript:;" data-toggle="modal" data-target="#myModal" style="margin-left: 10px" class="btn btn-primary" data="'+data[i].intDepositReqID+'">Email</a>'+
+                    '<a href="javascript:;" class="btn btn-primary view-emailcon" data="'+data[i].intDepositReqID+'">Email</a>'+
+                    '<a href="javascript:;"  style="margin-left: 10px"  class="btn btn-primary view-depositcon" data="'+data[i].intDepositReqID+'">Confirmation</a>'+
                   '</td>'+
                   '</tr>';
           }
@@ -389,6 +402,55 @@
         }
       });
     }
+
+    //Show Confirmation
+    $('#showdata1').on('click', '.view-depositcon', function(){
+      var id = $(this).attr('data');
+      $('#Confirmation').modal('show');
+      $('#Confirmation').find('.Confirmation').text('Confirmation');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/Confirmation',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtCollectorName').val(data.strFullName);
+          $('input[name=txtDepositReqID]').val(data.intDepositReqID);
+          $('input[name=txtId]').val(data.intDepositReqID);
+          $('input[name=txtStatus]').val(data.strStatus);
+
+
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+    });
+
+     $('#showdata1').on('click', '.view-emailcon', function(){
+      var id = $(this).attr('data');
+      $('#EmailCon').modal('show');
+      $('#EmailCon').find('.EmailCon').text('Email');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/EmailCon',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('#strEmailAdress').val(data.strEmailAddress);
+
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+    });
 </script>
 <script>
 
@@ -426,37 +488,7 @@
   });
 
 </script>
-<script >
 
-
-//view depositreq
-    $('#showdata1').on('click', '.view-depositcon', function(){
-      var id = $(this).attr('data');
-      $('#Confirmation').modal('show');
-      $('#Confirmation').find('.Confirmation').text('View Confirmation');
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/Confirmation',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('input[name=txtCollectorName').val(data.strFullName);
-          $('input[name=txtDepositReqID]').val(data.intDepositReqID);
-          $('input[name=txtScientificName').val(data.strScientificName);
-          $('input[name=txtCommonName').val(data.strCommonName);
-          $('input[name=txtId]').val(data.intDepositReqID);
-
-
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
-
-    });
-    }
-</script>
 <script>
     $('#btnConfirm').click(function(){
       var data = $('#ConfirmForm').serialize();
@@ -484,40 +516,6 @@
 
 </script>
 
-<script>
-//update status
-    $(function(){
-          $('#btnSave').click(function(){
-      var data = $('#updateStatusForm').serialize();
-      alert(data)
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/updateAcceptStatus',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-
-            if(response==true){
-
-
-            }else{
-              alert('Error');
-            }
-          },
-          error: function(){
-            alert('Could not update data');
-          }
-        });
-    });
-        });
-
-  
-
-
-
-</script>
 <script type="text/javascript">
       $('#showdata').on('click', '.view-depositReq', function(){
       var id = $(this).attr('data');
