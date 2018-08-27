@@ -33,15 +33,14 @@
 <div class="py-5">
   <div class="card mx-auto px-4" style="width: 80%;">
     <div class="card-body">
-
         <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Loan</p>
+        <form id= "tableForm" method="POST" enctype="multipart/form-data" autocomplete="off">
         <div class="md-form">
-          <form id= "tableForm" method="POST" enctype="multipart/form-data" autocomplete="off">
           <table class="table table-bordered" id="crud_table">
             <tr>
-              <th width="20%">Family Name</th>
-              <th width="20%">Genus Name</th>
-              <th width="20%">Specie Name</th>
+              <th width="20%">Family Name<span style="color: red"> *</span></th>
+              <th width="20%">Genus Name<span style="color: red"> *</span></th>
+              <th width="20%">Specie Name<span style="color: red"> *</span></th>
               <th width="20%">Common Name</th>
               <th width="10%"></th>
             </tr>
@@ -65,30 +64,47 @@
           <div align="right">
             <button type="button" name="add" id="add" class="btn btn-primary btn-sm">+</button>
           </div>
+
+          <div id="inserted_item_data"></div>
+        </div>
+        <div class="md-form">
+          <div class="row">
+            <div class="col-md-3">
+              <p class="font-weight-light">Date of Loaning:<span style="color: red"> *</span></p>
+                <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px">
+              </div>
+              <div class="col-md-3">
+                <p class="font-weight-light mb-0">Purpose of Loan:<span style="color: red"> *</span> </p>
+                <div class="custom-checkbox custom-control mt-0" style="margin-left: 38px;">
+                  <input type="checkbox" class="custom-control-input" id="chkAppointment" name="checkbox2" required>
+                  <label class="custom-control-label font-weight-light" for="chkAppointment">Academic</label>
+                </div>
+                <div class="custom-control custom-checkbox" style="margin-left: 38px;">
+                  <input type="checkbox" class="custom-control-input" id="chkResearch" name="checkResearch">
+                  <label class="custom-control-label font-weight-light" for="chkResearch">Research</label>
+                </div>
+                <div class="custom-control custom-checkbox" style="margin-left: 38px;">
+                  <input type="checkbox" class="custom-control-input" id="chkOthers" name="checkOthers" onchange="others()">
+                  <label class="custom-control-label font-weight-light" for="chkOthers">Others</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <i class="fas fa-pencil-alt prefix grey-text"></i>
+                <textarea type="text" id="txtOthers" name="txtpurpose"  class="md-textarea form-control" rows="3" disabled></textarea>
+                <label for="txtOthers" class="font-weight-light pl-2">Others</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center py-4 mt-3">
+          <button class="btn" style="background-color: #800000;" type="submit"  id="save">Submit</button>
+        </div>
+      </form>
+    </div>
+
           </form>
         </div>
-      </div>
-<div class="md-form">
-  <form id= "textForms" method="POST" enctype="multipart/form-data" autocomplete="off">
-  <label>Purpose of Loan: </label>
-</div>
-<div class="md-form">
-  <div class="custom-control custom-radio" style="margin-left: 38px;">
-    <input type="radio" class="custom-control-input" id="radioAcademic" name="strPurpose" value="Academic">
-    <label class="custom-control-label font-weight-light" for="radioAcademic">Academic</label>
-  </div>
-  <div class="custom-control custom-radio" style="margin-left: 38px;">
-    <input type="radio" class="custom-control-input" id="radioResearch" name="strPurpose" value="Research">
-    <label class="custom-control-label font-weight-light" for="radioResearch">Research</label>
-  </div>
- </div>
-      <div class="text-center py-4 mt-3">
-        <button class="btn" style="background-color: #800000;" type="submit"  id="save">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
-</div>
+      
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 
@@ -399,4 +415,16 @@ autocomplete(document.getElementById("commonName"), cname);
 
 }
 
+</script>
+<script>
+function others() {
+  var check = document.getElementById('chkOthers');
+  var area = document.getElementById('txtOthers');
+
+  if (check.checked) {
+    area.disabled = false;
+  } else {
+    area.disabled = true;
+  }
+}
 </script>
