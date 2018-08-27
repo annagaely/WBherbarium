@@ -113,7 +113,7 @@
       <div class="form-group">
                 <label for="p-in" class="col-md-4 label-heading">Event Name</label>
                 <div class="col-md-8 ui-front">
-                    <input type="text" class="form-control" name="name" value="">
+                    <input type="text" class="form-control" name="name" value="" autocomplete="off">
                 </div>
         </div>
         <div class="form-group">

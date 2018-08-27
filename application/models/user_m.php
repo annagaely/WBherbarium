@@ -171,31 +171,21 @@ public function can_login($username,$password){
 		}
 	}
 
-	public function showFamilyName(){
-		$query = $this->db->get('tblFamily');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-		}
-	}
-	public function showGenusName(){
-		$query = $this->db->get('tblGenus');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-		}
-	}
-	public function showSpeciesName(){
-		$query = $this->db->get('tblSpecies');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-		}
-	}
+	public function showSciName(){
 
+
+		$query = $this->db->select("concat(g.intGenusID,' ',s.intSpeciesID) as strSciName")
+		->join('tblHerbariumSheet hs','sh.intHerbariumSheetID = hs.intHerbariumSheetID')
+		->join('tblSpecies s','s.intSpeciesID = hs.intSpeciesID')
+		->join('tblGenus g','g.intGenusID = s.intGenusID')
+		->where('boolLoanAvailable', 'True')
+		->get('tblStoredHerbarium sh');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
 
 //USER DEPOSIT//
 public function addDeposit(){
