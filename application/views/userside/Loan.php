@@ -54,12 +54,12 @@
                 </tr>
               </table>
             </div>
-
           <div align="right">
             <button type="button" name="add" id="add" class="btn btn-primary btn-sm">+</button>
           </div>
+        </form>
             <div class="md-form">
-
+<form id= "textForms" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <div class="md-form">
                   <div class="row">
                     <div class="col-md-6">
@@ -69,11 +69,11 @@
                       <div class="col-md-6">
                         <p class="font-weight-light mb-0">Purpose of Loan:<span style="color: red"> *</span> </p>
                         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-                          <input type="radio" class="custom-control-input" id="radioAcademic" name="radios">
+                          <input type="radio" class="custom-control-input" id="radioAcademic" value='Academic' name="radios">
                           <label class="custom-control-label" for="radioAcademic">Academic</label>
                         </div>
                         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-                          <input type="radio" class="custom-control-input" id="radioResearch" name="radios">
+                          <input type="radio" class="custom-control-input" id="radioResearch" value='Research' name="radios">
                           <label class="custom-control-label" for="radioResearch">Research</label>
                         </div>
 
@@ -123,10 +123,11 @@ $(document).ready(function(){
   $('#' + delete_row).remove();
  });
 
+
+
  $('#save').click(function(event){
 
 var data=$('#tableForm').serialize()+ "&"+ $('#textForms').serialize();
-
 event.preventDefault();
   $.ajax({
    url:'<?php echo base_url() ?>user/addLoanReq', //lol dikolam tooo :<
