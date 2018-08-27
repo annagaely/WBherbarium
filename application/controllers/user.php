@@ -142,16 +142,8 @@ public function userRegister(){
 		echo json_encode($result);
 	}
 
-	public function showFamilyName(){
-	$result = $this->m->showFamilyName();
-	echo json_encode($result);
-	}
-	public function showGenusName(){
-	$result = $this->m->showGenusName();
-	echo json_encode($result);
-	}
-	public function showSpeciesName(){
-	$result = $this->m->showSpeciesName();
+	public function showSciName(){
+	$result = $this->m->showSciName();
 	echo json_encode($result);
 	}
 
