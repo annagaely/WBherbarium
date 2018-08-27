@@ -1346,13 +1346,9 @@ public function editLoanReq(){
 public function showloanlist(){
 
 		$id = $this->input->get('id');
-		$this->db->where('lr.intLoanReqID', $id);
-	$query= $this->db->select("strFamilyName,strGenusName,strSpeciesName")
-		->join('tblLoanReq lr','lr.intLoanReqID = ll.intLoanReqID')
-		->join('tblFamily f','f.intFamilyID = ll.intFamilyID')
-		->join('tblGenus g','g.intGenusID = ll.intGenusID')
-		->join('tblSpecies s','s.intSpeciesID = ll.intSpeciesID')
-		->get('tblLoanList ll');
+		$this->db->where('intLoanReqID', $id);
+	$query= $this->db->select("strScientificName")
+		->get('tblLoanList');
 		if($query->num_rows() > 0){
 			return $query->result();
 		}else
@@ -1363,20 +1359,60 @@ public function showloanlist(){
 public function updateLoanStatus(){
 
     $depositid = $this->input->post('txtId');
-	//$status = $this->input->post('txtStatus');
+
 //DECLARE @status		VARCHAR(50);
 //Set @status ='$status'
 	$query="
 
 	DECLARE @depositid 		INT;
-	
+
 
 	Set @depositid ='$depositid'
-	
+
+		UPDATE tblLoanReq
+		SET strStatus = 'For Claiming'
+		WHERE intLoanReqID = @depositid;
+	";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}	 
+
+	public function LoanConfirmation(){
+	$id = $this->input->get('id');
+	$this->db->where('intLoanReqID', $id);
+		$query = $this->db->select("intLoanReqID,
+      ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName")
+
+		->join('tblOnlineUser ou','ou.intOUserID=dr.intOUserID')
+		->get('tblLoanReq dr');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+		public function updateLoanConfirmation(){
+
+
+$depositid = $this->input->post('txtId');
+$status = $this->input->post('txtStatus');
+
+	$query="
+
+	DECLARE @depositid INT;
+	DECLARE @status		VARCHAR(50);
+
+	Set @depositid ='$depositid'
+	Set @status ='$status'
 
 
 		UPDATE tblLoanReq
-		SET strStatus = 'For Claming'
+		SET strStatus = @Status
 		WHERE intLoanReqID = @depositid;
 	";
 		if($this->db->query($query)){
@@ -1385,9 +1421,21 @@ public function updateLoanStatus(){
 			return false;
 		}
 	}
-		
-			 
 
+
+	public function LoanEmailCon(){
+	$id = $this->input->get('id');
+	$this->db->where('intLoanReqID', $id);
+		$query = $this->db->select("intLoanReqID, strEmailAddress")
+		->join('tblOnlineUser ou','ou.intOUserID=dr.intOUserID')
+		->get('tblLoanReq dr');
+
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
 //DEPOSIT REQUEST
 public function showAllDepositReqPending()
 {
@@ -1425,7 +1473,7 @@ public function showAllDepositReqOkay()
 
 public function showAllDepositReqAll()
 {
-	//->where('strStatus','Pending')
+
 	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID
 
 		from tblDepositReq td join tblOnlineUser ou
@@ -1483,7 +1531,6 @@ $status = $this->input->post('txtStatus');
 			return false;
 		}
 	}
-
 
 
 	public function Confirmation(){

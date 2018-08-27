@@ -65,7 +65,6 @@
                 <tr>
                   <th>Loan ID</th>
                   <th>Borrower Name</th>
-
                   <th>Purpose</th>
                   <th>Status</th>
                   <th>Actions</th>
@@ -129,36 +128,34 @@
                               <table class="table table-striped">
                                 <thead>
                                   <tr>
-                                    <th>Family Name</th>
-                                    <th>Genus Name</th>
-                                    <th>Species Name</th>
+                                    <th>Scientific Name</th>
+
                                   </tr>
                                  </thead>
                                 <tbody tbody id="showplants">
                                 </tbody>
                               </table>
                              </div>
-
+                  </div>
+                 </div>
+                 <div class="form-group row">
+                  <div class="col-sm-4">
+                    <label style="font-size: 14px;">Status:</label>
+                  </div>
+                  <div class="col-sm-8">
+                   <select name="txtStatus" id="strStatus"  class="form-control">
+                        <option value="Approved">Approve</option>
+                        <option value="Reject">Reject</option>
+                   </select>
                   </div>
                 </div>
-                    <div class="form-group row">
-                    <!--<div class="col-sm-4">
-                     <label style="font-size: 14px;">Status:</label>
-                   </div>
-                   <div class="col-sm-4">
-                    <select name="txtStatus" id="strStatus"  class="form-control">
-                      <option value="For Claiming">For Claiming</option>
-                      <option value="Rejected">Reject</option>
-                    </select>
-                   </div>-->
-                 </div>
               </form>
             </div>
           </div>
         </div>
 
                <div class="modal-footer">
-                     <input type="submit" value="Pass to HBMIS" id='btnSave' class="btn btn-primary" style="margin-left: 300px">
+                     <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 300px">
                </div>
           </div>
         </div>
@@ -190,7 +187,7 @@
       </div>
     </div>
 
- <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+ <div id="EmailCon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
     <div role="document" class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -202,11 +199,11 @@
           <form id= "addAccountForm" method="POST" enctype="multipart/form-data">
             <div class="form-group row pr-4">
               <label class="col-sm-2">To:</label>
-              <input type="email" class="form-control col-sm-10" disabled>
+              <input type="email" name="txtEmailCon" id="strEmailAddress" class="form-control col-sm-10" disabled>
             </div>
             <div class="form-group row pr-4">
                       <label class="col-sm-2">From:</label>
-                      <input type="email" class="form-control col-sm-10" disabled>
+                      <input type="email" class="form-control col-sm-10" value="WBHerbariumTA@gmail.com" disabled>
                     </div>
                     <div class="form-group pr-2">
                       <label>Message:</label>
@@ -244,8 +241,54 @@
       </div>
     </div>
 </div>
-    <!-- FOR DESiGN PURPOSES ONLY-->
+ <div id="LoanConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+    <div role="document" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="exampleModalLabel" class="modal-title">Confirmation</h5>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+        </div>
 
+        <div class="modal-body">
+          <form id= "ConfirmForm" method="POST" enctype="multipart/form-data">
+            <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Loan ID:</label>
+                     </div>
+                     <div class="col-sm-8">
+                      <input type="hidden" name="txtId" id="txtID" value="0">
+                       <input type="text" name="txtLoanReqID" id="intLoanReqID" class="form-control" disabled="">
+                     </div>
+            </div>
+           <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Borrower's Name:</label>
+                     </div>
+                     <div class="col-sm-8">
+                      
+                       <input type="text" name="txtBorrowerName" id="strFullName" class="form-control" disabled="">
+                     </div>
+            </div>
+            <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Status:</label>
+                     </div>
+                     <div class="col-sm-8">
+                     <select name="txtStatus" id="strStatus"  class="form-control">
+                        <option value="Arrived">Arrived</option>
+                        <option value="Did not arrive">Did not arrive</option>
+                      </select>
+                     </div>
+            </div>
+                    
+                  <div class="modal-footer">
+                     <input type="submit" id="btnConfirm" value="Confirm" class="btn btn-primary">
+                  </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
    
 <script type="text/javascript">
@@ -266,7 +309,6 @@
             html +='<tr>'+
                   '<td>'+data[i].intLoanReqID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
-
                   '<td>'+data[i].strPurpose+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
@@ -282,9 +324,7 @@
       });
     }
 
-
-
-
+//table inside view
     $('#showdata').on('click', '.loanreq-edit', function(){
       var id = $(this).attr('data');
       $('#myModal').modal('show');
@@ -300,9 +340,7 @@
           var i;
           for(i=0; i<data.length; i++){
             html +='<tr>'+
-                  '<td>'+data[i].strFamilyName+'</td>'+
-                  '<td>'+data[i].strGenusName+'</td>'+
-                  '<td>'+data[i].strSpeciesName+'</td>'+
+                  '<td>'+data[i].strScientificName+'</td>'+
                   '</tr>';
           }
           $('#showplants').html(html);
@@ -313,6 +351,8 @@
 
     });
       });
+
+
 $('#showdata').on('click', '.loanreq-edit', function(){
       var id = $(this).attr('data');
       $('#viewLoanPlant').modal('show');
@@ -326,7 +366,6 @@ $('#showdata').on('click', '.loanreq-edit', function(){
         success: function(data){
           $('#intLoanReqID').val(data.intLoanReqID);
           $('#strFullName').val(data.strFullName);
-
           $('#strPurpose').val(data.strPurpose);
           $('#txtID').val(data.intLoanReqID);
         },
@@ -339,6 +378,28 @@ $('#showdata').on('click', '.loanreq-edit', function(){
   });
     });
 
+     $('#btnSave').click(function(){
+      var data = $('#updateStatusForm').serialize();
+        $.ajax({
+          type: 'ajax',
+          method: 'post',
+          url: '<?php echo base_url() ?>admin/updateLoanStatus',
+          data: data,
+          async: false,
+          dataType: 'json',
+          success: function(data){
+         
+            if(data=true){
+              location.reload();
+            }else{
+              alert('Error');
+            }
+          },
+          error: function(){
+            alert('Could not update data');
+          }
+        });
+    });
  
 
 </script>
@@ -363,12 +424,11 @@ $('#showdata').on('click', '.loanreq-edit', function(){
             html +='<tr>'+
                   '<td>'+data[i].intLoanReqID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
-
                   '<td>'+data[i].strPurpose+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary loanreq-edit" data="'+data[i].intLoanReqID+'">Confirm</a>'+
-                    '<a href="javascript:;" data-toggle="modal" data-target="#myModal" style="margin-left: 10px" class="btn btn-primary" data="'+data[i].intLoanReqID+'">Email</a>'+
+                  '<a href="javascript:;"   class="btn btn-primary view-emailcon " data="'+data[i].intLoanReqID+'">Email</a>'+
+                  '<a href="javascript:;" style="margin-left: 10px" class="btn btn-primary view-loancon" data="'+data[i].intLoanReqID+'">Confirm</a>'+
                   '</td>'+
                   '</tr>';
           }
@@ -381,7 +441,57 @@ $('#showdata').on('click', '.loanreq-edit', function(){
     }
 
 });
+
+      $('#showdata1').on('click', '.view-loancon', function(){
+      var id = $(this).attr('data');
+      $('#LoanConfirmation').modal('show');
+      $('#LoanConfirmation').find('.Confirmation').text('Confirmation');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/LoanConfirmation',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtBorrowerName').val(data.strFullName);
+          $('input[name=txtLoanReqID]').val(data.intLoanReqID);
+          $('input[name=txtLoanId]').val(data.intLoanReqID);
+          $('input[name=txtId]').val(data.intLoanReqID);
+          $('input[name=txtStatus]').val(data.strStatus);
+
+
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+    });
+
+     $('#showdata1').on('click', '.view-emailcon', function(){
+      var id = $(this).attr('data');
+      $('#EmailCon').modal('show');
+      $('#EmailCon').find('.EmailCon').text('Email');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/LoanEmailCon',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('#strEmailAddress').val(data.strEmailAddress);
+
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+    });
 </script>
+
 <script type="text/javascript">
         $(function(){
 
@@ -419,24 +529,24 @@ $('#showdata').on('click', '.loanreq-edit', function(){
 
 </script>
 
-<script type="text/javascript">
 
-</script>
 <script type="text/javascript">
-//update status
-    $('#btnSave').click(function(){
-      var data = $('#updateStatusForm').serialize();
+  
+   $('#btnConfirm').click(function(){
+      var data = $('#ConfirmForm').serialize();
+      alert(data)
         $.ajax({
           type: 'ajax',
           method: 'post',
-          url: '<?php echo base_url() ?>admin/updateLoanStatus',
+          url: '<?php echo base_url() ?>admin/updateLoanConfirmation',
           data: data,
           async: false,
           dataType: 'json',
-          success: function(data){
+          success: function(response){
          
-            if(data=true){
-              location.reload();
+            if(response==true){
+
+
             }else{
               alert('Error');
             }
@@ -446,8 +556,6 @@ $('#showdata').on('click', '.loanreq-edit', function(){
           }
         });
     });
- 
-
 </script>
 <script>
 function openCity(evt, cityName) {

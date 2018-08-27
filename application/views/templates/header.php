@@ -28,10 +28,10 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" type="image/png" href="<?php echo base_url();?>assets/bower_components/logo1.ico">
-    <link rel="stylesheet" href="href="<?php echo base_url();?> https://use.fontawesome.com/releases/v5.1.0/css/solid.css" integrity="sha384-TbilV5Lbhlwdyc4RuIV/JhD8NR+BfMrvz4BL5QFa2we1hQu6wvREr3v6XSRfCTRp" crossorigin="anonymous">
-    <link rel="stylesheet" href="href="<?php echo base_url();?> https://use.fontawesome.com/releases/v5.1.0/css/regular.css" integrity="sha384-avJt9MoJH2rB4PKRsJRHZv7yiFZn8LrnXuzvmZoD3fh1aL6aM6s0BBcnCvBe6XSD" crossorigin="anonymous">
-    <link rel="stylesheet" href="href="<?php echo base_url();?>https://use.fontawesome.com/releases/v5.1.0/css/brands.css" integrity="sha384-7xAnn7Zm3QC1jFjVc1A6v/toepoG3JXboQYzbM0jrPzou9OFXm/fY6Z/XiIebl/k" crossorigin="anonymous">
-    <link rel="stylesheet" href="href="<?php echo base_url();?>https://use.fontawesome.com/releases/v5.1.0/css/fontawesome.css" integrity="sha384-ozJwkrqb90Oa3ZNb+yKFW2lToAWYdTiF1vt8JiH5ptTGHTGcN7qdoR1F95e0kYyG" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo base_url();?> https://use.fontawesome.com/releases/v5.1.0/css/solid.css" integrity="sha384-TbilV5Lbhlwdyc4RuIV/JhD8NR+BfMrvz4BL5QFa2we1hQu6wvREr3v6XSRfCTRp" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo base_url();?> https://use.fontawesome.com/releases/v5.1.0/css/regular.css" integrity="sha384-avJt9MoJH2rB4PKRsJRHZv7yiFZn8LrnXuzvmZoD3fh1aL6aM6s0BBcnCvBe6XSD" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo base_url();?>https://use.fontawesome.com/releases/v5.1.0/css/brands.css" integrity="sha384-7xAnn7Zm3QC1jFjVc1A6v/toepoG3JXboQYzbM0jrPzou9OFXm/fY6Z/XiIebl/k" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo base_url();?>https://use.fontawesome.com/releases/v5.1.0/css/fontawesome.css" integrity="sha384-ozJwkrqb90Oa3ZNb+yKFW2lToAWYdTiF1vt8JiH5ptTGHTGcN7qdoR1F95e0kYyG" crossorigin="anonymous">
 
 </head>
 <body>
@@ -94,11 +94,8 @@
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidation">External Validation</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Manageappointment">Manage Appointment</a>
-<!--                   <ul id="DdownManageAppointment" class="collapse list-unstyled ">
-                    <li><a style="background-color: #393836;" href="<?php echo base_url(); ?>admin/Depositplant" class="nav-link ">&nbsp; &nbsp; &nbsp; &nbsp; Pending</a></li>
-                    <li><a style="background-color: #393836;" href="<?php echo base_url(); ?>admin/Loanplant" class="nav-link">&nbsp; &nbsp; &nbsp; &nbsp; History</a></li>
-                  </ul> -->
+                <li><a href="<?php echo base_url(); ?>admin/Manageappointment">Visits</a>
+
                 </li>
               </ul>
             </li>
