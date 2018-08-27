@@ -694,6 +694,11 @@ public function edit_event()
 		echo json_encode($result);
 
 	}
+		public function EmailCon(){
+		$result = $this->m->EmailCon();
+		echo json_encode($result);
+
+	}
 
 	
 
@@ -760,6 +765,21 @@ public function showloanlist(){
 
 }
 
+	public function LoanConfirmation(){
+		$result = $this->m->LoanConfirmation();
+		echo json_encode($result);
+
+}
+	public function updateLoanConfirmation(){
+		$result = $this->m->updateLoanConfirmation();
+		echo json_encode($result);
+
+}
+		public function LoanEmailCon(){
+		$result = $this->m->LoanEmailCon();
+		echo json_encode($result);
+
+	}
 
 //APPOINTMENT
 public function showAllAppointmentPending(){
