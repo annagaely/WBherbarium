@@ -38,23 +38,41 @@
             <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Loan</p>
             <form id= "tableForm" method="POST" enctype="multipart/form-data" autocomplete="off">
 
-            <div class="md-form">
-              <table class="table table-bordered" id="crud_table">
-                <tr>
-                  <th width="90%">Scientific Name</th>
 
-                  <th width="10%"></th>
-                </tr>
-                <tr>
-                  <td class='SciName'>
-                    <select name='sSciName[]'  id='family' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>
-                  </td>
+<div class="py-5">
+  <div class="card mx-auto px-4" style="width: 80%;">
+    <div class="card-body">
+        <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Loan</p>
+        <form id= "tableForm" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <div class="md-form">
 
-                  <td></td>
-                </tr>
-              </table>
-              <div align="right">
-                <button type="button" name="add" id="add" class="btn btn-primary btn-sm">+</button>
+          <form id= "tableForm" method="POST" enctype="multipart/form-data" autocomplete="off">
+
+          <table class="table table-bordered" id="crud_table">
+            <tr>
+              <th width="90%">Scientific Name</th>
+
+              <th width="10%"></th>
+            </tr>
+            <tr>
+              <td class='SciName'>
+                <select name='sSciName[]'  id='sciname' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>
+              </td>
+
+              <td></td>
+            </tr>
+          </table>
+          <div align="right">
+            <button type="button" name="add" id="add" class="btn btn-primary btn-sm">+</button>
+          </div>
+
+          <div id="inserted_item_data"></div>
+        </div>
+        <div class="md-form">
+          <div class="row">
+            <div class="col-md-3">
+              <p class="font-weight-light">Date of Loaning:<span style="color: red"> *</span></p>
+                <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px">
               </div>
 
               <div id="inserted_item_data"></div>
@@ -110,7 +128,7 @@ $(document).ready(function(){
   count = count + 1;
   var html_code ="<tr id='row"+count+"'>";
    html_code += "<td class='SciName'>"+
-                "<select name='sSciName[]'  id='family"+count+"' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
+                "<select name='sSciName[]'  id='sciname"+count+"' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
 
                 "</select>"+"</td>";
    html_code += "<td><button type='button' name='remove' data-row='row"+count+"' class='btn btn-danger btn-sm remove'>-</button></td>";

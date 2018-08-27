@@ -174,7 +174,7 @@ public function can_login($username,$password){
 	public function showSciName(){
 
 
-		$query = $this->db->select("concat(g.intGenusID,' ',s.intSpeciesID) as strSciName")
+		$query = $this->db->select("concat(g.strGenusName,' ',s.strSpeciesName) as strSciName")
 		->join('tblHerbariumSheet hs','sh.intHerbariumSheetID = hs.intHerbariumSheetID')
 		->join('tblSpecies s','s.intSpeciesID = hs.intSpeciesID')
 		->join('tblGenus g','g.intGenusID = s.intGenusID')
