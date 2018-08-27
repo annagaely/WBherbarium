@@ -69,11 +69,11 @@
                       <div class="col-md-6">
                         <p class="font-weight-light mb-0">Purpose of Loan:<span style="color: red"> *</span> </p>
                         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-                          <input type="radio" class="custom-control-input" id="radioAcademic" name="radios">
+                          <input type="radio" class="custom-control-input" id="radioAcademic" value='Academic' name="radios">
                           <label class="custom-control-label" for="radioAcademic">Academic</label>
                         </div>
                         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-                          <input type="radio" class="custom-control-input" id="radioResearch" name="radios">
+                          <input type="radio" class="custom-control-input" id="radioResearch" value='Research' name="radios">
                           <label class="custom-control-label" for="radioResearch">Research</label>
                         </div>
 
