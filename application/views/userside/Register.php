@@ -210,7 +210,7 @@ window.addEventListener('load', function() {
                 </div>
 
               </div>
-              
+
               <div class="md-form">
                 <div class="alert alert-danger font-weight-light" role="alert">
                     * Indicates required fields.
@@ -239,9 +239,9 @@ window.addEventListener('load', function() {
     <script type="text/javascript">
     $(function(){
       $('#btnSave').click(function(){
-      
+
         var data = $('#RegisterForm').serialize();
-        alert(data)
+        
         //validate form
         $.ajax({
           type: 'ajax',
