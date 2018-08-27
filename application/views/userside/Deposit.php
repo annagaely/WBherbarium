@@ -37,16 +37,10 @@
           <label for="strLocation" class="font-weight-light">Location<span style="color: red"> *</span></label>
         </div>
         <div class="md-form">
-
           <p class="font-weight-light">
             Date Collected:<span style="color: red"> *</span>
           </p>
-
-          <label class="font-weight-light">Date Collected:</label><br />
-        </div>
-        <div class="md-form">
-
-            <input type="date" name="txtDateCollected" id= "dtDateCollected" class="form-control grey-text font-weight-light" value="">
+          <input type="date" name="txtDateCollected" id= "dtDateCollected" class="form-control grey-text font-weight-light" value="">
         </div>
 
 
@@ -58,11 +52,11 @@
 
         <div class="md-form">
           <i class="fas fa-pencil-alt prefix grey-text"></i>
-          <textarea type="text" id="strPlantDesc" name="txtplantDesc" class="md-textarea form-control" rows="3"></textarea>
+          <textarea type="text" id="strPlantDesc" name="txtplantDesc" class="md-textarea form-control" rows="2"></textarea>
           <label for="strPlantDesc" class="font-weight-light">Plant Description<span style="color: red"> *</span></label>
         </div>
         <div class="text-center py-4 mt-3">
-          <button class="btn btn-danger" type="reset">Reset</button>
+          <button class="btn btn-danger" type="reset">Clear</button>
           <button class="btn btn-primary" type="submit" id="btnDeposit">Deposit</button>
         </div>
       </form>

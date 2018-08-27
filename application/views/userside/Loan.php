@@ -95,16 +95,16 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="text-center py-4 mt-3">
-          <button class="btn" style="background-color: #800000;" type="submit"  id="save">Submit</button>
+          <div class="text-center py-4 mt-3">
+            <button class="btn" style="background-color: #800000;" type="submit"  id="save">Submit</button>
+          </div>
         </div>
       </form>
     </div>
 
           </form>
         </div>
-      
+
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 
