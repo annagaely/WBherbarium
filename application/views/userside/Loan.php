@@ -30,72 +30,73 @@
 }
 </style>
 <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/loan.jpg" style="height: 50vh; width: 100%;"  class="banner">
-<div class="py-5">
-  <div class="card mx-auto px-4" style="width: 80%;">
-    <div class="card-body">
-        <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Loan</p>
-        <form id= "tableForm" method="POST" enctype="multipart/form-data" autocomplete="off">
-        <div class="md-form">
+<div class="row">
+  <div class="col-md-5 py-5 mr-0">
+    <div class="pl-5 pr-0">
+      <div class="card px-4">
+        <div class="card-body">
+            <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Loan</p>
 
           <form id= "tableForm" method="POST" enctype="multipart/form-data" autocomplete="off">
+            <div class="md-form">
+              <table class="table table-bordered" id="crud_table">
+                <tr>
+                  <th width="90%">Scientific Name</th>
 
-          <table class="table table-bordered" id="crud_table">
-            <tr>
-              <th width="90%">Scientific Name</th>
+                  <th width="10%"></th>
+                </tr>
+                <tr>
+                  <td class='SciName'>
+                    <select name='sSciName[]'  id='sciname' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>
+                  </td>
 
-              <th width="10%"></th>
-            </tr>
-            <tr>
-              <td class='SciName'>
-                <select name='sSciName[]'  id='family' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>
-              </td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
 
-              <td></td>
-            </tr>
-          </table>
           <div align="right">
             <button type="button" name="add" id="add" class="btn btn-primary btn-sm">+</button>
           </div>
+            <div class="md-form">
 
-          <div id="inserted_item_data"></div>
-        </div>
-        <div class="md-form">
-          <div class="row">
-            <div class="col-md-3">
-              <p class="font-weight-light">Date of Loaning:<span style="color: red"> *</span></p>
-                <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px">
-              </div>
-              <div class="col-md-3">
-                <p class="font-weight-light mb-0">Purpose of Loan:<span style="color: red"> *</span> </p>
-                <div class="custom-checkbox custom-control mt-0" style="margin-left: 38px;">
-                  <input type="checkbox" class="custom-control-input" id="chkAppointment" name="checkbox2" required>
-                  <label class="custom-control-label font-weight-light" for="chkAppointment">Academic</label>
+                <div class="md-form">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p class="font-weight-light">Desired Date of Claiming:<span style="color: red"> *</span></p>
+                        <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px">
+                      </div>
+                      <div class="col-md-6">
+                        <p class="font-weight-light mb-0">Purpose of Loan:<span style="color: red"> *</span> </p>
+                        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+                          <input type="radio" class="custom-control-input" id="radioAcademic" name="radios">
+                          <label class="custom-control-label" for="radioAcademic">Academic</label>
+                        </div>
+                        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+                          <input type="radio" class="custom-control-input" id="radioResearch" name="radios">
+                          <label class="custom-control-label" for="radioResearch">Research</label>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center pt-4 mt-3">
+                    <button class="btn btn-danger" type="reset">Clear</button>
+                    <button class="btn btn-primary" style="background-color: #800000;" type="submit"  id="save">Submit</button>
+                  </div>
                 </div>
-                <div class="custom-control custom-checkbox" style="margin-left: 38px;">
-                  <input type="checkbox" class="custom-control-input" id="chkResearch" name="checkResearch">
-                  <label class="custom-control-label font-weight-light" for="chkResearch">Research</label>
-                </div>
-                <div class="custom-control custom-checkbox" style="margin-left: 38px;">
-                  <input type="checkbox" class="custom-control-input" id="chkOthers" name="checkOthers" onchange="others()">
-                  <label class="custom-control-label font-weight-light" for="chkOthers">Others</label>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <i class="fas fa-pencil-alt prefix grey-text"></i>
-                <textarea type="text" id="txtOthers" name="txtpurpose"  class="md-textarea form-control" rows="3" disabled></textarea>
-                <label for="txtOthers" class="font-weight-light pl-2">Others</label>
-              </div>
+              </form>
             </div>
-          </div>
-          <div class="text-center py-4 mt-3">
-            <button class="btn" style="background-color: #800000;" type="submit"  id="save">Submit</button>
-          </div>
-        </div>
-      </form>
-    </div>
 
-          </form>
         </div>
+      </div>
+  </div>
+  <div class="col-md-7 py-5">
+    <iframe src="<?php echo site_url('user/view_calendar');?>" width="100%" height="100%" style="border: none;"></iframe>
+  </div>
+</div>
+
+
 
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
@@ -108,7 +109,7 @@ $(document).ready(function(){
   count = count + 1;
   var html_code ="<tr id='row"+count+"'>";
    html_code += "<td class='SciName'>"+
-                "<select name='sSciName[]'  id='family"+count+"' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
+                "<select name='sSciName[]'  id='sciname"+count+"' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
 
                 "</select>"+"</td>";
    html_code += "<td><button type='button' name='remove' data-row='row"+count+"' class='btn btn-danger btn-sm remove'>-</button></td>";
