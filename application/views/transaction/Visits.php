@@ -38,106 +38,96 @@
 }
 </style>
 
+
+
         <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>Maintenance/Dashboard" >Home</a></li>
             <li class="breadcrumb-item">Transaction</li>
-            <li class="breadcrumb-item active">Loan Plant</li>
+            <li class="breadcrumb-item">Visits</li>
           </ul>
         </div>
       </div>
 
+<div class="tab" >
+  <button id = "defaultOpen" class="tablinks" onclick="openCity(event, 'FirstTab')" style="color:white;">Pending</button>
+  <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">Expected Visits</button>
+  <button class="tablinks" onclick="openCity(event, 'ThirdTab') " style="color:white;">All</button>
+</div>
 
-        <div class="tab" >
-          <button id = "defaultOpen" class="tablinks" onclick="openCity(event, 'FirstTab')" style="color:white;">Pending</button>
-          <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">For Claiming</button>
-          <button class="tablinks" onclick="openCity(event, 'ThirdTab') " style="color:white;">All</button>
-        </div>
-
-<div class="tabcontent" id="FirstTab">   
-
-   <div class="card">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Loan ID</th>
-                  <th>Borrower Name</th>
-                  <th>Purpose</th>
+<div class="tabcontent" id="FirstTab">
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Visit ID</th>
+              <th>Visitor's Name</th>
+                 <th>Visit Date</th>
+                  <th>Visit Description</th>
                   <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody tbody id="showdata">
+              <th>Actions</th>
+            </tr>
+          </thead>
+            <tbody tbody id="showdata">    
             </tbody>
-            </table>
-        </div>
+        </table>
       </div>
     </div>
-       <!-- Modal-->
-      <div id="viewLoanPlant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
-        <div role="document" class="modal-dialog modal-lg">
-          <div class="modal-content" >
-            <div class="modal-header">
+  </div>
 
-              <h5 id="exampleModalLabel" class="modal-title">Loan Plant</h5>
+         <!-- Modal-->
+     <div id="viewVisitReq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
+       <div role="document" class="modal-dialog modal-lg" >
+         <div class="modal-content" >
+           <div class="modal-header">
+
+             <h5 id="exampleModalLabel" class="modal-title">View Visit Details</h5>
             <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
                <span aria-hidden="true">×</span>
-               </button>
-            </div>
+             </button>
+           </div>
+
           <div class="modal-body">
-          <div class="row">
-            <div class="col-md-10" style="margin-left: auto; margin-right: auto;">
+             <div class="row">
+              <div class="col-md-6" style="margin-left: auto; margin-right: auto;">
+                 <form id= "updateVisitStatusForm" method="POST" enctype="multipart/form-data"class="form-horizontal">
+                  <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Visit ID:</label>
+                     </div>
+                     <div class="col-sm-8">
+                      <input type="hidden" name="txtId" id="txtID" value="0">
+                       <input type="text" name="txtAppointmentID" id="intAppointmentID" class="form-control" disabled="">
+                     </div>
+                   </div>
+                  <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Visitor's Name:</label>
+                     </div>
+                     <div class="col-sm-8">
+                       <input type="text" name="txtVisitorName" id="strFullame" class="form-control" disabled>
+                     </div>
+                   </div>
+                  <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Visit Date:</label>
+                     </div>
+                    <div class="col-sm-8">
+                      <input type="text" name="txtVisitDate" id="dtAppointmentDate" class="form-control" disabled="">
+                     </div>
+                   </div>
 
-              <form id= "updateStatusForm" method="POST" enctype="multipart/form-data"class="form-horizontal">
-                <div class="form-group row">
-                  <div class="col-sm-4">
-                    <label style="font-size: 14px;">Loan Request ID:</label>
-                  </div>
-                  <div class="col-sm-8">
-                    <input type='hidden' name='txtId' id="txtID" value="">
-                    <input type="text" name="txtLoanreqID" id="intLoanReqID" class="form-control" disabled>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-sm-4">
-                    <label style="font-size: 14px;">Borrower's Name:</label>
-                  </div>
-                  <div class="col-sm-8">
-                    <input type="text" name="txtBorrowerName" id="strFullName" class="form-control" disabled>
-                  </div>
-                </div>
-
-                 <div class="form-group row">
-                  <div class="col-sm-4">
-                    <label style="font-size: 14px;">Purpose:</label>
-                  </div>
-                  <div class="col-sm-8">
-                   <textarea class="form-control" rows="3" name="txtPurpose" id="strPurpose" disabled></textarea>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-sm-4">
-                    <label style="font-size: 14px;margin-top: 10px">Specimens:</label>
-                  </div>
-                  <div class="col-sm-8">
-
-                             <div class="table-responsive">
-                              <table class="table table-striped">
-                                <thead>
-                                  <tr>
-                                    <th>Scientific Name</th>
-
-                                  </tr>
-                                 </thead>
-                                <tbody tbody id="showplants">
-                                </tbody>
-                              </table>
-                             </div>
-                  </div>
-                 </div>
+                    <div class="form-group row">
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Visit Purpose:</label>
+                     </div>
+                     <div class="col-sm-8">
+                       <input type="text" name="txtVisitPurpose" id="strVisitDescription" class="form-control" disabled="">
+                     </div>
+                   </div>
                  <div class="form-group row">
                   <div class="col-sm-4">
                     <label style="font-size: 14px;">Status:</label>
@@ -149,21 +139,17 @@
                    </select>
                   </div>
                 </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-               <div class="modal-footer">
-                     <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 300px">
+                 </form>
                </div>
+             </div>
           </div>
-        </div>
-      </div>
-  
-
+          <div class="modal-footer">
+             <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 300px">
+          </div>
+         </div>
+       </div>
+     </div>
 </div>
-
 
 <div id="SecondTab" class="tabcontent">
      <div class="card">
@@ -172,22 +158,23 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Loan ID</th>
-                  <th>Borrower Name</th>
-
-                  <th>Purpose</th>
+                  <th>Visit ID</th>
+                  <th>Visitor's Name</th>
+                 <th>Visit Date</th>
+                  <th>Visit Description</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdata1">
+              <tbody tbody id="showdata1">    
             </tbody>
             </table>
         </div>
       </div>
-    </div>
+</div>
+</div>
 
- <div id="EmailCon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+ <div id="EmailVisitCon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
     <div role="document" class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -218,30 +205,31 @@
       </div>
     </div>
   </div>
-</div>
 
-<div id="ThirdTab" class="tabcontent">   
-       <div class="card">
+<div id="ThirdTab" class="tabcontent">
+     <div class="card">
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Loan ID</th>
-                  <th>Borrower Name</th>
-
-                  <th>Purpose</th>
+                  <th>Visit ID</th>
+                  <th>Visitor's Name</th>
+                  <th>Visit Date</th>
+                  <th>Visit Description</th>
                   <th>Status</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdata2">
+              <tbody tbody id="showdata2">    
             </tbody>
             </table>
         </div>
       </div>
-    </div>
 </div>
- <div id="LoanConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+</div>
+
+
+<div id="VisitConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
     <div role="document" class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -253,20 +241,20 @@
           <form id= "ConfirmForm" method="POST" enctype="multipart/form-data">
             <div class="form-group row">
                      <div class="col-sm-4">
-                       <label style="font-size: 14px;">Loan ID:</label>
+                       <label style="font-size: 14px;">Visit ID:</label>
                      </div>
                      <div class="col-sm-8">
                       <input type="hidden" name="txtId" id="txtID" value="0">
-                       <input type="text" name="txtLoanReqID" id="intLoanReqID" class="form-control" disabled="">
+                       <input type="text" name="txtVisitID" id="intAppointmentID" class="form-control" disabled="">
                      </div>
             </div>
            <div class="form-group row">
                      <div class="col-sm-4">
-                       <label style="font-size: 14px;">Borrower's Name:</label>
+                       <label style="font-size: 14px;">Visitor's Name:</label>
                      </div>
                      <div class="col-sm-8">
                       
-                       <input type="text" name="txtBorrowerName" id="strFullName" class="form-control" disabled="">
+                       <input type="text" name="txtVisitorName" id="strFullName" class="form-control" disabled="">
                      </div>
             </div>
             <div class="form-group row">
@@ -290,16 +278,17 @@
     </div>
   </div>
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-   
-<script type="text/javascript">
+    <script type="text/javascript">
+    
     $(function(){
-    showLoanReqPending();
 
+    //show
+    showAllAppointmentPending();
+    function showAllAppointmentPending(){
 
-    function showLoanReqPending(){
       $.ajax({
         type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showLoanReqPending',
+        url: '<?php echo base_url() ?>admin/showAllAppointmentPending',
         async: false,
         dataType: 'json',
         success: function(data){
@@ -307,12 +296,14 @@
           var i;
           for(i=0; i<data.length; i++){
             html +='<tr>'+
-                  '<td>'+data[i].intLoanReqID+'</td>'+
+                  '<td>'+data[i].intAppointmentID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].strPurpose+'</td>'+
+                  '<td>'+data[i].dtAppointmentDate+'</td>'+   
+                  '<td>'+data[i].strVisitDescription+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary loanreq-edit" data="'+data[i].intLoanReqID+'">View</a>'+
+                    '<a href="javascript:;" data-target="#viewVisitReq" data-toggle="modal" class="btn btn-primary view-appointment" data="'+data[i].intAppointmentID+'">View</a>'+
+     
                   '</td>'+
                   '</tr>';
           }
@@ -323,68 +314,16 @@
         }
       });
     }
+        });
 
-//table inside view
-    $('#showdata').on('click', '.loanreq-edit', function(){
-      var id = $(this).attr('data');
-      $('#myModal').modal('show');
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/showloanlist',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].strScientificName+'</td>'+
-                  '</tr>';
-          }
-          $('#showplants').html(html);
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
+  $('#btnSave').click(function(){
 
-    });
-      });
-
-
-$('#showdata').on('click', '.loanreq-edit', function(){
-      var id = $(this).attr('data');
-      $('#viewLoanPlant').modal('show');
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/editLoanReq',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('#intLoanReqID').val(data.intLoanReqID);
-          $('#strFullName').val(data.strFullName);
-          $('#strPurpose').val(data.strPurpose);
-          $('#txtID').val(data.intLoanReqID);
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
-
-    });
-
-  });
-    });
-
-     $('#btnSave').click(function(){
-      var data = $('#updateStatusForm').serialize();
-
+      var data = $('#updateVisitStatusForm').serialize();
+      alert(data);
         $.ajax({
           type: 'ajax',
           method: 'post',
-          url: '<?php echo base_url() ?>admin/updateLoanStatus',
+          url: '<?php echo base_url() ?>admin/updateVisitStatus',
           data: data,
           async: false,
           dataType: 'json',
@@ -401,21 +340,19 @@ $('#showdata').on('click', '.loanreq-edit', function(){
           }
         });
     });
- 
 
 </script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
+    
     $(function(){
 
-  
-    showLoanReqOkay();
-
-
-    function showLoanReqOkay(){
+    //show
+    showAllAppointmentExpect();
+    function showAllAppointmentExpect(){
       $.ajax({
         type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showLoanReqOkay',
+        url: '<?php echo base_url() ?>admin/showAllAppointmentExpect',
         async: false,
         dataType: 'json',
         success: function(data){
@@ -423,13 +360,16 @@ $('#showdata').on('click', '.loanreq-edit', function(){
           var i;
           for(i=0; i<data.length; i++){
             html +='<tr>'+
-                  '<td>'+data[i].intLoanReqID+'</td>'+
+                  '<td>'+data[i].intAppointmentID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].strPurpose+'</td>'+
+                  '<td>'+data[i].dtAppointmentDate+'</td>'+
+                  '<td>'+data[i].strVisitDescription+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
+
                   '<td>'+
-                  '<a href="javascript:;"   class="btn btn-primary view-emailcon " data="'+data[i].intLoanReqID+'">Email</a>'+
-                  '<a href="javascript:;" style="margin-left: 10px" class="btn btn-primary view-loancon" data="'+data[i].intLoanReqID+'">Confirm</a>'+
+                   '<a href="javascript:;" class="btn btn-primary view-emailcon " data="'+data[i].intAppointmentID+'">Email</a>'+
+                  '<a href="javascript:;" style="margin-left: 10px" class="btn btn-primary view-appcon" data="'+data[i].intAppointmentID
+                  +'">Confirm</a>'+
                   '</td>'+
                   '</tr>';
           }
@@ -440,25 +380,22 @@ $('#showdata').on('click', '.loanreq-edit', function(){
         }
       });
     }
+  });
 
-});
-
-      $('#showdata1').on('click', '.view-loancon', function(){
+     $('#showdata1').on('click', '.view-appcon', function(){
       var id = $(this).attr('data');
-      $('#LoanConfirmation').modal('show');
-      $('#LoanConfirmation').find('.Confirmation').text('Confirmation');
+      $('#VisitConfirmation').modal('show');
+      $('#VisitConfirmation').find('.Confirmation').text('Confirmation');
       $.ajax({
         type: 'ajax',
         method: 'get',
-        url: '<?php echo base_url() ?>admin/LoanConfirmation',
+        url: '<?php echo base_url() ?>admin/VisitConfirmation',
         data: {id: id},
         async: false,
         dataType: 'json',
         success: function(data){
-          $('input[name=txtBorrowerName').val(data.strFullName);
-          $('input[name=txtLoanReqID]').val(data.intLoanReqID);
-          $('input[name=txtLoanId]').val(data.intLoanReqID);
-          $('input[name=txtId]').val(data.intLoanReqID);
+          $('input[name=txtVisitID').val(data.intAppointmentID);
+          $('input[name=txtVisitorName]').val(data.strFullName);
           $('input[name=txtStatus]').val(data.strStatus);
 
 
@@ -472,12 +409,12 @@ $('#showdata').on('click', '.loanreq-edit', function(){
 
      $('#showdata1').on('click', '.view-emailcon', function(){
       var id = $(this).attr('data');
-      $('#EmailCon').modal('show');
-      $('#EmailCon').find('.EmailCon').text('Email');
+      $('#EmailVisitCon').modal('show');
+      $('#EmailVisitCon').find('.EmailVisitCon').text('Email');
       $.ajax({
         type: 'ajax',
         method: 'get',
-        url: '<?php echo base_url() ?>admin/LoanEmailCon',
+        url: '<?php echo base_url() ?>admin/VisitEmailCon',
         data: {id: id},
         async: false,
         dataType: 'json',
@@ -493,17 +430,16 @@ $('#showdata').on('click', '.loanreq-edit', function(){
     });
 </script>
 
-<script type="text/javascript">
-        $(function(){
+   <script type="text/javascript">
+    
+    $(function(){
 
-  
-    showLoanReqAll();
-
-
-    function showLoanReqAll(){
+    //show
+    showAllAppointmentAll();
+    function showAllAppointmentAll(){
       $.ajax({
         type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showLoanReqAll',
+        url: '<?php echo base_url() ?>admin/showAllAppointmentAll',
         async: false,
         dataType: 'json',
         success: function(data){
@@ -511,10 +447,11 @@ $('#showdata').on('click', '.loanreq-edit', function(){
           var i;
           for(i=0; i<data.length; i++){
             html +='<tr>'+
-                  '<td>'+data[i].intLoanReqID+'</td>'+
+                  '<td>'+data[i].intAppointmentID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
-
-                  '<td>'+data[i].strPurpose+'</td>'+
+                  '<td>'+data[i].dtAppointmentDate+'</td>'+
+                  
+                  '<td>'+data[i].strVisitDescription+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '</tr>';
           }
@@ -525,12 +462,35 @@ $('#showdata').on('click', '.loanreq-edit', function(){
         }
       });
     }
-
-});
-
+  });
 </script>
+<script type="text/javascript">
+      $('#showdata').on('click', '.view-appointment', function(){
+      var id = $(this).attr('data');
+      $('#ViewVisitReq').modal('show');
+      $('#ViewVisitReq').find('.modal-title').text('Visit Details');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/ViewVisitReq',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtVisitorName]').val(data.strFullName);
+          $('input[name=txtAppointmentID]').val(data.intAppointmentID);
+          $('input[name=txtVisitDate').val(data.dtAppointmentDate);
+          $('input[name=txtVisitPurpose').val(data.strVisitDescription);
+          $('input[name=txtId').val(data.intAppointmentID);
 
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
 
+    });
+    });
+</script>
 <script type="text/javascript">
   
    $('#btnConfirm').click(function(){
@@ -539,7 +499,7 @@ $('#showdata').on('click', '.loanreq-edit', function(){
         $.ajax({
           type: 'ajax',
           method: 'post',
-          url: '<?php echo base_url() ?>admin/updateLoanConfirmation',
+          url: '<?php echo base_url() ?>admin/updateVisitConfirmation',
           data: data,
           async: false,
           dataType: 'json',
@@ -576,3 +536,6 @@ function openCity(evt, cityName) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 </script>
+
+
+     

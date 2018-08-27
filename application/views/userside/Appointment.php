@@ -33,7 +33,7 @@
             </div>
             <div class="md-form">
               <i class="fas fa-pencil-alt prefix grey-text"></i>
-              <input type="text" id="strVisitDescription"  class="form-control" disabled>
+              <input type="text" name="txtappdesc" id="strVisitDescription"  class="form-control" >
               <label for="strOthers" class="font-weight-light">Visit Description</label>
             </div>
 
@@ -58,13 +58,6 @@
 $(function(){
     $('#btnSubmit').click(function(){
       var data = $('#addAppointmentForm').serialize();
-      //validate form
-     // $('input[name=appType]').change(function() {
-   //   if($(this).val() == "Loan") {
-    //  window.location.href = "http://localhost:8080/WBherbarium/user/Loans";
-   //   } else{
-    //    alert('ayaw')
-   //   });
   $.ajax({
     type: 'ajax',
     method: 'post',
@@ -92,14 +85,15 @@ $(function(){
 });
     });
 </script>
-<script>
-function others() {
-  var check = document.getElementById('radioOthers');
-  var area = document.getElementById('strVisitDescription');
-  if (check.checked) {
-    area.disabled = false;
-  } else {
-    area.disabled = true;
-  }
-}
-</script>
+<!-- <script>
+// function others() {
+//   var check = document.getElementById('radioOthers');
+//   var area = document.getElementById('strVisitDescription');
+//   if (check.checked) {
+//     area.disabled = false;
+//   } else {
+//     area.disabled = true;
+//   }
+// }
+// </script>
+ -->
