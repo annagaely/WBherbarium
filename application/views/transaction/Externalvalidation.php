@@ -1,3 +1,43 @@
+<style>
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #800000;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #4b0000;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #4b0000;
+    color: white;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+</style>
+
 <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
@@ -6,8 +46,14 @@
             <li class="breadcrumb-item active">External Validation</li>
           </ul>
         </div>
-      </div>
+</div>
 
+
+<div class="tab" >
+          <button id = "defaultOpen" class="tablinks" onclick="openCity(event, 'FirstTab')" style="color:white;">Pending</button>
+          <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">For Validation</button>
+          <button class="tablinks" onclick="openCity(event, 'ThirdTab') " style="color:white;">All</button>
+        </div>
 
 
 
@@ -18,11 +64,10 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Deposit ID</th>
+                  <th>Plant Deposit ID</th>
+                  <th>Accession Number</th>
                   <th>Collector's Name</th>
-                  <th>Common Name</th>
-                  <th>Date Collected</th>
-                  <th>Full Location</th>
+                  <th>Date Deposited</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -33,10 +78,53 @@
         </div>
       </div>
     </div>
-
+</div>
+<div id="SecondTab" class="tabcontent">
+     <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                   <th>Plant Deposit ID</th>
+                  <th>Accession Number</th>
+                  <th>Collector's Name</th>
+                  <th>Date Deposited</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody tbody id="showdata1">
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+</div>
+<div id="ThirdTab" class="tabcontent">   
+       <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Plant Deposit ID</th>
+                  <th>Accession Number</th>
+                  <th>Collector's Name</th>
+                  <th>Date Deposited</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody tbody id="showdata2">
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+</div>
 
          <!-- Modal-->
-     <div id="viewDepositReq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
+ <!--    <div id="viewDepositReq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
        <div role="document" class="modal-dialog modal-lg" >
          <div class="modal-content" >
            <div class="modal-header">
@@ -125,10 +213,10 @@
                       </select>
                      </div>
 
-                     <div class="modal-footer">
+                     <div class="modal-footer">-->
                     <!--<button id ="btnSave">Save</button>-->
 
-                     <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 300px" data-dismiss="modal" data-toggle="modal" data-target="#myModal">
+<!--                      <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 300px" data-dismiss="modal" data-toggle="modal" data-target="#myModal">
 
                    </div>
                    </div>
@@ -138,7 +226,7 @@
           </div>
          </div>
        </div>
-     </div>
+     </div> -->
      <!-- Modal-->
   <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
     <div role="document" class="modal-dialog">
@@ -174,15 +262,219 @@
 
 </div>
 
-
+-->
 
 
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript">
+ <!--    <script type="text/javascript">
 
-    
-</script>
+    $(function(){
+
+    //show
+    showAllDepositReqPending();
+    function showAllDepositReqPending(){
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url() ?>admin/showAllDepositReqPending',
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html +='<tr>'+
+                  '<td>'+data[i].intDepositReqID+'</td>'+
+                  '<td>'+data[i].strFullName+'</td>'+
+                  '<td>'+data[i].strCommonName+'</td>'+
+                  '<td>'+data[i].dtDateCollected+'</td>'+
+                  '<td>'+data[i].strFullLocation+'</td>'+
+                  '<td>'+data[i].strStatus+'</td>'+
+                  '<td>'+
+                    '<a href="javascript:;" data-toggle="modal" data-target="#myModal1" class="btn btn-primary view-depositReq" data="'+data[i].intDepositReqID+'">View</a>'+
+                  '</td>'+
+                  '</tr>';
+          }
+          $('#showdata').html(html);
+        },
+        error: function(){
+          alert('Could not get Data from Database');
+        }
+      });
+    }
+  });
+
+    $(function(){
+
+    //show
+    showAllDepositReqOkay();
+    function showAllDepositReqOkay(){
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url() ?>admin/showAllDepositReqOkay',
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html +='<tr>'+
+                  '<td>'+data[i].intDepositReqID+'</td>'+
+                  '<td>'+data[i].strFullName+'</td>'+
+                  '<td>'+data[i].strCommonName+'</td>'+
+                  '<td>'+data[i].dtDateCollected+'</td>'+
+                  '<td>'+data[i].strFullLocation+'</td>'+
+                  '<td>'+data[i].strStatus+'</td>'+
+                  '<td>'+
+                    '<a href="javascript:;" class="btn btn-primary view-depositReq" data="'+data[i].intDepositReqID+'">Okay</a>'+
+                  '</td>'+
+                  '</tr>';
+          }
+          $('#showdata1').html(html);
+        },
+        error: function(){
+          alert('Could not get Data from Database');
+        }
+      });
+    }
+  });
+  $(function(){
+
+  //show
+  showAllDepositReqPending();
+  function showAllDepositReqPending(){
+    $.ajax({
+      type: 'ajax',
+      url: '<?php echo base_url() ?>admin/showAllDepositReqExternalValidation',
+      async: false,
+      dataType: 'json',
+      success: function(data){
+        var html = '';
+        var i;
+        for(i=0; i<data.length; i++){
+          html +='<tr>'+
+                '<td>'+data[i].intDepositReqID+'</td>'+
+                '<td>'+data[i].strFullName+'</td>'+
+                '<td>'+data[i].strCommonName+'</td>'+
+                '<td>'+data[i].dtDateCollected+'</td>'+
+                '<td>'+data[i].strFullLocation+'</td>'+
+                '<td>'+data[i].strStatus+'</td>'+
+                '<td>'+
+                  '<a href="javascript:;" data-toggle="modal" data-target="#myModal1" class="btn btn-primary view-depositReq" data="'+data[i].intDepositReqID+'">View</a>'+
+                '</td>'+
+                '</tr>';
+        }
+        $('#showdata').html(html);
+      },
+      error: function(){
+        alert('Could not get Data from Database');
+      }
+    });
+  }
+  });
+    $(function(){
+
+    //show
+    showAllDepositReqAll();
+    function showAllDepositReqAll(){
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url() ?>admin/showAllDepositReqAll',
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html +='<tr>'+
+                  '<td>'+data[i].intDepositReqID+'</td>'+
+                  '<td>'+data[i].strFullName+'</td>'+
+                  '<td>'+data[i].strCommonName+'</td>'+
+                  '<td>'+data[i].dtDateCollected+'</td>'+
+                  '<td>'+data[i].strFullLocation+'</td>'+
+                  '<td>'+data[i].strStatus+'</td>'+
+
+                  '</tr>';
+          }
+          $('#showdata2').html(html);
+        },
+        error: function(){
+          alert('Could not get Data from Database');
+        }
+      });
+    }
+  });
+
+
+//view depositreq
+    $('#showdata').on('click', '.view-depositReq', function(){
+      var id = $(this).attr('data');
+      $('#viewDepositReq').modal('show');
+      $('#viewDepositReq').find('.modal-title').text('For External Validation');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/viewDepositReq',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtCollector').val(data.strFullName);
+          //$('input[name=txtStatus').val(data.strStatus);
+          $('input[name=txtDepositReqID]').val(data.intDepositReqID);
+          $('input[name=txtScientificName').val(data.strScientificName);
+          $('input[name=txtCommonName').val(data.strCommonName);
+          $('input[name=txtdDateCollected]').val(data.dtDateCollected);
+          $('input[name=txtFullLocation').val(data.strFullLocation);
+          $('textarea[name=txtDescription]').val(data.strPlantDesc);
+          $('textarea[name=txtDescription]').val(data.strPlantDesc);
+          $('input[name=txtId]').val(data.intDepositReqID)
+
+
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+
+
+
+//update status
+    $('#btnSave').click(function(){
+      var data = $('#updateStatusForm').serialize();
+        $.ajax({
+          type: 'ajax',
+          method: 'post',
+          url: '<?php echo base_url() ?>admin/updateAcceptStatus',
+          data: data,
+          async: false,
+          dataType: 'json',
+          success: function(response){
+
+            if(response==true){
+             // $('#viewDepositReq').modal('hide');
+            //  $('#updateStatusForm')[0].reset();
+             // if(response.type=='add'){
+             //   var type = 'added'
+             //// }else if(response.type=='update'){
+             //   var type ="updated"
+            //  }
+              //showAllDepositReq();
+
+            }else{
+              alert('Error');
+            }
+          },
+          error: function(){
+            alert('Could not update data');
+          }
+        });
+    });
+
+  });
+</script> -->
+
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;

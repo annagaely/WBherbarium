@@ -37,13 +37,6 @@
               <input type="date" name="txtDateCollected" id= "dtDateCollected" class="form-control grey-text font-weight-light" value="">
             </div>
 
-
-            <!--<div class="md-form">
-
-              <input type="text" id="strCollector" name="txtCollector" class="form-control">
-              <label for="strCollector" class="font-weight-light">Collector's Name</label>
-            </div>-->
-
             <div class="md-form">
               <textarea type="text" id="strPlantDesc" name="txtplantDesc" class="md-textarea form-control" rows="2"></textarea>
               <label for="strPlantDesc" class="font-weight-light">Plant Description<span style="color: red"> *</span></label>
@@ -52,7 +45,7 @@
               <p class="font-weight-light">
                 Desired Date of Deposit:<span style="color: red"> *</span>
               </p>
-              <input type="date" name="txtDateCollected" id= "dtDateCollected" class="form-control grey-text font-weight-light" value="">
+              <input type="date" name="txtDateDesired" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" value="">
             </div>
             <div class="text-center py-4 mt-3">
               <button class="btn btn-danger" type="reset">Clear</button>

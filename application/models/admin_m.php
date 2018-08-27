@@ -1617,7 +1617,7 @@ public function updateAcceptStatus(){
 
 //APPOINTMENT
 	public function showAllAppointmentPending(){
-$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
@@ -1630,13 +1630,54 @@ $query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' '
 		}
 	}
 
+public function ViewVisitReq(){
+		$id = $this->input->get('id');
+	$this->db->where('intAppointmentID', $id);
+		$query = $this->db->select("intAppointmentID
+      ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
+     ,dtAppointmentDate
+     ,strVisitDescription
+     ,strStatus")
+		->join('tblOnlineUser ou','ou.intOUserID=ar.intOUserID')
+		->get('tblAppointments ar');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+public function updateVisitStatus(){
+
+    $depositid = $this->input->post('txtId');
+
+//DECLARE @status		VARCHAR(50);
+//Set @status ='$status'
+	$query="
+
+	DECLARE @depositid 		INT;
+
+	Set @depositid ='$depositid'
+
+		UPDATE tblAppointments
+		SET strStatus = 'For Visiting'
+		WHERE intAppointmentID = @depositid;
+	";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}	
+
 
 	public function showAllAppointmentExpect(){
-$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
-		where strStatus ='For Visitation'");
+		where strStatus ='For Visiting'");
 
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -1645,8 +1686,66 @@ $query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' '
 		}
 		}
 
+
+public function VisitConfirmation(){
+	$id = $this->input->get('id');
+	$this->db->where('intAppointmentID', $id);
+		$query = $this->db->select("intAppointmentID,
+      ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName")
+
+		->join('tblOnlineUser ou','ou.intOUserID=ta.intOUserID')
+		->get('tblAppointments ta');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+public function updateVisitConfirmation(){
+
+
+$depositid = $this->input->post('txtId');
+$status = $this->input->post('txtStatus');
+
+
+
+	$query="
+
+	DECLARE @depositid INT;
+	DECLARE @status		VARCHAR(50);
+
+	Set @depositid ='$depositid'
+	Set @status ='$status'
+
+
+		UPDATE tblAppointments
+		SET strStatus = @Status
+		WHERE intAppointmentID = @depositid;
+	";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function VisitEmailCon(){
+	$id = $this->input->get('id');
+	$this->db->where('intAppointmentID', $id);
+		$query = $this->db->select("intAppointmentID, strEmailAddress")
+		->join('tblOnlineUser ou','ou.intOUserID=ta.intOUserID')
+		->get('tblAppointments ta');
+
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
 	public function showAllAppointmentAll(){
-$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID");

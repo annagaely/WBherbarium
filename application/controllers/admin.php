@@ -490,11 +490,11 @@ public function updateFamilyBox(){
 		$this->load->view('transaction/Loanplant');
 		$this->load->view('templates/footer');
 	}
-	public function Manageappointment()
+	public function Visits()
 	{
-		$title['title'] = "PUPHerbarium | Manage Appointment";
+		$title['title'] = "PUPHerbarium | Visits";
 		$this->load->view('templates/header', $title);
-		$this->load->view('transaction/Manageappointment');
+		$this->load->view('transaction/Visits');
 		$this->load->view('templates/footer');
 	}
 
@@ -767,6 +767,7 @@ $id=$this->input->post('txtId');
 
  }
 }
+//LOAN
 
 
 
@@ -822,14 +823,36 @@ public function showAllAppointmentPending(){
 		echo json_encode($result);
 }
 
+public function ViewVisitReq(){
+		$result = $this->m->ViewVisitReq();
+		echo json_encode($result);
+}
+public function updateVisitStatus(){
+		$result = $this->m->updateVisitStatus();
+		echo json_encode($result);
+}
+
 public function showAllAppointmentExpect(){
 		$result = $this->m->showAllAppointmentExpect();
 		echo json_encode($result);
 }
-
+public function VisitConfirmation(){
+		$result = $this->m->VisitConfirmation();
+		echo json_encode($result);
+}
+public function updateVisitConfirmation(){
+		$result = $this->m->updateVisitConfirmation();
+		echo json_encode($result);
+}
 public function showAllAppointmentAll(){
 		$result = $this->m->showAllAppointmentAll();
 		echo json_encode($result);
 }
+public function VisitEmailCon(){
+		$result = $this->m->VisitEmailCon();
+		echo json_encode($result);
+
+	}
+
 
 }?>

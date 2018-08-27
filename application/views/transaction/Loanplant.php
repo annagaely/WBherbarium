@@ -402,6 +402,7 @@ $('#showdata').on('click', '.loanreq-edit', function(){
 
      $('#btnSave').click(function(){
       var data = $('#updateStatusForm').serialize();
+
         $.ajax({
           type: 'ajax',
           method: 'post',
@@ -558,7 +559,7 @@ $('#showdata').on('click', '.loanreq-edit', function(){
   
    $('#btnConfirm').click(function(){
       var data = $('#ConfirmForm').serialize();
-      alert(data)
+
         $.ajax({
           type: 'ajax',
           method: 'post',
