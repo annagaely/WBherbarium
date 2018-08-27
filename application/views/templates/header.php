@@ -94,7 +94,7 @@
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidation">External Validation</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Manageappointment">Visits</a>
+                <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
 
                 </li>
               </ul>
