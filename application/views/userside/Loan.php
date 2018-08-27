@@ -47,7 +47,7 @@
             </tr>
             <tr>
               <td class='SciName'>
-                <select name='sSciName[]'  id='family' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>
+                <select name='sSciName[]'  id='sciname' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>
               </td>
 
               <td></td>
@@ -108,7 +108,7 @@ $(document).ready(function(){
   count = count + 1;
   var html_code ="<tr id='row"+count+"'>";
    html_code += "<td class='SciName'>"+
-                "<select name='sSciName[]'  id='family"+count+"' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
+                "<select name='sSciName[]'  id='sciname"+count+"' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>"+
 
                 "</select>"+"</td>";
    html_code += "<td><button type='button' name='remove' data-row='row"+count+"' class='btn btn-danger btn-sm remove'>-</button></td>";
