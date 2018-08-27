@@ -45,13 +45,12 @@
             </div>-->
 
             <div class="md-form">
-              <i class="fas fa-pencil-alt prefix grey-text"></i>
               <textarea type="text" id="strPlantDesc" name="txtplantDesc" class="md-textarea form-control" rows="2"></textarea>
               <label for="strPlantDesc" class="font-weight-light">Plant Description<span style="color: red"> *</span></label>
             </div>
             <div class="md-form">
               <p class="font-weight-light">
-                Date of Deposit:<span style="color: red"> *</span>
+                Desired Date of Deposit:<span style="color: red"> *</span>
               </p>
               <input type="date" name="txtDateCollected" id= "dtDateCollected" class="form-control grey-text font-weight-light" value="">
             </div>
