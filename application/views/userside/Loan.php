@@ -57,17 +57,14 @@
               <td class="CommonName">
                 <select name='sCommonName[]'  id='commonname' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>
               </td>
-<<<<<<< HEAD
-=======
 
->>>>>>> 2b9fe1a0cebe5cbf17d0b5d439fc9a04f27cee53
               <td></td>
             </tr>
           </table>
           <div align="right">
             <button type="button" name="add" id="add" class="btn btn-primary btn-sm">+</button>
           </div>
-<<<<<<< HEAD
+
           <div id="inserted_item_data"></div>
         </div>
         <div class="md-form">
@@ -104,31 +101,10 @@
         </div>
       </form>
     </div>
-=======
+
           </form>
         </div>
-      </div>
-<div class="md-form">
-  <form id= "textForms" method="POST" enctype="multipart/form-data" autocomplete="off">
-  <label>Purpose of Loan: </label>
-</div>
-<div class="md-form">
-  <div class="custom-control custom-radio" style="margin-left: 38px;">
-    <input type="radio" class="custom-control-input" id="radioAcademic" name="strPurpose" value="Academic">
-    <label class="custom-control-label font-weight-light" for="radioAcademic">Academic</label>
-  </div>
-  <div class="custom-control custom-radio" style="margin-left: 38px;">
-    <input type="radio" class="custom-control-input" id="radioResearch" name="strPurpose" value="Research">
-    <label class="custom-control-label font-weight-light" for="radioResearch">Research</label>
-  </div>
- </div>
-      <div class="text-center py-4 mt-3">
-        <button class="btn" style="background-color: #800000;" type="submit"  id="save">Submit</button>
-      </div>
-    </form>
->>>>>>> 2b9fe1a0cebe5cbf17d0b5d439fc9a04f27cee53
-  </div>
-</div>
+      
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 

@@ -6,18 +6,18 @@
       <form id="addDepositForm" method="POST"  enctype="multipart/form-data">
 
         <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Deposit</p>
-<<<<<<< HEAD
+
 
         <div class="md-form">
           <input type="file" id="picHerbariumSheet" name="picPlant" class="font-weight-light">
         </div>
-=======
-        
+
+
 <!--         <div class="md-form">
           <input type="file" id="picHerbariumSheet" name="picPlant" class="font-weight-light">
         </div> -->
 
->>>>>>> 2b9fe1a0cebe5cbf17d0b5d439fc9a04f27cee53
+
         <div class="md-form">
           <div class="row">
             <div class="col-md-6">
@@ -37,15 +37,15 @@
           <label for="strLocation" class="font-weight-light">Location<span style="color: red"> *</span></label>
         </div>
         <div class="md-form">
-<<<<<<< HEAD
+
           <p class="font-weight-light">
             Date Collected:<span style="color: red"> *</span>
           </p>
-=======
+
           <label class="font-weight-light">Date Collected:</label><br />
         </div>
         <div class="md-form">
->>>>>>> 2b9fe1a0cebe5cbf17d0b5d439fc9a04f27cee53
+
             <input type="date" name="txtDateCollected" id= "dtDateCollected" class="form-control grey-text font-weight-light" value="">
         </div>
 
