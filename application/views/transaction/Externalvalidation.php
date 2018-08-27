@@ -1,3 +1,43 @@
+<style>
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #800000;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #4b0000;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #4b0000;
+    color: white;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+</style>
+
 <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
@@ -6,8 +46,14 @@
             <li class="breadcrumb-item active">External Validation</li>
           </ul>
         </div>
-      </div>
+</div>
 
+
+<div class="tab" >
+          <button id = "defaultOpen" class="tablinks" onclick="openCity(event, 'FirstTab')" style="color:white;">Pending</button>
+          <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">For Validation</button>
+          <button class="tablinks" onclick="openCity(event, 'ThirdTab') " style="color:white;">All</button>
+        </div>
 
 
 
@@ -18,11 +64,10 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Deposit ID</th>
+                  <th>Plant Deposit ID</th>
+                  <th>Accession Number</th>
                   <th>Collector's Name</th>
-                  <th>Common Name</th>
-                  <th>Date Collected</th>
-                  <th>Full Location</th>
+                  <th>Date Deposited</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -33,10 +78,53 @@
         </div>
       </div>
     </div>
-
+</div>
+<div id="SecondTab" class="tabcontent">
+     <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                   <th>Plant Deposit ID</th>
+                  <th>Accession Number</th>
+                  <th>Collector's Name</th>
+                  <th>Date Deposited</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody tbody id="showdata1">
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+</div>
+<div id="ThirdTab" class="tabcontent">   
+       <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Plant Deposit ID</th>
+                  <th>Accession Number</th>
+                  <th>Collector's Name</th>
+                  <th>Date Deposited</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody tbody id="showdata2">
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+</div>
 
          <!-- Modal-->
-     <div id="viewDepositReq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
+ <!--    <div id="viewDepositReq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
        <div role="document" class="modal-dialog modal-lg" >
          <div class="modal-content" >
            <div class="modal-header">
@@ -128,7 +216,7 @@
                      <div class="modal-footer">
                     <!--<button id ="btnSave">Save</button>-->
 
-                     <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 300px" data-dismiss="modal" data-toggle="modal" data-target="#myModal">
+<!--                      <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 300px" data-dismiss="modal" data-toggle="modal" data-target="#myModal">
 
                    </div>
                    </div>
@@ -138,7 +226,7 @@
           </div>
          </div>
        </div>
-     </div>
+     </div> -->
      <!-- Modal-->
   <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
     <div role="document" class="modal-dialog">
@@ -174,12 +262,12 @@
 
 </div>
 
-
+-->
 
 
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript">
+ <!--    <script type="text/javascript">
 
     $(function(){
 
@@ -385,7 +473,7 @@
     });
 
   });
-</script>
+</script> -->
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
