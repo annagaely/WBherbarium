@@ -223,7 +223,7 @@ window.addEventListener('load', function() {
               <a href="<?php echo base_url()?>user/index"><button class="btn btn-danger" type="button" >Back to Home</button></a>
               <button class="btn btn-primary" type="submit" id="btnSave">Submit</button>
             </div>
-        </form>
+         </form>
         <!-- Material form register -->
 
     </div>

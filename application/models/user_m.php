@@ -1,4 +1,4 @@
- <?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class user_m extends CI_Model{
@@ -127,11 +127,9 @@ public function can_login($username,$password){
 	public function addLoanReq(){
 		$getusername = $this->session->userdata['strUserName'];
 
-
-		$family=$this->input->post('sFamilyName');
-		$genus=$this->input->post('sGenusName');
-		$species=$this->input->post('sSpeciesName');
-		$purpose=$this->input->post('strPurpose');
+		$date=$this->input->post('dateAppointment');
+		$sciname=$this->input->post('sSciName');
+		$purpose=$this->input->post('radios');
 		$sessionid=$this->session->userdata('intOUserID');
 		//set @sessionname= '$sessionusername'
 
@@ -143,7 +141,7 @@ public function can_login($username,$password){
 		declare @sessionid int;
 		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
-		insert into tblLoanReq(intOUserID,strPurpose,strStatus) values (@sessionid,@prps,'Pending')
+		insert into tblLoanReq(intOUserID,dtAppointmentDate,strPurpose,strStatus) values (@sessionid,'".$date."',@prps,'Pending')
 
 
 	";if($this->db->query($query)){
@@ -151,13 +149,11 @@ public function can_login($username,$password){
 
 			$i=0;
 
-			foreach($family as $f){
+			foreach($sciname as $s){
 
 				$data=array(
 
-					'intFamilyID' => $family[$i],
-					'intGenusID' => $genus[$i],
-					'intSpeciesID' => $species[$i],
+					'strScientificName' => $sciname[$i],
 					'intLoanReqID' => $last_id
 				);
 
@@ -195,9 +191,9 @@ public function addDeposit(){
 	$cName = $this->input->post('txtCommonName');
 	$loc = $this->input->post('txtLocation');
 	$datecoll = $this->input->post('txtDateCollected');
-	//$coll = $this->input->post('txtCollector');
 	$plantDesc = $this->input->post('txtplantDesc');
-$getusername = $this->session->userdata['strUserName'];
+	$desiredDateDeposit = $this->input->post('txtDateDesired');
+	$getusername = $this->session->userdata['strUserName'];
 
 	$query="
 
@@ -205,9 +201,10 @@ $getusername = $this->session->userdata['strUserName'];
 	DECLARE @commonname	VARCHAR(255);
 	DECLARE @location VARCHAR(255);
 	DECLARE @datecollected DATE;
-	DECLARE @collector VARCHAR(255);
+	DECLARE @desiredDate DATE;
 	DECLARE @plantdescription VARCHAR(255);
 
+	set @desiredDate = '$desiredDateDeposit'
 	set @scientificname = '$sName'
 	set @commonname = '$cName'
 	set @location = '$loc'
@@ -220,11 +217,10 @@ $getusername = $this->session->userdata['strUserName'];
 SET NOCOUNT ON;
 
 
-
-
 		BEGIN
-			INSERT INTO tblDepositReq(strScientificName, strCommonName, strFullLocation,dtDateCollected, intOUserID, strStatus,strPlantDesc)
-			VALUES (@scientificname	, @commonname, @location, @datecollected, @sessionid,'Pending',@plantdescription)
+			INSERT INTO tblDepositReq(strScientificName, strCommonName, strFullLocation,dtDateCollected,intOUserID, dtAppointmentDate, strStatus,strPlantDesc)
+
+			VALUES (@scientificname	, @commonname, @location, @datecollected, @sessionid, @desiredDate, 'Pending',@plantdescription)
 		END
 		";
 		if($this->db->query($query))
@@ -243,11 +239,9 @@ SET NOCOUNT ON;
 public function addAppointment(){
 
 $getusername = $this->session->userdata['strUserName'];
-	$aType = $this->input->post('appType');
+	$appPurpose = $this->input->post('radios');
 	$doA = $this->input->post('dateofappointment');
 	$appdesc = $this->input->post('txtappdesc');
-
-$getusername = $this->session->userdata['strUserName'];
 
 
 	$query="
@@ -257,7 +251,8 @@ $getusername = $this->session->userdata['strUserName'];
 	DECLARE @applicationdesc VARCHAR(255);
 
 
-	set @appointmenttype = '$aType'
+
+	set @appointmenttype = '$appPurpose'
 	set @dateofappointment = '$doA'
 	set @applicationdesc = '$appdesc'
 
@@ -265,11 +260,12 @@ SET NOCOUNT ON;
 	declare @sessionid int;
 		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
-		if @appointmenttype ='Loan' OR @appointmenttype ='Deposit'
-INSERT INTO tblAppointments(strAppointmentType, dtAppointmentDate, strVisitDescription,intOUserID)VALUES(@appointmenttype, @dateofappointment,@applicationdesc,@sessionid)
-else
+		
+		BEGIN
+			INSERT INTO tblAppointments(dtAppointmentDate,strVisitPurpose, intOUserID, strVisitDescription,strStatus)
 
-	INSERT INTO tblAppointments(strAppointmentType, dtAppointmentDate, strVisitDescription,intOUserID,strStatus)VALUES(@appointmenttype, @dateofappointment,@applicationdesc,@sessionid,'Pending')
+			VALUES (@dateofappointment,@appointmenttype, @sessionid, @applicationdesc, 'Pending')
+		END
 		";
 
 		if($this->db->query($query))
