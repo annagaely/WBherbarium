@@ -185,7 +185,6 @@ public function can_login($username,$password){
 
 //USER DEPOSIT//
 public function addDeposit(){
-	$getusername = $this->session->userdata['strUserName'];
 
 	$sName = $this->input->post('txtScientificName');
 	$cName = $this->input->post('txtCommonName');
@@ -195,42 +194,71 @@ public function addDeposit(){
 	$desiredDateDeposit = $this->input->post('txtDateDesired');
 	$getusername = $this->session->userdata['strUserName'];
 
-	$query="
+	if($sName!=''){
+		if($cName!=''){
+			if($loc!=''){
+				if($datecoll!='') {
+					if($plantDesc!='') {
+						if($desiredDateDeposit!='') {
+							if($getusername!=''){
+								$query="
 
-	DECLARE @scientificname	VARCHAR(255);
-	DECLARE @commonname	VARCHAR(255);
-	DECLARE @location VARCHAR(255);
-	DECLARE @datecollected DATE;
-	DECLARE @desiredDate DATE;
-	DECLARE @plantdescription VARCHAR(255);
+								DECLARE @scientificname	VARCHAR(255);
+								DECLARE @commonname	VARCHAR(255);
+								DECLARE @location VARCHAR(255);
+								DECLARE @datecollected DATE;
+								DECLARE @desiredDate DATE;
+								DECLARE @plantdescription VARCHAR(255);
 
-	set @desiredDate = '$desiredDateDeposit'
-	set @scientificname = '$sName'
-	set @commonname = '$cName'
-	set @location = '$loc'
-	set @datecollected = '$datecoll'
-	set @plantdescription = '$plantDesc'
-			declare @sessionid int;
-		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
-
-
-SET NOCOUNT ON;
+								set @desiredDate = '$desiredDateDeposit'
+								set @scientificname = '$sName'
+								set @commonname = '$cName'
+								set @location = '$loc'
+								set @datecollected = '$datecoll'
+								set @plantdescription = '$plantDesc'
+										declare @sessionid int;
+									select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
 
-		BEGIN
-			INSERT INTO tblDepositReq(strScientificName, strCommonName, strFullLocation,dtDateCollected,intOUserID, dtAppointmentDate, strStatus,strPlantDesc)
+							SET NOCOUNT ON;
 
-			VALUES (@scientificname	, @commonname, @location, @datecollected, @sessionid, @desiredDate, 'Pending',@plantdescription)
-		END
-		";
-		if($this->db->query($query))
-		{
-			return true;
-		}
-		else
-		{
+
+									BEGIN
+										INSERT INTO tblDepositReq(strScientificName, strCommonName, strFullLocation,dtDateCollected,intOUserID, dtAppointmentDate, strStatus,strPlantDesc)
+
+										VALUES (@scientificname	, @commonname, @location, @datecollected, @sessionid, @desiredDate, 'Pending',@plantdescription)
+									END
+									";
+									if($this->db->query($query))
+									{
+										return true;
+									}
+									else
+									{
+										return false;
+									}
+							} else {
+								return false;
+							}
+						} else {
+							return false;
+						}
+					} else {
+						return false;
+					}
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} else {
 			return false;
 		}
+	} else {
+		return false;
+	}
+
 
 
 
@@ -243,39 +271,57 @@ $getusername = $this->session->userdata['strUserName'];
 	$doA = $this->input->post('dateofappointment');
 	$appdesc = $this->input->post('txtappdesc');
 
+	if($getusername!=''){
+		if($appPurpose!=''){
+			if($doA!=''){
+				if($appdesc!=''){
+					$query="
 
-	$query="
-
-	DECLARE @appointmenttype VARCHAR(50);
-	DECLARE @dateofappointment DATE;
-	DECLARE @applicationdesc VARCHAR(255);
+					DECLARE @appointmenttype VARCHAR(50);
+					DECLARE @dateofappointment DATE;
+					DECLARE @applicationdesc VARCHAR(255);
 
 
 
-	set @appointmenttype = '$appPurpose'
-	set @dateofappointment = '$doA'
-	set @applicationdesc = '$appdesc'
+					set @appointmenttype = '$appPurpose'
+					set @dateofappointment = '$doA'
+					set @applicationdesc = '$appdesc'
+					declare @sessionid int;
+				select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
+				SET NOCOUNT ON;
+					declare @sessionid int;
+						select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
-SET NOCOUNT ON;
-	declare @sessionid int;
-		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
-		
-		BEGIN
-			INSERT INTO tblAppointments(dtAppointmentDate,strVisitPurpose, intOUserID, strVisitDescription,strStatus)
+						BEGIN
+							INSERT INTO tblAppointments(dtAppointmentDate,strVisitPurpose, intOUserID, strVisitDescription,strStatus)
 
-			VALUES (@dateofappointment,@appointmenttype, @sessionid, @applicationdesc, 'Pending')
-		END
-		";
+							VALUES (@dateofappointment,@appointmenttype, @sessionid, @applicationdesc, 'Pending')
+						END
+						";
 
-		if($this->db->query($query))
-		{
-			return true;
-		}
-		else
-		{
+						if($this->db->query($query))
+						{
+							return true;
+						}
+						else
+						{
+							return false;
+						}
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} else {
 			return false;
 		}
+	} else {
+		return false;
+	}
+
+
 
 
 

@@ -5,7 +5,7 @@
       <div class="card px-4">
         <div class="card-body">
 
-          <form id="addDepositForm" method="POST"  enctype="multipart/form-data">
+          <form class="needs-validation" id="addDepositForm" method="POST"  enctype="multipart/form-data" novalidate>
 
             <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Deposit</p>
     <!--         <div class="md-form">
@@ -15,37 +15,55 @@
             <div class="md-form">
               <div class="row">
                 <div class="col-md-6">
-                  <input type="text" name="txtScientificName" id="strScientificName" class="form-control">
+                  <input type="text" name="txtScientificName" id="strScientificName" class="form-control" required>
                   <label for="strScientificName" class="font-weight-light ml-3">Scientific Name<span style="color: red"> *</span></label>
+                  <div class="invalid-feedback">
+                    Please enter the scientific name.
+                  </div>
                 </div>
                 <div class="col-md-6">
-                  <input type="text" name="txtCommonName" id="strCommonName" class="form-control">
+                  <input type="text" name="txtCommonName" id="strCommonName" class="form-control" required>
                   <label for="strCommonName" class="font-weight-light ml-3">Common Name<span style="color: red"> *</span></label>
+                  <div class="invalid-feedback">
+                    Please enter the common name.
+                  </div>
                 </div>
               </div>
             </div>
 
 
             <div class="md-form">
-              <input type="text" id="strLocation" name="txtLocation" class="form-control">
+              <input type="text" id="strLocation" name="txtLocation" class="form-control" required>
               <label for="strLocation" class="font-weight-light">Location<span style="color: red"> *</span></label>
+              <div class="invalid-feedback">
+                Please enter the location.
+              </div>
             </div>
             <div class="md-form">
               <p class="font-weight-light">
                 Date Collected:<span style="color: red"> *</span>
               </p>
-              <input type="date" name="txtDateCollected" id= "dtDateCollected" class="form-control grey-text font-weight-light" value="">
+              <input type="date" name="txtDateCollected" id= "dtDateCollected" class="form-control grey-text font-weight-light" value="" required>
+              <div class="invalid-feedback">
+                Please enter the date collected.
+              </div>
             </div>
 
             <div class="md-form">
-              <textarea type="text" id="strPlantDesc" name="txtplantDesc" class="md-textarea form-control" rows="2"></textarea>
+              <textarea type="text" id="strPlantDesc" name="txtplantDesc" class="md-textarea form-control" rows="2" required></textarea>
               <label for="strPlantDesc" class="font-weight-light">Plant Description<span style="color: red"> *</span></label>
+              <div class="invalid-feedback">
+                Please provide plant description.
+              </div>
             </div>
             <div class="md-form">
               <p class="font-weight-light">
-                Desired Date of Deposit:<span style="color: red"> *</span>
+                Desired Date of Deposit:<span style="color: red" > *</span>
               </p>
-              <input type="date" name="txtDateDesired" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" value="">
+              <input type="date" name="txtDateDesired" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" value=""  required>
+              <div class="invalid-feedback">
+                Please choose a date of deposit.
+              </div>
             </div>
             <div class="text-center py-4 mt-3">
               <button class="btn btn-danger" type="reset">Clear</button>
@@ -66,34 +84,62 @@
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 
     <script type="text/javascript">
-    $('#btnDeposit').click(function(){
-      var data = $('#addDepositForm').serialize();
-      //validate form
+    $(function(){
+      $('#btnDeposit').click(function(){
+        var data = $('#addDepositForm').serialize();
+        //validate form
 
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>user/addDeposit',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function($response){
-            if(response.success){
-              $('#addDepositForm').modal('hide');
-              $('#addDepositForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
+          $.ajax({
+            type: 'ajax',
+            method: 'post',
+            url: '<?php echo base_url() ?>user/addDeposit',
+            data: data,
+            async: false,
+            dataType: 'json',
+            success: function(data){
+              if(data==true){
+                swal({
+                  title: "Great!",
+                  text: "Congratulations! Your request has been sent.",
+                  icon: "success",
+                  button: "OK!",
+                })
+
+              } else{
+                swal({
+                  title: "Incomplete input!",
+                  text: "Please fill up all the required fields.",
+                  icon: "warning",
+                  button: "OK!"
+                });
               }
-            }else{
-              alert('Error');
+            },
+            error: function(){
+              alert('Could not save Data');
             }
-          },
-          error: function(){
-            alert('Could not save Data');
-          }
-        });
+          });
 
+      });
     });
+
+</script>
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+'use strict';
+window.addEventListener('load', function() {
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.getElementsByClassName('needs-validation');
+  // Loop over them and prevent submission
+  var validation = Array.prototype.filter.call(forms, function(form) {
+    form.addEventListener('submit', function(event) {
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+}, false);
+})();
 </script>

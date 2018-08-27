@@ -65,15 +65,8 @@ $(function(){
     data: data,
     async: false,
     dataType: 'json',
-  success: function($response){
-      if(response.success){
-        $('#addAppointmentForm').modal('hide');
-        $('#addAppointmentForm')[0].reset();
-        if(response.type=='add'){
-          var type = 'added'
-        }else if(response.type=='update'){
-          var type ="updated"
-     }
+  success: function(data){
+      if(data==true){
    }else{
         alert('Error');
       }
