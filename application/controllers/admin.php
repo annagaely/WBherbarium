@@ -694,6 +694,11 @@ public function edit_event()
 		echo json_encode($result);
 
 	}
+		public function EmailCon(){
+		$result = $this->m->EmailCon();
+		echo json_encode($result);
+
+	}
 
 	
 

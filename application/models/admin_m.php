@@ -1413,7 +1413,7 @@ public function showAllDepositReqOkay()
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID
-		where strStatus='For Passing'");
+		where strStatus='For Depositing'");
 
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -1441,7 +1441,6 @@ public function viewDepositReq(){
 		$id = $this->input->get('id');
 	$this->db->where('intDepositReqID', $id);
 		$query = $this->db->select("intDepositReqID
-      ,imgPlant
       ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
       ,dtDateCollected
       ,strFullLocation
@@ -1461,17 +1460,21 @@ public function viewDepositReq(){
 
 
 $depositid = $this->input->post('txtId');
+$status = $this->input->post('txtStatus');
+
 
 
 	$query="
 
 	DECLARE @depositid INT;
+	DECLARE @status		VARCHAR(50);
 
 	Set @depositid ='$depositid'
+	Set @status ='$status'
 
 
 		UPDATE tblDepositReq
-		SET strStatus = 'Passed to HBMIS'
+		SET strStatus = @Status
 		WHERE intDepositReqID = @depositid;
 	";
 		if($this->db->query($query)){
@@ -1483,16 +1486,11 @@ $depositid = $this->input->post('txtId');
 
 
 
-	
-
-
 	public function Confirmation(){
-				$id = $this->input->get('id');
+	$id = $this->input->get('id');
 	$this->db->where('intDepositReqID', $id);
 		$query = $this->db->select("intDepositReqID,
-      ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
-      ,strScientificName
-      ,strCommonName")
+      ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName")
 
 		->join('tblOnlineUser ou','ou.intOUserID=dr.intOUserID')
 		->get('tblDepositReq dr');
@@ -1502,35 +1500,33 @@ $depositid = $this->input->post('txtId');
 			return false;
 		}
 	}
+
+	public function EmailCon(){
+	$id = $this->input->get('id');
+	$this->db->where('intDepositReqID', $id);
+		$query = $this->db->select("intDepositReqID, strEmailAddress")
+		->join('tblOnlineUser ou','ou.intOUserID=dr.intOUserID')
+		->get('tblDepositReq dr');
+
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
 public function updateAcceptStatus(){
 
- //   $id = $this->input->post('txtDepositReqID');
-  //  $field = array(
- //   'strStatus'=> $this->input->post('txtStatus'),
-
-   // );
-  //  $this->db->where('intDepositReqID', $id);
-  //  $this->db->update('tblDepositReq', $field);
-  //  if($this->db->affected_rows() > 0){
-  //    return true;
-   // }else{
-   //   return false;
-    //}
     $depositid = $this->input->post('txtId');
-	$status = $this->input->post('txtStatus');
-
 
 	$query="
 
 	DECLARE @depositid 		INT;
-	DECLARE @status		VARCHAR(50);
 
 	Set @depositid ='$depositid'
-	Set @status ='$status'
-
 
 		UPDATE tblDepositReq
-		SET strStatus = @Status
+		SET strStatus = 'For Depositing'
 		WHERE intDepositReqID = @depositid;
 	";
 		if($this->db->query($query)){
