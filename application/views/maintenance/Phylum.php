@@ -226,9 +226,10 @@ function resetForm() {
               }else if(response.type=='update'){
                 var type ="updated"
               }
+
               showAllPhylum();
             }else{
-              alert('Error');
+              alert('false mo mukha mo');
             }
           },
           error: function(){
