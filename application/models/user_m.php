@@ -128,9 +128,8 @@ public function can_login($username,$password){
 		$getusername = $this->session->userdata['strUserName'];
 
 
-		$family=$this->input->post('sFamilyName');
-		$genus=$this->input->post('sGenusName');
-		$species=$this->input->post('sSpeciesName');
+		$sciname=$this->input->post('sSciName');
+
 		$purpose=$this->input->post('strPurpose');
 		$sessionid=$this->session->userdata('intOUserID');
 		//set @sessionname= '$sessionusername'

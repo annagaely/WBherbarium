@@ -47,7 +47,7 @@
             </tr>
             <tr>
               <td class='SciName'>
-                <select name='sSciName[]'  id='sciname' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'>
+                <select name='sSciName[]'  id='sciname' class='form-control grey-text font-weight-light' style='font-weight: 500px; border:none; border-bottom: 1px rgba(158,158,158,0.4) solid; width: 100%;'></select>
               </td>
 
               <td></td>
@@ -56,8 +56,9 @@
           <div align="right">
             <button type="button" name="add" id="add" class="btn btn-primary btn-sm">+</button>
           </div>
+        </form>
             <div class="md-form">
-
+<form id= "textForms" method="POST" enctype="multipart/form-data" autocomplete="off">
                 <div class="md-form">
                   <div class="row">
                     <div class="col-md-6">
@@ -121,10 +122,11 @@ $(document).ready(function(){
   $('#' + delete_row).remove();
  });
 
+
+
  $('#save').click(function(event){
 
 var data=$('#tableForm').serialize()+ "&"+ $('#textForms').serialize();
-
 event.preventDefault();
   $.ajax({
    url:'<?php echo base_url() ?>user/addLoanReq', //lol dikolam tooo :<
