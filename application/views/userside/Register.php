@@ -238,9 +238,10 @@ window.addEventListener('load', function() {
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
     $(function(){
-      $('#btnSave').click(function(e){
-      event.preventDefault();
+      $('#btnSave').click(function(){
+      
         var data = $('#RegisterForm').serialize();
+        alert(data)
         //validate form
         $.ajax({
           type: 'ajax',
@@ -256,8 +257,6 @@ window.addEventListener('load', function() {
                 text: "Congratulations! Your account has been created.",
                 icon: "success",
                 button: "OK!"
-              }).then(function(){
-                location.reload();
               });
             } else {
               swal({
