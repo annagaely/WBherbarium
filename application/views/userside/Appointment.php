@@ -16,17 +16,17 @@
                 </div>
                 <div class="col-md-7 pl-4">
                   <p class="font-weight-light mb-0">Purpose of Visit:<span style="color: red"> *</span></p>
-                  <div class="custom-checkbox custom-control mt-0" style="margin-left: 38px;">
-                    <input type="checkbox" class="custom-control-input" id="chkAppointment" name="checkbox2" required>
-                    <label class="custom-control-label font-weight-light" for="chkAppointment">Academic</label>
+                  <div class="custom-control custom-radio"  style="margin-left: 38px;">
+                    <input type="radio" class="custom-control-input" id="radioAcademic" name="radios">
+                    <label class="custom-control-label" for="radioAcademic">Academic</label>
                   </div>
-                  <div class="custom-control custom-checkbox" style="margin-left: 38px;">
-                    <input type="checkbox" class="custom-control-input" id="chkResearch" name="checkResearch">
-                    <label class="custom-control-label font-weight-light" for="chkResearch">Research</label>
+                  <div class="custom-control custom-radio"  style="margin-left: 38px;">
+                    <input type="radio" class="custom-control-input" id="radioResearch" name="radios">
+                    <label class="custom-control-label" for="radioResearch">Research</label>
                   </div>
-                  <div class="custom-control custom-checkbox" style="margin-left: 38px;">
-                    <input type="checkbox" class="custom-control-input" id="chkOthers" name="checkOthers" onchange="others()">
-                    <label class="custom-control-label font-weight-light" for="chkOthers">Others</label>
+                  <div class="custom-control custom-radio"  style="margin-left: 38px;">
+                    <input type="radio" class="custom-control-input" id="radioOthers" name="radios" onchange="others()">
+                    <label class="custom-control-label" for="radioOthers">Others</label>
                   </div>
                 </div>
               </div>
@@ -94,9 +94,8 @@ $(function(){
 </script>
 <script>
 function others() {
-  var check = document.getElementById('chkOthers');
-  var area = document.getElementById('strOthers');
-
+  var check = document.getElementById('radioOthers');
+  var area = document.getElementById('strVisitDescription');
   if (check.checked) {
     area.disabled = false;
   } else {
