@@ -15,12 +15,29 @@ class admin_m extends CI_Model{
 	}
 
 	 public function addPhylum(){
-		$field = array(
-			'strDomainName'=>$this->input->post('txtdName'),
-			'strKingdomName'=>$this->input->post('txtkName'),
-			'strPhylumName'=>$this->input->post('txtpName')
-			);
-		$this->db->insert('tblPhylum', $field);
+		
+			$domainName=$this->input->post('txtdName');
+			$kingdomName=$this->input->post('txtkName');
+			$phylumName=$this->input->post('txtpName');
+		
+			$query="
+			insert into tblPhylum(strDomainName,strKingdomName,strPhylumName) VALUES ('".$domainName."','".$kingdomName."','".$phylumName."')
+
+			";
+		if($domainName!=''){
+			if($kingdomName!=''){
+				if($phylumName!=''){
+					$this->db->query($query);
+				}else{
+					return false;
+				}
+			}else {
+				return false;
+			}
+		}else {
+				return false;
+			}
+		
 		if($this->db->affected_rows() > 0){
 			return true;
 		}else{

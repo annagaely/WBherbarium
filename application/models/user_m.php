@@ -127,11 +127,9 @@ public function can_login($username,$password){
 	public function addLoanReq(){
 		$getusername = $this->session->userdata['strUserName'];
 
-
-		$family=$this->input->post('sFamilyName');
-		$genus=$this->input->post('sGenusName');
-		$species=$this->input->post('sSpeciesName');
-		$purpose=$this->input->post('strPurpose');
+		$date=$this->input->post('dateAppointment');
+		$sciname=$this->input->post('sSciName');
+		$purpose=$this->input->post('radios');
 		$sessionid=$this->session->userdata('intOUserID');
 		//set @sessionname= '$sessionusername'
 
@@ -143,7 +141,7 @@ public function can_login($username,$password){
 		declare @sessionid int;
 		select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
-		insert into tblLoanReq(intOUserID,strPurpose,strStatus) values (@sessionid,@prps,'Pending')
+		insert into tblLoanReq(intOUserID,dtAppointmentDate,strPurpose,strStatus) values (@sessionid,'".$date."',@prps,'Pending')
 
 
 	";if($this->db->query($query)){
@@ -151,13 +149,11 @@ public function can_login($username,$password){
 
 			$i=0;
 
-			foreach($family as $f){
+			foreach($sciname as $s){
 
 				$data=array(
 
-					'intFamilyID' => $family[$i],
-					'intGenusID' => $genus[$i],
-					'intSpeciesID' => $species[$i],
+					'strScientificName' => $sciname[$i],
 					'intLoanReqID' => $last_id
 				);
 
@@ -174,7 +170,7 @@ public function can_login($username,$password){
 	public function showSciName(){
 
 
-		$query = $this->db->select("concat(g.intGenusID,' ',s.intSpeciesID) as strSciName")
+		$query = $this->db->select("concat(g.strGenusName,' ',s.strSpeciesName) as strSciName")
 		->join('tblHerbariumSheet hs','sh.intHerbariumSheetID = hs.intHerbariumSheetID')
 		->join('tblSpecies s','s.intSpeciesID = hs.intSpeciesID')
 		->join('tblGenus g','g.intGenusID = s.intGenusID')

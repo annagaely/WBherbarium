@@ -213,7 +213,7 @@
                       </select>
                      </div>
 
-                     <div class="modal-footer">
+                     <div class="modal-footer">-->
                     <!--<button id ="btnSave">Save</button>-->
 
 <!--                      <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 300px" data-dismiss="modal" data-toggle="modal" data-target="#myModal">
@@ -474,6 +474,7 @@
 
   });
 </script> -->
+
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
