@@ -47,7 +47,7 @@
                   </div>
                   <div class="form-group">
                     <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control">
+                    <input type="text" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control" required>
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -202,15 +202,15 @@ function resetForm() {
 
 
     //add
-    $('#btnSave',).click(function(){
+    $('#btnSave',).click(function(event){
       var url = '<?php echo base_url() ?>admin/addPhylum';
       var data = $('#addPhylumForm').serialize();
       //validate form
       var domainName = $('input[name=txtdName]');
       var kingdomName = $('input[name=txtkName]');
       var phylumName = $('input[name=txtkName]');;
-
-        $.ajax({
+if(confirm("Save data?")){
+          $.ajax({
           type: 'ajax',
           method: 'post',
           url: url,
@@ -226,16 +226,21 @@ function resetForm() {
               }else if(response.type=='update'){
                 var type ="updated"
               }
-
-              showAllPhylum();
+              alert('Phylum Successfully Added!');
+              location.reload();
+              
             }else{
-              alert('false mo mukha mo');
+              alert('Please fill up all fields.');
             }
           },
           error: function(){
             alert('Could not save Data');
           }
         });
+        }else{
+        event.preventDefault();
+        }
+
 
     });
 

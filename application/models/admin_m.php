@@ -1757,5 +1757,19 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 		}
 		}	
 
+	public function showExValPending(){
+		$query = $this->db->select('intPlantDepositID,strAccessionNumber,dateDeposited,strStatus')
+		->where('strStatus','For External Validation')
+		->get('tblPlantDeposit');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+	}
+}
+
+
+
+
 
 }?>

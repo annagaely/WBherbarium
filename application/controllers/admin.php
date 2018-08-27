@@ -886,6 +886,10 @@ public function VisitEmailCon(){
 		echo json_encode($result);
 
 	}
+	public function showExValPending(){
+		$result = $this->m->showExValPending();
+		echo json_encode($result);
+	}
 
 
 }?>
