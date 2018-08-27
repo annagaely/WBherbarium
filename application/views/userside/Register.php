@@ -48,7 +48,7 @@ window.addEventListener('load', function() {
     <div class="card-body">
 
         <!-- Material form register -->
-        <form name="regForm" class="needs-validation" id= "RegisterForm" method="POST" enctype="multipart/form-data" novalidate>
+        <form name="regForm" class="needs-validation" id= "RegisterForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
             <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">Sign Up</p>
 
             <!-- Material input text -->
@@ -210,10 +210,7 @@ window.addEventListener('load', function() {
                 </div>
 
               </div>
-              <div class="custom-control custom-checkbox" style="margin-left: 38px;">
-                <input type="checkbox" class="custom-control-input" id="checkbox2" name="checkbox2" required>
-                <label class="custom-control-label font-weight-light" for="checkbox2">I have read and agree to the terms of service.</label>
-              </div>
+              
               <div class="md-form">
                 <div class="alert alert-danger font-weight-light" role="alert">
                     * Indicates required fields.
