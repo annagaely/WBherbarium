@@ -1,7 +1,7 @@
 <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/calendar.jpg" style="height: 50vh; width: 100%;"  class="banner">
 <div class="row">
-  <div class="col-md-5 pt-5">
-    <div class="py-5 pl-5">
+  <div class="col-md-5 py-5">
+    <div class=" pl-5">
       <div class="card px-auto">
         <div class="card-body">
           <form id="addAppointmentForm">
@@ -15,7 +15,7 @@
                   <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px;">
                 </div>
                 <div class="col-md-7 pl-4">
-                  <p class="font-weight-light mb-0">Purpose of Loan:<span style="color: red"> *</span></p>
+                  <p class="font-weight-light mb-0">Purpose of Visit:<span style="color: red"> *</span></p>
                   <div class="custom-checkbox custom-control mt-0" style="margin-left: 38px;">
                     <input type="checkbox" class="custom-control-input" id="chkAppointment" name="checkbox2" required>
                     <label class="custom-control-label font-weight-light" for="chkAppointment">Academic</label>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="text-center py-4 mt-3">
-              <button class="btn btn-danger" type="reset">Reset</button>
+              <button class="btn btn-danger" type="reset">Clear</button>
               <button id = "btnSubmit" class="btn btn-primary" type="submit" >Submit</button>
             </div>
           </form>
@@ -47,7 +47,7 @@
     </div>
   </div>
   <div class="col-md-7 py-5">
-    <iframe src="<?php echo site_url('user/view_calendar');?>" width="100%" height="800px" style="border: none;"></iframe>
+    <iframe src="<?php echo site_url('user/view_calendar');?>" width="100%" height="555px" style="border: none;"></iframe>
   </div>
 </div>
 
