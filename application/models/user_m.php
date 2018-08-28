@@ -265,63 +265,42 @@ public function addDeposit(){
 	}
 
 public function addAppointment(){
+$doA = $this->input->post('dateofappointment');
 
-$getusername = $this->session->userdata['strUserName'];
 	$appPurpose = $this->input->post('radios');
-	$doA = $this->input->post('dateofappointment');
 	$appdesc = $this->input->post('txtappdesc');
+$getusername = $this->session->userdata['strUserName'];
+$query="
 
-	if($getusername!=''){
-		if($appPurpose!=''){
-			if($doA!=''){
-				if($appdesc!=''){
-					$query="
-
-					DECLARE @appointmenttype VARCHAR(50);
-					DECLARE @dateofappointment DATE;
-					DECLARE @applicationdesc VARCHAR(255);
+DECLARE @appointmenttype VARCHAR(50);
+DECLARE @dateofappointment DATE;
+DECLARE @applicationdesc VARCHAR(255);
 
 
 
-					set @appointmenttype = '$appPurpose'
-					set @dateofappointment = '$doA'
-					set @applicationdesc = '$appdesc'
-					declare @sessionid int;
-				select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
-				SET NOCOUNT ON;
-					declare @sessionid int;
-						select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
+set @appointmenttype = '$appPurpose'
+set @dateofappointment = '$doA'
+set @applicationdesc = '$appdesc'
+
+SET NOCOUNT ON;
+declare @sessionid int;
+	select @sessionid = intOUserID from tblOnlineUser where strUserName = '".$getusername."'
 
 
-						BEGIN
-							INSERT INTO tblAppointments(dtAppointmentDate,strVisitPurpose, intOUserID, strVisitDescription,strStatus)
+	BEGIN
+		INSERT INTO tblAppointments(dtAppointmentDate,strVisitPurpose, intOUserID, strVisitDescription,strStatus)
 
-							VALUES (@dateofappointment,@appointmenttype, @sessionid, @applicationdesc, 'Pending')
-						END
-						";
-
-						if($this->db->query($query))
-						{
-							return true;
-						}
-						else
-						{
-							return false;
-						}
-				} else {
-					return false;
-				}
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-	} else {
+		VALUES (@dateofappointment,@appointmenttype, @sessionid, @applicationdesc, 'Pending')
+	END
+	";
+	if($this->db->query($query))
+	{
+		return true;
+	}
+	else
+	{
 		return false;
 	}
-
-
 
 
 
