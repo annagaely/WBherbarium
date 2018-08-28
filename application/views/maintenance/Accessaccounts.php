@@ -161,10 +161,10 @@
       });
     }
 
-$('#btnSave').click(function(){
+$('#btnSave').click(function(event){
       var data = $('#addAccountForm').serialize();
       //validate form
-
+if(confirm("Save data?")){
         $.ajax({
           type: 'ajax',
           method: 'post',
@@ -178,20 +178,24 @@ $('#btnSave').click(function(){
               $('#addAccountForm')[0].reset();
               if(response.type=='add'){
                 var type = 'added'
-                alert('asd');
               }else if(response.type=='update'){
                 var type ="updated"
               }
+              alert('Account Successfully Added!');
+              location.reload();
             }else{
-              alert('Error');
+              alert('Please fill up all fields.');
             }
           },
           error: function(){
             alert('Could not save Data');
-          }
+         }
         });
-
+        }else{
+        event.preventDefault();
+        }
     });
+ 
 showStaffName();
  function showStaffName(){
       $.ajax({

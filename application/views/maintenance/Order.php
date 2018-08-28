@@ -162,7 +162,7 @@
     $('#btnSave').click(function(){
       var data = $('#addOrderForm').serialize();
       //validate form
-
+if(confirm("Save data?")){
         $.ajax({
           type: 'ajax',
           method: 'post',
@@ -179,16 +179,20 @@
               }else if(response.type=='update'){
                 var type ="updated"
               }
-              showAllEmployee();
+             alert('Order Successfully Added!');
+              location.reload();
+              
             }else{
-              alert('Error');
+              alert('Please fill up all fields.');
             }
           },
           error: function(){
             alert('Could not save Data');
           }
         });
-      
+        }   else{
+        event.preventDefault();
+        }
     });
     //update class
   $('#btnEditSave').click(function(){

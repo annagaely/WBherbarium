@@ -51,7 +51,7 @@
 
 <div class="tab" >
           <button id = "defaultOpen" class="tablinks" onclick="openCity(event, 'FirstTab')" style="color:white;">Pending</button>
-          <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">For Validation</button>
+          <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">Sent For Validation</button>
           <button class="tablinks" onclick="openCity(event, 'ThirdTab') " style="color:white;">All</button>
         </div>
 
@@ -66,8 +66,8 @@
                 <tr>
                   <th>Plant Deposit ID</th>
                   <th>Accession Number</th>
-                  <th>Collector's Name</th>
                   <th>Date Deposited</th>
+                  
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -267,16 +267,16 @@
 
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
- <!--    <script type="text/javascript">
+     <script type="text/javascript">
 
     $(function(){
 
     //show
-    showAllDepositReqPending();
-    function showAllDepositReqPending(){
+    showExValPending();
+    function showExValPending(){
       $.ajax({
         type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllDepositReqPending',
+        url: '<?php echo base_url() ?>admin/showExValPending',
         async: false,
         dataType: 'json',
         success: function(data){
@@ -284,14 +284,13 @@
           var i;
           for(i=0; i<data.length; i++){
             html +='<tr>'+
-                  '<td>'+data[i].intDepositReqID+'</td>'+
-                  '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].strCommonName+'</td>'+
-                  '<td>'+data[i].dtDateCollected+'</td>'+
-                  '<td>'+data[i].strFullLocation+'</td>'+
+                  '<td>'+data[i].intPlantDepositID+'</td>'+
+                  '<td>'+data[i].strAccessionNumber+'</td>'+
+                  '<td>'+data[i].dateDeposited+'</td>'+
+                  
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
-                    '<a href="javascript:;" data-toggle="modal" data-target="#myModal1" class="btn btn-primary view-depositReq" data="'+data[i].intDepositReqID+'">View</a>'+
+                    '<a href="javascript:;" data-toggle="modal" data-target="#myModal1" class="btn btn-primary view-depositReq" data="'+data[i].intPlantDepositID+'">View</a>'+
                   '</td>'+
                   '</tr>';
           }
@@ -302,8 +301,10 @@
         }
       });
     }
-  });
 
+  });
+</script>
+<!--<script>
     $(function(){
 
     //show
