@@ -28,27 +28,27 @@
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>First Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="fName" placeholder="First Name " class="form-control">
+                      <input type="text" name="fName" id="strFirstname" placeholder="First Name " class="form-control">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Middle Name:</label> 
-                      <input type="text" name="mName" placeholder="Middle Name" class="form-control">
+                      <input type="text" name="mName"  id="strMiddlename" placeholder="Middle Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Middle Initial:</label>
-                      <input type="text" name="mInitial" placeholder="Middle Initial" class="form-control">
+                      <input type="text" name="mInitial"  id="strMiddleInitial" placeholder="Middle Initial" class="form-control">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Last Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="lName" placeholder="Last Name" class="form-control">
+                      <input type="text" name="lName"  id="strLastname" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Name Suffix:</label>
-                      <input type="text" name="nSuffix" placeholder="Name Suffix" class="form-control">
+                      <input type="text" name="nSuffix"  id="strNameSuffix" placeholder="Name Suffix" class="form-control">
                     </div>
                   </div>
                   <div class="row">
@@ -62,34 +62,17 @@
                   </div>
                 </div>
                   <div class="row">
-                  <div class="form-group col-sm-6">
-                    <label>College Department:</label> <label style="color: red">*</label>
-                    <select name="cdName" class="form-control">
-                      <option value= "College of Accountancy and Finance"> College of Accountancy and Finance</option>
-                      <option value= "College of Architecture and Fine Arts"> College of Architecture and Fine Arts</option>
-                      <option value= "College of Arts and Letters"> College of Arts and Letters</option>
-                      <option value= "College of Business Administration"> College of Business Administration</option>
-                      <option value= "College of Communication">College of Communication</option>
-                      <option value= "College of Computer and Information Sciences"> College of Computer and Information Sciences </option>
-                      <option value= "College of Education"> College of Education</option>
-                      <option value= "College of Engineering">College of Engineering</option>
-                      <option value= "College of Human Kinetics"> College of Human Kinetics</option>
-                      <option value= "College of Law"> College of Law</option>
-                      <option value= "College of Public Administration"> College of Public Administration</option>
-                      <option value= "College of Science"> College of Science</option>
-                      <option value= "College of Social Sciences and Development"> College of Social Sciences and Development</option>
-                      <option value= "College of Tourism, Hospitality and Transportation Management"> College of Tourism, Hospitality and Transportation Management</option>
-                      <option value= "Institute of Technology"> Institute of Technology</option>
-                      <option value= "Laboratory High School"> Laboratory High School</option>
-                      <option value= "Senior High School"> Senior High School</option>
-                      <option value= "Graduate School">Graduate School</option>
-                    </select>
+                    <div class="form-group col-sm-12">
+                    <label>Home Address:</label> <label style="color: red">*</label>
+                    <input type='text' name="cdName" id="strCollege" placeholder="Home Address" class="form-control">
                   </div>
                   </div>
-                  <div class="form-group col-sm-6">
-                    <label>Course/Year/Section:</label> <label style="color: red">*</label>
-                    <input type="text" name="secName" placeholder="Course/Year/Section" class="form-control">
+                  <div class="row">
+                  <div class="form-group col-sm-12">
+                    <label>Affiliation:</label> <label style="color: red">*</label>
+                    <input type="text" name="secName" placeholder="Affiliation" class="form-control">
                   </div>
+                </div>
                   <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">       
@@ -117,13 +100,13 @@
                     <div class="form-group col-sm-8">
                        <input type="hidden" name="txtId" value="0">
                       <label>First Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="feName" placeholder="First Name " class="form-control">
+                      <input type="text" name="feName" placeholder="First Name " class="form-control" >
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Middle Name:</label> 
-                      <input type="text" name="meName" placeholder="Middle Name" class="form-control">
+                      <input type="text" name="meName" placeholder="Middle Name" class="form-control" >
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Middle Initial:</label>
@@ -151,34 +134,17 @@
                   </div>
                 </div>
                   <div class="row">
-                  <div class="form-group col-sm-6">
-                    <label>College Department:</label> <label style="color: red">*</label>
-                    <select name="cdName" class="form-control">
-                      <option value= "College of Accountancy and Finance"> College of Accountancy and Finance</option>
-                      <option value= "College of Architecture and Fine Arts"> College of Architecture and Fine Arts</option>
-                      <option value= "College of Arts and Letters"> College of Arts and Letters</option>
-                      <option value= "College of Business Administration"> College of Business Administration</option>
-                      <option value= "College of Communication">College of Communication</option>
-                      <option value= "College of Computer and Information Sciences"> College of Computer and Information Sciences </option>
-                      <option value= "College of Education"> College of Education</option>
-                      <option value= "College of Engineering">College of Engineering</option>
-                      <option value= "College of Human Kinetics"> College of Human Kinetics</option>
-                      <option value= "College of Law"> College of Law</option>
-                      <option value= "College of Public Administration"> College of Public Administration</option>
-                      <option value= "College of Science"> College of Science</option>
-                      <option value= "College of Social Sciences and Development"> College of Social Sciences and Development</option>
-                      <option value= "College of Tourism, Hospitality and Transportation Management"> College of Tourism, Hospitality and Transportation Management</option>
-                      <option value= "Institute of Technology"> Institute of Technology</option>
-                      <option value= "Laboratory High School"> Laboratory High School</option>
-                      <option value= "Senior High School"> Senior High School</option>
-                      <option value= "Graduate School">Graduate School</option>
-                    </select>
+                    <div class="form-group col-sm-12">
+                    <label>Home Address:</label> <label style="color: red">*</label>
+                    <input type='text' name="cedName" id="strCollege" placeholder="Home Address" class="form-control">
                   </div>
                   </div>
-                  <div class="form-group col-sm-6">
-                    <label>Course/Year/Section:</label> <label style="color: red">*</label>
-                    <input type="text" name="seceName" placeholder="Course/Year/Section" class="form-control">
+                  <div class="row">
+                  <div class="form-group col-sm-12">
+                    <label>Affiliation:</label> <label style="color: red">*</label>
+                    <input type="text" name="esecName" placeholder="Affiliation" class="form-control">
                   </div>
+                </div>
                   <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">       
@@ -232,7 +198,7 @@
             html +='<tr>'+
                   '<td>'+data[i].intCollectorID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].strSection+'</td>'+
+                  '<td>'+data[i].strAffiliation+'</td>'+
 
                   '<td>'+
                     '<a href="javascript:;" class="btn btn-primary collector-edit" data="'+data[i].intCollectorID+'">Edit</a>'+
@@ -263,6 +229,7 @@
               $('#addCollectorForm')[0].reset();
               if(response.type=='add'){
                 var type = 'added'
+                alert('New Collector Successfully Added!');
               }else if(response.type=='update'){
                 var type ="updated"
               }
@@ -311,6 +278,7 @@ $('#btnEditSave').click(function(){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Collector');
+
       $.ajax({
         type: 'ajax',
         method: 'get',
@@ -326,8 +294,8 @@ $('#btnEditSave').click(function(){
           $('input[name=neSuffix]').val(data.strNameSuffix);
           $('input[name=ceName]').val(data.strContactNumber);
           $('input[name=eeMail]').val(data.strEmailAddress);
-          $('input[name=cdeName]').val(data.strCollege);
-          $('input[name=seceName]').val(data.strSection);
+          $('input[name=cdName]').val(data.strHomeAddress);
+          $('input[name=secName]').val(data.strAffiliation);
           $('input[name=txtId]').val(data.intCollectorID);
           
         },
