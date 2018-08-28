@@ -31,10 +31,10 @@
 
                     <div class="col-sm-6">
                     <label>Role:</label> <label style="color: red">*</label>
-                    <select name="sRole" class="form-control">
-                      <option value= "Super Administrator"> Super Administrator</option>
-                      <option value= "Curator"> Curator</option>
-                      <option value= "Student Assistant"> Student Assistant</option>
+                    <select name="txtStaffRole" class="form-control">
+                      <option id="SA" value= "Super Administrator"> Super Administrator</option>
+                      <option id="CR" value= "Curator"> Curator</option>
+                      <option id="StA" value= "Student Assistant"> Student Assistant</option>
                     </select>
                   </div>
                   </div>
