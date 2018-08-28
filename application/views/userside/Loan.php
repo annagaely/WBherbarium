@@ -29,6 +29,7 @@
   color: #ffffff;
 }
 </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/loan.jpg" style="height: 50vh; width: 100%;"  class="banner">
 <div class="row">
   <div class="col-md-5 py-5 mr-0">
@@ -64,7 +65,7 @@
                   <div class="row">
                     <div class="col-md-6">
                       <p class="font-weight-light">Desired Date of Claiming:<span style="color: red"> *</span></p>
-                        <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px">
+                        <input required type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px">
                       </div>
                       <div class="col-md-6">
                         <p class="font-weight-light mb-0">Purpose of Loan:<span style="color: red"> *</span> </p>
@@ -133,13 +134,24 @@ event.preventDefault();
    url:'<?php echo base_url() ?>user/addLoanReq', //lol dikolam tooo :<
    method:"POST",
  data:data,
+
   success:function(data){
   if(data=true){
      //$('#numDuration').val('');
      //$('#purpose').val('');
-     alert('Request Sent');
-     location.reload();
-
+     swal({
+       title: "Good job!",
+       text: "Congratulations! Your request has been sent.",
+       icon: "success",
+       button: "OK!"
+     });
+   } else {
+     swal({
+       title: "Incomplete input!",
+       text: "Please fill up all the required fields.",
+       icon: "warning",
+       button: "OK!"
+     })
    }
 
    }
