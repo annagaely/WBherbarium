@@ -17,15 +17,15 @@
                 <div class="col-md-7 pl-4">
                   <p class="font-weight-light mb-0">Purpose of Visit:<span style="color: red"> *</span></p>
                   <div class="custom-control custom-radio"  style="margin-left: 38px;">
-                    <input type="radio" class="custom-control-input" id="radioAcademic" name="radios">
+                    <input type="radio" class="custom-control-input" value="Academic" id="radioAcademic" name="radios">
                     <label class="custom-control-label" for="radioAcademic">Academic</label>
                   </div>
                   <div class="custom-control custom-radio"  style="margin-left: 38px;">
-                    <input type="radio" class="custom-control-input" id="radioResearch" name="radios">
+                    <input type="radio" class="custom-control-input" value="Research" id="radioResearch" name="radios">
                     <label class="custom-control-label" for="radioResearch">Research</label>
                   </div>
                   <div class="custom-control custom-radio"  style="margin-left: 38px;">
-                    <input type="radio" class="custom-control-input" id="radioOthers" name="radios" onchange="others()">
+                    <input type="radio" class="custom-control-input" value="Others" id="radioOthers" name="radios" onchange="others()">
                     <label class="custom-control-label" for="radioOthers">Others</label>
                   </div>
                 </div>
@@ -58,6 +58,7 @@
 $(function(){
     $('#btnSubmit').click(function(){
       var data = $('#addAppointmentForm').serialize();
+      alert(data)
   $.ajax({
     type: 'ajax',
     method: 'post',
@@ -65,15 +66,8 @@ $(function(){
     data: data,
     async: false,
     dataType: 'json',
-  success: function($response){
-      if(response.success){
-        $('#addAppointmentForm').modal('hide');
-        $('#addAppointmentForm')[0].reset();
-        if(response.type=='add'){
-          var type = 'added'
-        }else if(response.type=='update'){
-          var type ="updated"
-     }
+  success: function(data){
+      if(data==true){
    }else{
         alert('Error');
       }

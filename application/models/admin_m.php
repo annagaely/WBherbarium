@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin_m extends CI_Model{
@@ -640,9 +640,8 @@ public function showAllFamilyBoxes(){
 	/****** END LOCALITY BOXES!!!!! ******/
 	/****** COLLECTOR START!!!!! ******/
 public function showAllCollector(){
-		$query = $this->db->query("select Concat(pe.strLastname,', ',pe.strFirstname,' ',pe.strMiddlename,' ',pe.strNameSuffix) as strFullName, strSection, intCollectorID, pe.intPersonID
-		from tblCollector co join tblPerson pe
-		on pe.intPersonID = co.intPersonID");
+		$query = $this->db->query("select Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strAffiliation, intCollectorID
+		from tblCollector ");
 		if($query->num_rows() > 0){
 			return $query->result();
 		}else{
@@ -663,72 +662,19 @@ public function showAllCollector(){
 
 
 	$query="
-	DECLARE @firstname		VARCHAR(50);
-	DECLARE @middlename		VARCHAR(50);
-	DECLARE @lastname		VARCHAR(50);
-	DECLARE @middleinitial	VARCHAR(3);
-	DECLARE @namesuffix		VARCHAR(5);
-	DECLARE @contactno		VARCHAR(15);
-	DECLARE @email			VARCHAR(255);
-	DECLARE @college		VARCHAR(100);
-	DECLARE @section		VARCHAR(50);
-
-	set @firstname = '$fname'
-	set @middlename = '$mname'
-	set @lastname = '$lname'
-	set @middleinitial = '$minitial'
-	set @namesuffix = '$nsuffix'
-	set @contactno = '$cname'
-	set @email = '$email'
-	set @college = '$cdname'
-	set @section = '$secname'
-
-
-		DECLARE @personID INT;
-		DECLARE @duplicateID INT;
-
-		SELECT @duplicateID = intPersonID
-		FROM tblPerson
-		WHERE strFirstname = @firstname
-			AND strMiddlename = @middlename
-			AND strLastname = @lastname
-			AND strMiddleInitial = @middleinitial
-			AND strNameSuffix = @namesuffix
-
-		IF @duplicateID IS NULL
-			BEGIN
-				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname,
-									  strMiddleInitial, strNameSuffix,
-									  strContactNumber, strEmailAddress)
-				VALUES(@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email)
-
-				SELECT @personID = intPersonID
-				FROM tblPerson
-				WHERE strFirstname = @firstname
-					AND strMiddlename = @middlename
-					AND strLastname = @lastname
-					AND strMiddleInitial = @middleinitial
-					AND strNameSuffix = @namesuffix
-					AND strContactNumber = @contactno
-					AND strEmailAddress = @email
-			END
-		ELSE
-			SET @personID = @duplicateID
-
-		IF NOT EXISTS (SELECT intCollectorID
-					   FROM tblCollector
-					   WHERE intPersonID = @personID AND strCollege = @college AND strSection = @section)
-		BEGIN
-			INSERT INTO tblCollector (intPersonID, strCollege, strSection)
-			VALUES (@personID, @college, @section)
-		END";
-		$this->db->query($query);
-
-		if($this->db->affected_rows() > 0){
+	insert into tblCollector(strFirstname,strMiddlename,strLastname,strMiddleInitial,strNameSuffix,strHomeAddress,strContactNumber,strEmailAddress,strAffiliation) values ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cdname."','".$cname."','".$email."','".$secname."')
+		";
+		if($this->db->query($query))
+		{
 			return true;
-		}else{
+		}
+		else
+		{
 			return false;
 		}
+
+
+
 	}
 	public function updateCollector(){
 	$fname = $this->input->post('feName');
@@ -738,77 +684,73 @@ public function showAllCollector(){
 	$nsuffix = $this->input->post('neSuffix');
 	$cname = $this->input->post('ceName');
 	$email = $this->input->post('eeMail');
-	$cdname = $this->input->post('cdeName');
-	$secname = $this->input->post('seceName');
-	$collectorid = $this->input->post('txtId');
+	$cdname = $this->input->post('cedName');
+	$secname = $this->input->post('esecName');
+	$colletorid = $this->input->post('txtId');
 
+	$query=" 
+	DECLARE @Fname VARCHAR(50);
+	DECLARE @Mname VARCHAR(50);
+	DECLARE @MInitial VARCHAR(3);
+	DECLARE @Lname VARCHAR(50);
+	DECLARE @Nsuffix VARCHAR(5);
+	DECLARE @Cname VARCHAR(15);
+	DECLARE @Email VARCHAR(50);
+	DECLARE @CDname VARCHAR(MAX);
+	DECLARE @Sname VARCHAR(100);
+	DECLARE @colletorid VARCHAR(100);
 
+	Set @Fname ='$fname'
+	Set @Mname ='$mname'
+	Set @MInitial ='$minitial'
+	Set @Lname ='$lname'
+	Set @Nsuffix ='$nsuffix'
+	Set @Cname ='$cname'
+	Set @Email ='$email'
+	Set @CDname ='$cdname'
+	Set @Sname = '$secname'
+	Set @colletorid = '$colletorid'
 
-	$query="
-	DECLARE @firstname		VARCHAR(50);
-	DECLARE @middlename		VARCHAR(50);
-	DECLARE @lastname		VARCHAR(50);
-	DECLARE @middleinitial	VARCHAR(3);
-	DECLARE @namesuffix		VARCHAR(5);
-	DECLARE @contactno		VARCHAR(15);
-	DECLARE @email			VARCHAR(255);
-	DECLARE @college		VARCHAR(100);
-	DECLARE @section		VARCHAR(50);
-	DECLARE @collectorID		INT;
-
-	set @firstname = '$fname'
-	set @middlename = '$mname'
-	set @lastname = '$lname'
-	set @middleinitial = '$minitial'
-	set @namesuffix = '$nsuffix'
-	set @contactno = '$cname'
-	set @email = '$email'
-	set @college = '$cdname'
-	set @section = '$secname'
-	set @collectorID = '$collectorid'
-
-
-		DECLARE @personID INT;
-		SET @personID = (SELECT intPersonID FROM tblCollector WHERE intCollectorID = @collectorID)
-BEGIN
-		UPDATE tblPerson
-		SET strFirstname = @firstname,
-			strMiddlename = @middlename,
-			strLastname = @lastname,
-			strMiddleInitial = @middleinitial,
-			strNameSuffix = @namesuffix,
-			strContactNumber = @contactno,
-			strEmailAddress = @email
-		WHERE intPersonID = @personID;
-END
-BEGIN
-		UPDATE tblCollector
-		SET strCollege = @college,
-			strSection = @section
-		WHERE intCollectorID = @collectorID
-		END";
-		if($this->db->query($query)){
+	UPDATE tblCollector
+	SET strFirstname = @Fname,
+			strMiddlename = @Mname,
+			strLastname = @Lname,
+			strMiddleInitial = @MInitial,
+			strNameSuffix =  @Nsuffix,
+			strContactNumber = @Cname,
+			strEmailAddress = @Email,
+			strHomeAddress= @CDname,
+			strAffiliation=@Sname
+		WHERE intCollectorID = @colletorid;
+	";
+		if($this->db->query($query))
+		{
 			return true;
-		}else{
+		}
+		else
+		{
 			return false;
 		}
+
+
+
 	}
+
 	public function editCollector(){
 		$id = $this->input->get('id');
 		$this->db->where('intCollectorID', $id);
 		$query = $this->db->select('intCollectorID,
-			 pe.intPersonID
-      ,pe.strFirstname
-      ,pe.strMiddlename
-      ,pe.strLastname
-      ,pe.strMiddleInitial
-      ,pe.strNameSuffix
-      ,pe.strContactNumber
-      ,pe.strEmailAddress,
-			 strCollege,
-			 strSection')
-			->join('tblPerson pe', 'pe.intPersonID = co.intPersonID')
-			->get('tblCollector co');
+
+      strFirstname
+      ,strMiddlename
+      ,strLastname
+      ,strMiddleInitial
+      ,strNameSuffix
+      ,strContactNumber
+      ,strEmailAddress,
+      strHomeAddress,
+			 strAffiliation')
+			->get('tblCollector');
 		if($query->num_rows() > 0){
 			return $query->row();
 		}else{

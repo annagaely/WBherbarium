@@ -241,7 +241,7 @@ window.addEventListener('load', function() {
       $('#btnSave').click(function(){
 
         var data = $('#RegisterForm').serialize();
-        
+
         //validate form
         $.ajax({
           type: 'ajax',
@@ -256,6 +256,7 @@ window.addEventListener('load', function() {
                 title: "Good job!",
                 text: "Congratulations! Your account has been created.",
                 icon: "success",
+                timer: 5000,
                 button: "OK!"
               });
             } else {
@@ -264,7 +265,7 @@ window.addEventListener('load', function() {
                 text: "Please fill up all the required fields.",
                 icon: "warning",
                 button: "OK!"
-              })
+              }) 
             }
           },
           error: function(){
