@@ -761,9 +761,8 @@ public function showAllCollector(){
 	/****** END COLLECTOR!!!!! ******/
 	/****** EXTERNAL VALIDATOR START!!!!! ******/
 	public function showAllValidator(){
-		$query = $this->db->query("select Concat(pe.strLastname,', ',pe.strFirstname,' ',pe.strMiddlename,' ',pe.strNameSuffix) as strFullName, strInstitution, intValidatorID
-		from tblValidator v join tblPerson pe
-		on v.intPersonID = pe.intPersonID
+		$query = $this->db->query("select Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strInstitution, intValidatorID
+		from tblValidator
 		where strValidatorType = 'External'");
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -805,44 +804,8 @@ public function showAllCollector(){
 	set @email = '$email'
 	set @institution = '$institution'
 
-	DECLARE @personID INT;
-		DECLARE @duplicateID INT;
-
-		SELECT @duplicateID = intPersonID
-		FROM tblPerson
-		WHERE strFirstname = @firstname
-			AND strMiddlename = @middlename
-			AND strLastname = @lastname
-			AND strMiddleInitial = @middleinitial
-			AND strNameSuffix = @namesuffix
-
-		IF @duplicateID IS NULL
-			BEGIN
-				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname,
-									  strMiddleInitial, strNameSuffix,
-									  strContactNumber, strEmailAddress)
-				VALUES(@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email)
-
-				SELECT @personID = intPersonID
-				FROM tblPerson
-				WHERE strFirstname = @firstname
-					AND strMiddlename = @middlename
-					AND strLastname = @lastname
-					AND strMiddleInitial = @middleinitial
-					AND strNameSuffix = @namesuffix
-					AND strContactNumber = @contactno
-					AND strEmailAddress = @email
-			END
-		ELSE
-			SET @personID = @duplicateID
-
-		IF NOT EXISTS (SELECT intValidatorID
-					   FROM tblValidator
-					   WHERE intPersonID = @personID AND @institution = @institution)
-		BEGIN
-			INSERT INTO tblValidator(intPersonID, strInstitution, strValidatorType)
-			VALUES (@personID, @institution, 'External')
-		END";
+				INSERT INTO tblValidator VALUES(@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email,@institution, 'External')
+		";
 		$this->db->query($query);
 
 		if($this->db->affected_rows() > 0){
@@ -856,17 +819,15 @@ public function editValidator(){
 		$id = $this->input->get('id');
 		$this->db->where('intValidatorID', $id);
 		$query = $this->db->select('intValidatorID,
-			 pe.intPersonID
-      ,pe.strFirstname
-      ,pe.strMiddlename
-      ,pe.strLastname
-      ,pe.strMiddleInitial
-      ,pe.strNameSuffix
-      ,pe.strContactNumber
-      ,pe.strEmailAddress,
+     strFirstname
+      ,strMiddlename
+      ,strLastname
+      ,strMiddleInitial
+      ,strNameSuffix
+      ,strContactNumber
+      ,strEmailAddress,
 			 strInstitution')
-			->join('tblPerson pe', 'pe.intPersonID = v.intPersonID')
-			->get('tblValidator v');
+			->get('tblValidator');
 		if($query->num_rows() > 0){
 			return $query->row();
 		}else{
@@ -909,23 +870,15 @@ public function editValidator(){
 	set @validatorID = '$validatorid'
 
 
-
-		DECLARE @personID INT;
-
-		SET @personID = (SELECT intPersonID FROM tblValidator WHERE intValidatorID = @validatorID)
-
-		UPDATE tblPerson
+		UPDATE tblValidator
 		SET strFirstname = @firstname,
 			strMiddlename = @middlename,
 			strLastname = @lastname,
 			strMiddleInitial = @middleinitial,
 			strNameSuffix = @namesuffix,
 			strContactNumber = @contactno,
-			strEmailAddress = @email
-		WHERE intPersonID = @personID;
-
-		UPDATE tblValidator
-		SET strInstitution = @institution
+			strEmailAddress = @email,
+		 strInstitution = @institution
 		WHERE intValidatorID = @validatorID";
 		if($this->db->query($query)){
 			return true;
@@ -1219,7 +1172,7 @@ public function delete_event($id)
 // LOAN REQUEST //
 public function showLoanReqPending(){
 
-$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName,strPurpose, lr.intOUserID,intLoanReqID,strStatus
+$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName,strPurpose, lr.intOUserID,intLoanReqID,strStatus,dtAppointmentDate
 		from tblLoanReq lr join tblOnlineUser ou
 		on lr.intOUserID = ou.intOUserID
 		where strStatus ='Pending'");
@@ -1293,18 +1246,19 @@ public function showloanlist(){
 public function updateLoanStatus(){
 
     $depositid = $this->input->post('txtId');
-
-//DECLARE @status		VARCHAR(50);
+	$status=$this->input->post('txtStatus');
+//DECLARE @s$tatus		VARCHAR(50);
 //Set @status ='$status'
 	$query="
 
 	DECLARE @depositid 		INT;
-
+	DECLARE @status 		varchar(255);
 
 	Set @depositid ='$depositid'
+	Set @status ='$status'
 
 		UPDATE tblLoanReq
-		SET strStatus = 'For Claiming'
+		SET strStatus = @status
 		WHERE intLoanReqID = @depositid;
 	";
 		if($this->db->query($query)){
@@ -1374,7 +1328,7 @@ $status = $this->input->post('txtStatus');
 public function showAllDepositReqPending()
 {
 	//->where('strStatus','Pending')
-	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID,dtAppointmentDate
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID
@@ -1554,17 +1508,20 @@ public function ViewVisitReq(){
 public function updateVisitStatus(){
 
     $depositid = $this->input->post('txtId');
-
+$status=$this->input->post('txtStatus');
 //DECLARE @status		VARCHAR(50);
 //Set @status ='$status'
 	$query="
 
 	DECLARE @depositid 		INT;
 
+DECLARE @status 		varchar(255);
+
 	Set @depositid ='$depositid'
+	Set @status ='$status'
 
 		UPDATE tblAppointments
-		SET strStatus = 'For Visiting'
+		SET strStatus = @status
 		WHERE intAppointmentID = @depositid;
 	";
 		if($this->db->query($query)){

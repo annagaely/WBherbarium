@@ -68,6 +68,7 @@
                   <th>Common Name</th>
                   <th>Date Collected</th>
                   <th>Full Location</th>
+                  <th>Date of deposit</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -347,6 +348,7 @@
                   '<td>'+data[i].strCommonName+'</td>'+
                   '<td>'+data[i].dtDateCollected+'</td>'+
                   '<td>'+data[i].strFullLocation+'</td>'+
+                  '<td>'+data[i].dtAppointmentDate+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
                     '<a href="javascript:;" class="btn btn-primary view-depositReq" data="'+data[i].intDepositReqID+'">View</a>'+

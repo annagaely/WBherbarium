@@ -45,7 +45,7 @@
                       <input type="text" name="txtLName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
-                      <label>Name Suffix:</label> <label style="color: red">*</label>
+                      <label>Name Suffix:</label> 
                       <input type="text" name="txtNSuffix" placeholder="Name Suffix" class="form-control">
                     </div>
                   </div>
