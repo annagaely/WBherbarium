@@ -68,6 +68,14 @@ $(function(){
     dataType: 'json',
   success: function(data){
       if(data==true){
+           swal({
+       title: "Good job!",
+       text: "Congratulations! Your request has been sent.",
+       icon: "success",
+       button: "OK!"
+     });
+     location.reload();
+   
    }else{
         alert('Error');
       }

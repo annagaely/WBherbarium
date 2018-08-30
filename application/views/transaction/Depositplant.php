@@ -68,6 +68,7 @@
                   <th>Common Name</th>
                   <th>Date Collected</th>
                   <th>Full Location</th>
+                  <th>Date of deposit</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -204,22 +205,44 @@
         </div>
 
         <div class="modal-body">
-          <form id= "addAccountForm" method="POST" enctype="multipart/form-data">
+          <form id= "emailform" method="POST" enctype="multipart/form-data">
             <div class="form-group row pr-4">
               <label class="col-sm-2">To:</label>
+              <input type ="hidden" name = "txtEmail" id = "txtemail" value ="0">
               <input type="email" name="txtEmailCon" id="strEmailAdress" class="form-control col-sm-10" disabled>
+            </div>
+              <div class="form-group row pr-4">
+              <label class="col-sm-2">Deposit Request ID:</label>
+              <input type ="hidden" name = "txtId" id = "txtID" value ="0">
+              <input type="text" name="txtreqid" id="txtreqID" class="form-control col-sm-10" disabled>
             </div>
             <div class="form-group row pr-4">
                       <label class="col-sm-2">From:</label>
                       <input type="email" class="form-control col-sm-10" value= "WBHerbariumTA@gmail.com" disabled>
                     </div>
-                    <div class="form-group pr-2">
-                      <label>Message:</label>
-                      <textarea class="form-control"></textarea>
-                    </div>
 
                   <div class="modal-footer">
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
+                     <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+                     <script type="text/javascript">
+                            $('#btnSend').click(function(){
+                                var data = $('#emailform').serialize();
+                                
+                                  $.ajax({
+                                  type: 'ajax',
+                                  method: 'post',
+                                  url: '<?php echo base_url() ?>admin/depositsendMail',
+                                  data: data,
+                                  async: false,
+                                  dataType: 'json',
+                                  success: function(){
+                                  },
+                                  error: function(){
+                                    alert('Email Sent');
+                                  }
+                                });
+                            });
+                     </script>
                   </div>
           </form>
         </div>
@@ -325,6 +348,7 @@
                   '<td>'+data[i].strCommonName+'</td>'+
                   '<td>'+data[i].dtDateCollected+'</td>'+
                   '<td>'+data[i].strFullLocation+'</td>'+
+                  '<td>'+data[i].dtAppointmentDate+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
                     '<a href="javascript:;" class="btn btn-primary view-depositReq" data="'+data[i].intDepositReqID+'">View</a>'+
@@ -443,6 +467,9 @@
         dataType: 'json',
         success: function(data){
           $('#strEmailAdress').val(data.strEmailAddress);
+          $('#txtemail').val(data.strEmailAddress);
+          $('input[name=txtId]').val(data.intDepositReqID);
+          $('#txtreqID').val(data.intDepositReqID);
 
         },
         error: function(){

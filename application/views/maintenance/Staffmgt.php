@@ -31,10 +31,10 @@
 
                     <div class="col-sm-6">
                     <label>Role:</label> <label style="color: red">*</label>
-                    <select name="sRole" class="form-control">
-                      <option value= "Super Administrator"> Super Administrator</option>
-                      <option value= "Curator"> Curator</option>
-                      <option value= "Student Assistant"> Student Assistant</option>
+                    <select name="txtStaffRole" class="form-control">
+                      <option id="SA" value= "Super Administrator"> Super Administrator</option>
+                      <option id="CR" value= "Curator"> Curator</option>
+                      <option id="StA" value= "Student Assistant"> Student Assistant</option>
                     </select>
                   </div>
                   </div>
@@ -56,7 +56,7 @@
                       <input type="text" name="SMgtLName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
-                      <label>Name Suffix:</label> <label style="color: red">*</label>
+                      <label>Name Suffix:</label> 
                       <input type="text" name="txtNSuffix" placeholder="Name Suffix" class="form-control">
                     </div>
                   </div>
@@ -96,11 +96,6 @@
                       <option value= "Senior High School"> Senior High School</option>
                       <option value= "Graduate School">Graduate School</option>
                     </select>
-                  </div>
-
-                    <div class="col-sm-6">
-                    <label>Course/Year/Section:</label> <label style="color: red">*</label>
-                    <input type="text" name= "SMgtCYS" placeholder="Course/Year/Section" class="form-control">
                   </div>
                 </div>
                 <br>
@@ -160,7 +155,7 @@
                       <input type="text" name="eSMgtLName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
-                      <label>Name Suffix:</label> <label style="color: red">*</label>
+                      <label>Name Suffix:</label>
                       <input type="text" name="etxtNSuffix" placeholder="Name Suffix" class="form-control">
                     </div>
                   </div>
@@ -202,10 +197,6 @@
                     </select>
                   </div>
 
-                    <div class="col-sm-6">
-                    <label>Course/Year/Section:</label>
-                    <input type="text" name= "eSMgtCYS" placeholder="Course/Year/Section" class="form-control">
-                  </div>
                 </div>
                 <br>
 
@@ -231,7 +222,6 @@
                   <th>Staff Name</th>
                   <th>Role</th>
                   <th>College</th>
-                  <th>Position</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -265,8 +255,7 @@
                   '<td>'+data[i].intStaffID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
                   '<td>'+data[i].strRole+'</td>'+
-                  '<td>'+data[i].strCollegeDepartment+'</td>'+
-                  '<td>'+data[i].strPosition+'</td>'+
+                  '<td>'+data[i].strCollegeDepartment+'</td>'+  
                   '<td>'+
                     '<a href="javascript:;" class="btn btn-primary staff-edit" data="'+data[i].intStaffID+'">Edit</a>'+
                   '</td>'+

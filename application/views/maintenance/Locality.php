@@ -85,6 +85,16 @@
                     <label id="sotherlocalitylabel">Locality:</label> <label style="color: red">*</label> <br>
                     <input type="text" id = "sotherlocality" class="form-control" placeholder="Input full locality">
                   </div>
+                 <div class="row">
+                  <div class="form-group col-sm-6">
+                  <label>Latitude:</label>
+                    <input type="text" id="slatitude" name ="slatitudename" placeholder= "Latitude" class="form-control">
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label>Longhitude:</label>
+                    <input type="text" id= "slongtitude" name="slongtitudename" placeholder="Longtitude" class="form-control">
+                  </div>
+                </div>
 
 
                   <!--HANGGANG DITO LANG BOI-->
@@ -173,6 +183,16 @@
                     <label id="sotherlocalitylabel">Locality:</label> <label style="color: red">*</label> <br>
                     <input type="text" id = "sotherlocality1" class="form-control" placeholder="Input full locality">
                   </div>
+                   <div class="row">
+                  <div class="form-group col-sm-6">
+                  <label>Latitude:</label>
+                    <input type="text" id="slatitude" name ="slatitudename" placeholder= "Latitude" class="form-control">
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label>Longhitude:</label>
+                    <input type="text" id= "slongtitude" name="slongtitudename" placeholder="Longtitude" class="form-control">
+                  </div>
+                </div>
                   <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">       
@@ -209,7 +229,7 @@
         </div>
       </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
     <script>
       ///FOR ADD FORM//////
       $(document).ready(function () {
@@ -454,7 +474,7 @@
             $("#sregion1").html("<option value='region0'>-- select one --</option>");
           }
         });
-        $("#sregion").change(function () {
+        $("#sregion1").change(function () {
           var val = $(this).val();
           if (val == "Region I") {
             $("#sprov1").html("<option value='prov0'>-- select one --</option><option value='Ilocos Norte'>Ilocos Norte</option><option value='Ilocos Sur'>Ilocos Sur</option><option value='La Union'>La Union</option><option value='Pangasinan'>Pangasinan</option>");
@@ -820,8 +840,12 @@ $('#showdata').on('click', '.locality-edit', function(){
           $('input[name=espLocName]').val(data.strSpecificLocation);
           $('input[name=espShorName]').val(data.strShortLocation);
           $('input[name=txtId]').val(data.intLocalityID);
+          $('input[name=slongtitudename]').val(data.strLongtitude);
+          $('input[name=slatitudename]').val(data.strLatitude);
+
+
         },
-        error: function(){
+        error: function(){$('input[name=txtId]').val(data.intLocalityID);
           alert('Could not Edit Data');
         }
       

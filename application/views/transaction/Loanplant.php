@@ -65,6 +65,7 @@
                 <tr>
                   <th>Loan ID</th>
                   <th>Borrower Name</th>
+                  <th>Date of Loaning</th>
                   <th>Purpose</th>
                   <th>Status</th>
                   <th>Actions</th>
@@ -145,7 +146,7 @@
                   <div class="col-sm-8">
                    <select name="txtStatus" id="strStatus"  class="form-control">
                         <option value="Approved">Approve</option>
-                        <option value="Reject">Reject</option>
+                        <option value="Rejected">Reject</option>
                    </select>
                   </div>
                 </div>
@@ -196,22 +197,44 @@
         </div>
 
         <div class="modal-body">
-          <form id= "addAccountForm" method="POST" enctype="multipart/form-data">
+          <form id= "emailform" method="POST" enctype="multipart/form-data">
             <div class="form-group row pr-4">
               <label class="col-sm-2">To:</label>
+              <input type ="hidden" name = "txtEmail" id = "txtemail" value ="0">
               <input type="email" name="txtEmailCon" id="strEmailAddress" class="form-control col-sm-10" disabled>
+            </div>
+              <div class="form-group row pr-4">
+              <label class="col-sm-2">Loan Request ID:</label>
+              <input type ="hidden" name = "txtId" id = "txtID" value ="0">
+              <input type="text" name="txtreqid" id="txtreqID" class="form-control col-sm-10" disabled>
             </div>
             <div class="form-group row pr-4">
                       <label class="col-sm-2">From:</label>
                       <input type="email" class="form-control col-sm-10" value="WBHerbariumTA@gmail.com" disabled>
                     </div>
-                    <div class="form-group pr-2">
-                      <label>Message:</label>
-                      <textarea class="form-control"></textarea>
-                    </div>
 
                   <div class="modal-footer">
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
+                     <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+                     <script type="text/javascript">
+                            $('#btnSend').click(function(){
+                                var data = $('#emailform').serialize();
+                                
+                                  $.ajax({
+                                  type: 'ajax',
+                                  method: 'post',
+                                  url: '<?php echo base_url() ?>admin/loansendMail',
+                                  data: data,
+                                  async: false,
+                                  dataType: 'json',
+                                  success: function(){
+                                  },
+                                  error: function(){
+                                    alert('Email Sent');
+                                  }
+                                });
+                            });
+                     </script>
                   </div>
           </form>
         </div>
@@ -309,6 +332,7 @@
             html +='<tr>'+
                   '<td>'+data[i].intLoanReqID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
+                  '<td>'+data[i].dtAppointmentDate+'</td>'+
                   '<td>'+data[i].strPurpose+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+
@@ -483,7 +507,9 @@ $('#showdata').on('click', '.loanreq-edit', function(){
         dataType: 'json',
         success: function(data){
           $('#strEmailAddress').val(data.strEmailAddress);
-
+          $('#txtemail').val(data.strEmailAddress);
+          $('input[name=txtId]').val(data.intLoanReqID);
+          $('#txtreqID').val(data.intLoanReqID);
         },
         error: function(){
           alert('Could not Edit Data');
