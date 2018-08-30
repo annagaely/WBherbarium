@@ -135,7 +135,7 @@
                   <div class="col-sm-8">
                    <select name="txtStatus" id="strStatus"  class="form-control">
                         <option value="Approved">Approve</option>
-                        <option value="Reject">Reject</option>
+                        <option value="Rejected">Reject</option>
                    </select>
                   </div>
                 </div>

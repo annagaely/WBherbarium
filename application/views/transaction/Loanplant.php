@@ -65,6 +65,7 @@
                 <tr>
                   <th>Loan ID</th>
                   <th>Borrower Name</th>
+                  <th>Date of Loaning</th>
                   <th>Purpose</th>
                   <th>Status</th>
                   <th>Actions</th>
@@ -145,7 +146,7 @@
                   <div class="col-sm-8">
                    <select name="txtStatus" id="strStatus"  class="form-control">
                         <option value="Approved">Approve</option>
-                        <option value="Reject">Reject</option>
+                        <option value="Rejected">Reject</option>
                    </select>
                   </div>
                 </div>
@@ -331,6 +332,7 @@
             html +='<tr>'+
                   '<td>'+data[i].intLoanReqID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
+                  '<td>'+data[i].dtAppointmentDate+'</td>'+
                   '<td>'+data[i].strPurpose+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '<td>'+

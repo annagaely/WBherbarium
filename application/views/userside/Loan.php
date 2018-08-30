@@ -145,6 +145,7 @@ event.preventDefault();
        icon: "success",
        button: "OK!"
      });
+     location.reload();
    } else {
      swal({
        title: "Incomplete input!",
