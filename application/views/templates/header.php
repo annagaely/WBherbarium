@@ -81,6 +81,7 @@
 
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
 
 

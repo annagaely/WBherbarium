@@ -95,11 +95,25 @@ class admin_m extends CI_Model{
 	}
 
 	public function addClass(){
-		$field = array(
-			'intPhylumID'=>$this->input->post('spID'),
-			'strClassName'=>$this->input->post('txtCName'),
-			);
-		$this->db->insert('tblClass', $field);
+
+			$phylumID=$this->input->post('spID');
+			$className=$this->input->post('txtCName');
+
+			$query="
+			insert into tblClass(intPhylumID,strClassname) VALUES ('".$phylumID."','".$className."')
+
+			";
+
+			if($phylumID!=''){
+				if($className!=''){
+					$this->db->query($query);
+				}else{
+					return false;
+				}
+			}else {
+				return false;
+			}
+		
 		if($this->db->affected_rows() > 0){
 			return true;
 		}else{
@@ -161,11 +175,27 @@ class admin_m extends CI_Model{
 	}
 
 		public function addOrder(){
-		$field = array(
-			'intClassID'=>$this->input->post('txtcID'),
-			'strOrderName'=>$this->input->post('txtOName'),
-			);
-		$this->db->insert('tblOrder', $field);
+
+			$intClassID=$this->input->post('txtcID');
+			$strOrderName=$this->input->post('txtOName');
+
+			$query="
+			insert into tblOrder(intClassID,strOrderName) VALUES ('".$intClassID."','".$strOrderName."')
+
+			";
+		if($intClassID!=''){
+			if($strOrderName!=''){
+			
+					$this->db->query($query);
+				
+			}else {
+				return false;
+			}
+		}else {
+				return false;
+			}
+		
+		
 		if($this->db->affected_rows() > 0){
 			return true;
 		}else{
@@ -507,6 +537,9 @@ public function showAllFamilyBoxes(){
 	$area = $this->input->post('aName');
 	$specificLocation = $this->input->post('spLocName');
 	$shortLocation = $this->input->post('spShorName');
+	$longtitude = $this->input->post('slongtitudename');
+	$latitude = $this->input->post('slatitudename');
+	$country = $this->input->post('scountry');
 
 	$query="
 	DECLARE @island				VARCHAR(50);
@@ -516,6 +549,9 @@ public function showAllFamilyBoxes(){
 	DECLARE @area				VARCHAR(50);
 	DECLARE @specificLocation	VARCHAR(255);
 	DECLARE @shortLocation		VARCHAR(255);
+	DECLARE @longtitude 		VARCHAR(20);
+	DECLARE @latitude 			VARCHAR(20);
+	DECLARE @country			VARCHAR(50);
 
 	SET @island	='$island'
 	SET @region	='$region'
@@ -524,13 +560,16 @@ public function showAllFamilyBoxes(){
 	SET @area ='$area'
 	SET @specificLocation ='$specificLocation'
 	SET @shortLocation ='$shortLocation'
+	SET @longtitude ='$longtitude'
+	SET @latitude ='$latitude'
+	SET @country = '$country'
 
 	SET NOCOUNT ON;
 
 
 		BEGIN
-			INSERT INTO tblLocality(strIsland, strRegion, strProvince, strCity, strArea, strSpecificLocation, strShortLocation)
-			VALUES (@island, @region, @province, @city, @area, @specificLocation, @shortLocation)
+			INSERT INTO tblLocality(strIsland, strRegion, strProvince, strCity, strArea, strSpecificLocation, strShortLocation, strLongtitude,strLatitude, strCountry)
+			VALUES (@island, @region, @province, @city, @area, @specificLocation, @shortLocation, @longtitude,@latitude, @country)
 		END
 		";
 		if($this->db->query($query)){
@@ -722,9 +761,8 @@ public function showAllCollector(){
 	/****** END COLLECTOR!!!!! ******/
 	/****** EXTERNAL VALIDATOR START!!!!! ******/
 	public function showAllValidator(){
-		$query = $this->db->query("select Concat(pe.strLastname,', ',pe.strFirstname,' ',pe.strMiddlename,' ',pe.strNameSuffix) as strFullName, strInstitution, intValidatorID
-		from tblValidator v join tblPerson pe
-		on v.intPersonID = pe.intPersonID
+		$query = $this->db->query("select Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strInstitution, intValidatorID
+		from tblValidator
 		where strValidatorType = 'External'");
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -766,44 +804,8 @@ public function showAllCollector(){
 	set @email = '$email'
 	set @institution = '$institution'
 
-	DECLARE @personID INT;
-		DECLARE @duplicateID INT;
-
-		SELECT @duplicateID = intPersonID
-		FROM tblPerson
-		WHERE strFirstname = @firstname
-			AND strMiddlename = @middlename
-			AND strLastname = @lastname
-			AND strMiddleInitial = @middleinitial
-			AND strNameSuffix = @namesuffix
-
-		IF @duplicateID IS NULL
-			BEGIN
-				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname,
-									  strMiddleInitial, strNameSuffix,
-									  strContactNumber, strEmailAddress)
-				VALUES(@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email)
-
-				SELECT @personID = intPersonID
-				FROM tblPerson
-				WHERE strFirstname = @firstname
-					AND strMiddlename = @middlename
-					AND strLastname = @lastname
-					AND strMiddleInitial = @middleinitial
-					AND strNameSuffix = @namesuffix
-					AND strContactNumber = @contactno
-					AND strEmailAddress = @email
-			END
-		ELSE
-			SET @personID = @duplicateID
-
-		IF NOT EXISTS (SELECT intValidatorID
-					   FROM tblValidator
-					   WHERE intPersonID = @personID AND @institution = @institution)
-		BEGIN
-			INSERT INTO tblValidator(intPersonID, strInstitution, strValidatorType)
-			VALUES (@personID, @institution, 'External')
-		END";
+				INSERT INTO tblValidator VALUES(@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email,@institution, 'External')
+		";
 		$this->db->query($query);
 
 		if($this->db->affected_rows() > 0){
@@ -817,17 +819,15 @@ public function editValidator(){
 		$id = $this->input->get('id');
 		$this->db->where('intValidatorID', $id);
 		$query = $this->db->select('intValidatorID,
-			 pe.intPersonID
-      ,pe.strFirstname
-      ,pe.strMiddlename
-      ,pe.strLastname
-      ,pe.strMiddleInitial
-      ,pe.strNameSuffix
-      ,pe.strContactNumber
-      ,pe.strEmailAddress,
+     strFirstname
+      ,strMiddlename
+      ,strLastname
+      ,strMiddleInitial
+      ,strNameSuffix
+      ,strContactNumber
+      ,strEmailAddress,
 			 strInstitution')
-			->join('tblPerson pe', 'pe.intPersonID = v.intPersonID')
-			->get('tblValidator v');
+			->get('tblValidator');
 		if($query->num_rows() > 0){
 			return $query->row();
 		}else{
@@ -870,23 +870,15 @@ public function editValidator(){
 	set @validatorID = '$validatorid'
 
 
-
-		DECLARE @personID INT;
-
-		SET @personID = (SELECT intPersonID FROM tblValidator WHERE intValidatorID = @validatorID)
-
-		UPDATE tblPerson
+		UPDATE tblValidator
 		SET strFirstname = @firstname,
 			strMiddlename = @middlename,
 			strLastname = @lastname,
 			strMiddleInitial = @middleinitial,
 			strNameSuffix = @namesuffix,
 			strContactNumber = @contactno,
-			strEmailAddress = @email
-		WHERE intPersonID = @personID;
-
-		UPDATE tblValidator
-		SET strInstitution = @institution
+			strEmailAddress = @email,
+		 strInstitution = @institution
 		WHERE intValidatorID = @validatorID";
 		if($this->db->query($query)){
 			return true;
@@ -897,9 +889,8 @@ public function editValidator(){
 	/****** END EXTERNALVALIDATOR!!!!! ******/
 	/******  STAFF MGT START!!!!! ******/
 	public function showAllStaff(){
-		$query = $this->db->query("select intStaffID,Concat(pe.strLastname,', ',pe.strFirstname,' ',pe.strMiddlename,' ',pe.strNameSuffix) as strFullName, strRole, strCollegeDepartment, strPosition
-		from tblHerbariumStaff hs join tblPerson pe
-		on hs.intPersonID = pe.intPersonID
+		$query = $this->db->query("select intStaffID,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strRole, strCollegeDepartment
+		from [tblHerbariumStaff] 
 		");
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -918,77 +909,19 @@ public function editValidator(){
 	$email = $this->input->post('SMgtEAdd');
 	$role = $this->input->post('sRole');
 	$department = $this->input->post('sCollege');
-	$position = $this->input->post('SMgtCYS');
 
 
 	$query="
-	DECLARE @firstname		VARCHAR(50);
-	DECLARE @middlename		VARCHAR(50);
-	DECLARE @lastname		VARCHAR(50);
-	DECLARE @middleinitial	VARCHAR(3);
-	DECLARE @namesuffix		VARCHAR(5);
-	DECLARE @contactno		VARCHAR(15);
-	DECLARE @email			VARCHAR(255);
-	DECLARE @role			VARCHAR(50);
-	DECLARE @department		VARCHAR(100);
-	DECLARE @position		VARCHAR(50);
-	set @firstname = '$fname'
-	set @middlename = '$mname'
-	set @lastname = '$lname'
-	set @contactno = '$cname'
-	set @email = '$email'
-	set @role = '$role'
-	set @department = '$department'
-	set @position = '$position'
-	set @middleinitial ='$minitial'
-	set @namesuffix	='$nsuffix'
-
-		DECLARE @personID INT
-		DECLARE @duplicateID INT
-
-		SELECT @duplicateID = intPersonID
-		FROM tblPerson
-		WHERE strFirstname = @firstname
-			AND strMiddlename = @middlename
-			AND strLastname = @lastname
-			AND strMiddleInitial = @middleinitial
-			AND strNameSuffix = @namesuffix
-
-		IF @duplicateID IS NULL
-			BEGIN
-				INSERT INTO tblPerson(strFirstname, strMiddlename, strLastname,
-									  strMiddleInitial, strNameSuffix,
-									  strContactNumber, strEmailAddress)
-				VALUES(@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email)
-
-				SELECT @personID = intPersonID
-				FROM tblPerson
-				WHERE strFirstname = @firstname
-					AND strMiddlename = @middlename
-					AND strLastname = @lastname
-					AND strMiddleInitial = @middleinitial
-					AND strNameSuffix = @namesuffix
-					AND strContactNumber = @contactno
-					AND strEmailAddress = @email
-			END
-		ELSE
-			SET @personID = @duplicateID
-
-
-		IF NOT EXISTS (SELECT intStaffID
-					   FROM tblHerbariumStaff
-					   WHERE intPersonID = @personID AND strRole = @role AND strPosition = @position)
-		BEGIN
-			INSERT INTO tblHerbariumStaff (intPersonID, strRole, strCollegeDepartment, strPosition)
-			VALUES (@personID, @role, @department, @position)
-
-			IF @role IN ('CURATOR', 'SUPER-ADMINISTRATOR') AND
-				NOT EXISTS(SELECT intValidatorID FROM tblValidator WHERE intPersonID = @personID)
-			BEGIN
-				INSERT INTO tblValidator(intPersonID, strInstitution, strValidatorType)
-				VALUES (@personID, 'Polytechnic University of the Philippines', 'Internal')
-			END
-		END
+	insert into tblHerbariumStaff([strFirstname]
+      ,[strMiddlename]
+      ,[strLastname]
+      ,[strMiddleInitial]
+      ,[strNameSuffix]
+      ,[strContactNumber]
+      ,[strEmailAddress]
+      ,[strRole]
+      ,[strCollegeDepartment]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."')
+	
 	";
 		$this->db->query($query);
 
@@ -1003,19 +936,17 @@ public function editValidator(){
 		$id = $this->input->get('id');
 		$this->db->where('intStaffID', $id);
 		$query = $this->db->select('intStaffID,
-			 pe.intPersonID
-      ,pe.strFirstname
-      ,pe.strMiddlename
-      ,pe.strLastname
-      ,pe.strMiddleInitial
-      ,pe.strNameSuffix
-      ,pe.strContactNumber
-      ,pe.strEmailAddress,
+      strFirstname
+      ,strMiddlename
+      ,strLastname
+      ,strMiddleInitial
+      ,strNameSuffix
+      ,strContactNumber
+      ,strEmailAddress,
 			 strRole,
 			 strCollegeDepartment,
-			 strPosition')
-			->join('tblPerson pe', 'pe.intPersonID = hs.intPersonID')
-			->get('tblHerbariumStaff hs');
+			 ')
+			->get('tblHerbariumStaff ');
 		if($query->num_rows() > 0){
 			return $query->row();
 		}else{
@@ -1034,7 +965,7 @@ public function updateStaff(){
 	$email = $this->input->post('eSMgtEAdd');
 	$role = $this->input->post('esRole');
 	$department = $this->input->post('esCollege');
-	$position = $this->input->post('eSMgtCYS');
+	
 	$staffid=$this->input->post('txtId');
 
 	$query="
@@ -1047,7 +978,7 @@ public function updateStaff(){
 	DECLARE @email			VARCHAR(255);
 	DECLARE @role			VARCHAR(50);
 	DECLARE @department		VARCHAR(100);
-	DECLARE @position		VARCHAR(50);
+	
 	DECLARE @staffID		VARCHAR(50);
 
 	set @firstname = '$fname'
@@ -1057,44 +988,25 @@ public function updateStaff(){
 	set @email = '$email'
 	set @role = '$role'
 	set @department = '$department'
-	set @position = '$position'
+	
 	set @middleinitial ='$minitial'
 	set @namesuffix	='$nsuffix'
 	set @staffID	='$staffid'
 
-
-		DECLARE @personID INT
-		DECLARE @prevRole VARCHAR(50)
-		DECLARE @validatorID INT
-
-		SELECT @personID = intPersonID, @prevRole = strRole FROM tblHerbariumStaff WHERE intStaffID = @staffID
-
-		UPDATE tblPerson
+UPDATE tblHerbariumStaff
 		SET strFirstname = @firstname,
 			strMiddlename = @middlename,
 			strLastname = @lastname,
 			strMiddleInitial = @middleinitial,
 			strNameSuffix = @namesuffix,
 			strContactNumber = @contactno,
-			strEmailAddress = @email
-		WHERE intPersonID = @personID
-
-		UPDATE tblHerbariumStaff
-		SET strRole = @role,
-			strCollegeDepartment = @department,
-			strPosition = @position
+			strEmailAddress = @email,
+		strRole = @role,
+			strCollegeDepartment = @department
+			
 		WHERE intStaffID = @staffID
 
-		IF (@prevRole <> @role) AND (@role IN ('CURATOR', 'SUPER-ADMINISTRATOR'))
-			BEGIN
-				SET @validatorID = (SELECT intValidatorID FROM tblValidator WHERE intPersonID = @personID);
-
-				IF @validatorID IS NULL
-				BEGIN
-					INSERT INTO tblValidator (intPersonID, strInstitution, strValidatorType)
-					VALUES (@personID, 'Polytechnic University of the Philippines', 'Internal');
-				END
-			END
+		
 	";
 		if($this->db->query($query)){
 			return true;
@@ -1142,6 +1054,22 @@ public function updateStaff(){
 			VALUES (@staffID, @username, @password)
 		END
 	";
+
+
+	if($staffname!=''){
+			if($username!=''){
+				if($password!=''){
+					$this->db->query($query);
+				}else{
+					return false;
+				}
+			}else {
+				return false;
+			}
+		}else {
+				return false;
+			}
+
 		$this->db->query($query);
 
 		if($this->db->affected_rows() > 0){
@@ -1244,7 +1172,7 @@ public function delete_event($id)
 // LOAN REQUEST //
 public function showLoanReqPending(){
 
-$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName,strPurpose, lr.intOUserID,intLoanReqID,strStatus
+$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName,strPurpose, lr.intOUserID,intLoanReqID,strStatus,dtAppointmentDate
 		from tblLoanReq lr join tblOnlineUser ou
 		on lr.intOUserID = ou.intOUserID
 		where strStatus ='Pending'");
@@ -1258,7 +1186,7 @@ $query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' '
 public function showLoanReqOkay(){
 
 
-$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName ,strPurpose, lr.intOUserID,intLoanReqID,strStatus
+$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName ,strPurpose, lr.intOUserID,intLoanReqID,strStatus,ou.strEmailAddress
 		from tblLoanReq lr join tblOnlineUser ou
 		on lr.intOUserID = ou.intOUserID
 		where strStatus ='For Claiming'");
@@ -1318,18 +1246,19 @@ public function showloanlist(){
 public function updateLoanStatus(){
 
     $depositid = $this->input->post('txtId');
-
-//DECLARE @status		VARCHAR(50);
+	$status=$this->input->post('txtStatus');
+//DECLARE @s$tatus		VARCHAR(50);
 //Set @status ='$status'
 	$query="
 
 	DECLARE @depositid 		INT;
-
+	DECLARE @status 		varchar(255);
 
 	Set @depositid ='$depositid'
+	Set @status ='$status'
 
 		UPDATE tblLoanReq
-		SET strStatus = 'For Claiming'
+		SET strStatus = @status
 		WHERE intLoanReqID = @depositid;
 	";
 		if($this->db->query($query)){
@@ -1399,7 +1328,7 @@ $status = $this->input->post('txtStatus');
 public function showAllDepositReqPending()
 {
 	//->where('strStatus','Pending')
-	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID,dtAppointmentDate
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID
@@ -1579,17 +1508,20 @@ public function ViewVisitReq(){
 public function updateVisitStatus(){
 
     $depositid = $this->input->post('txtId');
-
+$status=$this->input->post('txtStatus');
 //DECLARE @status		VARCHAR(50);
 //Set @status ='$status'
 	$query="
 
 	DECLARE @depositid 		INT;
 
+DECLARE @status 		varchar(255);
+
 	Set @depositid ='$depositid'
+	Set @status ='$status'
 
 		UPDATE tblAppointments
-		SET strStatus = 'For Visiting'
+		SET strStatus = @status
 		WHERE intAppointmentID = @depositid;
 	";
 		if($this->db->query($query)){
@@ -1684,6 +1616,20 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 			return false;
 		}
 		}	
+
+	public function showExValPending(){
+		$query = $this->db->select('intPlantDepositID,strAccessionNumber,dateDeposited,strStatus')
+		->where('strStatus','For External Validation')
+		->get('tblPlantDeposit');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+	}
+}
+
+
+
 
 
 }?>
