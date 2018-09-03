@@ -1,4 +1,4 @@
- <?php
+  <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin extends CI_Controller {
@@ -12,6 +12,52 @@ class admin extends CI_Controller {
    	public function index()
 	{
 		$this->load->view('login');
+	}
+
+	public function Adminhome()
+	{
+		if($this->session->userdata('strUserName')!=''){
+
+			$title['title'] = "PUPHerbarium | Dashboard";
+			$this->load->view('templates/header', $title);
+			$this->load->view('maintenance/Dashboard');
+			$this->load->view('templates/footer');
+	}	
+		else{
+			redirect(base_url().'admin');
+	}
+}
+
+
+	public function adminlogin_validation(){
+		$this->load->Library('form_validation');
+		$this->form_validation->set_rules('loginUsername','Username','required');
+		$this->form_validation->set_rules('loginPassword','Password','required');
+		if($this->form_validation->run()){
+			$username = $this->input->post('loginUsername');
+			$password = $this->input->post('loginPassword');
+			$id = $this->input->post('txtId');
+
+			$this->load->model('admin_m');
+			if($this->admin_m->admincan_login($username,$password)){
+				$session_data=array(
+					'strUserName' => $username,
+
+				);
+				$this->session->set_userdata($session_data);
+				redirect(base_url().'admin/Dashboard');
+			}else{
+				$this->session->set_flashdata('error','Invalid Username and Password');
+				redirect(base_url().'admin');
+			}
+		}
+		else{
+			redirect(base_url().'admin');
+		}
+	}
+	public function adminlogout(){
+		$this->session->unset_userdata('strUserName');
+		redirect(base_url().'admin');
 	}
 
 
@@ -807,10 +853,8 @@ $message = $this->input->post('txtCustomMessage');
  }
 }
 
+
 //LOAN
-
-
-
 
 public function showLoanReqPending(){
 		$result = $this->m->showLoanReqPending();

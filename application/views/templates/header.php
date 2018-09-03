@@ -42,7 +42,7 @@
         <div class="sidenav-header d-flex align-items-center justify-content-center">
           <!-- User Info-->
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
-             <h2 class="h5">Anna Balingit</h2><span>Curator</span>
+             <h2 class="h5" >ANNA BALINGIT</h2><span>Curator</span>
           </div>
 
           <!-- Small Brand information, appears on minimized sidebar-->
@@ -81,11 +81,9 @@
 
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
-                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
-
-
-<!--                  <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
+                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> 
 
               </ul>
             </li>
@@ -158,11 +156,11 @@
                   </ul>
                 </li>
                 <!-- Log out-->
-                 <li class="nav-item"><a href="<?php echo base_url(); ?>Maintenance" onclick="event.preventDefault();
+                 <li class="nav-item"><a href="<?php echo base_url()?>admin/adminlogout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
                         <span class="d-none d-sm-inline-block">Logout</span>&nbsp<i class="fa fa-sign-out"></i></a>
 
-                           <form id="logout-form" action="<?php echo base_url(); ?>Maintenance" method="POST" style="display: none;">
+                           <form id="logout-form" action="<?php echo base_url()?>admin/adminlogout" method="POST" style="display: none;">
 
                            </form>
                   </li>
@@ -188,7 +186,6 @@ function myFunction1() {
     }
 }
 </script>
-
 
 
 

@@ -73,7 +73,7 @@
                   <th>Action</th>
                 </tr>
               </thead>
-                <tbody tbody id="showdata">
+                <tbody id="showdata">
                 </tbody>
             </table>
         </div>
