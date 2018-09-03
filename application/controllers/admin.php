@@ -717,13 +717,16 @@ public function edit_event()
 );
 $email=$this->input->post('txtEmail');
 $id=$this->input->post('txtId');
+$message = $this->input->post('txtCustomMessage');
+
         
-        $this->load->library('email', $config);
+       $this->load->library('email', $config);
       $this->email->set_newline("\r\n");
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Loaning of Specimen');
-      $this->email->message("Your loan request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Loan Request ID:" . $id);
+      $this->email->message("Your loan request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Loan Request ID:" . $id ."<br> <br>" . $message );
+
       if($this->email->send())
      {
      	return true;
@@ -750,13 +753,15 @@ public function depositsendMail()
 );
 $email=$this->input->post('txtEmail');
 $id=$this->input->post('txtId');
+$message = $this->input->post('txtCustomMessage');
         
-        $this->load->library('email', $config);
+      $this->load->library('email', $config);
       $this->email->set_newline("\r\n");
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Depositing of Specimen');
-      $this->email->message("Your deposit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Deposit Request ID:" . $id);
+      $this->email->message("Your deposit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Deposit Request ID:"  . $id ."<br> <br>" . $message );
+
       if($this->email->send())
      {
      	return true;
@@ -782,13 +787,15 @@ public function visitsendMail()
 );
 $email=$this->input->post('txtEmail');
 $id=$this->input->post('txtId');
-        
+$message = $this->input->post('txtCustomMessage');
+
         $this->load->library('email', $config);
       $this->email->set_newline("\r\n");
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Visiting');
-      $this->email->message("Your Visit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Visit Request ID:" . $id);
+      $this->email->message("Your Visit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Visit Request ID:" . $id ."<br> <br>" . $message );
+
       if($this->email->send())
      {
      	return true;
