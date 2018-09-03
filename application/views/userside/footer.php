@@ -117,7 +117,7 @@
         <h5 class="mb-1">Register for free</h5>
       </li>
       <li class="list-inline-item">
-        <a href="#!" class="btn btn-danger btn-rounded">Sign up!</a>
+        <a href="<?php echo base_url(); ?>user/Register" class="btn btn-danger btn-rounded">Sign up!</a>
       </li>
     </ul>
     <!-- Call to action -->

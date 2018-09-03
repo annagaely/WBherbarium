@@ -58,7 +58,7 @@
 $(function(){
     $('#btnSubmit').click(function(){
       var data = $('#addAppointmentForm').serialize();
-      alert(data)
+
   $.ajax({
     type: 'ajax',
     method: 'post',

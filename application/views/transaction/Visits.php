@@ -134,7 +134,7 @@
                   </div>
                   <div class="col-sm-8">
                    <select name="txtStatus" id="strStatus"  class="form-control">
-                        <option value="Approved">Approve</option>
+                        <option value="For Visiting">Approve</option>
                         <option value="Rejected">Reject</option>
                    </select>
                   </div>
@@ -189,16 +189,21 @@
               <input type ="hidden" name = "txtEmail" id = "txtemail" value ="0">
               <input type="email" name="txtEmailCon" id="strEmailAddress" class="form-control col-sm-10" disabled>
             </div>
-                <div class="form-group row pr-4">
-              <label class="col-sm-2">Visit Request ID:</label>
-              <input type ="hidden" name = "txtId" id = "txtID" value ="0">
-              <input type="text" name="txtreqid" id="txtreqID" class="form-control col-sm-10" disabled>
-            </div>
+             
             <div class="form-group row pr-4">
                       <label class="col-sm-2">From:</label>
-                      <input type="email" class="form-control col-sm-10" value="WBHerbariumTA@gmail.com" disabled>
-                    </div>
-
+                      <input type="email" class="form-control col-sm-10" value= "WBHerbariumTA@gmail.com" disabled>
+            </div>
+            <br>
+             <div class="form-group">
+              <label>Visit Request ID:</label>
+              <input type ="hidden" name = "txtId" id = "txtID" value ="0">
+              <input type="text" name="txtreqid" id="txtreqID" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+               <label>Message:</label>
+                <textarea  id="strCustomMessage" name="txtCustomMessage" class="form-control" placeholder="Type your message here.." ></textarea> 
+            </div>
                   <div class="modal-footer">
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
