@@ -42,7 +42,50 @@
         <div class="sidenav-header d-flex align-items-center justify-content-center">
           <!-- User Info-->
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
-             <h2 class="h5" >ANNA BALINGIT</h2><span>Curator</span>
+             <h2 class="h5">
+              <?php 
+                  $serverName = "DEI";
+                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
+                  $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                    if( $conn === false ) {
+                      die( print_r( sqlsrv_errors(), true));
+                      }
+                         $sql = "select Concat(hs.strFirstname,' ',hs.strMiddleInitial,'. ',hs.strLastname,' ',hs.strNameSuffix) as strFullName
+                                 from tblAccounts ac join tblHerbariumStaff hs
+                                 on ac.intStaffID = hs.intStaffID
+                                 where strUsername = '".$this->session->userdata('strUserName')."'";
+                        $stmt = sqlsrv_query( $conn, $sql );
+                    if( $stmt === false) {
+                     die( print_r( sqlsrv_errors(), true) );
+                      }
+                          while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                           echo $row['strFullName']." <br />";
+                      }
+                        sqlsrv_free_stmt( $stmt);
+              ?> 
+            </h2>
+              <span>
+                <?php 
+                  $serverName = "DEI";
+                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
+                  $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                    if( $conn === false ) {
+                      die( print_r( sqlsrv_errors(), true));
+                      }
+                         $sql = "select strRole
+                                 from tblAccounts ac join tblHerbariumStaff hs
+                                 on ac.intStaffID = hs.intStaffID
+                                 where strUsername = '".$this->session->userdata('strUserName')."'";
+                        $stmt = sqlsrv_query( $conn, $sql );
+                    if( $stmt === false) {
+                     die( print_r( sqlsrv_errors(), true) );
+                      }
+                          while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                           echo $row['strRole']." <br />";
+                      }
+                        sqlsrv_free_stmt( $stmt);
+              ?> 
+              </span>
           </div>
 
           <!-- Small Brand information, appears on minimized sidebar-->

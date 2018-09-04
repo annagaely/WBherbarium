@@ -1026,11 +1026,11 @@ public function VisitEmailCon(){
 		$result = $this->m->VisitEmailCon();
 		echo json_encode($result);
 
-	}
-	public function showExValPending(){
+}
+public function showExValPending(){
 		$result = $this->m->showExValPending();
 		echo json_encode($result);
-	}
+}
 
 
 }?>

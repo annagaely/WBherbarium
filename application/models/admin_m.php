@@ -404,7 +404,7 @@ public function showAllSpecies(){
 		$field = array(
 			'intGenusID'=>$this->input->post('txtgID'),
 			'strSpeciesName'=>$this->input->post('txtsName'),
-			'strCommonName'=>$this->input->post('txtcoName')
+			'strCommonName'=>$this->input->post('txtcoName'),
 			);
 		$this->db->insert('tblSpecies', $field);
 		if($this->db->affected_rows() > 0){
@@ -1640,8 +1640,5 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 			return false;
 	}
 }
-
-
-
 
 }?>
