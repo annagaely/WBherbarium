@@ -8,7 +8,26 @@
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-user"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br>Accounts</strong>
-                  <div class="count-number">25</div>
+                  <div class="count-number">
+                    <?php 
+                  $serverName = "DEI";
+                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
+                  $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                    if( $conn === false ) {
+                      die( print_r( sqlsrv_errors(), true));
+                      }
+                         $sql = "select count(intDepositReqID) as totalDeposit
+                                  from tblDepositReq";
+                        $stmt = sqlsrv_query( $conn, $sql );
+                    if( $stmt === false) {
+                     die( print_r( sqlsrv_errors(), true) );
+                      }
+                          while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                           echo $row['totalDeposit']." <br />";
+                      }
+                        sqlsrv_free_stmt( $stmt);
+                    ?> 
+                  </div>
                 </div>
               </div>
             </div>
@@ -17,7 +36,26 @@
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-padnote"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br>Deposits</strong>
-                  <div class="count-number">400</div>
+                  <div class="count-number">
+                    <?php 
+                  $serverName = "DEI";
+                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
+                  $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                    if( $conn === false ) {
+                      die( print_r( sqlsrv_errors(), true));
+                      }
+                         $sql = "select count(intOUserID) as totalAcc
+                                  from tblOnlineUser";
+                        $stmt = sqlsrv_query( $conn, $sql );
+                    if( $stmt === false) {
+                     die( print_r( sqlsrv_errors(), true) );
+                      }
+                          while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                           echo $row['totalAcc']." <br />";
+                      }
+                        sqlsrv_free_stmt( $stmt);
+                    ?> 
+                  </div>
                 </div>
               </div>
             </div>
@@ -26,7 +64,26 @@
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-check"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br />Loans</strong>
-                  <div class="count-number">342</div>
+                  <div class="count-number">
+                   <?php 
+                  $serverName = "DEI";
+                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
+                  $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                    if( $conn === false ) {
+                      die( print_r( sqlsrv_errors(), true));
+                      }
+                         $sql = "select count(intLoanReqID) as totalLoan
+                                  from tblLoanReq";
+                        $stmt = sqlsrv_query( $conn, $sql );
+                    if( $stmt === false) {
+                     die( print_r( sqlsrv_errors(), true) );
+                      }
+                          while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                           echo $row['totalLoan']." <br />";
+                      }
+                        sqlsrv_free_stmt( $stmt);
+                    ?>                     
+                  </div>
                 </div>
               </div>
             </div>
@@ -35,7 +92,26 @@
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-bill"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br />Visits</strong>
-                  <div class="count-number">123</div>
+                  <div class="count-number">
+                    <?php 
+                  $serverName = "DEI";
+                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
+                  $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                    if( $conn === false ) {
+                      die( print_r( sqlsrv_errors(), true));
+                      }
+                         $sql = "select count(intAppointmentID) as totalVisit
+                                  from tblAppointments";
+                        $stmt = sqlsrv_query( $conn, $sql );
+                    if( $stmt === false) {
+                     die( print_r( sqlsrv_errors(), true) );
+                      }
+                          while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                           echo $row['totalVisit']." <br />";
+                      }
+                        sqlsrv_free_stmt( $stmt);
+                    ?>              
+                  </div>
                 </div>
               </div>
             </div>

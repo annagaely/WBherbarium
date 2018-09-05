@@ -39,26 +39,23 @@
             <p>
              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
             </p>
-            <form method="get" class="text-left form-validate">
-
+             <form method ="post" action="<?php echo base_url();?>admin/adminlogin_validation">
               <div class="form-group-material">
-                <input id="login-username" type="password" name="loginUsername" required data-msg="Please enter your password" class="input-material">
+                <input id="login-username"  name="loginUsername" required data-msg="Please enter your password" class="input-material">
                 <label for="login-username" class="label-material">Username</label>
               </div>
-
-
               <div class="form-group-material">
                 <input id="login-password" type="password" name="loginPassword" required data-msg="Please enter your password" class="input-material">
                 <label for="login-password" class="label-material">Password</label>
               </div>
+              <div class="form-group text-center">
+                 <?php echo '<span class="text-danger">'.$this->session->flashdata("error"); ?> <br>
+                 <button class="btn btn-primary" type="submit" name="insert" value="Login">Login</button>
 
-      
-              <div class="form-group text-center"><a id="login" href="<?php echo base_url(); ?>admin/Dashboard" class="btn btn-primary">Login</a>
-                <!-- This should be submit button but I replaced it with <a> for demo purposes-->
               </div>
-            </form><a href="#" class="forgot-pass">Forgot Password?</a>
+           </form>
+            <a href="#" class="forgot-pass">Forgot Password?</a> 
           </div>
-         
         </div>
       </div>
     </div>

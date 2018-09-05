@@ -2,7 +2,7 @@
         <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>Maintenance/Dashboard" >Home</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard" >Home</a></li>
             <li class="breadcrumb-item">Maintenance</li>
             <li class="breadcrumb-item active">Staff Management </li>
           </ul>
@@ -32,9 +32,9 @@
                     <div class="col-sm-6">
                     <label>Role:</label> <label style="color: red">*</label>
                     <select name="txtStaffRole" class="form-control">
-                      <option id="SA" value= "Super Administrator"> Super Administrator</option>
-                      <option id="CR" value= "Curator"> Curator</option>
-                      <option id="StA" value= "Student Assistant"> Student Assistant</option>
+                      <option id="SA" value= "SUPER ADMINISTRATOR"> Super Administrator</option>
+                      <option id="CR" value= "CURATOR"> Curator</option>
+<!--                       <option id="StA" value= "Student Assistant"> Student Assistant</option> -->
                     </select>
                   </div>
                   </div>
@@ -113,7 +113,7 @@
         </div>
       </div>
       <!--END ACCESS ACCOUNT MODAL--> 
-      <!--EDIT ACCESS ACCOUNT MODAL--> 
+
       <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
             <div class="modal-content">
@@ -123,16 +123,15 @@
               </div>
         
          <div class="modal-body">
-
                 <form id= "editStaffForm" method="POST" enctype="multipart/form-data">
                   <div class="row">
 
                     <div class="col-sm-6">
                     <label>Role:</label>
                     <select name="esRole" class="form-control">
-                      <option value= "Super Administrator"> Super Administrator</option>
-                      <option value= "Curator"> Curator</option>
-                      <option value= "Student Assistant"> Student Assistant</option>
+                      <option id="SA" value= "SUPER ADMINISTRATOR"> Super Administrator</option>
+                      <option id="CR" value= "CURATOR"> Curator</option>
+                     <!--  <option value= "Student Assistant"> Student Assistant</option> -->
                     </select>
                   </div>
                   </div>
@@ -306,7 +305,7 @@ $('#btnSave').click(function(){
     $('#showdata').on('click', '.staff-edit', function(){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
-      $('#myEditModal').find('.modal-title').text('Edit Collector');
+      $('#myEditModal').find('.modal-title').text('Edit Staff');
       $.ajax({
         type: 'ajax',
         method: 'get',

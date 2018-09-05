@@ -1,7 +1,20 @@
- <?php
+  <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin_m extends CI_Model{
+
+
+	public function admincan_login($username,$password){
+	$this->db->where('strUserName',$username);
+	$this->db->where('strPassword',$password);
+	$query=$this->db->get('tblAccounts');
+	if($query->num_rows()>0){
+		return true;
+	}else{
+		return false;
+	}
+
+}
 	/****** PHYLUM ONLY!!!!! ******/
 
 	public function showAllPhylum(){
@@ -391,7 +404,7 @@ public function showAllSpecies(){
 		$field = array(
 			'intGenusID'=>$this->input->post('txtgID'),
 			'strSpeciesName'=>$this->input->post('txtsName'),
-			'strCommonName'=>$this->input->post('txtcoName')
+			'strCommonName'=>$this->input->post('txtcoName'),
 			);
 		$this->db->insert('tblSpecies', $field);
 		if($this->db->affected_rows() > 0){
@@ -1627,9 +1640,5 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 			return false;
 	}
 }
-
-
-
-
 
 }?>
