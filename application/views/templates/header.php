@@ -1,9 +1,15 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
+<?php
+    header('Content-Type: text/html; charset=windows-1252' );
+    ini_set('default_charset', 'windows-1252');
+?>
 <head>
 
-  <meta charset="utf-8">
+ <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+ <!--  <meta charset="utf-8"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
   <title><?php echo $title; ?></title>
 
@@ -183,7 +189,7 @@
                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/Nins.png" alt="..." class="img-fluid rounded-circle"></div>
                         <div class="msg-body">
-                          <h3 class="h5">Niño Escueta</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
+                          <h3 class="h5">Ni&ntildeo Escueta</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
                         </div></a></li>
                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/sheng.png" alt="..." class="img-fluid rounded-circle"></div>
@@ -193,7 +199,7 @@
                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/mai.png" alt="..." class="img-fluid rounded-circle"></div>
                         <div class="msg-body">
-                          <h3 class="h5">Maica Opeña</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
+                          <h3 class="h5">Maica Ope&ntildea</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
                         </div></a></li>
                     <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
                   </ul>

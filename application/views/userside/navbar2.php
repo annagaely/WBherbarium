@@ -42,8 +42,8 @@
             <li class="nav-item dropdown">
               <a class="nav-link waves-effect waves-light dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-hospopup="true" aria-expanded="false">Appointment</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="<?php echo base_url()?>user/Loans" data-offset="90">Borrow Specimen (Loan)</a>
-                <a class="dropdown-item" href="<?php echo base_url()?>user/Deposits" data-offset="90">Deposit Specimen</a>
+<!--                 <a class="dropdown-item" href="<?php echo base_url()?>user/Loans" data-offset="90">Borrow Specimen (Loan)</a>
+ -->                <a class="dropdown-item" href="<?php echo base_url()?>user/Deposits" data-offset="90">Deposit Specimen</a>
                 <a class="dropdown-item" href="<?php echo base_url()?>user/Appointment" data-offset="90">Visit Herbarium Center</a>
 
               </div>
