@@ -20,7 +20,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Collector</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
                 
@@ -91,7 +91,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Collector</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
                 
