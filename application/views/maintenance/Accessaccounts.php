@@ -33,18 +33,18 @@
                   </div>
 
                    <div class = "row">
-
                     <div class="col-sm-6" >
                     <label>Username:</label> <label style="color: red">*</label>
                     <input type="text" name="AAUName" placeholder="Username" class="form-control">
                   </div>
-
-
                   <div class="col-sm-6" >
                     <label>Password:</label> <label style="color: red">*</label>
-                    <input type="Password" name="AAPass" placeholder="Password" class="form-control">
+                    <input type="Password" name="AAPass" id="AApassword" placeholder="Password" class="form-control">
+                    <input name="checkPass" id= "checkPass" type="checkbox" onclick="showPassword()">
+                   <label for="checkPass"> Show Password</label>
                   </div>
                 </div>
+    
                 <br>
 
 
@@ -88,7 +88,9 @@
 
                   <div class="col-sm-6" >
                     <label>Password:</label> <label style="color: red">*</label>
-                    <input type="Password" name="eAAPass" placeholder="Password" class="form-control">
+                    <input type="Password" name="eAAPass"  id= "eAAPassword" placeholder="Password" class="form-control">
+                    <input name="echeckPass" id= "echeckPass" type="checkbox" onclick="eshowPassword()">
+                   <label for="echeckPass"> Show Password</label>
                   </div>
                 </div>
                 <br>
@@ -126,6 +128,28 @@
     </div>
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+  function showPassword() {
+    var x = document.getElementById("AApassword");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+} 
+ 
+</script>
+<script type="text/javascript">
+  
+ function eshowPassword() {
+    var y = document.getElementById("eAAPassword");
+    if (y.type === "password") {
+        y.type = "text";
+    } else {
+        y.type = "password";
+    }
+}
+</script>
     <script type="text/javascript">
     $(function(){
 
@@ -273,9 +297,6 @@ $('#btnEditSave').click(function(){
           }
         });
     });
-
-
-
 
 
 
