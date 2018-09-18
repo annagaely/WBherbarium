@@ -108,7 +108,7 @@ window.addEventListener('load', function() {
                   <div class="col-md-6">
                     <i class="fa fa-phone prefix grey-text"></i>
                     <input type="text" id="strPhoneNum" name="txtphonenum" class="form-control" required>
-                    <label for="strPhoneNum" class="font-weight-light" style="margin-left: 55px;">Phone Number<span style="color: red"> *</span></label>
+                    <label for="strPhoneNum" class="font-weight-light" style="margin-left: 55px;">Phone Number (ex. 09*********)<span style="color: red"> *</span></label>
                   </div>
                   <div class="invalid-feedback">
                     Please enter your active phone number.

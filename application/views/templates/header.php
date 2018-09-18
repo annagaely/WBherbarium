@@ -1,9 +1,15 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
+<?php
+    header('Content-Type: text/html; charset=windows-1252' );
+    ini_set('default_charset', 'windows-1252');
+?>
 <head>
 
-  <meta charset="utf-8">
+ <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+ <!--  <meta charset="utf-8"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
   <title><?php echo $title; ?></title>
 
@@ -43,7 +49,50 @@
         <div class="sidenav-header d-flex align-items-center justify-content-center">
           <!-- User Info-->
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
-             <h2 class="h5">Anna Balingit</h2><span>Curator</span>
+             <h2 class="h5">
+              <?php 
+                  $serverName = "DEI";
+                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
+                  $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                    if( $conn === false ) {
+                      die( print_r( sqlsrv_errors(), true));
+                      }
+                         $sql = "select Concat(hs.strFirstname,' ',hs.strMiddleInitial,'. ',hs.strLastname,' ',hs.strNameSuffix) as strFullName
+                                 from tblAccounts ac join tblHerbariumStaff hs
+                                 on ac.intStaffID = hs.intStaffID
+                                 where strUsername = '".$this->session->userdata('strUserName')."'";
+                        $stmt = sqlsrv_query( $conn, $sql );
+                    if( $stmt === false) {
+                     die( print_r( sqlsrv_errors(), true) );
+                      }
+                          while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                           echo $row['strFullName']." <br />";
+                      }
+                        sqlsrv_free_stmt( $stmt);
+              ?> 
+            </h2>
+              <span>
+                <?php 
+                  $serverName = "DEI";
+                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
+                  $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                    if( $conn === false ) {
+                      die( print_r( sqlsrv_errors(), true));
+                      }
+                         $sql = "select strRole
+                                 from tblAccounts ac join tblHerbariumStaff hs
+                                 on ac.intStaffID = hs.intStaffID
+                                 where strUsername = '".$this->session->userdata('strUserName')."'";
+                        $stmt = sqlsrv_query( $conn, $sql );
+                    if( $stmt === false) {
+                     die( print_r( sqlsrv_errors(), true) );
+                      }
+                          while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                           echo $row['strRole']." <br />";
+                      }
+                        sqlsrv_free_stmt( $stmt);
+              ?> 
+              </span>
           </div>
 
           <!-- Small Brand information, appears on minimized sidebar-->
@@ -82,21 +131,18 @@
 
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
-                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
-
-
-<!--                  <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
+                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> 
 
               </ul>
             </li>
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
               <ul id="TransactionDropdown" class="collapse list-unstyled ">
-
-                <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Externalvalidation">External Validation</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
+                <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
+                <!-- <li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li> -->
+                <li><a href="<?php echo base_url(); ?>admin/Externalvalidation">External Validation</a></li>
 
                 </li>
               </ul>
@@ -143,7 +189,7 @@
                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/Nins.png" alt="..." class="img-fluid rounded-circle"></div>
                         <div class="msg-body">
-                          <h3 class="h5">Niño Escueta</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
+                          <h3 class="h5">Ni&ntildeo Escueta</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
                         </div></a></li>
                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/sheng.png" alt="..." class="img-fluid rounded-circle"></div>
@@ -153,17 +199,17 @@
                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/mai.png" alt="..." class="img-fluid rounded-circle"></div>
                         <div class="msg-body">
-                          <h3 class="h5">Maica Opeña</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
+                          <h3 class="h5">Maica Ope&ntildea</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
                         </div></a></li>
                     <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
                   </ul>
                 </li>
                 <!-- Log out-->
-                 <li class="nav-item"><a href="<?php echo base_url(); ?>Maintenance" onclick="event.preventDefault();
+                 <li class="nav-item"><a href="<?php echo base_url()?>admin/adminlogout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
                         <span class="d-none d-sm-inline-block">Logout</span>&nbsp<i class="fa fa-sign-out"></i></a>
 
-                           <form id="logout-form" action="<?php echo base_url(); ?>Maintenance" method="POST" style="display: none;">
+                           <form id="logout-form" action="<?php echo base_url()?>admin/adminlogout" method="POST" style="display: none;">
 
                            </form>
                   </li>
@@ -189,7 +235,6 @@ function myFunction1() {
     }
 }
 </script>
-
 
 
 

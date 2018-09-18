@@ -85,7 +85,7 @@
 
               <h5 id="exampleModalLabel" class="modal-title">Loan Plant</h5>
             <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
-               <span aria-hidden="true">×</span>
+               <span aria-hidden="true">&times;</span>
                </button>
             </div>
           <div class="modal-body">
@@ -145,7 +145,7 @@
                   </div>
                   <div class="col-sm-8">
                    <select name="txtStatus" id="strStatus"  class="form-control">
-                        <option value="Approved">Approve</option>
+                        <option value="For Claiming">Approve</option>
                         <option value="Rejected">Reject</option>
                    </select>
                   </div>
@@ -193,7 +193,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="exampleModalLabel" class="modal-title">Email</h5>
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
         </div>
 
         <div class="modal-body">
@@ -203,15 +203,21 @@
               <input type ="hidden" name = "txtEmail" id = "txtemail" value ="0">
               <input type="email" name="txtEmailCon" id="strEmailAddress" class="form-control col-sm-10" disabled>
             </div>
-              <div class="form-group row pr-4">
-              <label class="col-sm-2">Loan Request ID:</label>
-              <input type ="hidden" name = "txtId" id = "txtID" value ="0">
-              <input type="text" name="txtreqid" id="txtreqID" class="form-control col-sm-10" disabled>
-            </div>
+             
             <div class="form-group row pr-4">
                       <label class="col-sm-2">From:</label>
-                      <input type="email" class="form-control col-sm-10" value="WBHerbariumTA@gmail.com" disabled>
-                    </div>
+                      <input type="email" class="form-control col-sm-10" value= "WBHerbariumTA@gmail.com" disabled>
+            </div>
+            <br>
+             <div class="form-group">
+              <label>Loan Request ID:</label>
+              <input type ="hidden" name = "txtId" id = "txtID" value ="0">
+              <input type="text" name="txtreqid" id="txtreqID" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+               <label>Message:</label>
+                <textarea  id="strCustomMessage" name="txtCustomMessage" class="form-control" placeholder="Type your message here.." ></textarea> 
+            </div>
 
                   <div class="modal-footer">
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
@@ -269,7 +275,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="exampleModalLabel" class="modal-title">Confirmation</h5>
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
         </div>
 
         <div class="modal-body">

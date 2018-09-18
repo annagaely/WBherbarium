@@ -73,7 +73,7 @@
                   <th>Action</th>
                 </tr>
               </thead>
-                <tbody tbody id="showdata">
+                <tbody id="showdata">
                 </tbody>
             </table>
         </div>
@@ -89,7 +89,7 @@
 
              <h5 id="exampleModalLabel" class="modal-title">Plant Deposit</h5>
             <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
-               <span aria-hidden="true">×</span>
+               <span aria-hidden="true">&times;</span>
              </button>
            </div>
 
@@ -201,7 +201,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="exampleModalLabel" class="modal-title">Email</h5>
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
         </div>
 
         <div class="modal-body">
@@ -211,15 +211,21 @@
               <input type ="hidden" name = "txtEmail" id = "txtemail" value ="0">
               <input type="email" name="txtEmailCon" id="strEmailAdress" class="form-control col-sm-10" disabled>
             </div>
-              <div class="form-group row pr-4">
-              <label class="col-sm-2">Deposit Request ID:</label>
-              <input type ="hidden" name = "txtId" id = "txtID" value ="0">
-              <input type="text" name="txtreqid" id="txtreqID" class="form-control col-sm-10" disabled>
-            </div>
+             
             <div class="form-group row pr-4">
                       <label class="col-sm-2">From:</label>
                       <input type="email" class="form-control col-sm-10" value= "WBHerbariumTA@gmail.com" disabled>
-                    </div>
+            </div>
+            <br>
+             <div class="form-group">
+              <label>Deposit Request ID:</label>
+              <input type ="hidden" name = "txtId" id = "txtID" value ="0">
+              <input type="text" name="txtreqid" id="txtreqID" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+               <label>Message:</label>
+                <textarea  id="strCustomMessage" name="txtCustomMessage" class="form-control" placeholder="Type your message here.." ></textarea> 
+            </div>
 
                   <div class="modal-footer">
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
@@ -282,7 +288,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="exampleModalLabel" class="modal-title">Confirmation</h5>
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
         </div>
 
         <div class="modal-body">

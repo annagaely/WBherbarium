@@ -2,7 +2,7 @@
         <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>Maintenance/Dashboard" >Home</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard"  >Home</a></li>
             <li class="breadcrumb-item">Maintenance</li>
             <li class="breadcrumb-item active">Locality </li>
           </ul>
@@ -20,7 +20,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Locality</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
                 <form id= "addLocalityForm" method="POST" enctype="multipart/form-data">
@@ -115,7 +115,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Edit Locality</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
                 <form id= "editLocalityForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->

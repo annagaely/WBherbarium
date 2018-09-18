@@ -6,7 +6,7 @@
               <p>Herbarium</p>
             </div>
             <div class="col-sm-6 text-right">
-              <p>© Copyright 2018 &nbsp<a href="https://bootstrapious.com" class="external"> Sad Ratbhus</a></p>
+              <p>&copy Copyright 2018 &nbsp<a href="https://bootstrapious.com" class="external"> Sad Ratbhus</a></p>
             </div>
           </div>
         </div>
