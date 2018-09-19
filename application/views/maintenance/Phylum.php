@@ -1,5 +1,4 @@
-
-  <div class="breadcrumb-holder">
+<div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard" >Home</a></li>
@@ -110,34 +109,45 @@
           </div>
         </div>
       <!--END PHYLUM MODAL-->
+      <div class="card">
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table dataTable no-footer" id="managePhylumtbl">
               <thead>
                 <tr>
-                  <th>Phylum ID</th>
-                  <th>Domain Name</th>
-                  <th>Kingdom Name</th>
-                  <th>Phylum Name</th>
-                  <th>Actions</th>
+                  <th scope="col" width= "10%">Phylum ID</th>
+                  <th scope="col" width= "10%">Domain Name</th>
+                  <th scope="col" width= "10%">Kingdom Name</th>
+                  <th scope="col" width= "10%">Phylum Name</th>
+                  <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdata">
-              </tbody>
+             <!--  <tbody tbody id="showdata">
+              </tbody> -->
             </table>
           </div>
         </div>
-      </main>
+      </div>
 
+
+
+      </main>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-          <script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <!--Table-->
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+
+<script>
 function resetForm() {
     document.getElementById("addPhylumForm").reset();
 }
 
 </script>
 
-     <script type="text/javascript" >
+<script type="text/javascript" >
 
      function disableMyText(){
           if(document.getElementById("plantCategory").checked == true)
@@ -168,11 +178,8 @@ function resetForm() {
      </script>
 
     <script type="text/javascript">
-    $(function(){
 
-    //show
-    showAllPhylum();
-    function showAllPhylum(){
+    /*function showAllPhylum(){
       $.ajax({
         type: 'ajax',
         url: '<?php echo base_url() ?>admin/showAllPhylum',
@@ -199,7 +206,29 @@ function resetForm() {
         }
       });
     }
+*/
+    function showAllPhylum()
+        {
+          $('#managePhylumtbl').dataTable().fnClearTable();
+          $('#managePhylumtbl').dataTable().fnDraw();
+          $('#managePhylumtbl').dataTable().fnDestroy();
+          $('#managePhylumtbl').dataTable({
+              "processing": true,
+              "serverSide": false,
+              "sAjaxSource": "<?php echo base_url('admin/showAllPhylum')?>",
+              "deferLoading": 10,
+              "bPaginate": true,
+              "aaSorting": [[0,'asc']],
+              "fnInitComplete": function(){
 
+              }
+          });
+        }
+
+    $(document).ready(function(){
+
+    //show
+    showAllPhylum();
 
     //add
     $('#btnSave',).click(function(event){
@@ -228,7 +257,7 @@ if(confirm("Save data?")){
               }
               alert('Phylum Successfully Added!');
               location.reload();
-              
+
             }else{
               alert('Please fill up all fields.');
             }
@@ -273,7 +302,7 @@ if(confirm("Save data?")){
         });
     });
     //edit phylum
-    $('#showdata').on('click', '.phylum-edit', function(){
+     $(document).on('click', '.phylum-edit', function(e){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Phylum');
