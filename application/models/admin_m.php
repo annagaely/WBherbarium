@@ -17,34 +17,27 @@ class admin_m extends CI_Model{
 }
 /****** PHYLUM ONLY!!!!! ******/
 
-/*	public function showAllPhylum(){
-		$query = $this->db->get('tblPhylum');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-		}
 
-	}*/
 	public function showAllPhylum()
 	{
 		$result = array();
 		$query = $this->db->select('intPhylumID, strDomainName, strKingdomName, strPhylumName')
                 ->get('tblPhylum');
 
-		foreach ($query->result() as $r)
+		foreach ($query->result() as $r) 
 		{
 			$btn = '<button class="btn btn-primary phylum-edit" data="'.$r->intPhylumID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intPhylumID,
-					$r->strDomainName,
+					$r->strDomainName,			
 					$r->strKingdomName,
 					$r->strPhylumName,
 					$btn,
 					$r->intPhylumID
 					);
 		}
+
 
 		return $result;
 	}
@@ -111,21 +104,8 @@ class admin_m extends CI_Model{
 	/****** END PHYLUM!!!!! ******/
 	/****** CLASS START!!!!! ******/
 
-	// public function showAllClass(){
-	// 	$query = $this->db->select('intClassID,
-	// 		 p.strPhylumName,
-	// 		 strClassName')
-	// 		->join('tblPhylum p', 'p.intPhylumID = c.intPhylumID')
-	// 		->get('tblCLass c');
-	// 	if($query->num_rows() > 0){
-	// 		return $query->result();
-	// 	}
-	// 	else{
-	// 		return false;
-	// 	}
-	// }
+public function showAllClass()
 
-	public function showAllClass()
 	{
 		$result = array();
 		$query = $this->db->select('intClassID,
@@ -134,13 +114,16 @@ class admin_m extends CI_Model{
 			->join('tblPhylum p', 'p.intPhylumID = c.intPhylumID')
 			->get('tblCLass c');
 
+
 		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary class-edit" data="'.$r->intClassID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intClassID,
+
 					$r->strPhylumName,
+
 					$r->strClassName,
 					$btn,
 					$r->intClassID
@@ -226,18 +209,32 @@ class admin_m extends CI_Model{
   }
 	/****** END CLASS!!!!! ******/
 	/****** ORDER START!!!!! ******/
-	public function showAllOrder(){
+	public function showAllOrder()
+	{
+		$result = array();
 		$query = $this->db->select('intOrderID,
 			 c.strClassName,
 			 strOrderName')
 			->join('tblClass c', 'c.intClassID = o.intClassID')
 			->get('tblOrder o');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+		foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary order-edit" data="'.$r->intOrderID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intOrderID,
+					$r->strClassName,			
+					$r->strOrderName,
+					$btn,
+					$r->intOrderID
+					);
 		}
+
+		return $result;
 	}
+
+
 	public function showOrderClassName(){
 		$query = $this->db->get('tblClass');
 		if($query->num_rows() > 0){
@@ -309,18 +306,32 @@ class admin_m extends CI_Model{
 	/****** END ORDER!!!!! ******/
 	/****** FAMILY START!!!!! ******/
 
-public function showAllFamily(){
+public function showAllFamily()
+{
+		$result = array();
 		$query = $this->db->select('intFamilyID,
 			 o.strOrderName,
 			 strFamilyName')
 			->join('tblOrder o', 'o.intOrderID = f.intOrderID')
 			->get('tblFamily f');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+		foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary family-edit" data="'.$r->intFamilyID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intFamilyID,
+					$r->strOrderName,			
+					$r->strFamilyName,
+					$btn,
+					$r->intFamilyID
+					);
 		}
-	}	public function showFamilyOrderName(){
+
+		return $result;
+	}
+
+public function showFamilyOrderName(){
 		$query = $this->db->get('tblOrder');
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -375,17 +386,31 @@ public function showAllFamily(){
 	/****** GENUS START!!!!! ******/
 
 public function showAllGenus(){
+
+		$result = array();
 		$query = $this->db->select('intGenusID,
 			 f.strFamilyName,
 			 strGenusName')
 			->join('tblFamily f', 'f.intfamilyID = g.intFamilyID')
 			->get('tblGenus g');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+		foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary genus-edit" data="'.$r->intGenusID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intGenusID,
+					$r->strFamilyName,			
+					$r->strGenusName,
+					$btn,
+					$r->intGenusID
+					);
 		}
-	}public function showGenusFamilyName(){
+
+		return $result;
+	}
+
+public function showGenusFamilyName(){
 		$query = $this->db->get('tblFamily');
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -440,19 +465,31 @@ public function showAllGenus(){
 	/****** SPECIES START!!!!! ******/
 
 public function showAllSpecies(){
+		$result = array();
 		$query = $this->db->select('intSpeciesID,
 			 g.strGenusName,
 			 strSpeciesName,
 			 strCommonName')
 			->join('tblGenus g', 'g.intGenusID = s.intGenusID')
 			->get('tblSpecies s');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+		foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary species-edit" data="'.$r->intSpeciesID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intSpeciesID,
+					$r->strGenusName,			
+					$r->strSpeciesName,
+					$r->strCommonName,
+					$btn,
+					$r->intSpeciesID
+					);
 		}
+
+		return $result;
 	}
-	public function showSpeciesGenusName(){
+
+public function showSpeciesGenusName(){
 		$query = $this->db->get('tblGenus');
 		if($query->num_rows() > 0){
 			return $query->result();

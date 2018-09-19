@@ -58,7 +58,7 @@
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
              <h2 class="h5">
               <?php
-                  $serverName = "LAPTOP-0L08K6U2";
+                  $serverName = "DEI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -80,7 +80,7 @@
             </h2>
               <span>
                 <?php
-                  $serverName = "LAPTOP-0L08K6U2";
+                  $serverName = "DEI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -111,7 +111,7 @@
           <h5 class="sidenav-heading">Main</h5>
 
           <ul id="side-main-menu" class="side-menu list-unstyled">
-            <li class="active"><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
 
             <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">

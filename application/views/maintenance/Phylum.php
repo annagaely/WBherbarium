@@ -238,7 +238,7 @@ function resetForm() {
       var domainName = $('input[name=txtdName]');
       var kingdomName = $('input[name=txtkName]');
       var phylumName = $('input[name=txtkName]');;
-if(confirm("Save data?")){
+      if(confirm("Save data?")){
           $.ajax({
           type: 'ajax',
           method: 'post',

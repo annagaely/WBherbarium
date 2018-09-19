@@ -20,7 +20,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Family</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
 
@@ -55,7 +55,7 @@
               <div class="modal-header">
 
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">  
 
@@ -84,62 +84,66 @@
           </div>
         </div>
       <!--END EDIT CLASS MODAL-->
-      <div class="card">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Family ID</th>
-                  <th>Order Name</th>
-                  <th>Family Name</th>
-                  <th>Actions</th>
-                </tr>  
-              </thead>
-             <tbody tbody id="showdata">
-                        
-            </tbody>           
+ <div class="card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table dataTable no-footer" id="manageFamilytbl">
+         <thead>
+          <tr>
+            <th scope="col" width= "10%">Family ID</th>
+            <th scope="col" width= "10%">Order Name</th>
+            <th scope="col" width= "10%">Family Name</th>
+            <th scope="col" width= "10%">Actions</th>
+          </tr>  
+        </thead>
+<!--       <tbody tbody id="showdata">         
+            </tbody>  -->          
             </table>
           </div>
         </div>
       </div>
 
+      </main>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript">  
-    $(function(){
-    
-      //show
-    showAllFamily();
-    
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
 
-    function showAllFamily(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllFamily',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intFamilyID+'</td>'+
-                  '<td>'+data[i].strOrderName+'</td>'+
-                  '<td>'+data[i].strFamilyName+'</td>'+
-                  '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary family-edit" data="'+data[i].intFamilyID+'">Edit</a>'+
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
-    }
-    showFamilyOrderName();
-      function showFamilyOrderName(){
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <!--Table-->
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+
+<script>
+function resetForm() {
+    document.getElementById("addFamilyForm").reset();
+}
+
+</script>      
+    <script type="text/javascript">  
+
+    function showAllFamily()
+      {
+        $('#manageFamilytbl').dataTable().fnClearTable();
+        $('#manageFamilytbl').dataTable().fnDraw();
+        $('#manageFamilytbl').dataTable().fnDestroy();
+        $('#manageFamilytbl').dataTable({
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllFamily')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
+      $(document).ready(function(){
+       //show
+        showAllFamily();
+        showFamilyOrderName();
+   
+
+function showFamilyOrderName(){
       $.ajax({
         type: 'ajax',
         url: '<?php echo base_url() ?>admin/showFamilyOrderName',
@@ -159,7 +163,9 @@
         }
       });
     }
-    $('#btnSave').click(function(){
+
+
+$('#btnSave').click(function(){
       var data = $('#addFamilyForm').serialize();
       //validate form
 
@@ -219,7 +225,7 @@ $('#btnEditSave').click(function(){
         });
     });
     //edit class
-    $('#showdata').on('click', '.family-edit', function(){
+$(document).on('click', '.family-edit', function(){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Family');
