@@ -1,4 +1,4 @@
-  <?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin extends CI_Controller {
@@ -942,7 +942,39 @@ $message = $this->input->post('txtCustomMessage');
 
  }
 }
+public function visitsendMailReject()
+{
+  $config = Array(
+  'protocol' => 'smtp',
+  'smtp_host' => 'ssl://smtp.googlemail.com',
+  'smtp_port' => 465,
+  'smtp_user' => 'WBHerbariumTA@gmail.com', // change it to yours
+  'smtp_pass' => 'WBHerbarium2018', // change it to yours
+  'mailtype' => 'html',
+  'charset' => 'iso-8859-1',
+  'wordwrap' => TRUE
+);
+$email=$this->input->post('txtEmailReject');
+$id=$this->input->post('txtIdReject');
+$message = $this->input->post('txtCustomMessageReject');
 
+      $this->load->library('email', $config);
+      $this->email->set_newline("\r\n");
+      $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
+      $this->email->to($email);// change it to yours
+      $this->email->subject('PUP Herbarium Visiting');
+      $this->email->message("Your Visit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Visit Request ID:" . $id ."<br> <br>" . $message );
+
+      if($this->email->send())
+     {
+     	return true;
+     }
+     else
+    {
+     show_error($this->email->print_debugger());
+
+ }
+}
 
 //LOAN
 
@@ -1005,7 +1037,10 @@ public function updateVisitStatus(){
 		$result = $this->m->updateVisitStatus();
 		echo json_encode($result);
 }
-
+public function showAllAppointmentReject(){
+		$result = $this->m->showAllAppointmentReject();
+		echo json_encode($result);
+}
 public function showAllAppointmentExpect(){
 		$result = $this->m->showAllAppointmentExpect();
 		echo json_encode($result);
@@ -1024,6 +1059,11 @@ public function showAllAppointmentAll(){
 }
 public function VisitEmailCon(){
 		$result = $this->m->VisitEmailCon();
+		echo json_encode($result);
+
+}
+public function VisitEmailConReject(){
+		$result = $this->m->VisitEmailConReject();
 		echo json_encode($result);
 
 }

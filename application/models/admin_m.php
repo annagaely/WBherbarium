@@ -1,4 +1,4 @@
-  <?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin_m extends CI_Model{
@@ -1500,6 +1500,19 @@ $query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou
 		}
 	}
 
+public function showAllAppointmentReject(){
+$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+
+		from tblAppointments ap join tblOnlineUser ou
+		on ap.intOUserID = ou.intOUserID
+		where strStatus ='Rejected'");
+
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
 public function ViewVisitReq(){
 		$id = $this->input->get('id');
 	$this->db->where('intAppointmentID', $id);
@@ -1604,6 +1617,20 @@ $status = $this->input->post('txtStatus');
 	}
 
 	public function VisitEmailCon(){
+	$id = $this->input->get('id');
+	$this->db->where('intAppointmentID', $id);
+		$query = $this->db->select("intAppointmentID, strEmailAddress")
+		->join('tblOnlineUser ou','ou.intOUserID=ta.intOUserID')
+		->get('tblAppointments ta');
+
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+	public function VisitEmailConReject(){
 	$id = $this->input->get('id');
 	$this->db->where('intAppointmentID', $id);
 		$query = $this->db->select("intAppointmentID, strEmailAddress")

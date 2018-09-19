@@ -161,6 +161,12 @@ public function userRegister(){
 
 	}
 
+  public function Profile() {
+    $title['title'] = "PUPHerbarium | Profile";
+		$this->load->view('userside/navbar2', $title);
+		$this->load->view('userside/MyProfile');
+		$this->load->view('userside/footer');
+  }
 
 
 }?>
