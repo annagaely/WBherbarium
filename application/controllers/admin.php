@@ -22,7 +22,7 @@ class admin extends CI_Controller {
 			$this->load->view('templates/header', $title);
 			$this->load->view('maintenance/Dashboard');
 			$this->load->view('templates/footer');
-	}	
+	}
 		else{
 			redirect(base_url().'admin');
 	}
@@ -74,19 +74,16 @@ class admin extends CI_Controller {
 	}
 }
 
-	/****** PHYLUM ONLY!!!!! ******/
-	public function Phylum()
-	{
-	if($this->session->userdata('strUserName')!=''){		
-		$title['title'] = "PUPHerbarium | Phylum";
-		$this->load->view('templates/header', $title);
-		$this->load->view('maintenance/Phylum');
-		$this->load->view('templates/footer');
-	}
-	else{
-	redirect(base_url().'admin');
-	}
+/****** PHYLUM ONLY!!!!! ******/
+public function Phylum()
+{
+if($this->session->userdata('strUserName')!=''){
+$title['title'] = "PUPHerbarium | Phylum";
+$this->load->view('templates/header', $title);
+$this->load->view('maintenance/Phylum');
+$this->load->view('templates/footer');
 }
+
 	//show phylum
 
     public function showAllPhylum()
@@ -106,43 +103,21 @@ class admin extends CI_Controller {
     }
 
 
-	//add phylum
-	public function addPhylum(){
-		$result = $this->m->addPhylum();
-		$msg['success'] = false;
-		$msg['type'] = 'add';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
-	}
-		public function editPhylum(){
-		$result = $this->m->editPhylum();
-		echo json_encode($result);
-	}
-		public function updatePhylum(){
-		$result = $this->m->updatePhylum();
-		$msg['success'] = false;
-		$msg['type'] = 'update';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
-	}
 
-	/****** END PHYLUM!!!!! ******/
-	/****** CLASS START!!!!! ******/
-	public function Class()
-	{
-	if($this->session->userdata('strUserName')!=''){				
-		$title['title'] = "PUPHerbarium | Class";
-		$this->load->view('templates/header', $title);
-		$this->load->view('maintenance/Class');
-		$this->load->view('templates/footer');
-	}
-	else{
-	redirect(base_url().'admin');
-	}
+public function showAllPhylum()
+{
+
+    $output = $this->admin_m->showAllPhylum();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
 }
 	//show Class
     public function showAllClass()
@@ -181,21 +156,104 @@ class admin extends CI_Controller {
 		echo json_encode($result);
 	}
 
-	//add Class
-	public function addClass(){
-		$result = $this->m->addClass();
-		$msg['success'] = false;
-		$msg['type'] = 'add';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
-	}
-	/****** END CLASS!!!!! ******/
+
+
+
+
+//add phylum
+public function addPhylum(){
+$result = $this->m->addPhylum();
+$msg['success'] = false;
+$msg['type'] = 'add';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+public function editPhylum(){
+$result = $this->m->editPhylum();
+echo json_encode($result);
+}
+public function updatePhylum(){
+$result = $this->m->updatePhylum();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+
+/****** END PHYLUM!!!!! ******/
+/****** CLASS START!!!!! ******/
+public function Class()
+{
+if($this->session->userdata('strUserName')!=''){
+$title['title'] = "PUPHerbarium | Class";
+$this->load->view('templates/header', $title);
+$this->load->view('maintenance/Class');
+$this->load->view('templates/footer');
+}
+else{
+redirect(base_url().'admin');
+}
+}
+//show Class
+// public function showAllClass(){
+// 	$result = $this->m->showAllClass();
+// 	echo json_encode($result);
+// 	}
+public function showAllClass()
+{
+
+    $output = $this->admin_m->showAllClass();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+
+public function showClassPhylumName(){
+$result = $this->m->showClassPhylumName();
+echo json_encode($result);
+}
+//update class
+public function updateClass(){
+$result = $this->m->updateClass();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+public function editClass(){
+$result = $this->m->editClass();
+echo json_encode($result);
+}
+
+
+//add Class
+public function addClass(){
+$result = $this->m->addClass();
+$msg['success'] = false;
+$msg['type'] = 'add';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+/****** END CLASS!!!!! ******/
 	/****** ORDER START!!!!! ******/
 	public function Order()
 	{
-	if($this->session->userdata('strUserName')!=''){			
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Order";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Order');
@@ -252,12 +310,12 @@ class admin extends CI_Controller {
 	/****** FAMILY START!!!!! ******/
 	public function Family()
 	{
-	if($this->session->userdata('strUserName')!=''){		
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Family";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Family');
 		$this->load->view('templates/footer');
-	}	
+	}
 	else{
 	redirect(base_url().'admin');
 	}
@@ -312,7 +370,7 @@ public function updateFamily(){
 	/****** GENUS START!!!!! ******/
 	public function Genus()
 	{
-	if($this->session->userdata('strUserName')!=''){		
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Genus";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Genus');
@@ -371,12 +429,12 @@ public function updateGenus(){
 	/****** SPECIES START!!!!! ******/
 	public function Species()
 	{
-	if($this->session->userdata('strUserName')!=''){		
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Species";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Species');
 		$this->load->view('templates/footer');
-	}		
+	}
 	else{
 	redirect(base_url().'admin');
 	}
@@ -428,12 +486,12 @@ public function updateSpecies(){
 	/****** FAMILY BOXES START!!!!! ******/
 	public function Familyboxes()
 	{
-	if($this->session->userdata('strUserName')!=''){		
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Family Boxes";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Familyboxes');
 		$this->load->view('templates/footer');
-	}	
+	}
 	else{
 	redirect(base_url().'admin');
 	}
@@ -473,7 +531,7 @@ public function updateFamilyBox(){
 	/****** LOCALITY START!!!!! ******/
 	public function Locality()
 	{
-	if($this->session->userdata('strUserName')!=''){	
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Locality";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Locality');
@@ -505,7 +563,7 @@ public function updateFamilyBox(){
 	/****** COLLECTOR START!!!!! ******/
 	public function Collector()
 	{
-	if($this->session->userdata('strUserName')!=''){	
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Collector";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Collector');
@@ -542,7 +600,7 @@ public function updateFamilyBox(){
 	/****** EXTERNAL VALIDATOR START!!!!! ******/
 	public function Externalvalidator()
 	{
-	if($this->session->userdata('strUserName')!=''){	
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | External Validator";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Externalvalidator');
@@ -551,7 +609,7 @@ public function updateFamilyBox(){
 	else{
 	redirect(base_url().'admin');
 	}
-}	
+}
 	public function showAllValidator(){
 		$result = $this->m->showAllValidator();
 		echo json_encode($result);
@@ -579,7 +637,7 @@ public function updateFamilyBox(){
 	/****** COLLECTOR START!!!!! ******/
 	public function Staffmgt()
 	{
-	if($this->session->userdata('strUserName')!=''){	
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Staff Management";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Staffmgt');
@@ -615,7 +673,7 @@ public function updateFamilyBox(){
 	/****** account START!!!!! ******/
 	public function accounts()
 	{
-	if($this->session->userdata('strUserName')!=''){	
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Access Accounts";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Accessaccounts');
@@ -657,7 +715,7 @@ public function updateFamilyBox(){
 
 	public function Depositplant()
 	{
-	if($this->session->userdata('strUserName')!=''){	
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Deposit Plant";
 		$this->load->view('templates/header', $title);
 		$this->load->view('transaction/Depositplant');
@@ -669,7 +727,7 @@ public function updateFamilyBox(){
 }
 	public function Loanplant()
 	{
-	if($this->session->userdata('strUserName')!=''){	
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Loan Plant";
 		$this->load->view('templates/header', $title);
 		$this->load->view('transaction/Loanplant');
@@ -681,7 +739,7 @@ public function updateFamilyBox(){
 }
 	public function Visits()
 	{
-	if($this->session->userdata('strUserName')!=''){	
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Visits";
 		$this->load->view('templates/header', $title);
 		$this->load->view('transaction/Visits');
@@ -694,7 +752,7 @@ public function updateFamilyBox(){
 
 	public function Externalvalidation()
 	{
-	if($this->session->userdata('strUserName')!=''){	
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | External Validation";
 		$this->load->view('templates/header', $title);
 		$this->load->view('transaction/Externalvalidation');
@@ -714,7 +772,7 @@ public function updateFamilyBox(){
 
 	public function CalendarManagement()
 	{
-	if($this->session->userdata('strUserName')!=''){	
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Calendar Management";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/CalendarManagement');
@@ -850,7 +908,7 @@ public function edit_event()
 
 	public function Featuredplant()
 	{
-	if($this->session->userdata('strUserName')!=''){	
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium | Featured Plant";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Featuredplant');
@@ -905,7 +963,7 @@ public function edit_event()
 
 	}
 
-	
+
 
 	//SENDING EMAIL NOT YET FINAL
 	public function loansendMail()
@@ -924,7 +982,7 @@ $email=$this->input->post('txtEmail');
 $id=$this->input->post('txtId');
 $message = $this->input->post('txtCustomMessage');
 
-        
+
        $this->load->library('email', $config);
       $this->email->set_newline("\r\n");
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
@@ -959,7 +1017,7 @@ public function depositsendMail()
 $email=$this->input->post('txtEmail');
 $id=$this->input->post('txtId');
 $message = $this->input->post('txtCustomMessage');
-        
+
       $this->load->library('email', $config);
       $this->email->set_newline("\r\n");
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
