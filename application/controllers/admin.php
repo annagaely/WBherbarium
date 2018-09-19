@@ -88,10 +88,23 @@ class admin extends CI_Controller {
 	}
 }
 	//show phylum
-	public function showAllPhylum(){
-		$result = $this->m->showAllPhylum();
-		echo json_encode($result);
-	}
+
+    public function showAllPhylum()
+    {
+    
+        $output = $this->admin_m->showAllPhylum();
+
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
+
 
 	//add phylum
 	public function addPhylum(){
@@ -132,10 +145,23 @@ class admin extends CI_Controller {
 	}
 }
 	//show Class
-	public function showAllClass(){
-		$result = $this->m->showAllClass();
-		echo json_encode($result);
-		}
+    public function showAllClass()
+    {
+    
+        $output = $this->admin_m->showAllClass();
+
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
+
+
 	public function showClassPhylumName(){
 	$result = $this->m->showClassPhylumName();
 	echo json_encode($result);
@@ -180,10 +206,19 @@ class admin extends CI_Controller {
 	}
 }
 	//show Order
-	public function showAllOrder(){
-		$result = $this->m->showAllOrder();
-		echo json_encode($result);
-		}
+    public function showAllOrder()
+    {
+        $output = $this->admin_m->showAllOrder();
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+    }
+
 	public function showOrderClassName(){
 	$result = $this->m->showOrderClassName();
 	echo json_encode($result);
@@ -228,11 +263,24 @@ class admin extends CI_Controller {
 	}
 }
 		//show Order
-	public function showAllFamily(){
-		$result = $this->m->showAllFamily();
-		echo json_encode($result);
-		}
-	public function showFamilyOrderName(){
+    public function showAllFamily()
+    {
+    
+        $output = $this->admin_m->showAllFamily();
+
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
+
+	public function showFamilyOrderName()
+	{
 	$result = $this->m->showFamilyOrderName();
 	echo json_encode($result);
 	}
@@ -275,10 +323,22 @@ public function updateFamily(){
 	}
 }
 		//show Order
-	public function showAllGenus(){
-		$result = $this->m->showAllGenus();
-		echo json_encode($result);
-		}
+    public function showAllGenus()
+    {
+    
+        $output = $this->admin_m->showAllGenus();
+
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
+
 	public function showGenusFamilyName(){
 	$result = $this->m->showGenusFamilyName();
 	echo json_encode($result);
@@ -323,11 +383,20 @@ public function updateGenus(){
 }
 
 
-	public function showAllSpecies(){
-		$result = $this->m->showAllSpecies();
-		echo json_encode($result);
-		}
-	public function showSpeciesGenusName(){
+    public function showAllSpecies()
+    {
+        $output = $this->admin_m->showAllSpecies();
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+    }
+
+public function showSpeciesGenusName(){
 	$result = $this->m->showSpeciesGenusName();
 	echo json_encode($result);
 	}

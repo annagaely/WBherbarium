@@ -8,12 +8,7 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/js/mdb.min.js"></script>
 <!--md bootstrap-->
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.9/css/mdb.min.css" rel="stylesheet">
+
     <section class="dashboard-counts section-padding">
         <div class="container-fluid">
           <div class="row">
@@ -24,7 +19,7 @@
                 <div class="name"><strong class="text-uppercase">Total<br>Accounts</strong>
                   <div class="count-number">
                     <?php
-                  $serverName = "LAPTOP-0L08K6U2";
+                  $serverName = "DEI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -52,7 +47,7 @@
                 <div class="name"><strong class="text-uppercase">Total<br>Deposits</strong>
                   <div class="count-number">
                     <?php
-                  $serverName = "LAPTOP-0L08K6U2";
+                  $serverName = "DEI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -80,7 +75,7 @@
                 <div class="name"><strong class="text-uppercase">Total<br />Loans</strong>
                   <div class="count-number">
                    <?php
-                  $serverName = "LAPTOP-0L08K6U2";
+                  $serverName = "DEI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -108,7 +103,7 @@
                 <div class="name"><strong class="text-uppercase">Total<br />Visits</strong>
                   <div class="count-number">
                     <?php
-                  $serverName = "LAPTOP-0L08K6U2";
+                  $serverName = "DEI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
