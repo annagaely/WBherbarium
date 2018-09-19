@@ -15,9 +15,9 @@ class admin_m extends CI_Model{
 	}
 
 }
-	/****** PHYLUM ONLY!!!!! ******/
+/****** PHYLUM ONLY!!!!! ******/
 
-	public function showAllPhylum(){
+/*	public function showAllPhylum(){
 		$query = $this->db->get('tblPhylum');
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -25,14 +25,38 @@ class admin_m extends CI_Model{
 			return false;
 		}
 
+	}*/
+	public function showAllPhylum()
+	{
+		$result = array();
+		$query = $this->db->select('intPhylumID, strDomainName, strKingdomName, strPhylumName')
+                ->get('tblPhylum');
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary phylum-edit" data="'.$r->intPhylumID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intPhylumID,
+					$r->strDomainName,
+					$r->strKingdomName,
+					$r->strPhylumName,
+					$btn,
+					$r->intPhylumID
+					);
+		}
+
+		return $result;
 	}
 
+
+
 	 public function addPhylum(){
-		
+
 			$domainName=$this->input->post('txtdName');
 			$kingdomName=$this->input->post('txtkName');
 			$phylumName=$this->input->post('txtpName');
-		
+
 			$query="
 			insert into tblPhylum(strDomainName,strKingdomName,strPhylumName) VALUES ('".$domainName."','".$kingdomName."','".$phylumName."')
 
@@ -50,13 +74,15 @@ class admin_m extends CI_Model{
 		}else {
 				return false;
 			}
-		
+
 		if($this->db->affected_rows() > 0){
 			return true;
 		}else{
 			return false;
 		}
-	}	public function editPhylum(){
+	}
+
+	public function editPhylum(){
 		$id = $this->input->get('id');
 		$this->db->where('intPhylumID', $id);
 		$query = $this->db->get('tblPhylum');
@@ -84,20 +110,47 @@ class admin_m extends CI_Model{
 
 	/****** END PHYLUM!!!!! ******/
 	/****** CLASS START!!!!! ******/
-	public function showAllClass(){
+
+	// public function showAllClass(){
+	// 	$query = $this->db->select('intClassID,
+	// 		 p.strPhylumName,
+	// 		 strClassName')
+	// 		->join('tblPhylum p', 'p.intPhylumID = c.intPhylumID')
+	// 		->get('tblCLass c');
+	// 	if($query->num_rows() > 0){
+	// 		return $query->result();
+	// 	}
+	// 	else{
+	// 		return false;
+	// 	}
+	// }
+
+	public function showAllClass()
+	{
+		$result = array();
 		$query = $this->db->select('intClassID,
 			 p.strPhylumName,
 			 strClassName')
 			->join('tblPhylum p', 'p.intPhylumID = c.intPhylumID')
 			->get('tblCLass c');
-		if($query->num_rows() > 0){
-			return $query->result();
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary class-edit" data="'.$r->intClassID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intClassID,
+					$r->strPhylumName,
+					$r->strClassName,
+					$btn,
+					$r->intClassID
+					);
 		}
-		else{
-			return false;
-		}
+
+		return $result;
 	}
-			public function showClassPhylumName(){
+
+	public function showClassPhylumName(){
 		$query = $this->db->get('tblPhylum');
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -126,7 +179,7 @@ class admin_m extends CI_Model{
 			}else {
 				return false;
 			}
-		
+
 		if($this->db->affected_rows() > 0){
 			return true;
 		}else{
@@ -137,7 +190,7 @@ class admin_m extends CI_Model{
 
 		$id = $this->input->get('id');
 		$this->db->where('intClassID', $id);
-		$query = $this->db->select('intClassID,
+/*		$query = $this->db->select('intClassID,
 			 p.strPhylumName,
 			 p.intPhylumID,
 			 strClassName')
@@ -147,8 +200,16 @@ class admin_m extends CI_Model{
 			return $query->row();
 		}else{
 			return false;
+		}*/
+		$query = $this->db->get('tblClass');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
 		}
 	}
+
+
 	public function updateClass(){
     $id = $this->input->post('txtId');
     $field = array(
@@ -198,17 +259,17 @@ class admin_m extends CI_Model{
 			";
 		if($intClassID!=''){
 			if($strOrderName!=''){
-			
+
 					$this->db->query($query);
-				
+
 			}else {
 				return false;
 			}
 		}else {
 				return false;
 			}
-		
-		
+
+
 		if($this->db->affected_rows() > 0){
 			return true;
 		}else{
@@ -701,7 +762,7 @@ public function showAllCollector(){
 	$secname = $this->input->post('esecName');
 	$colletorid = $this->input->post('txtId');
 
-	$query=" 
+	$query="
 	DECLARE @Fname VARCHAR(50);
 	DECLARE @Mname VARCHAR(50);
 	DECLARE @MInitial VARCHAR(3);
@@ -903,7 +964,7 @@ public function editValidator(){
 	/******  STAFF MGT START!!!!! ******/
 	public function showAllStaff(){
 		$query = $this->db->query("select intStaffID,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strRole, strCollegeDepartment
-		from [tblHerbariumStaff] 
+		from [tblHerbariumStaff]
 		");
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -934,7 +995,7 @@ public function editValidator(){
       ,[strEmailAddress]
       ,[strRole]
       ,[strCollegeDepartment]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."')
-	
+
 	";
 		$this->db->query($query);
 
@@ -978,7 +1039,7 @@ public function updateStaff(){
 	$email = $this->input->post('eSMgtEAdd');
 	$role = $this->input->post('esRole');
 	$department = $this->input->post('esCollege');
-	
+
 	$staffid=$this->input->post('txtId');
 
 	$query="
@@ -991,7 +1052,7 @@ public function updateStaff(){
 	DECLARE @email			VARCHAR(255);
 	DECLARE @role			VARCHAR(50);
 	DECLARE @department		VARCHAR(100);
-	
+
 	DECLARE @staffID		VARCHAR(50);
 
 	set @firstname = '$fname'
@@ -1001,7 +1062,7 @@ public function updateStaff(){
 	set @email = '$email'
 	set @role = '$role'
 	set @department = '$department'
-	
+
 	set @middleinitial ='$minitial'
 	set @namesuffix	='$nsuffix'
 	set @staffID	='$staffid'
@@ -1016,10 +1077,10 @@ UPDATE tblHerbariumStaff
 			strEmailAddress = @email,
 		strRole = @role,
 			strCollegeDepartment = @department
-			
+
 		WHERE intStaffID = @staffID
 
-		
+
 	";
 		if($this->db->query($query)){
 			return true;
@@ -1279,7 +1340,7 @@ public function updateLoanStatus(){
 		}else{
 			return false;
 		}
-	}	 
+	}
 
 	public function LoanConfirmation(){
 	$id = $this->input->get('id');
@@ -1352,7 +1413,7 @@ public function showAllDepositReqPending()
 		}else{
 			return false;
 		}
-		
+
 }
 
 public function showAllDepositReqOkay()
@@ -1369,7 +1430,7 @@ public function showAllDepositReqOkay()
 		}else{
 			return false;
 		}
-		
+
 }
 
 public function showAllDepositReqAll()
@@ -1555,7 +1616,7 @@ DECLARE @status 		varchar(255);
 		}else{
 			return false;
 		}
-	}	
+	}
 
 
 	public function showAllAppointmentExpect(){
@@ -1655,7 +1716,7 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 		}else{
 			return false;
 		}
-		}	
+		}
 
 	public function showExValPending(){
 		$query = $this->db->select('intPlantDepositID,strAccessionNumber,dateDeposited,strStatus')
