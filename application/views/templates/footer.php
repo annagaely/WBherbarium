@@ -50,5 +50,6 @@
     <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/js/front.js"></script>
 
 
+
    </body>
    </html>

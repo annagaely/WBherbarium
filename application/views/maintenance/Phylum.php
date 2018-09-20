@@ -135,7 +135,6 @@
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
 
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
       <!--Table-->
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
@@ -235,6 +234,7 @@ function resetForm() {
       var url = '<?php echo base_url() ?>admin/addPhylum';
       var data = $('#addPhylumForm').serialize();
       //validate form
+
 if(confirm("Save data?")){
           $.ajax({
           type: 'ajax',

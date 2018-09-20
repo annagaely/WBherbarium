@@ -82,7 +82,6 @@
               <span>
                 <?php 
                   $serverName = "MSI";
-
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -101,9 +100,9 @@
                       }
                         sqlsrv_free_stmt( $stmt);
 
+
                         sqlsrv_close( $conn );
               ?> 
-
               </span>
           </div>
 
@@ -116,7 +115,7 @@
           <h5 class="sidenav-heading">Main</h5>
 
           <ul id="side-main-menu" class="side-menu list-unstyled">
-            <li class="active"><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
 
             <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
