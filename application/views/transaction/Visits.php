@@ -61,7 +61,7 @@
   <div class="card">
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-striped">
+        <table class="table table-striped" id="manageVisittbl">
           <thead>
             <tr>
               <th>Visit ID</th>
@@ -72,8 +72,6 @@
               <th>Actions</th>
             </tr>
           </thead>
-            <tbody tbody id="showdata">    
-            </tbody>
         </table>
       </div>
     </div>
@@ -156,7 +154,7 @@
      <div class="card">
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped" id="manageExpecttbl">
               <thead>
                 <tr>
                   <th>Visit ID</th>
@@ -167,8 +165,6 @@
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdata1">    
-            </tbody>
             </table>
         </div>
       </div>
@@ -190,7 +186,7 @@
               <input type ="hidden" name = "txtEmail" id = "txtemail" value ="0">
               <input type="email" name="txtEmailCon" id="strEmailAddress" class="form-control col-sm-10" disabled>
             </div>
-             
+
             <div class="form-group row pr-4">
                       <label class="col-sm-2">From:</label>
                       <input type="email" class="form-control col-sm-10" value= "WBHerbariumTA@gmail.com" disabled>
@@ -203,7 +199,7 @@
             </div>
             <div class="form-group">
                <label>Message:</label>
-                <textarea  id="strCustomMessage" name="txtCustomMessage" class="form-control" placeholder="Type your message here.." ></textarea> 
+                <textarea  id="strCustomMessage" name="txtCustomMessage" class="form-control" placeholder="Type your message here.." ></textarea>
             </div>
                   <div class="modal-footer">
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
@@ -211,7 +207,7 @@
                      <script type="text/javascript">
                             $('#btnSend').click(function(){
                                 var data = $('#emailform').serialize();
-                                
+
                                   $.ajax({
                                   type: 'ajax',
                                   method: 'post',
@@ -248,7 +244,7 @@
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdataReject">    
+              <tbody tbody id="showdataReject">
             </tbody>
             </table>
         </div>
@@ -271,7 +267,7 @@
               <input type ="hidden" name = "txtemailReject" id = "txtemail" value ="0">
               <input type="email" name="txtEmailCon" id="strEmailAddressReject" class="form-control col-sm-10" disabled>
             </div>
-             
+
             <div class="form-group row pr-4">
               <label class="col-sm-2">From:</label>
               <input type="email" class="form-control col-sm-10" value= "WBHerbariumTA@gmail.com" disabled>
@@ -284,7 +280,7 @@
             </div>
             <div class="form-group">
                <label>Message:</label>
-                <textarea  id="strCustomMessage" name="txtCustomMessageReject" class="form-control" placeholder="Type your message here.." ></textarea> 
+                <textarea  id="strCustomMessage" name="txtCustomMessageReject" class="form-control" placeholder="Type your message here.." ></textarea>
             </div>
                   <div class="modal-footer">
                      <input type="submit" id="btnSendReject" value="Send" class="btn btn-primary">
@@ -292,7 +288,7 @@
                      <script type="text/javascript">
                             $('#btnSendReject').click(function(){
                                 var data = $('#emailformreject').serialize();
-                                
+
                                   $.ajax({
                                   type: 'ajax',
                                   method: 'post',
@@ -328,7 +324,7 @@
                   <th>Status</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdata2">    
+              <tbody tbody id="showdata2">
             </tbody>
             </table>
         </div>
@@ -361,7 +357,7 @@
                        <label style="font-size: 14px;">Visitor's Name:</label>
                      </div>
                      <div class="col-sm-8">
-                      
+
                        <input type="text" name="txtVisitorName" id="strFullName" class="form-control" disabled="">
                      </div>
             </div>
@@ -376,7 +372,7 @@
                       </select>
                      </div>
             </div>
-                    
+
                   <div class="modal-footer">
                      <input type="submit" id="btnConfirm" value="Confirm" class="btn btn-primary">
                   </div>
@@ -387,47 +383,30 @@
   </div>
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
-    
-    $(function(){
+    function showAllAppointmentPending()
+    {
+      $('#manageVisittbl').dataTable().fnClearTable();
+      $('#manageVisittbl').dataTable().fnDraw();
+      $('#manageVisittbl').dataTable().fnDestroy();
+       $('#manageVisittbl').dataTable({
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllAppointmentPending')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
 
-    //show
-    showAllAppointmentPending();
-    function showAllAppointmentPending(){
-
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllAppointmentPending',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intAppointmentID+'</td>'+
-                  '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].dtAppointmentDate+'</td>'+   
-                  '<td>'+data[i].strVisitDescription+'</td>'+
-                  '<td>'+data[i].strStatus+'</td>'+
-                  '<td>'+
-                    '<a href="javascript:;" data-target="#viewVisitReq" data-toggle="modal" class="btn btn-primary view-appointment" data="'+data[i].intAppointmentID+'">View</a>'+
-     
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
+         }
+     });
     }
-        });
+    $(document).ready(function() {
+      showAllAppointmentPending();
 
   $('#btnSave').click(function(){
 
       var data = $('#updateVisitStatusForm').serialize();
-      
+
         $.ajax({
           type: 'ajax',
           method: 'post',
@@ -436,7 +415,7 @@
           async: false,
           dataType: 'json',
           success: function(data){
-         
+
             if(data=true){
               location.reload();
             }else{
@@ -448,47 +427,31 @@
           }
         });
     });
+  });
 
 </script>
 
     <script type="text/javascript">
-    
-    $(function(){
 
-    //show
-    showAllAppointmentExpect();
-    function showAllAppointmentExpect(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllAppointmentExpect',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intAppointmentID+'</td>'+
-                  '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].dtAppointmentDate+'</td>'+
-                  '<td>'+data[i].strVisitDescription+'</td>'+
-                  '<td>'+data[i].strStatus+'</td>'+
+    function showAllAppointmentExpect()
+    {
+      $('#manageExpecttbl').dataTable().fnClearTable();
+      $('#manageExpecttbl').dataTable().fnDraw();
+      $('#manageExpecttbl').dataTable().fnDestroy();
+      $('#manageExpecttbl').dataTable({
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllAppointmentExpect')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
 
-                  '<td>'+
-                   '<a href="javascript:;" class="btn btn-primary view-emailcon " data="'+data[i].intAppointmentID+'">Email</a>'+
-                  '<a href="javascript:;" style="margin-left: 10px" class="btn btn-primary view-appcon" data="'+data[i].intAppointmentID
-                  +'">Confirm</a>'+
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata1').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
+         }
+     });
     }
-  });
+    $(document).ready(function() {
+      showAllAppointmentExpect();
 
      $('#showdata1').on('click', '.view-appcon', function(){
       var id = $(this).attr('data');
@@ -514,6 +477,7 @@
 
     });
     });
+  });
 
      $('#showdata1').on('click', '.view-emailcon', function(){
       var id = $(this).attr('data');
@@ -541,7 +505,7 @@
     });
 </script>
     <script type="text/javascript">
-    
+
     $(function(){
 
     //show
@@ -604,7 +568,7 @@
 
 </script>
    <script type="text/javascript">
-    
+
     $(function(){
 
     //show
@@ -623,7 +587,7 @@
                   '<td>'+data[i].intAppointmentID+'</td>'+
                   '<td>'+data[i].strFullName+'</td>'+
                   '<td>'+data[i].dtAppointmentDate+'</td>'+
-                  
+
                   '<td>'+data[i].strVisitDescription+'</td>'+
                   '<td>'+data[i].strStatus+'</td>'+
                   '</tr>';
@@ -665,7 +629,7 @@
     });
 </script>
 <script type="text/javascript">
-  
+
    $('#btnConfirm').click(function(){
       var data = $('#ConfirmForm').serialize();
 
@@ -677,7 +641,7 @@
           async: false,
           dataType: 'json',
           success: function(response){
-         
+
             if(response==true){
 
 
@@ -709,6 +673,3 @@ function openCity(evt, cityName) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 </script>
-
-
-     
