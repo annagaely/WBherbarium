@@ -82,19 +82,47 @@
         <div role="document" class="modal-dialog modal-lg">
           <div class="modal-content" >
             <div class="modal-header">
-
               <h5 id="exampleModalLabel" class="modal-title">Loan Plant</h5>
             <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
+<<<<<<< HEAD
+               <span aria-hidden="true">X</span>
+=======
                <span aria-hidden="true">&times;</span>
+>>>>>>> aa9ae35f489c2b9cda5f389d909172271fed7897
                </button>
             </div>
           <div class="modal-body">
-          <div class="row">
-            <div class="col-md-10" style="margin-left: auto; margin-right: auto;">
+          
+<!--            <div class="col-md-20" style="margin-left: auto; margin-right: auto;">
+                    <div class="row">
+             <?php
+$serverName = "MSI";
+$connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
+$conn = sqlsrv_connect( $serverName, $connectionInfo );
+if( $conn === false ) {
+    die( print_r( sqlsrv_errors(), true));
+}
 
-              <form id= "updateStatusForm" method="POST" enctype="multipart/form-data"class="form-horizontal">
+$sql = "SELECT picHerbariumSheet FROM [tblPlantDeposit] where intPlantDepositID = 1000 ";
+$stmt = sqlsrv_query( $conn, $sql );
+if( $stmt === false) {
+    die( print_r( sqlsrv_errors(), true) );
+}
+
+while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+
+echo "
+<img alt=Embedded Image src=\"data:image/png;base64, ".base64_encode($row['picHerbariumSheet'])."\" />";
+
+
+}
+
+sqlsrv_free_stmt( $stmt);
+?>
+</div>-->
+              <form id= "updateStatusForm" method="POST" enctype="multipart/form-data" class="form-horizontal">
                 <div class="form-group row">
-                  <div class="col-sm-4">
+                  <div class="col-sm-8">
                     <label style="font-size: 14px;">Loan Request ID:</label>
                   </div>
                   <div class="col-sm-8">
@@ -160,10 +188,6 @@
                </div>
           </div>
         </div>
-      </div>
-  
-
-</div>
 
 
 <div id="SecondTab" class="tabcontent">
