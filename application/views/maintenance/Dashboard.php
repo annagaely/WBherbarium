@@ -18,8 +18,10 @@
                 <div class="icon"><i class="icon-user"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br>Accounts</strong>
                   <div class="count-number">
-                    <?php
-                  $serverName = "DEI";
+
+                    <?php 
+                  $serverName = "MSI";
+
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -46,8 +48,8 @@
                 <div class="icon"><i class="icon-padnote"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br>Deposits</strong>
                   <div class="count-number">
-                    <?php
-                  $serverName = "DEI";
+                    <?php 
+                  $serverName = "MSI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -74,8 +76,10 @@
                 <div class="icon"><i class="icon-check"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br />Loans</strong>
                   <div class="count-number">
-                   <?php
-                  $serverName = "DEI";
+
+                   <?php 
+                  $serverName = "MSI";
+
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -102,8 +106,9 @@
                 <div class="icon"><i class="icon-bill"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br />Visits</strong>
                   <div class="count-number">
-                    <?php
-                  $serverName = "DEI";
+                    <?php 
+                  $serverName = "MSI";
+
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
