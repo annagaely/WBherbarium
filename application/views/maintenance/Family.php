@@ -224,6 +224,8 @@ $('#btnEditSave').click(function(){
           }
         });
     });
+
+
     //edit class
 $(document).on('click', '.family-edit', function(){
       var id = $(this).attr('data');

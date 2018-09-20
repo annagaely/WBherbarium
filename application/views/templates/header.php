@@ -57,8 +57,10 @@
           <!-- User Info-->
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
              <h2 class="h5">
+
               <?php
                   $serverName = "LAPTOP-0L08K6U2";
+
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -76,11 +78,14 @@
                            echo $row['strFullName']." <br />";
                       }
                         sqlsrv_free_stmt( $stmt);
-              ?>
+                        sqlsrv_close( $conn );
+              ?> 
             </h2>
               <span>
+
                 <?php
                   $serverName = "LAPTOP-0L08K6U2";
+
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -98,7 +103,8 @@
                            echo $row['strRole']." <br />";
                       }
                         sqlsrv_free_stmt( $stmt);
-              ?>
+                        sqlsrv_close( $conn );
+              ?> 
               </span>
           </div>
 
@@ -148,7 +154,7 @@
               <ul id="TransactionDropdown" class="collapse list-unstyled ">
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>
+                <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidation">External Validation</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
 

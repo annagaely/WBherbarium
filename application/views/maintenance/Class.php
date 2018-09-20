@@ -1,7 +1,4 @@
->
-
-
-       <div class="breadcrumb-holder">
+<div class="breadcrumb-holder">
        <div class="container-fluid">
          <ul class="breadcrumb">
            <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard" >Home</a></li>
@@ -113,6 +110,7 @@
      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
 
 
+
 <script>
  function resetForm() {
    document.getElementById("addClassForm").reset();
@@ -120,25 +118,8 @@
 
 </script>
 
-
-<script type="text/javascript">
-
- function showAllClass()
- {
-   $('#manageClasstbl').dataTable().fnClearTable();
-   $('#manageClasstbl').dataTable().fnDraw();
-   $('#manageClasstbl').dataTable().fnDestroy();
-   $('#manageClasstbl').dataTable({
-        "processing": true,
-        "serverSide": false,
-        "sAjaxSource": "<?php echo base_url('admin/showAllClass')?>",
-        "deferLoading": 10,
-        "bPaginate": true,
-        "aaSorting": [[0,'asc']],
-        "fnInitComplete": function(){
-
-        }
     });
+
   }
    $(document).ready(function(){
 
@@ -288,8 +269,6 @@
  });
 
 
-
-
-
- });
+  });
+  });
 </script>

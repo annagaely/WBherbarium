@@ -46,6 +46,7 @@
                 <div class="icon"><i class="icon-padnote"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br>Deposits</strong>
                   <div class="count-number">
+
                     <?php
                   $serverName = "LAPTOP-0L08K6U2";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
@@ -74,8 +75,10 @@
                 <div class="icon"><i class="icon-check"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br />Loans</strong>
                   <div class="count-number">
+
                    <?php
                   $serverName = "LAPTOP-0L08K6U2";
+
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -102,8 +105,10 @@
                 <div class="icon"><i class="icon-bill"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br />Visits</strong>
                   <div class="count-number">
+
                     <?php
                   $serverName = "LAPTOP-0L08K6U2";
+
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
