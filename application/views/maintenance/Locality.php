@@ -20,7 +20,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Locality</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
                 <form id= "addLocalityForm" method="POST" enctype="multipart/form-data">
@@ -203,33 +203,47 @@
             </div>
           </div>
         </div>
-       <!--start edit MODAL-->
-      <div class="card">
-        
+       <div class="card">
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table dataTable no-footer" id="manageLocalitytbl">
               <thead>
                 <tr>
-                  <th>Locality ID</th>
-                  <th>Island</th>
-                  <th>Region</th>
-                  <th>Province</th>
-                  <th>City</th>
-                  <th>Area</th>
-                  <th>Specific Location</th>
-                  <th>Short Location</th>
-                  <th>Actions</th>
+                  <th scope="col" width= "10%">Locality ID</th>
+                  <th scope="col" width= "10%">Island</th>
+                  <th scope="col" width= "10%">Region</th>
+                  <th scope="col" width= "10%">Province</th>
+                  <th scope="col" width= "10%">City</th>
+                  <th scope="col" width= "10%">Area</th>
+                  <th scope="col" width= "10%">Specific Location</th>
+                  <th scope="col" width= "10%">Short Location</th>
+                  <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdata">
-                        
-            </tbody>
+<!--         <tbody tbody id="showdata">
+            </tbody> -->
             </table>
         </div>
       </div>
     </div>
-    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+
+    </main>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <!--Table-->
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+
+<script>
+function resetForm() {
+    document.getElementById("addLocalityForm").reset();
+
+}
+</script>    
+
+
     <script>
       ///FOR ADD FORM//////
       $(document).ready(function () {
@@ -752,46 +766,31 @@
           }
       }
 </script>
-    <script type="text/javascript">  
-    $(function(){
-    
+  
+
+<script type="text/javascript">  
+    function showAllLocality()
+    {
+      $('#manageLocalitytbl').dataTable().fnClearTable();
+      $('#manageLocalitytbl').dataTable().fnDraw();
+      $('#manageLocalitytbl').dataTable().fnDestroy();
+      $('#manageLocalitytbl').dataTable({
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllLocality')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
+
+ $(document).ready(function() {
       //show
     showAllLocality();
     
-
-    function showAllLocality(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllLocality',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intLocalityID+'</td>'+
-                  '<td>'+data[i].strIsland+'</td>'+
-                  '<td>'+data[i].strRegion+'</td>'+
-                  '<td>'+data[i].strProvince+'</td>'+
-                  '<td>'+data[i].strCity+'</td>'+
-                  '<td>'+data[i].strArea+'</td>'+
-                  '<td>'+data[i].strSpecificLocation+'</td>'+
-                  '<td>'+data[i].strShortLocation+'</td>'+
-
-                  '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary locality-edit" data="'+data[i].intLocalityID+'">Edit</a>'+
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
-    }
-
 
 /////////////adding locality//////////
     $('#btnSave').click(function(){
@@ -824,7 +823,7 @@
 
 
 ////////////////editing locality////////////
-$('#showdata').on('click', '.locality-edit', function(){
+$(document).on('click', '.locality-edit', function(){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Locality');

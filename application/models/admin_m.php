@@ -114,16 +114,13 @@ public function showAllClass()
 			->join('tblPhylum p', 'p.intPhylumID = c.intPhylumID')
 			->get('tblCLass c');
 
-
 		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary class-edit" data="'.$r->intClassID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intClassID,
-
 					$r->strPhylumName,
-
 					$r->strClassName,
 					$btn,
 					$r->intClassID
@@ -132,6 +129,8 @@ public function showAllClass()
 
 		return $result;
 	}
+
+
 
 	public function showClassPhylumName(){
 		$query = $this->db->get('tblPhylum');
@@ -548,18 +547,30 @@ public function showSpeciesGenusName(){
 	/****** FAMILY BOXES START!!!!! ******/
 
 public function showAllFamilyBoxes(){
+		$result = array();
 		$query = $this->db->select('intBoxID,
 			 f.strFamilyName,
 			 strBoxNumber,
 			 intBoxLimit')
 			->join('tblFamily f', 'f.intFamilyID = fb.intFamilyID')
 			->get('tblFamilyBox fb');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+		foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary FB-edit" data="'.$r->intBoxID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intBoxID,
+					$r->strFamilyName,			
+					$r->strBoxNumber,
+					$r->intBoxLimit,
+					$btn,
+					$r->intBoxID
+					);
 		}
+
+		return $result;
 	}
+
 	public function showFBFamilyName(){
 		$query = $this->db->get('tblFamily');
 		if($query->num_rows() > 0){
@@ -632,15 +643,33 @@ public function showAllFamilyBoxes(){
   }
 		/****** END FAMILY BOXES!!!!! ******/
 	/****** LOCALITY START!!!!! ******/
-		public function showAllLocality(){
+public function showAllLocality(){
+		$result = array();
 		$query = $this->db->get('tblLocality');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+		foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary locality-edit" data="'.$r->intLocalityID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intLocalityID,
+					$r->strIsland,			
+					$r->strRegion,
+					$r->strProvince,
+					$r->strCity,
+					$r->strArea,
+					$r->strSpecificLocation,
+					$r->strShortLocation,
+					$btn,
+					$r->intLocalityID
+					);
 		}
+
+		return $result;
 	}
-	public function addLocality(){
+
+
+public function addLocality(){
 	$island = $this->input->post('sislandname');
 	$region = $this->input->post('sregionname');
 	$province = $this->input->post('sprovname');
@@ -689,7 +718,8 @@ public function showAllFamilyBoxes(){
 			return false;
 		}
 	}
-	public function updateLocality(){
+
+public function updateLocality(){
 	$island = $this->input->post('seislandname');
 	$region = $this->input->post('seregionname');
 	$province = $this->input->post('seprovname');
@@ -751,14 +781,26 @@ public function showAllFamilyBoxes(){
 	/****** END LOCALITY BOXES!!!!! ******/
 	/****** COLLECTOR START!!!!! ******/
 public function showAllCollector(){
+		$result = array();
 		$query = $this->db->query("select Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strAffiliation, intCollectorID
 		from tblCollector ");
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+		
+		foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary locality-edit" data="'.$r->intLocalityID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intCollectorID,
+					$r->strFullName,			
+					$r->strAffiliation,
+					$btn,
+					$r->intCollectorID
+					);
 		}
+
+		return $result;
 	}
+
 	public function addCollector(){
 
 	$fname = $this->input->post('fName');

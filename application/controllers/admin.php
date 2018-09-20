@@ -75,35 +75,18 @@ class admin extends CI_Controller {
 }
 
 /****** PHYLUM ONLY!!!!! ******/
-public function Phylum()
+public function Phylum() 
 {
-if($this->session->userdata('strUserName')!=''){
-$title['title'] = "PUPHerbarium | Phylum";
-$this->load->view('templates/header', $title);
-$this->load->view('maintenance/Phylum');
-$this->load->view('templates/footer');
+	if($this->session->userdata('strUserName')!='')
+	{
+		$title['title'] = "PUPHerbarium | Phylum";
+		$this->load->view('templates/header', $title);
+		$this->load->view('maintenance/Phylum');
+		$this->load->view('templates/footer');
+	}
 }
 
 	//show phylum
-
-    public function showAllPhylum()
-    {
-    
-        $output = $this->admin_m->showAllPhylum();
-
-        $response = array(
-          'aaData' => $output,
-          'iTotalRecords' => count($output),
-          'iTotalDisplayRecords' => count($output),
-          'iDisplayStart' => 0
-          );
-          echo json_encode($response);
-          exit();
-        
-    }
-
-
-
 public function showAllPhylum()
 {
 
@@ -119,46 +102,6 @@ public function showAllPhylum()
       exit();
 
 }
-	//show Class
-    public function showAllClass()
-    {
-    
-        $output = $this->admin_m->showAllClass();
-
-        $response = array(
-          'aaData' => $output,
-          'iTotalRecords' => count($output),
-          'iTotalDisplayRecords' => count($output),
-          'iDisplayStart' => 0
-          );
-          echo json_encode($response);
-          exit();
-        
-    }
-
-
-	public function showClassPhylumName(){
-	$result = $this->m->showClassPhylumName();
-	echo json_encode($result);
-	}
-	//update class
-	public function updateClass(){
-		$result = $this->m->updateClass();
-		$msg['success'] = false;
-		$msg['type'] = 'update';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
-	}
-	public function editClass(){
-		$result = $this->m->editClass();
-		echo json_encode($result);
-	}
-
-
-
-
 
 //add phylum
 public function addPhylum(){
@@ -198,16 +141,12 @@ else{
 redirect(base_url().'admin');
 }
 }
-//show Class
-// public function showAllClass(){
-// 	$result = $this->m->showAllClass();
-// 	echo json_encode($result);
-// 	}
+
+
 public function showAllClass()
 {
 
     $output = $this->admin_m->showAllClass();
-
     $response = array(
       'aaData' => $output,
       'iTotalRecords' => count($output),
@@ -219,10 +158,12 @@ public function showAllClass()
 
 }
 
-public function showClassPhylumName(){
-$result = $this->m->showClassPhylumName();
-echo json_encode($result);
+public function showClassPhylumName()
+{
+	$result = $this->m->showClassPhylumName();
+	echo json_encode($result);
 }
+
 //update class
 public function updateClass(){
 $result = $this->m->updateClass();
@@ -484,6 +425,7 @@ public function updateSpecies(){
 	}
 	/****** END SPECIES!!!!! ******/
 	/****** FAMILY BOXES START!!!!! ******/
+
 	public function Familyboxes()
 	{
 	if($this->session->userdata('strUserName')!=''){
@@ -498,9 +440,20 @@ public function updateSpecies(){
 }
 
 	public function showAllFamilyBoxes(){
-		$result = $this->m->showAllFamilyBoxes();
-		echo json_encode($result);
-		}
+{
+
+    $output = $this->admin_m->showAllFamilyBoxes();
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+}
 public function showFBFamilyName(){
 	$result = $this->m->showFBFamilyName();
 	echo json_encode($result);
@@ -542,9 +495,20 @@ public function updateFamilyBox(){
 	}
 }
 	public function showAllLocality(){
-		$result = $this->m->showAllLocality();
-		echo json_encode($result);
-	}
+{
+
+    $output = $this->admin_m->showAllLocality();
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+}
 	public function addLocality(){
 		$result = $this->m->addLocality();
 		echo json_encode($result);
@@ -574,9 +538,21 @@ public function updateFamilyBox(){
 	}
 }
 	public function showAllCollector(){
-		$result = $this->m->showAllCollector();
-		echo json_encode($result);
-	}
+	{
+
+    $output = $this->admin_m->showAllCollector();
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+}
+
 	public function addCollector(){
 		$result = $this->m->addCollector();
 		$msg['success'] = false;
