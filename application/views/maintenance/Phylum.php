@@ -132,10 +132,10 @@
 
 
       </main>
+
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
 
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
       <!--Table-->
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
@@ -238,7 +238,7 @@ function resetForm() {
       var domainName = $('input[name=txtdName]');
       var kingdomName = $('input[name=txtkName]');
       var phylumName = $('input[name=txtkName]');;
-if(confirm("Save data?")){
+      if(confirm("Save data?")){
           $.ajax({
           type: 'ajax',
           method: 'post',
