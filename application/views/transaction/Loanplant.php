@@ -84,7 +84,11 @@
             <div class="modal-header">
               <h5 id="exampleModalLabel" class="modal-title">Loan Plant</h5>
             <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
+<<<<<<< HEAD
                <span aria-hidden="true">X</span>
+=======
+               <span aria-hidden="true">&times;</span>
+>>>>>>> aa9ae35f489c2b9cda5f389d909172271fed7897
                </button>
             </div>
           <div class="modal-body">
@@ -213,7 +217,7 @@ sqlsrv_free_stmt( $stmt);
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="exampleModalLabel" class="modal-title">Email</h5>
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
         </div>
 
         <div class="modal-body">
@@ -295,7 +299,7 @@ sqlsrv_free_stmt( $stmt);
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="exampleModalLabel" class="modal-title">Confirmation</h5>
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
         </div>
 
         <div class="modal-body">
