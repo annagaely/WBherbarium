@@ -235,9 +235,6 @@ function resetForm() {
       var url = '<?php echo base_url() ?>admin/addPhylum';
       var data = $('#addPhylumForm').serialize();
       //validate form
-      var domainName = $('input[name=txtdName]');
-      var kingdomName = $('input[name=txtkName]');
-      var phylumName = $('input[name=txtkName]');;
 if(confirm("Save data?")){
           $.ajax({
           type: 'ajax',

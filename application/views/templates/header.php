@@ -57,13 +57,8 @@
           <!-- User Info-->
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
              <h2 class="h5">
-<<<<<<< HEAD
               <?php 
                   $serverName = "MSI";
-=======
-              <?php
-                  $serverName = "LAPTOP-0L08K6U2";
->>>>>>> aa9ae35f489c2b9cda5f389d909172271fed7897
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -81,20 +76,13 @@
                            echo $row['strFullName']." <br />";
                       }
                         sqlsrv_free_stmt( $stmt);
-<<<<<<< HEAD
                         sqlsrv_close( $conn );
               ?> 
             </h2>
               <span>
                 <?php 
                   $serverName = "MSI";
-=======
-              ?>
-            </h2>
-              <span>
-                <?php
-                  $serverName = "LAPTOP-0L08K6U2";
->>>>>>> aa9ae35f489c2b9cda5f389d909172271fed7897
+
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -112,12 +100,10 @@
                            echo $row['strRole']." <br />";
                       }
                         sqlsrv_free_stmt( $stmt);
-<<<<<<< HEAD
+
                         sqlsrv_close( $conn );
               ?> 
-=======
-              ?>
->>>>>>> aa9ae35f489c2b9cda5f389d909172271fed7897
+
               </span>
           </div>
 
