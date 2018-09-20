@@ -862,7 +862,7 @@ $message = $this->input->post('txtCustomMessage');
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Loaning of Specimen');
       $this->email->message("Your loan request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Loan Request ID:" . $id ."<br> <br>" . $message );
-
+	
       if($this->email->send())
      {
      	return true;

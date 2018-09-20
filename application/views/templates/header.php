@@ -50,7 +50,7 @@
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
              <h2 class="h5">
               <?php 
-                  $serverName = "DEI";
+                  $serverName = "MSI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -68,11 +68,12 @@
                            echo $row['strFullName']." <br />";
                       }
                         sqlsrv_free_stmt( $stmt);
+                        sqlsrv_close( $conn );
               ?> 
             </h2>
               <span>
                 <?php 
-                  $serverName = "DEI";
+                  $serverName = "MSI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -90,6 +91,7 @@
                            echo $row['strRole']." <br />";
                       }
                         sqlsrv_free_stmt( $stmt);
+                        sqlsrv_close( $conn );
               ?> 
               </span>
           </div>

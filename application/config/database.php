@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'DEI',
+	'hostname' => 'MSI',
 	'username' => 'sa',
 	'password' => '1234',
 	'database' => 'HerbariumDatabase',
