@@ -83,24 +83,10 @@ $this->load->view('templates/header', $title);
 $this->load->view('maintenance/Phylum');
 $this->load->view('templates/footer');
 }
+}
 
 	//show phylum
 
-    public function showAllPhylum()
-    {
-    
-        $output = $this->admin_m->showAllPhylum();
-
-        $response = array(
-          'aaData' => $output,
-          'iTotalRecords' => count($output),
-          'iTotalDisplayRecords' => count($output),
-          'iDisplayStart' => 0
-          );
-          echo json_encode($response);
-          exit();
-        
-    }
 
 
 
@@ -119,43 +105,6 @@ public function showAllPhylum()
       exit();
 
 }
-	//show Class
-    public function showAllClass()
-    {
-    
-        $output = $this->admin_m->showAllClass();
-
-        $response = array(
-          'aaData' => $output,
-          'iTotalRecords' => count($output),
-          'iTotalDisplayRecords' => count($output),
-          'iDisplayStart' => 0
-          );
-          echo json_encode($response);
-          exit();
-        
-    }
-
-
-	public function showClassPhylumName(){
-	$result = $this->m->showClassPhylumName();
-	echo json_encode($result);
-	}
-	//update class
-	public function updateClass(){
-		$result = $this->m->updateClass();
-		$msg['success'] = false;
-		$msg['type'] = 'update';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
-	}
-	public function editClass(){
-		$result = $this->m->editClass();
-		echo json_encode($result);
-	}
-
 
 
 
@@ -323,7 +272,7 @@ echo json_encode($msg);
 		//show Order
     public function showAllFamily()
     {
-    
+
         $output = $this->admin_m->showAllFamily();
 
         $response = array(
@@ -334,7 +283,7 @@ echo json_encode($msg);
           );
           echo json_encode($response);
           exit();
-        
+
     }
 
 	public function showFamilyOrderName()
@@ -383,7 +332,7 @@ public function updateFamily(){
 		//show Order
     public function showAllGenus()
     {
-    
+
         $output = $this->admin_m->showAllGenus();
 
         $response = array(
@@ -394,7 +343,7 @@ public function updateFamily(){
           );
           echo json_encode($response);
           exit();
-        
+
     }
 
 	public function showGenusFamilyName(){
@@ -496,11 +445,25 @@ public function updateSpecies(){
 	redirect(base_url().'admin');
 	}
 }
-
+/*
 	public function showAllFamilyBoxes(){
 		$result = $this->m->showAllFamilyBoxes();
 		echo json_encode($result);
 		}
+    */
+    public function showAllFamilyBoxes()
+    {
+      $output = $this->admin_m->showAllFamilyBoxes();
+
+      $response = array(
+        'aaData' => $output,
+        'iTotalRecords' => count($output),
+        'iTotalDisplayRecords' => count($output),
+        'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+    }
 public function showFBFamilyName(){
 	$result = $this->m->showFBFamilyName();
 	echo json_encode($result);
