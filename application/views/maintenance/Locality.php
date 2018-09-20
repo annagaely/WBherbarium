@@ -13,11 +13,11 @@
       <div class="card">
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Locality</button>
-        </div>         
+        </div>
         <!-- Modal-->
         <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
-            <div class="modal-content">
+            <div class="modalcontent">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Locality</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
@@ -36,8 +36,8 @@
                   </div>
                 </div>
                   <div class="row">
-                 
-                  <div class="form-group col-sm-4">   
+
+                  <div class="form-group col-sm-4">
                     <label>Island:</label> <label style="color: red">*</label> <br>
                     <select id ="sisland" name ="sislandname"  class="form-control">
                       <option value="island0">--Select an Item--</option>
@@ -49,19 +49,19 @@
                   <div class="form-group col-sm-4">
                     <label>Region:</label> <label style="color: red">*</label> <br>
                     <select id="sregion" name ="sregionname" class="form-control">
-                      
+
                     </select>
                   </div>
                   <div class="form-group col-sm-4">
                     <label>Province:</label> <label style="color: red">*</label> <br>
                     <select id="sprov" name ="sprovname" class="form-control">
-                     
+
                     </select>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-sm-6">
-                  <label>City/Municipality:</label>  <label style="color: red">*</label> 
+                  <label>City/Municipality:</label>  <label style="color: red">*</label>
                     <select id="smunicipality" name ="smunicipalityname" class="form-control">
                     </select>
                   </div>
@@ -71,17 +71,17 @@
                   </div>
                 </div>
                   <div class="form-group">
-                    <label>Specific Location:</label> <label style="color: red">*</label> 
+                    <label>Specific Location:</label> <label style="color: red">*</label>
                     <input type="text" id="sspecificloc" name="spLocName" placeholder="Specific Location" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label>Shortcut Location:</label> <label style="color: red">*</label> 
+                    <label>Shortcut Location:</label> <label style="color: red">*</label>
                     <input type="text" id="sshortcutloc" name="spShorName" placeholder="Shortcut Location" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Country:</label> <label style="color: red">*</label> <br>
                     <input type="text" id="scountry" value="Philippines" name="scountry" class="form-control"><br>
-                   
+
                     <label id="sotherlocalitylabel">Locality:</label> <label style="color: red">*</label> <br>
                     <input type="text" id = "sotherlocality" class="form-control" placeholder="Input full locality">
                   </div>
@@ -99,7 +99,7 @@
 
                   <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" ID = "btnSave" value="Save" class="btn btn-primary">
                   </div>
                 </form>
@@ -130,10 +130,10 @@
                   </div>
                 </div>
                  <div class="row">
-                  <div class="form-group col-sm-4"> 
-        
-                    <label>Island:</label> <label style="color: red">*</label> <br> 
-                    
+                  <div class="form-group col-sm-4">
+
+                    <label>Island:</label> <label style="color: red">*</label> <br>
+
                     <select id ="sisland1" name ="seislandname"  class="form-control">
                       <option value="island0">--Select an Item--</option>
                       <option Value="Luzon"> Luzon</option>
@@ -144,22 +144,22 @@
                   <div class="form-group col-sm-4">
                     <label>Region:</label> <label style="color: red">*</label> <br>
                     <select id="sregion1" name ="seregionname" class="form-control">
-                      
+
                     </select>
                     <input type="hidden" name="txtId" value="0">
                   </div>
                   <div class="form-group col-sm-4">
                     <label>Province:</label> <label style="color: red">*</label> <br>
                     <select id="sprov1" name ="seprovname" class="form-control">
-                     
+
                     </select>
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>City/Municipality:</label> <label style="color: red">*</label> 
+                    <label>City/Municipality:</label> <label style="color: red">*</label>
                     <select id="smunicipality1" name ="semunicipalityname" class="form-control">
-                     
+
                     </select>
                   </div>
                   <div class="form-group col-sm-6">
@@ -168,17 +168,17 @@
                   </div>
                 </div>
                   <div class="form-group">
-                    <label>Specific Location:</label> <label style="color: red">*</label> 
+                    <label>Specific Location:</label> <label style="color: red">*</label>
                     <input type="text" name="espLocName" id="sspecificloc1" placeholder="Specific Location" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label>Shortcut Location:</label> 
+                    <label>Shortcut Location:</label>
                     <input type="text" name="espShorName" id ="sshortcutloc1" placeholder="Shortcut Location" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Country:</label> <label style="color: red">*</label> <br>
                     <input type="text" id="scountry1" value="Philippines" name="scountry" class="form-control"><br>
-                   
+
 
                     <label id="sotherlocalitylabel">Locality:</label> <label style="color: red">*</label> <br>
                     <input type="text" id = "sotherlocality1" class="form-control" placeholder="Input full locality">
@@ -195,7 +195,7 @@
                 </div>
                   <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" ID = "btnEditSave" value="Save"class="btn btn-primary">
                   </div>
                 </form>
@@ -228,20 +228,20 @@
     </div>
 
     </main>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
 
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
-      <!--Table-->
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+    <!--Table-->
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+
 
 <script>
 function resetForm() {
     document.getElementById("addLocalityForm").reset();
 
 }
-</script>    
+</script>
 
 
     <script>
@@ -328,7 +328,7 @@ function resetForm() {
           } else if(val == "Isabela") {
            $("#smunicipality").html("<option value='mun0'>-- select one --</option><option value='Alicia'>Alicia</option><option value='Angadanan'>Angadanan</option><option value='Aurora'>Aurora</option><option value='Benito Soliven'>Benito Soliven</option><option value='Burgos'>Burgos</option><option value='Cabagan'>Cabagan</option><option value='Cabatuan'>Cabatuan</option><option value='Cordon'>Cordon</option><option value='Delfin Albano'>Delfin Albano</option><option value='Dinapigue'>Dinapigue</option><option value='Divilcan'>Divilacan</option><option value='Echague'>Echague</option><option value='Gamu'>Gamu</option><option value='Jones'>Jones</option><option value='Luna'>Luna</option><option value='Maconacon'>Maconacon</option><option value='Mallig'>Mallig</option><option value='Naguilian'>Naguilian</option><option value='Palanan'>Palanan</option><option value='Quezon'>Quezon</option><option value='Quirino'>Quirino</option><option value='Ramon'>Ramon</option><option value='Reina Mercedes'>Reina Mercedes</option><option value='Roxas'>Roxas</option><option value='San Agustin'>San Agustin</option><option value='San Guillermo'>San Guillermo</option><option value='San Isidro'>San Isidro</option><option value='San Manuel'>San Manuel</option><option value='San Mariano'>San Mariano</option><option value='San Mateo'>San Mateo</option><option value='San Pablo'>San Pablo</option><option value='Santa Maria'>Santa Maria</option><option value='Santo Tomas'>Santo Tomas</option><option value='Tumauini'>Tumauini</option>")
           } else if(val == "Nueva Vizcaya") {
-            $("#smunicipality").html("<option value='mun0'>-- select one --</option><option value='Alfonso Castañeda'>Alfonso Castañeda</option><option value='Ambaguio'>Ambaguio</option><option value='Aritao'>Aritao</option><option value='Bagabag'>Bagabag</option><option value='Bambang'>Bambang</option><option value='Bayombong'>Bayombong</option><option value='Diadi'>Diadi</option><option value='Dupax del Norte'>Dupax del Norte</option><option value='Dupax del Sur'>Dupax del Sur</option><option value='Kasibu'>Kasibu</option><option value='Kayapa'>Kayapa</option><option value='Quezon'>Quezon</option><option value='Santa Fe'>Santa Fe</option><option value='Solano'>Solano</option><option value='Villaverde'>Villaverde</option>") 
+            $("#smunicipality").html("<option value='mun0'>-- select one --</option><option value='Alfonso Castañeda'>Alfonso Castañeda</option><option value='Ambaguio'>Ambaguio</option><option value='Aritao'>Aritao</option><option value='Bagabag'>Bagabag</option><option value='Bambang'>Bambang</option><option value='Bayombong'>Bayombong</option><option value='Diadi'>Diadi</option><option value='Dupax del Norte'>Dupax del Norte</option><option value='Dupax del Sur'>Dupax del Sur</option><option value='Kasibu'>Kasibu</option><option value='Kayapa'>Kayapa</option><option value='Quezon'>Quezon</option><option value='Santa Fe'>Santa Fe</option><option value='Solano'>Solano</option><option value='Villaverde'>Villaverde</option>")
           } else if(val == "Quirino") {
             $("#smunicipality").html("<option value='mun0'>-- select one --</option><option value='Aglipay'>Aglipay</option><option value='Cabarroguis'>Cabarroguis</option><option value='Diffun'>Diffun</option><option value='Maddela'>Maddela</option><option value='Nagptipunan'>Nagtipunan</option><option value='Saguday'>Saguday</option>")
           } else if (val == "Aurora") {
@@ -461,7 +461,7 @@ function resetForm() {
           } else if (val == "Lanao del Sur") {
             $("#smunicipality").html("<option value='mun0'>-- select one --</option><option value='Amai Manabilang'>Amai Manabilang (Bumbaran)</option><option value='Bacolod-Kalawi'>Bacolod-Kalawi (Bacolod-Grande)</option><option value='Balabagan'>Balabagan</option><option value='Balindong'>Balindong (Watu)</option><option value='Bayang'>Bayang</option><option value='Binidayan'>Binidayan</option><option value='Buadiposo-Buntong'>Buadiposo-Buntong</option><option value='Bubong'>Bubong</option><option value='Butig'>Butig</option><option value='Calanogas'>Calanogas</option><option value='Ditsaan-Ramain'>Ditsaan-Ramain</option><option value='Ganassi'>Ganassi</option><option value='Kapai'>Kapai</option><option value='Kapatagan'>Kapatagan</option><option value='Lumba-Bayabao'>Lumba-Bayabao (Maguing)</option><option value='Lumbaca-Unayan'>Lumbaca-Unayan</option><option value='Lumbatan'>Lumbatan</option><option value='Lumbayanague'>Lumbayanague</option><option value='Madalum'>Madalum</option><option value='Madamba'>Madamba</option><option value='Maguing'>Maguing</option><option value='Malabang'>Malabang</option><option value='Marantao'>Marantao</option><option value='Marawi'>Marawi</option><option value='Marogong'>Marogong</option><option value='Masiu'>Masiu</option><option value='Mulondo'>Mulondo</option><option value='Pagayawan'>Pagayawan (Tatarikan)</option><option value='Piagapo'>Piagapo</option><option value='Picong'>Picong (Sultan Gumander)</option><option value='Poona Bayabao'>Poona Bayabao (Gata)</option><option value='Pualas'>Pualas</option><option value='Saguiaran'>Saguiaran</option><option value='Sultan Dumalondong'>Sultan Dumalondong</option><option value='Tagoloan II'>Tagoloan II</option><option value='Tamparan'>Tamparan</option><option value='Taraka'>Taraka</option><option value='Tubaran'>Tubaran</option><option value='Tugaya'>Tugaya</option><option value='Wao'>Wao</option>")
           } else if (val == "Maguindanao") {
-              
+
             $("#smunicipality").html("<option value='mun0'>-- select one --</option><option value=''></option><option value='Ampatuan'>Ampatuan</option><option value='Barira'>Barira</option><option value='Buldon'>Buldon</option><option value='Buluan'>Buluan</option><option value='Datu Abdullah Sangki'>Datu Abdullah Sangki</option><option value='Datu Anggal Midtimbang'>Datu Anggal Midtimbang</option><option value='Datu  Blah T. Sinsuat'>Datu Blah T. Sinsuat</option><option value='Datu Hoffer Ampatuan'>Datu Hoffer Ampatuan</option><option value='Datu Montawal'>Datu Montawal</option><option value='Datu Odin Sinsuat'>Datu Odin Sinsuat</option><option value='Datu Paglas'>Datu Paglas</option><option value='Datu Piang'>Datu Piang</option><option value='Datu Salibo'>Datu Salibo</option><option value='Datu Saudi-Ampatuan'>Datu Saudi-Ampatuan</option><option value='Datu Unsay'>Datu Unsay</option><option value='General Salipada K. Pendatun'>Datu Salipada K. Pendatun</option><option value='Guindulungan'>Guindulungan</option><option value='Kabuntalan'>Kabuntalan</option><option value='Mamasapano'>Mamasapano</option><option value='Mangudadatu'>Mangudadatu</option><option value='Matanog'>Matanog</option><option value='Northern Kabuntalan'>Northern Kabuntalan</option><option value='Pagalungan'>Pagalungan</option><option value='Paglat'>Paglat</option><option value='Pandag'>Pandag</option><option value='Parang'>Parang</option><option value='Rajah Buayan'>Rajah Buayan</option><option value='Shariff Aguak'>Shariff Aguak</option><option value='Shariff Saydona Mustapha'>Shariff Saydona Mustapha</option><option value='South Upi'>South Upi</option><option value='Sultan Kudarat'>Sultan Kudarat</option><option value='Sultan Mastura'>Sultan Mastura</option><option value='Sultan sa Barongis'>Sultan sa Barongis</option><option value='Sultan Sumagka'>Sultan Sumagka</option><option value='Talayan'>Talayan</option><option value='Upi'>Upi</option>")
           } else if (val == "Sulu") {
             $("#smunicipality").html("<option value='mun0'>-- select one --</option><option value='Banguingui'>Banguingui</option><option value='Hadji Panglima Tahil'>Hadji Panglima Tahil</option><option value='Indanan'>Indanan</option><option value='Jolo'>Jolo</option><option value='Kalingalan Caluang'>Kalingalan Caluang</option><option value='Lugus'>Lugus</option><option value='Luuk'>Luuk</option><option value='Maimbung'>Maimbung</option><option value='Old Panamao'>Old Panamao</option><option value='Omar'>Omar</option><option value='Pandami'>Pandami</option><option value='Panglima Estino'>Panglima Estino</option><option value='Pangutaran'>Pangutaran</option><option value='Parang'>Parang</option><option value='Pata'>Pata</option><option value='Patikul'>Patikul</option><option value='Siasi'>Siasi</option><option value='Talipao'></option><option value='Tapul'></option>")
@@ -556,7 +556,7 @@ function resetForm() {
           } else if(val == "Isabela") {
            $("#smunicipality1").html("<option value='mun0'>-- select one --</option><option value='Alicia'>Alicia</option><option value='Angadanan'>Angadanan</option><option value='Aurora'>Aurora</option><option value='Benito Soliven'>Benito Soliven</option><option value='Burgos'>Burgos</option><option value='Cabagan'>Cabagan</option><option value='Cabatuan'>Cabatuan</option><option value='Cordon'>Cordon</option><option value='Delfin Albano'>Delfin Albano</option><option value='Dinapigue'>Dinapigue</option><option value='Divilcan'>Divilacan</option><option value='Echague'>Echague</option><option value='Gamu'>Gamu</option><option value='Jones'>Jones</option><option value='Luna'>Luna</option><option value='Maconacon'>Maconacon</option><option value='Mallig'>Mallig</option><option value='Naguilian'>Naguilian</option><option value='Palanan'>Palanan</option><option value='Quezon'>Quezon</option><option value='Quirino'>Quirino</option><option value='Ramon'>Ramon</option><option value='Reina Mercedes'>Reina Mercedes</option><option value='Roxas'>Roxas</option><option value='San Agustin'>San Agustin</option><option value='San Guillermo'>San Guillermo</option><option value='San Isidro'>San Isidro</option><option value='San Manuel'>San Manuel</option><option value='San Mariano'>San Mariano</option><option value='San Mateo'>San Mateo</option><option value='San Pablo'>San Pablo</option><option value='Santa Maria'>Santa Maria</option><option value='Santo Tomas'>Santo Tomas</option><option value='Tumauini'>Tumauini</option>")
           } else if(val == "Nueva Vizcaya") {
-            $("#smunicipality1").html("<option value='mun0'>-- select one --</option><option value='Alfonso Castañeda'>Alfonso Castañeda</option><option value='Ambaguio'>Ambaguio</option><option value='Aritao'>Aritao</option><option value='Bagabag'>Bagabag</option><option value='Bambang'>Bambang</option><option value='Bayombong'>Bayombong</option><option value='Diadi'>Diadi</option><option value='Dupax del Norte'>Dupax del Norte</option><option value='Dupax del Sur'>Dupax del Sur</option><option value='Kasibu'>Kasibu</option><option value='Kayapa'>Kayapa</option><option value='Quezon'>Quezon</option><option value='Santa Fe'>Santa Fe</option><option value='Solano'>Solano</option><option value='Villaverde'>Villaverde</option>") 
+            $("#smunicipality1").html("<option value='mun0'>-- select one --</option><option value='Alfonso Castañeda'>Alfonso Castañeda</option><option value='Ambaguio'>Ambaguio</option><option value='Aritao'>Aritao</option><option value='Bagabag'>Bagabag</option><option value='Bambang'>Bambang</option><option value='Bayombong'>Bayombong</option><option value='Diadi'>Diadi</option><option value='Dupax del Norte'>Dupax del Norte</option><option value='Dupax del Sur'>Dupax del Sur</option><option value='Kasibu'>Kasibu</option><option value='Kayapa'>Kayapa</option><option value='Quezon'>Quezon</option><option value='Santa Fe'>Santa Fe</option><option value='Solano'>Solano</option><option value='Villaverde'>Villaverde</option>")
           } else if(val == "Quirino") {
             $("#smunicipality1").html("<option value='mun0'>-- select one --</option><option value='Aglipay'>Aglipay</option><option value='Cabarroguis'>Cabarroguis</option><option value='Diffun'>Diffun</option><option value='Maddela'>Maddela</option><option value='Nagptipunan'>Nagtipunan</option><option value='Saguday'>Saguday</option>")
           } else if (val == "Aurora") {
@@ -689,7 +689,7 @@ function resetForm() {
           } else if (val == "Lanao del Sur") {
             $("#smunicipality1").html("<option value='mun0'>-- select one --</option><option value='Amai Manabilang'>Amai Manabilang (Bumbaran)</option><option value='Bacolod-Kalawi'>Bacolod-Kalawi (Bacolod-Grande)</option><option value='Balabagan'>Balabagan</option><option value='Balindong'>Balindong (Watu)</option><option value='Bayang'>Bayang</option><option value='Binidayan'>Binidayan</option><option value='Buadiposo-Buntong'>Buadiposo-Buntong</option><option value='Bubong'>Bubong</option><option value='Butig'>Butig</option><option value='Calanogas'>Calanogas</option><option value='Ditsaan-Ramain'>Ditsaan-Ramain</option><option value='Ganassi'>Ganassi</option><option value='Kapai'>Kapai</option><option value='Kapatagan'>Kapatagan</option><option value='Lumba-Bayabao'>Lumba-Bayabao (Maguing)</option><option value='Lumbaca-Unayan'>Lumbaca-Unayan</option><option value='Lumbatan'>Lumbatan</option><option value='Lumbayanague'>Lumbayanague</option><option value='Madalum'>Madalum</option><option value='Madamba'>Madamba</option><option value='Maguing'>Maguing</option><option value='Malabang'>Malabang</option><option value='Marantao'>Marantao</option><option value='Marawi'>Marawi</option><option value='Marogong'>Marogong</option><option value='Masiu'>Masiu</option><option value='Mulondo'>Mulondo</option><option value='Pagayawan'>Pagayawan (Tatarikan)</option><option value='Piagapo'>Piagapo</option><option value='Picong'>Picong (Sultan Gumander)</option><option value='Poona Bayabao'>Poona Bayabao (Gata)</option><option value='Pualas'>Pualas</option><option value='Saguiaran'>Saguiaran</option><option value='Sultan Dumalondong'>Sultan Dumalondong</option><option value='Tagoloan II'>Tagoloan II</option><option value='Tamparan'>Tamparan</option><option value='Taraka'>Taraka</option><option value='Tubaran'>Tubaran</option><option value='Tugaya'>Tugaya</option><option value='Wao'>Wao</option>")
           } else if (val == "Maguindanao") {
-              
+
             $("#smunicipality1").html("<option value='mun0'>-- select one --</option><option value=''></option><option value='Ampatuan'>Ampatuan</option><option value='Barira'>Barira</option><option value='Buldon'>Buldon</option><option value='Buluan'>Buluan</option><option value='Datu Abdullah Sangki'>Datu Abdullah Sangki</option><option value='Datu Anggal Midtimbang'>Datu Anggal Midtimbang</option><option value='Datu  Blah T. Sinsuat'>Datu Blah T. Sinsuat</option><option value='Datu Hoffer Ampatuan'>Datu Hoffer Ampatuan</option><option value='Datu Montawal'>Datu Montawal</option><option value='Datu Odin Sinsuat'>Datu Odin Sinsuat</option><option value='Datu Paglas'>Datu Paglas</option><option value='Datu Piang'>Datu Piang</option><option value='Datu Salibo'>Datu Salibo</option><option value='Datu Saudi-Ampatuan'>Datu Saudi-Ampatuan</option><option value='Datu Unsay'>Datu Unsay</option><option value='General Salipada K. Pendatun'>Datu Salipada K. Pendatun</option><option value='Guindulungan'>Guindulungan</option><option value='Kabuntalan'>Kabuntalan</option><option value='Mamasapano'>Mamasapano</option><option value='Mangudadatu'>Mangudadatu</option><option value='Matanog'>Matanog</option><option value='Northern Kabuntalan'>Northern Kabuntalan</option><option value='Pagalungan'>Pagalungan</option><option value='Paglat'>Paglat</option><option value='Pandag'>Pandag</option><option value='Parang'>Parang</option><option value='Rajah Buayan'>Rajah Buayan</option><option value='Shariff Aguak'>Shariff Aguak</option><option value='Shariff Saydona Mustapha'>Shariff Saydona Mustapha</option><option value='South Upi'>South Upi</option><option value='Sultan Kudarat'>Sultan Kudarat</option><option value='Sultan Mastura'>Sultan Mastura</option><option value='Sultan sa Barongis'>Sultan sa Barongis</option><option value='Sultan Sumagka'>Sultan Sumagka</option><option value='Talayan'>Talayan</option><option value='Upi'>Upi</option>")
           } else if (val == "Sulu") {
             $("#smunicipality1").html("<option value='mun0'>-- select one --</option><option value='Banguingui'>Banguingui</option><option value='Hadji Panglima Tahil'>Hadji Panglima Tahil</option><option value='Indanan'>Indanan</option><option value='Jolo'>Jolo</option><option value='Kalingalan Caluang'>Kalingalan Caluang</option><option value='Lugus'>Lugus</option><option value='Luuk'>Luuk</option><option value='Maimbung'>Maimbung</option><option value='Old Panamao'>Old Panamao</option><option value='Omar'>Omar</option><option value='Pandami'>Pandami</option><option value='Panglima Estino'>Panglima Estino</option><option value='Pangutaran'>Pangutaran</option><option value='Parang'>Parang</option><option value='Pata'>Pata</option><option value='Patikul'>Patikul</option><option value='Siasi'>Siasi</option><option value='Talipao'></option><option value='Tapul'></option>")
@@ -704,7 +704,7 @@ function resetForm() {
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
      function radioCountry()
-     { 
+     {
         if(document.getElementById("radioOthers").checked == true )
           {
               document.getElementById("sisland").disabled=true;
@@ -736,7 +736,7 @@ function resetForm() {
 </script>
 <script type="text/javascript">
      function radioCountry1()
-     { 
+     {
         if(document.getElementById("radioOthers1").checked == true )
           {
               document.getElementById("sisland1").disabled=true;
@@ -766,9 +766,9 @@ function resetForm() {
           }
       }
 </script>
-  
 
-<script type="text/javascript">  
+
+<script type="text/javascript">
     function showAllLocality()
     {
       $('#manageLocalitytbl').dataTable().fnClearTable();
@@ -782,7 +782,7 @@ function resetForm() {
          "bPaginate": true,
          "aaSorting": [[0,'asc']],
          "fnInitComplete": function(){
-                   
+
          }
      });
    }
@@ -790,7 +790,7 @@ function resetForm() {
  $(document).ready(function() {
       //show
     showAllLocality();
-    
+
 
 /////////////adding locality//////////
     $('#btnSave').click(function(){
@@ -817,7 +817,7 @@ function resetForm() {
             alert('Could not save Data');
           }
         });
-      
+
     });
 
 
@@ -847,13 +847,13 @@ $(document).on('click', '.locality-edit', function(){
         error: function(){$('input[name=txtId]').val(data.intLocalityID);
           alert('Could not Edit Data');
         }
-      
+
     });
 
   });
 
     $('#btnEditSave').click(function(){
-      var data = $('#editLocalityForm').serialize(); 
+      var data = $('#editLocalityForm').serialize();
           $.ajax({
           type: 'ajax',
           method: 'post',

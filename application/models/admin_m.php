@@ -555,13 +555,13 @@ public function showAllFamilyBoxes(){
 			->join('tblFamily f', 'f.intFamilyID = fb.intFamilyID')
 			->get('tblFamilyBox fb');
 
-		foreach ($query->result() as $r) 
+		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary FB-edit" data="'.$r->intBoxID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intBoxID,
-					$r->strFamilyName,			
+					$r->strFamilyName,
 					$r->strBoxNumber,
 					$r->intBoxLimit,
 					$btn,
@@ -649,13 +649,13 @@ public function showAllLocality(){
 		$result = array();
 		$query = $this->db->get('tblLocality');
 
-		foreach ($query->result() as $r) 
+		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary locality-edit" data="'.$r->intLocalityID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intLocalityID,
-					$r->strIsland,			
+					$r->strIsland,
 					$r->strRegion,
 					$r->strProvince,
 					$r->strCity,
@@ -786,14 +786,14 @@ public function showAllCollector(){
 		$result = array();
 		$query = $this->db->query("select Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strAffiliation, intCollectorID
 		from tblCollector ");
-		
-		foreach ($query->result() as $r) 
+
+		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary locality-edit" data="'.$r->intLocalityID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary collector-edit" data="'.$r->intCollectorID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intCollectorID,
-					$r->strFullName,			
+					$r->strFullName,
 					$r->strAffiliation,
 					$btn,
 					$r->intCollectorID
@@ -895,7 +895,6 @@ public function showAllCollector(){
 		$id = $this->input->get('id');
 		$this->db->where('intCollectorID', $id);
 		$query = $this->db->select('intCollectorID,
-
       strFirstname
       ,strMiddlename
       ,strLastname
@@ -916,14 +915,23 @@ public function showAllCollector(){
 	/****** END COLLECTOR!!!!! ******/
 	/****** EXTERNAL VALIDATOR START!!!!! ******/
 	public function showAllValidator(){
+    $result = array();
 		$query = $this->db->query("select Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strInstitution, intValidatorID
 		from tblValidator
 		where strValidatorType = 'External'");
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-		}
+		foreach ($query->result() as $r)
+    {
+      $btn = '<button class="btn btn-primary validator-edit" data="'.$r->intValidatorID.'">Edit</button>';
+
+      $result[] = array(
+        $r->intValidatorID,
+        $r->strFullLocation,
+        $r->strInstitution,
+        $btn,
+        $r->intValidatorID
+      );
+    }
+    return $result;
 	}
 
 	public function addValidator(){
@@ -1044,14 +1052,23 @@ public function editValidator(){
 	/****** END EXTERNALVALIDATOR!!!!! ******/
 	/******  STAFF MGT START!!!!! ******/
 	public function showAllStaff(){
+    $result = array();
 		$query = $this->db->query("select intStaffID,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strRole, strCollegeDepartment
-		from [tblHerbariumStaff]
-		");
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-		}
+		from tblHerbariumStaff");
+		foreach ($query->result() as $r)
+    {
+      $btn = '<button class="btn btn-primary staff-edit" data="'.$r->intStaffID.'">Edit</button>';
+
+      $result[] = array(
+        $r->intStaffID,
+        $r->strFullName,
+        $r->strRole,
+        $r->strCollegeDepartment,
+        $btn,
+        $r->intStaffID
+      );
+    }
+    return $result;
 	}
 	public function addStaff(){
 
@@ -1172,8 +1189,23 @@ UPDATE tblHerbariumStaff
 	/****** END STAFF MGT!!!!! ******/
 	/******  ACCOUNTS START!!!!! ******/
 	public function showAllAccounts(){
+    $result = array();
 		$query = $this->db->query("select * from viewAccounts
 		");
+
+    foreach ($query->result() as $r)
+    {
+      $btn = '<button class="btn btn-primary" data="'.$r->intAccountID.'">Edit</button>';
+
+      $result[] = array(
+        $r->intAccountID,
+        $r->strFullName,
+        $r->strUserName,
+        $r->str
+      );
+    }
+
+
 		if($query->num_rows() > 0){
 			return $query->result();
 		}else{

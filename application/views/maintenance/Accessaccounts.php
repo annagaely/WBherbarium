@@ -44,7 +44,7 @@
                    <label for="checkPass"> Show Password</label>
                   </div>
                 </div>
-    
+
                 <br>
 
 
@@ -127,7 +127,19 @@
       </div>
     </div>
 
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+
+    <!--Table-->
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+
+   <script>
+   function resetForm() {
+       document.getElementById("addAccountForm").reset();
+
+   }
+   </script>
 <script type="text/javascript">
   function showPassword() {
     var x = document.getElementById("AApassword");
@@ -136,11 +148,11 @@
     } else {
         x.type = "password";
     }
-} 
- 
+}
+
 </script>
 <script type="text/javascript">
-  
+
  function eshowPassword() {
     var y = document.getElementById("eAAPassword");
     if (y.type === "password") {
@@ -151,40 +163,26 @@
 }
 </script>
     <script type="text/javascript">
-    $(function(){
+    function showAllAccounts()
+    {
+      $('#manageAccountstbl').dataTable().fnClearTable();
+      $('#manageAccountstbl').dataTable().fnDraw();
+      $('#manageAccountstbl').dataTable().fnDestroy();
+      $('#manageAccountstbl').dataTable({
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllAccounts')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
 
-      //show
-    showAllAccounts();
-
-
-    function showAllAccounts(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllAccounts',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intAccountID+'</td>'+
-                  '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].strUsername+'</td>'+
-                  '<td>'+data[i].strRole+'</td>'+
-                  '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary account-edit" data="'+data[i].intAccountID+'">Edit</a>'+
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
+         }
+     });
     }
-
+    $(document).ready(function() {
+      showAllAccounts();
+//adding account
 $('#btnSave').click(function(event){
       var data = $('#addAccountForm').serialize();
       //validate form
@@ -219,7 +217,6 @@ if(confirm("Save data?")){
         event.preventDefault();
         }
     });
- 
 showStaffName();
  function showStaffName(){
       $.ajax({
@@ -242,31 +239,6 @@ showStaffName();
       });
 
 }
-
-$('#showdata').on('click', '.account-edit', function(){
-      var id = $(this).attr('data');
-      $('#myEditModal').modal('show');
-
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/editAccounts',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('input[name=eAAUName]').val(data.strUsername);
-          $('input[name=eAAPass]').val(data.strPassword);
-          $('input[name=txtId]').val(data.intAccountID);
-          $('#myEditModal').find('.modal-title').text('Editing: '+data.strFullName+'');
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
-
-    });
-
-  });
 
 $('#btnEditSave').click(function(){
       var data = $('#editAccountForm').serialize();

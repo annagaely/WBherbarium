@@ -13,7 +13,7 @@
       <div class="card">
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Collector</button>
-        </div>       
+        </div>
         <!-- Modal-->
         <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
@@ -23,7 +23,7 @@
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
-                
+
                 <form id= "addCollectorForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="row">
                     <div class="form-group col-sm-8">
@@ -33,7 +33,7 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Middle Name:</label> 
+                      <label>Middle Name:</label>
                       <input type="text" name="mName"  id="strMiddlename" placeholder="Middle Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
@@ -75,7 +75,7 @@
                 </div>
                   <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" id="btnSave" value="Save" class="btn btn-primary">
                   </div>
                 </form>
@@ -94,7 +94,7 @@
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
-                
+
                 <form id= "editCollectorForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="row">
                     <div class="form-group col-sm-8">
@@ -105,7 +105,7 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Middle Name:</label> 
+                      <label>Middle Name:</label>
                       <input type="text" name="meName" placeholder="Middle Name" class="form-control" >
                     </div>
                     <div class="form-group col-sm-4">
@@ -147,7 +147,7 @@
                 </div>
                   <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" id="btnEditSave" value="Save" class="btn btn-primary">
                   </div>
                 </form>
@@ -169,7 +169,7 @@
                    <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>
-<!--               <tbody tbody id="showdata"> 
+<!--               <tbody tbody id="showdata">
             </tbody> -->
             </table>
         </div>
@@ -177,13 +177,12 @@
     </div>
 
  </main>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+ <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+ <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
 
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
-      <!--Table-->
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+ <!--Table-->
+ <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+ <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
 
 <script>
 function resetForm() {
@@ -192,7 +191,7 @@ function resetForm() {
 }
 </script>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 
     function showAllCollector()
     {
@@ -207,7 +206,7 @@ function resetForm() {
          "bPaginate": true,
          "aaSorting": [[0,'asc']],
          "fnInitComplete": function(){
-                   
+
          }
      });
    }
@@ -215,7 +214,6 @@ function resetForm() {
 
 $(document).ready(function() {
       //show
-    }
     showAllCollector();
 
 $('#btnSave').click(function(){
@@ -247,8 +245,41 @@ $('#btnSave').click(function(){
             alert('Could not save Data');
           }
         });
-      
+
     });
+    //edit class
+    $(document).on('click', '.collector-edit', function(){
+      var id = $(this).attr('data');
+      $('#myEditModal').modal('show');
+      $('#myEditModal').find('.modal-title').text('Edit Collector');
+
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/editCollector',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=feName]').val(data.strFirstname);
+          $('input[name=meName]').val(data.strMiddlename);
+          $('input[name=meInitial]').val(data.strMiddleInitial);
+          $('input[name=leName]').val(data.strLastname);
+          $('input[name=neSuffix]').val(data.strNameSuffix);
+          $('input[name=ceName]').val(data.strContactNumber);
+          $('input[name=eeMail]').val(data.strEmailAddress);
+          $('input[name=cdName]').val(data.strHomeAddress);
+          $('input[name=secName]').val(data.strAffiliation);
+          $('input[name=txtId]').val(data.intCollectorID);
+
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+
+  });
 
 $('#btnEditSave').click(function(){
       var data = $('#editCollectorForm').serialize();
@@ -279,38 +310,6 @@ $('#btnEditSave').click(function(){
           }
         });
     });
-    //edit class
-    $('#showdata').on('click', '.collector-edit', function(){
-      var id = $(this).attr('data');
-      $('#myEditModal').modal('show');
-      $('#myEditModal').find('.modal-title').text('Edit Collector');
 
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/editCollector',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('input[name=feName]').val(data.strFirstname);
-          $('input[name=meName]').val(data.strMiddlename);
-          $('input[name=meInitial]').val(data.strMiddleInitial);
-          $('input[name=leName]').val(data.strLastname);
-          $('input[name=neSuffix]').val(data.strNameSuffix);
-          $('input[name=ceName]').val(data.strContactNumber);
-          $('input[name=eeMail]').val(data.strEmailAddress);
-          $('input[name=cdName]').val(data.strHomeAddress);
-          $('input[name=secName]').val(data.strAffiliation);
-          $('input[name=txtId]').val(data.intCollectorID);
-          
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
-      
-    });
-
-  });
     });
 </script>
