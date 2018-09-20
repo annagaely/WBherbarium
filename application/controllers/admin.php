@@ -85,6 +85,7 @@ public function Phylum()
 		$this->load->view('templates/footer');
 	}
 }
+}
 
 	//show phylum
 public function showAllPhylum()
@@ -102,6 +103,7 @@ public function showAllPhylum()
       exit();
 
 }
+
 
 //add phylum
 public function addPhylum(){
@@ -264,7 +266,7 @@ echo json_encode($msg);
 		//show Order
     public function showAllFamily()
     {
-    
+
         $output = $this->admin_m->showAllFamily();
 
         $response = array(
@@ -275,7 +277,7 @@ echo json_encode($msg);
           );
           echo json_encode($response);
           exit();
-        
+
     }
 
 	public function showFamilyOrderName()
@@ -324,7 +326,7 @@ public function updateFamily(){
 		//show Order
     public function showAllGenus()
     {
-    
+
         $output = $this->admin_m->showAllGenus();
 
         $response = array(
@@ -335,7 +337,7 @@ public function updateFamily(){
           );
           echo json_encode($response);
           exit();
-        
+
     }
 
 	public function showGenusFamilyName(){
@@ -438,8 +440,9 @@ public function updateSpecies(){
 	redirect(base_url().'admin');
 	}
 }
-
+/*
 	public function showAllFamilyBoxes(){
+
 {
 
     $output = $this->admin_m->showAllFamilyBoxes();
@@ -454,6 +457,7 @@ public function updateSpecies(){
 
 }
 }
+
 public function showFBFamilyName(){
 	$result = $this->m->showFBFamilyName();
 	echo json_encode($result);
