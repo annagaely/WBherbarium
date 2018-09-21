@@ -787,7 +787,7 @@ public function showAllCollector(){
 		
 		foreach ($query->result() as $r) 
 		{
-			$btn = '<button class="btn btn-primary locality-edit" data="'.$r->intLocalityID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary collector-edit" data="'.$r->intCollectorID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intCollectorID,
@@ -1170,14 +1170,27 @@ UPDATE tblHerbariumStaff
 	/****** END STAFF MGT!!!!! ******/
 	/******  ACCOUNTS START!!!!! ******/
 	public function showAllAccounts(){
+		$result = array();
 		$query = $this->db->query("select * from viewAccounts
 		");
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+	foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary account-edit" data="'.$r->intAccountID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intAccountID,
+					$r->strFullName,			
+					$r->strUsername,
+					$r->strRole,
+					$btn,
+					$r->intAccountID
+					);
 		}
+
+		return $result;
 	}
+
 	public function addAccounts(){
 
 	$staffname = $this->input->post('StaffName');
@@ -1480,52 +1493,89 @@ $status = $this->input->post('txtStatus');
 //DEPOSIT REQUEST
 public function showAllDepositReqPending()
 {
-	//->where('strStatus','Pending')
-	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID,dtAppointmentDate
+	$result = array();
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, dtDateCollected, strFullLocation, dtAppointmentDate, strStatus, intDepositReqID
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID
 		where strStatus ='Pending'");
 
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary view-depositReq" data="'.$r->intDepositReqID.'">View</button>';
+
+			$result[] = array(
+					$r->intDepositReqID,
+					$r->strFullName,
+					$r->strCommonName,
+					$r->dtDateCollected,
+					$r->strFullLocation,
+					$r->dtAppointmentDate,
+					$r->strStatus, 
+					$btn,
+					$r->intDepositReqID
+					);
 		}
 
+		return $result;
 }
 
 public function showAllDepositReqOkay()
 {
-
-	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID
+	$result = array();
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, strFullLocation, dtAppointmentDate, strStatus, intDepositReqID
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID
-		where strStatus='For Depositing'");
+		where strStatus ='For Depositing'");
 
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary view-emailcon" data="'.$r->intDepositReqID.'">Email</button>
+				   <button class="btn btn-primary view-depositcon" data="'.$r->intDepositReqID.'">Confirmation</button>';
+
+			$result[] = array(
+					$r->intDepositReqID,
+					$r->strFullName,
+					$r->strCommonName,
+					$r->strFullLocation,
+					$r->dtAppointmentDate, 
+					$r->strStatus, 
+					$btn,
+					$r->intDepositReqID
+					);
 		}
 
+		return $result;
 }
+
+		
 
 public function showAllDepositReqAll()
 {
-
-	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID
+	$result = array();
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, dtDateCollected, strFullLocation, strStatus, intDepositReqID
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID");
 
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+		foreach ($query->result() as $r)
+		{
+			$result[] = array(
+					$r->intDepositReqID,
+					$r->strFullName,
+					$r->strCommonName,
+					$r->dtDateCollected,
+					$r->strFullLocation,
+					$r->strStatus, 
+					$r->intDepositReqID
+					);
 		}
+
+		return $result;
 }
+
+
 public function viewDepositReq(){
 		$id = $this->input->get('id');
 	$this->db->where('intDepositReqID', $id);
@@ -1545,8 +1595,8 @@ public function viewDepositReq(){
 			return false;
 		}
 	}
-	public function updateConfirmation(){
 
+public function updateConfirmation(){
 
 $depositid = $this->input->post('txtId');
 $status = $this->input->post('txtStatus');
@@ -1798,14 +1848,25 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 		}
 
 	public function showExValPending(){
-		$query = $this->db->select('intPlantDepositID,strAccessionNumber,dateDeposited,strStatus')
-		->where('strStatus','For External Validation')
-		->get('tblPlantDeposit');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-	}
-}
+		$result = array();
+		$query = $this->db->query("select intPlantDepositID,strAccessionNumber,Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName,dateDeposited,strStatus
+
+		from tblPlantDeposit pd join tblCollector cl
+		on pd.intCollectorID = cl.intCollectorID");
+
+		foreach ($query->result() as $r)
+		{
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->strAccessionNumber,
+					$r->strFullName,
+					$r->dateDeposited,
+					$r->strStatus,
+
+					);
+		}
+
+		return $result;
+}		
 
 }?>

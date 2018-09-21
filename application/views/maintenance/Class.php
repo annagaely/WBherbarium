@@ -257,5 +257,5 @@ $(document).on('click', '.class-edit', function(){
     });
 
   });
-  });
+});
 </script>

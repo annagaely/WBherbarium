@@ -659,10 +659,21 @@ public function updateFamilyBox(){
 	redirect(base_url().'admin');
 	}
 }
-		public function showAllAccounts(){
-		$result = $this->m->showAllAccounts();
-		echo json_encode($result);
-	}
+	public function showAllAccounts(){
+		$output = $this->admin_m->showAllAccounts();
+       	 $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+    }
+
+
+
+
 	public function addAccounts(){
 		$result = $this->m->addAccounts();
 		$msg['success'] = false;
@@ -900,18 +911,44 @@ public function edit_event()
 //ADMIN DEPOSIT PLANT//
 	//show depositreq
 	public function showAllDepositReqPending(){
-		$result = $this->m->showAllDepositReqPending();
-		echo json_encode($result);
-	}
+	 $output = $this->admin_m->showAllDepositReqPending();
 
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
 	public function showAllDepositReqOkay(){
-		$result = $this->m->showAllDepositReqOkay();
-		echo json_encode($result);
-	}
+		$output = $this->admin_m->showAllDepositReqOkay();
+
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
 	public function showAllDepositReqAll(){
-		$result = $this->m->showAllDepositReqAll();
-		echo json_encode($result);
-	}
+		$output = $this->admin_m->showAllDepositReqAll();
+
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
 
 	public function viewDepositReq(){
 		$result = $this->m->viewDepositReq();
@@ -1171,9 +1208,17 @@ public function VisitEmailConReject(){
 
 }
 public function showExValPending(){
-		$result = $this->m->showExValPending();
-		echo json_encode($result);
-}
+		$output = $this->admin_m->showExValPending();
 
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
 
 }?>

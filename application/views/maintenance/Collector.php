@@ -199,7 +199,7 @@ function resetForm() {
       $('#manageCollectortbl').dataTable().fnClearTable();
       $('#manageCollectortbl').dataTable().fnDraw();
       $('#manageCollectortbl').dataTable().fnDestroy();
-       $('#manageCollectortbl').dataTable({
+      $('#manageCollectortbl').dataTable({
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllCollector')?>",
@@ -215,7 +215,6 @@ function resetForm() {
 
 $(document).ready(function() {
       //show
-    }
     showAllCollector();
 
 $('#btnSave').click(function(){
@@ -280,7 +279,7 @@ $('#btnEditSave').click(function(){
         });
     });
     //edit class
-    $('#showdata').on('click', '.collector-edit', function(){
+$(document).on('click', '.collector-edit', function(){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Collector');
@@ -312,5 +311,5 @@ $('#btnEditSave').click(function(){
     });
 
   });
-    });
+});
 </script>

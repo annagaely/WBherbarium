@@ -57,24 +57,24 @@
 
 
 <div class="tabcontent" id="FirstTab">
-      <div class="card">
+       <div class="card">
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
+         <div class="table-responsive">
+            <table class="table dataTable no-footer" id="manageDepositReqPendingtbl">
               <thead>
                 <tr>
-                  <th>Deposit ID</th>
-                  <th>Collector's Name</th>
-                  <th>Common Name</th>
-                  <th>Date Collected</th>
-                  <th>Full Location</th>
-                  <th>Date of deposit</th>
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th scope="col" width= "10%">Deposit ID</th>
+                  <th scope="col" width= "10%">Collector's Name</th>
+                  <th scope="col" width= "10%">Common Name</th>
+                  <th scope="col" width= "10%">Date Collected</th>
+                  <th scope="col" width= "10%">Full Location</th>
+                  <th scope="col" width= "10%">Date of deposit</th>
+                  <th scope="col" width= "10%">Status</th>
+                  <th scope="col" width= "10%">Action</th>
                 </tr>
               </thead>
-                <tbody id="showdata">
-                </tbody>
+<!--                 <tbody id="showdata">
+                </tbody> -->
             </table>
         </div>
       </div>
@@ -174,23 +174,23 @@
 
 
 <div id="SecondTab" class="tabcontent">
-  <div class="card">
+   <div class="card">
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
+         <div class="table-responsive">
+            <table class="table dataTable no-footer" id="manageDepositReqForDepositingtbl">
               <thead>
                 <tr>
-                  <th>Deposit ID</th>
-                  <th>Collector's Name</th>
-                  <th>Common Name</th>
-                  <th>Date Collected</th>
-                  <th>Full Location</th>
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th scope="col" width= "50%">Deposit ID</th>
+                  <th scope="col" width= "50%">Collector's Name</th>
+                  <th scope="col" width= "50%">Common Name</th>
+                  <th scope="col" width= "50%">Full Location</th>
+                  <th scope="col" width= "50%">Date of deposit</th>
+                  <th scope="col" width= "50%">Status</th>
+                  <th scope="col" width= "50%">Action</th>
                 </tr>
               </thead>
-                <tbody tbody id="showdata1">
-                </tbody>
+<!--            <tbody tbody id="showdata1">
+                </tbody> -->
             </table>
         </div>
       </div>
@@ -262,21 +262,21 @@
  <div id="ThirdTab" class="tabcontent">
   <div class="card">
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
+         <div class="table-responsive">
+            <table class="table dataTable no-footer" id="manageAllDeposittbl">
               <thead>
                 <tr>
-                  <th>Deposit ID</th>
-                  <th>Collector's Name</th>
-                  <th>Common Name</th>
-                  <th>Date Collected</th>
-                  <th>Full Location</th>
-                  <th>Status</th>
+                  <th scope="col" width= "10%">Deposit ID</th>
+                  <th scope="col" width= "10%">Collector's Name</th>
+                  <th scope="col" width= "10%">Common Name</th>
+                  <th scope="col" width= "10%">Date Collected</th>
+                  <th scope="col" width= "10%">Full Location</th>
+                  <th scope="col" width= "10%">Status</th>
 
                 </tr>
               </thead>
-                <tbody tbody id="showdata2">
-                </tbody>
+<!--                 <tbody tbody id="showdata2">
+                </tbody> -->
             </table>
         </div>
       </div>
@@ -331,49 +331,41 @@
       </div>
     </div>
   </div>
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript">
 
-    $(function(){
+ </main>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <!--Table-->
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+
+ <script type="text/javascript">
+    function showAllDepositReqPending()
+    {
+      $('#manageDepositReqPendingtbl').dataTable().fnClearTable();
+      $('#manageDepositReqPendingtbl').dataTable().fnDraw();
+      $('#manageDepositReqPendingtbl').dataTable().fnDestroy();
+      $('#manageDepositReqPendingtbl').dataTable({
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllDepositReqPending')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
+
+    $(document).ready(function() {
 
     //show
     showAllDepositReqPending();
-    function showAllDepositReqPending(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllDepositReqPending',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intDepositReqID+'</td>'+
-                  '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].strCommonName+'</td>'+
-                  '<td>'+data[i].dtDateCollected+'</td>'+
-                  '<td>'+data[i].strFullLocation+'</td>'+
-                  '<td>'+data[i].dtAppointmentDate+'</td>'+
-                  '<td>'+data[i].strStatus+'</td>'+
-                  '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary view-depositReq" data="'+data[i].intDepositReqID+'">View</a>'+
 
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
-    }
-  });
-
-
-        $(function(){
-          $('#btnSave').click(function(){
+$('#btnSave').click(function(){
       var data = $('#updateStatusForm').serialize();
       // alert(data)
         $.ajax({
@@ -397,44 +389,64 @@
           }
         });
     });
-        });
 
-</script>
-<script>
-    showAllDepositReqOkay();
-    function showAllDepositReqOkay(){
+
+      $(document).on('click', '.view-depositReq', function(){
+      var id = $(this).attr('data');
+      $('#viewDepositReq').modal('show');
+      $('#viewDepositReq').find('.modal-title').text('View Deposit Request');
       $.ajax({
         type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllDepositReqOkay',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/viewDepositReq',
+        data: {id: id},
         async: false,
         dataType: 'json',
         success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intDepositReqID+'</td>'+
-                  '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].strCommonName+'</td>'+
-                  '<td>'+data[i].dtDateCollected+'</td>'+
-                  '<td>'+data[i].strFullLocation+'</td>'+
-                  '<td>'+data[i].strStatus+'</td>'+
-                  '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary view-emailcon" data="'+data[i].intDepositReqID+'">Email</a>'+
-                    '<a href="javascript:;"  style="margin-left: 10px"  class="btn btn-primary view-depositcon" data="'+data[i].intDepositReqID+'">Confirmation</a>'+
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata1').html(html);
+          $('input[name=txtCollector]').val(data.strFullName);
+          $('input[name=txtDepositReqID]').val(data.intDepositReqID);
+          $('input[name=txtScientificName').val(data.strScientificName);
+          $('input[name=txtCommonName').val(data.strCommonName);
+          $('input[name=txtdDateCollected]').val(data.dtDateCollected);
+          $('input[name=txtFullLocation').val(data.strFullLocation);
+          $('textarea[name=txtDescription]').val(data.strPlantDesc);
+          $('input[name=txtId]').val(data.intDepositReqID)
+
         },
         error: function(){
-          alert('Could not get Data from Database');
+          alert('Could not Edit Data');
         }
-      });
-    }
+    });
+    });
+});
+</script>
+
+<script>
+    function showAllDepositReqOkay(){
+
+        $('#manageDepositReqForDepositingtbl').dataTable().fnClearTable();
+        $('#manageDepositReqForDepositingtbl').dataTable().fnDraw();
+        $('#manageDepositReqForDepositingtbl').dataTable().fnDestroy();
+        $('#manageDepositReqForDepositingtbl').dataTable({
+         "autoWidth":false,
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllDepositReqOkay')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
+
+$(document).ready(function() {
+    //show
+    showAllDepositReqOkay();
 
     //Show Confirmation
-    $('#showdata1').on('click', '.view-depositcon', function(){
+    $(document).on('click', '.view-depositcon', function(){
       var id = $(this).attr('data');
       $('#Confirmation').modal('show');
       $('#Confirmation').find('.Confirmation').text('Confirmation');
@@ -460,7 +472,7 @@
     });
     });
 
-     $('#showdata1').on('click', '.view-emailcon', function(){
+     $(document).on('click', '.view-emailcon', function(){
       var id = $(this).attr('data');
       $('#EmailCon').modal('show');
       $('#EmailCon').find('.EmailCon').text('Email');
@@ -484,46 +496,8 @@
 
     });
     });
-</script>
-<script>
 
-    $(function(){
-
-    //show
-    showAllDepositReqAll();
-    function showAllDepositReqAll(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllDepositReqAll',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intDepositReqID+'</td>'+
-                  '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].strCommonName+'</td>'+
-                  '<td>'+data[i].dtDateCollected+'</td>'+
-                  '<td>'+data[i].strFullLocation+'</td>'+
-                  '<td>'+data[i].strStatus+'</td>'+
-
-                  '</tr>';
-          }
-          $('#showdata2').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
-    }
-  });
-
-</script>
-
-<script>
-    $('#btnConfirm').click(function(){
+         $('#btnConfirm').click(function(){
       var data = $('#ConfirmForm').serialize();
         $.ajax({
           type: 'ajax',
@@ -546,39 +520,36 @@
           }
         });
     });
+});
+</script>
+<script>
+    function showAllDepositReqAll()
+    {
+      $('#manageAllDeposittbl').dataTable().fnClearTable();
+      $('#manageAllDeposittbl').dataTable().fnDraw();
+      $('#manageAllDeposittbl').dataTable().fnDestroy();
+      $('#manageAllDeposittbl').dataTable({
+        "autoWidth":false,
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllDepositReqAll')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
 
+$(document).ready(function() {
+    //show
+    showAllDepositReqAll(); 
+
+
+});
 </script>
 
-<script type="text/javascript">
-      $('#showdata').on('click', '.view-depositReq', function(){
-      var id = $(this).attr('data');
-      $('#viewDepositReq').modal('show');
-      $('#viewDepositReq').find('.modal-title').text('View Deposit Request');
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/viewDepositReq',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('input[name=txtCollector]').val(data.strFullName);
-          $('input[name=txtDepositReqID]').val(data.intDepositReqID);
-          $('input[name=txtScientificName').val(data.strScientificName);
-          $('input[name=txtCommonName').val(data.strCommonName);
-          $('input[name=txtdDateCollected]').val(data.dtDateCollected);
-          $('input[name=txtFullLocation').val(data.strFullLocation);
-          $('textarea[name=txtDescription]').val(data.strPlantDesc);
-          $('input[name=txtId]').val(data.intDepositReqID)
-
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
-
-    });
-    });
-</script>
 
 <script>
 function openCity(evt, cityName) {
