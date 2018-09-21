@@ -1225,9 +1225,9 @@ public function VisitEmailConReject(){
 		echo json_encode($result);
 
 }
-public function showExValPending(){
-		$output = $this->admin_m->showExValPending();
-
+public function showExValPending()
+{
+	 $output = $this->admin_m->showExValPending();
         $response = array(
           'aaData' => $output,
           'iTotalRecords' => count($output),
@@ -1236,7 +1236,32 @@ public function showExValPending(){
           );
           echo json_encode($response);
           exit();
-        
     }
 
+
+public function showExValOkay()
+{
+	 $output = $this->admin_m->showExValOkay();
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+    }
+
+public function showExValAll()
+{
+	 $output = $this->admin_m->showExValAll();
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+    }
 }?>

@@ -1868,19 +1868,27 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 
 	public function showExValPending(){
 		$result = array();
-		$query = $this->db->query("select intPlantDepositID,strAccessionNumber,Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName,dateDeposited,strStatus
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
 
 		from tblPlantDeposit pd join tblCollector cl
-		on pd.intCollectorID = cl.intCollectorID");
+		on pd.intCollectorID = cl.intCollectorID
+
+		where strStatus='Pending'");
+
 
 		foreach ($query->result() as $r)
 		{
+
+		$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'">View</button>';
+
 			$result[] = array(
 					$r->intPlantDepositID,
 					$r->strAccessionNumber,
 					$r->strFullName,
 					$r->dateDeposited,
 					$r->strStatus,
+					$btn,
+					$r->intPlantDepositID
 
 					);
 		}
@@ -1888,4 +1896,58 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 		return $result;
 }		
 
+
+public function showExValOkay(){
+		$result = array();
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
+
+		from tblPlantDeposit pd join tblCollector cl
+		on pd.intCollectorID = cl.intCollectorID
+		where strStatus= 'For External Validation'");
+
+
+		foreach ($query->result() as $r)
+		{
+
+		$btn = '<button class="btn btn-primary view-EVOkay" data="'.$r->intPlantDepositID.'">View</button>';
+
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->strAccessionNumber,
+					$r->strFullName,
+					$r->dateDeposited,
+					$r->strStatus,
+					$btn,
+					$r->intPlantDepositID
+
+					);
+		}
+
+		return $result;
+}	
+
+
+public function showExValAll(){
+		$result = array();
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
+
+		from tblPlantDeposit pd join tblCollector cl
+		on pd.intCollectorID = cl.intCollectorID");
+
+
+		foreach ($query->result() as $r)
+		{
+
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->strAccessionNumber,
+					$r->strFullName,
+					$r->dateDeposited,
+					$r->strStatus
+
+					);
+		}
+
+		return $result;
+}			
 }?>
