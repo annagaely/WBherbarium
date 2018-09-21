@@ -13,7 +13,7 @@
       <div class="card">
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Family</button>
-        </div>         
+        </div>
         <!-- Modal-->
         <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
@@ -35,11 +35,11 @@
                     <input type="text" name="txtfName" placeholder="Family Name" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" id = "btnSave" value="Save" class="btn btn-primary">
                   </div>
                 </form>
-                
+
               </div>
             </div>
           </div>
@@ -47,7 +47,7 @@
       </div>
       <!--END PHYLUM MODAL-->
       <!--ADD EDIT CLASS MODAL-->
-               
+
         <!-- Modal-->
         <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
@@ -57,9 +57,9 @@
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
-              <div class="modal-body">  
+              <div class="modal-body">
 
-                <form id= "editFamilyForm" method="POST" enctype="multipart/form-data"> 
+                <form id= "editFamilyForm" method="POST" enctype="multipart/form-data">
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
                   <div class="form-group">
                     <label>
@@ -72,12 +72,12 @@
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txteFName" placeholder="Class Name" class="form-control">
-                  </div> 
+                  </div>
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" value="Save" id='btnEditSave' class="btn btn-primary">
                   </div>
-                  
+
                 </form>
               </div>
             </div>
@@ -94,10 +94,10 @@
             <th scope="col" width= "10%">Order Name</th>
             <th scope="col" width= "10%">Family Name</th>
             <th scope="col" width= "10%">Actions</th>
-          </tr>  
+          </tr>
         </thead>
-<!--       <tbody tbody id="showdata">         
-            </tbody>  -->          
+<!--       <tbody tbody id="showdata">
+            </tbody>  -->
             </table>
           </div>
         </div>
@@ -107,7 +107,6 @@
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
 
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
       <!--Table-->
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
@@ -117,8 +116,8 @@ function resetForm() {
     document.getElementById("addFamilyForm").reset();
 }
 
-</script>      
-    <script type="text/javascript">  
+</script>
+    <script type="text/javascript">
 
     function showAllFamily()
       {
@@ -133,7 +132,7 @@ function resetForm() {
          "bPaginate": true,
          "aaSorting": [[0,'asc']],
          "fnInitComplete": function(){
-                   
+
          }
      });
    }
@@ -141,7 +140,7 @@ function resetForm() {
        //show
         showAllFamily();
         showFamilyOrderName();
-   
+
 
 function showFamilyOrderName(){
       $.ajax({
@@ -193,7 +192,7 @@ $('#btnSave').click(function(){
             alert('Could not save Data');
           }
         });
-      
+
     });
 
 $('#btnEditSave').click(function(){
@@ -241,12 +240,12 @@ $(document).on('click', '.family-edit', function(){
         success: function(data){
           $('input[name=txteFName]').val(data.strFamilyName);
           $('input[name=txtId]').val(data.intFamilyID);
-          
+
         },
         error: function(){
           alert('Could not Edit Data');
         }
-      
+
     });
 
   });

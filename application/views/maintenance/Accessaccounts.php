@@ -44,7 +44,7 @@
                    <label for="checkPass"> Show Password</label>
                   </div>
                 </div>
-    
+
                 <br>
 
 
@@ -126,6 +126,7 @@
       </div>
     </div>
 
+
  </main>
 
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
@@ -133,8 +134,6 @@
       <!--Table-->
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
-
-
 <script type="text/javascript">
   function showPassword() {
     var x = document.getElementById("AApassword");
@@ -143,11 +142,13 @@
     } else {
         x.type = "password";
     }
+
 } 
+
 </script>
 
 <script type="text/javascript">
-  
+
  function eshowPassword() {
     var y = document.getElementById("eAAPassword");
     if (y.type === "password") {
@@ -245,7 +246,7 @@ $('#btnSave').click(function(event){
         event.preventDefault();
         }
     });
- 
+
 
 
 $(document).on('click', '.account-edit', function(){
@@ -272,7 +273,6 @@ $(document).on('click', '.account-edit', function(){
     });
 
   });
-
 $('#btnEditSave').click(function(){
       var data = $('#editAccountForm').serialize();
         $.ajax({

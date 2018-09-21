@@ -75,7 +75,7 @@ class admin extends CI_Controller {
 }
 
 /****** PHYLUM ONLY!!!!! ******/
-public function Phylum() 
+public function Phylum()
 {
 	if($this->session->userdata('strUserName')!='')
 	{
@@ -84,7 +84,6 @@ public function Phylum()
 		$this->load->view('maintenance/Phylum');
 		$this->load->view('templates/footer');
 	}
-}
 }
 
 	//show phylum
@@ -591,8 +590,15 @@ public function updateFamilyBox(){
 	}
 }
 	public function showAllValidator(){
-		$result = $this->m->showAllValidator();
-		echo json_encode($result);
+    $output = $this->admin_m->showAllValidator();
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+    );
+  echo json_encode($response);
+  exit();
 	}
 	public function addValidator(){
 		$result = $this->m->addValidator();
@@ -627,9 +633,17 @@ public function updateFamilyBox(){
 	redirect(base_url().'admin');
 	}
 }
-		public function showAllStaff(){
-		$result = $this->m->showAllStaff();
-		echo json_encode($result);
+		public function showAllStaff()
+    {
+      $output = $this->admin_m->showAllStaff();
+      $response = array(
+        'aaData' => $output,
+        'iTotalRecords' => count($output),
+        'iTotalDisplayRecords' => count($output),
+        'iDisplayStart' => 0
+      );
+		echo json_encode($response);
+    exit();
 	}
 	public function addStaff(){
 		$result = $this->m->addStaff();
@@ -1006,7 +1020,7 @@ $message = $this->input->post('txtCustomMessage');
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Loaning of Specimen');
       $this->email->message("Your loan request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Loan Request ID:" . $id ."<br> <br>" . $message );
-	
+
       if($this->email->send())
      {
      	return true;
