@@ -20,7 +20,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Account</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
 
          <div class="modal-body">
@@ -109,37 +109,31 @@
       <div class="card">
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table dataTable no-footer" id="manageAAccountstbl">
               <thead>
                 <tr>
-                  <th>Account ID</th>
-                  <th>Name</th>
-                  <th>Username</th>
-                  <th>Access Level</th>
-                  <th>Actions</th>
+                  <th scope="col" width= "10%">Account ID</th>
+                  <th scope="col" width= "10%">Name</th>
+                  <th scope="col" width= "10%">Username</th>
+                  <th scope="col" width= "10%">Access Level</th>
+                  <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdata">
-
-            </tbody>
+<!--               <tbody tbody id="showdata">
+            </tbody> -->
             </table>
         </div>
       </div>
     </div>
 
-    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
 
-    <!--Table-->
-    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
-    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+ </main>
 
-   <script>
-   function resetForm() {
-       document.getElementById("addAccountForm").reset();
-
-   }
-   </script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+      <!--Table-->
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
   function showPassword() {
     var x = document.getElementById("AApassword");
@@ -148,9 +142,11 @@
     } else {
         x.type = "password";
     }
-}
+
+} 
 
 </script>
+
 <script type="text/javascript">
 
  function eshowPassword() {
@@ -162,31 +158,64 @@
     }
 }
 </script>
-    <script type="text/javascript">
-    function showAllAccounts()
-    {
-      $('#manageAccountstbl').dataTable().fnClearTable();
-      $('#manageAccountstbl').dataTable().fnDraw();
-      $('#manageAccountstbl').dataTable().fnDestroy();
-      $('#manageAccountstbl').dataTable({
-         "processing": true,
-         "serverSide": false,
-         "sAjaxSource": "<?php echo base_url('admin/showAllAccounts')?>",
-         "deferLoading": 10,
-         "bPaginate": true,
-         "aaSorting": [[0,'asc']],
-         "fnInitComplete": function(){
+<script>
+function resetForm() {
+    document.getElementById("addPhylumForm").reset();
+}
 
-         }
-     });
-    }
-    $(document).ready(function() {
-      showAllAccounts();
-//adding account
+</script>
+
+ <script type="text/javascript">
+    function showAllAccounts(){
+
+          $('#manageAAccountstbl').dataTable().fnClearTable();
+          $('#manageAAccountstbl').dataTable().fnDraw();
+          $('#manageAAccountstbl').dataTable().fnDestroy();
+          $('#manageAAccountstbl').dataTable({
+              "processing": true,
+              "serverSide": false,
+              "sAjaxSource": "<?php echo base_url('admin/showAllAccounts')?>",
+              "deferLoading": 10,
+              "bPaginate": true,
+              "aaSorting": [[0,'asc']],
+              "fnInitComplete": function(){
+
+              }
+          });
+        }
+
+$(document).ready(function(){
+      //show
+    showAllAccounts();
+    showStaffName();
+
+
+ function showStaffName(){
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url() ?>admin/showStaffName',
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html +='<option value="'+data[i].strFullName+'">'+data[i].strFullName+'</option>';
+          }
+          $('#showStaffName').html(html);
+          $('#showStaffName2').html(html);
+        },
+        error: function(){
+          alert('Could not get Data from Database');
+        }
+      });
+
+}
+
 $('#btnSave').click(function(event){
       var data = $('#addAccountForm').serialize();
       //validate form
-if(confirm("Save data?")){
+    if(confirm("Save data?")){
         $.ajax({
           type: 'ajax',
           method: 'post',
@@ -217,29 +246,33 @@ if(confirm("Save data?")){
         event.preventDefault();
         }
     });
-showStaffName();
- function showStaffName(){
+
+
+
+$(document).on('click', '.account-edit', function(){
+      var id = $(this).attr('data');
+      $('#myEditModal').modal('show');
+
       $.ajax({
         type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showStaffName',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/editAccounts',
+        data: {id: id},
         async: false,
         dataType: 'json',
         success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<option value="'+data[i].strFullName+'">'+data[i].strFullName+'</option>';
-          }
-          $('#showStaffName').html(html);
-          $('#showStaffName2').html(html);
+          $('input[name=eAAUName]').val(data.strUsername);
+          $('input[name=eAAPass]').val(data.strPassword);
+          $('input[name=txtId]').val(data.intAccountID);
+          $('#myEditModal').find('.modal-title').text('Editing: '+data.strFullName+'');
         },
         error: function(){
-          alert('Could not get Data from Database');
+          alert('Could not Edit Data');
         }
-      });
 
-}
+    });
 
+  });
 $('#btnEditSave').click(function(){
       var data = $('#editAccountForm').serialize();
         $.ajax({
