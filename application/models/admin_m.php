@@ -24,13 +24,13 @@ class admin_m extends CI_Model{
 		$query = $this->db->select('intPhylumID, strDomainName, strKingdomName, strPhylumName')
                 ->get('tblPhylum');
 
-		foreach ($query->result() as $r) 
+		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary phylum-edit" data="'.$r->intPhylumID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intPhylumID,
-					$r->strDomainName,			
+					$r->strDomainName,
 					$r->strKingdomName,
 					$r->strPhylumName,
 					$btn,
@@ -217,13 +217,13 @@ public function showAllClass()
 			->join('tblClass c', 'c.intClassID = o.intClassID')
 			->get('tblOrder o');
 
-		foreach ($query->result() as $r) 
+		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary order-edit" data="'.$r->intOrderID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intOrderID,
-					$r->strClassName,			
+					$r->strClassName,
 					$r->strOrderName,
 					$btn,
 					$r->intOrderID
@@ -314,13 +314,13 @@ public function showAllFamily()
 			->join('tblOrder o', 'o.intOrderID = f.intOrderID')
 			->get('tblFamily f');
 
-		foreach ($query->result() as $r) 
+		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary family-edit" data="'.$r->intFamilyID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intFamilyID,
-					$r->strOrderName,			
+					$r->strOrderName,
 					$r->strFamilyName,
 					$btn,
 					$r->intFamilyID
@@ -393,13 +393,13 @@ public function showAllGenus(){
 			->join('tblFamily f', 'f.intfamilyID = g.intFamilyID')
 			->get('tblGenus g');
 
-		foreach ($query->result() as $r) 
+		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary genus-edit" data="'.$r->intGenusID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intGenusID,
-					$r->strFamilyName,			
+					$r->strFamilyName,
 					$r->strGenusName,
 					$btn,
 					$r->intGenusID
@@ -471,13 +471,13 @@ public function showAllSpecies(){
 			 strCommonName')
 			->join('tblGenus g', 'g.intGenusID = s.intGenusID')
 			->get('tblSpecies s');
-		foreach ($query->result() as $r) 
+		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary species-edit" data="'.$r->intSpeciesID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intSpeciesID,
-					$r->strGenusName,			
+					$r->strGenusName,
 					$r->strSpeciesName,
 					$r->strCommonName,
 					$btn,
@@ -547,13 +547,14 @@ public function showSpeciesGenusName(){
 	/****** FAMILY BOXES START!!!!! ******/
 
 public function showAllFamilyBoxes(){
-		$result = array();
+  $result = array();
 		$query = $this->db->select('intBoxID,
 			 f.strFamilyName,
 			 strBoxNumber,
 			 intBoxLimit')
 			->join('tblFamily f', 'f.intFamilyID = fb.intFamilyID')
 			->get('tblFamilyBox fb');
+
 		foreach ($query->result() as $r) 
 		{
 			$btn = '<button class="btn btn-primary FB-edit" data="'.$r->intBoxID.'">Edit</button>';
@@ -569,6 +570,7 @@ public function showAllFamilyBoxes(){
 		}
 
 		return $result;
+
 	}
 
 	public function showFBFamilyName(){

@@ -13,7 +13,7 @@
       <div class="card">
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Family Box</button>
-        </div>    
+        </div>
 
         <!-- Modal-->
         <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
@@ -38,7 +38,7 @@
                   <!--HANGGANG DITO LANG BOI-->
 
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary"> 
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" value="Save" id = "btnSave" class="btn btn-primary">
                   </div>
 
@@ -50,7 +50,7 @@
       </div>
       <!--END PHYLUM MODAL-->
       <!--ADD EDIT CLASS MODAL-->
-               
+
         <!-- Modal-->
         <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
@@ -60,9 +60,9 @@
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
-              <div class="modal-body">  
+              <div class="modal-body">
 
-                <form id= "editFBForm" method="POST" enctype="multipart/form-data"> 
+                <form id= "editFBForm" method="POST" enctype="multipart/form-data">
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
                   <div class="form-group">
                     <label>
@@ -75,12 +75,12 @@
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
                     <input type="text" name="txteBLLimit" placeholder="Box Limit" class="form-control">
-                  </div> 
+                  </div>
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" value="Save" id='btnEditSave' class="btn btn-primary">
                   </div>
-                  
+
                 </form>
               </div>
             </div>
@@ -99,8 +99,10 @@
                   <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>
+
 <!--              <tbody tbody id="showdata">      
             </tbody> -->
+
             </table>
         </div>
       </div>
@@ -147,6 +149,7 @@ function resetForm() {
    $(document).ready(function() {
       //show
     showAllFamilyBoxes();
+
     showFBFamilyName();
     
     
@@ -199,7 +202,7 @@ function resetForm() {
             alert('Could not save Data');
           }
         });
-      
+
     });
 
 $('#btnEditSave').click(function(){
@@ -245,12 +248,12 @@ $('#btnEditSave').click(function(){
         success: function(data){
           $('input[name=txteBLLimit]').val(data.intBoxLimit);
           $('input[name=txtId]').val(data.intBoxID);
-          
+
         },
         error: function(){
           alert('Could not Edit Data');
         }
-      
+
     });
 
   });
