@@ -13,7 +13,7 @@
       <div class="card">
         <div class="card-header d-flex align-items-center">
           <button type="button" button data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Order</button>
-        </div>         
+        </div>
         <!-- Modal-->
         <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
@@ -35,11 +35,11 @@
                     <input type="text" name="txtOName" placeholder="Order Name" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" value="Save" id="btnSave" class="btn btn-primary">
                   </div>
                 </form>
-                
+
               </div>
             </div>
           </div>
@@ -47,7 +47,7 @@
       </div>
       <!--END PHYLUM MODAL-->
             <!--ADD EDIT CLASS MODAL-->
-               
+
         <!-- Modal-->
         <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
@@ -57,9 +57,9 @@
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
-              <div class="modal-body">  
+              <div class="modal-body">
 
-                <form id= "editOrderForm" method="POST" enctype="multipart/form-data"> 
+                <form id= "editOrderForm" method="POST" enctype="multipart/form-data">
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
                   <div class="form-group">
                     <label>
@@ -72,19 +72,19 @@
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txteOName" placeholder="Class Name" class="form-control">
-                  </div> 
+                  </div>
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" value="Save" id='btnEditSave' class="btn btn-primary">
                   </div>
-                  
+
                 </form>
               </div>
             </div>
           </div>
         </div>
       <!--END EDIT CLASS MODAL-->
-     
+
       <div class="card">
         <div class="card-body">
           <div class="table-responsive">
@@ -97,7 +97,7 @@
                   <th scope="col" width= "5%">Actions</th>
                 </tr>
               </thead>
-<!--               <tbody tbody id="showdata">        
+<!--               <tbody tbody id="showdata">
               </tbody> -->
             </table>
            </div>
@@ -108,7 +108,6 @@
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
 
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
       <!--Table-->
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
@@ -119,10 +118,10 @@ function resetForm() {
 }
 </script>
 
-<script type="text/javascript">  
+<script type="text/javascript">
 
     function showAllOrder()
-    {  
+    {
       $('#manageOrdertbl').dataTable().fnClearTable();
       $('#manageOrdertbl').dataTable().fnDraw();
       $('#manageOrdertbl').dataTable().fnDestroy();
@@ -134,7 +133,7 @@ function resetForm() {
          "bPaginate": true,
          "aaSorting": [[0,'asc']],
          "fnInitComplete": function(){
-                   
+
          }
      });
    }
@@ -143,7 +142,7 @@ $(document).ready(function(){
       //show
     showAllOrder();
     showOrderClassName();
-   
+
 
 function showOrderClassName(){
       $.ajax({
@@ -189,7 +188,7 @@ $('#btnSave').click(function(){
               }
              alert('Order Successfully Added!');
               location.reload();
-              
+
             }else{
               alert('Please fill up all fields.');
             }
@@ -244,15 +243,15 @@ $(document).on('click', '.order-edit', function(){
         async: false,
         dataType: 'json',
         success: function(data){
-          
+
           $('input[name=txteOName]').val(data.strOrderName);
           $('input[name=txtId]').val(data.intOrderID);
-          
+
         },
         error: function(){
           alert('Could not Edit Data');
         }
-      
+
     });
 
   });
