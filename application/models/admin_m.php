@@ -1,4 +1,4 @@
-  <?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin_m extends CI_Model{
@@ -15,24 +15,41 @@ class admin_m extends CI_Model{
 	}
 
 }
-	/****** PHYLUM ONLY!!!!! ******/
+/****** PHYLUM ONLY!!!!! ******/
 
-	public function showAllPhylum(){
-		$query = $this->db->get('tblPhylum');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+	public function showAllPhylum()
+	{
+		$result = array();
+		$query = $this->db->select('intPhylumID, strDomainName, strKingdomName, strPhylumName')
+                ->get('tblPhylum');
+
+		foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary phylum-edit" data="'.$r->intPhylumID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intPhylumID,
+					$r->strDomainName,			
+					$r->strKingdomName,
+					$r->strPhylumName,
+					$btn,
+					$r->intPhylumID
+					);
 		}
 
+
+		return $result;
 	}
 
+
+
 	 public function addPhylum(){
-		
+
 			$domainName=$this->input->post('txtdName');
 			$kingdomName=$this->input->post('txtkName');
 			$phylumName=$this->input->post('txtpName');
-		
+
 			$query="
 			insert into tblPhylum(strDomainName,strKingdomName,strPhylumName) VALUES ('".$domainName."','".$kingdomName."','".$phylumName."')
 
@@ -50,13 +67,15 @@ class admin_m extends CI_Model{
 		}else {
 				return false;
 			}
-		
+
 		if($this->db->affected_rows() > 0){
 			return true;
 		}else{
 			return false;
 		}
-	}	public function editPhylum(){
+	}
+
+	public function editPhylum(){
 		$id = $this->input->get('id');
 		$this->db->where('intPhylumID', $id);
 		$query = $this->db->get('tblPhylum');
@@ -84,20 +103,37 @@ class admin_m extends CI_Model{
 
 	/****** END PHYLUM!!!!! ******/
 	/****** CLASS START!!!!! ******/
-	public function showAllClass(){
+
+public function showAllClass()
+
+	{
+		$result = array();
 		$query = $this->db->select('intClassID,
 			 p.strPhylumName,
 			 strClassName')
 			->join('tblPhylum p', 'p.intPhylumID = c.intPhylumID')
 			->get('tblCLass c');
-		if($query->num_rows() > 0){
-			return $query->result();
+
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary class-edit" data="'.$r->intClassID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intClassID,
+
+					$r->strPhylumName,
+
+					$r->strClassName,
+					$btn,
+					$r->intClassID
+					);
 		}
-		else{
-			return false;
-		}
+
+		return $result;
 	}
-			public function showClassPhylumName(){
+
+	public function showClassPhylumName(){
 		$query = $this->db->get('tblPhylum');
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -126,7 +162,7 @@ class admin_m extends CI_Model{
 			}else {
 				return false;
 			}
-		
+
 		if($this->db->affected_rows() > 0){
 			return true;
 		}else{
@@ -137,7 +173,7 @@ class admin_m extends CI_Model{
 
 		$id = $this->input->get('id');
 		$this->db->where('intClassID', $id);
-		$query = $this->db->select('intClassID,
+/*		$query = $this->db->select('intClassID,
 			 p.strPhylumName,
 			 p.intPhylumID,
 			 strClassName')
@@ -147,8 +183,16 @@ class admin_m extends CI_Model{
 			return $query->row();
 		}else{
 			return false;
+		}*/
+		$query = $this->db->get('tblClass');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
 		}
 	}
+
+
 	public function updateClass(){
     $id = $this->input->post('txtId');
     $field = array(
@@ -165,18 +209,32 @@ class admin_m extends CI_Model{
   }
 	/****** END CLASS!!!!! ******/
 	/****** ORDER START!!!!! ******/
-	public function showAllOrder(){
+	public function showAllOrder()
+	{
+		$result = array();
 		$query = $this->db->select('intOrderID,
 			 c.strClassName,
 			 strOrderName')
 			->join('tblClass c', 'c.intClassID = o.intClassID')
 			->get('tblOrder o');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+		foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary order-edit" data="'.$r->intOrderID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intOrderID,
+					$r->strClassName,			
+					$r->strOrderName,
+					$btn,
+					$r->intOrderID
+					);
 		}
+
+		return $result;
 	}
+
+
 	public function showOrderClassName(){
 		$query = $this->db->get('tblClass');
 		if($query->num_rows() > 0){
@@ -198,17 +256,17 @@ class admin_m extends CI_Model{
 			";
 		if($intClassID!=''){
 			if($strOrderName!=''){
-			
+
 					$this->db->query($query);
-				
+
 			}else {
 				return false;
 			}
 		}else {
 				return false;
 			}
-		
-		
+
+
 		if($this->db->affected_rows() > 0){
 			return true;
 		}else{
@@ -248,18 +306,32 @@ class admin_m extends CI_Model{
 	/****** END ORDER!!!!! ******/
 	/****** FAMILY START!!!!! ******/
 
-public function showAllFamily(){
+public function showAllFamily()
+{
+		$result = array();
 		$query = $this->db->select('intFamilyID,
 			 o.strOrderName,
 			 strFamilyName')
 			->join('tblOrder o', 'o.intOrderID = f.intOrderID')
 			->get('tblFamily f');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+		foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary family-edit" data="'.$r->intFamilyID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intFamilyID,
+					$r->strOrderName,			
+					$r->strFamilyName,
+					$btn,
+					$r->intFamilyID
+					);
 		}
-	}	public function showFamilyOrderName(){
+
+		return $result;
+	}
+
+public function showFamilyOrderName(){
 		$query = $this->db->get('tblOrder');
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -314,17 +386,31 @@ public function showAllFamily(){
 	/****** GENUS START!!!!! ******/
 
 public function showAllGenus(){
+
+		$result = array();
 		$query = $this->db->select('intGenusID,
 			 f.strFamilyName,
 			 strGenusName')
 			->join('tblFamily f', 'f.intfamilyID = g.intFamilyID')
 			->get('tblGenus g');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+		foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary genus-edit" data="'.$r->intGenusID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intGenusID,
+					$r->strFamilyName,			
+					$r->strGenusName,
+					$btn,
+					$r->intGenusID
+					);
 		}
-	}public function showGenusFamilyName(){
+
+		return $result;
+	}
+
+public function showGenusFamilyName(){
 		$query = $this->db->get('tblFamily');
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -379,19 +465,31 @@ public function showAllGenus(){
 	/****** SPECIES START!!!!! ******/
 
 public function showAllSpecies(){
+		$result = array();
 		$query = $this->db->select('intSpeciesID,
 			 g.strGenusName,
 			 strSpeciesName,
 			 strCommonName')
 			->join('tblGenus g', 'g.intGenusID = s.intGenusID')
 			->get('tblSpecies s');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+		foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary species-edit" data="'.$r->intSpeciesID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intSpeciesID,
+					$r->strGenusName,			
+					$r->strSpeciesName,
+					$r->strCommonName,
+					$btn,
+					$r->intSpeciesID
+					);
 		}
+
+		return $result;
 	}
-	public function showSpeciesGenusName(){
+
+public function showSpeciesGenusName(){
 		$query = $this->db->get('tblGenus');
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -474,14 +572,23 @@ public function showAllFamilyBoxes(){
 	public function addFamilyBox(){
 			$familyid=$this->input->post('sfbFID');
 			$boxlimit=$this->input->post('txtBLLimit');
+			$rackno=$this->input->post('txtrackno');
+			$rackrow=$this->input->post('txtrackrow');
+			$rackcol=$this->input->post('txtrackcol');
 	$execquery  = "
 
 		DECLARE @familyID INT
 		DECLARE @identifier INT
+		DECLARE @rackcol INT
+		declare @rackrow int 
+		declare @rackno int
 		DECLARE @boxlimit INT
 		DECLARE @boxNumber VARCHAR(10)
 		SET @familyid = '$familyid'
 		set @boxLimit = '$boxlimit'
+		set @rackno = '$rackno'
+		set @rackcol = '$rackcol'
+		set @rackrow = '$rackrow'
 
 		SET @identifier = (SELECT TOP 1 CAST(SUBSTRING(strBoxNumber, 5, 3) AS INT) FROM tblFamilyBox ORDER BY strBoxNumber DESC)
 
@@ -490,8 +597,8 @@ public function showAllFamilyBoxes(){
 		ELSE
 			SET @boxNumber = 'BOX-' + FORMAT(@identifier + 1, '00#')
 
-		INSERT INTO tblFamilyBox (strBoxNumber, intFamilyID, intBoxLimit)
-		VALUES (@boxNumber, @familyID, @boxLimit);";
+		INSERT INTO tblFamilyBox (strBoxNumber, intFamilyID, intBoxLimit,intRackNo,intRackRow,intRackColumn)
+		VALUES (@boxNumber, @familyID, @boxLimit,@rackno,@rackrow,@rackcol);";
 
 		$this->db->query($execquery);
 
@@ -509,7 +616,10 @@ public function showAllFamilyBoxes(){
 			 f.strFamilyName,
 			 f.intFamilyID,
 			 strBoxNumber,
-			 intBoxLimit')
+			 intBoxLimit,
+			 intRackRow,
+			 intRackNo,
+			 intRackColumn')
 			->join('tblFamily f', 'f.intFamilyID = fb.intFamilyID')
 			->get('tblFamilyBox fb');
 		if($query->num_rows() > 0){
@@ -522,7 +632,10 @@ public function showAllFamilyBoxes(){
     $id = $this->input->post('txtId');
     $field = array(
     'intFamilyID'=>$this->input->post('sefbFID'),
-    'intBoxLimit'=>$this->input->post('txteBLLimit')
+    'intBoxLimit'=>$this->input->post('txteBLLimit'),
+    'intRackNo'=>$this->input->post('txterackno'),
+    'intRackRow'=>$this->input->post('txterackrow'),
+    'intRackColumn'=>$this->input->post('txterackcol')
 	);
     $this->db->where('intBoxID', $id);
     $this->db->update('tblFamilyBox', $field);
@@ -701,7 +814,7 @@ public function showAllCollector(){
 	$secname = $this->input->post('esecName');
 	$colletorid = $this->input->post('txtId');
 
-	$query=" 
+	$query="
 	DECLARE @Fname VARCHAR(50);
 	DECLARE @Mname VARCHAR(50);
 	DECLARE @MInitial VARCHAR(3);
@@ -903,7 +1016,7 @@ public function editValidator(){
 	/******  STAFF MGT START!!!!! ******/
 	public function showAllStaff(){
 		$query = $this->db->query("select intStaffID,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strRole, strCollegeDepartment
-		from [tblHerbariumStaff] 
+		from [tblHerbariumStaff]
 		");
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -934,7 +1047,7 @@ public function editValidator(){
       ,[strEmailAddress]
       ,[strRole]
       ,[strCollegeDepartment]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."')
-	
+
 	";
 		$this->db->query($query);
 
@@ -978,7 +1091,7 @@ public function updateStaff(){
 	$email = $this->input->post('eSMgtEAdd');
 	$role = $this->input->post('esRole');
 	$department = $this->input->post('esCollege');
-	
+
 	$staffid=$this->input->post('txtId');
 
 	$query="
@@ -991,7 +1104,7 @@ public function updateStaff(){
 	DECLARE @email			VARCHAR(255);
 	DECLARE @role			VARCHAR(50);
 	DECLARE @department		VARCHAR(100);
-	
+
 	DECLARE @staffID		VARCHAR(50);
 
 	set @firstname = '$fname'
@@ -1001,7 +1114,7 @@ public function updateStaff(){
 	set @email = '$email'
 	set @role = '$role'
 	set @department = '$department'
-	
+
 	set @middleinitial ='$minitial'
 	set @namesuffix	='$nsuffix'
 	set @staffID	='$staffid'
@@ -1016,10 +1129,10 @@ UPDATE tblHerbariumStaff
 			strEmailAddress = @email,
 		strRole = @role,
 			strCollegeDepartment = @department
-			
+
 		WHERE intStaffID = @staffID
 
-		
+
 	";
 		if($this->db->query($query)){
 			return true;
@@ -1279,7 +1392,7 @@ public function updateLoanStatus(){
 		}else{
 			return false;
 		}
-	}	 
+	}
 
 	public function LoanConfirmation(){
 	$id = $this->input->get('id');
@@ -1352,7 +1465,7 @@ public function showAllDepositReqPending()
 		}else{
 			return false;
 		}
-		
+
 }
 
 public function showAllDepositReqOkay()
@@ -1369,7 +1482,7 @@ public function showAllDepositReqOkay()
 		}else{
 			return false;
 		}
-		
+
 }
 
 public function showAllDepositReqAll()
@@ -1500,6 +1613,19 @@ $query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou
 		}
 	}
 
+public function showAllAppointmentReject(){
+$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+
+		from tblAppointments ap join tblOnlineUser ou
+		on ap.intOUserID = ou.intOUserID
+		where strStatus ='Rejected'");
+
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
 public function ViewVisitReq(){
 		$id = $this->input->get('id');
 	$this->db->where('intAppointmentID', $id);
@@ -1542,7 +1668,7 @@ DECLARE @status 		varchar(255);
 		}else{
 			return false;
 		}
-	}	
+	}
 
 
 	public function showAllAppointmentExpect(){
@@ -1617,6 +1743,20 @@ $status = $this->input->post('txtStatus');
 		}
 	}
 
+	public function VisitEmailConReject(){
+	$id = $this->input->get('id');
+	$this->db->where('intAppointmentID', $id);
+		$query = $this->db->select("intAppointmentID, strEmailAddress")
+		->join('tblOnlineUser ou','ou.intOUserID=ta.intOUserID')
+		->get('tblAppointments ta');
+
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
 	public function showAllAppointmentAll(){
 $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
 
@@ -1628,7 +1768,7 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 		}else{
 			return false;
 		}
-		}	
+		}
 
 	public function showExValPending(){
 		$query = $this->db->select('intPlantDepositID,strAccessionNumber,dateDeposited,strStatus')

@@ -1,5 +1,4 @@
 
-
         <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
@@ -21,7 +20,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Species</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
                 <form id= "addSpeciesForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
@@ -59,7 +58,7 @@
               <div class="modal-header">
 
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">  
 
@@ -92,64 +91,69 @@
           </div>
         </div>
       <!--END EDIT CLASS MODAL-->
-      <div class="card">
-                
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-striped">
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table dataTable no-footer" id="manageSpeciestbl">
                       <thead>
                         <tr>
-                          <th>Species ID</th>
-                          <th>Genus Name</th>
-                          <th>Species Name</th>
-                          <th>Common Name</th>
-                          <th>Actions</th>
+                          <th scope="col" width= "10%">Species ID</th>
+                          <th scope="col" width= "10%">Genus Name</th>
+                          <th scope="col" width= "10%">Species Name</th>
+                          <th scope="col" width= "10%">Common Name</th>
+                          <th scope="col" width= "10%">Actions</th>
                         </tr>
                       </thead>
-                     <tbody tbody id="showdata">
-                        
-            </tbody>           
+                     <!-- <tbody tbody id="showdata">     
+            </tbody>    -->        
             </table>
           </div>
         </div>
       </div>
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript">  
-    $(function(){
-    
+
+ </main>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <!--Table-->
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+
+<script>
+function resetForm() {
+    document.getElementById("addSpeciesForm").reset();
+}
+</script>
+
+
+<script type="text/javascript">  
+
+  function showAllSpecies()
+  {
+    $('#manageSpeciestbl').dataTable().fnClearTable();
+    $('#manageSpeciestbl').dataTable().fnDraw();
+    $('#manageSpeciestbl').dataTable().fnDestroy();
+    $('#manageSpeciestbl').dataTable({
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllSpecies')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
+
+    $(document).ready(function() {
       //show
     showAllSpecies();
-    
-
-    function showAllSpecies(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllSpecies',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intSpeciesID+'</td>'+
-                  '<td>'+data[i].strGenusName+'</td>'+
-                  '<td>'+data[i].strSpeciesName+'</td>'+
-                  '<td>'+data[i].strCommonName+'</td>'+
-                  '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary species-edit" data="'+data[i].intSpeciesID+'">Edit</a>'+
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
-    }
     showSpeciesGenusName();
-      function showSpeciesGenusName(){
+    
+ 
+function showSpeciesGenusName(){
       $.ajax({
         type: 'ajax',
         url: '<?php echo base_url() ?>admin/showSpeciesGenusName',
@@ -169,7 +173,9 @@
         }
       });
     }
-    $('#btnSave').click(function(){
+
+
+$('#btnSave').click(function(){
       var data = $('#addSpeciesForm').serialize();
       //validate form
 
@@ -199,6 +205,7 @@
         });
       
     });
+
 $('#btnEditSave').click(function(){
       var data = $('#editSpeciesForm').serialize();
         $.ajax({
@@ -227,8 +234,9 @@ $('#btnEditSave').click(function(){
           }
         });
     });
+
     //edit class
-    $('#showdata').on('click', '.species-edit', function(){
+ $(document).on('click', '.species-edit', function(){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Species');

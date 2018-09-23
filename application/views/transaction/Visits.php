@@ -53,6 +53,7 @@
 <div class="tab" >
   <button id = "defaultOpen" class="tablinks" onclick="openCity(event, 'FirstTab')" style="color:white;">Pending</button>
   <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">Expected Visits</button>
+  <button class="tablinks" onclick="openCity(event, 'RejectTab') " style="color:white;">Rejected</button>
   <button class="tablinks" onclick="openCity(event, 'ThirdTab') " style="color:white;">All</button>
 </div>
 
@@ -86,7 +87,7 @@
 
              <h5 id="exampleModalLabel" class="modal-title">View Visit Details</h5>
             <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
-               <span aria-hidden="true">×</span>
+               <span aria-hidden="true">&times;</span>
              </button>
            </div>
 
@@ -179,7 +180,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="exampleModalLabel" class="modal-title">Email</h5>
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
         </div>
 
         <div class="modal-body">
@@ -210,11 +211,79 @@
                      <script type="text/javascript">
                             $('#btnSend').click(function(){
                                 var data = $('#emailform').serialize();
-                                
+                                alert(data)
+
+                            });
+                     </script>
+                  </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<div id="RejectTab" class="tabcontent">
+     <div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Visit ID</th>
+                  <th>Visitor's Name</th>
+                  <th>Visit Date</th>
+                  <th>Visit Description</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody tbody id="showdataReject">    
+            </tbody>
+            </table>
+        </div>
+      </div>
+</div>
+</div>
+
+ <div id="EmailVisitConReject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+    <div role="document" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="exampleModalLabel" class="modal-title">Email</h5>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+        </div>
+
+        <div class="modal-body">
+          <form id= "emailformreject" method="POST" enctype="multipart/form-data">
+            <div class="form-group row pr-4">
+              <label class="col-sm-2">To:</label>
+              <input type ="hidden" name = "txtemailReject" id ="txtemail" value ="0">
+              <input type="email" name="txtEmailCon" id="strEmailAddressReject" class="form-control col-sm-10" disabled>
+            </div>
+             
+            <div class="form-group row pr-4">
+              <label class="col-sm-2">From:</label>
+              <input type="email" class="form-control col-sm-10" value= "WBHerbariumTA@gmail.com" disabled>
+            </div>
+            <br>
+             <div class="form-group">
+              <label>Visit Request ID:</label>
+              <input type ="hidden" name = "txtIdReject" id = "txtIDReject" value ="0">
+              <input type="text" name="txtreqid" id="txtreqIDReject" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+               <label>Message:</label>
+                <textarea  id="strCustomMessage" name="txtCustomMessageReject" class="form-control" placeholder="Type your message here.." ></textarea> 
+            </div>
+                  <div class="modal-footer">
+                     <input type="submit" id="btnSendReject" value="Send" class="btn btn-primary">
+                     <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+                     <script type="text/javascript">
+                            $('#btnSendReject').click(function(){
+                                var data = $('#emailformreject').serialize();
                                   $.ajax({
                                   type: 'ajax',
                                   method: 'post',
-                                  url: '<?php echo base_url() ?>admin/visitsendMail',
+                                  url: '<?php echo base_url() ?>admin/visitsendMailReject',
                                   data: data,
                                   async: false,
                                   dataType: 'json',
@@ -232,7 +301,6 @@
       </div>
     </div>
   </div>
-
 <div id="ThirdTab" class="tabcontent">
      <div class="card">
         <div class="card-body">
@@ -261,7 +329,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="exampleModalLabel" class="modal-title">Confirmation</h5>
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
         </div>
 
         <div class="modal-body">
@@ -459,7 +527,69 @@
     });
     });
 </script>
+    <script type="text/javascript">
+    
+    $(function(){
 
+    //show
+    showAllAppointmentReject();
+    function showAllAppointmentReject(){
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url() ?>admin/showAllAppointmentReject',
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html +='<tr>'+
+                  '<td>'+data[i].intAppointmentID+'</td>'+
+                  '<td>'+data[i].strFullName+'</td>'+
+                  '<td>'+data[i].dtAppointmentDate+'</td>'+
+                  '<td>'+data[i].strVisitDescription+'</td>'+
+                  '<td>'+data[i].strStatus+'</td>'+
+
+                  '<td>'+
+                   '<a href="javascript:;" class="btn btn-primary view-emailcon " data="'+data[i].intAppointmentID+'">Email</a>'+
+                  '</td>'+
+                  '</tr>';
+          }
+          $('#showdataReject').html(html);
+        },
+        error: function(){
+          alert('Could not get Data from Database');
+        }
+      });
+    }
+  });
+
+     $('#showdataReject').on('click', '.view-emailcon', function(){
+      var id = $(this).attr('data');
+      $('#EmailVisitConReject').modal('show');
+      $('#EmailVisitConReject').find('.EmailVisitConReject').text('Email');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/VisitEmailConReject',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('#strEmailAddressReject').val(data.strEmailAddress);
+          $('input[name=txtemailReject]').val(data.strEmailAddress);
+          $('#txtIDReject').val(data.intAppointmentID);
+          $('#txtreqIDReject').val(data.intAppointmentID);
+
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+    });
+
+</script>
    <script type="text/javascript">
     
     $(function(){

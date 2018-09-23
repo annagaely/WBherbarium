@@ -23,3 +23,12 @@ overflow-x: hidden;
   background: -webkit-linear-gradient(45deg, rgba(213, 15, 61, 0.6), rgba(13, 17, 198, 0.69) 100%);
   background: linear-gradient(to 45deg, rgba(213, 15, 61, 0.6), rgba(13, 17, 198, 0.69) 100%);
 }
+.nav a.white-text:hover {
+    color: #e0e0e0!important;
+}
+.nav a.dark-grey-text:hover {
+    color: #800000!important;
+}
+.nav a.indigo-text:hover {
+    color: #7986cb!important;
+}

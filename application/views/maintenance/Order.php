@@ -20,7 +20,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Order</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
 
@@ -55,7 +55,7 @@
               <div class="modal-header">
 
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">  
 
@@ -84,62 +84,68 @@
           </div>
         </div>
       <!--END EDIT CLASS MODAL-->
+     
       <div class="card">
-              
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>Order ID</th>
-                          <th>Class Name</th>
-                          <th>Order Name</th>
-                          <th>Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody tbody id="showdata">
-                        
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript">  
-    $(function(){
-    
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table dataTable no-footer" id="manageOrdertbl">
+              <thead>
+                <tr>
+                  <th scope="col" width= "5%">Order ID</th>
+                  <th scope="col" width= "8%">Class Name</th>
+                  <th scope="col" width= "8%">Order Name</th>
+                  <th scope="col" width= "5%">Actions</th>
+                </tr>
+              </thead>
+<!--               <tbody tbody id="showdata">        
+              </tbody> -->
+            </table>
+           </div>
+         </div>
+      </div>
+
+      </main>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <!--Table-->
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+
+<script>
+function resetForm() {
+    document.getElementById("addOrderForm").reset();
+}
+</script>
+
+<script type="text/javascript">  
+
+    function showAllOrder()
+    {  
+      $('#manageOrdertbl').dataTable().fnClearTable();
+      $('#manageOrdertbl').dataTable().fnDraw();
+      $('#manageOrdertbl').dataTable().fnDestroy();
+      $('#manageOrdertbl').dataTable({
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllOrder')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
+
+$(document).ready(function(){
       //show
     showAllOrder();
     showOrderClassName();
+   
 
-    function showAllOrder(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllOrder',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intOrderID+'</td>'+
-                  '<td>'+data[i].strClassName+'</td>'+
-                  '<td>'+data[i].strOrderName+'</td>'+
-                  '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary order-edit" data="'+data[i].intOrderID+'">Edit</a>'+
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
-    }
-    
-      function showOrderClassName(){
+function showOrderClassName(){
       $.ajax({
         type: 'ajax',
         url: '<?php echo base_url() ?>admin/showOrderClassName',
@@ -159,10 +165,12 @@
         }
       });
     }
-    $('#btnSave').click(function(){
+
+
+$('#btnSave').click(function(){
       var data = $('#addOrderForm').serialize();
       //validate form
-if(confirm("Save data?")){
+      if(confirm("Save data?")){
         $.ajax({
           type: 'ajax',
           method: 'post',
@@ -224,7 +232,7 @@ if(confirm("Save data?")){
         });
     });
     //edit class
-    $('#showdata').on('click', '.order-edit', function(){
+$(document).on('click', '.order-edit', function(){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Order');

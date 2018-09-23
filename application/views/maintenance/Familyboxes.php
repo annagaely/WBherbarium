@@ -21,7 +21,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Family Box</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
 
@@ -34,6 +34,18 @@
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
                     <input type="text" name="txtBLLimit" placeholder="Box Limit" class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Rack Number:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtrackno" placeholder="Rack Number" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Rack Row:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtrackrow" placeholder="Rack Row" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Rack Column:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtrackcol" placeholder="Rack Column" class="form-control">
                   </div>
                   <!--HANGGANG DITO LANG BOI-->
 
@@ -58,7 +70,7 @@
               <div class="modal-header">
 
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">  
 
@@ -76,6 +88,18 @@
                     <label>Box Limit:</label> <label style="color: red">*</label>
                     <input type="text" name="txteBLLimit" placeholder="Box Limit" class="form-control">
                   </div> 
+                    <div class="form-group">
+                    <label>Rack Number:</label> <label style="color: red">*</label>
+                    <input type="text" name="txterackno" placeholder="Rack Number" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Rack Row:</label> <label style="color: red">*</label>
+                    <input type="text" name="txterackrow" placeholder="Rack Row" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label>Rack Column:</label> <label style="color: red">*</label>
+                    <input type="text" name="txterackcol" placeholder="Rack Column" class="form-control">
+                  </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">       
                     <input type="submit" value="Save" id='btnEditSave' class="btn btn-primary">
@@ -234,10 +258,13 @@ $('#btnEditSave').click(function(){
         url: '<?php echo base_url() ?>admin/editFamilyBox',
         data: {id: id},
         async: false,
-        dataType: 'json',
+        dataType: 'json', 
         success: function(data){
           $('input[name=txteBLLimit]').val(data.intBoxLimit);
           $('input[name=txtId]').val(data.intBoxID);
+          $('input[name=txterackno]').val(data.intRackNo);
+          $('input[name=txterackrow]').val(data.intRackRow);
+          $('input[name=txterackcol]').val(data.intRackColumn);
           
         },
         error: function(){

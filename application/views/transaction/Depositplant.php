@@ -89,7 +89,7 @@
 
              <h5 id="exampleModalLabel" class="modal-title">Plant Deposit</h5>
             <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
-               <span aria-hidden="true">×</span>
+               <span aria-hidden="true">&times;</span>
              </button>
            </div>
 
@@ -201,7 +201,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="exampleModalLabel" class="modal-title">Email</h5>
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
         </div>
 
         <div class="modal-body">
@@ -288,7 +288,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 id="exampleModalLabel" class="modal-title">Confirmation</h5>
-          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
         </div>
 
         <div class="modal-body">

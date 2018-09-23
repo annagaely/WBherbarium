@@ -20,7 +20,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Genus</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
 
@@ -55,7 +55,7 @@
               <div class="modal-header">
 
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">  
 
@@ -84,61 +84,64 @@
           </div>
         </div>
       <!--END EDIT CLASS MODAL-->
-      <div class="card">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
+<div class="card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table dataTable no-footer" id="manageGenustbl">
               <thead>
                 <tr>
-                  <th>Genus ID</th>
-                  <th>Family Name</th>
-                  <th>Genus Name</th>
-                  <th>Actions</th>
+                  <th scope="col" width= "10%">Genus ID</th>
+                  <th scope="col" width= "10%">Family Name</th>
+                  <th scope="col" width= "10%">Genus Name</th>
+                  <th scope="col" width= "10%">Actions</th>
                 </tr>  
               </thead>
-             <tbody tbody id="showdata">
-                        
-            </tbody>           
+<!--              <tbody tbody id="showdata">         
+            </tbody>  -->          
             </table>
           </div>
         </div>
       </div>
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+      </main>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <!--Table-->
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+
+<script>
+function resetForm() {
+    document.getElementById("addGenusForm").reset();
+}
+</script>     
     <script type="text/javascript">  
-    $(function(){
-    
-      //show
-    showAllGenus();
-    
 
     function showAllGenus(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllGenus',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intGenusID+'</td>'+
-                  '<td>'+data[i].strFamilyName+'</td>'+
-                  '<td>'+data[i].strGenusName+'</td>'+
-                  '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary genus-edit" data="'+data[i].intGenusID+'">Edit</a>'+
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
-    }
+      $('#manageGenustbl').dataTable().fnClearTable();
+      $('#manageGenustbl').dataTable().fnDraw();
+      $('#manageGenustbl').dataTable().fnDestroy();
+      $('#manageGenustbl').dataTable({
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllGenus')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
+
+    $(document).ready(function() {
+      //show
+    showAllGenus();
     showGenusFamilyName();
-      function showGenusFamilyName(){
+
+
+function showGenusFamilyName(){
       $.ajax({
         type: 'ajax',
         url: '<?php echo base_url() ?>admin/showGenusFamilyName',
@@ -218,7 +221,7 @@ $('#btnEditSave').click(function(){
         });
     });
     //edit class
-    $('#showdata').on('click', '.genus-edit', function(){
+$(document).on('click', '.genus-edit', function(){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Genus');
