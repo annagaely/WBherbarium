@@ -219,7 +219,6 @@ function resetForm() {
               "bPaginate": true,
               "aaSorting": [[0,'asc']],
               "fnInitComplete": function(){
-
               }
           });
         }
@@ -253,10 +252,9 @@ if(confirm("Save data?")){
                 var type ="updated"
               }
               alert('Phylum Successfully Added!');
-              location.reload();
+              $('#managePhylumtbl').dataTable().fnDestroy();
+              showAllPhylum();
 
-            }else{
-              alert('Please fill up all fields.');
             }
           },
           error: function(){

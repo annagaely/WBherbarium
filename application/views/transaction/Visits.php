@@ -211,20 +211,8 @@
                      <script type="text/javascript">
                             $('#btnSend').click(function(){
                                 var data = $('#emailform').serialize();
-                                
-                                  $.ajax({
-                                  type: 'ajax',
-                                  method: 'post',
-                                  url: '<?php echo base_url() ?>admin/visitsendMail',
-                                  data: data,
-                                  async: false,
-                                  dataType: 'json',
-                                  success: function(){
-                                  },
-                                  error: function(){
-                                    alert('Email Sent');
-                                  }
-                                });
+                                alert(data)
+
                             });
                      </script>
                   </div>
@@ -268,7 +256,7 @@
           <form id= "emailformreject" method="POST" enctype="multipart/form-data">
             <div class="form-group row pr-4">
               <label class="col-sm-2">To:</label>
-              <input type ="hidden" name = "txtemailReject" id = "txtemail" value ="0">
+              <input type ="hidden" name = "txtemailReject" id ="txtemail" value ="0">
               <input type="email" name="txtEmailCon" id="strEmailAddressReject" class="form-control col-sm-10" disabled>
             </div>
              
@@ -292,7 +280,6 @@
                      <script type="text/javascript">
                             $('#btnSendReject').click(function(){
                                 var data = $('#emailformreject').serialize();
-                                
                                   $.ajax({
                                   type: 'ajax',
                                   method: 'post',
@@ -590,7 +577,7 @@
         dataType: 'json',
         success: function(data){
           $('#strEmailAddressReject').val(data.strEmailAddress);
-          $('#txtemailReject').val(data.strEmailAddress);
+          $('input[name=txtemailReject]').val(data.strEmailAddress);
           $('#txtIDReject').val(data.intAppointmentID);
           $('#txtreqIDReject').val(data.intAppointmentID);
 

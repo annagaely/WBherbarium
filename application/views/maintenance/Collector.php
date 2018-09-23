@@ -28,7 +28,7 @@
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>First Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="fName" id="strFirstname" placeholder="First Name " class="form-control">
+                      <input type="text" name="fName" id="strFirstname" placeholder="First Name " class="form-control" required>
                     </div>
                   </div>
                   <div class="row">
@@ -44,7 +44,7 @@
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Last Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="lName"  id="strLastname" placeholder="Last Name" class="form-control">
+                      <input type="text" name="lName"  id="strLastname" placeholder="Last Name" class="form-control" required>
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Name Suffix:</label>
@@ -54,23 +54,23 @@
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text" name="cName" placeholder="Contact Number" class="form-control">
+                    <input type="text" name="cName" placeholder="Contact Number" class="form-control" required>
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
-                    <input type="text" name="eMail" placeholder="Email Address" class="form-control">
+                    <input type="text" name="eMail" placeholder="Email Address" class="form-control" required>
                   </div>
                 </div>
                   <div class="row">
                     <div class="form-group col-sm-12">
                     <label>Home Address:</label> <label style="color: red">*</label>
-                    <input type='text' name="cdName" id="strCollege" placeholder="Home Address" class="form-control">
+                    <input type='text' name="cdName" id="strCollege" placeholder="Home Address" class="form-control" required>
                   </div>
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-12">
                     <label>Affiliation:</label> <label style="color: red">*</label>
-                    <input type="text" name="secName" placeholder="Affiliation" class="form-control">
+                    <input type="text" name="secName" placeholder="Affiliation" class="form-control" required>
                   </div>
                 </div>
                   <!--HANGGANG DITO LANG BOI-->

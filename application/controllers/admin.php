@@ -83,6 +83,7 @@ $this->load->view('templates/header', $title);
 $this->load->view('maintenance/Phylum');
 $this->load->view('templates/footer');
 }
+}
 
 	//show phylum
 
@@ -101,63 +102,6 @@ $this->load->view('templates/footer');
           exit();
         
     }
-
-
-
-public function showAllPhylum()
-{
-
-    $output = $this->admin_m->showAllPhylum();
-
-    $response = array(
-      'aaData' => $output,
-      'iTotalRecords' => count($output),
-      'iTotalDisplayRecords' => count($output),
-      'iDisplayStart' => 0
-      );
-      echo json_encode($response);
-      exit();
-
-}
-	//show Class
-    public function showAllClass()
-    {
-    
-        $output = $this->admin_m->showAllClass();
-
-        $response = array(
-          'aaData' => $output,
-          'iTotalRecords' => count($output),
-          'iTotalDisplayRecords' => count($output),
-          'iDisplayStart' => 0
-          );
-          echo json_encode($response);
-          exit();
-        
-    }
-
-
-	public function showClassPhylumName(){
-	$result = $this->m->showClassPhylumName();
-	echo json_encode($result);
-	}
-	//update class
-	public function updateClass(){
-		$result = $this->m->updateClass();
-		$msg['success'] = false;
-		$msg['type'] = 'update';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
-	}
-	public function editClass(){
-		$result = $this->m->editClass();
-		echo json_encode($result);
-	}
-
-
-
 
 
 //add phylum
@@ -1081,7 +1025,7 @@ public function visitsendMailReject()
   'charset' => 'iso-8859-1',
   'wordwrap' => TRUE
 );
-$email=$this->input->post('txtEmailReject');
+$email=$this->input->post('txtemailReject');
 $id=$this->input->post('txtIdReject');
 $message = $this->input->post('txtCustomMessageReject');
 
