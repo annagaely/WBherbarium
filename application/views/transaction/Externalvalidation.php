@@ -58,22 +58,22 @@
 
 
 <div class="tabcontent" id="FirstTab">
-      <div class="card">
+       <div class="card">
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
+         <div class="table-responsive">
+            <table class="table dataTable no-footer" id="manageEVReqPendingtbl">
               <thead>
                 <tr>
-                  <th>Plant Deposit ID</th>
-                  <th>Accession Number</th>
-                  <th>Date Deposited</th>
-                  
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th scope="col" width= "10%">Plant Deposit ID</th>
+                  <th scope="col" width= "10%">Accession Number</th>
+                  <th scope="col" width= "10%">Validator Name</th>
+                  <th scope="col" width= "10%">Date Deposited</th>
+                  <th scope="col" width= "10%">Status</th>
+                  <th scope="col" width= "10%">Action</th>
                 </tr>
               </thead>
-                <tbody tbody id="showdata">
-                </tbody>
+<!--                 <tbody tbody id="showdata">
+                </tbody> -->
             </table>
         </div>
       </div>
@@ -82,21 +82,21 @@
 <div id="SecondTab" class="tabcontent">
      <div class="card">
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
+         <div class="table-responsive">
+            <table class="table dataTable no-footer" id="manageEVReqOkaytbl">
               <thead>
                 <tr>
-                   <th>Plant Deposit ID</th>
-                  <th>Accession Number</th>
-                  <th>Collector's Name</th>
-                  <th>Date Deposited</th>
-                  <th>Status</th>
-                  <th>Action</th>
+                  <th scope="col" width= "10%">Plant Deposit ID</th>
+                  <th scope="col" width= "10%">Accession Number</th>
+                  <th scope="col" width= "10%">Validator Name</th>
+                  <th scope="col" width= "10%">Date Deposited</th>
+                  <th scope="col" width= "10%">Status</th>
+                  <th scope="col" width= "10%">Action</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdata1">
-            </tbody>
             </table>
+<!--               <tbody tbody id="showdata1">
+            </tbody> -->
         </div>
       </div>
     </div>
@@ -104,19 +104,17 @@
 <div id="ThirdTab" class="tabcontent">   
        <div class="card">
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
+         <div class="table-responsive">
+            <table class="table dataTable no-footer" id="manageEVReqAlltbl">
               <thead>
                 <tr>
-                  <th>Plant Deposit ID</th>
-                  <th>Accession Number</th>
-                  <th>Collector's Name</th>
-                  <th>Date Deposited</th>
-                  <th>Status</th>
+                  <th scope="col" width= "10%">Plant Deposit ID</th>
+                  <th scope="col" width= "10%">Accession Number</th>
+                  <th scope="col" width= "10%">Collector's Name</th>
+                  <th scope="col" width= "10%">Date Deposited</th>
+                  <th scope="col" width= "10%">Status</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdata2">
-            </tbody>
             </table>
         </div>
       </div>
@@ -224,45 +222,93 @@
 
 </div>
 
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-     <script type="text/javascript">
+</main>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
 
-    $(function(){
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <!--Table-->
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
 
+<script type="text/javascript">
+    function showExValPending(){
+
+      $('#manageEVReqPendingtbl').dataTable().fnClearTable();
+      $('#manageEVReqPendingtbl').dataTable().fnDraw();
+      $('#manageEVReqPendingtbl').dataTable().fnDestroy();
+      $('#manageEVReqPendingtbl').dataTable({
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showExValPending')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
+
+ $(document).ready(function() {
     //show
     showExValPending();
-    function showExValPending(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showExValPending',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intPlantDepositID+'</td>'+
-                  '<td>'+data[i].strAccessionNumber+'</td>'+
-                  '<td>'+data[i].dateDeposited+'</td>'+
-                  
-                  '<td>'+data[i].strStatus+'</td>'+
-                  '<td>'+
-                    '<a href="javascript:;" data-target="#view-externalvalidator" data-toggle="modal" class="btn btn-primary " data="'+data[i].intPlantDepositID+'">View</a>'+
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
-    }
-
-  });
+   });
 </script>
 
+
+<script type="text/javascript">
+    function showExValOkay(){
+
+      $('#manageEVReqOkaytbl').dataTable().fnClearTable();
+      $('#manageEVReqOkaytbl').dataTable().fnDraw();
+      $('#manageEVReqOkaytbl').dataTable().fnDestroy();
+      $('#manageEVReqOkaytbl').dataTable({
+        "autoWidth":false,
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showExValOkay')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
+
+ $(document).ready(function() {
+    //show
+    showExValOkay();
+   });
+</script>
+
+
+<script type="text/javascript">
+    function showExValAll(){
+
+      $('#manageEVReqAlltbl').dataTable().fnClearTable();
+      $('#manageEVReqAlltbl').dataTable().fnDraw();
+      $('#manageEVReqAlltbl').dataTable().fnDestroy();
+      $('#manageEVReqAlltbl').dataTable({
+        "autoWidth":false,
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showExValAll')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
+
+ $(document).ready(function() {
+    //show
+    showExValAll();
+   });
+</script>
 
 <script>
 function openCity(evt, cityName) {

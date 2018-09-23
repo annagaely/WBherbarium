@@ -24,13 +24,13 @@ class admin_m extends CI_Model{
 		$query = $this->db->select('intPhylumID, strDomainName, strKingdomName, strPhylumName')
                 ->get('tblPhylum');
 
-		foreach ($query->result() as $r) 
+		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary phylum-edit" data="'.$r->intPhylumID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intPhylumID,
-					$r->strDomainName,			
+					$r->strDomainName,
 					$r->strKingdomName,
 					$r->strPhylumName,
 					$btn,
@@ -114,16 +114,13 @@ public function showAllClass()
 			->join('tblPhylum p', 'p.intPhylumID = c.intPhylumID')
 			->get('tblCLass c');
 
-
 		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary class-edit" data="'.$r->intClassID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intClassID,
-
 					$r->strPhylumName,
-
 					$r->strClassName,
 					$btn,
 					$r->intClassID
@@ -132,6 +129,8 @@ public function showAllClass()
 
 		return $result;
 	}
+
+
 
 	public function showClassPhylumName(){
 		$query = $this->db->get('tblPhylum');
@@ -218,13 +217,13 @@ public function showAllClass()
 			->join('tblClass c', 'c.intClassID = o.intClassID')
 			->get('tblOrder o');
 
-		foreach ($query->result() as $r) 
+		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary order-edit" data="'.$r->intOrderID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intOrderID,
-					$r->strClassName,			
+					$r->strClassName,
 					$r->strOrderName,
 					$btn,
 					$r->intOrderID
@@ -315,13 +314,13 @@ public function showAllFamily()
 			->join('tblOrder o', 'o.intOrderID = f.intOrderID')
 			->get('tblFamily f');
 
-		foreach ($query->result() as $r) 
+		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary family-edit" data="'.$r->intFamilyID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intFamilyID,
-					$r->strOrderName,			
+					$r->strOrderName,
 					$r->strFamilyName,
 					$btn,
 					$r->intFamilyID
@@ -394,13 +393,13 @@ public function showAllGenus(){
 			->join('tblFamily f', 'f.intfamilyID = g.intFamilyID')
 			->get('tblGenus g');
 
-		foreach ($query->result() as $r) 
+		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary genus-edit" data="'.$r->intGenusID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intGenusID,
-					$r->strFamilyName,			
+					$r->strFamilyName,
 					$r->strGenusName,
 					$btn,
 					$r->intGenusID
@@ -472,13 +471,13 @@ public function showAllSpecies(){
 			 strCommonName')
 			->join('tblGenus g', 'g.intGenusID = s.intGenusID')
 			->get('tblSpecies s');
-		foreach ($query->result() as $r) 
+		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary species-edit" data="'.$r->intSpeciesID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intSpeciesID,
-					$r->strGenusName,			
+					$r->strGenusName,
 					$r->strSpeciesName,
 					$r->strCommonName,
 					$btn,
@@ -548,18 +547,32 @@ public function showSpeciesGenusName(){
 	/****** FAMILY BOXES START!!!!! ******/
 
 public function showAllFamilyBoxes(){
+  $result = array();
 		$query = $this->db->select('intBoxID,
 			 f.strFamilyName,
 			 strBoxNumber,
 			 intBoxLimit')
 			->join('tblFamily f', 'f.intFamilyID = fb.intFamilyID')
 			->get('tblFamilyBox fb');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary FB-edit" data="'.$r->intBoxID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intBoxID,
+					$r->strFamilyName,
+					$r->strBoxNumber,
+					$r->intBoxLimit,
+					$btn,
+					$r->intBoxID
+					);
 		}
+
+		return $result;
+
 	}
+
 	public function showFBFamilyName(){
 		$query = $this->db->get('tblFamily');
 		if($query->num_rows() > 0){
@@ -647,15 +660,33 @@ public function showAllFamilyBoxes(){
   }
 		/****** END FAMILY BOXES!!!!! ******/
 	/****** LOCALITY START!!!!! ******/
-		public function showAllLocality(){
+public function showAllLocality(){
+		$result = array();
 		$query = $this->db->get('tblLocality');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary locality-edit" data="'.$r->intLocalityID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intLocalityID,
+					$r->strIsland,
+					$r->strRegion,
+					$r->strProvince,
+					$r->strCity,
+					$r->strArea,
+					$r->strSpecificLocation,
+					$r->strShortLocation,
+					$btn,
+					$r->intLocalityID
+					);
 		}
+
+		return $result;
 	}
-	public function addLocality(){
+
+
+public function addLocality(){
 	$island = $this->input->post('sislandname');
 	$region = $this->input->post('sregionname');
 	$province = $this->input->post('sprovname');
@@ -704,7 +735,8 @@ public function showAllFamilyBoxes(){
 			return false;
 		}
 	}
-	public function updateLocality(){
+
+public function updateLocality(){
 	$island = $this->input->post('seislandname');
 	$region = $this->input->post('seregionname');
 	$province = $this->input->post('seprovname');
@@ -766,14 +798,26 @@ public function showAllFamilyBoxes(){
 	/****** END LOCALITY BOXES!!!!! ******/
 	/****** COLLECTOR START!!!!! ******/
 public function showAllCollector(){
+		$result = array();
 		$query = $this->db->query("select Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strAffiliation, intCollectorID
 		from tblCollector ");
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary collector-edit" data="'.$r->intCollectorID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intCollectorID,
+					$r->strFullName,
+					$r->strAffiliation,
+					$btn,
+					$r->intCollectorID
+					);
 		}
+
+		return $result;
 	}
+
 	public function addCollector(){
 
 	$fname = $this->input->post('fName');
@@ -866,7 +910,6 @@ public function showAllCollector(){
 		$id = $this->input->get('id');
 		$this->db->where('intCollectorID', $id);
 		$query = $this->db->select('intCollectorID,
-
       strFirstname
       ,strMiddlename
       ,strLastname
@@ -887,14 +930,23 @@ public function showAllCollector(){
 	/****** END COLLECTOR!!!!! ******/
 	/****** EXTERNAL VALIDATOR START!!!!! ******/
 	public function showAllValidator(){
+    $result = array();
 		$query = $this->db->query("select Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strInstitution, intValidatorID
 		from tblValidator
 		where strValidatorType = 'External'");
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-		}
+		foreach ($query->result() as $r)
+    {
+      $btn = '<button class="btn btn-primary validator-edit" data="'.$r->intValidatorID.'">Edit</button>';
+
+      $result[] = array(
+        $r->intValidatorID,
+        $r->strFullLocation,
+        $r->strInstitution,
+        $btn,
+        $r->intValidatorID
+      );
+    }
+    return $result;
 	}
 
 	public function addValidator(){
@@ -1015,14 +1067,23 @@ public function editValidator(){
 	/****** END EXTERNALVALIDATOR!!!!! ******/
 	/******  STAFF MGT START!!!!! ******/
 	public function showAllStaff(){
+    $result = array();
 		$query = $this->db->query("select intStaffID,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName, strRole, strCollegeDepartment
-		from [tblHerbariumStaff]
-		");
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-		}
+		from tblHerbariumStaff");
+		foreach ($query->result() as $r)
+    {
+      $btn = '<button class="btn btn-primary staff-edit" data="'.$r->intStaffID.'">Edit</button>';
+
+      $result[] = array(
+        $r->intStaffID,
+        $r->strFullName,
+        $r->strRole,
+        $r->strCollegeDepartment,
+        $btn,
+        $r->intStaffID
+      );
+    }
+    return $result;
 	}
 	public function addStaff(){
 
@@ -1143,14 +1204,27 @@ UPDATE tblHerbariumStaff
 	/****** END STAFF MGT!!!!! ******/
 	/******  ACCOUNTS START!!!!! ******/
 	public function showAllAccounts(){
+		$result = array();
 		$query = $this->db->query("select * from viewAccounts
 		");
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+	foreach ($query->result() as $r) 
+		{
+			$btn = '<button class="btn btn-primary account-edit" data="'.$r->intAccountID.'">Edit</button>';
+
+			$result[] = array(
+					$r->intAccountID,
+					$r->strFullName,			
+					$r->strUsername,
+					$r->strRole,
+					$btn,
+					$r->intAccountID
+					);
 		}
+
+		return $result;
 	}
+
 	public function addAccounts(){
 
 	$staffname = $this->input->post('StaffName');
@@ -1453,52 +1527,89 @@ $status = $this->input->post('txtStatus');
 //DEPOSIT REQUEST
 public function showAllDepositReqPending()
 {
-	//->where('strStatus','Pending')
-	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID,dtAppointmentDate
+	$result = array();
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, dtDateCollected, strFullLocation, dtAppointmentDate, strStatus, intDepositReqID
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID
 		where strStatus ='Pending'");
 
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary view-depositReq" data="'.$r->intDepositReqID.'">View</button>';
+
+			$result[] = array(
+					$r->intDepositReqID,
+					$r->strFullName,
+					$r->strCommonName,
+					$r->dtDateCollected,
+					$r->strFullLocation,
+					$r->dtAppointmentDate,
+					$r->strStatus, 
+					$btn,
+					$r->intDepositReqID
+					);
 		}
 
+		return $result;
 }
 
 public function showAllDepositReqOkay()
 {
-
-	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID
+	$result = array();
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, strFullLocation, dtAppointmentDate, strStatus, intDepositReqID
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID
-		where strStatus='For Depositing'");
+		where strStatus ='For Depositing'");
 
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary view-emailcon" data="'.$r->intDepositReqID.'">Email</button>
+				   <button class="btn btn-primary view-depositcon" data="'.$r->intDepositReqID.'">Confirmation</button>';
+
+			$result[] = array(
+					$r->intDepositReqID,
+					$r->strFullName,
+					$r->strCommonName,
+					$r->strFullLocation,
+					$r->dtAppointmentDate, 
+					$r->strStatus, 
+					$btn,
+					$r->intDepositReqID
+					);
 		}
 
+		return $result;
 }
+
+		
 
 public function showAllDepositReqAll()
 {
-
-	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtDateCollected, strFullLocation, strCommonName,strStatus, intDepositReqID
+	$result = array();
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, dtDateCollected, strFullLocation, strStatus, intDepositReqID
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID");
 
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+		foreach ($query->result() as $r)
+		{
+			$result[] = array(
+					$r->intDepositReqID,
+					$r->strFullName,
+					$r->strCommonName,
+					$r->dtDateCollected,
+					$r->strFullLocation,
+					$r->strStatus, 
+					$r->intDepositReqID
+					);
 		}
+
+		return $result;
 }
+
+
 public function viewDepositReq(){
 		$id = $this->input->get('id');
 	$this->db->where('intDepositReqID', $id);
@@ -1518,8 +1629,8 @@ public function viewDepositReq(){
 			return false;
 		}
 	}
-	public function updateConfirmation(){
 
+public function updateConfirmation(){
 
 $depositid = $this->input->post('txtId');
 $status = $this->input->post('txtStatus');
@@ -1771,14 +1882,87 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 		}
 
 	public function showExValPending(){
-		$query = $this->db->select('intPlantDepositID,strAccessionNumber,dateDeposited,strStatus')
-		->where('strStatus','For External Validation')
-		->get('tblPlantDeposit');
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-	}
-}
+		$result = array();
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
 
+		from tblPlantDeposit pd join tblCollector cl
+		on pd.intCollectorID = cl.intCollectorID
+
+		where strStatus='Pending'");
+
+
+		foreach ($query->result() as $r)
+		{
+
+		$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'">View</button>';
+
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->strAccessionNumber,
+					$r->strFullName,
+					$r->dateDeposited,
+					$r->strStatus,
+					$btn,
+					$r->intPlantDepositID
+
+					);
+		}
+
+		return $result;
+}		
+
+
+public function showExValOkay(){
+		$result = array();
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
+
+		from tblPlantDeposit pd join tblCollector cl
+		on pd.intCollectorID = cl.intCollectorID
+		where strStatus= 'For External Validation'");
+
+
+		foreach ($query->result() as $r)
+		{
+
+		$btn = '<button class="btn btn-primary view-EVOkay" data="'.$r->intPlantDepositID.'">View</button>';
+
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->strAccessionNumber,
+					$r->strFullName,
+					$r->dateDeposited,
+					$r->strStatus,
+					$btn,
+					$r->intPlantDepositID
+
+					);
+		}
+
+		return $result;
+}	
+
+
+public function showExValAll(){
+		$result = array();
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
+
+		from tblPlantDeposit pd join tblCollector cl
+		on pd.intCollectorID = cl.intCollectorID");
+
+
+		foreach ($query->result() as $r)
+		{
+
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->strAccessionNumber,
+					$r->strFullName,
+					$r->dateDeposited,
+					$r->strStatus
+
+					);
+		}
+
+		return $result;
+}			
 }?>

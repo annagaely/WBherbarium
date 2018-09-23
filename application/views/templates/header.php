@@ -57,6 +57,7 @@
           <!-- User Info-->
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
              <h2 class="h5">
+
               <?php 
                   $serverName = "MSI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
@@ -80,8 +81,10 @@
               ?> 
             </h2>
               <span>
-                <?php 
-                  $serverName = "MSI";
+
+                <?php
+                  $serverName = "LAPTOP-0L08K6U2";
+
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {

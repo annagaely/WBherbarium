@@ -77,31 +77,34 @@ class admin extends CI_Controller {
 /****** PHYLUM ONLY!!!!! ******/
 public function Phylum()
 {
-if($this->session->userdata('strUserName')!=''){
-$title['title'] = "PUPHerbarium | Phylum";
-$this->load->view('templates/header', $title);
-$this->load->view('maintenance/Phylum');
-$this->load->view('templates/footer');
+	if($this->session->userdata('strUserName')!='')
+	{
+		$title['title'] = "PUPHerbarium | Phylum";
+		$this->load->view('templates/header', $title);
+		$this->load->view('maintenance/Phylum');
+		$this->load->view('templates/footer');
+	}
 }
 }
 
 	//show phylum
 
-    public function showAllPhylum()
-    {
-    
-        $output = $this->admin_m->showAllPhylum();
+public function showAllPhylum()
+{
 
-        $response = array(
-          'aaData' => $output,
-          'iTotalRecords' => count($output),
-          'iTotalDisplayRecords' => count($output),
-          'iDisplayStart' => 0
-          );
-          echo json_encode($response);
-          exit();
-        
-    }
+    $output = $this->admin_m->showAllPhylum();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+
 
 
 //add phylum
@@ -142,16 +145,12 @@ else{
 redirect(base_url().'admin');
 }
 }
-//show Class
-// public function showAllClass(){
-// 	$result = $this->m->showAllClass();
-// 	echo json_encode($result);
-// 	}
+
+
 public function showAllClass()
 {
 
     $output = $this->admin_m->showAllClass();
-
     $response = array(
       'aaData' => $output,
       'iTotalRecords' => count($output),
@@ -163,10 +162,12 @@ public function showAllClass()
 
 }
 
-public function showClassPhylumName(){
-$result = $this->m->showClassPhylumName();
-echo json_encode($result);
+public function showClassPhylumName()
+{
+	$result = $this->m->showClassPhylumName();
+	echo json_encode($result);
 }
+
 //update class
 public function updateClass(){
 $result = $this->m->updateClass();
@@ -267,7 +268,7 @@ echo json_encode($msg);
 		//show Order
     public function showAllFamily()
     {
-    
+
         $output = $this->admin_m->showAllFamily();
 
         $response = array(
@@ -278,7 +279,7 @@ echo json_encode($msg);
           );
           echo json_encode($response);
           exit();
-        
+
     }
 
 	public function showFamilyOrderName()
@@ -327,7 +328,7 @@ public function updateFamily(){
 		//show Order
     public function showAllGenus()
     {
-    
+
         $output = $this->admin_m->showAllGenus();
 
         $response = array(
@@ -338,7 +339,7 @@ public function updateFamily(){
           );
           echo json_encode($response);
           exit();
-        
+
     }
 
 	public function showGenusFamilyName(){
@@ -428,6 +429,7 @@ public function updateSpecies(){
 	}
 	/****** END SPECIES!!!!! ******/
 	/****** FAMILY BOXES START!!!!! ******/
+
 	public function Familyboxes()
 	{
 	if($this->session->userdata('strUserName')!=''){
@@ -440,11 +442,24 @@ public function updateSpecies(){
 	redirect(base_url().'admin');
 	}
 }
-
+/*
 	public function showAllFamilyBoxes(){
-		$result = $this->m->showAllFamilyBoxes();
-		echo json_encode($result);
-		}
+
+{
+
+    $output = $this->admin_m->showAllFamilyBoxes();
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+}
+
 public function showFBFamilyName(){
 	$result = $this->m->showFBFamilyName();
 	echo json_encode($result);
@@ -486,9 +501,20 @@ public function updateFamilyBox(){
 	}
 }
 	public function showAllLocality(){
-		$result = $this->m->showAllLocality();
-		echo json_encode($result);
-	}
+{
+
+    $output = $this->admin_m->showAllLocality();
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+}
 	public function addLocality(){
 		$result = $this->m->addLocality();
 		echo json_encode($result);
@@ -518,9 +544,21 @@ public function updateFamilyBox(){
 	}
 }
 	public function showAllCollector(){
-		$result = $this->m->showAllCollector();
-		echo json_encode($result);
-	}
+	{
+
+    $output = $this->admin_m->showAllCollector();
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+}
+
 	public function addCollector(){
 		$result = $this->m->addCollector();
 		$msg['success'] = false;
@@ -555,8 +593,15 @@ public function updateFamilyBox(){
 	}
 }
 	public function showAllValidator(){
-		$result = $this->m->showAllValidator();
-		echo json_encode($result);
+    $output = $this->admin_m->showAllValidator();
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+    );
+  echo json_encode($response);
+  exit();
 	}
 	public function addValidator(){
 		$result = $this->m->addValidator();
@@ -591,9 +636,17 @@ public function updateFamilyBox(){
 	redirect(base_url().'admin');
 	}
 }
-		public function showAllStaff(){
-		$result = $this->m->showAllStaff();
-		echo json_encode($result);
+		public function showAllStaff()
+    {
+      $output = $this->admin_m->showAllStaff();
+      $response = array(
+        'aaData' => $output,
+        'iTotalRecords' => count($output),
+        'iTotalDisplayRecords' => count($output),
+        'iDisplayStart' => 0
+      );
+		echo json_encode($response);
+    exit();
 	}
 	public function addStaff(){
 		$result = $this->m->addStaff();
@@ -627,10 +680,21 @@ public function updateFamilyBox(){
 	redirect(base_url().'admin');
 	}
 }
-		public function showAllAccounts(){
-		$result = $this->m->showAllAccounts();
-		echo json_encode($result);
-	}
+	public function showAllAccounts(){
+		$output = $this->admin_m->showAllAccounts();
+       	 $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+    }
+
+
+
+
 	public function addAccounts(){
 		$result = $this->m->addAccounts();
 		$msg['success'] = false;
@@ -868,18 +932,44 @@ public function edit_event()
 //ADMIN DEPOSIT PLANT//
 	//show depositreq
 	public function showAllDepositReqPending(){
-		$result = $this->m->showAllDepositReqPending();
-		echo json_encode($result);
-	}
+	 $output = $this->admin_m->showAllDepositReqPending();
 
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
 	public function showAllDepositReqOkay(){
-		$result = $this->m->showAllDepositReqOkay();
-		echo json_encode($result);
-	}
+		$output = $this->admin_m->showAllDepositReqOkay();
+
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
 	public function showAllDepositReqAll(){
-		$result = $this->m->showAllDepositReqAll();
-		echo json_encode($result);
-	}
+		$output = $this->admin_m->showAllDepositReqAll();
+
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
 
 	public function viewDepositReq(){
 		$result = $this->m->viewDepositReq();
@@ -933,7 +1023,7 @@ $message = $this->input->post('txtCustomMessage');
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Loaning of Specimen');
       $this->email->message("Your loan request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Loan Request ID:" . $id ."<br> <br>" . $message );
-	
+
       if($this->email->send())
      {
      	return true;
@@ -1138,10 +1228,43 @@ public function VisitEmailConReject(){
 		echo json_encode($result);
 
 }
-public function showExValPending(){
-		$result = $this->m->showExValPending();
-		echo json_encode($result);
-}
+public function showExValPending()
+{
+	 $output = $this->admin_m->showExValPending();
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+    }
 
 
+public function showExValOkay()
+{
+	 $output = $this->admin_m->showExValOkay();
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+    }
+
+public function showExValAll()
+{
+	 $output = $this->admin_m->showExValAll();
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+    }
 }?>

@@ -13,7 +13,7 @@
       <div class="card">
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Family Box</button>
-        </div>    
+        </div>
 
         <!-- Modal-->
         <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
@@ -21,7 +21,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Family Box</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
 
@@ -50,7 +50,7 @@
                   <!--HANGGANG DITO LANG BOI-->
 
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary"> 
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" value="Save" id = "btnSave" class="btn btn-primary">
                   </div>
 
@@ -62,7 +62,7 @@
       </div>
       <!--END PHYLUM MODAL-->
       <!--ADD EDIT CLASS MODAL-->
-               
+
         <!-- Modal-->
         <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
@@ -72,9 +72,9 @@
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
-              <div class="modal-body">  
+              <div class="modal-body">
 
-                <form id= "editFBForm" method="POST" enctype="multipart/form-data"> 
+                <form id= "editFBForm" method="POST" enctype="multipart/form-data">
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
                   <div class="form-group">
                     <label>
@@ -86,7 +86,7 @@
                   </div>
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteBLLimit" placeholder="Box Limit" class="form-control">
+                   <input type="text" name="txteBLLimit" placeholder="Box Limit" class="form-control">
                   </div> 
                     <div class="form-group">
                     <label>Rack Number:</label> <label style="color: red">*</label>
@@ -101,73 +101,83 @@
                     <input type="text" name="txterackcol" placeholder="Rack Column" class="form-control">
                   </div>
                   <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary">       
+                    <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" value="Save" id='btnEditSave' class="btn btn-primary">
                   </div>
-                  
+
                 </form>
               </div>
             </div>
           </div>
         </div>
-      <div class="card">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
+ <div class="card">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table dataTable no-footer" id="manageFamBoxtbl">
               <thead>
                 <tr>
-                  <th>Box ID</th>
-                  <th>Box Number</th>
-                  <th>Family Name</th>
-                  <th>Box Limit</th>
-                  <th>Actions</th>
+                  <th scope="col" width= "10%">Box ID</th>
+                  <th scope="col" width= "10%">Box Number</th>
+                  <th scope="col" width= "10%">Family Name</th>
+                  <th scope="col" width= "10%">Box Limit</th>
+                  <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>
-             <tbody tbody id="showdata">
-                        
-            </tbody>
+
+<!--              <tbody tbody id="showdata">
+            </tbody> -->
+
             </table>
         </div>
       </div>
     </div>
 
+</main>
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript">  
-    $(function(){
-    
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+
+<!--Table-->
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+
+
+
+<script>
+function resetForm() {
+    document.getElementById("addFBForm").reset();
+
+}
+</script>
+
+<script type="text/javascript">
+
+    function showAllFamilyBoxes()
+    {
+    $('#manageFamBoxtbl').dataTable().fnClearTable();
+    $('#manageFamBoxtbl').dataTable().fnDraw();
+    $('#manageFamBoxtbl').dataTable().fnDestroy();
+    $('#manageFamBoxtbl').dataTable({
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllFamilyBoxes')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+
+         }
+     });
+   }
+
+
+   $(document).ready(function() {
       //show
     showAllFamilyBoxes();
-    
 
-    function showAllFamilyBoxes(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllFamilyBoxes',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intBoxID+'</td>'+
-                  '<td>'+data[i].strBoxNumber+'</td>'+
-                  '<td>'+data[i].strFamilyName+'</td>'+
-                  '<td>'+data[i].intBoxLimit+'</td>'+
-                  '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary FB-edit" data="'+data[i].intBoxID+'">Edit</a>'+
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
-    }
     showFBFamilyName();
-      function showFBFamilyName(){
+
+
+  function showFBFamilyName(){
       $.ajax({
         type: 'ajax',
         url: '<?php echo base_url() ?>admin/showFBFamilyName',
@@ -216,7 +226,7 @@
             alert('Could not save Data');
           }
         });
-      
+
     });
 
 $('#btnEditSave').click(function(){
@@ -248,7 +258,7 @@ $('#btnEditSave').click(function(){
         });
     });
     //edit class
-    $('#showdata').on('click', '.FB-edit', function(){
+ $(document).on('click', '.FB-edit', function(){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Family Box');
@@ -265,12 +275,12 @@ $('#btnEditSave').click(function(){
           $('input[name=txterackno]').val(data.intRackNo);
           $('input[name=txterackrow]').val(data.intRackRow);
           $('input[name=txterackcol]').val(data.intRackColumn);
-          
+        
         },
         error: function(){
           alert('Could not Edit Data');
         }
-      
+
     });
 
   });
