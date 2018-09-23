@@ -585,14 +585,23 @@ public function showAllFamilyBoxes(){
 	public function addFamilyBox(){
 			$familyid=$this->input->post('sfbFID');
 			$boxlimit=$this->input->post('txtBLLimit');
+			$rackno=$this->input->post('txtrackno');
+			$rackrow=$this->input->post('txtrackrow');
+			$rackcol=$this->input->post('txtrackcol');
 	$execquery  = "
 
 		DECLARE @familyID INT
 		DECLARE @identifier INT
+		DECLARE @rackcol INT
+		declare @rackrow int 
+		declare @rackno int
 		DECLARE @boxlimit INT
 		DECLARE @boxNumber VARCHAR(10)
 		SET @familyid = '$familyid'
 		set @boxLimit = '$boxlimit'
+		set @rackno = '$rackno'
+		set @rackcol = '$rackcol'
+		set @rackrow = '$rackrow'
 
 		SET @identifier = (SELECT TOP 1 CAST(SUBSTRING(strBoxNumber, 5, 3) AS INT) FROM tblFamilyBox ORDER BY strBoxNumber DESC)
 
@@ -601,8 +610,8 @@ public function showAllFamilyBoxes(){
 		ELSE
 			SET @boxNumber = 'BOX-' + FORMAT(@identifier + 1, '00#')
 
-		INSERT INTO tblFamilyBox (strBoxNumber, intFamilyID, intBoxLimit)
-		VALUES (@boxNumber, @familyID, @boxLimit);";
+		INSERT INTO tblFamilyBox (strBoxNumber, intFamilyID, intBoxLimit,intRackNo,intRackRow,intRackColumn)
+		VALUES (@boxNumber, @familyID, @boxLimit,@rackno,@rackrow,@rackcol);";
 
 		$this->db->query($execquery);
 
@@ -620,7 +629,10 @@ public function showAllFamilyBoxes(){
 			 f.strFamilyName,
 			 f.intFamilyID,
 			 strBoxNumber,
-			 intBoxLimit')
+			 intBoxLimit,
+			 intRackRow,
+			 intRackNo,
+			 intRackColumn')
 			->join('tblFamily f', 'f.intFamilyID = fb.intFamilyID')
 			->get('tblFamilyBox fb');
 		if($query->num_rows() > 0){
@@ -633,7 +645,10 @@ public function showAllFamilyBoxes(){
     $id = $this->input->post('txtId');
     $field = array(
     'intFamilyID'=>$this->input->post('sefbFID'),
-    'intBoxLimit'=>$this->input->post('txteBLLimit')
+    'intBoxLimit'=>$this->input->post('txteBLLimit'),
+    'intRackNo'=>$this->input->post('txterackno'),
+    'intRackRow'=>$this->input->post('txterackrow'),
+    'intRackColumn'=>$this->input->post('txterackcol')
 	);
     $this->db->where('intBoxID', $id);
     $this->db->update('tblFamilyBox', $field);

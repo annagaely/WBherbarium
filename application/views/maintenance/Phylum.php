@@ -132,7 +132,6 @@
 
 
       </main>
-
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
 
@@ -220,7 +219,6 @@ function resetForm() {
               "bPaginate": true,
               "aaSorting": [[0,'asc']],
               "fnInitComplete": function(){
-
               }
           });
         }
@@ -235,10 +233,8 @@ function resetForm() {
       var url = '<?php echo base_url() ?>admin/addPhylum';
       var data = $('#addPhylumForm').serialize();
       //validate form
-      var domainName = $('input[name=txtdName]');
-      var kingdomName = $('input[name=txtkName]');
-      var phylumName = $('input[name=txtkName]');;
-      if(confirm("Save data?")){
+
+if(confirm("Save data?")){
           $.ajax({
           type: 'ajax',
           method: 'post',
@@ -256,10 +252,9 @@ function resetForm() {
                 var type ="updated"
               }
               alert('Phylum Successfully Added!');
-              location.reload();
+              $('#managePhylumtbl').dataTable().fnDestroy();
+              showAllPhylum();
 
-            }else{
-              alert('Please fill up all fields.');
             }
           },
           error: function(){

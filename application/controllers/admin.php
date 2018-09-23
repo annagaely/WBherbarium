@@ -85,8 +85,10 @@ public function Phylum()
 		$this->load->view('templates/footer');
 	}
 }
+}
 
 	//show phylum
+
 public function showAllPhylum()
 {
 
@@ -102,6 +104,7 @@ public function showAllPhylum()
       exit();
 
 }
+
 
 
 //add phylum
@@ -1112,7 +1115,7 @@ public function visitsendMailReject()
   'charset' => 'iso-8859-1',
   'wordwrap' => TRUE
 );
-$email=$this->input->post('txtEmailReject');
+$email=$this->input->post('txtemailReject');
 $id=$this->input->post('txtIdReject');
 $message = $this->input->post('txtCustomMessageReject');
 
