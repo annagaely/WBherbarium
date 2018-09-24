@@ -585,14 +585,23 @@ public function showAllFamilyBoxes(){
 	public function addFamilyBox(){
 			$familyid=$this->input->post('sfbFID');
 			$boxlimit=$this->input->post('txtBLLimit');
+			$rackno=$this->input->post('txtrackno');
+			$rackrow=$this->input->post('txtrackrow');
+			$rackcol=$this->input->post('txtrackcol');
 	$execquery  = "
 
 		DECLARE @familyID INT
 		DECLARE @identifier INT
+		DECLARE @rackcol INT
+		declare @rackrow int 
+		declare @rackno int
 		DECLARE @boxlimit INT
 		DECLARE @boxNumber VARCHAR(10)
 		SET @familyid = '$familyid'
 		set @boxLimit = '$boxlimit'
+		set @rackno = '$rackno'
+		set @rackcol = '$rackcol'
+		set @rackrow = '$rackrow'
 
 		SET @identifier = (SELECT TOP 1 CAST(SUBSTRING(strBoxNumber, 5, 3) AS INT) FROM tblFamilyBox ORDER BY strBoxNumber DESC)
 
@@ -601,8 +610,8 @@ public function showAllFamilyBoxes(){
 		ELSE
 			SET @boxNumber = 'BOX-' + FORMAT(@identifier + 1, '00#')
 
-		INSERT INTO tblFamilyBox (strBoxNumber, intFamilyID, intBoxLimit)
-		VALUES (@boxNumber, @familyID, @boxLimit);";
+		INSERT INTO tblFamilyBox (strBoxNumber, intFamilyID, intBoxLimit,intRackNo,intRackRow,intRackColumn)
+		VALUES (@boxNumber, @familyID, @boxLimit,@rackno,@rackrow,@rackcol);";
 
 		$this->db->query($execquery);
 
@@ -620,7 +629,10 @@ public function showAllFamilyBoxes(){
 			 f.strFamilyName,
 			 f.intFamilyID,
 			 strBoxNumber,
-			 intBoxLimit')
+			 intBoxLimit,
+			 intRackRow,
+			 intRackNo,
+			 intRackColumn')
 			->join('tblFamily f', 'f.intFamilyID = fb.intFamilyID')
 			->get('tblFamilyBox fb');
 		if($query->num_rows() > 0){
@@ -633,7 +645,10 @@ public function showAllFamilyBoxes(){
     $id = $this->input->post('txtId');
     $field = array(
     'intFamilyID'=>$this->input->post('sefbFID'),
-    'intBoxLimit'=>$this->input->post('txteBLLimit')
+    'intBoxLimit'=>$this->input->post('txteBLLimit'),
+    'intRackNo'=>$this->input->post('txterackno'),
+    'intRackRow'=>$this->input->post('txterackrow'),
+    'intRackColumn'=>$this->input->post('txterackcol')
 	);
     $this->db->where('intBoxID', $id);
     $this->db->update('tblFamilyBox', $field);
@@ -1868,19 +1883,27 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 
 	public function showExValPending(){
 		$result = array();
-		$query = $this->db->query("select intPlantDepositID,strAccessionNumber,Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName,dateDeposited,strStatus
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
 
 		from tblPlantDeposit pd join tblCollector cl
-		on pd.intCollectorID = cl.intCollectorID");
+		on pd.intCollectorID = cl.intCollectorID
+
+		where strStatus='Pending'");
+
 
 		foreach ($query->result() as $r)
 		{
+
+		$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'">View</button>';
+
 			$result[] = array(
 					$r->intPlantDepositID,
 					$r->strAccessionNumber,
 					$r->strFullName,
 					$r->dateDeposited,
 					$r->strStatus,
+					$btn,
+					$r->intPlantDepositID
 
 					);
 		}
@@ -1888,4 +1911,58 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 		return $result;
 }		
 
+
+public function showExValOkay(){
+		$result = array();
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
+
+		from tblPlantDeposit pd join tblCollector cl
+		on pd.intCollectorID = cl.intCollectorID
+		where strStatus= 'For External Validation'");
+
+
+		foreach ($query->result() as $r)
+		{
+
+		$btn = '<button class="btn btn-primary view-EVOkay" data="'.$r->intPlantDepositID.'">View</button>';
+
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->strAccessionNumber,
+					$r->strFullName,
+					$r->dateDeposited,
+					$r->strStatus,
+					$btn,
+					$r->intPlantDepositID
+
+					);
+		}
+
+		return $result;
+}	
+
+
+public function showExValAll(){
+		$result = array();
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
+
+		from tblPlantDeposit pd join tblCollector cl
+		on pd.intCollectorID = cl.intCollectorID");
+
+
+		foreach ($query->result() as $r)
+		{
+
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->strAccessionNumber,
+					$r->strFullName,
+					$r->dateDeposited,
+					$r->strStatus
+
+					);
+		}
+
+		return $result;
+}			
 }?>

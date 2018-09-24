@@ -66,6 +66,7 @@
                 <tr>
                   <th scope="col" width= "10%">Plant Deposit ID</th>
                   <th scope="col" width= "10%">Accession Number</th>
+                  <th scope="col" width= "10%">Validator Name</th>
                   <th scope="col" width= "10%">Date Deposited</th>
                   <th scope="col" width= "10%">Status</th>
                   <th scope="col" width= "10%">Action</th>
@@ -87,6 +88,7 @@
                 <tr>
                   <th scope="col" width= "10%">Plant Deposit ID</th>
                   <th scope="col" width= "10%">Accession Number</th>
+                  <th scope="col" width= "10%">Validator Name</th>
                   <th scope="col" width= "10%">Date Deposited</th>
                   <th scope="col" width= "10%">Status</th>
                   <th scope="col" width= "10%">Action</th>
@@ -102,8 +104,8 @@
 <div id="ThirdTab" class="tabcontent">   
        <div class="card">
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
+         <div class="table-responsive">
+            <table class="table dataTable no-footer" id="manageEVReqAlltbl">
               <thead>
                 <tr>
                   <th scope="col" width= "10%">Plant Deposit ID</th>
@@ -113,16 +115,6 @@
                   <th scope="col" width= "10%">Status</th>
                 </tr>
               </thead>
-
-</main>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
-
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
-      <!--Table-->
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script> 
-
             </table>
         </div>
       </div>
@@ -264,6 +256,59 @@
    });
 </script>
 
+
+<script type="text/javascript">
+    function showExValOkay(){
+
+      $('#manageEVReqOkaytbl').dataTable().fnClearTable();
+      $('#manageEVReqOkaytbl').dataTable().fnDraw();
+      $('#manageEVReqOkaytbl').dataTable().fnDestroy();
+      $('#manageEVReqOkaytbl').dataTable({
+        "autoWidth":false,
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showExValOkay')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
+
+ $(document).ready(function() {
+    //show
+    showExValOkay();
+   });
+</script>
+
+
+<script type="text/javascript">
+    function showExValAll(){
+
+      $('#manageEVReqAlltbl').dataTable().fnClearTable();
+      $('#manageEVReqAlltbl').dataTable().fnDraw();
+      $('#manageEVReqAlltbl').dataTable().fnDestroy();
+      $('#manageEVReqAlltbl').dataTable({
+        "autoWidth":false,
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showExValAll')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+                   
+         }
+     });
+   }
+
+ $(document).ready(function() {
+    //show
+    showExValAll();
+   });
+</script>
 
 <script>
 function openCity(evt, cityName) {
