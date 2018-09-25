@@ -64,12 +64,12 @@
         <table class="table table-striped" id="manageVisittbl">
           <thead>
             <tr>
-              <th>Visit ID</th>
-              <th>Visitor's Name</th>
-                 <th>Visit Date</th>
-                  <th>Visit Description</th>
-                  <th>Status</th>
-              <th>Actions</th>
+              <th scope="col" width= "10%">Visit ID</th>
+              <th scope="col" width= "10%">Visitor's Name</th>
+              <th scope="col" width= "10%">Visit Date</th>
+              <th scope="col" width= "10%">Visit Description</th>
+              <th scope="col" width= "10%">Status</th>
+              <th scope="col" width= "10%">Actions</th>
             </tr>
           </thead>
         </table>
@@ -78,7 +78,7 @@
   </div>
 
          <!-- Modal-->
-     <div id="viewVisitReq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
+<div id="viewVisitReq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
        <div role="document" class="modal-dialog modal-lg" >
          <div class="modal-content" >
            <div class="modal-header">
@@ -157,12 +157,12 @@
             <table class="table table-striped" id="manageExpecttbl">
               <thead>
                 <tr>
-                  <th>Visit ID</th>
-                  <th>Visitor's Name</th>
-                 <th>Visit Date</th>
-                  <th>Visit Description</th>
-                  <th>Status</th>
-                  <th>Actions</th>
+                 <th scope="col" width= "10%">Visit ID</th>
+                 <th scope="col" width= "10%">Visitor's Name</th>
+                 <th scope="col" width= "10%">Visit Date</th>
+                 <th scope="col" width= "10%">Visit Description</th>
+                 <th scope="col" width= "10%">Status</th>
+                 <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>
             </table>
@@ -228,27 +228,26 @@
       </div>
     </div>
   </div>
+
 <div id="RejectTab" class="tabcontent">
-     <div class="card">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-striped">
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped" id="manageRejectbl">
               <thead>
                 <tr>
-                  <th>Visit ID</th>
-                  <th>Visitor's Name</th>
-                  <th>Visit Date</th>
-                  <th>Visit Description</th>
-                  <th>Status</th>
-                  <th>Actions</th>
+                 <th scope="col" width= "10%">Visit ID</th>
+                 <th scope="col" width= "10%">Visitor's Name</th>
+                 <th scope="col" width= "10%">Visit Date</th>
+                 <th scope="col" width= "10%">Visit Description</th>
+                 <th scope="col" width= "10%">Status</th>
+                 <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdataReject">
-            </tbody>
             </table>
         </div>
       </div>
-</div>
+ </div>
 </div>
 
  <div id="EmailVisitConReject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
@@ -260,11 +259,12 @@
         </div>
 
         <div class="modal-body">
-          <form id= "emailformreject" method="POST" enctype="multipart/form-data">
+          <form id= "emailformreject">
+              <input type ="hidden" name = "txtemailReject" id ="txtemail" value ="0">
+             
             <div class="form-group row pr-4">
               <label class="col-sm-2">To:</label>
-              <input type ="hidden" name = "txtemailReject" id ="txtemail" value ="0">
-              <input type="email" name="txtEmailCon" id="strEmailAddressReject" class="form-control col-sm-10" disabled>
+               <input type="email" name="txtEmailCon" id="strEmailAddressReject" class="form-control col-sm-10" disabledmethod="POST" enctype="multipart/form-data">
             </div>
 
             <div class="form-group row pr-4">
@@ -308,22 +308,23 @@
       </div>
     </div>
   </div>
+
 <div id="ThirdTab" class="tabcontent">
      <div class="card">
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped" id="manageAlltbl">
               <thead>
                 <tr>
-                  <th>Visit ID</th>
-                  <th>Visitor's Name</th>
-                  <th>Visit Date</th>
-                  <th>Visit Description</th>
-                  <th>Status</th>
+                  <th scope="col" width= "10%">Visit ID</th>
+                  <th scope="col" width= "10%">Visitor's Name</th>
+                  <th scope="col" width= "10%">Visit Date</th>
+                  <th scope="col" width= "10%">Visit Description</th>
+                  <th scope="col" width= "10%">Status</th>
                 </tr>
               </thead>
-              <tbody tbody id="showdata2">
-            </tbody>
+<!--               <tbody tbody id="showdata2">
+            </tbody> -->
             </table>
         </div>
       </div>
@@ -379,8 +380,16 @@
       </div>
     </div>
   </div>
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript">
+</main>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+      <!--Table-->
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+    
+
+<script type="text/javascript">
+
     function showAllAppointmentPending()
     {
       $('#manageVisittbl').dataTable().fnClearTable();
@@ -398,8 +407,10 @@
          }
      });
     }
+
     $(document).ready(function() {
       showAllAppointmentPending();
+});
 
   $('#btnSave').click(function(){
 
@@ -425,7 +436,35 @@
           }
         });
     });
-  });
+
+$(document).on('click', '.view-appointment', function(){
+      var id = $(this).attr('data');
+      $('#viewVisitReq').modal('show');
+      $('#ViewVisitReq').find('.modal-title').text('Visit Details');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/ViewVisitReq',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtVisitorName]').val(data.strFullName);
+          $('input[name=txtAppointmentID]').val(data.intAppointmentID);
+          $('input[name=txtVisitDate').val(data.dtAppointmentDate);
+          $('input[name=txtVisitPurpose').val(data.strVisitDescription);
+          $('input[name=txtId').val(data.intAppointmentID);
+
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+});
+
+
+
 
 </script>
 
@@ -437,6 +476,7 @@
       $('#manageExpecttbl').dataTable().fnDraw();
       $('#manageExpecttbl').dataTable().fnDestroy();
       $('#manageExpecttbl').dataTable({
+        "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllAppointmentExpect')?>",
@@ -475,7 +515,6 @@
 
     });
     });
-  });
 
      $(document).on('click', '.view-emailcon', function(){
       var id = $(this).attr('data');
@@ -501,132 +540,7 @@
 
     });
     });
-</script>
-    <script type="text/javascript">
 
-    $(function(){
-
-    //show
-    showAllAppointmentReject();
-    function showAllAppointmentReject(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllAppointmentReject',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intAppointmentID+'</td>'+
-                  '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].dtAppointmentDate+'</td>'+
-                  '<td>'+data[i].strVisitDescription+'</td>'+
-                  '<td>'+data[i].strStatus+'</td>'+
-
-                  '<td>'+
-                   '<a href="javascript:;" class="btn btn-primary view-emailcon " data="'+data[i].intAppointmentID+'">Email</a>'+
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdataReject').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
-    }
-  });
-
-     $(document).on('click', '.view-emailcon', function(){
-      var id = $(this).attr('data');
-      $('#EmailVisitConReject').modal('show');
-      $('#EmailVisitConReject').find('.EmailVisitConReject').text('Email');
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/VisitEmailConReject',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('#strEmailAddressReject').val(data.strEmailAddress);
-          $('input[name=txtemailReject]').val(data.strEmailAddress);
-          $('#txtIDReject').val(data.intAppointmentID);
-          $('#txtreqIDReject').val(data.intAppointmentID);
-
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
-
-    });
-    });
-
-</script>
-   <script type="text/javascript">
-
-    $(function(){
-
-    //show
-    showAllAppointmentAll();
-    function showAllAppointmentAll(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllAppointmentAll',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intAppointmentID+'</td>'+
-                  '<td>'+data[i].strFullName+'</td>'+
-                  '<td>'+data[i].dtAppointmentDate+'</td>'+
-
-                  '<td>'+data[i].strVisitDescription+'</td>'+
-                  '<td>'+data[i].strStatus+'</td>'+
-                  '</tr>';
-          }
-          $('#showdata2').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
-    }
-  });
-</script>
-<script type="text/javascript">
-      $(document).on('click', '.view-appointment', function(){
-      var id = $(this).attr('data');
-      $('#ViewVisitReq').modal('show');
-      $('#ViewVisitReq').find('.modal-title').text('Visit Details');
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/ViewVisitReq',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('input[name=txtVisitorName]').val(data.strFullName);
-          $('input[name=txtAppointmentID]').val(data.intAppointmentID);
-          $('input[name=txtVisitDate').val(data.dtAppointmentDate);
-          $('input[name=txtVisitPurpose').val(data.strVisitDescription);
-          $('input[name=txtId').val(data.intAppointmentID);
-
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
-
-    });
-    });
-</script>
-<script type="text/javascript">
 
    $('#btnConfirm').click(function(){
       var data = $('#ConfirmForm').serialize();
@@ -652,7 +566,111 @@
           }
         });
     });
+
+
+    });
 </script>
+
+<script type="text/javascript">
+    function showAllAppointmentReject()
+    {
+      $('#manageRejectbl').dataTable().fnClearTable();
+      $('#manageRejectbl').dataTable().fnDraw();
+      $('#manageRejectbl').dataTable().fnDestroy();
+      $('#manageRejectbl').dataTable({
+        "autoWidth":false,
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllAppointmentReject')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+
+         }
+     });
+    }
+
+    $(document).ready(function() {
+      showAllAppointmentReject();
+
+     $(document).on('click', '.view-emailConReject', function(){
+      var id = $(this).attr('data');
+      $('#EmailVisitConReject').modal('show');
+      $('#EmailVisitConReject').find('.EmailVisitConReject').text('Email');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/VisitEmailConReject',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('#strEmailAddressReject').val(data.strEmailAddress);
+          $('input[name=txtemailReject]').val(data.strEmailAddress);
+          $('#txtIDReject').val(data.intAppointmentID);
+          $('#txtreqIDReject').val(data.intAppointmentID);
+
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+});
+});
+
+</script>
+
+<script type="text/javascript">
+
+      $(document).on('click', '.view-appointment', function(){
+      var id = $(this).attr('data');
+      $('#ViewVisitReq').modal('show');
+      $('#ViewVisitReq').find('.modal-title').text('Visit Details');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/ViewVisitReq',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtVisitorName]').val(data.strFullName);
+          $('input[name=txtAppointmentID]').val(data.intAppointmentID);
+          $('input[name=txtVisitDate').val(data.dtAppointmentDate);
+          $('input[name=txtVisitPurpose').val(data.strVisitDescription);
+          $('input[name=txtId').val(data.intAppointmentID);
+
+
+    function showAllAppointmentAll(){
+        
+      $('#manageAlltbl').dataTable().fnClearTable();
+      $('#manageAlltbl').dataTable().fnDraw();
+      $('#manageAlltbl').dataTable().fnDestroy();
+       $('#manageAlltbl').dataTable({
+        "autoWidth":false,
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showAllAppointmentAll')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [[0,'asc']],
+         "fnInitComplete": function(){
+
+         }
+     });
+    }
+
+    $(document).ready(function(){
+      //show-
+    showAllAppointmentAll();
+
+
+  });
+</script>
+
+
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
