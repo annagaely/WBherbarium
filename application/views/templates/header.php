@@ -83,7 +83,7 @@
               <span>
 
                 <?php
-                  $serverName = "LAPTOP-0L08K6U2";
+                  $serverName = "MSI";
 
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );

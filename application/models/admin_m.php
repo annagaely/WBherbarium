@@ -1711,18 +1711,32 @@ public function updateAcceptStatus(){
 
 //APPOINTMENT
 	public function showAllAppointmentPending(){
+		$result = array();
 $query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
 		where strStatus ='Pending'");
 
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary view-appointment" data="'.$r->intAppointmentID.'">Email</button>';
+
+
+			$result[] = array(
+					$r->intAppointmentID,
+					$r->strFullName,
+					$r->dtAppointmentDate,
+					$r->strVisitDescription,
+			
+					$r->strStatus, 
+					$btn,
+					$r->intAppointmentID
+					);
 		}
-	}
+
+		return $result;
+}
 
 public function showAllAppointmentReject(){
 $query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
@@ -1783,18 +1797,33 @@ DECLARE @status 		varchar(255);
 
 
 	public function showAllAppointmentExpect(){
+		$result = array();
 $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
 		where strStatus ='For Visiting'");
 
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary view-appointment" data="'.$r->intAppointmentID.'">Email</button>
+				   <button class="btn btn-primary view-appcon" data="'.$r->intAppointmentID.'">Confirmation</button>';
+
+			$result[] = array(
+					$r->intAppointmentID,
+					$r->strFullName,
+					$r->dtAppointmentDate,
+					$r->strVisitDescription,
+			
+					$r->strStatus, 
+					$btn,
+					$r->intAppointmentID
+					);
 		}
-		}
+
+		return $result;
+}
+
 
 
 public function VisitConfirmation(){

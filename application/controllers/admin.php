@@ -70,8 +70,8 @@ class admin extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 	else{
-	redirect(base_url().'admin');
-	}
+	edirect(base_url().'admin');
+}
 }
 
 /****** PHYLUM ONLY!!!!! ******/
@@ -85,7 +85,7 @@ public function Phylum()
 		$this->load->view('templates/footer');
 	}
 }
-}
+
 
 	//show phylum
 
@@ -1186,9 +1186,19 @@ public function showloanlist(){
 
 //APPOINTMENT
 public function showAllAppointmentPending(){
-		$result = $this->m->showAllAppointmentPending();
-		echo json_encode($result);
-}
+		$output = $this->admin_m->showAllAppointmentPending();
+
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
+
 
 public function ViewVisitReq(){
 		$result = $this->m->ViewVisitReq();

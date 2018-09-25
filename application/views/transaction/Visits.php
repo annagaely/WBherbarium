@@ -451,7 +451,7 @@
     $(document).ready(function() {
       showAllAppointmentExpect();
 
-     $('#showdata1').on('click', '.view-appcon', function(){
+     $(document).on('click', '.view-appcon', function(){
       var id = $(this).attr('data');
       $('#VisitConfirmation').modal('show');
       $('#VisitConfirmation').find('.Confirmation').text('Confirmation');
@@ -477,7 +477,7 @@
     });
   });
 
-     $('#showdata1').on('click', '.view-emailcon', function(){
+     $(document).on('click', '.view-emailcon', function(){
       var id = $(this).attr('data');
       $('#EmailVisitCon').modal('show');
       $('#EmailVisitCon').find('.EmailVisitCon').text('Email');
@@ -539,7 +539,7 @@
     }
   });
 
-     $('#showdataReject').on('click', '.view-emailcon', function(){
+     $(document).on('click', '.view-emailcon', function(){
       var id = $(this).attr('data');
       $('#EmailVisitConReject').modal('show');
       $('#EmailVisitConReject').find('.EmailVisitConReject').text('Email');
@@ -600,7 +600,7 @@
   });
 </script>
 <script type="text/javascript">
-      $('#showdata').on('click', '.view-appointment', function(){
+      $(document).on('click', '.view-appointment', function(){
       var id = $(this).attr('data');
       $('#ViewVisitReq').modal('show');
       $('#ViewVisitReq').find('.modal-title').text('Visit Details');
