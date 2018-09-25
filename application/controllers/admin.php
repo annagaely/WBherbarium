@@ -85,7 +85,6 @@ public function Phylum()
 		$this->load->view('templates/footer');
 	}
 }
-}
 
 	//show phylum
 
@@ -942,7 +941,7 @@ public function edit_event()
           );
           echo json_encode($response);
           exit();
-        
+
     }
 	public function showAllDepositReqOkay(){
 		$output = $this->admin_m->showAllDepositReqOkay();
@@ -955,7 +954,7 @@ public function edit_event()
           );
           echo json_encode($response);
           exit();
-        
+
     }
 	public function showAllDepositReqAll(){
 		$output = $this->admin_m->showAllDepositReqAll();
@@ -968,7 +967,7 @@ public function edit_event()
           );
           echo json_encode($response);
           exit();
-        
+
     }
 
 	public function viewDepositReq(){
