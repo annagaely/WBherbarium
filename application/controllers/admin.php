@@ -1123,7 +1123,7 @@ $message = $this->input->post('txtCustomMessageReject');
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Visiting');
-      $this->email->message("Your Visit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Visit Request ID:" . $id ."<br> <br>" . $message );
+      $this->email->message("Your Visit request Rejected.REJECT REJECT Visit Request ID:" . $id ."<br> <br>" . $message );
 
       if($this->email->send())
      {
@@ -1185,10 +1185,18 @@ public function showloanlist(){
 
 //APPOINTMENT
 public function showAllAppointmentPending(){
-		$result = $this->m->showAllAppointmentPending();
-		echo json_encode($result);
-}
+$output = $this->admin_m->showAllAppointmentPending();
 
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
 public function ViewVisitReq(){
 		$result = $this->m->ViewVisitReq();
 		echo json_encode($result);
@@ -1197,13 +1205,36 @@ public function updateVisitStatus(){
 		$result = $this->m->updateVisitStatus();
 		echo json_encode($result);
 }
-public function showAllAppointmentReject(){
-		$result = $this->m->showAllAppointmentReject();
-		echo json_encode($result);
-}
-public function showAllAppointmentExpect(){
-		$result = $this->m->showAllAppointmentExpect();
-		echo json_encode($result);
+
+
+public function showAllAppointmentReject()
+{
+		$output = $this->admin_m->showAllAppointmentReject();
+
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+ }
+
+public function showAllAppointmentExpect()
+{
+		$output = $this->admin_m->showAllAppointmentExpect();
+
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
 }
 public function VisitConfirmation(){
 		$result = $this->m->VisitConfirmation();
@@ -1213,10 +1244,20 @@ public function updateVisitConfirmation(){
 		$result = $this->m->updateVisitConfirmation();
 		echo json_encode($result);
 }
+
 public function showAllAppointmentAll(){
-		$result = $this->m->showAllAppointmentAll();
-		echo json_encode($result);
-}
+$output = $this->admin_m->showAllAppointmentAll();
+
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+        
+    }
 public function VisitEmailCon(){
 		$result = $this->m->VisitEmailCon();
 		echo json_encode($result);
