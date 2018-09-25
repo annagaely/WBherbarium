@@ -1711,32 +1711,63 @@ public function updateAcceptStatus(){
 
 //APPOINTMENT
 	public function showAllAppointmentPending(){
-$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+
+		$result = array();
+		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
 		where strStatus ='Pending'");
 
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary view-appointment" data="'.$r->intAppointmentID.'">View</button>';
+
+			$result[] = array(
+					$r->intAppointmentID,
+					$r->strFullName,
+					$r->dtAppointmentDate,
+					$r->strVisitDescription,
+					$r->strStatus, 
+					$btn,
+					$r->intAppointmentID
+					);
 		}
-	}
+
+		return $result;
+}
+
+
 
 public function showAllAppointmentReject(){
-$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+
+		$result = array();
+		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
 		where strStatus ='Rejected'");
 
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary view-emailConReject" data="'.$r->intAppointmentID.'">Email</button>';
+
+			$result[] = array(
+					$r->intAppointmentID,
+					$r->strFullName,
+					$r->dtAppointmentDate,
+					$r->strVisitDescription,
+					$r->strStatus, 
+					$btn,
+					$r->intAppointmentID
+					);
 		}
-	}
+
+		return $result;
+}
+
 public function ViewVisitReq(){
 		$id = $this->input->get('id');
 	$this->db->where('intAppointmentID', $id);
@@ -1783,19 +1814,34 @@ DECLARE @status 		varchar(255);
 
 
 	public function showAllAppointmentExpect(){
-$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+
+
+	$result = array();
+	$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
 		where strStatus ='For Visiting'");
 
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-		}
+		
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary view-emailcon" data="'.$r->intAppointmentID.'">Email</button>
+				   <button class="btn btn-primary view-appcon" data="'.$r->intAppointmentID.'">Confirmation</button>';
+
+			$result[] = array(
+					$r->intAppointmentID,
+					$r->strFullName,
+					$r->dtAppointmentDate,
+					$r->strVisitDescription,
+					$r->strStatus, 
+					$btn,
+					$r->intAppointmentID
+					);
 		}
 
+		return $result;
+}
 
 public function VisitConfirmation(){
 	$id = $this->input->get('id');
@@ -1869,18 +1915,29 @@ $status = $this->input->post('txtStatus');
 	}
 
 	public function showAllAppointmentAll(){
+		$result = array();
 $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID");
 
-		if($query->num_rows() > 0){
-			return $query->result();
-		}else{
-			return false;
-		}
+		foreach ($query->result() as $r)
+		{
+
+			$result[] = array(
+					$r->intAppointmentID,
+					$r->strFullName,
+					$r->dtAppointmentDate,
+					$r->strVisitDescription,
+					$r->strStatus, 
+					$r->intAppointmentID
+					);
 		}
 
+		return $result;
+}
+
+//EXTERNAL VALAIDATION
 	public function showExValPending(){
 		$result = array();
 		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus

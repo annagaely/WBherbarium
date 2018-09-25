@@ -184,7 +184,7 @@ function resetForm() {
         }
 
 $(document).ready(function(){
-      //show
+      //show-
     showAllAccounts();
     showStaffName();
 
@@ -302,9 +302,5 @@ $('#btnEditSave').click(function(){
           }
         });
     });
-
-
-
-
-    });
+});
 </script>
