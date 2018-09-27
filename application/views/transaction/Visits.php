@@ -264,7 +264,7 @@
              
             <div class="form-group row pr-4">
               <label class="col-sm-2">To:</label>
-               <input type="email" name="txtEmailCon" id="strEmailAddressReject" class="form-control col-sm-10" disabledmethod="POST" enctype="multipart/form-data">
+               <input type="email" name="txtEmailCon" id="strEmailAddressReject" class="form-control col-sm-10" disabledmethod="POST" enctype="multipart/form-data" disabled>
             </div>
 
             <div class="form-group row pr-4">
@@ -504,6 +504,7 @@ $(document).on('click', '.view-appointment', function(){
         dataType: 'json',
         success: function(data){
           $('input[name=txtVisitID').val(data.intAppointmentID);
+           $('input[name=txtId').val(data.intAppointmentID);
           $('input[name=txtVisitorName]').val(data.strFullName);
           $('input[name=txtStatus]').val(data.strStatus);
 
@@ -556,7 +557,7 @@ $(document).on('click', '.view-appointment', function(){
 
             if(response==true){
 
-
+              alert('oks')
             }else{
               alert('Error');
             }

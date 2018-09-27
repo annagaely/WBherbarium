@@ -28,8 +28,9 @@
                 <form id= "addFBForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div>
                     <label>Plant Family:</label> <label style="color: red">*</label>
-                     <select id="showFBFamilyName" name ="sfbFID" class="form-control">
-                    </select>
+                     <input list="familyname" name ="sfbFID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <datalist id ='familyname'>
+                     </datalist>
                   </div>
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
@@ -81,8 +82,9 @@
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Family Name:</label> <label style="color: red">*</label>
-                     <select id="showFBFamilyName1" name ="sefbFID" class="form-control">
-                    </select>
+                     <input list="familyname" name ="sefbFID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <datalist id ='familyname'>
+                     </datalist>
                   </div>
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
@@ -117,8 +119,10 @@
               <thead>
                 <tr>
                   <th scope="col" width= "10%">Box ID</th>
-                  <th scope="col" width= "10%">Box Number</th>
                   <th scope="col" width= "10%">Family Name</th>
+                  <th scope="col" width= "10%">Rack Number</th>
+                  <th scope="col" width= "10%">Rack Row</th>
+                  <th scope="col" width= "10%">Rack Column</th>
                   <th scope="col" width= "10%">Box Limit</th>
                   <th scope="col" width= "10%">Actions</th>
                 </tr>
@@ -187,9 +191,9 @@ function resetForm() {
           var html = '';
           var i;
           for(i=0; i<data.length; i++){
-            html +='<option value="'+data[i].intFamilyID+'">'+data[i].strFamilyName+'</option>';
+            html +='<option value="'+data[i].strFamilyName+'">'+data[i].strFamilyName+'</option>';
           }
-          $('#showFBFamilyName').html(html);
+          $('#familyname').html(html);
           $('#showFBFamilyName1').html(html);
         },
         error: function(){
@@ -270,6 +274,7 @@ $('#btnEditSave').click(function(){
         async: false,
         dataType: 'json', 
         success: function(data){
+          $('input[name=sefbFID]').val(data.strFamilyName);
           $('input[name=txteBLLimit]').val(data.intBoxLimit);
           $('input[name=txtId]').val(data.intBoxID);
           $('input[name=txterackno]').val(data.intRackNo);

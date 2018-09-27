@@ -265,7 +265,7 @@ public function addDeposit(){
 	}
 
 public function addAppointment(){
-$doA = $this->input->post('dateofappointment');
+$doA = $this->input->post('dateAppointment');
 
 	$appPurpose = $this->input->post('radios');
 	$appdesc = $this->input->post('txtappdesc');

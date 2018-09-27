@@ -27,8 +27,9 @@
                 <form id= "addGenusForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <select id="showGenusFamilyName" name ="txtoID" class="form-control">
-                    </select>
+                     <input list="familyname" name ="txtoID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <datalist id ='familyname'>
+                     </datalist>
                   </div>
                   <div class="form-group">
                     <label>Genus Name:</label> <label style="color: red">*</label>
@@ -66,8 +67,9 @@
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Order Name:</label> <label style="color: red">*</label>
-                     <select id="showGenusFamilyName1" name ="segFID" class="form-control">
-                    </select>
+                     <input list="familyname" name ="segFID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <datalist id ='familyname'>
+                     </datalist>
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
@@ -150,9 +152,9 @@ function showGenusFamilyName(){
           var html = '';
           var i;
           for(i=0; i<data.length; i++){
-            html +='<option value="'+data[i].intFamilyID+'">'+data[i].strFamilyName+'</option>';
+            html +='<option value="'+data[i].strFamilyName+'">'+data[i].strFamilyName+'</option>';
           }
-          $('#showGenusFamilyName').html(html);
+          $('#familyname').html(html);
           $('#showGenusFamilyName1').html(html);
         },
         error: function(){
@@ -232,6 +234,7 @@ $(document).on('click', '.genus-edit', function(){
         async: false,
         dataType: 'json',
         success: function(data){
+          $('input[name=segFID]').val(data.strFamilyName)
           $('input[name=txteGName]').val(data.strGenusName);
           $('input[name=txtId]').val(data.intGenusID);
 

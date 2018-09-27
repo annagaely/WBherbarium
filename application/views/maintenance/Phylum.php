@@ -31,11 +31,11 @@
 
                   <div class="form-group">
                     <label>Domain Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control" required>
+                    <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control" >
                   </div>
                   <div class="form-group">
                     <label>Kingdom Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtkName" id="strKingdomName" placeholder="Kingdom Name" class="form-control" required>
+                    <input type="text" name="txtkName" id="strKingdomName" placeholder="Kingdom Name" class="form-control" >
                   </div>
                   <div class="form-group">
                     <label>
@@ -46,7 +46,7 @@
                   </div>
                   <div class="form-group">
                     <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control" required>
+                    <input type="text" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control" >
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -244,8 +244,6 @@ if(confirm("Save data?")){
           dataType: 'json',
           success: function(response){
             if(response.success){
-              $('#addPhylumForm').modal('hide');
-              $('#addPhylumForm')[0].reset();
               if(response.type=='add'){
                 var type = 'added'
               }else if(response.type=='update'){
@@ -254,7 +252,11 @@ if(confirm("Save data?")){
               alert('Phylum Successfully Added!');
               $('#managePhylumtbl').dataTable().fnDestroy();
               showAllPhylum();
-
+              $('#myModal').modal('hide');
+          $('input[name=txtdName]').val('');
+          $('input[name=txtkName]').val('');
+          $('input[name=txtpName]').val('');
+          event.preventDefault();
             }
           },
           error: function(){
