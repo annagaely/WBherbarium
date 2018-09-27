@@ -1,3 +1,9 @@
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
+
 <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
@@ -31,11 +37,11 @@
 
                   <div class="form-group">
                     <label>Domain Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control" required>
+                    <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control" >
                   </div>
                   <div class="form-group">
                     <label>Kingdom Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtkName" id="strKingdomName" placeholder="Kingdom Name" class="form-control" required>
+                    <input type="text" name="txtkName" id="strKingdomName" placeholder="Kingdom Name" class="form-control" >
                   </div>
                   <div class="form-group">
                     <label>
@@ -46,7 +52,7 @@
                   </div>
                   <div class="form-group">
                     <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control" required>
+                    <input type="text" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control" >
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -86,17 +92,13 @@
                   </div>
                   <div class="form-group">
                     <label>
-
                       <input type="checkbox" name="check1" id="plantCategory1" onclick="disableMyText1(); "> Under the Plant Category
-
-
-
                       <input type="hidden" name="txtId" value="0">
                     </label>
                   </div>
                   <div class="form-group">
                     <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtepName" id="pNameid" placeholder="Phylum Name" class="form-control">
+                    <input type="text" name="txtepName" id="pNameid1" placeholder="Phylum Name" class="form-control">
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -233,68 +235,164 @@ function resetForm() {
       var url = '<?php echo base_url() ?>admin/addPhylum';
       var data = $('#addPhylumForm').serialize();
       //validate form
+      if($('#strDomainName').val()!=''){
+        if($('#strKingdomName').val()!=''){
+          if($('#pNameid').val()!=''){
+            event.preventDefault();
+            swal({
+              title: 'Are you sure?',
 
-if(confirm("Save data?")){
-          $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: url,
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response.success){
-              $('#addPhylumForm').modal('hide');
-              $('#addPhylumForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+                $.ajax({
+                type: 'ajax',
+                method: 'post',
+                url: url,
+                data: data,
+                async: false,
+                dataType: 'json',
+                success: function(response){
+                  if(response.success){
+                    $('#addPhylumForm').modal('hide');
+                    $('#addPhylumForm')[0].reset();
+                    if(response.type=='add'){
+                      var type = 'added'
+                    }else if(response.type=='update'){
+                      var type ="updated"
+                    }
+                    let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Your file has been saved.',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                      location.reload();
+                    });
+                    $('#managePhylumtbl').dataTable().fnDestroy();
+                    showAllPhylum();
+                  }
+                },
+                error: function(){
+                  alert('Could not save Data');
+                }
+              });
+
               }
-              alert('Phylum Successfully Added!');
-              $('#managePhylumtbl').dataTable().fnDestroy();
-              showAllPhylum();
 
+            })
+
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
             }
-          },
-          error: function(){
-            alert('Could not save Data');
-          }
-        });
         }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+          }
+      }else{
         event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
         }
-
-
     });
 
     $('#btnEditSave').click(function(){
       var data = $('#editPhylumForm').serialize();
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/updatePhylum',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response.success){
-              $('#editPhylumForm').modal('hide');
-              $('#editPhylumForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
+      if($('#strDomainName1').val()!=''){
+        if($('#strKingdomName1').val()!=''){
+          if($('#pNameid1').val()!=''){
+            event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+                $.ajax({
+                  type: 'ajax',
+                  method: 'post',
+                  url: '<?php echo base_url() ?>admin/updatePhylum',
+                  data: data,
+                  async: false,
+                  dataType: 'json',
+                  success: function(response){
+                    if(response.success){
+                      $('#editPhylumForm').modal('hide');
+                      $('#editPhylumForm')[0].reset();
+                      if(response.type=='add'){
+                        var type = 'added'
+                      }else if(response.type=='update'){
+                        var type ="updated"
+                      }
+                      let timerInterval
+                      swal({
+                        title: 'Saved',
+                        text: 'Your file has been saved.',
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                      }).then(function() {
+                        location.reload();
+                      });
+                      showAllPhylum();
+                    }else{
+                      alert('Error');
+                    }
+                  },
+                  error: function(){
+                    alert('Could not update data');
+                  }
+                });
+
               }
-              showAllPhylum();
-            }else{
-              alert('Error');
+
+            })
+
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
             }
-          },
-          error: function(){
-            alert('Could not update data');
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
           }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
         });
+        }
     });
     //edit phylum
      $(document).on('click', '.phylum-edit', function(e){

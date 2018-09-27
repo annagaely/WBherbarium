@@ -1,3 +1,8 @@
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 
       <div class="breadcrumb-holder">
         <div class="container-fluid">
@@ -28,24 +33,24 @@
                 <form id= "addFBForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div>
                     <label>Plant Family:</label> <label style="color: red">*</label>
-                     <select id="showFBFamilyName" name ="sfbFID" class="form-control">
+                     <select id="famName" name ="sfbFID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtBLLimit" placeholder="Box Limit" class="form-control">
+                    <input id="boxLimit" type="text" name="txtBLLimit" placeholder="Box Limit" class="form-control">
                   </div>
                    <div class="form-group">
                     <label>Rack Number:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtrackno" placeholder="Rack Number" class="form-control">
+                    <input id="rackNum" type="text" name="txtrackno" placeholder="Rack Number" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Rack Row:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtrackrow" placeholder="Rack Row" class="form-control">
+                    <input id="rackRow" type="text" name="txtrackrow" placeholder="Rack Row" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Rack Column:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtrackcol" placeholder="Rack Column" class="form-control">
+                    <input int="rackCol" type="text" name="txtrackcol" placeholder="Rack Column" class="form-control">
                   </div>
                   <!--HANGGANG DITO LANG BOI-->
 
@@ -81,24 +86,24 @@
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Family Name:</label> <label style="color: red">*</label>
-                     <select id="showFBFamilyName1" name ="sefbFID" class="form-control">
+                     <select id="famName1" name ="sefbFID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
-                   <input type="text" name="txteBLLimit" placeholder="Box Limit" class="form-control">
-                  </div> 
+                   <input id="boxLimit1" type="text" name="txteBLLimit" placeholder="Box Limit" class="form-control">
+                  </div>
                     <div class="form-group">
                     <label>Rack Number:</label> <label style="color: red">*</label>
-                    <input type="text" name="txterackno" placeholder="Rack Number" class="form-control">
+                    <input id="rackNum1" type="text" name="txterackno" placeholder="Rack Number" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Rack Row:</label> <label style="color: red">*</label>
-                    <input type="text" name="txterackrow" placeholder="Rack Row" class="form-control">
+                    <input id="rackRow" type="text" name="txterackrow" placeholder="Rack Row" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Rack Column:</label> <label style="color: red">*</label>
-                    <input type="text" name="txterackcol" placeholder="Rack Column" class="form-control">
+                    <input id="rackCol" type="text" name="txterackcol" placeholder="Rack Column" class="form-control">
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -173,7 +178,6 @@ function resetForm() {
    $(document).ready(function() {
       //show
     showAllFamilyBoxes();
-
     showFBFamilyName();
 
 
@@ -189,45 +193,109 @@ function resetForm() {
           for(i=0; i<data.length; i++){
             html +='<option value="'+data[i].intFamilyID+'">'+data[i].strFamilyName+'</option>';
           }
-          $('#showFBFamilyName').html(html);
-          $('#showFBFamilyName1').html(html);
+          $('#famName').html(html);
+          $('#famName1').html(html);
         },
         error: function(){
           alert('Could not get Data from Database');
         }
       });
-    }
+    };
 
-        $('#btnSave').click(function(){
-      var data = $('#addFBForm').serialize();
+        $('#btnSave').click(function(event){
+          var url = '<?php echo base_url()?>admin/addFamilyBox';
+          var data = $('#addFBForm').serialize();
       //validate form
-
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/addFamilyBox',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function($response){
-            if(response.success){
-              $('#addFBForm').modal('hide');
-              $('#addFBForm ')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
+          if($('#famName').val()!=''){
+            if($('#boxLimit').val()!=''){
+              if($('#rackNum').val()!=''){
+                if($('#rackRow').val()!=''){
+                  if($('#rackCol').val()!=''){
+                    event.preventDefault();
+                    swal({
+                      title: 'Are you sure?',
+                      type: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Yes, save it!'
+                    }).then((result) => {
+                      if (result.value) {
+                        $.ajax({
+                          type: 'ajax',
+                          method: 'post',
+                          url: '<?php echo base_url() ?>admin/addFamilyBox',
+                          data: data,
+                          async: false,
+                          dataType: 'json',
+                          success: function(response){
+                            if(response.success){
+                              $('#addFBForm').modal('hide');
+                              $('#addFBForm ')[0].reset();
+                              if(response.type=='add'){
+                                var type = 'added'
+                              }else if(response.type=='update'){
+                                var type ="updated"
+                              }
+                              let timerInterval
+                              swal({
+                                title: 'Saved',
+                                text: 'Your file has been saved.',
+                                type: 'success',
+                                timer: 1500,
+                                showConfirmButton: false
+                              }).then(function() {
+                                location.reload();
+                              });
+                            }
+                          },
+                          error: function(){
+                            alert('Could not save Data');
+                          }
+                        });
+                       }
+                     })
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Incomplete input!',
+                      text: 'Please fill up all the required fields.'
+                    });
+                  }
+                }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Incomplete input!',
+                      text: 'Please fill up all the required fields.'
+                    });
+                  }
+                }else{
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Incomplete input!',
+                    text: 'Please fill up all the required fields.'
+                  });
+                }
+              }else{
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Incomplete input!',
+                  text: 'Please fill up all the required fields.'
+                });
               }
             }else{
-              alert('Error');
-            }
-          },
-          error: function(){
-            alert('Could not save Data');
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
+              });
           }
         });
-
-    });
 
 $('#btnEditSave').click(function(){
       var data = $('#editFBForm').serialize();
@@ -268,14 +336,14 @@ $('#btnEditSave').click(function(){
         url: '<?php echo base_url() ?>admin/editFamilyBox',
         data: {id: id},
         async: false,
-        dataType: 'json', 
+        dataType: 'json',
         success: function(data){
           $('input[name=txteBLLimit]').val(data.intBoxLimit);
           $('input[name=txtId]').val(data.intBoxID);
           $('input[name=txterackno]').val(data.intRackNo);
           $('input[name=txterackrow]').val(data.intRackRow);
           $('input[name=txterackcol]').val(data.intRackColumn);
-        
+
         },
         error: function(){
           alert('Could not Edit Data');

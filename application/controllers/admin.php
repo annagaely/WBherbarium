@@ -441,7 +441,7 @@ public function updateSpecies(){
 	redirect(base_url().'admin');
 	}
 }
-/*
+
 	public function showAllFamilyBoxes(){
 
 {
@@ -1195,7 +1195,7 @@ $output = $this->admin_m->showAllAppointmentPending();
           );
           echo json_encode($response);
           exit();
-        
+
     }
 public function ViewVisitReq(){
 		$result = $this->m->ViewVisitReq();
@@ -1219,7 +1219,7 @@ public function showAllAppointmentReject()
           );
           echo json_encode($response);
           exit();
-        
+
  }
 
 public function showAllAppointmentExpect()
@@ -1234,7 +1234,7 @@ public function showAllAppointmentExpect()
           );
           echo json_encode($response);
           exit();
-        
+
 }
 public function VisitConfirmation(){
 		$result = $this->m->VisitConfirmation();
@@ -1256,7 +1256,7 @@ $output = $this->admin_m->showAllAppointmentAll();
           );
           echo json_encode($response);
           exit();
-        
+
     }
 public function VisitEmailCon(){
 		$result = $this->m->VisitEmailCon();

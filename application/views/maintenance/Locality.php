@@ -1,3 +1,8 @@
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 
         <div class="breadcrumb-holder">
         <div class="container-fluid">
@@ -17,7 +22,7 @@
         <!-- Modal-->
         <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
-            <div class="modalcontent">
+            <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Locality</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
@@ -701,7 +706,6 @@ function resetForm() {
 
     </script>
 
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript">
      function radioCountry()
      {

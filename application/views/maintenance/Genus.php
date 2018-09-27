@@ -1,4 +1,8 @@
-
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
@@ -27,12 +31,12 @@
                 <form id= "addGenusForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <select id="showGenusFamilyName" name ="txtoID" class="form-control">
+                    <select id="famName" name ="txtoID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Genus Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtgName" placeholder="Genus Name" class="form-control">
+                    <input id="genusName" type="text" name="txtgName" placeholder="Genus Name" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -66,12 +70,12 @@
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Order Name:</label> <label style="color: red">*</label>
-                     <select id="showGenusFamilyName1" name ="segFID" class="form-control">
+                     <select id="famName1" name ="segFID" class="form-control">
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteGName" placeholder="Class Name" class="form-control">
+                    <input id="genusName1" type="text" name="txteGName" placeholder="Class Name" class="form-control">
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -152,48 +156,99 @@ function showGenusFamilyName(){
           for(i=0; i<data.length; i++){
             html +='<option value="'+data[i].intFamilyID+'">'+data[i].strFamilyName+'</option>';
           }
-          $('#showGenusFamilyName').html(html);
-          $('#showGenusFamilyName1').html(html);
+          $('#famName').html(html);
+          $('#famName1').html(html);
         },
         error: function(){
           alert('Could not get Data from Database');
         }
       });
-    }
-    $('#btnSave').click(function(){
+    };
+    $('#btnSave').click(function(event){
+      var url = '<?php echo base_url()?>admin/addGenus';
       var data = $('#addGenusForm').serialize();
       //validate form
-
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/addGenus',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function($response){
-            if(response.success){
-              $('#addGenusForm').modal('hide');
-              $('#addGenusForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
+      if($('#famName').val()!=''){
+        if($('#genusName').val()!=''){
+          event.preventDefault();
+          swal({
+            title: 'Are you sure?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, save it!'
+          }).then((result) => {
+            if (result.value) {
+              $.ajax({
+              type: 'ajax',
+              method: 'post',
+              url: '<?php echo base_url() ?>admin/addGenus',
+              data: data,
+              async: false,
+              dataType: 'json',
+              success: function(response){
+                if(response.success){
+                  $('#addGenusForm').modal('hide');
+                  $('#addGenusForm')[0].reset();
+                  if(response.type=='add'){
+                    var type = 'added'
+                  }else if(response.type=='update'){
+                    var type ="updated"
+                  }
+                    let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Your file has been saved.',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                      location.reload();
+                    });
+                }
+              },
+              error: function(){
+                alert('Could not save Data');
               }
-            }else{
-              alert('Error');
-            }
-          },
-          error: function(){
-            alert('Could not save Data');
-          }
-        });
+            });
 
+         }
+
+       })
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      }
     });
 
 $('#btnEditSave').click(function(){
       var data = $('#editGenusForm').serialize();
-        $.ajax({
+      if($('#famName1').val()!=''){
+        if($('#genusName1').val()!=''){
+          event.preventDefault();
+          swal({
+            title: 'Are you sure?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, save it!'
+          }).then((result) => {
+            if (result.value) {
+              $.ajax({
           type: 'ajax',
           method: 'post',
           url: '<?php echo base_url() ?>admin/updateGenus',
@@ -203,21 +258,48 @@ $('#btnEditSave').click(function(){
           success: function(response){
             if(response.success){
               $('#editGenusForm').modal('hide');
-              $('#editFamilyForm')[0].reset();
-              if(editGenusForm.type=='add'){
+              $('#editGenusForm')[0].reset();
+              if(response.type=='add'){
                 var type = 'added'
               }else if(response.type=='update'){
                 var type ="updated"
               }
-              showAllPhylum();
-            }else{
-              alert('Error');
+              let timerInterval
+              swal({
+                title: 'Saved',
+                text: 'Your file has been saved.',
+                type: 'success',
+                timer: 1500,
+                showConfirmButton: false
+              }).then(function() {
+                location.reload();
+              });
             }
           },
           error: function(){
             alert('Could not update data');
           }
         });
+
+         }
+
+       })
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      }
     });
     //edit class
 $(document).on('click', '.genus-edit', function(){

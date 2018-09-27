@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/logo1.ico">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    
+
 </head>
 
 <body>
@@ -34,7 +34,7 @@
           <ul class="navbar-nav mr-auto smooth-scroll">
             <li class="nav-item">
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Home">Home
-                <span class="sr-only">(current)</span>
+
               </a>
             </li>
             <li class="nav-item">
@@ -50,7 +50,7 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Contact" data-offset="90">Contact</a>
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Contact2" data-offset="90">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Queries" data-offset="90">Queries</a>
@@ -69,7 +69,7 @@
                     <i class="fa fa-user"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="<?php echo base_url()?>user/myAccount">Profile</a>
+                    <a class="dropdown-item" href="<?php echo base_url()?>user/Profile">Profile</a>
                     <a class="dropdown-item" href="<?php echo base_url()?>user/Collection">Settings</a>
                     <a class="dropdown-item" href="<?php echo base_url()?>user/logout">Logout</a>
                 </div>

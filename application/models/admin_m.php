@@ -593,7 +593,7 @@ public function showAllFamilyBoxes(){
 		DECLARE @familyID INT
 		DECLARE @identifier INT
 		DECLARE @rackcol INT
-		declare @rackrow int 
+		declare @rackrow int
 		declare @rackno int
 		DECLARE @boxlimit INT
 		DECLARE @boxNumber VARCHAR(10)
@@ -834,14 +834,38 @@ public function showAllCollector(){
 	$query="
 	insert into tblCollector(strFirstname,strMiddlename,strLastname,strMiddleInitial,strNameSuffix,strHomeAddress,strContactNumber,strEmailAddress,strAffiliation) values ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cdname."','".$cname."','".$email."','".$secname."')
 		";
-		if($this->db->query($query))
-		{
+
+if($fname!=''){
+  if($lname!=''){
+    if($cname!=''){
+      if($email!=''){
+        if($cdname!=''){
+          if($secname!=''){
+            $this->db->query($query);
+          }else{
+            return false;
+          }
+        }else{
+          return false;
+        }
+      }else{
+        return false;
+      }
+    }else{
+      return false;
+    }
+  }else{
+    return false;
+  }
+}else{
+  return false;
+}
+
+		if($this->db->affected_row() > 0)	{
 			return true;
-		}
-		else
-		{
-			return false;
-		}
+		} else{
+			   return false;
+		  }
 
 
 
@@ -1208,13 +1232,13 @@ UPDATE tblHerbariumStaff
 		$query = $this->db->query("select * from viewAccounts
 		");
 
-	foreach ($query->result() as $r) 
+	foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary account-edit" data="'.$r->intAccountID.'">Edit</button>';
 
 			$result[] = array(
 					$r->intAccountID,
-					$r->strFullName,			
+					$r->strFullName,
 					$r->strUsername,
 					$r->strRole,
 					$btn,
@@ -1545,7 +1569,7 @@ public function showAllDepositReqPending()
 					$r->dtDateCollected,
 					$r->strFullLocation,
 					$r->dtAppointmentDate,
-					$r->strStatus, 
+					$r->strStatus,
 					$btn,
 					$r->intDepositReqID
 					);
@@ -1573,8 +1597,8 @@ public function showAllDepositReqOkay()
 					$r->strFullName,
 					$r->strCommonName,
 					$r->strFullLocation,
-					$r->dtAppointmentDate, 
-					$r->strStatus, 
+					$r->dtAppointmentDate,
+					$r->strStatus,
 					$btn,
 					$r->intDepositReqID
 					);
@@ -1583,7 +1607,7 @@ public function showAllDepositReqOkay()
 		return $result;
 }
 
-		
+
 
 public function showAllDepositReqAll()
 {
@@ -1601,7 +1625,7 @@ public function showAllDepositReqAll()
 					$r->strCommonName,
 					$r->dtDateCollected,
 					$r->strFullLocation,
-					$r->strStatus, 
+					$r->strStatus,
 					$r->intDepositReqID
 					);
 		}
@@ -1729,7 +1753,7 @@ public function updateAcceptStatus(){
 					$r->strFullName,
 					$r->dtAppointmentDate,
 					$r->strVisitDescription,
-					$r->strStatus, 
+					$r->strStatus,
 					$btn,
 					$r->intAppointmentID
 					);
@@ -1759,7 +1783,7 @@ public function showAllAppointmentReject(){
 					$r->strFullName,
 					$r->dtAppointmentDate,
 					$r->strVisitDescription,
-					$r->strStatus, 
+					$r->strStatus,
 					$btn,
 					$r->intAppointmentID
 					);
@@ -1823,7 +1847,7 @@ DECLARE @status 		varchar(255);
 		on ap.intOUserID = ou.intOUserID
 		where strStatus ='For Visiting'");
 
-		
+
 		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary view-emailcon" data="'.$r->intAppointmentID.'">Email</button>
@@ -1834,7 +1858,7 @@ DECLARE @status 		varchar(255);
 					$r->strFullName,
 					$r->dtAppointmentDate,
 					$r->strVisitDescription,
-					$r->strStatus, 
+					$r->strStatus,
 					$btn,
 					$r->intAppointmentID
 					);
@@ -1929,7 +1953,7 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 					$r->strFullName,
 					$r->dtAppointmentDate,
 					$r->strVisitDescription,
-					$r->strStatus, 
+					$r->strStatus,
 					$r->intAppointmentID
 					);
 		}
@@ -1966,7 +1990,7 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 		}
 
 		return $result;
-}		
+}
 
 
 public function showExValOkay(){
@@ -1996,7 +2020,7 @@ public function showExValOkay(){
 		}
 
 		return $result;
-}	
+}
 
 
 public function showExValAll(){
@@ -2021,5 +2045,5 @@ public function showExValAll(){
 		}
 
 		return $result;
-}			
+}
 }?>
