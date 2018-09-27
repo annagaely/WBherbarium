@@ -1,4 +1,8 @@
-
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
         <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
@@ -32,11 +36,11 @@
                   </div>
                   <div class="form-group">
                     <label>Species Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtsName" placeholder="Family Name" class="form-control">
+                    <input id="speciesName" type="text" name="txtsName" placeholder="Family Name" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Common Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtcoName" placeholder="Common Name" class="form-control">
+                    <input id="commonName" type="text" name="txtcoName" placeholder="Common Name" class="form-control">
                   </div>
                   <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
@@ -76,11 +80,11 @@
                   </div>
                   <div class="form-group">
                     <label>Species Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteSName" placeholder="Class Name" class="form-control">
+                    <input id="speciesName1" type="text" name="txteSName" placeholder="Class Name" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Common Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtecName" placeholder="Class Name" class="form-control">
+                    <input id="commonName1" type="text" name="txtecName" placeholder="Class Name" class="form-control">
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -176,18 +180,32 @@ function showSpeciesGenusName(){
     }
 
 
-$('#btnSave').click(function(){
+$('#btnSave').click(function(event){
+  var url = '<?php echo base_url()?>admin/addSpecies'
       var data = $('#addSpeciesForm').serialize();
+      alert(data)
       //validate form
-
-        $.ajax({
+      if($('#genusName').val()!=''){
+        if($('#speciesName').val()!=''){
+          if($('#commonName').val()!=''){
+            event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+                $.ajax({
           type: 'ajax',
           method: 'post',
           url: '<?php echo base_url() ?>admin/addSpecies',
           data: data,
           async: false,
           dataType: 'json',
-          success: function($response){
+          success: function(response){
             if(response.success){
               $('#addSpeciesForm').modal('hide');
               $('#addSpeciesForm')[0].reset();
@@ -196,15 +214,48 @@ $('#btnSave').click(function(){
               }else if(response.type=='update'){
                 var type ="updated"
               }
-            }else{
-              alert('Error');
+              let timerInterval
+              swal({
+                title: 'Saved',
+                text: 'Your file has been saved.',
+                type: 'success',
+                timer: 1500,
+                showConfirmButton: false
+              }).then(function() {
+                location.reload();
+              });
             }
           },
           error: function(){
             alert('Could not save Data');
           }
         });
-
+               }
+             })
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+          }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      }
     });
 
 $('#btnEditSave').click(function(){

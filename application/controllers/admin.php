@@ -941,7 +941,7 @@ public function edit_event()
           );
           echo json_encode($response);
           exit();
-        
+
     }
 	public function showAllDepositReqOkay(){
 		$output = $this->admin_m->showAllDepositReqOkay();
@@ -954,7 +954,7 @@ public function edit_event()
           );
           echo json_encode($response);
           exit();
-        
+
     }
 	public function showAllDepositReqAll(){
 		$output = $this->admin_m->showAllDepositReqAll();
@@ -967,7 +967,7 @@ public function edit_event()
           );
           echo json_encode($response);
           exit();
-        
+
     }
 
 	public function viewDepositReq(){
@@ -1195,7 +1195,7 @@ public function showAllAppointmentPending(){
           );
           echo json_encode($response);
           exit();
-        
+
     }
 public function ViewVisitReq(){
 		$result = $this->m->ViewVisitReq();
@@ -1219,7 +1219,7 @@ public function showAllAppointmentReject()
           );
           echo json_encode($response);
           exit();
-        
+
  }
 
 public function showAllAppointmentExpect()
@@ -1234,7 +1234,7 @@ public function showAllAppointmentExpect()
           );
           echo json_encode($response);
           exit();
-        
+
 }
 public function VisitConfirmation(){
 		$result = $this->m->VisitConfirmation();
@@ -1256,7 +1256,7 @@ $output = $this->admin_m->showAllAppointmentAll();
           );
           echo json_encode($response);
           exit();
-        
+
     }
 public function VisitEmailCon(){
 		$result = $this->m->VisitEmailCon();

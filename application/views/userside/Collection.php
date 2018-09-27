@@ -54,3 +54,68 @@
        </a>
             <!--/.Controls-->
     </div>
+
+    <div class="card py-5" style="padding-left: 130px; padding-right: 130px">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card mb-4">
+          <div class="view overlay">
+            <img class="card-img-top" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/collection/angiosperm.jpg" alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Angiosperms</h4>
+            <p class="card-text">Floweing Plants.</p>
+            <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card mb-4">
+          <div class="view overlay">
+            <img class="card-img-top" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/collection/gymnosperm.jpg" alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Gymnosperms</h4>
+            <p class="card-text">Conifers, cycads and allies.</p>
+              <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+            </div>
+          </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card mb-4">
+          <div class="view overlay">
+            <img class="card-img-top" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/collection/pteridophyte.jpg" alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Pteridophytes</h4>
+            <p class="card-text">Ferns and fern allies.</p>
+            <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card mb-4">
+          <div class="view overlay">
+            <img class="card-img-top" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/collection/bryophyte.jpg" alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Bryophytes</h4>
+            <p class="card-text">Mosses and liverworts.</p>
+            <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

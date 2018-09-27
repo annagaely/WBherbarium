@@ -1,3 +1,9 @@
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
+
 
        <div class="breadcrumb-holder">
         <div class="container-fluid">
@@ -33,7 +39,7 @@
                   </div>
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtOName" placeholder="Order Name" class="form-control">
+                    <input id="orderName" type="text" name="txtOName" placeholder="Order Name" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -73,7 +79,7 @@
                   </div>
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteOName" placeholder="Class Name" class="form-control">
+                    <input type="text" id="orderName1" name="txteOName" placeholder="Class Name" class="form-control">
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -165,72 +171,142 @@ function showOrderClassName(){
           alert('Could not get Data from Database');
         }
       });
-    }
+    };
 
 
 $('#btnSave').click(function(event){
-      var data = $('#addOrderForm').serialize();
-      //validate form
-      if(confirm("Save data?")){
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/addOrder',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function($response){
-            if(response.success){
-              $('#addOrderForm').modal('hide');
-              $('#addOrderForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
-              }
-             alert('Order Successfully Added!');
-              event.preventDefault
 
-            }else{
-              alert('Please fill up all fields.');
+  var url = '<?php echo base_url()?>admin/addOrder';
+  var data = $('#addOrderForm').serialize();
+  if($('#orderClassName').val()!=''){
+    if($('#orderName').val()!=''){
+      event.preventDefault();
+      swal({
+        title: 'Are you sure?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, save it!'
+      }).then((result) => {
+        if (result.value) {
+          $.ajax({
+            type: 'ajax',
+            method: 'post',
+            url: '<?php echo base_url() ?>admin/addOrder',
+            data: data,
+            async: false,
+            dataType: 'json',
+            success: function(response){
+              if(response.success){
+                $('#addOrderForm').modal('hide');
+                $('#addOrderForm')[0].reset();
+                if(response.type=='add'){
+                  var type = 'added'
+                }else if(response.type=='update'){
+                  var type ="updated"
+                }
+                let timerInterval
+                swal({
+                  title: 'Saved',
+                  text: 'Your file has been saved.',
+                  type: 'success',
+                  timer: 1500,
+                  showConfirmButton: false
+                }).then(function() {
+                  location.reload();
+                });
+              }
+            },
+            error: function(){
+              alert('Could not save Data');
             }
-          },
-          error: function(){
-            alert('Could not save Data');
-          }
-        });
-        }   else{
-        event.preventDefault();
-        }
+          });
+         }
+       })
+    }else{
+      event.preventDefault();
+      swal({
+        type: 'error',
+        title: 'Incomplete input!',
+        text: 'Please fill up all the required fields.'
+      });
+    }
+  }else{
+    event.preventDefault();
+    swal({
+      type: 'error',
+      title: 'Incomplete input!',
+      text: 'Please fill up all the required fields.'
+    });
+  }
     });
     //update class
   $('#btnEditSave').click(function(){
       var data = $('#editOrderForm').serialize();
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/updateOrder',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response.success){
-              $('#editOrderForm').modal('hide');
-              $('#editOrderForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
-              }
-              showAllPhylum();
-            }else{
-              alert('Error');
-            }
-          },
-          error: function(){
-            alert('Could not update data');
-          }
+      if($('#orderClassName1').val()!=''){
+        if($('#orderName1').val()!=''){
+          event.preventDefault();
+          swal({
+            title: 'Are you sure?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, save it!'
+          }).then((result) => {
+            if (result.value) {
+              $.ajax({
+                type: 'ajax',
+                method: 'post',
+                url: '<?php echo base_url() ?>admin/updateOrder',
+                data: data,
+                async: false,
+                dataType: 'json',
+                success: function(response){
+                  if(response.success){
+                    $('#editOrderForm').modal('hide');
+                    $('#editOrderForm')[0].reset();
+                    if(response.type=='add'){
+                      var type = 'added'
+                    }else if(response.type=='update'){
+                      var type ="updated"
+                    }
+                    let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Your file has been saved.',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                      location.reload();
+                    });
+
+                  }
+                },
+                error: function(){
+                  alert('Could not save Data');
+                }
+              });
+             }
+           })
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
         });
+      }
     });
     //edit class
 $(document).on('click', '.order-edit', function(){
