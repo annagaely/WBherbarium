@@ -112,10 +112,9 @@
             <table class="table dataTable no-footer" id="manageAAccountstbl">
               <thead>
                 <tr>
-                  <th scope="col" width= "10%">Account ID</th>
+                  <th scope="col" width= "10%">Staff ID</th>
                   <th scope="col" width= "10%">Name</th>
                   <th scope="col" width= "10%">Username</th>
-                  <th scope="col" width= "10%">Access Level</th>
                   <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>

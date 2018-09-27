@@ -33,8 +33,9 @@
                 <form id= "addOrderForm" method="POST" enctype="multipart/form-data"> <!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Class Name:</label> <label style="color: red">*</label>
-                    <select id="orderClassName" name ="txtcID" class="form-control">
-                    </select>
+                     <input list="classname" name ="txtcID" placeholder="Class Name" class="form-control" autocomplete="off">
+                     <datalist id ='classname'>
+                     </datalist>
                   </div>
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
@@ -72,8 +73,9 @@
                       <input type="hidden" name="txtId" value="0">
                     </label> <label style="color: red">*</label>
                     <label>Class Name:</label>
-                     <select id="orderClassName1" name ="sceID" class="form-control">
-                    </select>
+                     <input list="classname" name ="sceID" placeholder="Class Name" class="form-control" autocomplete="off">
+                     <datalist id ='classname'>
+                     </datalist>
                   </div>
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
@@ -160,10 +162,10 @@ function showOrderClassName(){
           var html = '';
           var i;
           for(i=0; i<data.length; i++){
-            html +='<option value="'+data[i].intClassID+'">'+data[i].strClassName+'</option>';
+            html +='<option value="'+data[i].strClassName+'">'+data[i].strClassName+'</option>';
           }
-          $('#orderClassName').html(html);
-          $('#orderClassName1').html(html);
+          $('#classname').html(html);
+          $('#showOrderClassName2').html(html);
         },
         error: function(){
           alert('Could not get Data from Database');
@@ -173,9 +175,9 @@ function showOrderClassName(){
 
 
 $('#btnSave').click(function(event){
+
   var url = '<?php echo base_url()?>admin/addOrder';
   var data = $('#addOrderForm').serialize();
-
   if($('#orderClassName').val()!=''){
     if($('#orderName').val()!=''){
       event.preventDefault();
@@ -319,7 +321,7 @@ $(document).on('click', '.order-edit', function(){
         async: false,
         dataType: 'json',
         success: function(data){
-
+          $('input[name=sceID]').val(data.strClassName)
           $('input[name=txteOName]').val(data.strOrderName);
           $('input[name=txtId]').val(data.intOrderID);
 

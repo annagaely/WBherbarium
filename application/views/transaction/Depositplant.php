@@ -222,6 +222,11 @@
               <input type ="hidden" name = "txtId" id = "txtID" value ="0">
               <input type="text" name="txtreqid" id="txtreqID" class="form-control" disabled>
             </div>
+              <div class="form-group">
+              <label>Date of Visit:</label>
+              <input type ="hidden" name = "txtdate" id = "txtID" value ="0">
+              <input type="text" name="ntxtdateid" id="txtdateID" class="form-control" disabled>
+            </div>
             <div class="form-group">
                <label>Message:</label>
                 <textarea  id="strCustomMessage" name="txtCustomMessage" class="form-control" placeholder="Type your message here.." ></textarea> 
@@ -483,6 +488,8 @@ $(document).ready(function() {
           $('#txtemail').val(data.strEmailAddress);
           $('input[name=txtId]').val(data.intDepositReqID);
           $('#txtreqID').val(data.intDepositReqID);
+          $('input[name=txtdate]').val(data.dtAppointmentDate);
+          $('#txtdateID').val(data.dtAppointmentDate);
 
         },
         error: function(){

@@ -25,16 +25,18 @@
                     <label class="custom-control-label" for="radioResearch">Research</label>
                   </div>
                   <div class="custom-control custom-radio"  style="margin-left: 38px;">
-                    <input type="radio" class="custom-control-input" value="Others" id="radioOthers" name="radios" onchange="others()">
-                    <label class="custom-control-label" for="radioOthers">Others</label>
+                    <input type="radio" class="custom-control-input" value="Loaning" id="radioOthers" name="radios" onchange="others()">
+                    <label class="custom-control-label" for="radioOthers">Loaning</label>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="md-form">
-              <i class="fas fa-pencil-alt prefix grey-text"></i>
-              <input type="text" name="txtappdesc" id="strVisitDescription"  class="form-control" >
-              <label for="strOthers" class="font-weight-light">Visit Description</label>
+              <div class="md-form">
+              <textarea type="text" id="strVisitDescription" name="txtappdesc" class="md-textarea form-control" rows="2" required></textarea>
+              <label for="strVisitDescription" class="font-weight-light">Visit Description<span style="color: red"> *</span></label>
+              <div class="invalid-feedback">
+                Please provide visit description.
+              </div>
             </div>
 
             <div class="text-center py-4 mt-3">

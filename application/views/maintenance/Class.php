@@ -32,8 +32,9 @@
                <form id= "addClassForm" method="POST" enctype="multipart/form-data"> <!--dito ka magbabago sa loob nito-->
                  <div class="form-group">
                    <label>Phylum Name:</label> <label style="color: red">*</label>
-
-                   <select id="phylumid" name ="spID" class="form-control"></select>
+                     <input list="phylumname" name ="spID" placeholder="Phylum Name" class="form-control" autocomplete=off>
+                     <datalist id ='phylumname'>
+                     </datalist>
                  </div>
                  <div class="form-group">
                    <label>Class Name:</label> <label style="color: red">*</label>
@@ -71,8 +72,9 @@
                      <input type="hidden" name="txtId" value="0">
                    </label>
                    <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <select id="phylumid2" name ="speID" class="form-control">
-                   </select>
+                     <input list="phylumname" name ="speID" placeholder="Phylum Name" class="form-control">
+                     <datalist id ='phylumname'>
+                     </datalist>
                  </div>
                  <div class="form-group">
                    <label>Class Name:</label> <label style="color: red">*</label>
@@ -160,10 +162,10 @@
          var html = '';
          var i;
          for(i=0; i<data.length; i++){
-           html +='<option value="'+data[i].intPhylumID+'">'+data[i].strPhylumName+'</option>';
+           html +='<option value="'+data[i].strPhylumName+'">'+data[i].strPhylumName+'</option>';
          }
-         $('#phylumid').html(html);
-         $('#phylumid2').html(html);
+         $('#showClassPhylumName').html(html);
+         $('#phylumname').html(html);
        },
        error: function(){
          alert('Could not get Data from Database');
@@ -172,7 +174,6 @@
    };
 
    $('#btnSave').click(function(event){
-     var url = '<?php echo base_url() ?>admin/addClass';
      var data = $('#addClassForm').serialize();
      //validate form
      if($('#phylumid').val()!=''){
@@ -214,12 +215,14 @@
                      location.reload();
                    });
 
+
                  }
                },
                error: function(){
                  alert('Could not save Data');
                }
              });
+
 
             }
 
@@ -330,7 +333,7 @@
        dataType: 'json',
        success: function(data){
 
-         $('input[name=txtecPName]').val(data.strPhylumName);
+         $('input[name=speID]').val(data.strPhylumName);
          $('input[name=txteCName]').val(data.strClassName);
          $('input[name=txtId]').val(data.intClassID);
 

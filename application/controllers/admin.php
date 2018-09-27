@@ -71,7 +71,7 @@ class admin extends CI_Controller {
 	}
 	else{
 	redirect(base_url().'admin');
-	}
+}
 }
 
 /****** PHYLUM ONLY!!!!! ******/
@@ -85,7 +85,6 @@ public function Phylum()
 		$this->load->view('templates/footer');
 	}
 }
-
 	//show phylum
 
 public function showAllPhylum()
@@ -190,6 +189,7 @@ $msg['success'] = false;
 $msg['type'] = 'add';
 if($result){
   $msg['success'] = true;
+ 
 }
 echo json_encode($msg);
 }
@@ -1047,6 +1047,7 @@ public function depositsendMail()
   'charset' => 'iso-8859-1',
   'wordwrap' => TRUE
 );
+$date=$this->input->post('txtdate');
 $email=$this->input->post('txtEmail');
 $id=$this->input->post('txtId');
 $message = $this->input->post('txtCustomMessage');
@@ -1056,7 +1057,7 @@ $message = $this->input->post('txtCustomMessage');
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Depositing of Specimen');
-      $this->email->message("Your deposit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Deposit Request ID:"  . $id ."<br> <br>" . $message );
+      $this->email->message("Your deposit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Deposit Request ID:"  . $id ."<br> <br>" ."Date of Appointment: ".$date. "<br> <br>" .$message );
 
       if($this->email->send())
      {
@@ -1123,7 +1124,7 @@ $message = $this->input->post('txtCustomMessageReject');
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Visiting');
-      $this->email->message("Your Visit request Rejected.REJECT REJECT Visit Request ID:" . $id ."<br> <br>" . $message );
+      $this->email->message("This message is to inform you that your visit request has been rejected. Thank you very much for your interest in visiting the PUP Herbarium Center.  <br> Visit Request ID:" . $id ."<br><br> Reason for rejection: <br>" . $message );
 
       if($this->email->send())
      {
@@ -1185,8 +1186,7 @@ public function showloanlist(){
 
 //APPOINTMENT
 public function showAllAppointmentPending(){
-$output = $this->admin_m->showAllAppointmentPending();
-
+		$output = $this->admin_m->showAllAppointmentPending();
         $response = array(
           'aaData' => $output,
           'iTotalRecords' => count($output),

@@ -30,8 +30,9 @@
                 <form id= "addSpeciesForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Genus Name:</label> <label style="color: red">*</label>
-                    <select id="genusName" name ="txtgID" class="form-control">
-                    </select>
+                     <input list="genusname" name ="txtgID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <datalist id ='genusname'>
+                     </datalist>
                   </div>
                   <div class="form-group">
                     <label>Species Name:</label> <label style="color: red">*</label>
@@ -73,8 +74,9 @@
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Genus Name:</label> <label style="color: red">*</label>
-                     <select id="genusName1" name ="sesGID" class="form-control">
-                    </select>
+                     <input list="genusname" name ="sesGID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <datalist id ='genusname'>
+                     </datalist>
                   </div>
                   <div class="form-group">
                     <label>Species Name:</label> <label style="color: red">*</label>
@@ -166,10 +168,10 @@ function showSpeciesGenusName(){
           var html = '';
           var i;
           for(i=0; i<data.length; i++){
-            html +='<option value="'+data[i].intGenusID+'">'+data[i].strGenusName+'</option>';
+            html +='<option value="'+data[i].strGenusName+'">'+data[i].strGenusName+'</option>';
           }
-          $('#genusName').html(html);
-          $('#genusName1').html(html);
+          $('#genusname').html(html);
+          $('#showSpeciesGenusName1').html(html);
         },
         error: function(){
           alert('Could not get Data from Database');
@@ -298,6 +300,7 @@ $('#btnEditSave').click(function(){
         async: false,
         dataType: 'json',
         success: function(data){
+          $('input[name=sesGID').val(data.strGenusName);
           $('input[name=txteSName]').val(data.strSpeciesName);
           $('input[name=txtecName]').val(data.strCommonName);
           $('input[name=txtId]').val(data.intSpeciesID);

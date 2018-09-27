@@ -33,8 +33,10 @@
                 <form id= "addFamilyForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
-                    <select id="orderName" name ="txtoID" class="form-control">
-                    </select>
+                     <input list="ordername" name ="txtoID" placeholder="Order Name" class="form-control" autocomplete="off">
+                     <datalist id ='ordername'>
+                     </datalist>
+
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
@@ -72,8 +74,9 @@
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Order Name:</label> <label style="color: red">*</label>
-                     <select id="orderName1" name ="seOID" class="form-control">
-                    </select>
+                     <input list="ordername" name ="seOID" placeholder="Order Name" class="form-control" autocomplete="off">
+                     <datalist id ='ordername'>
+                     </datalist>
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
@@ -158,10 +161,11 @@ function showFamilyOrderName(){
           var html = '';
           var i;
           for(i=0; i<data.length; i++){
-            html +='<option value="'+data[i].intOrderID+'">'+data[i].strOrderName+'</option>';
+            html +='<option value="'+data[i].strOrderName+'">'+data[i].strOrderName+'</option>';
           }
-          $('#orderName').html(html);
-          $('#orderName1').html(html);
+          $('#ordername').html(html);
+          $('#showFamilyOrderName1').html(html);
+
         },
         error: function(){
           alert('Could not get Data from Database');
@@ -322,6 +326,7 @@ $(document).on('click', '.family-edit', function(){
         async: false,
         dataType: 'json',
         success: function(data){
+          $('input[name=seOID').val(data.strOrderName)
           $('input[name=txteFName]').val(data.strFamilyName);
           $('input[name=txtId]').val(data.intFamilyID);
 

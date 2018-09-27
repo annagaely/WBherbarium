@@ -264,7 +264,7 @@
              
             <div class="form-group row pr-4">
               <label class="col-sm-2">To:</label>
-               <input type="email" name="txtEmailCon" id="strEmailAddressReject" class="form-control col-sm-10" disabledmethod="POST" enctype="multipart/form-data">
+               <input type="email" name="txtEmailCon" id="strEmailAddressReject" class="form-control col-sm-10" disabledmethod="POST" enctype="multipart/form-data" disabled>
             </div>
 
             <div class="form-group row pr-4">
@@ -504,6 +504,7 @@ $(document).on('click', '.view-appointment', function(){
         dataType: 'json',
         success: function(data){
           $('input[name=txtVisitID').val(data.intAppointmentID);
+           $('input[name=txtId').val(data.intAppointmentID);
           $('input[name=txtVisitorName]').val(data.strFullName);
           $('input[name=txtStatus]').val(data.strStatus);
 
@@ -515,7 +516,6 @@ $(document).on('click', '.view-appointment', function(){
 
     });
     });
-
 
      $(document).on('click', '.view-emailcon', function(){
       var id = $(this).attr('data');
@@ -557,7 +557,7 @@ $(document).on('click', '.view-appointment', function(){
 
             if(response==true){
 
-
+              alert('oks')
             }else{
               alert('Error');
             }
@@ -595,7 +595,6 @@ $(document).on('click', '.view-appointment', function(){
     $(document).ready(function() {
       showAllAppointmentReject();
 
-  
      $(document).on('click', '.view-emailConReject', function(){
       var id = $(this).attr('data');
       $('#EmailVisitConReject').modal('show');
@@ -625,6 +624,25 @@ $(document).on('click', '.view-appointment', function(){
 </script>
 
 <script type="text/javascript">
+
+      $(document).on('click', '.view-appointment', function(){
+      var id = $(this).attr('data');
+      $('#ViewVisitReq').modal('show');
+      $('#ViewVisitReq').find('.modal-title').text('Visit Details');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/ViewVisitReq',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtVisitorName]').val(data.strFullName);
+          $('input[name=txtAppointmentID]').val(data.intAppointmentID);
+          $('input[name=txtVisitDate').val(data.dtAppointmentDate);
+          $('input[name=txtVisitPurpose').val(data.strVisitDescription);
+          $('input[name=txtId').val(data.intAppointmentID);
+
 
     function showAllAppointmentAll(){
         
