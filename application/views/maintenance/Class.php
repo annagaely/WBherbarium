@@ -135,6 +135,7 @@
    $('#manageClasstbl').dataTable().fnDraw();
    $('#manageClasstbl').dataTable().fnDestroy();
    $('#manageClasstbl').dataTable({
+    "autoWidth":false,
         "processing": true,
         "serverSide": false,
         "sAjaxSource": "<?php echo base_url('admin/showAllClass')?>",

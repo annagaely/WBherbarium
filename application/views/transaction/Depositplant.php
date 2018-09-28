@@ -348,6 +348,7 @@
       $('#manageDepositReqPendingtbl').dataTable().fnDraw();
       $('#manageDepositReqPendingtbl').dataTable().fnDestroy();
       $('#manageDepositReqPendingtbl').dataTable({
+        "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllDepositReqPending')?>",
