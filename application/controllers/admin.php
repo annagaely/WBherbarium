@@ -1,4 +1,4 @@
- <?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin extends CI_Controller {
@@ -85,6 +85,21 @@ if($data){
 }
 }
 
+
+// public function DashboardCurator()
+// 	{
+// 	if($this->session->userdata('level')==='1'){
+// 		$title['title'] = "PUPHerbarium | Dashboard";
+// 		$this->load->view('templates/headercurator', $title);
+// 		$this->load->view('maintenance/Dashboard');
+// 		$this->load->view('templates/footer');
+// 	}
+// 	else{
+// 	redirect(base_url().'admin');
+// 	}
+// }
+
+
 /****** PHYLUM ONLY!!!!! ******/
 public function Phylum()
 {
@@ -96,6 +111,7 @@ public function Phylum()
 		$this->load->view('templates/footer');
 	}
 }
+
 	//show phylum
 
 public function showAllPhylum()
@@ -496,7 +512,7 @@ public function updateFamilyBox(){
 		}
 		echo json_encode($msg);
 	}
-	/****** END FAMILY BOXES!!!!! ******/
+	/****** END FAMILY BOXES!!!!! *****
 	/****** LOCALITY START!!!!! ******/
 	public function Locality()
 	{
@@ -782,6 +798,17 @@ public function updateFamilyBox(){
 }
 
 
+
+public function Speciesauthor()
+{
+	if($this->session->userdata('strUserName')!='')
+	{
+		$title['title'] = "PUPHerbarium | Species Author";
+		$this->load->view('templates/header', $title);
+		$this->load->view('maintenance/Speciesauthor');
+		$this->load->view('templates/footer');
+	}
+}
 
 	function view_calendar()
 	{

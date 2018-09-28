@@ -98,8 +98,8 @@
                    <table class="table table-striped" id="manageClasstbl">
                      <thead>
                        <tr>
-                         <th scope="col" width= "10%">Class ID</th>
-                         <th scope="col" width= "10%">Phylum Name</th>
+                         <!-- <th scope="col" width= "10%">Class ID</th> -->
+                         <th scope="col" width= "10%">  Phylum Name</th>
                          <th scope="col" width= "10%">Class Name</th>
                          <th scope="col" width= "10%">Actions</th>
                        </tr>

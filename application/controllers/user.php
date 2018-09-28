@@ -12,7 +12,7 @@ class user extends CI_Controller {
 
    	public function index()
 	{
-		$title['title'] = "PUPHerbarium | Home";
+		$title['title'] = "Welcome to PUP Herbarium";
 		$this->load->view('userside/navbar', $title);
 		$this->load->view('userside/landingpage');
 		$this->load->view('userside/footer');
@@ -170,11 +170,25 @@ public function userRegister(){
 	}
 
   public function Profile() {
+  	if($this->session->userdata('strUserName')!=''){
+
     $title['title'] = "PUPHerbarium | Profile";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/MyProfile');
 		$this->load->view('userside/footer');
   }
+
+  else{
+	redirect(base_url().'user/index');
+	}
+}
+
+
+	// public function showAccount(){
+	// 	$result = $this->m->showAccount();
+	// 	echo json_encode($result);
+
+	// }
 
 
 }?>

@@ -99,7 +99,7 @@
       <table class="table dataTable no-footer" id="manageFamilytbl">
          <thead>
           <tr>
-            <th scope="col" width= "10%">Family ID</th>
+<!--             <th scope="col" width= "10%">Family ID</th> -->
             <th scope="col" width= "10%">Order Name</th>
             <th scope="col" width= "10%">Family Name</th>
             <th scope="col" width= "10%">Actions</th>

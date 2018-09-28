@@ -57,7 +57,6 @@
           <!-- User Info-->
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
              <h2 class="h5">
-
               <?php
                   echo $this->session->userdata('strFirstname'),' ',$this->session->userdata('strMiddleInitial'),' ',$this->session->userdata('strLastname');
               ?>
@@ -106,9 +105,10 @@
 
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/Speciesauthor">Species Author</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+<!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
 
               </ul>
             </li>

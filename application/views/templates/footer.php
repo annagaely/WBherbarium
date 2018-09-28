@@ -31,6 +31,7 @@
     <script src="<?php echo base_url();?>assets/bower_components/demo/js/front.js"></script>
 
     <!--PREMIUM-->
+
     <!-- JavaScript files-->
     <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/popper.js/umd/popper.min.js"> </script>
@@ -49,7 +50,7 @@
     <!-- Main File-->
     <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/js/front.js"></script>
 
-
+    <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
 
    </body>
    </html>
