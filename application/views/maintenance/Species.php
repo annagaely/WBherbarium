@@ -97,7 +97,7 @@
       <table class="table dataTable no-footer" id="manageSpeciestbl">
                       <thead>
                         <tr>
-                          <th scope="col" width= "10%">Species ID</th>
+                          <!-- <th scope="col" width= "10%">Species ID</th> -->
                           <th scope="col" width= "10%">Genus Name</th>
                           <th scope="col" width= "10%">Species Name</th>
                           <th scope="col" width= "10%">Common Name</th>

@@ -17,7 +17,7 @@
         <!-- Modal-->
         <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
-            <div class="modalcontent">
+            <div class="modal-content">
               <div class="modal-header">
                 <h5 id="exampleModalLabel" class="modal-title">Add Locality</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
@@ -209,7 +209,7 @@
             <table class="table dataTable no-footer" id="manageLocalitytbl">
               <thead>
                 <tr>
-                  <th scope="col" width= "10%">Locality ID</th>
+<!--                   <th scope="col" width= "10%">Locality ID</th> -->
                   <th scope="col" width= "10%">Island</th>
                   <th scope="col" width= "10%">Region</th>
                   <th scope="col" width= "10%">Province</th>

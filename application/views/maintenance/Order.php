@@ -91,7 +91,7 @@
             <table class="table dataTable no-footer" id="manageOrdertbl">
               <thead>
                 <tr>
-                  <th scope="col" width= "5%">Order ID</th>
+<!--                   <th scope="col" width= "5%">Order ID</th> -->
                   <th scope="col" width= "8%">Class Name</th>
                   <th scope="col" width= "8%">Order Name</th>
                   <th scope="col" width= "5%">Actions</th>

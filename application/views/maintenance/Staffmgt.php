@@ -31,9 +31,9 @@
 
                     <div class="col-sm-6">
                     <label>Role:</label> <label style="color: red">*</label>
-                    <select name="txtStaffRole" class="form-control">
-                      <option id="SA" value= "SUPER ADMINISTRATOR"> Super Administrator</option>
-                      <option id="CR" value= "CURATOR"> Curator</option>
+                    <select name="sRole" class="form-control">
+                      <option id="SA" name="nSA" value= "SUPER ADMINISTRATOR"> Super Administrator</option>
+                      <option id="CR" name="nCR" value= "CURATOR"> Curator</option>
 <!--                       <option id="StA" value= "Student Assistant"> Student Assistant</option> -->
                     </select>
                   </div>
@@ -64,7 +64,7 @@
                   <div class="row">
                   <div class="col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text" name= "SMgtCNumber" placeholder="Contact Number" class="form-control">
+                    <input  data-mask="9999 999 9999" type="text" name= "SMgtCNumber" placeholder="Contact Number" class="form-control">
                   </div>
 
                      <div class="col-sm-6">
@@ -162,7 +162,7 @@
                   <div class="row">
                   <div class="col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text" name= "eSMgtCNumber" placeholder="Contact Number" class="form-control">
+                    <input type="text"  data-mask="9999 999 9999" name= "eSMgtCNumber" placeholder="Contact Number" class="form-control">
                   </div>
 
                      <div class="col-sm-6"> <label style="color: red">*</label>
@@ -217,7 +217,7 @@
             <table class="table table-striped" id="manageStafftbl">
               <thead>
                 <tr>
-                  <th>Staff ID</th>
+<!--                   <th>Staff ID</th> -->
                   <th>Staff Name</th>
                   <th>Role</th>
                   <th>College</th>

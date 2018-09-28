@@ -1,4 +1,4 @@
- <?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin extends CI_Controller {
@@ -42,12 +42,11 @@ class admin extends CI_Controller {
 			if($this->admin_m->admincan_login($username,$password)){
 				$session_data=array(
 					'strUserName' => $username,
-
 				);
 				$this->session->set_userdata($session_data);
 				redirect(base_url().'admin/Dashboard');
 			}else{
-				$this->session->set_flashdata('error','Invalid Username and Password');
+				$this->session->set_flashdata('error','Invalid Username or Password');
 				redirect(base_url().'admin');
 			}
 		}
@@ -55,6 +54,39 @@ class admin extends CI_Controller {
 			redirect(base_url().'admin');
 		}
 	}
+
+// public function adminlogin_validation(){
+// 	$username =$this->input->post('loginUsername', TRUE);
+// 	$password =$this->input->post('loginPassword', TRUE);
+
+// 	if($validate->num_rows() > 0){
+// 		$data = $validate->row_array();
+// 		$username = $data['user_name'];
+// 		$level = $data['user_level'];
+// 		$sesdata = array(
+// 			'loginUsername' => $username,
+// 			'level' => $level,
+// 			'logged_in' => TRUE
+// 		);
+
+// 		$this->session->set_userdata($sesdata);
+// 		if($level === '1'){
+// 			redirect('admin/DashboardCurator');
+// 		}
+// 		else 
+// 		{ 
+// 		 	redirect('admin/Dashboard');
+			
+// 		}
+// else{
+// 	echo $this->session->set_flashdata('msg','Username or Password is Incorrect' );
+// 		redirect('admin');
+// 	}
+//   }
+// }
+	
+
+
 	public function adminlogout(){
 		$this->session->unset_userdata('strUserName');
 		redirect(base_url().'admin');
@@ -74,6 +106,21 @@ class admin extends CI_Controller {
 	}
 }
 
+
+// public function DashboardCurator()
+// 	{
+// 	if($this->session->userdata('level')==='1'){
+// 		$title['title'] = "PUPHerbarium | Dashboard";
+// 		$this->load->view('templates/headercurator', $title);
+// 		$this->load->view('maintenance/Dashboard');
+// 		$this->load->view('templates/footer');
+// 	}
+// 	else{
+// 	redirect(base_url().'admin');
+// 	}
+// }
+
+
 /****** PHYLUM ONLY!!!!! ******/
 public function Phylum()
 {
@@ -86,7 +133,7 @@ public function Phylum()
 	}
 }
 
-	//show phylum
+//show phylum
 
 public function showAllPhylum()
 {
@@ -441,7 +488,7 @@ public function updateSpecies(){
 	redirect(base_url().'admin');
 	}
 }
-/*
+
 	public function showAllFamilyBoxes(){
 
 {
@@ -485,7 +532,7 @@ public function updateFamilyBox(){
 		}
 		echo json_encode($msg);
 	}
-	/****** END FAMILY BOXES!!!!! ******/
+	/****** END FAMILY BOXES!!!!! *****
 	/****** LOCALITY START!!!!! ******/
 	public function Locality()
 	{

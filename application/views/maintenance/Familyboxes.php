@@ -116,7 +116,7 @@
       <table class="table dataTable no-footer" id="manageFamBoxtbl">
               <thead>
                 <tr>
-                  <th scope="col" width= "10%">Box ID</th>
+<!--                   <th scope="col" width= "10%">Box ID</th> -->
                   <th scope="col" width= "10%">Box Number</th>
                   <th scope="col" width= "10%">Family Name</th>
                   <th scope="col" width= "10%">Box Limit</th>

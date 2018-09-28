@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class user_m extends CI_Model{
@@ -311,6 +311,15 @@ public function getgenusname(){
 
 }
 
-
+	// public function showAccount(){
+	// 	$id = $this->input->get('id');
+	// 	$this->db->where('intOUserID', $id);
+	// 	$query = $this->db->get('tblOnlineUser');
+	// 	if($query->num_rows() > 0){
+	// 		return $query->row();
+	// 	}else{
+	// 		return false;
+	// 	}
+	// }
 
 }?>

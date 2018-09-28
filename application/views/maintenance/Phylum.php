@@ -115,7 +115,7 @@
             <table class="table dataTable no-footer" id="managePhylumtbl">
               <thead>
                 <tr>
-                  <th scope="col" width= "10%">Phylum ID</th>
+                  <!-- <th scope="col" width= "10%">Phylum ID</th> -->
                   <th scope="col" width= "10%">Domain Name</th>
                   <th scope="col" width= "10%">Kingdom Name</th>
                   <th scope="col" width= "10%">Phylum Name</th>
@@ -178,34 +178,6 @@ function resetForm() {
 
     <script type="text/javascript">
 
-    /*function showAllPhylum(){
-      $.ajax({
-        type: 'ajax',
-        url: '<?php echo base_url() ?>admin/showAllPhylum',
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          var html = '';
-          var i;
-          for(i=0; i<data.length; i++){
-            html +='<tr>'+
-                  '<td>'+data[i].intPhylumID+'</td>'+
-                  '<td>'+data[i].strDomainName+'</td>'+
-                  '<td>'+data[i].strKingdomName+'</td>'+
-                  '<td>'+data[i].strPhylumName+'</td>'+
-                  '<td>'+
-                    '<a href="javascript:;" class="btn btn-primary phylum-edit" data="'+data[i].intPhylumID+'">Edit</a>'+
-                  '</td>'+
-                  '</tr>';
-          }
-          $('#showdata').html(html);
-        },
-        error: function(){
-          alert('Could not get Data from Database');
-        }
-      });
-    }
-*/
     function showAllPhylum()
         {
           $('#managePhylumtbl').dataTable().fnClearTable();

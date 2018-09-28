@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin - Login</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/css/bootstrap.min.css">
@@ -31,8 +31,25 @@
   </head>
   <body>
 
-    <div class="page login-page">
-      <div class="container">
+
+<!-- 
+
+  **   for case sensitivity -- run sa sql server **
+ALTER TABLE tblAccounts
+ALTER COLUMN strUsername varchar(50) COLLATE Latin1_General_CS_AS;
+
+ALTER TABLE tblAccounts
+ALTER COLUMN strPassword varchar(50) COLLATE Latin1_General_CS_AS;
+
+ -->
+
+    <div class="page login-page"> <img src = "<?php echo base_url();?>assets/bower_components/logoname.png" style= "height: 200px; width:400px;    position: absolute;
+          bottom: 8px;
+          right: 16px; 
+          opacity: 0.3;
+          filter: alpha(opacity=50);">
+
+      <div class="container" >
         <div class="form-outer text-center d-flex align-items-center">
           <div class="form-inner"> <img src="<?php echo base_url();?>assets/bower_components/logoto.png" alt="logo"  style= "height: 110px; width: 100px">
             <div class="logo text-uppercase"><strong class="text-primary">PUP</strong><span>Herbarium</span></div>

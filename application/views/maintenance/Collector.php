@@ -54,7 +54,7 @@
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text" name="cName" placeholder="Contact Number" class="form-control" required>
+                    <input type="text" name="cName" data-mask="9999 999 9999" placeholder="Contact Number" class="form-control" required>
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
@@ -126,7 +126,7 @@
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text" name="ceName" placeholder="Contact Number" class="form-control">
+                    <input type="text" name="ceName" data-mask="9999 999 9999" placeholder="Contact Number" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
@@ -163,7 +163,7 @@
               <table class="table dataTable no-footer" id="manageCollectortbl">
               <thead>
                 <tr>
-                   <th scope="col" width= "10%">CollectorID</th>
+                   <!-- <th scope="col" width= "10%">CollectorID</th> -->
                    <th scope="col" width= "10%">Full Name</th>
                    <th scope="col" width= "10%">Institution/Section</th>
                    <th scope="col" width= "10%">Actions</th>

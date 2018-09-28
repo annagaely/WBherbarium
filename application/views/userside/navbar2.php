@@ -26,7 +26,7 @@
     <!-- Start your project here-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
-        <a class="navbar-brand" href="#"><strong>PUP Herbarium</strong></a>
+        <a class="navbar-brand" href="<?php echo base_url(); ?>user/home"><strong>PUP Herbarium</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -69,7 +69,7 @@
                     <i class="fa fa-user"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="<?php echo base_url()?>user/myAccount">Profile</a>
+                    <a class="dropdown-item" href="<?php echo base_url()?>user/Profile">Profile</a>
                     <a class="dropdown-item" href="<?php echo base_url()?>user/Collection">Settings</a>
                     <a class="dropdown-item" href="<?php echo base_url()?>user/logout">Logout</a>
                 </div>
