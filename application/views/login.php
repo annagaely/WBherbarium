@@ -1,3 +1,8 @@
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 <!DOCTYPE html>
 <html>
   <head>
@@ -56,7 +61,7 @@ ALTER COLUMN strPassword varchar(50) COLLATE Latin1_General_CS_AS;
             <p>
              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
             </p>
-             <form method ="post" action="<?php echo base_url();?>admin/adminlogin_validation">
+             <form id= "loginForm" method="POST" enctype="multipart/form-data">
               <div class="form-group-material">
                 <input id="login-username"  name="loginUsername" required data-msg="Please enter your password" class="input-material">
                 <label for="login-username" class="label-material">Username</label>
@@ -66,8 +71,8 @@ ALTER COLUMN strPassword varchar(50) COLLATE Latin1_General_CS_AS;
                 <label for="login-password" class="label-material">Password</label>
               </div>
               <div class="form-group text-center">
-                 <?php echo '<span class="text-danger">'.$this->session->flashdata("error"); ?> <br>
-                 <button class="btn btn-primary" type="submit" name="insert" value="Login">Login</button>
+                 <?php echo '<span class="text-danger">'.$this->session->flashdata("msg"); ?> <br>
+                 <button class="btn btn-primary" type="submit" name="insert" id='btnSave' value="Login">Login</button>
 
               </div>
            </form>
@@ -87,6 +92,68 @@ ALTER COLUMN strPassword varchar(50) COLLATE Latin1_General_CS_AS;
     <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
     <!-- Main File-->
-    <script src="<?php echo base_url();?>assets/bower_components/distribution/js/front.js"></script>
+    
   </body>
+       <script src="<?php echo base_url();?>assets/bower_components/distribution/js/front.js"></script>
+
+      <script type="text/javascript">
+
+    $(document).ready(function(){
+    //add
+    $('#btnSave').click(function(event){
+      var url = '<?php echo base_url();?>admin/auth';
+      var data = $('#loginForm').serialize();
+      //validate form
+      if($('#login-username').val()!=''){
+        if($('#login-password').val()!=''){
+                $.ajax({
+                type: 'ajax',
+                method: 'post',
+                url: url,
+                data: data,
+                async: false,
+                dataType: 'json',
+               success: function(response){
+                  if(response.success){
+                    let timerInterval
+                    swal({
+                    title: 'Logged in',
+                      text: 'You are now logged in!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+window.location.href='<?php echo base_url();?>admin/dashboard';
+                    });event.preventDefault();
+                  }
+                },
+                error: function(){
+                                    
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: "Can't Log in",
+            text: 'Invalid Username or Password.'
+          });
+                }
+              });
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+          }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+        }
+    });
+  }); 
+</script>
   </html>

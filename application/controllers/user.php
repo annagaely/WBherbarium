@@ -14,7 +14,7 @@ class user extends CI_Controller {
 	{
 		$title['title'] = "Welcome to PUP Herbarium";
 		$this->load->view('userside/navbar', $title);
-		$this->load->view('userside/Index');
+		$this->load->view('userside/landingpage');
 		$this->load->view('userside/footer');
 	}
 	public function faq()
@@ -24,10 +24,18 @@ class user extends CI_Controller {
 		$this->load->view('userside/Faq');
 		$this->load->view('userside/footer');
 	}
+
 	public function contact()
 	{
 		$title['title'] = "PUPHerbarium | Contact";
 		$this->load->view('userside/navbar', $title);
+
+		$this->load->view('userside/footer');
+	}
+  public function contact2()
+	{
+		$title['title'] = "PUPHerbarium | Contact";
+		$this->load->view('userside/navbar2', $title);
 
 		$this->load->view('userside/footer');
 	}
@@ -43,7 +51,7 @@ class user extends CI_Controller {
 
 		$title['title'] = "PUPHerbarium | Home";
 		$this->load->view('userside/navbar2', $title);
-		$this->load->view('userside/index');
+		$this->load->view('userside/landingpage');
 		$this->load->view('userside/footer');
 	}else{
 	redirect(base_url().'user/index');

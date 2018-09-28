@@ -1,3 +1,8 @@
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 
 
        <div class="breadcrumb-holder">
@@ -27,12 +32,13 @@
                <form id= "addClassForm" method="POST" enctype="multipart/form-data"> <!--dito ka magbabago sa loob nito-->
                  <div class="form-group">
                    <label>Phylum Name:</label> <label style="color: red">*</label>
-                   <select id="showClassPhylumName" name ="spID" class="form-control">
-                   </select>
+                     <input list="phylumname" name ="spID" placeholder="Phylum Name" class="form-control" autocomplete=off>
+                     <datalist id ='phylumname'>
+                     </datalist>
                  </div>
                  <div class="form-group">
                    <label>Class Name:</label> <label style="color: red">*</label>
-                   <input type="text" name="txtCName" placeholder="Class Name" class="form-control">
+                   <input type="text" name="txtCName" id='classid' placeholder="Class Name" class="form-control">
                  </div><!--HANGGANG DITO LANG BOI-->
                  <div class="modal-footer">
                    <input type="reset" value="Clear" class="btn btn-secondary">
@@ -66,12 +72,13 @@
                      <input type="hidden" name="txtId" value="0">
                    </label>
                    <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <select id="showClassPhylumName2" name ="speID" class="form-control">
-                   </select>
+                     <input list="phylumname" name ="speID" placeholder="Phylum Name" class="form-control">
+                     <datalist id ='phylumname'>
+                     </datalist>
                  </div>
                  <div class="form-group">
                    <label>Class Name:</label> <label style="color: red">*</label>
-                   <input type="text" name="txteCName" placeholder="Class Name" class="form-control">
+                   <input type="text" id="classid2" name="txteCName" placeholder="Class Name" class="form-control">
                  </div>
                  <div class="modal-footer">
                    <input type="reset" value="Clear" class="btn btn-secondary">
@@ -145,40 +152,6 @@
    showAllClass();
    showClassPhylumName();
 
-/*    $(function(){
-
-     //show
-   showAllClass();
-   showClassPhylumName();
-
-   function showAllClass(){
-     $.ajax({
-       type: 'ajax',
-       url: '<?php echo base_url() ?>admin/showAllClass',
-       async: false,
-       dataType: 'json',
-       success: function(data){
-         var html = '';
-         var i;
-         for(i=0; i<data.length; i++){
-           html +='<tr>'+
-                 '<td>'+data[i].intClassID+'</td>'+
-                 '<td>'+data[i].strPhylumName+'</td>'+
-                 '<td>'+data[i].strClassName+'</td>'+
-                 '<td>'+
-                   '<a href="javascript:;" class="btn btn-primary class-edit" data="'+data[i].intClassID+'">Edit</a>'+
-                 '</td>'+
-                 '</tr>';
-         }
-         $('#showdata').html(html);
-       },
-       error: function(){
-         alert('Could not get Data from Database');
-       }
-     });
-   }
-*/
-
      function showClassPhylumName(){
      $.ajax({
        type: 'ajax',
@@ -189,52 +162,107 @@
          var html = '';
          var i;
          for(i=0; i<data.length; i++){
-           html +='<option value="'+data[i].intPhylumID+'">'+data[i].strPhylumName+'</option>';
+           html +='<option value="'+data[i].strPhylumName+'">'+data[i].strPhylumName+'</option>';
          }
          $('#showClassPhylumName').html(html);
-         $('#showClassPhylumName2').html(html);
+         $('#phylumname').html(html);
        },
        error: function(){
          alert('Could not get Data from Database');
        }
      });
-   }
+   };
 
-   $('#btnSave').click(function(){
+   $('#btnSave').click(function(event){
      var data = $('#addClassForm').serialize();
      //validate form
+     if($('#phylumid').val()!=''){
+       if($('#classid').val()!=''){
+         event.preventDefault();
+         swal({
+           title: 'Are you sure?',
+           type: 'warning',
+           showCancelButton: true,
+           confirmButtonColor: '#3085d6',
+           cancelButtonColor: '#d33',
+           confirmButtonText: 'Yes, save it!'
+         }).then((result) => {
+           if (result.value) {
+             $.ajax({
+               type: 'ajax',
+               method: 'post',
+               url: '<?php echo base_url() ?>admin/addClass',
+               data: data,
+               async: false,
+               dataType: 'json',
+               success: function(response){
+                 if(response.success){
+                   $('#addClassForm').modal('hide');
+                   $('#addClassForm')[0].reset();
+                   if(response.type=='add'){
+                     var type = 'added'
+                   }else if(response.type=='update'){
+                     var type ="updated"
+                   }
+                   let timerInterval
+                   swal({
+                     title: 'Saved',
+                     text: 'Your file has been saved.',
+                     type: 'success',
+                     timer: 1500,
+                     showConfirmButton: false
+                   }).then(function() {
+                     location.reload();
+                   });
 
-       $.ajax({
-         type: 'ajax',
-         method: 'post',
-         url: '<?php echo base_url() ?>admin/addClass',
-         data: data,
-         async: false,
-         dataType: 'json',
-         success: function($response){
-           if(response.success){
-             $('#addClassForm').modal('hide');
-             $('#addClassForm')[0].reset();
-             if(response.type=='add'){
-               var type = 'added'
-             }else if(response.type=='update'){
-               var type ="updated"
-             }
-             showAllEmployee();
-           }else{
-             alert('Error');
-           }
-         },
-         error: function(){
-           alert('Could not save Data');
-         }
-       });
 
-   });
+                 }
+               },
+               error: function(){
+                 alert('Could not save Data');
+               }
+             });
+
+
+            }
+
+          })
+
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      }
+
+
+    });
    //update class
  $('#btnEditSave').click(function(){
      var data = $('#editClassForm').serialize();
-       $.ajax({
+     if($('#phylumid2').val()!=''){
+       if($('#classid2').val()!=''){
+         event.preventDefault();
+         swal({
+           title: 'Are you sure?',
+           type: 'warning',
+           showCancelButton: true,
+           confirmButtonColor: '#3085d6',
+           cancelButtonColor: '#d33',
+           confirmButtonText: 'Yes, save it!'
+         }).then((result) => {
+           if (result.value) {
+             $.ajax({
          type: 'ajax',
          method: 'post',
          url: '<?php echo base_url() ?>admin/updateClass',
@@ -250,7 +278,17 @@
              }else if(response.type=='update'){
                var type ="updated"
              }
-             showAllPhylum();
+             let timerInterval
+             swal({
+               title: 'Saved',
+               text: 'Your file has been saved.',
+               type: 'success',
+               timer: 1500,
+               showConfirmButton: false
+             }).then(function() {
+               location.reload();
+             });
+             showAllClass();
            }else{
              alert('Error');
            }
@@ -259,6 +297,27 @@
            alert('Could not update data');
          }
        });
+
+            }
+
+          })
+
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      }
    });
    //edit class
   $(document).on('click', '.class-edit', function(e){
@@ -274,7 +333,7 @@
        dataType: 'json',
        success: function(data){
 
-         $('input[name=txtecPName]').val(data.strPhylumName);
+         $('input[name=speID]').val(data.strPhylumName);
          $('input[name=txteCName]').val(data.strClassName);
          $('input[name=txtId]').val(data.intClassID);
 
