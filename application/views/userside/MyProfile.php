@@ -5,6 +5,8 @@ document.getElementById("navi").style.display = 'block';
 function hideNav() {
   document.getElementById("navi").style.display = 'none';
 }
+
+
 </script>
 <script>
 $('input[name=txtpresentadd]').keyup(function(){
@@ -32,12 +34,45 @@ function copy()
       n2.value = '';
       n2.trigger('blur');
     }
-
-
-
 }
 </script>
+ 
+
+<!-- <script type="text/javascript">
+
+
+
+$(document).on('click', '.account', function(e){
+      var id = $(this).attr('data');
+      $('#account').modal('show');
+
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>user/showAccount',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtemail]').val(data.strEmailAdd);
+          $('input[name=txtusername]').val(data.strUsername);
+
+        },
+        error: function(){
+          alert('Could not show Data');
+        }
+
+    });
+
+  });
+
+
+</script> -->
+
+
+
 <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/loan.jpg" style="height: 50vh; width: 100%;"  class="banner">
+
 <div class="container">
       <div class="row py-5">
         <div class="col-md-3">
@@ -61,9 +96,11 @@ function copy()
           <div class="card card-body">
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade active show" id="viewprofile" role="tabpanel">
-                <h3 class="card-title">viewing of account</h3>
+                <h3 class="card-title">Viewing of Account</h3>
               </div>
 
+
+<!--   ACCOUNT -->
               <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
                 <h3 class="card-title">Account</h3>
                 <form name="myaccForm" class="needs-validation" id= "myaccForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
@@ -93,6 +130,9 @@ function copy()
                     </div>
                  </form>
               </div>
+
+<!--   PROFILE -->
+
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <h3 class="card-title">Profile</h3>
                 <form name="regForm" class="needs-validation" id= "RegisterForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
@@ -121,11 +161,11 @@ function copy()
                         </div>
                       </div>
                     </div>
-                      <!-- Material input email -->
+
                       <div class="md-form">
                             <i class="fa fa-phone prefix grey-text"></i>
                             <input type="text" id="strPhoneNum" name="txtphonenum" class="form-control" required>
-                            <label for="strPhoneNum" class="font-weight-light">Phone Number<span style="color: red"> *</span></label>
+                            <label for="strPhoneNum" class="font-weight-light" data-mask="9999 9999 999">Phone Number<span style="color: red"> *</span></label>
 
                       </div>
                       <div class="md-form">
@@ -163,19 +203,17 @@ function copy()
                         <label for="strAffiliationAdd" class="font-weight-light">Affiliation Address<span style="color: red"> *</span></label>
                       </div>
 
-
-
-
-
-
                     <div class="text-center py-4 mt-3">
                       <button class="btn btn-danger" onclick="hideNav()">Cancel</button>
                       <button class="btn btn-primary" type="submit" id="btnSave">Submit</button>
                     </div>
                  </form>
               </div>
+
+<!--   PASSWORD  -->
               <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                 <h3 class="card-title">Password</h3>
+                <form name="myPasswordForm" class="needs-validation" id= "myaccForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
                 <div class="md-form">
                 <div class="row">
                   <div class="col-md-3"></div>
@@ -208,7 +246,8 @@ function copy()
                       <button class="btn btn-danger" onclick="hideNav()">Cancel</button>
                       <button class="btn btn-primary" type="submit" id="btnSave">Save Changes</button>
                     </div>
-                  </div>
+                   </form>
+                  <div>
 
                 </div>
               </div>

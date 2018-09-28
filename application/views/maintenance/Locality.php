@@ -214,7 +214,7 @@
             <table class="table dataTable no-footer" id="manageLocalitytbl">
               <thead>
                 <tr>
-                  <th scope="col" width= "10%">Locality ID</th>
+<!--                   <th scope="col" width= "10%">Locality ID</th> -->
                   <th scope="col" width= "10%">Island</th>
                   <th scope="col" width= "10%">Region</th>
                   <th scope="col" width= "10%">Province</th>

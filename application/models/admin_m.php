@@ -1,20 +1,22 @@
- <?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin_m extends CI_Model{
 
 
-	public function admincan_login($username,$password){
-	$this->db->where('strUserName',$username);
-	$this->db->where('strPassword',$password);
-	$query=$this->db->get('tblAccounts');
-	if($query->num_rows()>0){
-		return true;
-	}else{
-		return false;
-	}
+	public function validate($username,$password){
+				$query = $this->db
+			->where('strUsername',$username)
+			->where('strPassword',$password)
+			->join('tblHerbariumStaff hs', 'hs.intStaffID = a.intStaffID')
+			->get('tblAccounts a');
+
+		return $query;
 
 }
+
+
+
 /****** PHYLUM ONLY!!!!! ******/
 
 
@@ -29,7 +31,7 @@ class admin_m extends CI_Model{
 			$btn = '<button class="btn btn-primary phylum-edit" data="'.$r->intPhylumID.'">Edit</button>';
 
 			$result[] = array(
-					$r->intPhylumID,
+					// $r->intPhylumID,
 					$r->strDomainName,
 					$r->strKingdomName,
 					$r->strPhylumName,
@@ -71,6 +73,7 @@ class admin_m extends CI_Model{
 			return false;
 		}
 	}
+	
     public function updatePhylum(){
     $id = $this->input->post('txtId');
     $field = array(
@@ -105,7 +108,7 @@ public function showAllClass()
 			$btn = '<button class="btn btn-primary class-edit" data="'.$r->intClassID.'">Edit</button>';
 
 			$result[] = array(
-					$r->intClassID,
+					// $r->intClassID,
 					$r->strPhylumName,
 					$r->strClassName,
 					$btn,
@@ -218,7 +221,7 @@ if($this->db->query($query)){
 			$btn = '<button class="btn btn-primary order-edit" data="'.$r->intOrderID.'">Edit</button>';
 
 			$result[] = array(
-					$r->intOrderID,
+					// $r->intOrderID,
 					$r->strClassName,
 					$r->strOrderName,
 					$btn,
@@ -318,7 +321,7 @@ public function showAllFamily()
 			$btn = '<button class="btn btn-primary family-edit" data="'.$r->intFamilyID.'">Edit</button>';
 
 			$result[] = array(
-					$r->intFamilyID,
+					// $r->intFamilyID,
 					$r->strOrderName,
 					$r->strFamilyName,
 					$btn,
@@ -413,7 +416,7 @@ public function showAllGenus(){
 			$btn = '<button class="btn btn-primary genus-edit" data="'.$r->intGenusID.'">Edit</button>';
 
 			$result[] = array(
-					$r->intGenusID,
+					// $r->intGenusID,
 					$r->strFamilyName,
 					$r->strGenusName,
 					$btn,
@@ -508,7 +511,7 @@ public function showAllSpecies(){
 			$btn = '<button class="btn btn-primary species-edit" data="'.$r->intSpeciesID.'">Edit</button>';
 
 			$result[] = array(
-					$r->intSpeciesID,
+					// $r->intSpeciesID,
 					$r->strGenusName,
 					$r->strSpeciesName,
 					$r->strCommonName,
@@ -612,7 +615,7 @@ public function showAllFamilyBoxes(){
 			$btn = '<button class="btn btn-primary FB-edit" data="'.$r->intBoxID.'">Edit</button>';
 
 			$result[] = array(
-					$r->intBoxID,
+					// $r->intBoxID,
 					$r->strFamilyName,
 					$r->intRackNo,
 					$r->intRackRow,
@@ -732,7 +735,7 @@ public function showAllLocality(){
 			$btn = '<button class="btn btn-primary locality-edit" data="'.$r->intLocalityID.'">Edit</button>';
 
 			$result[] = array(
-					$r->intLocalityID,
+					// $r->intLocalityID,
 					$r->strIsland,
 					$r->strRegion,
 					$r->strProvince,
@@ -870,7 +873,7 @@ public function showAllCollector(){
 			$btn = '<button class="btn btn-primary collector-edit" data="'.$r->intCollectorID.'">Edit</button>';
 
 			$result[] = array(
-					$r->intCollectorID,
+					// $r->intCollectorID,
 					$r->strFullName,
 					$r->strAffiliation,
 					$btn,
@@ -930,9 +933,8 @@ if($fname!=''){
 			   return false;
 		  }
 
-
-
 	}
+
 	public function updateCollector(){
 	$fname = $this->input->post('feName');
 	$mname = $this->input->post('meName');
@@ -1025,7 +1027,6 @@ if($fname!=''){
     {
       $btn = '<button class="btn btn-primary validator-edit" data="'.$r->intValidatorID.'">Edit</button>';
 
-      $result[] = array(
         $r->intValidatorID,
         $r->strFullName,
         $r->strInstitution,
@@ -1162,7 +1163,7 @@ public function editValidator(){
       $btn = '<button class="btn btn-primary staff-edit" data="'.$r->intStaffID.'">Edit</button>';
 
       $result[] = array(
-        $r->intStaffID,
+        // $r->intStaffID,
         $r->strFullName,
         $r->strRole,
         $r->strCollegeDepartment,
@@ -1172,6 +1173,8 @@ public function editValidator(){
     }
     return $result;
 	}
+
+
 	public function addStaff(){
 
 	$fname = $this->input->post('SMgtFName');
@@ -2021,12 +2024,12 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 //EXTERNAL VALAIDATION
 	public function showExValPending(){
 		$result = array();
-		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
 
 		from tblPlantDeposit pd join tblCollector cl
 		on pd.intCollectorID = cl.intCollectorID
 
-		where strStatus='Pending'");
+		where strStatus='Further Verification'");
 
 
 		foreach ($query->result() as $r)
@@ -2036,7 +2039,7 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 
 			$result[] = array(
 					$r->intPlantDepositID,
-					$r->strAccessionNumber,
+					$r->intAccessionNumber,
 					$r->strFullName,
 					$r->dateDeposited,
 					$r->strStatus,
@@ -2052,7 +2055,7 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 
 public function showExValOkay(){
 		$result = array();
-		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
 
 		from tblPlantDeposit pd join tblCollector cl
 		on pd.intCollectorID = cl.intCollectorID
@@ -2066,7 +2069,7 @@ public function showExValOkay(){
 
 			$result[] = array(
 					$r->intPlantDepositID,
-					$r->strAccessionNumber,
+					$r->intAccessionNumber,
 					$r->strFullName,
 					$r->dateDeposited,
 					$r->strStatus,
@@ -2082,7 +2085,7 @@ public function showExValOkay(){
 
 public function showExValAll(){
 		$result = array();
-		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
 
 		from tblPlantDeposit pd join tblCollector cl
 		on pd.intCollectorID = cl.intCollectorID");
@@ -2093,7 +2096,7 @@ public function showExValAll(){
 
 			$result[] = array(
 					$r->intPlantDepositID,
-					$r->strAccessionNumber,
+					$r->intAccessionNumber,
 					$r->strFullName,
 					$r->dateDeposited,
 					$r->strStatus

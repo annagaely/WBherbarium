@@ -96,7 +96,7 @@
       <table class="table dataTable no-footer" id="manageGenustbl">
               <thead>
                 <tr>
-                  <th scope="col" width= "10%">Genus ID</th>
+<!--                   <th scope="col" width= "10%">Genus ID</th> -->
                   <th scope="col" width= "10%">Family Name</th>
                   <th scope="col" width= "10%">Genus Name</th>
                   <th scope="col" width= "10%">Actions</th>

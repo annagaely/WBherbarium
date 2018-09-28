@@ -78,7 +78,6 @@
 
                     <?php
                   $serverName = "MSI";
-
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
