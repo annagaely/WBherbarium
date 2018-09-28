@@ -32,7 +32,7 @@
               </div>
               <div class="modal-body">
 
-                <form id= "addPhylumForm" method="POST" enctype="multipart/form-data" class="needs-validation">
+                <form id= "addPhylumForm" method="POST" enctype="multipart/form-data">
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                   <div class="form-group">
@@ -231,7 +231,7 @@ function resetForm() {
     showAllPhylum();
 
     //add
-    $('#btnSave',).click(function(event){
+    $('#btnSave').click(function(event){
       var url = '<?php echo base_url() ?>admin/addPhylum';
       var data = $('#addPhylumForm').serialize();
       //validate form
@@ -258,8 +258,6 @@ function resetForm() {
                 dataType: 'json',
                 success: function(response){
                   if(response.success){
-                    $('#addPhylumForm').modal('hide');
-                    $('#addPhylumForm')[0].reset();
                     if(response.type=='add'){
                       var type = 'added'
                     }else if(response.type=='update'){
@@ -273,10 +271,13 @@ function resetForm() {
                       timer: 1500,
                       showConfirmButton: false
                     }).then(function() {
-                      location.reload();
-                    });
                     $('#managePhylumtbl').dataTable().fnDestroy();
                     showAllPhylum();
+                    $('#myModal').modal('hide');
+                    document.getElementById("addPhylumForm").reset();
+                    event.preventDefault();
+                    });
+                    
                   }
                 },
                 error: function(){
@@ -315,7 +316,7 @@ function resetForm() {
         }
     });
 
-    $('#btnEditSave').click(function(){
+    $('#btnEditSave').click(function(event){
       var data = $('#editPhylumForm').serialize();
       if($('#strDomainName1').val()!=''){
         if($('#strKingdomName1').val()!=''){
@@ -354,9 +355,14 @@ function resetForm() {
                         timer: 1500,
                         showConfirmButton: false
                       }).then(function() {
-                        location.reload();
+                        event.preventDefault();
+                        $('#managePhylumtbl').dataTable().fnDestroy();
+                    showAllPhylum();
+                    $('#myEditModal').modal('hide');
+                    document.getElementById("editPhylumForm").reset();
+                    
                       });
-                      showAllPhylum();
+                      
                     }else{
                       alert('Error');
                     }

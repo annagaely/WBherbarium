@@ -4,15 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class admin_m extends CI_Model{
 
 
-	public function admincan_login($username,$password){
-	$this->db->where('strUserName',$username);
-	$this->db->where('strPassword',$password);
-	$query=$this->db->get('tblAccounts');
-	if($query->num_rows()>0){
-		return true;
-	}else{
-		return false;
-	}
+	public function validate($username,$password){
+				$query = $this->db
+			->where('strUsername',$username)
+			->where('strPassword',$password)
+			->join('tblHerbariumStaff hs', 'hs.intStaffID = a.intStaffID')
+			->get('tblAccounts a');
+
+		return $query;
 
 }
 /****** PHYLUM ONLY!!!!! ******/
@@ -2021,12 +2020,12 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 //EXTERNAL VALAIDATION
 	public function showExValPending(){
 		$result = array();
-		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
 
 		from tblPlantDeposit pd join tblCollector cl
 		on pd.intCollectorID = cl.intCollectorID
 
-		where strStatus='Pending'");
+		where strStatus='Further Verification'");
 
 
 		foreach ($query->result() as $r)
@@ -2036,7 +2035,7 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 
 			$result[] = array(
 					$r->intPlantDepositID,
-					$r->strAccessionNumber,
+					$r->intAccessionNumber,
 					$r->strFullName,
 					$r->dateDeposited,
 					$r->strStatus,
@@ -2052,7 +2051,7 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 
 public function showExValOkay(){
 		$result = array();
-		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
 
 		from tblPlantDeposit pd join tblCollector cl
 		on pd.intCollectorID = cl.intCollectorID
@@ -2066,7 +2065,7 @@ public function showExValOkay(){
 
 			$result[] = array(
 					$r->intPlantDepositID,
-					$r->strAccessionNumber,
+					$r->intAccessionNumber,
 					$r->strFullName,
 					$r->dateDeposited,
 					$r->strStatus,
@@ -2082,7 +2081,7 @@ public function showExValOkay(){
 
 public function showExValAll(){
 		$result = array();
-		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,strAccessionNumber,dateDeposited,strStatus
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
 
 		from tblPlantDeposit pd join tblCollector cl
 		on pd.intCollectorID = cl.intCollectorID");
@@ -2093,7 +2092,7 @@ public function showExValAll(){
 
 			$result[] = array(
 					$r->intPlantDepositID,
-					$r->strAccessionNumber,
+					$r->intAccessionNumber,
 					$r->strFullName,
 					$r->dateDeposited,
 					$r->strStatus
