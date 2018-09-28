@@ -819,6 +819,17 @@ public function updateFamilyBox(){
 
 
 
+public function Speciesauthor()
+{
+	if($this->session->userdata('strUserName')!='')
+	{
+		$title['title'] = "PUPHerbarium | Species Author";
+		$this->load->view('templates/header', $title);
+		$this->load->view('maintenance/Speciesauthor');
+		$this->load->view('templates/footer');
+	}
+}
+
 	function view_calendar()
 	{
 		$this->load->view('maintenance/fullcalendar2');

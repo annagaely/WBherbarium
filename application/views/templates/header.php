@@ -59,7 +59,7 @@
              <h2 class="h5">
 
               <?php 
-                  $serverName = "MSI";
+                  $serverName = "DEI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -83,7 +83,7 @@
               <span>
 
                 <?php
-                  $serverName = "LAPTOP-0L08K6U2";
+                  $serverName = "DEI";
 
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
@@ -145,9 +145,10 @@
 
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/Speciesauthor">Species Author</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+<!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
 
               </ul>
             </li>
