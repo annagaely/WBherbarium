@@ -233,6 +233,7 @@
       $('#manageEVReqPendingtbl').dataTable().fnDraw();
       $('#manageEVReqPendingtbl').dataTable().fnDestroy();
       $('#manageEVReqPendingtbl').dataTable({
+        "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showExValPending')?>",

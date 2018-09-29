@@ -140,6 +140,7 @@ function resetForm() {
     $('#manageSpeciestbl').dataTable().fnDraw();
     $('#manageSpeciestbl').dataTable().fnDestroy();
     $('#manageSpeciestbl').dataTable({
+      "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllSpecies')?>",

@@ -168,6 +168,7 @@ function resetForm() {
     $('#manageFamBoxtbl').dataTable().fnDraw();
     $('#manageFamBoxtbl').dataTable().fnDestroy();
     $('#manageFamBoxtbl').dataTable({
+      "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllFamilyBoxes')?>",

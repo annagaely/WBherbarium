@@ -396,6 +396,7 @@
       $('#manageVisittbl').dataTable().fnDraw();
       $('#manageVisittbl').dataTable().fnDestroy();
        $('#manageVisittbl').dataTable({
+        "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllAppointmentPending')?>",
