@@ -801,12 +801,14 @@ public function updateFamilyBox(){
 
 public function Speciesauthor()
 {
-	if($this->session->userdata('strUserName')!='')
-	{
+	if($this->session->userdata('strUsername')!=''){
 		$title['title'] = "PUPHerbarium | Species Author";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Speciesauthor');
 		$this->load->view('templates/footer');
+	}
+	else{
+	redirect(base_url().'admin');
 	}
 }
 

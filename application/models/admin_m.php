@@ -1026,7 +1026,7 @@ if($fname!=''){
 		foreach ($query->result() as $r)
     {
       $btn = '<button class="btn btn-primary validator-edit" data="'.$r->intValidatorID.'">Edit</button>';
-
+$result[] = array(
         $r->intValidatorID,
         $r->strFullName,
         $r->strInstitution,
