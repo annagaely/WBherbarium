@@ -801,14 +801,57 @@ public function updateFamilyBox(){
 
 public function Speciesauthor()
 {
-	if($this->session->userdata('strUserName')!='')
-	{
+	if($this->session->userdata('strUsername')!=''){
 		$title['title'] = "PUPHerbarium | Species Author";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Speciesauthor');
 		$this->load->view('templates/footer');
 	}
+	else{
+	redirect(base_url().'admin');
+	}
 }
+
+public function PlantType()
+{
+	if($this->session->userdata('strUsername')!=''){
+		$title['title'] = "PUPHerbarium | Plant Type";
+		$this->load->view('templates/header', $title);
+		$this->load->view('maintenance/PlantType');
+		$this->load->view('templates/footer');
+	}
+	else{
+	redirect(base_url().'admin');
+	}
+}
+
+public function Addspeciesalternatename()
+{
+	if($this->session->userdata('strUsername')!=''){
+		$title['title'] = "PUPHerbarium | Add Species Alternate Name";
+		$this->load->view('templates/header', $title);
+		$this->load->view('maintenance/Addspeciesalternatename');
+		$this->load->view('templates/footer');
+	}
+	else{
+	redirect(base_url().'admin');
+	}
+}
+
+public function Plantborrower()
+{
+	if($this->session->userdata('strUsername')!=''){
+		$title['title'] = "PUPHerbarium | PLant Borrower";
+		$this->load->view('templates/header', $title);
+		$this->load->view('maintenance/Plantborrower');
+
+		$this->load->view('templates/footer');
+	}
+	else{
+	redirect(base_url().'admin');
+	}
+}
+
 
 	function view_calendar()
 	{

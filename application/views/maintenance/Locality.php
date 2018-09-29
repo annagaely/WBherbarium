@@ -779,6 +779,7 @@ function resetForm() {
       $('#manageLocalitytbl').dataTable().fnDraw();
       $('#manageLocalitytbl').dataTable().fnDestroy();
       $('#manageLocalitytbl').dataTable({
+          "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllLocality')?>",

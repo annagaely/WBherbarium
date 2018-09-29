@@ -186,6 +186,7 @@ function resetForm() {
           $('#managePhylumtbl').dataTable().fnDraw();
           $('#managePhylumtbl').dataTable().fnDestroy();
           $('#managePhylumtbl').dataTable({
+            "autoWidth":false,
               "processing": true,
               "serverSide": false,
               "sAjaxSource": "<?php echo base_url('admin/showAllPhylum')?>",

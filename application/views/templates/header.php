@@ -1,15 +1,16 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- 
 <?php
-    header('Content-Type: text/html; charset=windows-1252' );
-    ini_set('default_charset', 'windows-1252');
-?>
-<head>
+    header('Content-Type: text/html; charset=utf-8' );
+    ini_set('default_charset', 'utf-8');
+?> -->
 
- <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
- <!--  <meta charset="utf-8"> -->
+<head>
+<!-- 
+ <meta http-equiv="Content-Type" content="text/html; charset= utf-8"> -->
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
   <title><?php echo $title; ?></title>
 
@@ -106,6 +107,9 @@
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/Speciesauthor">Species Author</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/PlantType">Plant Type</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/Addspeciesalternatename">Add Species Alternate Name</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/Plantborrower">Plant Borrower</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
 <!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
@@ -125,6 +129,9 @@
             </li>
               <li><a href="#"> <i class="fa fa-database"></i>Query</a></li>
             <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+         
+
+
           <!-- STUDENT ASSISTANT PART-->
           <?php elseif($this->session->userdata('strRole')==='STUDENT ASSISTANT'):?>
              <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>

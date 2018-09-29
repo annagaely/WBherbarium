@@ -128,6 +128,7 @@ function resetForm() {
       $('#manageGenustbl').dataTable().fnDraw();
       $('#manageGenustbl').dataTable().fnDestroy();
       $('#manageGenustbl').dataTable({
+        "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllGenus')?>",
