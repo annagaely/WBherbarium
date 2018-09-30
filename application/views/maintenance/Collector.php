@@ -1,3 +1,8 @@
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 
         <div class="breadcrumb-holder">
         <div class="container-fluid">
@@ -54,11 +59,11 @@
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text" name="cName" placeholder="Contact Number" class="form-control" required>
+                    <input type="text" name="cName" data-mask="9999 999 9999" placeholder="Contact Number" class="form-control" required>
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
-                    <input type="text" name="eMail" placeholder="Email Address" class="form-control" required>
+                    <input id="emailAdd" type="text" name="eMail" placeholder="Email Address" class="form-control" required>
                   </div>
                 </div>
                   <div class="row">
@@ -70,7 +75,7 @@
                   <div class="row">
                   <div class="form-group col-sm-12">
                     <label>Affiliation:</label> <label style="color: red">*</label>
-                    <input type="text" name="secName" placeholder="Affiliation" class="form-control" required>
+                    <input id="affiliation" type="text" name="secName" placeholder="Affiliation" class="form-control" required>
                   </div>
                 </div>
                   <!--HANGGANG DITO LANG BOI-->
@@ -126,7 +131,7 @@
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text" name="ceName" placeholder="Contact Number" class="form-control">
+                    <input type="text" name="ceName" data-mask="9999 999 9999" placeholder="Contact Number" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
@@ -163,7 +168,7 @@
               <table class="table dataTable no-footer" id="manageCollectortbl">
               <thead>
                 <tr>
-                   <th scope="col" width= "10%">CollectorID</th>
+                   <!-- <th scope="col" width= "10%">CollectorID</th> -->
                    <th scope="col" width= "10%">Full Name</th>
                    <th scope="col" width= "10%">Institution/Section</th>
                    <th scope="col" width= "10%">Actions</th>
@@ -217,34 +222,110 @@ $(document).ready(function() {
     showAllCollector();
 
 $('#btnSave').click(function(){
+  var url = '<?php echo base_url()?>admin/addCollector';
       var data = $('#addCollectorForm').serialize();
       //validate form
+      if($('#strFirstname').val!='')
+      if($('#strFirstname').val!=''){
+        if($('#strLastname').val!=''){
+          if($('#contactNum').val!=''){
+            if($('#emailAdd').val!=''){
+              if($('#strCollege').val!=''){
+                if($('#affiliation').val!=''){
+                  event.preventDefault();
+                  swal({
+                    title: 'Are you sure?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, save it!'
+                  }).then((result) => {
+                    if (result.value) {
 
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/addCollector',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function($response){
-            if(response.success){
-              $('#addCollectorForm').modal('hide');
-              $('#addCollectorForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-                alert('New Collector Successfully Added!');
-              }else if(response.type=='update'){
-                var type ="updated"
+                      $.ajax({
+                        type: 'ajax',
+                        method: 'post',
+                        url: '<?php echo base_url() ?>admin/addCollector',
+                        data: data,
+                        async: false,
+                        dataType: 'json',
+                        success: function(response){
+                          if(response.success){
+                            $('#addCollectorForm').modal('hide');
+                            $('#addCollectorForm')[0].reset();
+                            if(response.type=='add'){
+                              var type = 'added'
+                            }else if(response.type=='update'){
+                              var type ="updated"
+                            }
+                            let timerInterval
+                            swal({
+                              title: 'Saved',
+                              text: 'Your file has been saved.',
+                              type: 'success',
+                              timer: 1500,
+                              showConfirmButton: false
+                            }).then(function() {
+                              location.reload();
+                            });
+                          }
+                        },
+                        error: function(){
+                          alert('Could not save Data');
+                        }
+                      });
+                     }
+                   })
+                }else{
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Incomplete input!',
+                    text: 'Please fill up all the required fields.'
+                  });
+                }
+              }else{
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Incomplete input!',
+                  text: 'Please fill up all the required fields.'
+                });
               }
             }else{
-              alert('Error');
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
+              });
             }
-          },
-          error: function(){
-            alert('Could not save Data');
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
           }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
         });
+      }
+
 
     });
     //edit class
@@ -316,3 +397,14 @@ $('#btnEditSave').click(function(){
 
     });
 </script>
+<div class="card">
+                <div class="card-header">Folding circle</div>
+                <div class="card-body d-flex justify-content-center pt-5 pb-5">
+                  <div class="sk-folding-cube">
+                    <div class="sk-cube1 sk-cube"></div>
+                    <div class="sk-cube2 sk-cube"></div>
+                    <div class="sk-cube4 sk-cube"></div>
+                    <div class="sk-cube3 sk-cube"></div>
+                  </div>
+                </div>
+              </div>

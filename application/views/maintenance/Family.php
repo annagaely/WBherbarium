@@ -1,3 +1,9 @@
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
+
 
         <div class="breadcrumb-holder">
         <div class="container-fluid">
@@ -27,12 +33,14 @@
                 <form id= "addFamilyForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
-                    <select id="showFamilyOrderName" name ="txtoID" class="form-control">
-                    </select>
+                     <input list="ordername" name ="txtoID" placeholder="Order Name" class="form-control" autocomplete="off">
+                     <datalist id ='ordername'>
+                     </datalist>
+
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtfName" placeholder="Family Name" class="form-control">
+                    <input id="famName" type="text" name="txtfName" placeholder="Family Name" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -66,12 +74,13 @@
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Order Name:</label> <label style="color: red">*</label>
-                     <select id="showFamilyOrderName1" name ="seOID" class="form-control">
-                    </select>
+                     <input list="ordername" name ="seOID" placeholder="Order Name" class="form-control" autocomplete="off">
+                     <datalist id ='ordername'>
+                     </datalist>
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteFName" placeholder="Class Name" class="form-control">
+                    <input id="famName1" type="text" name="txteFName" placeholder="Class Name" class="form-control">
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -90,7 +99,7 @@
       <table class="table dataTable no-footer" id="manageFamilytbl">
          <thead>
           <tr>
-            <th scope="col" width= "10%">Family ID</th>
+<!--             <th scope="col" width= "10%">Family ID</th> -->
             <th scope="col" width= "10%">Order Name</th>
             <th scope="col" width= "10%">Family Name</th>
             <th scope="col" width= "10%">Actions</th>
@@ -125,6 +134,7 @@ function resetForm() {
         $('#manageFamilytbl').dataTable().fnDraw();
         $('#manageFamilytbl').dataTable().fnDestroy();
         $('#manageFamilytbl').dataTable({
+          "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllFamily')?>",
@@ -152,30 +162,43 @@ function showFamilyOrderName(){
           var html = '';
           var i;
           for(i=0; i<data.length; i++){
-            html +='<option value="'+data[i].intOrderID+'">'+data[i].strOrderName+'</option>';
+            html +='<option value="'+data[i].strOrderName+'">'+data[i].strOrderName+'</option>';
           }
-          $('#showFamilyOrderName').html(html);
+          $('#ordername').html(html);
           $('#showFamilyOrderName1').html(html);
+
         },
         error: function(){
           alert('Could not get Data from Database');
         }
       });
-    }
+    };
 
 
-$('#btnSave').click(function(){
+$('#btnSave').click(function(event){
+  var url = '<?php echo base_url()?>admin/addFamily';
       var data = $('#addFamilyForm').serialize();
       //validate form
-
-        $.ajax({
+      if($('#orderName').val()!=''){
+        if($('#famName').val()!=''){
+          event.preventDefault();
+          swal({
+            title: 'Are you sure?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, save it!'
+          }).then((result) => {
+            if (result.value) {
+          $.ajax({
           type: 'ajax',
           method: 'post',
           url: '<?php echo base_url() ?>admin/addFamily',
           data: data,
           async: false,
           dataType: 'json',
-          success: function($response){
+          success: function(response){
             if(response.success){
               $('#addFamilyForm').modal('hide');
               $('#addFamilyForm')[0].reset();
@@ -184,20 +207,59 @@ $('#btnSave').click(function(){
               }else if(response.type=='update'){
                 var type ="updated"
               }
-            }else{
-              alert('Error');
-            }
+            let timerInterval
+            swal({
+              title: 'Saved',
+              text: 'Your file has been saved.',
+              type: 'success',
+              timer: 1500,
+              showConfirmButton: false
+            }).then(function() {
+              location.reload();
+            });
+          }
           },
           error: function(){
             alert('Could not save Data');
           }
         });
+         }
+       })
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      }
+
 
     });
 
 $('#btnEditSave').click(function(){
       var data = $('#editFamilyForm').serialize();
-        $.ajax({
+      if($('#orderName1').val()!=''){
+        if($('#famName1').val()!=''){
+          event.preventDefault();
+          swal({
+            title: 'Are you sure?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, save it!'
+          }).then((result) => {
+            if (result.value) {
+          $.ajax({
           type: 'ajax',
           method: 'post',
           url: '<?php echo base_url() ?>admin/updateFamily',
@@ -213,15 +275,42 @@ $('#btnEditSave').click(function(){
               }else if(response.type=='update'){
                 var type ="updated"
               }
-              showAllPhylum();
-            }else{
-              alert('Error');
-            }
+            let timerInterval
+            swal({
+              title: 'Saved',
+              text: 'Your file has been saved.',
+              type: 'success',
+              timer: 1500,
+              showConfirmButton: false
+            }).then(function() {
+              location.reload();
+            });
+          }
           },
           error: function(){
-            alert('Could not update data');
+            alert('Could not save Data');
           }
         });
+
+         }
+
+       })
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      }
     });
 
 
@@ -238,6 +327,7 @@ $(document).on('click', '.family-edit', function(){
         async: false,
         dataType: 'json',
         success: function(data){
+          $('input[name=seOID').val(data.strOrderName)
           $('input[name=txteFName]').val(data.strFamilyName);
           $('input[name=txtId]').val(data.intFamilyID);
 
@@ -250,4 +340,5 @@ $(document).on('click', '.family-edit', function(){
 
   });
   });
+  
 </script>

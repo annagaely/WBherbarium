@@ -15,9 +15,14 @@
     <!-- Your custom styles (optional) -->
     <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/logo1.ico">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
+     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    
+
 </head>
 
 <body>
@@ -26,7 +31,7 @@
     <!-- Start your project here-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
-        <a class="navbar-brand" href="#"><strong>PUP Herbarium</strong></a>
+        <a class="navbar-brand" href="<?php echo base_url(); ?>user/home"><strong>PUP Herbarium</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,7 +39,7 @@
           <ul class="navbar-nav mr-auto smooth-scroll">
             <li class="nav-item">
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Home">Home
-                <span class="sr-only">(current)</span>
+
               </a>
             </li>
             <li class="nav-item">
@@ -69,7 +74,7 @@
                     <i class="fa fa-user"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="<?php echo base_url()?>user/myAccount">Profile</a>
+                    <a class="dropdown-item" href="<?php echo base_url()?>user/Profile">Profile</a>
                     <a class="dropdown-item" href="<?php echo base_url()?>user/Collection">Settings</a>
                     <a class="dropdown-item" href="<?php echo base_url()?>user/logout">Logout</a>
                 </div>

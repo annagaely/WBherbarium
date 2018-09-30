@@ -1,15 +1,16 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- 
 <?php
-    header('Content-Type: text/html; charset=windows-1252' );
-    ini_set('default_charset', 'windows-1252');
-?>
-<head>
+    header('Content-Type: text/html; charset=utf-8' );
+    ini_set('default_charset', 'utf-8');
+?> -->
 
- <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
- <!--  <meta charset="utf-8"> -->
+<head>
+<!-- 
+ <meta http-equiv="Content-Type" content="text/html; charset= utf-8"> -->
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
   <title><?php echo $title; ?></title>
 
@@ -18,6 +19,7 @@
     <meta name="robots" content="all,follow">
     <!--PREMIUM-->
     <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome CSS-->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/font-awesome/css/font-awesome.min.css">
@@ -34,9 +36,10 @@
   <!-- Custom Scrollbar-->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
   <!-- theme stylesheet-->
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/distribution/css/style.default.css" id="theme-stylesheet">
+  <!-- theme stylesheet-->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/css/style.default.premium.css" id="theme-stylesheet">
   <!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet" href="<?php echo base_url();?>assets/css/custom.css">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/css/custom.css">
     <!--END PREMIUM-->
 
 
@@ -57,55 +60,15 @@
           <!-- User Info-->
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
              <h2 class="h5">
-
-              <?php 
-                  $serverName = "MSI";
-                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
-                  $conn = sqlsrv_connect( $serverName, $connectionInfo );
-                    if( $conn === false ) {
-                      die( print_r( sqlsrv_errors(), true));
-                      }
-                         $sql = "select Concat(hs.strFirstname,' ',hs.strMiddleInitial,'. ',hs.strLastname,' ',hs.strNameSuffix) as strFullName
-                                 from tblAccounts ac join tblHerbariumStaff hs
-                                 on ac.intStaffID = hs.intStaffID
-                                 where strUsername = '".$this->session->userdata('strUserName')."'";
-                        $stmt = sqlsrv_query( $conn, $sql );
-                    if( $stmt === false) {
-                     die( print_r( sqlsrv_errors(), true) );
-                      }
-                          while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-                           echo $row['strFullName']." <br />";
-                      }
-                        sqlsrv_free_stmt( $stmt);
-                        sqlsrv_close( $conn );
-              ?> 
+              <?php
+                  echo $this->session->userdata('strFirstname'),' ',$this->session->userdata('strMiddleInitial'),' ',$this->session->userdata('strLastname');
+              ?>
             </h2>
               <span>
 
                 <?php
-                  $serverName = "LAPTOP-0L08K6U2";
-
-                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
-                  $conn = sqlsrv_connect( $serverName, $connectionInfo );
-                    if( $conn === false ) {
-                      die( print_r( sqlsrv_errors(), true));
-                      }
-                         $sql = "select strRole
-                                 from tblAccounts ac join tblHerbariumStaff hs
-                                 on ac.intStaffID = hs.intStaffID
-                                 where strUsername = '".$this->session->userdata('strUserName')."'";
-                        $stmt = sqlsrv_query( $conn, $sql );
-                    if( $stmt === false) {
-                     die( print_r( sqlsrv_errors(), true) );
-                      }
-                          while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-                           echo $row['strRole']." <br />";
-                      }
-                        sqlsrv_free_stmt( $stmt);
-
-
-                        sqlsrv_close( $conn );
-              ?> 
+                  echo $this->session->userdata('strRole');
+              ?>
               </span>
           </div>
 
@@ -119,7 +82,7 @@
 
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
-
+<?php if(($this->session->userdata('strRole')=='CURATOR') || ($this->session->userdata('strRole')=='ADMINISTRATOR')):?>
             <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
@@ -145,9 +108,13 @@
 
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/Speciesauthor">Species Author</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/PlantType">Plant Type</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/SpeciesAltName">Species Alternate Name</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/Plantborrower">Plant Borrower</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+<!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
 
               </ul>
             </li>
@@ -164,6 +131,35 @@
             </li>
               <li><a href="#"> <i class="fa fa-database"></i>Query</a></li>
             <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+         
+
+
+          <!-- STUDENT ASSISTANT PART-->
+          <?php elseif($this->session->userdata('strRole')==='STUDENT ASSISTANT'):?>
+             <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+              <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
+
+
+                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+
+              </ul>
+            </li>
+            <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
+              <ul id="TransactionDropdown" class="collapse list-unstyled ">
+
+                <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
+                <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
+
+
+                </li>
+              </ul>
+            </li>
+              <li><a href="#"> <i class="fa fa-database"></i>Query</a></li>
+            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <?php endif;?>
         </div>
       </div>
     </nav>
@@ -220,11 +216,11 @@
                   </ul>
                 </li>
                 <!-- Log out-->
-                 <li class="nav-item"><a href="<?php echo base_url()?>admin/adminlogout" onclick="event.preventDefault();
+                 <li class="nav-item"><a href="<?php echo base_url()?>admin/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
                         <span class="d-none d-sm-inline-block">Logout</span>&nbsp<i class="fa fa-sign-out"></i></a>
 
-                           <form id="logout-form" action="<?php echo base_url()?>admin/adminlogout" method="POST" style="display: none;">
+                           <form id="logout-form" action="<?php echo base_url()?>admin/logout" method="POST" style="display: none;">
 
                            </form>
                   </li>

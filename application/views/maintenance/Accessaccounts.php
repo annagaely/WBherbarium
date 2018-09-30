@@ -112,10 +112,9 @@
             <table class="table dataTable no-footer" id="manageAAccountstbl">
               <thead>
                 <tr>
-                  <th scope="col" width= "10%">Account ID</th>
+                  <th scope="col" width= "10%">Staff ID</th>
                   <th scope="col" width= "10%">Name</th>
                   <th scope="col" width= "10%">Username</th>
-                  <th scope="col" width= "10%">Access Level</th>
                   <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>
@@ -171,6 +170,7 @@ function resetForm() {
           $('#manageAAccountstbl').dataTable().fnDraw();
           $('#manageAAccountstbl').dataTable().fnDestroy();
           $('#manageAAccountstbl').dataTable({
+            "autoWidth":false,
               "processing": true,
               "serverSide": false,
               "sAjaxSource": "<?php echo base_url('admin/showAllAccounts')?>",
@@ -184,7 +184,7 @@ function resetForm() {
         }
 
 $(document).ready(function(){
-      //show
+      //show-
     showAllAccounts();
     showStaffName();
 
@@ -302,9 +302,5 @@ $('#btnEditSave').click(function(){
           }
         });
     });
-
-
-
-
-    });
+});
 </script>

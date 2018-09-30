@@ -1,4 +1,4 @@
-<style>
+ <style>
 /* Style the tab */
 .tab {
     overflow: hidden;
@@ -222,6 +222,11 @@
               <input type ="hidden" name = "txtId" id = "txtID" value ="0">
               <input type="text" name="txtreqid" id="txtreqID" class="form-control" disabled>
             </div>
+              <div class="form-group">
+              <label>Date of Visit:</label>
+              <input type ="hidden" name = "txtdate" id = "txtID" value ="0">
+              <input type="text" name="ntxtdateid" id="txtdateID" class="form-control" disabled>
+            </div>
             <div class="form-group">
                <label>Message:</label>
                 <textarea  id="strCustomMessage" name="txtCustomMessage" class="form-control" placeholder="Type your message here.." ></textarea> 
@@ -334,12 +339,7 @@
 
  </main>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
-
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
-      <!--Table-->
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+ 
 
  <script type="text/javascript">
     function showAllDepositReqPending()
@@ -348,6 +348,7 @@
       $('#manageDepositReqPendingtbl').dataTable().fnDraw();
       $('#manageDepositReqPendingtbl').dataTable().fnDestroy();
       $('#manageDepositReqPendingtbl').dataTable({
+        "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllDepositReqPending')?>",
@@ -488,6 +489,8 @@ $(document).ready(function() {
           $('#txtemail').val(data.strEmailAddress);
           $('input[name=txtId]').val(data.intDepositReqID);
           $('#txtreqID').val(data.intDepositReqID);
+          $('input[name=txtdate]').val(data.dtAppointmentDate);
+          $('#txtdateID').val(data.dtAppointmentDate);
 
         },
         error: function(){

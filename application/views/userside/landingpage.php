@@ -1,3 +1,16 @@
+<div class="preloader-wrapper big active crazy">
+  <div class="spinner-layer spinner-blue-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
 <!--Carousel Wrapper-->
     <div id="carousel-example-2" class="carousel slide carousel-fadev h-100" data-ride="carousel">
         <!--Indicators-->
@@ -69,8 +82,8 @@
         <div class="col-md-4">
 
           <i class="fas fa-file-alt fa-3x red-text"></i>
-          <h5 class="font-weight-bold my-4">Loan</h5>
-          <p class="black-text mb-md-0 mb-5">Loaning of specimen is available here at PUP Herbarium. Send your loaning request and wait for it to be approved.
+          <h5 class="font-weight-bold my-4">Deposit</h5>
+          <p class="black-text mb-md-0 mb-5">Depositing of plant species is available here at PUP Herbarium. Send your deposit request and wait for the further details.
           </p>
 
         </div>
@@ -256,7 +269,7 @@
             <h3 class="py-3 font-weight-bold">
               <strong>Goodbye Fire Tree</strong>
             </h3>
-            <p class="pb-3">Tanggapin na natin na hindi lahat ng bagay mags-stay. Yung akala mo kapit na kapit pa sya. Bes hindi ganon. Akala mo masaya pa sya? Kala mo lang yun! Sa huli, bibitaw din sya at iiwan ka. Ganon talaga ang buhay mga ka-PUPian.....
+            <p class="pb-3">Due to heavy rain and wind, the famous Fire Tree of the Polytechnic University of the Philippines ay natumba. It is located inside the PUP Lagoon where the students.....
             </p>
             <a class="btn btn-secondary btn-rounded btn-md"><i class="fa fa-clone left"></i> View Article</a>
           </div>

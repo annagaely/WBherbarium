@@ -52,7 +52,7 @@
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtCNumber" placeholder="Contact Number" class="form-control">
+                    <input type="text"  data-mask="9999 999 9999"name="txtCNumber" placeholder="Contact Number" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
@@ -114,7 +114,7 @@
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteCNumber" placeholder="Contact Number" class="form-control">
+                    <input type="text"  data-mask="9999 999 9999" name="txteCNumber" placeholder="Contact Number" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
@@ -141,7 +141,7 @@
             <table class="table table-striped" id="manageValidatortbl">
               <thead>
                 <tr>
-                  <th>Validator ID</th>
+<!--                   <th>Validator ID</th> -->
                   <th>Validator Name</th>
                   <th>Institution</th>
                   <th>Actions</th>
@@ -169,6 +169,7 @@
       $('#manageValidatortbl').dataTable().fnDraw();
       $('#manageValidatortbl').dataTable().fnDestroy();
       $('#manageValidatortbl').dataTable({
+        "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllValidator')?>",
