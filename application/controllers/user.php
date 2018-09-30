@@ -1,4 +1,4 @@
-   <?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class user extends CI_Controller {
@@ -109,7 +109,7 @@ class user extends CI_Controller {
 				$this->session->set_userdata($session_data);
 				redirect(base_url().'user/home');
 			}else{
-				$this->session->set_flashdata('error','Invalid Username and Password');
+				$this->session->set_flashdata('error','Invalid Username or Password');
 				redirect(base_url().'user/index');
 			}
 		}
@@ -184,11 +184,55 @@ public function userRegister(){
 }
 
 
-	// public function showAccount(){
-	// 	$result = $this->m->showAccount();
-	// 	echo json_encode($result);
+	public function showAccount(){
+		$result = $this->m->showAccount();
+		echo json_encode($result);
 
-	// }
+	}
 
+	public function updateAccount(){
+		$result = $this->m->updateAccount();
+		$msg['success'] = false;
+		$msg['type'] = 'update';
+			if($result){
+  				$msg['success'] = true;
+		}
+
+		echo json_encode($msg);
+}
+
+	public function showProfile(){
+		$result = $this->m->showProfile();
+		echo json_encode($result);
+
+	}
+
+	public function updateProfile(){
+		$result = $this->m->updateProfile();
+		$msg['success'] = false;
+		$msg['type'] = 'update';
+			if($result){
+  				$msg['success'] = true;
+		}
+
+		echo json_encode($msg);
+}
+
+	public function showPassword(){
+		$result = $this->m->showPassword();
+		echo json_encode($result);
+
+	}
+
+	public function updatePassword(){
+		$result = $this->m->updatePassword();
+		$msg['success'] = false;
+		$msg['type'] = 'update';
+			if($result){
+  				$msg['success'] = true;
+		}
+
+		echo json_encode($msg);
+}
 
 }?>
