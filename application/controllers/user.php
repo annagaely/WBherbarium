@@ -17,26 +17,48 @@ class user extends CI_Controller {
 		$this->load->view('userside/landingpage');
 		$this->load->view('userside/footer');
 	}
-	public function faq()
+	public function queriesUser()
 	{
 		$title['title'] = "PUPHerbarium | FAQ";
 		$this->load->view('userside/navbar', $title);
 		$this->load->view('userside/Faq');
 		$this->load->view('userside/footer');
 	}
+  public function queries()
+	{
+		$title['title'] = "PUPHerbarium | FAQ";
+		$this->load->view('userside/navbar2', $title);
+		$this->load->view('userside/Faq');
+		$this->load->view('userside/footer');
+	}
 
-	public function contact()
+	public function contactUser()
 	{
 		$title['title'] = "PUPHerbarium | Contact";
 		$this->load->view('userside/navbar', $title);
 
 		$this->load->view('userside/footer');
 	}
-  public function contact2()
+  public function contact()
 	{
 		$title['title'] = "PUPHerbarium | Contact";
 		$this->load->view('userside/navbar2', $title);
 
+		$this->load->view('userside/footer');
+	}
+
+  public function CollectionUser()
+  {
+    $title['title'] = "PUPHerbarium |  Collection";
+		$this->load->view('userside/navbar', $title);
+		$this->load->view('userside/collection');
+		$this->load->view('userside/footer');
+  }
+  public function collection()
+	{
+		$title['title'] = "PUPHerbarium |  Collection";
+		$this->load->view('userside/navbar2', $title);
+		$this->load->view('userside/collection');
 		$this->load->view('userside/footer');
 	}
 	public function register()
@@ -57,13 +79,6 @@ class user extends CI_Controller {
 	redirect(base_url().'user/index');
 	}
 
-	}
-	public function collection()
-	{
-		$title['title'] = "PUPHerbarium |  Collection";
-		$this->load->view('userside/navbar2', $title);
-		$this->load->view('userside/collection');
-		$this->load->view('userside/footer');
 	}
 	public function deposits()
 	{

@@ -77,7 +77,7 @@ $(function(){
        button: "OK!"
      });
      location.reload();
-   
+
    }else{
         alert('Error');
       }

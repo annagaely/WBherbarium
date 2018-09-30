@@ -1,4 +1,4 @@
-<img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/loan.jpg" style="height: 50vh; width: 100%;"  class="banner">
+<img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/loan.jpg" style="height: 60vh; width: 100%;"  class="banner">
 <div class="row">
   <div class="col-md-5 py-5">
     <div class="pl-5 pr-0 mr-0">
