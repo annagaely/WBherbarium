@@ -2110,4 +2110,208 @@ public function showExValAll(){
 
 		return $result;
 }
+
+
+/**** AUTHOR *****/
+public function showAllAuthor()
+	{
+		$result = array();
+		$query = $this->db
+                ->get('tblAuthor');
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary author-edit" data="'.$r->intAuthorID.'">Edit</button>';
+
+			$result[] = array(
+					// $r->intPhylumID,
+					
+					$r->strAuthorsName,
+					$r->strSpeciesSuffix,
+					$btn,
+					$r->intAuthorID
+					);
+		}
+
+
+		return $result;
+	}
+
+	public function editAuthor(){	
+		$id = $this->input->get('id');
+		$this->db->where('intAuthorID', $id);
+		$query = $this->db->get('tblAuthor');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+	 public function addAuthor(){
+
+			$authorname=$this->input->post('txtAName');
+			$authorsuffix=$this->input->post('txtSASuffix');
+
+			$query="
+			insert into tblAuthor(strAuthorsName,strSpeciesSuffix) VALUES ('".$authorname."','".$authorsuffix."')
+
+			";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+    public function updateAuthor(){
+    $id = $this->input->post('txtId');
+    $field = array(
+    'strAuthorsName'=>$this->input->post('txteAName'),
+    'strSpeciesSuffix'=>$this->input->post('txteSASuffix')
+    );
+    $this->db->where('intAuthorID', $id);
+    $this->db->update('tblAuthor', $field);
+    if($this->db->affected_rows() > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+
+public function showAllPlantType()
+	{
+		$result = array();
+		$query = $this->db
+                ->get('tblPlantType');
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary ptype-edit" data="'.$r->intPlantTypeID.'">Edit</button>';
+
+			$result[] = array(
+					// $r->intPhylumID,
+					
+					$r->strPlantTypeCode,
+					$r->strPlantTypeName,
+					$btn,
+					$r->intPlantTypeID
+					);
+		}
+
+
+		return $result;
+	}
+	public function editPlantType(){	
+		$id = $this->input->get('id');
+		$this->db->where('intPlantTypeId', $id);
+		$query = $this->db->get('tblPlantType');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+	 public function addPlantType(){
+
+			$planttypecode=$this->input->post('txtPlantCode');
+			$planttypename=$this->input->post('txtPlantType');
+
+			$query="
+			insert into tblPlantType(strPlantTypeCode,strPlantTypeName) VALUES ('".$planttypecode."','".$planttypename."')
+
+			";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+    public function updatePlantType(){
+    $id = $this->input->post('txtId');
+    $field = array(
+    'strPlantTypeCode'=>$this->input->post('txtePlantCode'),
+    'strPlantTypeName'=>$this->input->post('txtePlantType')
+    );
+    $this->db->where('intPlantTypeID', $id);
+    $this->db->update('tblPlantType', $field);
+    if($this->db->affected_rows() > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+public function showAllAltName()
+	{
+		$result = array();
+		$query = $this->db
+                ->get('viewSpeciesAlternate');
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary altname-edit" data="'.$r->intAltNameID.'">Edit</button>';
+
+			$result[] = array(
+					// $r->intPhylumID,
+					
+					$r->strScientificName,
+					$r->strLanguage,
+					$r->strAlternateName,
+					$btn,
+					$r->intAltNameID
+					);
+		}
+
+
+		return $result;
+	}
+	public function editAltName(){	
+		$id = $this->input->get('id');
+		$this->db->where('intPlantTypeId', $id);
+		$query = $this->db->get('tblPlantType');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+	 public function addAltName(){
+
+			$planttypecode=$this->input->post('txtPlantCode');
+			$planttypename=$this->input->post('txtPlantType');
+
+			$query="
+			insert into tblPlantType(strPlantTypeCode,strPlantTypeName) VALUES ('".$planttypecode."','".$planttypename."')
+
+			";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+    public function updateAltName(){
+    $id = $this->input->post('txtId');
+    $field = array(
+    'strPlantTypeCode'=>$this->input->post('txtePlantCode'),
+    'strPlantTypeName'=>$this->input->post('txtePlantType')
+    );
+    $this->db->where('intPlantTypeID', $id);
+    $this->db->update('tblPlantType', $field);
+    if($this->db->affected_rows() > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+
+
 }?>
