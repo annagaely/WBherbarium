@@ -170,6 +170,7 @@ function resetForm() {
           $('#manageAAccountstbl').dataTable().fnDraw();
           $('#manageAAccountstbl').dataTable().fnDestroy();
           $('#manageAAccountstbl').dataTable({
+            "autoWidth":false,
               "processing": true,
               "serverSide": false,
               "sAjaxSource": "<?php echo base_url('admin/showAllAccounts')?>",

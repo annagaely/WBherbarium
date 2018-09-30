@@ -747,6 +747,48 @@ public function updateFamilyBox(){
 	/****** END account!!!!! ******/
 	/****** account START!!!!! ******/
 
+	public function showAllPlantBorrower()
+	{
+
+    $output = $this->admin_m->showAllPlantBorrower();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+	public function addPlantBorrower(){
+		$result = $this->m->addPlantBorrower();
+		$msg['success'] = false;
+		$msg['type'] = 'add';
+		if($result){
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
+
+	public function editPlantBorrower(){
+		$result = $this->m->editPlantBorrower();
+		echo json_encode($result);
+}
+
+	public function updatePlantBorrower(){
+		$result = $this->m->updatePlantBorrower();
+		$msg['success'] = false;
+		$msg['type'] = 'update';
+		if($result){
+  			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+}
+
+/** TRANSACTION **/
+
 	public function Depositplant()
 	{
 	if($this->session->userdata('strUsername')!=''){
@@ -801,14 +843,174 @@ public function updateFamilyBox(){
 
 public function Speciesauthor()
 {
-	if($this->session->userdata('strUserName')!='')
-	{
+	if($this->session->userdata('strUsername')!=''){
 		$title['title'] = "PUPHerbarium | Species Author";
 		$this->load->view('templates/header', $title);
 		$this->load->view('maintenance/Speciesauthor');
 		$this->load->view('templates/footer');
 	}
+	else{
+	redirect(base_url().'admin');
+	}
 }
+public function showAllAuthor()
+{
+
+    $output = $this->admin_m->showAllAuthor();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+public function editAuthor(){
+	$result = $this->m->editAuthor();
+	echo json_encode($result);
+}
+
+public function addAuthor(){
+	$result = $this->m->addAuthor();
+	$msg['success'] = false;
+	$msg['type'] = 'add';
+	if($result){
+		$msg['success'] = true;
+	}
+	echo json_encode($msg);
+}
+public function updateAuthor(){
+$result = $this->m->updateAuthor();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+public function PlantType()
+{
+	if($this->session->userdata('strUsername')!=''){
+		$title['title'] = "PUPHerbarium | Plant Type";
+		$this->load->view('templates/header', $title);
+		$this->load->view('maintenance/PlantType');
+		$this->load->view('templates/footer');
+	}
+	else{
+	redirect(base_url().'admin');
+	}
+}
+public function showAllPlantType()
+{
+
+    $output = $this->admin_m->showAllPlantType();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+public function editPlantType(){
+	$result = $this->m->editPlantType();
+	echo json_encode($result);
+}
+public function addPlantType(){
+	$result = $this->m->addPlantType();
+	$msg['success'] = false;
+	$msg['type'] = 'add';
+	if($result){
+		$msg['success'] = true;
+	}
+	echo json_encode($msg);
+}
+
+public function updatePlantType(){
+$result = $this->m->updatePlantType();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+
+
+
+	
+public function SpeciesAltName()
+{
+	if($this->session->userdata('strUsername')!=''){
+		$title['title'] = "PUPHerbarium | Add Species Alternate Name";
+		$this->load->view('templates/header', $title);
+		$this->load->view('maintenance/Addspeciesalternatename');
+		$this->load->view('templates/footer');
+	}
+	else{
+	redirect(base_url().'admin');
+	}
+}
+public function showAllAltName()
+{
+
+    $output = $this->admin_m->showAllAltName();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+public function editAllAltName(){
+	$result = $this->m->editAllAltName();
+	echo json_encode($result);
+}
+public function addAltName(){
+	$result = $this->m->addAltName();
+	$msg['success'] = false;
+	$msg['type'] = 'add';
+	if($result){
+		$msg['success'] = true;
+	}
+	echo json_encode($msg);
+}
+
+public function updateAltName(){
+$result = $this->m->updateAltName();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+
+
+public function Plantborrower()
+{
+	if($this->session->userdata('strUsername')!=''){
+		$title['title'] = "PUPHerbarium | PLant Borrower";
+		$this->load->view('templates/header', $title);
+		$this->load->view('maintenance/Plantborrower');
+
+		$this->load->view('templates/footer');
+	}
+	else{
+	redirect(base_url().'admin');
+	}
+}
+
 
 	function view_calendar()
 	{
@@ -1306,6 +1508,8 @@ public function VisitEmailConReject(){
 		echo json_encode($result);
 
 }
+
+//** EXTERNAL VALIDATION **//
 public function showExValPending()
 {
 	 $output = $this->admin_m->showExValPending();
@@ -1319,6 +1523,17 @@ public function showExValPending()
           exit();
     }
 
+public function viewEV(){
+		$result = $this->m->viewEV();
+		echo json_encode($result);
+
+	}
+
+public function updateEVStatus(){
+		$result = $this->m->updateEVStatus();
+		echo json_encode($result);
+
+	}
 
 public function showExValOkay()
 {
@@ -1333,6 +1548,21 @@ public function showExValOkay()
           exit();
     }
 
+public function EVConfirmation(){
+		$result = $this->m->EVConfirmation();
+		echo json_encode($result);
+
+	}
+public function updateEVConfirmation(){
+		$result = $this->m->updateEVConfirmation();
+		echo json_encode($result);
+}
+
+public function EVEmailCon(){
+		$result = $this->m->EVEmailCon();
+		echo json_encode($result);
+
+	}
 public function showExValAll()
 {
 	 $output = $this->admin_m->showExValAll();
@@ -1345,4 +1575,41 @@ public function showExValAll()
           echo json_encode($response);
           exit();
     }
+
+
+public function EVSendMail()
+{
+    $config = Array(
+  'protocol' => 'smtp',
+  'smtp_host' => 'ssl://smtp.googlemail.com',
+  'smtp_port' => 465,
+  'smtp_user' => 'WBHerbariumTA@gmail.com', // change it to yours
+  'smtp_pass' => 'WBHerbarium2018', // change it to yours
+  'mailtype' => 'html',
+  'charset' => 'iso-8859-1',
+  'wordwrap' => TRUE
+);
+
+$email=$this->input->post('txtEmail');
+$id=$this->input->post('txtId');
+$message = $this->input->post('txtCustomMessage');
+
+      $this->load->library('email', $config);
+      $this->email->set_newline("\r\n");
+      $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
+      $this->email->to($email);// change it to yours
+      $this->email->subject('PUP Herbarium Depositing of Specimen');
+      $this->email->message("Your deposit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Deposit Request ID:"  . $id ."<br> <br>" ."Date of Appointment: ".$date. "<br> <br>" .$message );
+
+      if($this->email->send())
+     {
+     	return true;
+     }
+     else
+    {
+     show_error($this->email->print_debugger());
+
+ }
+}
+
 }?>

@@ -169,6 +169,7 @@
       $('#manageValidatortbl').dataTable().fnDraw();
       $('#manageValidatortbl').dataTable().fnDestroy();
       $('#manageValidatortbl').dataTable({
+        "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllValidator')?>",

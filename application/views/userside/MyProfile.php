@@ -1,3 +1,4 @@
+
 <script>
 function showNav() {
 document.getElementById("navi").style.display = 'block';
@@ -62,12 +63,7 @@ $(document).on('click', '.account', function(e){
           alert('Could not show Data');
         }
 
-    });
 
-  });
-
-
-</script> -->
 
 
 
@@ -119,14 +115,14 @@ $(document).on('click', '.account', function(e){
                           <div class="col-md-3"></div>
                           <div class="col-md-6">
                             <i class="fa fa-user-circle prefix grey-text"></i>
-                            <input type="text" id="strUsername" name="txtusername" class="form-control" required>
+                            <input type="text" id="strUsername" name="txtusername" class="form-control" disabled="">
                             <label for="strUsername" class="font-weight-light" style="margin-left: 55px;">Username<span style="color: red"> *</span></label>
                           </div>
                         </div>
                       </div>
                     <div class="text-center py-4 mt-3">
                       <button class="btn btn-danger" onclick="hideNav()">Cancel</button>
-                      <button class="btn btn-primary" type="submit" id="btnSave">Save Changes</button>
+                      <button class="btn btn-primary" type="submit" id="btnSaveAccount">Save Changes</button>
                     </div>
                  </form>
               </div>
@@ -135,7 +131,7 @@ $(document).on('click', '.account', function(e){
 
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <h3 class="card-title">Profile</h3>
-                <form name="regForm" class="needs-validation" id= "RegisterForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
+                <form name="profileform" class="needs-validation" id= "myprofileForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
                   <div class="md-form">
                       <div class="row">
                         <div class="col-md-6">
@@ -205,7 +201,7 @@ $(document).on('click', '.account', function(e){
 
                     <div class="text-center py-4 mt-3">
                       <button class="btn btn-danger" onclick="hideNav()">Cancel</button>
-                      <button class="btn btn-primary" type="submit" id="btnSave">Submit</button>
+                      <button class="btn btn-primary" type="submit" id="btnSaveProfile">Submit</button>
                     </div>
                  </form>
               </div>
@@ -213,13 +209,13 @@ $(document).on('click', '.account', function(e){
 <!--   PASSWORD  -->
               <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                 <h3 class="card-title">Password</h3>
-                <form name="myPasswordForm" class="needs-validation" id= "myaccForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
+                <form name="myPasswordForm" class="needs-validation" id= "myPasswordForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
                 <div class="md-form">
                 <div class="row">
                   <div class="col-md-3"></div>
                     <div class="col-md-6">
 
-                        <input type="text" id="strCurPw" class="form-control">
+                        <input type="password" id="strCurPw" name= "txtCurPw" class="form-control">
                         <label for="strCurPw" class="ml-3 font-weight-light">Current Password</label>
                       </div>
                     </div>
@@ -228,7 +224,7 @@ $(document).on('click', '.account', function(e){
                   <div class="row">
                     <div class="col-md-3"></div>
                       <div class="col-md-6">
-                          <input type="text" id="strNewPw" class="form-control">
+                          <input type="password" id="strNewPw" name="txtNewPw" class="form-control">
                           <label for="strNewPw" class="ml-3 font-weight-light">New Password</label>
                         </div>
                       </div>
@@ -237,14 +233,14 @@ $(document).on('click', '.account', function(e){
                     <div class="row">
                       <div class="col-md-3"></div>
                         <div class="col-md-6">
-                            <input type="text" id="strVerPw" class="form-control">
+                            <input type="password" id="strVerPw" name="txtVerPw" class="form-control">
                             <label for="strVerPw" class="ml-3 font-weight-light" >Verify Password</label>
                           </div>
                         </div>
                     </div>
                     <div class="text-center py-4 mt-3">
                       <button class="btn btn-danger" onclick="hideNav()">Cancel</button>
-                      <button class="btn btn-primary" type="submit" id="btnSave">Save Changes</button>
+                      <button class="btn btn-primary" type="submit" id="btnSavePassword">Save Changes</button>
                     </div>
                    </form>
                   <div>
@@ -257,3 +253,239 @@ $(document).on('click', '.account', function(e){
     </div>
   </div>
 </div>
+<script>
+function showNav() {
+document.getElementById("navi").style.display = 'block';
+}
+function hideNav() {
+  document.getElementById("navi").style.display = 'none';
+}
+
+
+</script>
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+<script>
+$('input[name=txtpresentadd]').keyup(function(){
+  if (this.value.length > 0) {
+     $('input[name="checkbox1"]').prop('disabled', false)
+  } else {
+     $('input[name="checkbox1"]').prop('disabled', true);
+     $('input[name="checkbox1"]').prop('checked', false);
+  }
+})
+</script>
+
+<script>
+function copy()
+{
+  var n1 = document.getElementById('strPresentAdd');
+  var n2 = document.getElementById('strPermanentAdd');
+  var ch = document.getElementById('checkbox1');
+
+    if (ch.checked){
+      n2.value = n1.value;
+      n2.focus();
+    }
+    else {
+      n2.value = '';
+      n2.trigger('blur');
+    }
+}
+</script>
+ 
+
+<script type="text/javascript">
+
+function showAccount()
+{
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url() ?>user/showAccount',
+        async: false,
+        dataType: 'json',
+        success: function(data){          
+          $('input[name=txtemail]').val(data.strEmailAddress);
+          $('input[name=txtusername]').val(data.strUserName);
+
+        },
+        error: function(){
+          alert('Could not show Data');
+        }
+
+    });
+
+  };
+
+    $(document).ready(function(){
+
+    //show
+    showAccount();
+
+  });
+</script>
+<script type="text/javascript">
+
+ $('#btnSaveAccount').click(function(){
+      var data = $('#myaccForm').serialize();
+        $.ajax({
+          type: 'ajax',
+          method: 'post',
+          url: '<?php echo base_url() ?>user/updateAccount',
+          data: data,
+          async: false,
+          dataType: 'json',
+          success: function(response){
+            if(response.success){
+              if(response.type=='add'){
+                var type = 'added'
+              }else if(response.type=='update'){
+                var type ="updated"
+              }
+              showAllPhylum();
+            }else{
+              alert('Error');
+            }
+          },
+          error: function(){
+            alert('Could not update data');
+          }
+        });
+    });
+
+</script>
+<script type="text/javascript">
+
+function showProfile()
+{
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url() ?>user/showProfile',
+        async: false,
+        dataType: 'json',
+        success: function(data){          
+          $('input[name=txtfirstname]').val(data.strFirstname);
+          $('input[name=txtmidname]').val(data.strMiddlename);
+          $('input[name=txtlastname]').val(data.strLastname);
+          $('input[name=txtnamesuffix]').val(data.strNameSuffix);         
+          $('input[name=txtphonenum]').val(data.strContactNumber);
+          $('input[name=txtpresentadd]').val(data.strPresentAddress);
+          $('input[name=txtpermaadd]').val(data.strPermanentAddress);
+          $('input[name=txtaffname]').val(data.strAffiliationName);
+          $('input[name=txtaffpos]').val(data.strAffiliationPosition);
+          $('input[name=txtaffaddress]').val(data.strAffiliationAddress);
+        },
+        error: function(){
+          alert('Could not show Data');
+        }
+
+    });
+
+  };
+
+    $(document).ready(function(){
+
+    //show
+    showProfile();
+
+
+ $('#btnSaveProfile').click(function(){
+      var data = $('#myprofileForm').serialize();
+        $.ajax({
+          type: 'ajax',
+          method: 'post',
+          url: '<?php echo base_url() ?>user/updateProfile',
+          data: data,
+          async: false,
+          dataType: 'json',
+          success: function(response){
+            if(response.success){
+              if(response.type=='add'){
+                var type = 'added'
+              }else if(response.type=='update'){
+                var type ="updated"
+              }
+              showAllPhylum();
+            }else{
+              alert('Error');
+            }
+          },
+          error: function(){
+            alert('Could not update data');
+          }
+        });
+    });
+ });
+
+
+</script>
+<script type="text/javascript">
+
+// function showPassword()
+// {
+//       $.ajax({
+//         type: 'ajax',
+//         url: '<?php echo base_url() ?>user/showPassword',
+//         async: false,
+//         dataType: 'json',
+//         success: function(data){          
+//           $('input[name=txtCurPw]').val(data.strPassword);
+
+
+//         },
+//         error: function(){
+//           alert('Could not show Data');
+//         }
+
+//     });
+
+//   };
+
+//     $(document).ready(function(){
+
+//     //show
+//     showPassword();
+
+//   });
+
+
+$('#btnSavePassword').click(function(){
+      var data = $('#myPasswordForm').serialize();
+
+var newpw = document.getElementById("strNewPw").value;
+var verpw = document.getElementById("strVerPw").value;
+
+     if (newpw === verpw) {
+         $.ajax({
+          type: 'ajax',
+          method: 'post',
+          url: '<?php echo base_url() ?>user/updatePassword',
+          data: data,
+          async: false,
+          dataType: 'json',
+          success: function(response){
+            if(response.success){
+              if(response.type=='add'){
+                var type = 'added'
+              }else if(response.type=='update'){
+                var type ="updated"
+              }
+              showAllPhylum();
+            }else{
+              alert('Error');
+            }
+          },
+          error: function(){
+            alert('Could not update data');
+          }
+        });
+      }else{
+
+        alert('di pareho new at verify')
+}
+       
+    });
+      
+
+
+</script>
+

@@ -1,4 +1,4 @@
- <?php
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class user_m extends CI_Model{
@@ -311,15 +311,95 @@ public function getgenusname(){
 
 }
 
-	// public function showAccount(){
-	// 	$id = $this->input->get('id');
-	// 	$this->db->where('intOUserID', $id);
-	// 	$query = $this->db->get('tblOnlineUser');
-	// 	if($query->num_rows() > 0){
-	// 		return $query->row();
-	// 	}else{
-	// 		return false;
-	// 	}
-	// }
+public function showAccount(){
+		$id = $this->session->userdata['strUserName'];
+		$this->db->where('strUserName', $id);
+		$query = $this->db->get('tblOnlineUser');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+public function updateAccount(){
+   $id = $this->session->userdata['strUserName'];
+    $field = array(
+    'strEmailAddress'=>$this->input->post('txtemail'),
+    );
+    $this->db->where('strUserName', $id);
+    $this->db->update('tblOnlineUser', $field);
+    if($this->db->affected_rows() > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+public function showProfile(){
+		$id = $this->session->userdata['strUserName'];
+		$this->db->where('strUserName', $id);
+		$query = $this->db->get('tblOnlineUser');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+public function updateProfile()
+	{
+   		$id = $this->session->userdata['strUserName'];
+   		$field = array(
+   			 'strFirstname'=>$this->input->post('txtfirstname'),
+   			 'strMiddlename'=>$this->input->post('txtmidname'),
+   			 'strLastname'=>$this->input->post('txtlastname'),
+   			 'strNameSuffix'=>$this->input->post('txtnamesuffix'),
+   			 'strContactNumber'=>$this->input->post('txtphonenum'),
+   			 'strPresentAddress'=>$this->input->post('txtpresentadd'),
+  			 'strPermanentAddress'=>$this->input->post('txtpermaadd'),
+   			 'strAffiliationName'=>$this->input->post('txtaffname'),
+   			 'strAffiliationPosition'=>$this->input->post('txtaffpos'),
+   			 'strAffiliationAddress'=>$this->input->post('txtaffaddress')
+
+    );
+    $this->db->where('strUserName', $id);
+    $this->db->update('tblOnlineUser', $field);
+    if($this->db->affected_rows() > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+public function showPassword(){
+		$id = $this->session->userdata['strUserName'];
+		$this->db->where('strUserName', $id);
+		$query = $this->db->get('tblOnlineUser');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+public function updatePassword(){
+   $id = $this->session->userdata['strUserName'];
+   $current = $this->input->post('txtCurPw');
+    $field = array(
+    'strPassword'=>$this->input->post('txtNewPw'),
+    );
+    $this->db->where('strUserName', $id);
+    $this->db->where('strPassword', $current);
+    $this->db->update('tblOnlineUser', $field);
+    if($this->db->affected_rows() > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
 
 }?>

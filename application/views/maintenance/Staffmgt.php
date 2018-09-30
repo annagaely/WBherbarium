@@ -34,7 +34,7 @@
                     <select name="sRole" class="form-control">
                       <option id="SA" name="nSA" value= "SUPER ADMINISTRATOR"> Super Administrator</option>
                       <option id="CR" name="nCR" value= "CURATOR"> Curator</option>
-<!--                       <option id="StA" value= "Student Assistant"> Student Assistant</option> -->
+                      <option id="StA" name="nStA" value= "STUDENT ASSISTANT"> Student Assistant</option>
                     </select>
                   </div>
                   </div>
@@ -131,7 +131,8 @@
                     <select name="esRole" class="form-control">
                       <option id="SA" value= "SUPER ADMINISTRATOR"> Super Administrator</option>
                       <option id="CR" value= "CURATOR"> Curator</option>
-                     <!--  <option value= "Student Assistant"> Student Assistant</option> -->
+                     <option id="StA" name="nStA" value= "STUDENT ASSISTANT"> Student Assistant</option>
+
                     </select>
                   </div>
                   </div>
@@ -240,6 +241,7 @@
       $('#manageStafftbl').dataTable().fnDraw();
       $('#manageStafftbl').dataTable().fnDestroy();
       $('#manageStafftbl').dataTable({
+          "autoWidth":false,
            "processing": true,
            "serverSide": false,
            "sAjaxSource": "<?php echo base_url('admin/showAllStaff')?>",

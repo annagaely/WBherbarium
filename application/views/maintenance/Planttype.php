@@ -9,8 +9,7 @@
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard" >Home</a></li>
             <li class="breadcrumb-item">Maintenance</li>
-            <li class="breadcrumb-item">Taxonomic Hierarchy</li>
-            <li class="breadcrumb-item active">Phylum </li>
+            <li class="breadcrumb-item active">Add Plant Type</li>
           </ul>
         </div>
       </div>
@@ -18,7 +17,7 @@
       <!--ADD PHYLUM MODAL HAHAHAHAHAHA-->
      <div class="card">
         <div class="card-header d-flex align-items-center" >
-          <button type="button" id="btnAdd " data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Phylum</button>
+          <button type="button" id="btnAdd " data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Plant Type</button>
         </div>
 
         <!-- Modal-->
@@ -27,32 +26,21 @@
             <div class="modal-content">
               <div class="modal-header">
 
-                <h5 id="exampleModalLabel" class="modal-title">Add Phylum</h5>
+                <h5 id="exampleModalLabel" class="modal-title">Add Plant Type</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
 
-                <form id= "addPhylumForm" method="POST" enctype="multipart/form-data">
+                <form id= "addPlantTypeForm" method="POST" enctype="multipart/form-data">
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                   <div class="form-group">
-                    <label>Domain Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control" >
+                    <label>Plant Code:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtPlantCode" id="strPlantCode" placeholder="Plant Code" class="form-control" >
                   </div>
                   <div class="form-group">
-                    <label>Kingdom Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtkName" id="strKingdomName" placeholder="Kingdom Name" class="form-control" >
-                  </div>
-                  <div class="form-group">
-                    <label>
-
-                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText();"> Under the Plant Category
-
-                    </label>
-                  </div>
-                  <div class="form-group">
-                    <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control" >
+                    <label>Plant Type:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtPlantType" id="strPlantType" placeholder="Plant Type" class="form-control" >
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -74,31 +62,22 @@
             <div class="modal-content">
               <div class="modal-header">
 
-                <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
+                <h5 id="exampleModalLabel" class="modal-title">Edit Species Alternate Name</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
 
-                <form id= "editPhylumForm" method="POST" enctype="multipart/form-data">
+                <form id= "editPlantTypeForm" method="POST" enctype="multipart/form-data">
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
-                  <div class="form-group">
-                    <label>Domain Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtedName" id="strDomainName1" placeholder="Domain Name" class="form-control">
+                <div class="form-group">
+                  <input type="hidden" name="txtId" value="0">
+                    <label>Plant Code:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtePlantCode" id="strPlantCode1" placeholder="Plant Code" class="form-control" >
                   </div>
                   <div class="form-group">
-                    <label>Kingdom Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtekName" id="strKingdomName1" placeholder="Kingdom Name" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label>
-                      <input type="checkbox" name="check1" id="plantCategory1" onclick="disableMyText1(); "> Under the Plant Category
-                      <input type="hidden" name="txtId" value="0">
-                    </label>
-                  </div>
-                  <div class="form-group">
-                    <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtepName" id="pNameid1" placeholder="Phylum Name" class="form-control">
+                    <label>Plant Type:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtePlantType" id="strPlantType1" placeholder="Palnt Type" class="form-control" >
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -114,18 +93,15 @@
       <div class="card">
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table dataTable no-footer" id="managePhylumtbl">
+            <table class="table dataTable no-footer" id="managePlantTypetbl">
               <thead>
                 <tr>
                   <!-- <th scope="col" width= "10%">Phylum ID</th> -->
-                  <th scope="col" width= "10%">Domain Name</th>
-                  <th scope="col" width= "10%">Kingdom Name</th>
-                  <th scope="col" width= "10%">Phylum Name</th>
+                  <th scope="col" width= "10%">Plant Code</th>
+                  <th scope="col" width= "10%">Plant Type</th>
                   <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>
-             <!--  <tbody tbody id="showdata">
-              </tbody> -->
             </table>
           </div>
         </div>
@@ -141,55 +117,18 @@
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
 
-<script>
-function resetForm() {
-    document.getElementById("addPhylumForm").reset();
-}
+<script type="text/javascript">
 
-</script>
-
-<script type="text/javascript" >
-
-     function disableMyText(){
-          if(document.getElementById("plantCategory").checked == true)
-          {
-              document.getElementById("strDomainName").value = "Eukaryota";
-              document.getElementById("strKingdomName").value = "Plantae";
-          }
-          else
-          {
-            document.getElementById("strDomainName").value = "";
-            document.getElementById("strKingdomName").value = "";
-          }
-     }
-     function disableMyText1(){
-          if(document.getElementById("plantCategory1").checked == true)
-          {
-              document.getElementById("strDomainName1").value = "Eukaryota";
-              document.getElementById("strKingdomName1").value = "Plantae";
-
-          }
-
-          else{
-            document.getElementById("strDomainName1").value = "";
-            document.getElementById("strKingdomName1").value = "";
-          }
-     }
-
-     </script>
-     
-    <script type="text/javascript">
-
-    function showAllPhylum()
+    function showAllPlantType()
         {
-          $('#managePhylumtbl').dataTable().fnClearTable();
-          $('#managePhylumtbl').dataTable().fnDraw();
-          $('#managePhylumtbl').dataTable().fnDestroy();
-          $('#managePhylumtbl').dataTable({
+          $('#managePlantTypetbl').dataTable().fnClearTable();
+          $('#managePlantTypetbl').dataTable().fnDraw();
+          $('#managePlantTypetbl').dataTable().fnDestroy();
+          $('#managePlantTypetbl').dataTable({
             "autoWidth":false,
               "processing": true,
               "serverSide": false,
-              "sAjaxSource": "<?php echo base_url('admin/showAllPhylum')?>",
+              "sAjaxSource": "<?php echo base_url('admin/showAllPlantType')?>",
               "deferLoading": 10,
               "bPaginate": true,
               "aaSorting": [[0,'asc']],
@@ -198,19 +137,43 @@ function resetForm() {
           });
         }
 
-    $(document).ready(function(){
+
+      $(document).ready(function(){ 
 
     //show
-    showAllPhylum();
+    showAllPlantType();
 
-    //add
-    $('#btnSave').click(function(event){
-      var url = '<?php echo base_url() ?>admin/addPhylum';
-      var data = $('#addPhylumForm').serialize();
+$(document).on('click', '.ptype-edit', function(e){
+      var id = $(this).attr('data');
+      $('#myEditModal').modal('show');
+      $('#myEditModal').find('.modal-title').text('Edit Author');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/editPlantType',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtePlantCode]').val(data.strPlantTypeCode);
+          $('input[name=txtePlantType]').val(data.strPlantTypeName);
+          $('input[name=txtId]').val(data.intPlantTypeID);
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+
+  });
+
+$('#btnSave').click(function(event){
+      var url = '<?php echo base_url() ?>admin/addPlantType';
+      var data = $('#addPlantTypeForm').serialize();
       //validate form
-      if($('#strDomainName').val()!=''){
-        if($('#strKingdomName').val()!=''){
-          if($('#pNameid').val()!=''){
+      
+        if($('#strPlantCode').val()!=''){
+          if($('#strPlantType').val()!=''){
             event.preventDefault();
             swal({
               title: 'Are you sure?',
@@ -239,18 +202,18 @@ function resetForm() {
                     let timerInterval
                     swal({
                       title: 'Saved',
-                      text: 'Your file has been saved.',
+                      text: 'Plant Type has been saved.',
                       type: 'success',
                       timer: 1500,
                       showConfirmButton: false
                     }).then(function() {
-                    $('#managePhylumtbl').dataTable().fnDestroy();
-                    showAllPhylum();
+                    $('#managePlantTypetbl').dataTable().fnDestroy();
+                    showAllPlantType();
                     $('#myModal').modal('hide');
-                    document.getElementById("addPhylumForm").reset();
+                     document.getElementById("addPlantTypeForm").reset();
                     event.preventDefault();
                     });
-
+                    
                   }
                 },
                 error: function(){
@@ -278,22 +241,15 @@ function resetForm() {
             title: 'Incomplete input!',
             text: 'Please fill up all the required fields.'
           });
-          }
-      }else{
-        event.preventDefault();
-        swal({
-          type: 'error',
-          title: 'Incomplete input!',
-          text: 'Please fill up all the required fields.'
-        });
-        }
+          
+      }
     });
-
-    $('#btnEditSave').click(function(event){
-      var data = $('#editPhylumForm').serialize();
-      if($('#strDomainName1').val()!=''){
-        if($('#strKingdomName1').val()!=''){
-          if($('#pNameid1').val()!=''){
+  
+$('#btnEditSave').click(function(event){
+      var data = $('#editPlantTypeForm').serialize();
+      
+        if($('#strPlantCode1').val()!=''){
+          if($('#strPlantType1').val()!=''){
             event.preventDefault();
             swal({
               title: 'Are you sure?',
@@ -307,14 +263,12 @@ function resetForm() {
                 $.ajax({
                   type: 'ajax',
                   method: 'post',
-                  url: '<?php echo base_url() ?>admin/updatePhylum',
+                  url: '<?php echo base_url() ?>admin/updatePlantType',
                   data: data,
                   async: false,
                   dataType: 'json',
                   success: function(response){
                     if(response.success){
-                      $('#editPhylumForm').modal('hide');
-                      $('#editPhylumForm')[0].reset();
                       if(response.type=='add'){
                         var type = 'added'
                       }else if(response.type=='update'){
@@ -323,19 +277,19 @@ function resetForm() {
                       let timerInterval
                       swal({
                         title: 'Saved',
-                        text: 'Phylum has been saved.',
+                        text: 'Plant Type has been saved.',
                         type: 'success',
                         timer: 1500,
                         showConfirmButton: false
                       }).then(function() {
                         event.preventDefault();
-                        $('#managePhylumtbl').dataTable().fnDestroy();
-                    showAllPhylum();
+                        $('#managePlantTypetbl').dataTable().fnDestroy();
+                    showAllPlantType();
                     $('#myEditModal').modal('hide');
-                    document.getElementById("editPhylumForm").reset();
-
+                    document.getElementById("editAuthorForm").reset();
+                    
                       });
-
+                      
                     }else{
                       alert('Error');
                     }
@@ -365,41 +319,13 @@ function resetForm() {
             text: 'Please fill up all the required fields.'
           });
           }
-      }else{
-        event.preventDefault();
-        swal({
-          type: 'error',
-          title: 'Incomplete input!',
-          text: 'Please fill up all the required fields.'
-        });
-        }
-    });
-    //edit phylum
-     $(document).on('click', '.phylum-edit', function(e){
-      var id = $(this).attr('data');
-      $('#myEditModal').modal('show');
-      $('#myEditModal').find('.modal-title').text('Edit Phylum');
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/editPhylum',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('input[name=txtedName]').val(data.strDomainName);
-          $('input[name=txtekName]').val(data.strKingdomName);
-          $('input[name=txtepName]').val(data.strPhylumName);
-          $('input[name=txtId]').val(data.intPhylumID);
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
+
 
     });
+
+
+
+
 
   });
-
-
-    });
-     </script>
+        </script>

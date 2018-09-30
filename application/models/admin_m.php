@@ -145,8 +145,6 @@ insert into tblClass(intPhylumID,strClassname) VALUES (@phylumid,'".$className."
 
 			";
 
-
-
 		if($this->db->query($query)){
 			return true;
 		}else{
@@ -1426,6 +1424,94 @@ public function updateAccounts(){
 			return false;
 		}
 	}
+
+
+/** PLANT BORROWER **/
+
+	public function showAllPlantBorrower()
+	{
+		$result = array();
+		$query = $this->db->select('intBorrowerID, strLastname, strFirstname, strAffiliation')
+                ->get('tblBorrower');
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary borrower-edit" data="'.$r->intBorrowerID.'">Edit</button>';
+
+			$result[] = array(
+					// $r->intPhylumID,
+					$r->strLastname,
+					$r->strFirstname,
+					$r->strAffiliation,
+					$btn,
+					$r->intBorrowerID
+					);
+		}
+
+
+		return $result;
+	}
+
+
+	public function addPlantBorrower(){
+
+			$fn=$this->input->post('PBFName');
+			$mn=$this->input->post('PBMName');
+			$mi=$this->input->post('PBMInitial');
+			$ln=$this->input->post('PBLName');
+			$ns=$this->input->post('PBNSuffix');
+			$ha=$this->input->post('PBHAddress');			
+			$cn=$this->input->post('PBCNumber');
+			$ea=$this->input->post('PBEAddress');
+			$af=$this->input->post('PBAffiliation');
+			
+			$query="
+			insert into tblBorrower(strFirstname,strMiddlename,strMiddleInitial,strLastname,strNameSuffix,strHomeAddress,strContactNumber,strEmailAddress,strAffiliation) VALUES ('".$fn."','".$mn."','".$mi."','".$ln."','".$ns."','".$ha."','".$cn."','".$ea."','".$af."')";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+	public function editPlantBorrower(){	
+		$id = $this->input->get('id');
+		$this->db->where('intBorrowerID', $id);
+		$query = $this->db->get('tblBorrower');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+    public function updatePlantBorrower(){
+   		 $id = $this->input->post('txtId');
+
+	     $field = array(
+
+    		'strFirstname'=>$this->input->post('PBFName'),
+			'strMiddlename'=>$this->input->post('PBMName'),
+			'strMiddleInitial'=>$this->input->post('PBMInitial'),
+			'strLastname'=>$this->input->post('PBLName'),
+			'strNameSuffix'=>$this->input->post('PBNSuffix'),
+			'strHomeAddress'=>$this->input->post('PBHAddress'),		
+			'strContactNumber'=>$this->input->post('PBCNumber'),
+			'strEmailAddress'=>$this->input->post('PBEAddress'),
+			'strAffiliation'=>$this->input->post('PBAffiliation')
+    );
+   		 $this->db->where('intBorrowerID', $id);
+    	 $this->db->update('tblBorrower', $field);
+
+    if($this->db->affected_rows() > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 	/****** END ACCOUNTS!!!!! ******/
 	/******  CALENDAR START!!!!! ******/
 
@@ -2024,12 +2110,7 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 //EXTERNAL VALAIDATION
 	public function showExValPending(){
 		$result = array();
-		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
-
-		from tblPlantDeposit pd join tblCollector cl
-		on pd.intCollectorID = cl.intCollectorID
-
-		where strStatus='Further Verification'");
+		$query = $this->db->get('viewVerifyingDeposit');
 
 
 		foreach ($query->result() as $r)
@@ -2038,9 +2119,9 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 		$btn = '<button class="btn btn-primary view-EVPending" title="View" data="'.$r->intPlantDepositID.'"><i class="far fa-eye"></i></button>';
 
 			$result[] = array(
-					$r->intPlantDepositID,
-					$r->intAccessionNumber,
-					$r->strFullName,
+					$r->strAccessionNumber,
+					$r->strScientificName,
+					$r->strCollector,
 					$r->dateDeposited,
 					$r->strStatus,
 					$btn,
@@ -2051,6 +2132,52 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 
 		return $result;
 }
+
+	public function viewEV(){
+		$id = $this->input->get('id');
+
+	$this->db->where('intPlantDepositID', $id);
+		$query = $this->db->select("intPlantDepositID
+			,strAccessionNumber
+			,strFamilyName
+			,strScientificName
+			,strCommonName
+			,strCollector
+			,strFullLocality
+			,strStaff
+			,dateCollected
+			,dateDeposited
+			,strDescription")
+		->get('viewVerifyingDeposit');
+
+			if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+public function updateEVStatus(){
+
+    $depositid = $this->input->post('txtId');
+
+	$query="
+
+	DECLARE @depositid 		INT;
+
+	Set @depositid ='$depositid'
+
+		UPDATE viewVerifyingDeposit
+		SET strStatus = 'For External Validation'
+		WHERE intPlantDepositID = @depositid;
+	";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 
 
 public function showExValOkay(){
@@ -2065,7 +2192,10 @@ public function showExValOkay(){
 		foreach ($query->result() as $r)
 		{
 
-		$btn = '<button class="btn btn-primary view-EVOkay" title="View" data="'.$r->intPlantDepositID.'"><i class="far fa-eye"></i></button>';
+		$btn = '<button class="btn btn-primary view-EVemailcon" data="'.$r->intPlantDepositID.'">Email</button>
+
+				   <button class="btn btn-primary view-EVConfirmation" data="'.$r->intPlantDepositID.'">Confirmation</button>';
+
 
 			$result[] = array(
 					$r->intPlantDepositID,
@@ -2081,6 +2211,68 @@ public function showExValOkay(){
 
 		return $result;
 }
+
+public function EVEmailCon()
+{
+	$id = $this->input->get('id');
+	$this->db->where('intPlantDepositID', $id);
+		$query = $this->db->select("intPlantDepositID, strEmailAddress")
+		->join('tblOnlineUser ou','ou.intOUserID=dr.intOUserID')
+		->get('viewVerifyingDeposit');
+
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+
+public function EVConfirmation(){
+	$id = $this->input->get('id');
+	$this->db->where('intPlantDepositID', $id);
+		$query = $this->db->select("intPlantDepositID")
+		->get('viewVerifyingDeposit');
+
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+public function updateEVConfirmation(){
+
+
+$depositid = $this->input->post('txtId');
+$status = $this->input->post('txtStatus');
+
+
+
+	$query="
+
+	DECLARE @depositid INT;
+	DECLARE @status		VARCHAR(50);
+
+	Set @depositid ='$depositid'
+	Set @status ='$status'
+
+
+		UPDATE viewVerifyingDeposit
+		SET strStatus = @status
+		WHERE intPlantDepositID = @depositid;
+	";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+ 
+
 
 
 public function showExValAll(){
@@ -2106,4 +2298,208 @@ public function showExValAll(){
 
 		return $result;
 }
+
+
+/**** AUTHOR *****/
+public function showAllAuthor()
+	{
+		$result = array();
+		$query = $this->db
+                ->get('tblAuthor');
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary author-edit" data="'.$r->intAuthorID.'">Edit</button>';
+
+			$result[] = array(
+					// $r->intPhylumID,
+					
+					$r->strAuthorsName,
+					$r->strSpeciesSuffix,
+					$btn,
+					$r->intAuthorID
+					);
+		}
+
+
+		return $result;
+	}
+
+	public function editAuthor(){	
+		$id = $this->input->get('id');
+		$this->db->where('intAuthorID', $id);
+		$query = $this->db->get('tblAuthor');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+	 public function addAuthor(){
+
+			$authorname=$this->input->post('txtAName');
+			$authorsuffix=$this->input->post('txtSASuffix');
+
+			$query="
+			insert into tblAuthor(strAuthorsName,strSpeciesSuffix) VALUES ('".$authorname."','".$authorsuffix."')
+
+			";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+    public function updateAuthor(){
+    $id = $this->input->post('txtId');
+    $field = array(
+    'strAuthorsName'=>$this->input->post('txteAName'),
+    'strSpeciesSuffix'=>$this->input->post('txteSASuffix')
+    );
+    $this->db->where('intAuthorID', $id);
+    $this->db->update('tblAuthor', $field);
+    if($this->db->affected_rows() > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+
+public function showAllPlantType()
+	{
+		$result = array();
+		$query = $this->db
+                ->get('tblPlantType');
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary ptype-edit" data="'.$r->intPlantTypeID.'">Edit</button>';
+
+			$result[] = array(
+					// $r->intPhylumID,
+					
+					$r->strPlantTypeCode,
+					$r->strPlantTypeName,
+					$btn,
+					$r->intPlantTypeID
+					);
+		}
+
+
+		return $result;
+	}
+	public function editPlantType(){	
+		$id = $this->input->get('id');
+		$this->db->where('intPlantTypeId', $id);
+		$query = $this->db->get('tblPlantType');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+	 public function addPlantType(){
+
+			$planttypecode=$this->input->post('txtPlantCode');
+			$planttypename=$this->input->post('txtPlantType');
+
+			$query="
+			insert into tblPlantType(strPlantTypeCode,strPlantTypeName) VALUES ('".$planttypecode."','".$planttypename."')
+
+			";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+    public function updatePlantType(){
+    $id = $this->input->post('txtId');
+    $field = array(
+    'strPlantTypeCode'=>$this->input->post('txtePlantCode'),
+    'strPlantTypeName'=>$this->input->post('txtePlantType')
+    );
+    $this->db->where('intPlantTypeID', $id);
+    $this->db->update('tblPlantType', $field);
+    if($this->db->affected_rows() > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+public function showAllAltName()
+	{
+		$result = array();
+		$query = $this->db
+                ->get('viewSpeciesAlternate');
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary altname-edit" data="'.$r->intAltNameID.'">Edit</button>';
+
+			$result[] = array(
+					// $r->intPhylumID,
+					
+					$r->strScientificName,
+					$r->strLanguage,
+					$r->strAlternateName,
+					$btn,
+					$r->intAltNameID
+					);
+		}
+
+
+		return $result;
+	}
+	public function editAltName(){	
+		$id = $this->input->get('id');
+		$this->db->where('intPlantTypeId', $id);
+		$query = $this->db->get('tblPlantType');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+	 public function addAltName(){
+
+			$planttypecode=$this->input->post('txtPlantCode');
+			$planttypename=$this->input->post('txtPlantType');
+
+			$query="
+			insert into tblPlantType(strPlantTypeCode,strPlantTypeName) VALUES ('".$planttypecode."','".$planttypename."')
+
+			";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+    public function updateAltName(){
+    $id = $this->input->post('txtId');
+    $field = array(
+    'strPlantTypeCode'=>$this->input->post('txtePlantCode'),
+    'strPlantTypeName'=>$this->input->post('txtePlantType')
+    );
+    $this->db->where('intPlantTypeID', $id);
+    $this->db->update('tblPlantType', $field);
+    if($this->db->affected_rows() > 0){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+
+
+
 }?>
