@@ -108,7 +108,7 @@
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/Speciesauthor">Species Author</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/PlantType">Plant Type</a></li>
-                 <li><a href="<?php echo base_url(); ?>admin/Addspeciesalternatename">Add Species Alternate Name</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/SpeciesAltName">Species Alternate Name</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/Plantborrower">Plant Borrower</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>

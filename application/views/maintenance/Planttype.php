@@ -71,12 +71,13 @@
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                 <div class="form-group">
+                  <input type="hidden" name="txtId" value="0">
                     <label>Plant Code:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtPlantCode" id="strPlantCode" placeholder="Plant Code" class="form-control" >
+                    <input type="text" name="txtePlantCode" id="strPlantCode1" placeholder="Plant Code" class="form-control" >
                   </div>
                   <div class="form-group">
                     <label>Plant Type:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtPlantType" id="strPlantType" placeholder="Palnt Type" class="form-control" >
+                    <input type="text" name="txtePlantType" id="strPlantType1" placeholder="Palnt Type" class="form-control" >
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -96,7 +97,7 @@
               <thead>
                 <tr>
                   <!-- <th scope="col" width= "10%">Phylum ID</th> -->
-                  <th scope="col" width= "10%">Code</th>
+                  <th scope="col" width= "10%">Plant Code</th>
                   <th scope="col" width= "10%">Plant Type</th>
                   <th scope="col" width= "10%">Actions</th>
                 </tr>
@@ -116,9 +117,215 @@
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
 
-<script>
-function resetForm() {
-    document.getElementById("addPlantTypeForm").reset();
-}
+<script type="text/javascript">
 
-</script>
+    function showAllPlantType()
+        {
+          $('#managePlantTypetbl').dataTable().fnClearTable();
+          $('#managePlantTypetbl').dataTable().fnDraw();
+          $('#managePlantTypetbl').dataTable().fnDestroy();
+          $('#managePlantTypetbl').dataTable({
+            "autoWidth":false,
+              "processing": true,
+              "serverSide": false,
+              "sAjaxSource": "<?php echo base_url('admin/showAllPlantType')?>",
+              "deferLoading": 10,
+              "bPaginate": true,
+              "aaSorting": [[0,'asc']],
+              "fnInitComplete": function(){
+              }
+          });
+        }
+
+
+      $(document).ready(function(){ 
+
+    //show
+    showAllPlantType();
+
+$(document).on('click', '.ptype-edit', function(e){
+      var id = $(this).attr('data');
+      $('#myEditModal').modal('show');
+      $('#myEditModal').find('.modal-title').text('Edit Author');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/editPlantType',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtePlantCode]').val(data.strPlantTypeCode);
+          $('input[name=txtePlantType]').val(data.strPlantTypeName);
+          $('input[name=txtId]').val(data.intPlantTypeID);
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+
+  });
+
+$('#btnSave').click(function(event){
+      var url = '<?php echo base_url() ?>admin/addPlantType';
+      var data = $('#addPlantTypeForm').serialize();
+      //validate form
+      
+        if($('#strPlantCode').val()!=''){
+          if($('#strPlantType').val()!=''){
+            event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+                $.ajax({
+                type: 'ajax',
+                method: 'post',
+                url: url,
+                data: data,
+                async: false,
+                dataType: 'json',
+                success: function(response){
+                  if(response.success){
+                    if(response.type=='add'){
+                      var type = 'added'
+                    }else if(response.type=='update'){
+                      var type ="updated"
+                    }
+                    let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Plant Type has been saved.',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                    $('#managePlantTypetbl').dataTable().fnDestroy();
+                    showAllPlantType();
+                    $('#myModal').modal('hide');
+                     document.getElementById("addPlantTypeForm").reset();
+                    event.preventDefault();
+                    });
+                    
+                  }
+                },
+                error: function(){
+                  alert('Could not save Data');
+                }
+              });
+
+
+              }
+
+            })
+
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+          
+      }
+    });
+  
+$('#btnEditSave').click(function(event){
+      var data = $('#editPlantTypeForm').serialize();
+      
+        if($('#strPlantCode1').val()!=''){
+          if($('#strPlantType1').val()!=''){
+            event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+                $.ajax({
+                  type: 'ajax',
+                  method: 'post',
+                  url: '<?php echo base_url() ?>admin/updatePlantType',
+                  data: data,
+                  async: false,
+                  dataType: 'json',
+                  success: function(response){
+                    if(response.success){
+                      if(response.type=='add'){
+                        var type = 'added'
+                      }else if(response.type=='update'){
+                        var type ="updated"
+                      }
+                      let timerInterval
+                      swal({
+                        title: 'Saved',
+                        text: 'Plant Type has been saved.',
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                      }).then(function() {
+                        event.preventDefault();
+                        $('#managePlantTypetbl').dataTable().fnDestroy();
+                    showAllPlantType();
+                    $('#myEditModal').modal('hide');
+                    document.getElementById("editAuthorForm").reset();
+                    
+                      });
+                      
+                    }else{
+                      alert('Error');
+                    }
+                  },
+                  error: function(){
+                    alert('Could not update data');
+                  }
+                });
+
+              }
+
+            })
+
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+          }
+
+
+    });
+
+
+
+
+
+  });
+        </script>

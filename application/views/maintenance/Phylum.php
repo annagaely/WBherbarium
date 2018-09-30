@@ -323,7 +323,7 @@ function resetForm() {
                       let timerInterval
                       swal({
                         title: 'Saved',
-                        text: 'Your file has been saved.',
+                        text: 'Phylum has been saved.',
                         type: 'success',
                         timer: 1500,
                         showConfirmButton: false

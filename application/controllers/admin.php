@@ -853,7 +853,44 @@ public function Speciesauthor()
 	redirect(base_url().'admin');
 	}
 }
+public function showAllAuthor()
+{
 
+    $output = $this->admin_m->showAllAuthor();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+public function editAuthor(){
+	$result = $this->m->editAuthor();
+	echo json_encode($result);
+}
+
+public function addAuthor(){
+	$result = $this->m->addAuthor();
+	$msg['success'] = false;
+	$msg['type'] = 'add';
+	if($result){
+		$msg['success'] = true;
+	}
+	echo json_encode($msg);
+}
+public function updateAuthor(){
+$result = $this->m->updateAuthor();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
 public function PlantType()
 {
 	if($this->session->userdata('strUsername')!=''){
@@ -866,8 +903,49 @@ public function PlantType()
 	redirect(base_url().'admin');
 	}
 }
+public function showAllPlantType()
+{
 
-public function Addspeciesalternatename()
+    $output = $this->admin_m->showAllPlantType();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+public function editPlantType(){
+	$result = $this->m->editPlantType();
+	echo json_encode($result);
+}
+public function addPlantType(){
+	$result = $this->m->addPlantType();
+	$msg['success'] = false;
+	$msg['type'] = 'add';
+	if($result){
+		$msg['success'] = true;
+	}
+	echo json_encode($msg);
+}
+
+public function updatePlantType(){
+$result = $this->m->updatePlantType();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+
+
+
+	
+public function SpeciesAltName()
 {
 	if($this->session->userdata('strUsername')!=''){
 		$title['title'] = "PUPHerbarium | Add Species Alternate Name";
@@ -879,6 +957,45 @@ public function Addspeciesalternatename()
 	redirect(base_url().'admin');
 	}
 }
+public function showAllAltName()
+{
+
+    $output = $this->admin_m->showAllAltName();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+public function editAllAltName(){
+	$result = $this->m->editAllAltName();
+	echo json_encode($result);
+}
+public function addAltName(){
+	$result = $this->m->addAltName();
+	$msg['success'] = false;
+	$msg['type'] = 'add';
+	if($result){
+		$msg['success'] = true;
+	}
+	echo json_encode($msg);
+}
+
+public function updateAltName(){
+$result = $this->m->updateAltName();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+
 
 public function Plantborrower()
 {
@@ -1459,6 +1576,7 @@ public function showExValAll()
           exit();
     }
 
+
 public function EVSendMail()
 {
     $config = Array(
@@ -1493,4 +1611,5 @@ $message = $this->input->post('txtCustomMessage');
 
  }
 }
+
 }?>
