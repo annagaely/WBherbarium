@@ -109,7 +109,7 @@ class user extends CI_Controller {
 				$this->session->set_userdata($session_data);
 				redirect(base_url().'user/home');
 			}else{
-				$this->session->set_flashdata('error','Invalid Username and Password');
+				$this->session->set_flashdata('error','Invalid Username or Password');
 				redirect(base_url().'user/index');
 			}
 		}

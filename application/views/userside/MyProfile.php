@@ -187,6 +187,7 @@
       </div>
     </div>
   </div>
+</div>
 <script>
 function showNav() {
 document.getElementById("navi").style.display = 'block';

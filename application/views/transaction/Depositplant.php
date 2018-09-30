@@ -1,4 +1,4 @@
-<style>
+ <style>
 /* Style the tab */
 .tab {
     overflow: hidden;
