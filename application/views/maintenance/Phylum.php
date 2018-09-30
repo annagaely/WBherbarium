@@ -249,7 +249,7 @@ function resetForm() {
                     document.getElementById("addPhylumForm").reset();
                     event.preventDefault();
                     });
-                    
+
                   }
                 },
                 error: function(){
@@ -332,9 +332,9 @@ function resetForm() {
                     showAllPhylum();
                     $('#myEditModal').modal('hide');
                     document.getElementById("editPhylumForm").reset();
-                    
+
                       });
-                      
+
                     }else{
                       alert('Error');
                     }

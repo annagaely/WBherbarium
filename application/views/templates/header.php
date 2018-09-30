@@ -18,6 +18,7 @@
     <meta name="robots" content="all,follow">
     <!--PREMIUM-->
     <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome CSS-->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/font-awesome/css/font-awesome.min.css">
@@ -34,9 +35,10 @@
   <!-- Custom Scrollbar-->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
   <!-- theme stylesheet-->
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/distribution/css/style.default.css" id="theme-stylesheet">
+  <!-- theme stylesheet-->
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/css/style.default.premium.css" id="theme-stylesheet">
   <!-- Custom stylesheet - for your changes-->
-<link rel="stylesheet" href="<?php echo base_url();?>assets/css/custom.css">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/css/custom.css">
     <!--END PREMIUM-->
 
 
@@ -130,7 +132,7 @@
              <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
-                
+
                 <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
@@ -143,7 +145,7 @@
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
-                
+
 
                 </li>
               </ul>

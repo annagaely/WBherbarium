@@ -11,7 +11,7 @@
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <div class="view">
-                    <img class="d-block w-100" style="height: 50vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner.jpg" alt="First slide">
+                    <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner.jpg" alt="First slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">
@@ -22,7 +22,7 @@
             <div class="carousel-item">
             <!--Mask color-->
                 <div class="view">
-                    <img class="d-block w-100" style="height: 50vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner2.jpg" alt="Second slide">
+                    <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner2.jpg" alt="Second slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">
@@ -33,7 +33,7 @@
             <div class="carousel-item">
                 <!--Mask color-->
                 <div class="view">
-                    <img class="d-block w-100" style="height: 50vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner3.jpg" alt="Third slide">
+                    <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner3.jpg" alt="Third slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">

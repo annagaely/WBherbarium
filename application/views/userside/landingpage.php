@@ -1,3 +1,16 @@
+<div class="preloader-wrapper big active crazy">
+  <div class="spinner-layer spinner-blue-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div>
+    <div class="gap-patch">
+      <div class="circle"></div>
+    </div>
+    <div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
 <!--Carousel Wrapper-->
     <div id="carousel-example-2" class="carousel slide carousel-fadev h-100" data-ride="carousel">
         <!--Indicators-->

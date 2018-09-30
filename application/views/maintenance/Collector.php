@@ -397,3 +397,14 @@ $('#btnEditSave').click(function(){
 
     });
 </script>
+<div class="card">
+                <div class="card-header">Folding circle</div>
+                <div class="card-body d-flex justify-content-center pt-5 pb-5">
+                  <div class="sk-folding-cube">
+                    <div class="sk-cube1 sk-cube"></div>
+                    <div class="sk-cube2 sk-cube"></div>
+                    <div class="sk-cube4 sk-cube"></div>
+                    <div class="sk-cube3 sk-cube"></div>
+                  </div>
+                </div>
+              </div>

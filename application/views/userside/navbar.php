@@ -37,13 +37,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Collection" data-offset="90">Collection</a>
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/CollectionUser" data-offset="90">Collection</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Contact" data-offset="90">Contact</a>
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/ContactUser" data-offset="90">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Queries" data-offset="90">Queries</a>
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/QueriesUser" data-offset="90">Queries</a>
             </li>
 
           </ul>
