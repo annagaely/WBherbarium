@@ -67,7 +67,7 @@
           </div>
           <div class="card-body">
             <h4 class="card-title">Angiosperms</h4>
-            <p class="card-text">Floweing Plants.</p>
+            <p class="card-text">Flowering Plants.</p>
             <button type="button" class="btn btn-light-blue btn-md">Read more</button>
           </div>
         </div>
@@ -82,7 +82,7 @@
           </div>
           <div class="card-body">
             <h4 class="card-title">Gymnosperms</h4>
-            <p class="card-text">Conifers, cycads and allies.</p>
+            <p class="card-text">Vascular plants.</p>
               <button type="button" class="btn btn-light-blue btn-md">Read more</button>
             </div>
           </div>
@@ -96,8 +96,8 @@
             </a>
           </div>
           <div class="card-body">
-            <h4 class="card-title">Pteridophytes</h4>
-            <p class="card-text">Ferns and fern allies.</p>
+            <h4 class="card-title">Algae</h4>
+            <p class="card-text">Unicellular or multicellular.</p>
             <button type="button" class="btn btn-light-blue btn-md">Read more</button>
           </div>
         </div>
@@ -124,7 +124,7 @@
       <div class="card-header">
         <h2 class="h2-responsive">Discover</h2>
       </div>
-      <div class="card-body px-5">
+      <div class="card-body px-4">
         <div class="row">
           <div class="col-md-6">
             <div class="row">
@@ -132,7 +132,7 @@
                 <h5 class="h5-responsive">Enter rank above the level of Genus:</h5>
                 <form class="form-inline">
                   <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Phylum, Class, Order, Family" aria-label="Search">
-                  <button type="button" class="btn btn-outline-primary waves-effect" style="padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">Search</button>
+                  <button type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">Search</button>
                 </form>
               </div>
             </div>
@@ -141,7 +141,7 @@
                 <h5 class="h5-responsive">Enter a Genus Name:</h5>
                 <form class="form-inline">
                   <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Acacia, Pinus" title="Refers to general type of plants" aria-label="Search">
-                  <button type="button" class="btn btn-outline-primary waves-effect" style="padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">Search</button>
+                  <button type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">Search</button>
                 </form>
               </div>
             </div>
@@ -150,7 +150,7 @@
                 <h5 class="h5-responsive">Enter a Specie Name:</h5>
                 <form class="form-inline">
                   <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Indicus, Purpurea" title="Refers to a group of closely related plants" aria-label="Search">
-                  <button type="button" class="btn btn-outline-primary waves-effect" style="padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">Search</button>
+                  <button type="button" class="btn btnsearch btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">Search</button>
                 </form>
               </div>
             </div>

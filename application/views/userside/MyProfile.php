@@ -80,8 +80,8 @@
                     <div class="md-form">
                       <div class="row">
                         <div class="col-md-8">
-                          <input type="text" id="strLastName" name="txtlastname" class="form-control" required autofocus>
-                          <label for="strLastName" class="font-weight-light ml-3">Last Name<span style="color: red"> *</span></label>
+                          <input type="text" id="strLastName" name="txtlastname" class="ml-5 form-control" required autofocus>
+                          <label for="strLastName" class="font-weight-light ml-5">Last Name<span style="color: red"> *</span></label>
                         </div>
                         <div class="col-md-4">
                           <input type="text" id="strNameSuffix" name="txtnamesuffix" class="form-control" autofocus>
