@@ -1372,7 +1372,7 @@ UPDATE tblHerbariumStaff
 
 	public function editAccounts(){
 		$id = $this->input->get('id');
-		$this->db->where('intAccountID', $id);
+		$this->db->where('intStaffID', $id);
 		$query = $this->db->select('*')
 			->get('viewAccounts');
 		if($query->num_rows() > 0){
@@ -1386,12 +1386,12 @@ public function updateAccounts(){
 	$staffname = $this->input->post('eStaffName');
 	$username = $this->input->post('eAAUName');
 	$password = $this->input->post('eAAPass');
-	$accountid = $this->input->post('txtId');
+	$staffid = $this->input->post('txtId');
 
 
 	$query="
 
-	DECLARE @accountID 		INT;
+	DECLARE @staffID 		INT;
 	DECLARE @staffName		VARCHAR(MAX);
 	DECLARE @username		VARCHAR(50);
 	DECLARE @password		VARCHAR(50);
@@ -1399,17 +1399,14 @@ public function updateAccounts(){
 	Set @staffName ='$staffname'
 	Set @username ='$username'
 	Set @password ='$password'
-	Set @accountID ='$accountid'
+	Set @staffID ='$staffid'
 
-	DECLARE @staffID INT;
-
-		SET @staffID = (SELECT intStaffID FROM viewHerbariumStaff WHERE strFullName = @staffName);
 
 		UPDATE tblAccounts
 		SET intStaffID = @staffID,
 			strUsername = @username,
 			strPassword = @password
-		WHERE intAccountID = @accountID;
+		WHERE intStaffID = @staffID;
 	";
 		if($this->db->query($query)){
 			return true;
