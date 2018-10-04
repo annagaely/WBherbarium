@@ -1611,5 +1611,9 @@ $message = $this->input->post('txtCustomMessage');
 
  }
 }
-
+public function showAllExValidators()
+{
+	$result = $this->m->showAllExValidators();
+	echo json_encode($result);
+}
 }?>

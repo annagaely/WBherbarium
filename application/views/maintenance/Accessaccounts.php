@@ -262,7 +262,7 @@ $(document).on('click', '.account-edit', function(){
         success: function(data){
           $('input[name=eAAUName]').val(data.strUsername);
           $('input[name=eAAPass]').val(data.strPassword);
-          $('input[name=txtId]').val(data.intAccountID);
+          $('input[name=txtId]').val(data.intStaffID);
           $('#myEditModal').find('.modal-title').text('Editing: '+data.strFullName+'');
         },
         error: function(){
@@ -275,6 +275,7 @@ $(document).on('click', '.account-edit', function(){
 
 $('#btnEditSave').click(function(){
       var data = $('#editAccountForm').serialize();
+
         $.ajax({
           type: 'ajax',
           method: 'post',

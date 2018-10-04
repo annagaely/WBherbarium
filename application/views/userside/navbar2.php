@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
-     
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
 </head>
@@ -58,7 +58,7 @@
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Contact" data-offset="90">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Queries" data-offset="90">Queries</a>
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/FAQs" data-offset="90">FAQs</a>
             </li>
 
           </ul>
@@ -71,12 +71,12 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
-                    <i class="fa fa-user"></i>
+                    <i class="fas fa-user-circle fa-lg"></i>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="<?php echo base_url()?>user/Profile">Profile</a>
-                    <a class="dropdown-item" href="<?php echo base_url()?>user/Collection">Settings</a>
-                    <a class="dropdown-item" href="<?php echo base_url()?>user/logout">Logout</a>
+                    <a class="dropdown-item" href="<?php echo base_url()?>user/Settings"><i class="fas fa-cog"></i> Settings</a>
+                    <a class="dropdown-item" href="<?php echo base_url()?>user/ActivityLog"><i class="fas fa-list-ul"></i> Activiy Log</a>
+                    <a class="dropdown-item" href="<?php echo base_url()?>user/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 </div>
               </li>
             </ul>

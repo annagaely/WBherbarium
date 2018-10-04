@@ -28,15 +28,25 @@
               </div>
               <div class="modal-body">
                 <form id= "addSpeciesForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
+<!--                  <div class="form-group">
+                    <label>Author Name:</label> <label style="color: red">*</label>
+                    <input id="authorName" type="text" name="txtaName" placeholder="Author's Name" class="form-control">
+                  </div> --> 
+                <div class="form-group">
+                    <label>Author Name:</label> <label style="color: red">*</label>
+                     <input list="authorname" name ="txtaID"  class="form-control" autocomplete="off">
+                     <datalist id ='authorname'>
+                     </datalist>
+                  </div>
                   <div class="form-group">
                     <label>Genus Name:</label> <label style="color: red">*</label>
-                     <input list="genusname" name ="txtgID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <input list="genusname" name ="txtgID"  class="form-control" autocomplete="off">
                      <datalist id ='genusname'>
                      </datalist>
                   </div>
                   <div class="form-group">
                     <label>Species Name:</label> <label style="color: red">*</label>
-                    <input id="speciesName" type="text" name="txtsName" placeholder="Family Name" class="form-control">
+                    <input id="speciesName" type="text" name="txtsName" placeholder="Species Name" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Common Name:</label> <label style="color: red">*</label>
