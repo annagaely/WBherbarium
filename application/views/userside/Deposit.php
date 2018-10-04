@@ -60,7 +60,7 @@
               <p class="font-weight-light">
                 Desired Date of Deposit:<span style="color: red" > *</span>
               </p>
-              <input type="date" name="txtDateDesired" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" value=""  required>
+              <input type="date" name="txtDateDesired" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" value="" required >
               <div class="invalid-feedback">
                 Please choose a date of deposit.
               </div>
@@ -143,3 +143,5 @@ window.addEventListener('load', function() {
 }, false);
 })();
 </script>
+
+<!--  -->

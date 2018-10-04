@@ -79,17 +79,16 @@
                         <input type="password" id="defaultForm-pass" name="loginPassword" class="form-control validate">
                         <label for="defaultForm-pass">Your password</label>
                         <span class="text-danger"><?php echo form_error('loginPassword');?></span>
-                          <center>Doesn't have an account yet? Register <a href="<?php echo base_url(); ?>user/Register">here.</a></center>
-
+                          <center>Doesn't have an account yet? Register <a href="<?php echo base_url(); ?>user/Register">here.</a>
+                          </center>
                     </div>
                 </div>
+             <center> <?php echo '<span class="text-danger">'.$this->session->flashdata("error"); ?> </center>
                 <div class="modal-footer d-flex justify-content-center">
                   <button class="btn btn-danger" type="reset">Reset</button>
                   <!--<a href="<?php echo base_url()?>user/Home"><button class="btn btn-primary">Login</button></a>-->
                   <button class="btn btn-primary" type="submit" name="insert" value="Login">Login</button>
-                  <?php
-                   echo '<span class="text-danger">'.$this->session->flashdata("error");
-                  ?>
+                  
                 </div>
               </form>
             </div>
