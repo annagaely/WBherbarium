@@ -17,10 +17,10 @@
              Manila, Philippines 1016 <br>
              <br>
              <strong>PUP HERBARIUM CENTER</strong><br>
-             South Wing, Room 403-B
-        </p>
-
-
+             South Wing, Room 403-B<br>
+             9:00 AM - 8:00 PM
+        
+        </p> 
         </div>
         <!-- Grid column -->
 
@@ -30,20 +30,23 @@
         <div class="col-md-2 mx-auto">
 
           <!-- Links -->
-          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Get Started</h5>
 
           <ul class="list-unstyled">
             <li>
-              <a href="#!">Link 1</a>
+              <a href="<?php echo base_url(); ?>user/Collection">Collection</a>
             </li>
             <li>
-              <a href="#!">Link 2</a>
+              <a href="<?php echo base_url(); ?>user/Deposits">Deposit Specimen</a>
             </li>
             <li>
-              <a href="#!">Link 3</a>
+              <a href="<?php echo base_url(); ?>user/appointment">Visit Herbarium Center</a>
             </li>
             <li>
-              <a href="#!">Link 4</a>
+              <a href="<?php echo base_url(); ?>user/contact">Contact</a>
+            </li>
+            <li>
+              <a href="<?php echo base_url(); ?>user/faq">FAQs</a>
             </li>
           </ul>
 
@@ -56,21 +59,17 @@
         <div class="col-md-2 mx-auto">
 
           <!-- Links -->
-          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">&nbsp</h5>
 
           <ul class="list-unstyled">
-            <li>
-              <a href="#!">Link 1</a>
-            </li>
-            <li>
-              <a href="#!">Link 2</a>
-            </li>
-            <li>
+
+
+<!--             <li>
               <a href="#!">Link 3</a>
             </li>
             <li>
               <a href="#!">Link 4</a>
-            </li>
+            </li> -->
           </ul>
 
         </div>
@@ -82,7 +81,7 @@
         <div class="col-md-2 mx-auto">
 
           <!-- Links -->
-          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Contact Us</h5>
 
           <ul class="list-unstyled">
             <li>

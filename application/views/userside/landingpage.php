@@ -251,16 +251,13 @@
 
 <!-- Projects section v.3 -->
 <!-- Section: Features v.1 -->
-<section class="text-center mt-4">
+<!-- <section class="text-center mt-4">
 
-  <!-- Section heading -->
   <h2 class="h1-responsive font-weight-bold text-center my-5">Articles</h2>
-  <!-- Section description -->
 
-  <!-- Grid row -->
   <div class="row">
 
-    <!-- Grid column -->
+  
     <div class="col-md-12 mb-0">
       <div class="card card-image" style="background-image: url('<?php echo base_url();?>assets/bower_components/puno1.jpg'); background-repeat: no-repeat; background-size: cover;">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
@@ -276,14 +273,12 @@
         </div>
       </div>
     </div>
-    <!-- Grid column -->
 
-    <!-- Grid column -->
 
   </div>
-  <!-- Grid row -->
 
-</section>
+
+</section> -->
 
 <!-- Card -->
 <section class="text-center mx-5 pl-5 py-5" >
