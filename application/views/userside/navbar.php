@@ -43,7 +43,7 @@
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/ContactUser" data-offset="90">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/QueriesUser" data-offset="90">Queries</a>
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/FAQsUser" data-offset="90">FAQs</a>
             </li>
 
           </ul>

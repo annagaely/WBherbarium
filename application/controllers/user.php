@@ -17,14 +17,14 @@ class user extends CI_Controller {
 		$this->load->view('userside/landingpage');
 		$this->load->view('userside/footer');
 	}
-	public function queriesUser()
+	public function FAQsUser()
 	{
 		$title['title'] = "PUPHerbarium | FAQ";
 		$this->load->view('userside/navbar', $title);
 		$this->load->view('userside/Faq');
 		$this->load->view('userside/footer');
 	}
-  public function queries()
+  public function FAQs()
 	{
 		$title['title'] = "PUPHerbarium | FAQ";
 		$this->load->view('userside/navbar2', $title);

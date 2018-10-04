@@ -58,7 +58,7 @@
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Contact" data-offset="90">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Queries" data-offset="90">Queries</a>
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/FAQs" data-offset="90">FAQs</a>
             </li>
 
           </ul>
