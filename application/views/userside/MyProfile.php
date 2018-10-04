@@ -24,13 +24,13 @@
           <div class="card card-body">
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade active show" id="viewprofile" role="tabpanel">
-                <h3 class="card-title">Viewing of Account</h3>
+                <h3 class="card-header">Viewing of Account</h3>
               </div>
 
 
 <!--   ACCOUNT -->
               <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
-                <h3 class="card-title">Account</h3>
+                <h3 class="card-header">Account</h3>
                 <form name="myaccForm" class="needs-validation" id= "myaccForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
                       <div class="md-form">
                         <div class="row">
@@ -62,7 +62,7 @@
 <!--   PROFILE -->
 
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <h3 class="card-title">Profile</h3>
+                <h3 class="card-header">Profile</h3>
                 <form name="profileform" class="needs-validation" id= "myprofileForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
                   <div class="md-form">
                       <div class="row">
@@ -140,7 +140,7 @@
 
 <!--   PASSWORD  -->
               <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
-                <h3 class="card-title">Password</h3>
+                <h3 class="card-header">Password</h3>
                 <form name="myPasswordForm" class="needs-validation" id= "myPasswordForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
                 <div class="md-form">
                 <div class="row">

@@ -184,7 +184,7 @@ public function userRegister(){
 
 	}
 
-  public function Profile() {
+  public function Settings() {
   	if($this->session->userdata('strUserName')!=''){
 
     $title['title'] = "PUPHerbarium | Profile";
@@ -249,5 +249,17 @@ public function userRegister(){
 
 		echo json_encode($msg);
 }
+	public function ActivityLog() {
+		if($this->session->userdata('strUserName')!=''){
 
+    $title['title'] = "PUPHerbarium | Activity Log";
+		$this->load->view('userside/navbar2', $title);
+		$this->load->view('userside/ActivityLog');
+		$this->load->view('userside/footer');
+  }
+
+  else{
+	redirect(base_url().'user/index');
+	}
+	}
 }?>

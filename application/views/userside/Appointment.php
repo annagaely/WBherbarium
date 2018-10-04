@@ -1,4 +1,4 @@
-<img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/calendar.jpg" style="height: 50vh; width: 100%;"  class="banner">
+<img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/calendar.jpg" style="height: 60vh; width: 100%;"  class="banner">
 <div class="row">
   <div class="col-md-5 py-5">
     <div class=" pl-5">
@@ -12,7 +12,7 @@
               <div class="row">
                 <div class="col-md-5 pl-4">
                   <p class="font-weight-light">Date of Visit:<span style="color: red"> *</span></p>
-                  <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px;">
+                <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px;">
                 </div>
                 <div class="col-md-7 pl-4">
                   <p class="font-weight-light mb-0">Purpose of Visit:<span style="color: red"> *</span></p>
