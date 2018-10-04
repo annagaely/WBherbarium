@@ -263,47 +263,47 @@
           </div>
           <div class="row">
               <div class="col-md-6 col-lg-4 item">
-                  <a class="lightbox" href="../img/image1.jpg">
+                  <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/gallery/img/image1.jpg">
                       <img class="img-fluid image scale-on-hover" src="../img/image1.jpg">
                   </a>
               </div>
               <div class="col-md-6 col-lg-4 item">
-                  <a class="lightbox" href="../img/image2.jpg">
+                  <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/gallery/img/image2.jpg">
                       <img class="img-fluid image scale-on-hover" src="../img/image2.jpg">
                   </a>
               </div>
               <div class="col-md-6 col-lg-4 item">
-                  <a class="lightbox" href="../img/image3.jpg">
+                  <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/gallery/img/image3.jpg">
                       <img class="img-fluid image scale-on-hover" src="../img/image3.jpg">
                   </a>
               </div>
               <div class="col-md-6 col-lg-4 item">
-                  <a class="lightbox" href="../img/image4.jpg">
+                  <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/gallery/img/image4.jpg">
                       <img class="img-fluid image scale-on-hover" src="../img/image4.jpg">
                   </a>
               </div>
               <div class="col-md-6 col-lg-4 item">
-                  <a class="lightbox" href="../img/image5.jpg">
+                  <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/gallery/img/image5.jpg">
                       <img class="img-fluid image scale-on-hover" src="../img/image5.jpg">
                   </a>
               </div>
               <div class="col-md-6 col-lg-4 item">
-                  <a class="lightbox" href="../img/image6.jpg">
+                  <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/gallery/img/image6.jpg">
                       <img class="img-fluid image scale-on-hover" src="../img/image6.jpg">
                   </a>
               </div>
               <div class="col-md-6 col-lg-4 item">
-                  <a class="lightbox" href="../img/image7.jpg">
+                  <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/gallery/img/image7.jpg">
                       <img class="img-fluid image scale-on-hover" src="../img/image7.jpg">
                   </a>
               </div>
               <div class="col-md-6 col-lg-4 item">
-                  <a class="lightbox" href="../img/image8.jpg">
+                  <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/gallery/img/image8.jpg">
                       <img class="img-fluid image scale-on-hover" src="../img/image8.jpg">
                   </a>
               </div>
               <div class="col-md-6 col-lg-4 item">
-                  <a class="lightbox" href="../img/image9.jpg">
+                  <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/gallery/img/image9.jpg">
                       <img class="img-fluid image scale-on-hover" src="../img/image9.jpg">
                   </a>
               </div>
