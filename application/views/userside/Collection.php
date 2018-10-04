@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
 <!--Carousel Wrapper-->
     <div id="carousel-example-2" class="carousel slide carousel-fadev h-100" data-ride="carousel">
         <!--Indicators-->
@@ -162,3 +164,149 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+
+      <div id="mdb-lightbox-ui"></div>
+
+      <div class="mdb-lightbox no-margin">
+
+        <figure class="col-md-4">
+          <a class="black-text" href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(121).jpg"
+            data-size="1600x1067">
+            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(121).jpg"
+              class="img-fluid">
+            <h3 class="text-center my-3">Photo title</h3>
+          </a>
+        </figure>
+
+        <figure class="col-md-4">
+          <a class="black-text" href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(96).jpg"
+            data-size="1600x1067">
+            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(96).jpg"
+              class="img-fluid" />
+            <h3 class="text-center my-3">Photo title</h3>
+          </a>
+        </figure>
+
+        <figure class="col-md-4">
+          <a class="black-text" href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(104).jpg"
+            data-size="1600x1067">
+            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(104).jpg"
+              class="img-fluid" />
+            <h3 class="text-center my-3">Photo title</h3>
+          </a>
+        </figure>
+
+        <figure class="col-md-4">
+          <a class="black-text" href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(45).jpg"
+            data-size="1600x1067">
+            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(45).jpg"
+              class="img-fluid" />
+            <h3 class="text-center my-3">Photo title</h3>
+          </a>
+        </figure>
+
+        <figure class="col-md-4">
+          <a class="black-text" href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(122).jpg"
+            data-size="1600x1067">
+            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(122).jpg"
+              class="img-fluid" />
+            <h3 class="text-center my-3">Photo title</h3>
+          </a>
+        </figure>
+
+        <figure class="col-md-4">
+          <a class="black-text" href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(115).jpg"
+            data-size="1600x1067">
+            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(115).jpg"
+              class="img-fluid" />
+            <h3 class="text-center my-3">Photo title</h3>
+          </a>
+        </figure>
+
+        <figure class="col-md-4">
+          <a class="black-text" href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(125).jpg"
+            data-size="1600x1067">
+            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(125).jpg"
+              class="img-fluid" />
+            <h3 class="text-center my-3">Photo title</h3>
+          </a>
+        </figure>
+
+        <figure class="col-md-4">
+          <a class="black-text" href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(115).jpg"
+            data-size="1600x1067">
+            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(115).jpg"
+              class="img-fluid" />
+            <h3 class="text-center my-3">Photo title</h3>
+          </a>
+        </figure>
+
+        <figure class="col-md-4">
+          <a class="black-text" href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(119).jpg"
+            data-size="1600x1067">
+            <img alt="picture" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(119).jpg"
+              class="img-fluid" />
+            <h3 class="text-center my-3">Photo title</h3>
+          </a>
+        </figure>
+
+      </div>
+
+    </div>
+  </div>
+  <section class="gallery-block grid-gallery">
+      <div class="container">
+          <div class="heading">
+              <h2>Grid Gallery</h2>
+          </div>
+          <div class="row">
+              <div class="col-md-6 col-lg-4 item">
+                  <a class="lightbox" href="../img/image1.jpg">
+                      <img class="img-fluid image scale-on-hover" src="../img/image1.jpg">
+                  </a>
+              </div>
+              <div class="col-md-6 col-lg-4 item">
+                  <a class="lightbox" href="../img/image2.jpg">
+                      <img class="img-fluid image scale-on-hover" src="../img/image2.jpg">
+                  </a>
+              </div>
+              <div class="col-md-6 col-lg-4 item">
+                  <a class="lightbox" href="../img/image3.jpg">
+                      <img class="img-fluid image scale-on-hover" src="../img/image3.jpg">
+                  </a>
+              </div>
+              <div class="col-md-6 col-lg-4 item">
+                  <a class="lightbox" href="../img/image4.jpg">
+                      <img class="img-fluid image scale-on-hover" src="../img/image4.jpg">
+                  </a>
+              </div>
+              <div class="col-md-6 col-lg-4 item">
+                  <a class="lightbox" href="../img/image5.jpg">
+                      <img class="img-fluid image scale-on-hover" src="../img/image5.jpg">
+                  </a>
+              </div>
+              <div class="col-md-6 col-lg-4 item">
+                  <a class="lightbox" href="../img/image6.jpg">
+                      <img class="img-fluid image scale-on-hover" src="../img/image6.jpg">
+                  </a>
+              </div>
+              <div class="col-md-6 col-lg-4 item">
+                  <a class="lightbox" href="../img/image7.jpg">
+                      <img class="img-fluid image scale-on-hover" src="../img/image7.jpg">
+                  </a>
+              </div>
+              <div class="col-md-6 col-lg-4 item">
+                  <a class="lightbox" href="../img/image8.jpg">
+                      <img class="img-fluid image scale-on-hover" src="../img/image8.jpg">
+                  </a>
+              </div>
+              <div class="col-md-6 col-lg-4 item">
+                  <a class="lightbox" href="../img/image9.jpg">
+                      <img class="img-fluid image scale-on-hover" src="../img/image9.jpg">
+                  </a>
+              </div>
+          </div>
+      </div>
+  </section>
