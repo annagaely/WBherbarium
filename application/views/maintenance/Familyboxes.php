@@ -124,8 +124,7 @@
     <div class="table-responsive">
       <table class="table dataTable no-footer" id="manageFamBoxtbl">
               <thead>
-<!--                 <tr>
-                  <th scope="col" width= "10%">Box ID</th> -->
+                <tr>
                   <th scope="col" width= "10%">Family Name</th>
                   <th scope="col" width= "10%">Rack Number</th>
                   <th scope="col" width= "10%">Rack Row</th>
