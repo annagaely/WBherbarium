@@ -1025,7 +1025,6 @@ if($fname!=''){
     {
       $btn = '<button class="btn btn-primary validator-edit" data="'.$r->intValidatorID.'"><i class="far fa-edit"></i></button>';
   $result[] = array(
-        $r->intValidatorID,
         $r->strFullName,
         $r->strInstitution,
         $btn,
@@ -2186,7 +2185,7 @@ public function showExValOkay(){
 
 		from tblPlantDeposit pd join tblCollector cl
 		on pd.intCollectorID = cl.intCollectorID
-		where strStatus= 'For External Validation'");
+		where strStatus= 'Sent External Validation'");
 
 
 		foreach ($query->result() as $r)
@@ -2498,7 +2497,18 @@ public function showAllAltName()
       return false;
     }
   }
-
+	public function showAllExValidators(){
+		$query = $this->db->select("intValidatorID,
+     Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName,
+			 strInstitution")
+		->where('strValidatorType','External')
+			->get('tblValidator');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
 
 
 

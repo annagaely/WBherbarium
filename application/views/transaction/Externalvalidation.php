@@ -138,6 +138,13 @@
             <form id= "viewEVForm" method="POST" enctype="multipart/form-data">
                  
               <div class = "row">
+                <div class="col-sm-6">
+                  <label><strong> Select Photos of the Specimen</strong></label>
+                  <input type="file" name="userfile[]" accept=".jpeg,.jpg,.png" multiple  />
+                </div>
+              </div>
+<hr>
+              <div class = "row">
                   <div class="col-sm-6" >
                         <label style="font-size: 14px;">Accession Number:</label>
                         <input type="hidden" name="txtId" id="txtID" value="0">
@@ -187,7 +194,18 @@
                        <label style="font-size: 14px;">Description:</label>
                        <textarea name="txtDescription" class="form-control" id="strDescription" disabled=""></textarea> 
                      </div>
-           
+                    <hr>
+
+              <div class = "row">
+                <div class="col-sm-6">
+                  <label><strong> Select Where to send the Specimen</strong></label>
+                 <select name = 'externalvalidator' id='externalvalidators' class='form-control'>
+                   <?php 
+
+                   ?>
+                 </select>
+                </div>
+              </div>
 
                    <div class="form-group">
                      <div class="modal-footer">
@@ -341,6 +359,27 @@
     //show
     showExValPending();
 
+showAllExValidators();
+
+     function showAllExValidators(){
+     $.ajax({
+       type: 'ajax',
+       url: '<?php echo base_url() ?>admin/showAllExValidators',
+       async: false,
+       dataType: 'json',
+       success: function(data){
+         var html = '';
+         var i;
+         for(i=0; i<data.length; i++){
+           html +='<option value="'+data[i].intValidatorID+'">'+data[i].strFullName+' from '+data[i].strInstitution+'</option>';
+         }
+         $('#externalvalidators').html(html);
+       },
+       error: function(){
+         alert('Could not get Data from Database');
+       }
+     });
+   };
     });
 
 $(document).on('click', '.view-EVPending', function(){
