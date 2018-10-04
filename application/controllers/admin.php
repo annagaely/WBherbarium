@@ -1598,7 +1598,7 @@ $message = $this->input->post('txtCustomMessage');
       $this->email->set_newline("\r\n");
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
-      $this->email->subject('PUP Herbarium Depositing of Specimen');
+      $this->email->subject('GRRRR IVERIFY MO YAN O SOMBONG KITA KAY MAMA');
       $this->email->message("Your deposit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Deposit Request ID:"  . $id ."<br> <br>" ."Date of Appointment: ".$date. "<br> <br>" .$message );
 
       if($this->email->send())
@@ -1616,4 +1616,115 @@ public function showAllExValidators()
 	$result = $this->m->showAllExValidators();
 	echo json_encode($result);
 }
+public function exvalchangestatus(){
+$this->m->updateEVStatus();
+}
+
+public function SendtoExValidator(){
+	        $result = $_POST['externalvalidator'];
+            $result_explode = explode('|', $result);
+
+
+
+    $this->load->helper('file');
+	$path= './uploads/'. uniqid('attachment-', TRUE).'/';
+	mkdir($path);
+		$data = array();
+        $cpt = count($_FILES['userfile']['name']);
+        for($i=0; $i < $cpt; $i++)
+        {
+            unset($config);
+            $config = array();
+            $config['upload_path']   = $path;
+            $config['allowed_types'] = 'gif|jpeg|jpg|png';
+            $config['max_size'] = '100000';
+            $config['overwrite'] = TRUE;
+            $config['remove_spaces'] = FALSE;
+            $config['file_name'] = $_FILES['userfile']['name'][$i];
+
+            $_FILES['f']['name'] =  $_FILES['userfile']['name'][$i];
+            $_FILES['f']['type'] = $_FILES['userfile']['type'][$i];
+            $_FILES['f']['tmp_name'] = $_FILES['userfile']['tmp_name'][$i];
+            $_FILES['f']['error'] = $_FILES['userfile']['error'][$i];
+            $_FILES['f']['size'] = $_FILES['userfile']['size'][$i];
+
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);            
+            if (!$this->upload->do_upload('f'))
+            {
+                $data['errors'] = $this->upload->display_errors();
+                //lagyan ng attach saemail//
+
+            }
+            else
+            {
+                $data['errors'] = "SUCCESS";
+
+            }
+        }
+
+
+			$config = Array(
+  'protocol' => 'smtp',
+  'smtp_host' => 'ssl://smtp.googlemail.com',
+  'smtp_port' => 465,
+  'smtp_user' => 'WBHerbariumTA@gmail.com', // change it to yours
+  'smtp_pass' => 'WBHerbarium2018', // change it to yours
+  'mailtype' => 'html',
+  'charset' => 'iso-8859-1',
+  'wordwrap' => TRUE
+);
+		    $this->load->library('email', $config);
+		    $this->email->set_newline("\r\n");
+		     $this->email->from('WBHerbariumTA@gmail.com');
+		    $this->email->to($result_explode[1]);
+		    $this->email->subject('TANGINAMo');
+           
+            $handle=opendir($path);
+            while (($file = readdir($handle))) 
+                  {
+                       if(strlen($file)>3)
+                           $this->email->attach($path.$file);
+                  }
+            closedir($handle);
+	        if($this->email->send())
+	        {
+	        		//nagsend here
+
+			//dedelete yung files
+	        $handle=opendir($path);
+            while (($file = readdir($handle))) 
+                  {
+                       if(strlen($file)>3)
+                           unlink($path.$file);
+                  }
+            closedir($handle);
+			rmdir($path);
+			$this->exvalchangestatus();
+redirect('admin/Externalvalidation');
+	        }
+	        else
+	        {
+	        	//di nagsend here
+
+
+
+	        	//dedelete yung files
+	        redirect('admin/Externalvalidation');
+            $handle=opendir($path);
+            while (($file = readdir($handle))) 
+                  {
+                       if(strlen($file)>3)
+                           unlink($path.$file);
+                  }
+            closedir($handle);
+            rmdir($path);
+	        }
+	    }
+
+
+
+
+
+
 }?>

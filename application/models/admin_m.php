@@ -2155,18 +2155,22 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 
 public function updateEVStatus(){
 
-    $depositid = $this->input->post('txtId');
+    $depositid = $_POST['txtId'];
+    $result = $_POST['externalvalidator'];
+    $result_explode = explode('|', $result);
 
 	$query="
 
 	DECLARE @depositid 		INT;
 
 	Set @depositid ='$depositid'
+insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."')
 
-		UPDATE viewVerifyingDeposit
-		SET strStatus = 'For External Validation'
+		UPDATE tblPlantDeposit
+		SET strStatus = 'Sent For External Validation'
 		WHERE intPlantDepositID = @depositid;
-	";
+
+			";
 		if($this->db->query($query)){
 			return true;
 		}else{
@@ -2182,7 +2186,7 @@ public function showExValOkay(){
 
 		from tblPlantDeposit pd join tblCollector cl
 		on pd.intCollectorID = cl.intCollectorID
-		where strStatus= 'Sent External Validation'");
+		where strStatus= 'Sent For External Validation'");
 
 
 		foreach ($query->result() as $r)
@@ -2211,10 +2215,9 @@ public function showExValOkay(){
 public function EVEmailCon()
 {
 	$id = $this->input->get('id');
-	$this->db->where('intPlantDepositID', $id);
-		$query = $this->db->select("intPlantDepositID, strEmailAddress")
-		->join('tblOnlineUser ou','ou.intOUserID=dr.intOUserID')
-		->get('viewVerifyingDeposit');
+	$this->db->where('intDepositID', $id);
+		$query = $this->db->select("intDepositID, strEmailAddress")
+		->get('tblSentForVerify');
 
 		if($query->num_rows() > 0){
 			return $query->row();
@@ -2227,9 +2230,10 @@ public function EVEmailCon()
 
 public function EVConfirmation(){
 	$id = $this->input->get('id');
-	$this->db->where('intPlantDepositID', $id);
-		$query = $this->db->select("intPlantDepositID")
-		->get('viewVerifyingDeposit');
+	$this->db->where('intDepositID', $id);
+		$query = $this->db->select("intDepositID, V.strEmailAddress,intExValidatorID, Concat(V.strLastname,', ',V.strFirstname,' ',V.strMiddlename,' ',V.strNameSuffix) as strFullName,V.intValidatorID")
+		->join('tblValidator V','V.intValidatorID = SFV.intExValidatorID')
+		->get('tblSentForVerify SFV');
 
 		if($query->num_rows() > 0){
 			return $query->row();
@@ -2243,21 +2247,24 @@ public function updateEVConfirmation(){
 
 $depositid = $this->input->post('txtId');
 $status = $this->input->post('txtStatus');
-
-
-
+$validatorid= $this->input->post('txtId2');
 	$query="
 
 	DECLARE @depositid INT;
 	DECLARE @status		VARCHAR(50);
-
+	DECLARE @speciesid int;
 	Set @depositid ='$depositid'
 	Set @status ='$status'
+set @speciesid = (select intSpeciesID from tblVerifyingDeposit VD join tblPlantDeposit PD on PD.intPlantDepositID = VD.intPlantDepositID where PD.intPlantDepositID = @depositid);
+
+insert into tblHerbariumSheet(intPlantDepositID,intPlantReferenceID,intSpeciesID,intValidatorID,dateVerified) VALUES (@depositid,@depositid,@speciesid,'".$validatorid."',getdate());
 
 
-		UPDATE viewVerifyingDeposit
+		UPDATE tblPlantDeposit
 		SET strStatus = @status
 		WHERE intPlantDepositID = @depositid;
+
+
 	";
 		if($this->db->query($query)){
 			return true;
@@ -2497,7 +2504,7 @@ public function showAllAltName()
 	public function showAllExValidators(){
 		$query = $this->db->select("intValidatorID,
      Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName,
-			 strInstitution")
+			 strInstitution, strEmailAddress")
 		->where('strValidatorType','External')
 			->get('tblValidator');
 		if($query->num_rows() > 0){
