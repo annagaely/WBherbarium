@@ -1,72 +1,4 @@
 
-<script>
-function showNav() {
-document.getElementById("navi").style.display = 'block';
-}
-function hideNav() {
-  document.getElementById("navi").style.display = 'none';
-}
-
-
-</script>
-<script>
-$('input[name=txtpresentadd]').keyup(function(){
-  if (this.value.length > 0) {
-     $('input[name="checkbox1"]').prop('disabled', false)
-  } else {
-     $('input[name="checkbox1"]').prop('disabled', true);
-     $('input[name="checkbox1"]').prop('checked', false);
-  }
-})
-</script>
-
-<script>
-function copy()
-{
-  var n1 = document.getElementById('strPresentAdd');
-  var n2 = document.getElementById('strPermanentAdd');
-  var ch = document.getElementById('checkbox1');
-
-    if (ch.checked){
-      n2.value = n1.value;
-      n2.focus();
-    }
-    else {
-      n2.value = '';
-      n2.trigger('blur');
-    }
-}
-</script>
-
-
-<!-- <script type="text/javascript">
-
-
-
-$(document).on('click', '.account', function(e){
-      var id = $(this).attr('data');
-      $('#account').modal('show');
-
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>user/showAccount',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('input[name=txtemail]').val(data.strEmailAdd);
-          $('input[name=txtusername]').val(data.strUsername);
-
-        },
-        error: function(){
-          alert('Could not show Data');
-        }
-
-
-
-
-
 <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/loan.jpg" style="height: 50vh; width: 100%;"  class="banner">
 
 <div class="container">
@@ -92,20 +24,20 @@ $(document).on('click', '.account', function(e){
           <div class="card card-body">
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade active show" id="viewprofile" role="tabpanel">
-                <h3 class="card-title">Viewing of Account</h3>
+                <h3 class="card-header">Viewing of Account</h3>
               </div>
 
 
 <!--   ACCOUNT -->
               <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
-                <h3 class="card-title">Account</h3>
+                <h3 class="card-header">Account</h3>
                 <form name="myaccForm" class="needs-validation" id= "myaccForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
                       <div class="md-form">
                         <div class="row">
                           <div class="col-md-3"></div>
                           <div class="col-md-6">
                             <i class="fa fa-envelope prefix grey-text"></i>
-                            <input type="email" id="strEmailAdd" name="txtemail" class="form-control" required>
+                            <input type="email" id="strEmailAdd" name="txtemail" class="form-control" autofocus required>
                             <label for="strEmailAdd" class="font-weight-light" style="margin-left: 55px;">Email Address<span style="color: red"> *</span></label>
                           </div>
                         </div>
@@ -115,7 +47,7 @@ $(document).on('click', '.account', function(e){
                           <div class="col-md-3"></div>
                           <div class="col-md-6">
                             <i class="fa fa-user-circle prefix grey-text"></i>
-                            <input type="text" id="strUsername" name="txtusername" class="form-control" disabled="">
+                            <input type="text" id="strUsername" name="txtusername" class="form-control" disabled autofocus>
                             <label for="strUsername" class="font-weight-light" style="margin-left: 55px;">Username<span style="color: red"> *</span></label>
                           </div>
                         </div>
@@ -130,17 +62,17 @@ $(document).on('click', '.account', function(e){
 <!--   PROFILE -->
 
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <h3 class="card-title">Profile</h3>
+                <h3 class="card-header">Profile</h3>
                 <form name="profileform" class="needs-validation" id= "myprofileForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
                   <div class="md-form">
                       <div class="row">
                         <div class="col-md-6">
                           <i class="fa fa-user prefix grey-text"></i>
-                          <input type="text" id="strFirstName" name="txtfirstname" class="form-control" required>
+                          <input type="text" id="strFirstName" name="txtfirstname" class="form-control" autofocus required>
                           <label for="strFirstName" class="font-weight-light" style="margin-left: 55px;">First Name<span style="color: red"> *</span></label>
                         </div>
                         <div class="col-md-6">
-                          <input type="text" id="strMiddleName" name="txtmidname" class="form-control" />
+                          <input type="text" id="strMiddleName" name="txtmidname" class="form-control" autofocus />
                           <label for="strMiddleName" class="font-weight-light ml-3">Middle Name</label>
                         </div>
                       </div>
@@ -148,11 +80,11 @@ $(document).on('click', '.account', function(e){
                     <div class="md-form">
                       <div class="row">
                         <div class="col-md-8">
-                          <input type="text" id="strLastName" name="txtlastname" class="form-control" required>
-                          <label for="strLastName" class="font-weight-light ml-3">Last Name<span style="color: red"> *</span></label>
+                          <input type="text" id="strLastName" name="txtlastname" class="ml-5 form-control" required autofocus>
+                          <label for="strLastName" class="font-weight-light ml-5">Last Name<span style="color: red"> *</span></label>
                         </div>
                         <div class="col-md-4">
-                          <input type="text" id="strNameSuffix" name="txtnamesuffix" class="form-control">
+                          <input type="text" id="strNameSuffix" name="txtnamesuffix" class="form-control" autofocus>
                           <label for="strNameSuffix" class="font-weight-light ml-3">Name Suffix</label>
                         </div>
                       </div>
@@ -160,18 +92,18 @@ $(document).on('click', '.account', function(e){
 
                       <div class="md-form">
                             <i class="fa fa-phone prefix grey-text"></i>
-                            <input type="text" id="strPhoneNum" name="txtphonenum" class="form-control" required>
+                            <input type="text" id="strPhoneNum" name="txtphonenum" class="form-control" autofocus required>
                             <label for="strPhoneNum" class="font-weight-light" data-mask="9999 9999 999">Phone Number<span style="color: red"> *</span></label>
 
                       </div>
                       <div class="md-form">
                         <i class="fas fa-map-marker-alt prefix grey-text"></i>
-                        <input type="text" id="strPresentAdd" name="txtpresentadd" class="form-control" onkeyup="enableCheck();" required>
+                        <input type="text" id="strPresentAdd" name="txtpresentadd" class="form-control" onkeyup="enableCheck();" autofocus required>
                         <label for="strPresentAdd" class="font-weight-light">Present Address<span style="color: red"> *</span></label>
                       </div>
                       <div class="md-form">
                         <i class="fa fa-home prefix grey-text"></i>
-                        <input type="text" id="strPermanentAdd" name="txtpermaadd"  class="form-control" required>
+                        <input type="text" id="strPermanentAdd" name="txtpermaadd"  class="form-control" autofocus required>
                         <label for="strPermanentAdd" class="font-weight-light">Permanent Address<span style="color: red"> *</span></label>
                       </div>
                       <div class="custom-control custom-checkbox" style="margin-left: 38px;">
@@ -182,20 +114,20 @@ $(document).on('click', '.account', function(e){
                         <div class="row">
                           <div class="col-md-6">
                             <i class="fa fa-users prefix grey-text"></i>
-                            <input type="text" id="strAffiliation" name="txtaffname" class="form-control" required>
+                            <input type="text" id="strAffiliation" name="txtaffname" class="form-control" autofocus required>
                             <label for="strAffiliation" class="font-weight-light" style="margin-left: 55px;">Affiliation<span style="color: red"> *</span></label>
 
                           </div>
                           <div class="col-md-6">
                             <i class="fas fa-street-view prefix grey-text"></i>
-                            <input type="text" id="strAffiliationPosition" name="txtaffpos" class="form-control" required>
+                            <input type="text" id="strAffiliationPosition" name="txtaffpos" class="form-control" autofocus required>
                             <label for="strAffiliationPosition" class="font-weight-light" style="margin-left: 55px;">Position<span style="color: red"> *</span></label>
                           </div>
                         </div>
                       </div>
                       <div class="md-form">
                         <i class="fa fa-map-pin prefix grey-text"></i>
-                        <input type="text" id="strAffiliationAdd" name="txtaffaddress" class="form-control" required>
+                        <input type="text" id="strAffiliationAdd" name="txtaffaddress" class="form-control" autofocus required>
                         <label for="strAffiliationAdd" class="font-weight-light">Affiliation Address<span style="color: red"> *</span></label>
                       </div>
 
@@ -208,7 +140,7 @@ $(document).on('click', '.account', function(e){
 
 <!--   PASSWORD  -->
               <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
-                <h3 class="card-title">Password</h3>
+                <h3 class="card-header">Password</h3>
                 <form name="myPasswordForm" class="needs-validation" id= "myPasswordForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
                 <div class="md-form">
                 <div class="row">
@@ -292,7 +224,7 @@ function copy()
     }
 }
 </script>
- 
+
 
 <script type="text/javascript">
 
@@ -303,7 +235,7 @@ function showAccount()
         url: '<?php echo base_url() ?>user/showAccount',
         async: false,
         dataType: 'json',
-        success: function(data){          
+        success: function(data){
           $('input[name=txtemail]').val(data.strEmailAddress);
           $('input[name=txtusername]').val(data.strUserName);
 
@@ -362,11 +294,11 @@ function showProfile()
         url: '<?php echo base_url() ?>user/showProfile',
         async: false,
         dataType: 'json',
-        success: function(data){          
+        success: function(data){
           $('input[name=txtfirstname]').val(data.strFirstname);
           $('input[name=txtmidname]').val(data.strMiddlename);
           $('input[name=txtlastname]').val(data.strLastname);
-          $('input[name=txtnamesuffix]').val(data.strNameSuffix);         
+          $('input[name=txtnamesuffix]').val(data.strNameSuffix);
           $('input[name=txtphonenum]').val(data.strContactNumber);
           $('input[name=txtpresentadd]').val(data.strPresentAddress);
           $('input[name=txtpermaadd]').val(data.strPermanentAddress);
@@ -427,7 +359,7 @@ function showProfile()
 //         url: '<?php echo base_url() ?>user/showPassword',
 //         async: false,
 //         dataType: 'json',
-//         success: function(data){          
+//         success: function(data){
 //           $('input[name=txtCurPw]').val(data.strPassword);
 
 
@@ -482,10 +414,9 @@ var verpw = document.getElementById("strVerPw").value;
 
         alert('di pareho new at verify')
 }
-       
+
     });
-      
+
 
 
 </script>
-
