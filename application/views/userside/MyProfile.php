@@ -1,4 +1,69 @@
 
+<script>
+function showNav() {
+document.getElementById("navi").style.display = 'block';
+}
+function hideNav() {
+  document.getElementById("navi").style.display = 'none';
+}
+
+
+</script>
+<script>
+$('input[name=txtpresentadd]').keyup(function(){
+  if (this.value.length > 0) {
+     $('input[name="checkbox1"]').prop('disabled', false)
+  } else {
+     $('input[name="checkbox1"]').prop('disabled', true);
+     $('input[name="checkbox1"]').prop('checked', false);
+  }
+})
+</script>
+
+<script>
+function copy()
+{
+  var n1 = document.getElementById('strPresentAdd');
+  var n2 = document.getElementById('strPermanentAdd');
+  var ch = document.getElementById('checkbox1');
+
+    if (ch.checked){
+      n2.value = n1.value;
+      n2.focus();
+    }
+    else {
+      n2.value = '';
+      n2.trigger('blur');
+    }
+}
+</script>
+
+
+<!-- <script type="text/javascript">
+
+
+
+$(document).on('click', '.account', function(e){
+      var id = $(this).attr('data');
+      $('#account').modal('show');
+
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>user/showAccount',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtemail]').val(data.strEmailAdd);
+          $('input[name=txtusername]').val(data.strUsername);
+
+        },
+        error: function(){
+          alert('Could not show Data');
+        }
+
+
 
 
 
@@ -423,3 +488,4 @@ var verpw = document.getElementById("strVerPw").value;
 
 
 </script>
+

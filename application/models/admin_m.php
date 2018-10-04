@@ -28,7 +28,7 @@ class admin_m extends CI_Model{
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary phylum-edit" data="'.$r->intPhylumID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary phylum-edit" data="'.$r->intPhylumID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					// $r->intPhylumID,
@@ -63,7 +63,7 @@ class admin_m extends CI_Model{
 		}
 	}
 
-	public function editPhylum(){	
+	public function editPhylum(){
 		$id = $this->input->get('id');
 		$this->db->where('intPhylumID', $id);
 		$query = $this->db->get('tblPhylum');
@@ -73,7 +73,7 @@ class admin_m extends CI_Model{
 			return false;
 		}
 	}
-	
+
     public function updatePhylum(){
     $id = $this->input->post('txtId');
     $field = array(
@@ -105,7 +105,7 @@ public function showAllClass()
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary class-edit" data="'.$r->intClassID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary class-edit" data="'.$r->intClassID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					// $r->intClassID,
@@ -136,7 +136,7 @@ public function showAllClass()
 			$phylumID=$this->input->post('spID');
 			$className=$this->input->post('txtCName');
 
-			$query="		
+			$query="
 		declare @phylumid int;
 
 		set @phylumid = (select intPhylumID from tblPhylum where strPhylumName = '".$phylumID."')
@@ -152,8 +152,8 @@ insert into tblClass(intPhylumID,strClassname) VALUES (@phylumid,'".$className."
 		}
 	}
 
-	
-	
+
+
 	public function editClass(){
 
 		$id = $this->input->get('id');
@@ -184,12 +184,12 @@ insert into tblClass(intPhylumID,strClassname) VALUES (@phylumid,'".$className."
     $phylumname=$this->input->post('speID');
     $classname=$this->input->post('txteCName');
 
-$query="		
+$query="
 declare @phylumid int;
 
 		set @phylumid = (select intPhylumID from tblPhylum where strPhylumName = '".$phylumname."')
 
-			update tblClass 
+			update tblClass
 			set intPhylumID = @phylumid,
 				strClassName = '".$classname."'
 				where intClassID = ".$id."
@@ -202,7 +202,7 @@ if($this->db->query($query)){
 			return false;
 		}
 	}
-  
+
 	/****** END CLASS!!!!! ******/
 	/****** ORDER START!!!!! ******/
 	public function showAllOrder()
@@ -216,7 +216,7 @@ if($this->db->query($query)){
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary order-edit" data="'.$r->intOrderID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary order-edit" data="'.$r->intOrderID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					// $r->intOrderID,
@@ -283,12 +283,12 @@ if($this->db->query($query)){
 $intClassID=$this->input->post('sceID');
     $strOrderName=$this->input->post('txteOName');
 
-$query="		
+$query="
 			declare @classid int;
 
 		set @classid = (select intClassID from tblClass where strClassName = '".$intClassID."')
 
-			update tblOrder 
+			update tblOrder
 			set intClassID = @classid,
 				strOrderName = '".$strOrderName."'
 				where intOrderID = ".$id."
@@ -316,7 +316,7 @@ public function showAllFamily()
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary family-edit" data="'.$r->intFamilyID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary family-edit" data="'.$r->intFamilyID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					// $r->intFamilyID,
@@ -383,7 +383,7 @@ public function showFamilyOrderName(){
 
 		set @orderid = (select intOrderID from tblOrder where strOrderName = '".$intOrderID."')
 
-			update tblFamily 
+			update tblFamily
 			set intOrderID = @orderid,
 				strFamilyName = '".$strFamilyName."'
 				where intFamilyID = ".$id."
@@ -411,7 +411,7 @@ public function showAllGenus(){
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary genus-edit" data="'.$r->intGenusID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary genus-edit" data="'.$r->intGenusID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					// $r->intGenusID,
@@ -479,7 +479,7 @@ public function showGenusFamilyName(){
 
 		set @familyid = (select intFamilyID from tblFamily where strFamilyName = '".$intFamilyID."')
 
-			update tblGenus 
+			update tblGenus
 			set intFamilyID = @familyid,
 				strGenusName = '".$strGenusName."'
 				where intGenusID = ".$id."
@@ -506,7 +506,7 @@ public function showAllSpecies(){
 			->get('tblSpecies s');
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary species-edit" data="'.$r->intSpeciesID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary species-edit" data="'.$r->intSpeciesID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					// $r->intSpeciesID,
@@ -579,7 +579,7 @@ public function showSpeciesGenusName(){
 
 		set @genusid = (select intGenusID from tblGenus where strGenusName = '".$intGenusID."')
 
-			update tblSpecies 
+			update tblSpecies
 			set intGenusID = @genusid,
 				strSpeciesName = '".$strSpeciesName."',
 				strCommonName = '".$strCommonName."'
@@ -610,7 +610,7 @@ public function showAllFamilyBoxes(){
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary FB-edit" data="'.$r->intBoxID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary FB-edit" data="'.$r->intBoxID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					// $r->intBoxID,
@@ -705,7 +705,7 @@ declare @familyid int;
 		set @familyid = (select intFamilyID from tblFamily where strFamilyName = '".$intFamilyID."')
 
 
-		update tblFamilyBox 
+		update tblFamilyBox
 			set intFamilyID = @familyid,
 				intBoxLimit = '".$intBoxLimit."',
 				intRackNo = '".$intRackNo."',
@@ -730,7 +730,7 @@ public function showAllLocality(){
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary locality-edit" data="'.$r->intLocalityID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary locality-edit" data="'.$r->intLocalityID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					// $r->intLocalityID,
@@ -868,7 +868,7 @@ public function showAllCollector(){
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary collector-edit" data="'.$r->intCollectorID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary collector-edit" data="'.$r->intCollectorID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					// $r->intCollectorID,
@@ -1023,12 +1023,8 @@ if($fname!=''){
 		where strValidatorType = 'External'");
 		foreach ($query->result() as $r)
     {
-      $btn = '<button class="btn btn-primary validator-edit" data="'.$r->intValidatorID.'">Edit</button>';
-
-
-
-	$result[] = array(
-
+      $btn = '<button class="btn btn-primary validator-edit" data="'.$r->intValidatorID.'"><i class="far fa-edit"></i></button>';
+  $result[] = array(
         $r->intValidatorID,
         $r->strFullName,
         $r->strInstitution,
@@ -1162,7 +1158,7 @@ public function editValidator(){
 		from tblHerbariumStaff");
 		foreach ($query->result() as $r)
     {
-      $btn = '<button class="btn btn-primary staff-edit" data="'.$r->intStaffID.'">Edit</button>';
+      $btn = '<button class="btn btn-primary staff-edit" data="'.$r->intStaffID.'"><i class="far fa-edit"></i></button>';
 
       $result[] = array(
         // $r->intStaffID,
@@ -1302,11 +1298,11 @@ UPDATE tblHerbariumStaff
 
 	foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary account-edit" data="'.$r->intStaffID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary account-edit" data="'.$r->intStaffID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					$r->intStaffID,
-					$r->strFullName,			
+					$r->strFullName,
 					$r->strUsername,
 					$btn,
 					$r->intStaffID
@@ -1712,7 +1708,7 @@ public function showAllDepositReqPending()
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary view-depositReq" data="'.$r->intDepositReqID.'">View</button>';
+			$btn = '<button class="btn btn-primary view-depositReq" title="View" data="'.$r->intDepositReqID.'"><i class="far fa-eye"></i></button>';
 
 			$result[] = array(
 					$r->intDepositReqID,
@@ -1741,8 +1737,8 @@ public function showAllDepositReqOkay()
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary view-emailcon" data="'.$r->intDepositReqID.'">Email</button>
-				   <button class="btn btn-primary view-depositcon" data="'.$r->intDepositReqID.'">Confirmation</button>';
+			$btn = '<button class="btn btn-primary view-emailcon" title="Send Email" data="'.$r->intDepositReqID.'"><i class="far fa-envelope"></i></button>
+				   <button class="btn btn-primary view-depositcon" title="Confirm" data="'.$r->intDepositReqID.'"><i class="fas fa-check"></i></button>';
 
 			$result[] = array(
 					$r->intDepositReqID,
@@ -1898,7 +1894,7 @@ public function updateAcceptStatus(){
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary view-appointment" data="'.$r->intAppointmentID.'">View</button>';
+			$btn = '<button class="btn btn-primary view-appointment" title="View" data="'.$r->intAppointmentID.'"><i class="far fa-eye"></i></button>';
 
 			$result[] = array(
 					$r->intAppointmentID,
@@ -1925,7 +1921,7 @@ public function showAllAppointmentReject(){
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary view-emailConReject" data="'.$r->intAppointmentID.'">Email</button>';
+			$btn = '<button class="btn btn-primary view-emailConReject" title="Send Email" data="'.$r->intAppointmentID.'"><i class="far fa-envelope"></i></button>';
 
 			$result[] = array(
 					$r->intAppointmentID,
@@ -1996,9 +1992,9 @@ DECLARE @status 		varchar(255);
 		where strStatus ='For Visiting'");
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary view-emailcon" data="'.$r->intAppointmentID.'">Email</button>
+			$btn = '<button class="btn btn-primary view-emailcon" title="Send Email" data="'.$r->intAppointmentID.'"><i class="far fa-envelope"></i></button>
 
-				   <button class="btn btn-primary view-appcon" data="'.$r->intAppointmentID.'">Confirmation</button>';
+				   <button class="btn btn-primary view-appcon" title="Confirm" data="'.$r->intAppointmentID.'"><i class="fas fa-check"></i></button>';
 
 			$result[] = array(
 					$r->intAppointmentID,
@@ -2117,7 +2113,7 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 		foreach ($query->result() as $r)
 		{
 
-		$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'">View</button>';
+		$btn = '<button class="btn btn-primary view-EVPending" title="View" data="'.$r->intPlantDepositID.'"><i class="far fa-eye"></i></button>';
 
 			$result[] = array(
 					$r->strAccessionNumber,
@@ -2196,6 +2192,7 @@ public function showExValOkay(){
 		$btn = '<button class="btn btn-primary view-EVemailcon" data="'.$r->intPlantDepositID.'">Email</button>
 
 				   <button class="btn btn-primary view-EVConfirmation" data="'.$r->intPlantDepositID.'">Confirmation</button>';
+
 
 			$result[] = array(
 					$r->intPlantDepositID,
