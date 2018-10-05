@@ -62,8 +62,7 @@
               <div class="modal-header">
 
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
-                <button type="button" data-dismiss="mod
-                "autoWidth":false,al" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
 
@@ -221,7 +220,12 @@ $('#btnSave').click(function(event){
               }
             },
             error: function(){
-              alert('Could not save Data');
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incorrect input!',
+                text: 'Class name does not exist.'
+              });
             }
           });
          }
@@ -288,7 +292,12 @@ $('#btnSave').click(function(event){
                   }
                 },
                 error: function(){
-                  alert('Could not save Data');
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Incorrect input!',
+                    text: 'Class name does not exist.'
+                  });
                 }
               });
              }

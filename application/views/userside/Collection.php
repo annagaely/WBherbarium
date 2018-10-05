@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
 <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/gallery/grid-gallery/grid-gallery.css">
 <!--Carousel Wrapper-->
-    <div id="carousel-example-2" class="carousel slide carousel-fadev h-100" data-ride="carousel">
+    <div id="carousel-example-2" class="carousel slide carousel-fade vh-100" data-ride="carousel">
         <!--Indicators-->
         <ol class="carousel-indicators">
             <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>

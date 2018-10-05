@@ -69,7 +69,7 @@ class user extends CI_Controller {
 	}
 	public function home()
 	{
-	if($this->session->userdata('strUsername')!=''){
+	if($this->session->userdata('strUserName')!=''){
 
 		$title['title'] = "PUPHerbarium | Home";
 		$this->load->view('userside/navbar2', $title);
@@ -82,7 +82,7 @@ class user extends CI_Controller {
 	}
 	public function deposits()
 	{
-	if($this->session->userdata('strUsername')!=''){
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium |  Deposits";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/Deposit');
@@ -95,7 +95,7 @@ class user extends CI_Controller {
 
 	public function loans()
 	{
-	if($this->session->userdata('strUsername')!=''){
+	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium |  Loans";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/Loan');
@@ -116,7 +116,7 @@ class user extends CI_Controller {
 	        $midinit = $data['strMiddleInitial'];
 	        $lastname = $data['strLastname'];
 	        $sesdata = array(
-	            'strUsername'  => $username,
+	            'strUserName'  => $username,
 	            'strFirstname' => $firstname,
 	            'strMiddleInitial'=>$midinit,
 	            'strLastname'=>$lastname,
@@ -139,7 +139,7 @@ class user extends CI_Controller {
 	}
 
 	public function logout(){
-		$this->session->unset_userdata('strUsername');
+		$this->session->unset_userdata('strUserName');
 		redirect(base_url().'user/index');
 	}
 
@@ -155,7 +155,7 @@ public function userRegister(){
 
 
 	public function appointment() {
-	if($this->session->userdata('strUsername')!=''){
+	if($this->session->userdata('strUserName')!=''){
 	 $title['title'] = "PUPHerbarium | Appointment";
 	 $this->load->view('userside/navbar2', $title);
 	 $this->load->view('userside/Appointment');
@@ -191,7 +191,7 @@ public function userRegister(){
 	}
 
   public function Settings() {
-  	if($this->session->userdata('strUsername')!=''){
+  	if($this->session->userdata('strUserName')!=''){
 
     $title['title'] = "PUPHerbarium | Profile";
 		$this->load->view('userside/navbar2', $title);
@@ -256,7 +256,7 @@ public function userRegister(){
 		echo json_encode($msg);
 }
 	public function ActivityLog() {
-		if($this->session->userdata('strUsername')!=''){
+		if($this->session->userdata('strUserName')!=''){
 
     $title['title'] = "PUPHerbarium | Activity Log";
 		$this->load->view('userside/navbar2', $title);
