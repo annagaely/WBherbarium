@@ -1,4 +1,5 @@
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/gallery/grid-gallery/grid-gallery.css">
 <!--Carousel Wrapper-->
     <div id="carousel-example-2" class="carousel slide carousel-fadev h-100" data-ride="carousel">
         <!--Indicators-->
@@ -12,7 +13,7 @@
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <div class="view">
-                    <img class="d-block w-100" style="height: 50vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/4.jpg" alt="First slide">
+                    <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/4.jpg" alt="First slide">
                 </div>
                 <div class="carousel-caption">
                     <a href=""><h3 class="h3-responsive">Title</h3></a>
@@ -130,9 +131,9 @@
             <div class="row">
               <div class="col-md-12">
                 <h5 class="h5-responsive">Enter rank above the level of Genus:</h5>
-                <form class="form-inline">
-                  <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Phylum, Class, Order, Family" aria-label="Search">
-                  <button onclick="showTableRank()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">Search</button>
+                  <form class="form-inline">
+                    <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Phylum, Class, Order, Family" aria-label="Search">
+                    <button onclick="showTableRank()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">Search</button>
                 </form>
               </div>
             </div>
@@ -165,8 +166,7 @@
   <!-- TABLE RANK RESULTS -->
   <center>
     <div style="padding-left: 200px; padding-right: 200px">
-      <div class="table-responsive text-nowrap">
-        <table class="table table-hover table-bordered" id="searchRankTable" style=" display: none;">
+        <table class="table table-hover table-bordered table-responsive text-nowrap" id="searchRankTable" style=" display: none;">
           <thead>
             <tr>
               <th scope="col">Rank</th>
@@ -180,15 +180,13 @@
             </tr>
           </tbody>
         </table>
-      </div>
     </div>
   </center>
 
   <!--TABLE GENUS RESULTS-->
   <center>
     <div style="padding-left: 200px; padding-right: 200px">
-      <div class="table-responsive text-nowrap">
-        <table class="table table-hover table-bordered" id="searchGenusTable" style="display: none;">
+        <table class="table-responsive text-nowrap table table-hover table-bordered" id="searchGenusTable" style="display: none;">
           <thead>
             <tr>
               <th scope="col">Genus</th>
@@ -204,15 +202,13 @@
             </tr>
           </tbody>
         </table>
-      </div>
     </div>
   </center>
 
   <!--TABLE SPECIE RESULTS-->
   <center>
     <div style="padding-left: 350px; padding-right: 350px">
-      <div class="table-responsive text-nowrap">
-        <table class="table table-hover table-bordered" id="searchSpecieTable" style="display: none;">
+        <table class="table-responsive text-nowrap table table-hover table-bordered" id="searchSpecieTable" style="display: none;">
           <thead>
             <tr>
               <th scope="col">Specie Name</th>
@@ -224,7 +220,6 @@
             </tr>
           </tbody>
         </table>
-      </div>
     </div>
   </center>
   <!-- Central Modal Small -->
@@ -251,7 +246,7 @@
               </div>
             </div>
           </div>
-          <section class="gallery-block grid-gallery">
+          <section class="gallery-block grid-gallery pt-5">
               <div class="container">
                   <div class="row px-5">
                       <div class="col-md-6 col-lg-4 item">
@@ -272,16 +267,15 @@
                   </div>
               </div>
           </section>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+          <script>
+              baguetteBox.run('.grid-gallery', { animation: 'slideIn'});
+          </script>
         </div>
       </div>
     </div>
   </div>
   <!-- Central Modal Small -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-  <script>
-      baguetteBox.run('.grid-gallery', { animation: 'slideIn'});
-  </script>
   <script>
     function showTableRank() {
       var ranktbl = document.getElementById("searchRankTable");

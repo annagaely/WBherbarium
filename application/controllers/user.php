@@ -69,7 +69,7 @@ class user extends CI_Controller {
 	}
 	public function home()
 	{
-	if($this->session->userdata('strUserName')!=''){
+	if($this->session->userdata('strUsername')!=''){
 
 		$title['title'] = "PUPHerbarium | Home";
 		$this->load->view('userside/navbar2', $title);
@@ -82,7 +82,7 @@ class user extends CI_Controller {
 	}
 	public function deposits()
 	{
-	if($this->session->userdata('strUserName')!=''){
+	if($this->session->userdata('strUsername')!=''){
 		$title['title'] = "PUPHerbarium |  Deposits";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/Deposit');
@@ -95,7 +95,7 @@ class user extends CI_Controller {
 
 	public function loans()
 	{
-	if($this->session->userdata('strUserName')!=''){
+	if($this->session->userdata('strUsername')!=''){
 		$title['title'] = "PUPHerbarium |  Loans";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/Loan');
@@ -105,35 +105,41 @@ class user extends CI_Controller {
 	}
 	}
 
-
 	public function login_validation(){
-		$this->load->Library('form_validation');
-		$this->form_validation->set_rules('loginUsername','Username','required');
-		$this->form_validation->set_rules('loginPassword','Password','required');
-		if($this->form_validation->run()){
-			$username = $this->input->post('loginUsername');
-			$password = $this->input->post('loginPassword');
-			$id = $this->input->post('txtId');
+	    $username  = $this->input->post('loginUsername',TRUE);
+	    $password = $this->input->post('loginPassword',TRUE);
+	    $validate = $this->m->validate($username,$password);
+	    if($validate->num_rows() > 0){
+	        $data  = $validate->row_array();
+	        $username  = $data['strUserName'];
+	        $firstname = $data['strFirstname'];
+	        $midinit = $data['strMiddleInitial'];
+	        $lastname = $data['strLastname'];
+	        $sesdata = array(
+	            'strUsername'  => $username,
+	            'strFirstname' => $firstname,
+	            'strMiddleInitial'=>$midinit,
+	            'strLastname'=>$lastname,
+	            'logged_in' => TRUE
+	        );
+	        $this->session->set_userdata($sesdata);
+	        // access login for admin
 
-			$this->load->model('user_m');
-			if($this->user_m->can_login($username,$password)){
-				$session_data=array(
-					'strUserName' => $username,
+	$msg['success'] = false;
+	$msg['type'] = 'add';
+	if($data){
+	  $msg['success'] = true;
 
-				);
-				$this->session->set_userdata($session_data);
-				redirect(base_url().'user/home');
-			}else{
-				$this->session->set_flashdata('error','Invalid Username or Password');
-				redirect(base_url().'user/index');
-			}
-		}
-		else{
-			redirect(base_url().'user/index');
-		}
+	    }else{
+	    	return false;
+
+	    }
+	    echo json_encode($msg);
+	  }
 	}
+
 	public function logout(){
-		$this->session->unset_userdata('strUserName');
+		$this->session->unset_userdata('strUsername');
 		redirect(base_url().'user/index');
 	}
 
@@ -149,7 +155,7 @@ public function userRegister(){
 
 
 	public function appointment() {
-	if($this->session->userdata('strUserName')!=''){
+	if($this->session->userdata('strUsername')!=''){
 	 $title['title'] = "PUPHerbarium | Appointment";
 	 $this->load->view('userside/navbar2', $title);
 	 $this->load->view('userside/Appointment');
@@ -185,7 +191,7 @@ public function userRegister(){
 	}
 
   public function Settings() {
-  	if($this->session->userdata('strUserName')!=''){
+  	if($this->session->userdata('strUsername')!=''){
 
     $title['title'] = "PUPHerbarium | Profile";
 		$this->load->view('userside/navbar2', $title);
@@ -250,7 +256,7 @@ public function userRegister(){
 		echo json_encode($msg);
 }
 	public function ActivityLog() {
-		if($this->session->userdata('strUserName')!=''){
+		if($this->session->userdata('strUsername')!=''){
 
     $title['title'] = "PUPHerbarium | Activity Log";
 		$this->load->view('userside/navbar2', $title);
