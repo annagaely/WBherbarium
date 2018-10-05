@@ -1,4 +1,7 @@
 <div class="preloader-wrapper big active crazy">
+  
+
+
   <div class="spinner-layer spinner-blue-only">
     <div class="circle-clipper left">
       <div class="circle"></div>
@@ -28,22 +31,35 @@
                     <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner.jpg" alt="First slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
-                <div class="carousel-caption">
-                    <h3 class="h3-responsive">Title</h3>
-                    <p>First text</p>
+
+
+                <div class="carousel-caption " style="margin-bottom: 40px" >
+                      <a href="#topten" style="color: white;">
+                        <h3 class="h3-responsive" >
+                         Top 10 Families with Most Number of Species Found in PUP Mabini Campus
+                        </h3>
+                    </a>
                 </div>
-            </div>
+              </div>
+          </div>
+
             <div class="carousel-item">
             <!--Mask color-->
                 <div class="view">
-                    <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner2.jpg" alt="Second slide">
+                    <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/pupherbariumc.jpg" alt="Second slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
-                <div class="carousel-caption">
-                    <h3 class="h3-responsive">Title</h3>
-                    <p>Secondary text</p>
+                <div class="carousel-caption" style="margin-bottom: 40px">
+                    <a href="#welcome" style="color: white;">
+                      <h3 class="h3-responsive">
+                        What is PUP Herbarium?
+                     </h3>
+                   </a>
+<!--                     <p>Secondary text</p> -->
                 </div>
             </div>
+
+
             <div class="carousel-item">
                 <!--Mask color-->
                 <div class="view">
@@ -67,11 +83,11 @@
            <span class="sr-only">Next</span>
        </a>
             <!--/.Controls-->
-    </div>
+</div>
     <div class="px-5 py-5 mx-0" >
     <section class="text-center mx-5 pb-5">
     <!-- Section heading -->
-      <h2 class="h1-responsive font-weight-bold my-5">Welcome to PUP Herbarium</h2>
+      <h2 class="h1-responsive font-weight-bold my-5" >Welcome to PUP Herbarium</h2>
       <!-- Section description -->
       <p class="lead black-text w-responsive mx-auto mb-5">Come and explore the first Polytechnic University in the Philippines' herbarium specimen collections.</p>
 
@@ -81,8 +97,8 @@
         <!-- Grid column -->
         <div class="col-md-4">
 
-          <i class="fas fa-file-alt fa-3x red-text"></i>
-          <h5 class="font-weight-bold my-4">Deposit</h5>
+          <a href="<?php echo base_url(); ?>user/howtodeposit"><i class="fas fa-file-alt fa-3x red-text"></i></a>
+          <a href="<?php echo base_url(); ?>user/howtodeposit"  style="color: black"><h5 class="font-weight-bold my-4">Deposit</h5></a>
           <p class="black-text mb-md-0 mb-5">Depositing of plant species is available here at PUP Herbarium. Send your deposit request and wait for the further details.
           </p>
 
@@ -92,9 +108,9 @@
         <!-- Grid column -->
         <div class="col-md-4">
 
-          <i class="fas fa-search fa-3x cyan-text"></i>
-          <h5 class="font-weight-bold my-4">Search</h5>
-          <p class="black-text mb-md-0 mb-5">Get access to PUP herbarium specimens and descriptions by clicking here.
+           <a href="<?php echo base_url(); ?>user/Collection"><i class="fas fa-search fa-3x cyan-text"></i></a>
+           <a href="<?php echo base_url(); ?>user/Collection" style="color: black"><h5 class="font-weight-bold my-4">Search</h5></a>
+          <p class="black-text mb-md-0 mb-5">Get access to PUP herbarium specimens and descriptions by clicking  <a href="<?php echo base_url(); ?>user/Collection" style="color: black">here. </a>
           </p>
 
         </div>
@@ -103,8 +119,8 @@
         <!-- Grid column -->
         <div class="col-md-4">
 
-          <i class="fas fa-map-marked-alt fa-3x orange-text"></i>
-          <h5 class="font-weight-bold my-4">Visit</h5>
+          <a href="<?php echo base_url(); ?>user/howtovisit"><i class="fas fa-map-marked-alt fa-3x orange-text"></i></a>
+          <a href="<?php echo base_url(); ?>user/howtovisit"  style="color: black"><h5 class="font-weight-bold my-4">Visit</h5></a>
           <p class="black-text mb-0">PUP Herbarium Center is open for visitors. Just set an appointment prior to your visit.
           </p>
 
@@ -116,10 +132,10 @@
 
     </section>
     </div>
-    <section class="text-white mx-0 px-0" style="background-color: #800000; padding: 5rem 0;">
+    <section  id="welcome" class="text-white mx-0 px-0" style="background-color: #800000; padding: 5rem 0;">
         <div class="container py-5">
             <div class="text-center">
-                <h2>What is PUP Herbarium?</h2>
+                <h2 >What is PUP Herbarium?</h2>
                 <div class="row">
                     <div class="col-lg-9 mx-auto">
                         <p class="lead text-white mt-2">
@@ -132,120 +148,32 @@
 
     </section>
     <!-- Projects section v.3 -->
-    <div class="pt-0 pb-5 px-5">
+    <div class="pt-0 pb-5 px-5" id="topten">
         <section class="my-5 mx-5">
             <!-- Section heading -->
-            <h2 class="h1-responsive font-weight-bold text-center my-5">Our best projects</h2>
-            <!-- Section description -->
-            <p class="grey-text text-center w-responsive mx-auto mb-5">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit est laborum.</p>
-            <!-- Grid row -->
-        <div class="row">
-            <!-- Grid column -->
-            <div class="col-lg-5 mb-lg-0 mb-5">
-                <!--Image-->
-                <img src="https://mdbootstrap.com/img/Photos/Others/images/83.jpg" alt="Sample project image" class="img-fluid rounded z-depth-1">
-            </div>
-            <!-- Grid column -->
-            <!-- Grid column -->
-            <div class="col-lg-7">
-              <!-- Grid row -->
-                <div class="row mb-3">
-                    <div class="col-md-1 col-2">
-                        <i class="fa fa-book fa-2x cyan-text"></i>
-                    </div>
-                    <div class="col-md-11 col-10">
-                        <h5 class="font-weight-bold mb-3">Education</h5>
-                            <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit maiores nam, aperiam minima elit assumenda voluptate velit.</p>
-                    </div>
-                </div>
-      <!-- Grid row -->
-
-      <!-- Grid row -->
-      <div class="row mb-3">
-        <div class="col-md-1 col-2">
-          <i class="fa fa-code fa-2x red-text"></i>
-        </div>
-        <div class="col-md-11 col-10">
-          <h5 class="font-weight-bold mb-3">Technology</h5>
-          <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit maiores nam, aperiam minima elit assumenda voluptate velit.</p>
-        </div>
-      </div>
-      <!-- Grid row -->
-
-      <!-- Grid row -->
+            <h2 class="h1-responsive font-weight-bold text-center my-5">Top 10 Families with Most Number of Species Found in PUP Mabini Campus </h2>
+     
       <div class="row">
-        <div class="col-md-1 col-2">
-          <i class="fa fa-money fa-2x deep-purple-text"></i>
+        <div class="col-md-7 pl-5">
+
+            <div class="card-body">
+              <canvas id="pieChart"></canvas>
+            </div>
+         
         </div>
-        <div class="col-md-11 col-10">
-          <h5 class="font-weight-bold mb-3">Finance</h5>
-          <p class="grey-text mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit maiores nam, aperiam minima elit assumenda voluptate velit.</p>
-        </div>
+         <div class="col-md-5 pr-5">
+<!--           <div class="card"> -->
+            <div class="card-body">
+          <h3 style="margin-top: 20px, margin-bottom: 5px"> Summary and Conclusions </h3>
+          <h6 style="text-indent: 10px"><strong>Initial floral inventory revealed:</strong>  </h6>
+          <ul class="list-styled">
+            <li style="margin-top: 10px"> Gymnosperms (5 species distributed to 4 families and 3 orders) </li>
+            <li style="margin-top: 10px">Angiosperms (203 species distributed to 67 families and 31 orders)</li>
+          </ul>
+         </div>
+<!--        </div> -->
+     </div>
       </div>
-      <!-- Grid row -->
-
-    </div>
-    <!-- Grid column -->
-
-  </div>
-  <!-- Grid row -->
-
-  <hr class="my-5">
-
-  <!-- Grid row -->
-  <div class="row">
-
-    <!-- Grid column -->
-    <div class="col-lg-7">
-
-      <!-- Grid row -->
-      <div class="row mb-3">
-        <div class="col-md-1 col-2">
-          <i class="fa fa-bar-chart fa-2x indigo-text"></i>
-        </div>
-        <div class="col-md-11 col-10">
-          <h5 class="font-weight-bold mb-3">Marketing</h5>
-          <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit maiores nam, aperiam minima elit assumenda voluptate velit.</p>
-        </div>
-      </div>
-      <!-- Grid row -->
-
-      <!-- Grid row -->
-      <div class="row mb-3">
-        <div class="col-md-1 col-2">
-          <i class="fa fa-music fa-2x pink-text"></i>
-        </div>
-        <div class="col-md-11 col-10">
-          <h5 class="font-weight-bold mb-3">Entertainment</h5>
-          <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit maiores nam, aperiam minima elit assumenda voluptate velit.</p>
-        </div>
-      </div>
-      <!-- Grid row -->
-
-      <!-- Grid row -->
-      <div class="row mb-lg-0 mb-5">
-        <div class="col-md-1 col-2">
-          <i class="fa fa-smile-o fa-2x blue-text"></i>
-        </div>
-        <div class="col-md-11 col-10">
-          <h5 class="font-weight-bold mb-3">Communication</h5>
-          <p class="grey-text mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing. Reprehenderit maiores nam, aperiam minima elit assumenda voluptate velit.</p>
-        </div>
-      </div>
-      <!-- Grid row -->
-
-    </div>
-    <!-- Grid column -->
-
-    <!-- Grid column -->
-    <div class="col-lg-5">
-      <!--Image-->
-      <img src="https://mdbootstrap.com/img/Photos/Others/images/82.jpg" alt="Sample project image" class="img-fluid rounded z-depth-1">
-    </div>
-    <!-- Grid column -->
-
-  </div>
-  <!-- Grid row -->
 
 </section></div>
 
@@ -347,3 +275,34 @@
 </section>
 
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1365.0846300626363!2d121.01038434500167!3d14.596660128798504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9dd5ee0e457%3A0xe1e45b9db34d61a9!2sPUP+Main+Building!5e0!3m2!1sen!2sph!4v1535047021119" width="100%" height="450" style="border:none; padding-bottom:0; margin-bottom:0;" allowfullscreen></iframe>
+
+
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+ <script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/mdb.js"></script>
+
+<script>
+  var ctxP = document.getElementById("pieChart").getContext('2d');
+  var myPieChart = new Chart(ctxP, {
+    type: 'pie',
+    data: {
+        labels: ["Rubiaceae", "Lamiaceae", "Poaceae", " Euphorbiaceae", "Asteraceae", "Fabaceae", "Asparagaceae","Arecaceae", "Araceae","Moraceae"],
+        datasets: [
+            {
+                data: [7, 6, 18, 12, 12,11, 10,10,7,7],
+                backgroundColor: ["#F7464A", "#46BFBD", "#949FB1","#FDB45C", "#4D5360", "#e9967a", " #eedd82", "#3cb371", "#778899", "#da70d6"],
+                hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#A8B3C5", "#FFC870", "#616774", "#ffa07a", "#eee8aa" , "#8fbc8f","#708090","#dda0dd"]
+            }
+        ]
+    },
+    options: {
+        responsive: true
+    }
+});
+</script>
+
+
+
+
+
+
+

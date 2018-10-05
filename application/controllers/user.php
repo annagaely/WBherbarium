@@ -36,7 +36,7 @@ class user extends CI_Controller {
 	{
 		$title['title'] = "PUPHerbarium | Contact";
 		$this->load->view('userside/navbar', $title);
-
+		$this->load->view('userside/contactuser');
 		$this->load->view('userside/footer');
 	}
   public function contact()
@@ -105,7 +105,37 @@ class user extends CI_Controller {
 	}
 	}
 
+	public function howtodeposit()
+	{
+	if($this->session->userdata('strUserName')!=''){
+		$title['title'] = "PUPHerbarium |  Steps How to Deposit";
+		$this->load->view('userside/navbar2', $title);
+		$this->load->view('userside/howtodeposit');
+		$this->load->view('userside/footer');
+	}
+	else{
+	$title['title'] = "PUPHerbarium |  Steps How to Deposit";
+		$this->load->view('userside/navbar', $title);
+		$this->load->view('userside/howtodeposit');
+		$this->load->view('userside/footer');
+	}
+}
 
+public function howtovisit()
+	{
+	if($this->session->userdata('strUserName')!=''){
+		$title['title'] = "PUPHerbarium |  Steps How to Visit";
+		$this->load->view('userside/navbar2', $title);
+		$this->load->view('userside/howtovisit');
+		$this->load->view('userside/footer');
+	}
+	else{
+	$title['title'] = "PUPHerbarium |  Steps How to Visit";
+		$this->load->view('userside/navbar', $title);
+		$this->load->view('userside/howtovisit');
+		$this->load->view('userside/footer');
+	}
+}
 	public function login_validation(){
 		$this->load->Library('form_validation');
 		$this->form_validation->set_rules('loginUsername','Username','required');
@@ -262,4 +292,40 @@ public function userRegister(){
 	redirect(base_url().'user/index');
 	}
 	}
+
+
+public function ContactUsEmail()
+{
+
+	$email=$this->input->post('txtContactEmailAddress');
+$message = $this->input->post('txtContactUsMessage');
+
+    $config = Array(
+  'protocol' => 'smtp',
+  'smtp_host' => 'ssl://smtp.googlemail.com',
+  'smtp_port' => 465,
+  'smtp_user' => '$email', // change it to yours
+  // 'smtp_pass' => 'WBHerbarium2018', // change it to yours
+  'mailtype' => 'html',
+  'charset' => 'iso-8859-1',
+  'wordwrap' => TRUE
+);
+
+        $this->load->library('email', $config);
+      $this->email->set_newline("\r\n");
+      $this->email->from($email); // change it to yours
+      $this->email->to('WBHerbariumTA@gmail.com');// change it to yours
+      $this->email->subject('PUP Herbarium Center');
+      $this->email->message("<br> <br>" . $message );
+
+      if($this->email->send())
+     {
+     	return true;
+     }
+     else
+    {
+     show_error($this->email->print_debugger());
+
+ }
+}
 }?>
