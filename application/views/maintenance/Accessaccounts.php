@@ -1,3 +1,8 @@
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 
         <div class="breadcrumb-holder">
         <div class="container-fluid">
@@ -35,7 +40,7 @@
                    <div class = "row">
                     <div class="col-sm-6" >
                     <label>Username:</label> <label style="color: red">*</label>
-                    <input type="text" name="AAUName" placeholder="Username" class="form-control">
+                    <input id="username" type="text" name="AAUName" placeholder="Username" class="form-control">
                   </div>
                   <div class="col-sm-6" >
                     <label>Password:</label> <label style="color: red">*</label>
@@ -44,7 +49,7 @@
                    <label for="checkPass"> Show Password</label>
                   </div>
                 </div>
-    
+
                 <br>
 
 
@@ -81,7 +86,7 @@
 
                     <div class="col-sm-6" >
                     <label>Username:</label> <label style="color: red">*</label>
-                    <input type="text" name="eAAUName" placeholder="Username" class="form-control">
+                    <input id="username2" type="text" name="eAAUName" placeholder="Username" class="form-control">
                     <input type="hidden" name="txtId" value="0">
                   </div>
 
@@ -142,11 +147,11 @@
     } else {
         x.type = "password";
     }
-} 
+}
 </script>
 
 <script type="text/javascript">
-  
+
  function eshowPassword() {
     var y = document.getElementById("eAAPassword");
     if (y.type === "password") {
@@ -199,7 +204,7 @@ $(document).ready(function(){
           var html = '';
           var i;
           for(i=0; i<data.length; i++){
-            html +='<option value="'+data[i].strFullName+'">'+data[i].strFullName+'</option>';
+            html +='<option value="'+data[i].intStaffID+'">'+data[i].strFullName+'</option>';
           }
           $('#showStaffName').html(html);
           $('#showStaffName2').html(html);
@@ -209,99 +214,143 @@ $(document).ready(function(){
         }
       });
 
-}
+};
 
 $('#btnSave').click(function(event){
       var data = $('#addAccountForm').serialize();
       //validate form
-    if(confirm("Save data?")){
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/addAccounts',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function($response){
-            if(response.success){
-              $('#addAccountForm').modal('hide');
-              $('#addAccountForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
+      if($('#showStaffName').val()!=''){
+        if($('#username').val()!=''){
+          if($('#AApassword').val()!=''){
+            event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if(result.value) {
+                $.ajax({
+                  type: 'ajax',
+                  method: 'post',
+                  url: '<?php echo base_url() ?>admin/addAccounts',
+                  data: data,
+                  async: false,
+                  dataType: 'json',
+                  success: function(response){
+                    if(response.success){
+                      $('#addAccountForm').modal('hide');
+                      $('#addAccountForm')[0].reset();
+                      if(response.type=='add'){
+                        var type = 'added'
+                      }else if(response.type=='update'){
+                        var type ="updated"
+                      }
+                      let timerInterval
+                      swal({
+                        title: 'Saved',
+                        text: 'Your file has been saved.',
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                      }).then(function() {
+                        location.reload();
+                      });
+                    }
+                  },
+                  error: function(){
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Incorrect input!',
+                      text: 'Already have an account.'
+                    });
+                  }
+                });
               }
-              alert('Account Successfully Added!');
-              location.reload();
-            }else{
-              alert('Please fill up all fields.');
-            }
-          },
-          error: function(){
-            alert('Could not save Data');
-         }
-        });
-        }else{
-        event.preventDefault();
-        }
-    });
- 
-
-
-$(document).on('click', '.account-edit', function(){
-      var id = $(this).attr('data');
-      $('#myEditModal').modal('show');
-
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/editAccounts',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('input[name=eAAUName]').val(data.strUsername);
-          $('input[name=eAAPass]').val(data.strPassword);
-          $('input[name=txtId]').val(data.intStaffID);
-          $('#myEditModal').find('.modal-title').text('Editing: '+data.strFullName+'');
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
-
-    });
-
-  });
-
-$('#btnEditSave').click(function(){
-      var data = $('#editAccountForm').serialize();
-
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/updateAccounts',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response==true){
-              $('#myEditModal').modal('hide');
-              $('#editAccountForm')[0].reset();
-         //     if(response.type=='add'){
-           //     var type = 'added'
-       //       }else if(response.type=='update'){
-          //      var type ="updated"
-              //}
-              showAllCollector();
-            }
-            else{
-             alert('Error');
-            }
-          },
-          error: function(){
-            alert('Could not update data');
+            })
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
           }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
         });
+      }
     });
+
+    $('#btnEditSave').click(function(){
+          var data = $('#editAccountForm').serialize();
+
+            $.ajax({
+              type: 'ajax',
+              method: 'post',
+              url: '<?php echo base_url() ?>admin/updateAccounts',
+              data: data,
+              async: false,
+              dataType: 'json',
+              success: function(response){
+                if(response==true){
+                  $('#myEditModal').modal('hide');
+                  $('#editAccountForm')[0].reset();
+             //     if(response.type=='add'){
+               //     var type = 'added'
+           //       }else if(response.type=='update'){
+              //      var type ="updated"
+                  //}
+                  showAllCollector();
+                }
+                else{
+                 alert('Error');
+                }
+              },
+              error: function(){
+                alert('Could not update data');
+              }
+            });
+        });
+
+    $(document).on('click', '.account-edit', function(){
+          var id = $(this).attr('data');
+          $('#myEditModal').modal('show');
+
+          $.ajax({
+            type: 'ajax',
+            method: 'get',
+            url: '<?php echo base_url() ?>admin/editAccounts',
+            data: {id: id},
+            async: false,
+            dataType: 'json',
+            success: function(data){
+              $('input[name=eAAUName]').val(data.strUsername);
+              $('input[name=eAAPass]').val(data.strPassword);
+              $('input[name=txtId]').val(data.intStaffID);
+              $('#myEditModal').find('.modal-title').text('Editing: '+data.strFullName+'');
+            },
+            error: function(){
+              alert('Could not Edit Data');
+            }
+
+        });
+
+      });
 });
 </script>

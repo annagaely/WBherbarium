@@ -220,7 +220,12 @@ $('#btnSave').click(function(event){
           }
           },
           error: function(){
-            alert('Could not save Data');
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incorrect input!',
+              text: 'Order name does not exist.'
+            });
           }
         });
          }
@@ -288,7 +293,12 @@ $('#btnEditSave').click(function(){
           }
           },
           error: function(){
-            alert('Could not save Data');
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incorrect input!',
+              text: 'Order name does not exist.'
+            });
           }
         });
 
@@ -340,5 +350,5 @@ $(document).on('click', '.family-edit', function(){
 
   });
   });
-  
+
 </script>

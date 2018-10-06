@@ -212,7 +212,12 @@ function showGenusFamilyName(){
                 }
               },
               error: function(){
-                alert('Could not save Data');
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Incorrect input!',
+                  text: 'Family name does not exist.'
+                });
               }
             });
 
@@ -280,7 +285,12 @@ $('#btnEditSave').click(function(){
             }
           },
           error: function(){
-            alert('Could not update data');
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incorrect input!',
+              text: 'Family name does not exist.'
+            });
           }
         });
 

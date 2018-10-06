@@ -115,7 +115,7 @@
       </div>
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 
-      <script>//bar
+<script>//bar
 var ctxB = document.getElementById("barChart").getContext('2d');
 var myBarChart = new Chart(ctxB, {
     type: 'bar',

@@ -233,6 +233,7 @@ $('#btnSave').click(function(event){
   var url = '<?php echo base_url()?>admin/addSpecies'
       var data = $('#addSpeciesForm').serialize();
       alert($('#plantknown').val());
+
       //validate form
       /*if($('#genusName').val()!=''){
         if($('#speciesName').val()!=''){

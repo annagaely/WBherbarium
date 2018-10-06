@@ -220,15 +220,16 @@
                  }
                },
                error: function(){
-                 alert('Could not save Data');
+                 event.preventDefault();
+                 swal({
+                   type: 'error',
+                   title: 'Incorrect input!',
+                   text: 'Phylum name does not exist.'
+                 });
                }
              });
-
-
             }
-
           })
-
         }else{
           event.preventDefault();
           swal({
@@ -282,7 +283,7 @@
              let timerInterval
              swal({
                title: 'Saved',
-               text: 'Your file has been saved.',
+               text: 'Your file has been updated.',
                type: 'success',
                timer: 1500,
                showConfirmButton: false
@@ -295,7 +296,12 @@
            }
          },
          error: function(){
-           alert('Could not update data');
+           event.preventDefault();
+           swal({
+             type: 'error',
+             title: 'Incorrect input!',
+             text: 'Phylum name does not exist.'
+           });
          }
        });
 

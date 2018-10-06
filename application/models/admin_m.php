@@ -733,7 +733,7 @@ if($this->db->query($execquery)){
 	/****** LOCALITY START!!!!! ******/
 public function showAllLocality(){
 		$result = array();
-		$query = $this->db->get('tblLocality');
+		$query = $this->db->get('viewLocality');
 
 		foreach ($query->result() as $r)
 		{
@@ -741,13 +741,8 @@ public function showAllLocality(){
 
 			$result[] = array(
 					// $r->intLocalityID,
-					$r->strIsland,
-					$r->strRegion,
-					$r->strProvince,
-					$r->strCity,
-					$r->strArea,
-					$r->strSpecificLocation,
-					$r->strShortLocation,
+					$r->strFullLocality,
+					$r->strCountry,
 					$btn,
 					$r->intLocalityID
 					);
@@ -1201,7 +1196,8 @@ public function editValidator(){
       ,[strContactNumber]
       ,[strEmailAddress]
       ,[strRole]
-      ,[strCollegeDepartment]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."')
+      ,[strCollegeDepartment]
+      ,[strHasAccount]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."','No')
 
 	";
 		$this->db->query($query);
@@ -1329,23 +1325,20 @@ UPDATE tblHerbariumStaff
 	$query="
 
 	DECLARE @staffID 		INT;
-	DECLARE @staffName		VARCHAR(MAX);
 	DECLARE @username		VARCHAR(50);
 	DECLARE @password		VARCHAR(50);
 
-	Set @staffName ='$staffname'
+	Set @staffID ='$staffname'
 	Set @username ='$username'
 	Set @password ='$password'
 
-		SET @staffID = (SELECT intStaffID FROM viewHerbariumStaff WHERE strFullName = @staffName)
-
-		IF NOT EXISTS (SELECT intAccountID
-					   FROM tblAccounts
-					   WHERE intStaffID = @staffID AND strUsername = @username AND strPassword = @password)
-		BEGIN
 			INSERT INTO tblAccounts(intStaffID, strUsername, strPassword)
 			VALUES (@staffID, @username, @password)
-		END
+
+			update tblHerbariumStaff
+			set strHasAccount = 'Yes'
+			where intStaffID = @staffID
+
 	";
 
 
@@ -1363,13 +1356,6 @@ UPDATE tblHerbariumStaff
 				return false;
 			}
 
-		$this->db->query($query);
-
-		if($this->db->affected_rows() > 0){
-			return true;
-		}else{
-			return false;
-		}
 	}
 
 	public function editAccounts(){
@@ -1419,7 +1405,8 @@ public function updateAccounts(){
 
 
 	public function showStaffName(){
-		$query = $this->db->query("select * from viewHerbariumStaff
+		$query = $this->db
+		->query("select Concat(strLastname, ' ', strNameSuffix, ', ',strFirstname,' ',strMiddlename,' ') as strFullName,intStaffID from tblHerbariumStaff where strHasAccount = 'No'
 		");
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -1463,11 +1450,11 @@ public function updateAccounts(){
 			$mi=$this->input->post('PBMInitial');
 			$ln=$this->input->post('PBLName');
 			$ns=$this->input->post('PBNSuffix');
-			$ha=$this->input->post('PBHAddress');			
+			$ha=$this->input->post('PBHAddress');
 			$cn=$this->input->post('PBCNumber');
 			$ea=$this->input->post('PBEAddress');
 			$af=$this->input->post('PBAffiliation');
-			
+
 			$query="
 			insert into tblBorrower(strFirstname,strMiddlename,strMiddleInitial,strLastname,strNameSuffix,strHomeAddress,strContactNumber,strEmailAddress,strAffiliation) VALUES ('".$fn."','".$mn."','".$mi."','".$ln."','".$ns."','".$ha."','".$cn."','".$ea."','".$af."')";
 		if($this->db->query($query)){
@@ -1478,7 +1465,7 @@ public function updateAccounts(){
 	}
 
 
-	public function editPlantBorrower(){	
+	public function editPlantBorrower(){
 		$id = $this->input->get('id');
 		$this->db->where('intBorrowerID', $id);
 		$query = $this->db->get('tblBorrower');
@@ -1500,7 +1487,7 @@ public function updateAccounts(){
 			'strMiddleInitial'=>$this->input->post('PBMInitial'),
 			'strLastname'=>$this->input->post('PBLName'),
 			'strNameSuffix'=>$this->input->post('PBNSuffix'),
-			'strHomeAddress'=>$this->input->post('PBHAddress'),		
+			'strHomeAddress'=>$this->input->post('PBHAddress'),
 			'strContactNumber'=>$this->input->post('PBCNumber'),
 			'strEmailAddress'=>$this->input->post('PBEAddress'),
 			'strAffiliation'=>$this->input->post('PBAffiliation')
@@ -2088,12 +2075,12 @@ $status = $this->input->post('txtStatus');
 	}
 
 	public function showAllAppointmentAll(){
-		$result = array();
-$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+		
+	$result = array();
+	$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID");
-
 		foreach ($query->result() as $r)
 		{
 
@@ -2307,7 +2294,7 @@ insert into tblHerbariumSheet(intPlantDepositID,intPlantReferenceID,intSpeciesID
 	}
 
 
- 
+
 
 
 
@@ -2349,7 +2336,7 @@ public function showAllAuthor()
 
 			$result[] = array(
 					// $r->intPhylumID,
-					
+
 					$r->strAuthorsName,
 					$r->strSpeciesSuffix,
 					$btn,
@@ -2361,7 +2348,7 @@ public function showAllAuthor()
 		return $result;
 	}
 
-	public function editAuthor(){	
+	public function editAuthor(){
 		$id = $this->input->get('id');
 		$this->db->where('intAuthorID', $id);
 		$query = $this->db->get('tblAuthor');
@@ -2415,7 +2402,7 @@ public function showAllPlantType()
 
 			$result[] = array(
 					// $r->intPhylumID,
-					
+
 					$r->strPlantTypeCode,
 					$r->strPlantTypeName,
 					$btn,
@@ -2426,7 +2413,7 @@ public function showAllPlantType()
 
 		return $result;
 	}
-	public function editPlantType(){	
+	public function editPlantType(){
 		$id = $this->input->get('id');
 		$this->db->where('intPlantTypeId', $id);
 		$query = $this->db->get('tblPlantType');
@@ -2481,7 +2468,7 @@ public function showAllAltName()
 
 			$result[] = array(
 					// $r->intPhylumID,
-					
+
 					$r->strScientificName,
 					$r->strLanguage,
 					$r->strAlternateName,
@@ -2493,7 +2480,7 @@ public function showAllAltName()
 
 		return $result;
 	}
-	public function editAltName(){	
+	public function editAltName(){
 		$id = $this->input->get('id');
 		$this->db->where('intAltNameID', $id);
 		$query = $this->db->get('viewSpeciesAlternate');
