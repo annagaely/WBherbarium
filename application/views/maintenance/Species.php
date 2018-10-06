@@ -31,7 +31,7 @@
 <!--                  <div class="form-group">
                     <label>Author Name:</label> <label style="color: red">*</label>
                     <input id="authorName" type="text" name="txtaName" placeholder="Author's Name" class="form-control">
-                  </div> --> 
+                  </div> -->
                 <div class="form-group">
                     <label>Author Name:</label> <label style="color: red">*</label>
                      <input list="authorname" name ="txtaID"  class="form-control" autocomplete="off">
@@ -194,7 +194,7 @@ function showSpeciesGenusName(){
 $('#btnSave').click(function(event){
   var url = '<?php echo base_url()?>admin/addSpecies'
       var data = $('#addSpeciesForm').serialize();
-      alert(data)
+      
       //validate form
       if($('#genusName').val()!=''){
         if($('#speciesName').val()!=''){

@@ -85,39 +85,107 @@
 
     <script type="text/javascript">
     $(function(){
-      $('#btnDeposit').click(function(){
+      $('#btnDeposit').click(function(event){
         var data = $('#addDepositForm').serialize();
         //validate form
+        if($('#strScientificName').val()!=''){
+          if($('#strCommonName').val()!=''){
+            if($('#strLocation').val()!=''){
+              if($('#dtDateCollected').val()!=''){
+                if($('#strPlantDesc').val()!=''){
+                  if($('#dtAppointmentDate').val()!=''){
+                    event.preventDefault();
+                    swal({
+                      title: 'Are you sure?',
+                      type: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Yes, save it!'
+                    }).then((result) => {
+                      if(result.value) {
+                        $.ajax({
+                          type: 'ajax',
+                          method: 'post',
+                          url: '<?php echo base_url() ?>user/addDeposit',
+                          data: data,
+                          async: false,
+                          dataType: 'json',
+                          success: function(data){
+                            if(data==true){
+                              let timerInterval
+                              swal({
+                                title: "Sent!",
+                                text: "Your application has been sent.",
+                                type: "success",
+                                timer: 1500,
+                                showConfirmButton: false
+                              }).then(function() {
+                                document.getElementById("addDepositForm").reset();
+                                event.preventDefault();
+                              });
 
-          $.ajax({
-            type: 'ajax',
-            method: 'post',
-            url: '<?php echo base_url() ?>user/addDeposit',
-            data: data,
-            async: false,
-            dataType: 'json',
-            success: function(data){
-              if(data==true){
+                            }
+                          },
+                          error: function(){
+                            alert('Could not save Data');
+                          }
+                        });
+                      }
+                    })
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Incomplete input!',
+                      text: 'Please fill up all the required fields.'
+                    });
+                    }
+                }else{
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Incomplete input!',
+                    text: 'Please fill up all the required fields.'
+                  });
+                  }
+              }else{
+                event.preventDefault();
                 swal({
-                  title: "Great!",
-                  text: "Congratulations! Your request has been sent.",
-                  icon: "success",
-                  button: "OK!",
-                })
-
-              } else{
-                swal({
-                  title: "Incomplete input!",
-                  text: "Please fill up all the required fields.",
-                  icon: "warning",
-                  button: "OK!"
+                  type: 'error',
+                  title: 'Incomplete input!',
+                  text: 'Please fill up all the required fields.'
                 });
+                }
+            }else{
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
+              });
               }
-            },
-            error: function(){
-              alert('Could not save Data');
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
             }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
           });
+          }
+
+
+
+
+
 
       });
     });

@@ -220,7 +220,12 @@
                  }
                },
                error: function(){
-                 alert('Could not save Data');
+                 event.preventDefault();
+                 swal({
+                   type: 'error',
+                   title: 'Incorrect input!',
+                   text: 'Phylum name does not exist.'
+                 });
                }
              });
 
@@ -295,7 +300,12 @@
            }
          },
          error: function(){
-           alert('Could not update data');
+           event.preventDefault();
+           swal({
+             type: 'error',
+             title: 'Incorrect input!',
+             text: 'Phylum name does not exist.'
+           });
          }
        });
 

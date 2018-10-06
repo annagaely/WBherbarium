@@ -13,7 +13,11 @@
 </div>
 
 <!--Carousel Wrapper-->
+<<<<<<< HEAD
 <div id="carousel-example-2" class="carousel slide carousel-fadev h-100" data-ride="carousel">
+=======
+    <div id="carousel-example-2" class="carousel slide carousel-fade vh-100" data-ride="carousel">
+>>>>>>> bb5539b3b18e106fad3a266b5255776ab605e79a
         <!--Indicators-->
         <ol class="carousel-indicators">
             <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
@@ -184,7 +188,7 @@
 
   <div class="row">
 
-  
+
     <div class="col-md-12 mb-0">
       <div class="card card-image" style="background-image: url('<?php echo base_url();?>assets/bower_components/puno1.jpg'); background-repeat: no-repeat; background-size: cover;">
         <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4 rounded">
