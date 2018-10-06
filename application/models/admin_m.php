@@ -1332,7 +1332,7 @@ UPDATE tblHerbariumStaff
 
 		SET @staffID = (SELECT intStaffID FROM viewHerbariumStaff WHERE strFullName = @staffName)
 
-		IF NOT EXISTS (SELECT intAccountID
+		IF NOT EXISTS (SELECT intStaffID
 					   FROM tblAccounts
 					   WHERE intStaffID = @staffID AND strUsername = @username AND strPassword = @password)
 		BEGIN
@@ -1456,11 +1456,11 @@ public function updateAccounts(){
 			$mi=$this->input->post('PBMInitial');
 			$ln=$this->input->post('PBLName');
 			$ns=$this->input->post('PBNSuffix');
-			$ha=$this->input->post('PBHAddress');			
+			$ha=$this->input->post('PBHAddress');
 			$cn=$this->input->post('PBCNumber');
 			$ea=$this->input->post('PBEAddress');
 			$af=$this->input->post('PBAffiliation');
-			
+
 			$query="
 			insert into tblBorrower(strFirstname,strMiddlename,strMiddleInitial,strLastname,strNameSuffix,strHomeAddress,strContactNumber,strEmailAddress,strAffiliation) VALUES ('".$fn."','".$mn."','".$mi."','".$ln."','".$ns."','".$ha."','".$cn."','".$ea."','".$af."')";
 		if($this->db->query($query)){
@@ -1471,7 +1471,7 @@ public function updateAccounts(){
 	}
 
 
-	public function editPlantBorrower(){	
+	public function editPlantBorrower(){
 		$id = $this->input->get('id');
 		$this->db->where('intBorrowerID', $id);
 		$query = $this->db->get('tblBorrower');
@@ -1493,7 +1493,7 @@ public function updateAccounts(){
 			'strMiddleInitial'=>$this->input->post('PBMInitial'),
 			'strLastname'=>$this->input->post('PBLName'),
 			'strNameSuffix'=>$this->input->post('PBNSuffix'),
-			'strHomeAddress'=>$this->input->post('PBHAddress'),		
+			'strHomeAddress'=>$this->input->post('PBHAddress'),
 			'strContactNumber'=>$this->input->post('PBCNumber'),
 			'strEmailAddress'=>$this->input->post('PBEAddress'),
 			'strAffiliation'=>$this->input->post('PBAffiliation')
@@ -2267,7 +2267,7 @@ $status = $this->input->post('txtStatus');
 	}
 
 
- 
+
 
 
 
@@ -2309,7 +2309,7 @@ public function showAllAuthor()
 
 			$result[] = array(
 					// $r->intPhylumID,
-					
+
 					$r->strAuthorsName,
 					$r->strSpeciesSuffix,
 					$btn,
@@ -2321,7 +2321,7 @@ public function showAllAuthor()
 		return $result;
 	}
 
-	public function editAuthor(){	
+	public function editAuthor(){
 		$id = $this->input->get('id');
 		$this->db->where('intAuthorID', $id);
 		$query = $this->db->get('tblAuthor');
@@ -2375,7 +2375,7 @@ public function showAllPlantType()
 
 			$result[] = array(
 					// $r->intPhylumID,
-					
+
 					$r->strPlantTypeCode,
 					$r->strPlantTypeName,
 					$btn,
@@ -2386,7 +2386,7 @@ public function showAllPlantType()
 
 		return $result;
 	}
-	public function editPlantType(){	
+	public function editPlantType(){
 		$id = $this->input->get('id');
 		$this->db->where('intPlantTypeId', $id);
 		$query = $this->db->get('tblPlantType');
@@ -2441,7 +2441,7 @@ public function showAllAltName()
 
 			$result[] = array(
 					// $r->intPhylumID,
-					
+
 					$r->strScientificName,
 					$r->strLanguage,
 					$r->strAlternateName,
@@ -2453,7 +2453,7 @@ public function showAllAltName()
 
 		return $result;
 	}
-	public function editAltName(){	
+	public function editAltName(){
 		$id = $this->input->get('id');
 		$this->db->where('intPlantTypeId', $id);
 		$query = $this->db->get('tblPlantType');

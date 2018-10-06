@@ -228,12 +228,8 @@
                  });
                }
              });
-
-
             }
-
           })
-
         }else{
           event.preventDefault();
           swal({
@@ -287,7 +283,7 @@
              let timerInterval
              swal({
                title: 'Saved',
-               text: 'Your file has been saved.',
+               text: 'Your file has been updated.',
                type: 'success',
                timer: 1500,
                showConfirmButton: false
