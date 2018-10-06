@@ -16,6 +16,11 @@
     <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/logo1.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 
 </head>
 
@@ -46,6 +51,7 @@
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/FAQsUser" data-offset="90">FAQs</a>
             </li>
 
+
           </ul>
           <!-- Social Icon  -->
           <ul class="navbar-nav nav-flex-icons">
@@ -66,19 +72,19 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method ="post" action="<?php echo base_url();?>user/login_validation">
+                <form id="loginForm" method ="post" enctype="multipart/form-data">
                 <div class="modal-body mx-3">
                     <div class="md-form mb-5">
                         <i class="fa fa-envelope prefix grey-text"></i>
                         <input type="text" id="defaultForm-text" name="loginUsername" class="form-control validate">
                         <label  for="defaultForm-text">Your Username</label>
-                        <span class="text-danger"><?php echo form_error('loginUsername');?></span>
+
                     </div>
                     <div class="md-form mb-4">
                         <i class="fa fa-lock prefix grey-text"></i>
                         <input type="password" id="defaultForm-pass" name="loginPassword" class="form-control validate">
                         <label for="defaultForm-pass">Your password</label>
-                        <span class="text-danger"><?php echo form_error('loginPassword');?></span>
+
                           <center>Doesn't have an account yet? Register <a href="<?php echo base_url(); ?>user/Register">here.</a>
                           </center>
                     </div>
@@ -87,10 +93,68 @@
                 <div class="modal-footer d-flex justify-content-center">
                   <button class="btn btn-danger" type="reset">Reset</button>
                   <!--<a href="<?php echo base_url()?>user/Home"><button class="btn btn-primary">Login</button></a>-->
-                  <button class="btn btn-primary" type="submit" name="insert" value="Login">Login</button>
-                  
+                  <button id="btnSave" class="btn btn-primary" type="submit" name="insert" value="Login">Login</button>
+
                 </div>
               </form>
             </div>
         </div>
     </div>
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#btnSave').click(function(event){
+          var url = '<?php echo base_url();?>user/login_validation';
+          var data = $('#loginForm').serialize();
+
+         if($('#defaultForm-text').val()!=''){
+            if($('#defaultForm-pass').val()!=''){
+              $.ajax({
+                type: 'ajax',
+                method: 'post',
+                url: url,
+                data: data,
+                async: false,
+                dataType: 'json',
+                success: function(response){
+                  if(response.success){
+                    let timerInterval
+                    swal({
+                      title: 'Logged in',
+                      text: 'You are now logged in!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                      window.location.href='<?php echo base_url();?>user/home';
+                    });event.preventDefault();
+                  }
+                },
+                error: function() {
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: "Can't Log In",
+                    text: 'Invalid Username or Password.'
+                  });
+                }
+              });
+            }else {
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the require fields.'
+              });
+            }
+          }else {
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+          }
+        });
+      });
+    </script>

@@ -41,7 +41,7 @@
                     <label>Language:</label> <label style="color: red">*</label>
                     <input type="text" name="txtLanguage" id="strLanguage" placeholder="Language" class="form-control" >
                   </div>
-                 
+
                   <div class="form-group">
                     <label>Alternate Name:</label> <label style="color: red">*</label>
                     <input type="text" name="txtAName" id="strAlternateName" placeholder="Alternate Name" class="form-control" >
@@ -146,7 +146,7 @@
         }
 
 
-      $(document).ready(function(){ 
+      $(document).ready(function(){
 
     //show
     showAllAltName();
@@ -179,14 +179,13 @@ $('#btnSave').click(function(event){
       var url = '<?php echo base_url() ?>admin/addPlantType';
       var data = $('#addSpeciesAlterateForm').serialize();
       //validate form
-      
+
         if($('#strTaxonName').val()!=''){
           if($('#strLanguage').val()!=''){
              if($('#strAlternateName').val()!=''){
             event.preventDefault();
             swal({
               title: 'Are you sure?',
-
               type: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
@@ -222,7 +221,7 @@ $('#btnSave').click(function(event){
                      document.getElementById("addSpeciesAlterateForm").reset();
                     event.preventDefault();
                     });
-                    
+
                   }
                 },
                 error: function(){
@@ -250,7 +249,7 @@ $('#btnSave').click(function(event){
             title: 'Incomplete input!',
             text: 'Please fill up all the required fields.'
           });
-          
+
       }
     }else{
           event.preventDefault();
@@ -259,13 +258,13 @@ $('#btnSave').click(function(event){
             title: 'Incomplete input!',
             text: 'Please fill up all the required fields.'
           });
-          
+
       }
     });
-  
+
 $('#btnEditSave').click(function(event){
       var data = $('#editPlantTypeForm').serialize();
-      
+
         if($('#strPlantCode1').val()!=''){
           if($('#strPlantType1').val()!=''){
             event.preventDefault();
@@ -305,9 +304,9 @@ $('#btnEditSave').click(function(event){
                     showAllPlantType();
                     $('#myEditModal').modal('hide');
                     document.getElementById("editAuthorForm").reset();
-                    
+
                       });
-                      
+
                     }else{
                       alert('Error');
                     }
@@ -347,4 +346,3 @@ $('#btnEditSave').click(function(event){
 
   });
         </script>
-
