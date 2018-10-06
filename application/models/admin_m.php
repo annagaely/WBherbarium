@@ -498,12 +498,8 @@ if($this->db->query($query)){
 
 public function showAllSpecies(){
 		$result = array();
-		$query = $this->db->select('intSpeciesID,
-			 g.strGenusName,
-			 strSpeciesName,
-			 strCommonName')
-			->join('tblGenus g', 'g.intGenusID = s.intGenusID')
-			->get('tblSpecies s');
+		$query = $this->db
+			->get('viewTaxonSpecies');
 		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary species-edit" data="'.$r->intSpeciesID.'"><i class="far fa-edit"></i></button>';
@@ -513,6 +509,7 @@ public function showAllSpecies(){
 					$r->strGenusName,
 					$r->strSpeciesName,
 					$r->strCommonName,
+					$r->strAuthorsName,
 					$btn,
 					$r->intSpeciesID
 					);
@@ -541,6 +538,17 @@ public function showSpeciesGenusName(){
 		set @genusid = (select intGenusID from tblGenus where strGenusName = '".$intGenusID."')
 			insert into tblSpecies(intGenusID,strSpeciesName,strCommonName) VALUES (@genusid,'".$strSpeciesName."','".$strCommonName."')
 
+		IF @isVerified = 1
+			BEGIN
+				SET @speciesID = (SELECT intSpeciesID FROM tblSpecies WHERE strSpeciesName = @speciesName);
+				SET @authorID = (SELECT CASE
+									WHEN @isIDBase = 1 THEN @author
+									ELSE (SELECT intAuthorID FROM tblAuthor WHERE strAuthorsName = @author)
+								END);
+
+				INSERT INTO tblSpeciesAuthor (intSpeciesID, intAuthorID)
+				VALUES (@speciesID, @authorID)
+			END
 			";
 
 
@@ -556,12 +564,11 @@ public function showSpeciesGenusName(){
 		$id = $this->input->get('id');
 		$this->db->where('intSpeciesID', $id);
 		$query = $this->db->select('intSpeciesID,
-			 g.strGenusName,
-			 g.intGenusID,
+			 strGenusName,
 			 strSpeciesName,
-			 strCommonName')
-			->join('tblGenus g', 'g.intGenusID = s.intGenusID')
-			->get('tblSpecies s');
+			 strCommonName,
+			 strAuthorsName')
+			->get('viewTaxonSpecies');
 		if($query->num_rows() > 0){
 			return $query->row();
 		}else{
@@ -2248,7 +2255,9 @@ public function updateEVConfirmation(){
 $depositid = $this->input->post('txtId');
 $status = $this->input->post('txtStatus');
 $validatorid= $this->input->post('txtId2');
-	$query="
+	
+if($status ==='Verified'){
+		$query="
 
 	DECLARE @depositid INT;
 	DECLARE @status		VARCHAR(50);
@@ -2271,6 +2280,30 @@ insert into tblHerbariumSheet(intPlantDepositID,intPlantReferenceID,intSpeciesID
 		}else{
 			return false;
 		}
+	}else{
+		$query1="
+
+	DECLARE @depositid INT;
+	DECLARE @status		VARCHAR(50);
+
+	Set @depositid ='$depositid'
+	Set @status ='$status'
+
+
+
+		UPDATE tblPlantDeposit
+		SET strStatus = @status
+		WHERE intPlantDepositID = @depositid;
+
+
+	";
+		if($this->db->query($query1)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	}
 
 
@@ -2462,8 +2495,8 @@ public function showAllAltName()
 	}
 	public function editAltName(){	
 		$id = $this->input->get('id');
-		$this->db->where('intPlantTypeId', $id);
-		$query = $this->db->get('tblPlantType');
+		$this->db->where('intAltNameID', $id);
+		$query = $this->db->get('viewSpeciesAlternate');
 		if($query->num_rows() > 0){
 			return $query->row();
 		}else{
@@ -2474,11 +2507,12 @@ public function showAllAltName()
 
 	 public function addAltName(){
 
-			$planttypecode=$this->input->post('txtPlantCode');
-			$planttypename=$this->input->post('txtPlantType');
-
+			$speciesid=$this->input->post('txttaxonName');
+			$language=$this->input->post('txtLanguage');
+			$altname=$this->input->post('txtAName');
 			$query="
-			insert into tblPlantType(strPlantTypeCode,strPlantTypeName) VALUES ('".$planttypecode."','".$planttypename."')
+						INSERT INTO tblSpeciesAlternateName (intSpeciesID, strLanguage, strAlternateName)
+			VALUES ('".$speciesid."','".$language."', '".$altname."')
 
 			";
 		if($this->db->query($query)){
@@ -2489,18 +2523,31 @@ public function showAllAltName()
 	}
     public function updateAltName(){
     $id = $this->input->post('txtId');
-    $field = array(
-    'strPlantTypeCode'=>$this->input->post('txtePlantCode'),
-    'strPlantTypeName'=>$this->input->post('txtePlantType')
-    );
-    $this->db->where('intPlantTypeID', $id);
-    $this->db->update('tblPlantType', $field);
-    if($this->db->affected_rows() > 0){
-      return true;
-    }else{
-      return false;
-    }
+    $intSpeciesID=$this->input->post('txtetaxonName');
+    $strLanguage=$this->input->post('txteLanguage');
+    $strAlternateName=$this->input->post('txteAName');
+
+ $query="
+			declare @speciesid int;
+
+		set @speciesid = (select intSpeciesID from viewTaxonSpecies where strScientificName = '".$intSpeciesID."')
+
+			update tblSpeciesAlternateName
+			set intSpeciesID = @speciesid,
+				strLanguage = '".$strLanguage."',
+				strAlternateName = '".$strAlternateName."'
+				where intAltNameID = ".$id."
+
+			";
+
+if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
   }
+
+  
 	public function showAllExValidators(){
 		$query = $this->db->select("intValidatorID,
      Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName,
@@ -2514,6 +2561,22 @@ public function showAllAltName()
 		}
 	}
 
+	public function showAllSpeciesName(){
+		$query = $this->db->get('viewTaxonSpecies');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
 
+	public function showSpeciesAuthorsName(){
+		$query = $this->db->get('tblAuthor');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
 
 }?>

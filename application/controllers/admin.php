@@ -972,8 +972,8 @@ public function showAllAltName()
       exit();
 
 }
-public function editAllAltName(){
-	$result = $this->m->editAllAltName();
+public function editAltName(){
+	$result = $this->m->editAltName();
 	echo json_encode($result);
 }
 public function addAltName(){
@@ -1723,7 +1723,14 @@ redirect('admin/Externalvalidation');
 	    }
 
 
-
+public function showAllSpeciesName(){
+	$result = $this->m->showAllSpeciesName();
+	echo json_encode($result);
+	}
+public function showSpeciesAuthorsName(){
+	$result = $this->m->showSpeciesAuthorsName();
+	echo json_encode($result);
+	}
 
 
 
