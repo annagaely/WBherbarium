@@ -58,7 +58,7 @@
     <script type="text/javascript">
 
 $(function(){
-    $('#btnSubmit').click(function(){
+    $('#btnSubmit').click(function(event){
       var data = $('#addAppointmentForm').serialize();
 
       if($('#dtAppointmentDate').val()!=''){

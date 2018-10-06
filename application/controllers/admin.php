@@ -1731,6 +1731,18 @@ public function showSpeciesAuthorsName(){
 	$result = $this->m->showSpeciesAuthorsName();
 	echo json_encode($result);
 	}
+public function showCountries(){
+	$result = $this->m->showCountries();
+	echo json_encode($result);
+	}
+	public function showProvinces(){
+	$result = $this->m->showProvinces();
+	echo json_encode($result);
+	}
+		public function showCity(){
+	$result = $this->m->showCity();
+	echo json_encode($result);
+	}
 
 
 
