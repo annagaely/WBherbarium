@@ -135,12 +135,11 @@
            </div>
 
       <div class="modal-body">
-            <form id= "viewEVForm" method="POST" enctype="multipart/form-data">
-                 
+        <form id="viewEVForm" action="<?php echo base_url(); ?>admin/SendtoExValidator" method="post" enctype="multipart/form-data">
               <div class = "row">
                 <div class="col-sm-6">
                   <label><strong> Select Photos of the Specimen</strong></label>
-                  <input type="file" name="userfile[]" accept=".jpeg,.jpg,.png" multiple  />
+                  <input type="file" name="userfile[]" accept=".jpeg,.jpg,.png" multiple />
                 </div>
               </div>
 <hr>
@@ -199,17 +198,15 @@
               <div class = "row">
                 <div class="col-sm-6">
                   <label><strong> Select Where to send the Specimen</strong></label>
-                 <select name = 'externalvalidator' id='externalvalidators' class='form-control'>
-                   <?php 
-
-                   ?>
+                 <select name = 'externalvalidator' id='externalvalidators' class='form-control' required>
+                  <option>Select External Validator</option>
                  </select>
                 </div>
               </div>
 
                    <div class="form-group">
                      <div class="modal-footer">
-                     <input type="submit" id="btnSave" value="Proceed" class="btn btn-primary" style="margin-left: 300px">
+                     <input type="submit" id="btnSave" value="Send" class="btn btn-primary" style="margin-left: 300px">
                     </div>
                    </div>
 
@@ -223,7 +220,7 @@
     <div role="document" class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 id="exampleModalLabel" class="modal-title">Email</h5>
+          <h5 id="exampleModalLabel" class="modal-title">Email For Follow Up</h5>
           <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
         </div>
 
@@ -301,6 +298,13 @@
                       <input type="hidden" name="txtId" id="txtID" value="0">
                        <input type="text" name="txtPlantDepositReq" id="intPlantDepositID " class="form-control" disabled="">
                      </div>
+                     <div class="col-sm-4">
+                       <label style="font-size: 14px;">Validator Name:</label>
+                     </div>
+                       <div class="col-sm-8">
+                      <input type="hidden" name="txtId2" id="txtID" value="0">
+                       <input type="text" name="txtvalidatorname" id="txtvalidatornames " class="form-control" disabled="">
+                     </div>
             </div>
            <!-- <div class="form-group row">
                      <div class="col-sm-4">
@@ -317,8 +321,8 @@
                      </div>
                      <div class="col-sm-8">
                      <select name="txtStatus" id="strStatus"  class="form-control">
-                        <option value="Arrived">Arrived</option>
-                        <option value="Did not arrive">Did not arrive</option>
+                        <option value="Verified">Verified</option>
+                        <option value="Not Verified">Not Verified</option>
                       </select>
                      </div>
             </div>
@@ -371,9 +375,9 @@ showAllExValidators();
          var html = '';
          var i;
          for(i=0; i<data.length; i++){
-           html +='<option value="'+data[i].intValidatorID+'">'+data[i].strFullName+' from '+data[i].strInstitution+'</option>';
+           html +='<option value='+data[i].intValidatorID+'|'+data[i].strEmailAddress+'>'+data[i].strFullName+' from '+data[i].strInstitution+'</option>';
          }
-         $('#externalvalidators').html(html);
+         $('#externalvalidators').append(html);
        },
        error: function(){
          alert('Could not get Data from Database');
@@ -414,31 +418,6 @@ $(document).on('click', '.view-EVPending', function(){
     });
    });
 
-
-$('#btnSave').click(function(){
-      var data = $('#viewEVForm').serialize();
-      // alert(data)
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/updateEVStatus',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-
-            if(response==true){
-
-
-            }else{
-              alert('Error');
-            }
-          },
-          error: function(){
-            alert('Could not update data');
-          }
-        });
-    });
 </script>
 
 
@@ -479,10 +458,11 @@ $('#btnSave').click(function(){
         dataType: 'json',
         success: function(data){
           // $('input[name=txtCollectorName').val(data.strFullName);
-          $('input[name=txtPlantDepositReq]').val(data.intPlantDepositID);
-          $('input[name=txtId]').val(data.intPlantDepositID);
+          $('input[name=txtPlantDepositReq]').val(data.intDepositID);
+          $('input[name=txtId]').val(data.intDepositID);
           $('input[name=txtStatus]').val(data.strStatus);
-
+          $('input[name=txtvalidatorname]').val(data.strFullName);
+          $('input[name=txtId2]').val(data.intValidatorID);
 
         },
         error: function(){
@@ -506,8 +486,8 @@ $('#btnSave').click(function(){
         success: function(data){
           $('#strEmailAdress').val(data.strEmailAddress);
           $('#txtemail').val(data.strEmailAddress);
-          $('input[name=txtId]').val(data.intPlantDepositID);
-          $('#txtreqID').val(data.intPlantDepositID);
+          $('input[name=txtId]').val(data.intDepositID);
+          $('#txtreqID').val(data.intDepositID);
 
         },
         error: function(){
