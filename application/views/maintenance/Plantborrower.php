@@ -167,7 +167,7 @@
                   <!-- <th scope="col" width= "10%">Phylum ID</th> -->
                   <th scope="col" width= "10%">Last Name</th>
                   <th scope="col" width= "10%">First Name</th>
-                  <th scope="col" width= "10%">Institution</th>
+                  <th scope="col" width= "10%">Affliation</th>
                   <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>

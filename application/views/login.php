@@ -37,6 +37,7 @@
   <body>
 
 
+
 <!-- 
 
   **   for case sensitivity -- run sa sql server **
@@ -115,6 +116,8 @@ ALTER COLUMN strPassword varchar(50) COLLATE Latin1_General_CS_AS;
                 dataType: 'json',
                success: function(response){
                   if(response.success){
+
+                    // document.getElementBYId("foldingcircle").style.display = 'block' ;
                     let timerInterval
                     swal({
                     title: 'Logged in',
@@ -123,7 +126,7 @@ ALTER COLUMN strPassword varchar(50) COLLATE Latin1_General_CS_AS;
                       timer: 1500,
                       showConfirmButton: false
                     }).then(function() {
-window.location.href='<?php echo base_url();?>admin/dashboard';
+                       window.location.href='<?php echo base_url();?>admin/dashboard';
                     });event.preventDefault();
                   }
                 },

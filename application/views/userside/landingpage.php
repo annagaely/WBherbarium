@@ -1,7 +1,4 @@
 <div class="preloader-wrapper big active crazy">
-  
-
-
   <div class="spinner-layer spinner-blue-only">
     <div class="circle-clipper left">
       <div class="circle"></div>
@@ -14,8 +11,9 @@
     </div>
   </div>
 </div>
+
 <!--Carousel Wrapper-->
-    <div id="carousel-example-2" class="carousel slide carousel-fadev h-100" data-ride="carousel">
+<div id="carousel-example-2" class="carousel slide carousel-fadev h-100" data-ride="carousel">
         <!--Indicators-->
         <ol class="carousel-indicators">
             <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
@@ -41,7 +39,7 @@
                     </a>
                 </div>
               </div>
-          </div>
+        
 
             <div class="carousel-item">
             <!--Mask color-->
@@ -71,7 +69,8 @@
                     <p>Third text</p>
                 </div>
             </div>
-        </div>
+              </div>
+
        <!--/.Slides-->
        <!--Controls-->
        <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
@@ -82,7 +81,7 @@
            <span class="carousel-control-next-icon" aria-hidden="true"></span>
            <span class="sr-only">Next</span>
        </a>
-            <!--/.Controls-->
+            <!--/Controls-->
 </div>
     <div class="px-5 py-5 mx-0" >
     <section class="text-center mx-5 pb-5">

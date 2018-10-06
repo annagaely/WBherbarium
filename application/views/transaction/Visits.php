@@ -643,8 +643,15 @@ $(document).on('click', '.view-appointment', function(){
           $('input[name=txtVisitDate').val(data.dtAppointmentDate);
           $('input[name=txtVisitPurpose').val(data.strVisitDescription);
           $('input[name=txtId').val(data.intAppointmentID);
+ },
+        error: function(){
+          alert('Could not Edit Data');
+        }
 
+    });
 
+</script>
+<script>
     function showAllAppointmentAll(){
         
       $('#manageAlltbl').dataTable().fnClearTable();

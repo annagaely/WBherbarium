@@ -25,14 +25,14 @@
     <!-- Start your project here-->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
       <div class="container">
-        <a class="navbar-brand" href="#"><strong>PUP Herbarium</strong></a>
+        <a class="navbar-brand" href="<?php echo base_url()?>user/index"><strong>PUP Herbarium</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto smooth-scroll">
             <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/index">Home
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/home">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -40,7 +40,7 @@
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/CollectionUser" data-offset="90">Collection</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/ContactUser" data-offset="90">Contact</a>
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Contactuser" data-offset="90">Contact</a>
             </li>
             <li class="nav-item">
               <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/FAQsUser" data-offset="90">FAQs</a>

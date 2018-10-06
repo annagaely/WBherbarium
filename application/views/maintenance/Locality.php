@@ -215,13 +215,9 @@
               <thead>
                 <tr>
 <!--                   <th scope="col" width= "10%">Locality ID</th> -->
-                  <th scope="col" width= "10%">Island</th>
-                  <th scope="col" width= "10%">Region</th>
-                  <th scope="col" width= "10%">Province</th>
-                  <th scope="col" width= "10%">City</th>
-                  <th scope="col" width= "10%">Area</th>
-                  <th scope="col" width= "10%">Specific Location</th>
-                  <th scope="col" width= "10%">Short Location</th>
+
+                  <th scope="col" width= "50%">Full Locality</th>
+                  <th scope="col" width= "10%">Country</th>
                   <th scope="col" width= "10%">Actions</th>
                 </tr>
               </thead>
@@ -779,7 +775,7 @@ function resetForm() {
       $('#manageLocalitytbl').dataTable().fnDraw();
       $('#manageLocalitytbl').dataTable().fnDestroy();
       $('#manageLocalitytbl').dataTable({
-          "autoWidth":false,
+          // "autoWidth":false,
          "processing": true,
          "serverSide": false,
          "sAjaxSource": "<?php echo base_url('admin/showAllLocality')?>",
