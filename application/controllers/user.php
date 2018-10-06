@@ -43,7 +43,7 @@ class user extends CI_Controller {
 	{
 		$title['title'] = "PUPHerbarium | Contact";
 		$this->load->view('userside/navbar2', $title);
-
+		$this->load->view('userside/contactuser');
 		$this->load->view('userside/footer');
 	}
 
@@ -301,38 +301,47 @@ public function userRegister(){
 	}
 
 
-public function ContactUsEmail()
-{
+// public function ContactUsEmail()
+// {
 
-	$email=$this->input->post('txtContactEmailAddress');
-$message = $this->input->post('txtContactUsMessage');
+// 	$email=$this->input->post('txtContactEmailAddress');
+// $message = $this->input->post('txtContactUsMessage');
 
-    $config = Array(
-  'protocol' => 'smtp',
-  'smtp_host' => 'ssl://smtp.googlemail.com',
-  'smtp_port' => 465,
-  'smtp_user' => '$email', // change it to yours
-  // 'smtp_pass' => 'WBHerbarium2018', // change it to yours
-  'mailtype' => 'html',
-  'charset' => 'iso-8859-1',
-  'wordwrap' => TRUE
-);
 
-        $this->load->library('email', $config);
-      $this->email->set_newline("\r\n");
-      $this->email->from($email); // change it to yours
-      $this->email->to('WBHerbariumTA@gmail.com');// change it to yours
-      $this->email->subject('PUP Herbarium Center');
-      $this->email->message("<br> <br>" . $message );
 
-      if($this->email->send())
-     {
-     	return true;
-     }
-     else
-    {
-     show_error($this->email->print_debugger());
+// 	$query = $this->db
+// 			->where('strPassword',$password)
+// 			->join('tblHerbariumStaff hs', 'hs.intStaffID = a.intStaffID')
+// 			->get('tblAccounts a');
 
- }
-}
+
+
+//     $config = Array(
+//   'protocol' => 'smtp',
+//   'smtp_host' => 'ssl://smtp.googlemail.com',
+//   'smtp_port' => 465,
+//   'smtp_user' => $email, // change it to yours
+//   'smtp_pass' => $password// change it to yours
+//   'mailtype' => 'html',
+//   'charset' => 'iso-8859-1',
+//   'wordwrap' => TRUE
+// );
+
+//         $this->load->library('email', $config);
+//       $this->email->set_newline("\r\n");
+//       $this->email->from($email); // change it to yours
+//       $this->email->to('WBHerbariumTA@gmail.com');// change it to yours
+//       $this->email->subject('PUP Herbarium Center');
+//       $this->email->message("<br> <br>" . $message );
+
+//       if($this->email->send())
+//      {
+//      	return true;
+//      }
+//      else
+//     {
+//      show_error($this->email->print_debugger());
+
+//  }
+// }
 }?>
