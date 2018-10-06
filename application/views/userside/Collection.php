@@ -13,6 +13,7 @@
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <div class="view">
+
                     <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/4.jpg" alt="First slide">
                 </div>
                 <div class="carousel-caption">

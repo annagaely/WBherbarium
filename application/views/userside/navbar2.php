@@ -106,6 +106,7 @@
 
                     </div>
                 </div>
+                 <center> <?php echo '<span class="text-danger">'.$this->session->flashdata("error"); ?> </center>
                 <div class="modal-footer d-flex justify-content-center">
                     <button class="btn btn-primary">Login</button>
                 </div>

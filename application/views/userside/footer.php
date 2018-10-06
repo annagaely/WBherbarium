@@ -40,7 +40,7 @@
         <div class="col-md-2 mx-auto">
 
           <!-- Links -->
-          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Get Started</h5>
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">PUP HErbarium</h5>
 
           <ul class="list-unstyled">
             <li>
@@ -88,24 +88,19 @@
         <hr class="clearfix w-100 d-md-none">
 
         <!-- Grid column -->
-        <div class="col-md-2 mx-auto">
+        <div class=" mx-auto">
 
           <!-- Links -->
-          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Contact Us</h5>
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4"> Herbarium Staff</h5>
 
           <ul class="list-unstyled">
             <li>
-              <a href="#!">Link 1</a>
+              <p> Armin S. Coronado, MSc.<br> 
+              <strong>Director</strong></p>
             </li>
             <li>
-              <a href="#!">Link 2</a>
-            </li>
-            <li>
-              <a href="#!">Link 3</a>
-            </li>
-            <li>
-              <a href="#!">Link 4</a>
-            </li>
+              <p> Ma. Eleanor Salvador<br> 
+              <strong>Curator</strong></p>
           </ul>
 
         </div>
