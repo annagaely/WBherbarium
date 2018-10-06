@@ -19,7 +19,7 @@
                 <div class="name"><strong class="text-uppercase">Total<br>Accounts</strong>
                   <div class="count-number">
                     <?php
-                  $serverName = "DEI";
+                  $serverName = "MSI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -48,7 +48,7 @@
                   <div class="count-number">
 
                     <?php
-                  $serverName = "DEI";
+                  $serverName = "MSI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -77,7 +77,7 @@
                   <div class="count-number">
 
                     <?php
-                  $serverName = "DEI";
+                  $serverName = "MSI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -115,7 +115,7 @@
       </div>
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 
-      <script>//bar
+<script>//bar
 var ctxB = document.getElementById("barChart").getContext('2d');
 var myBarChart = new Chart(ctxB, {
     type: 'bar',

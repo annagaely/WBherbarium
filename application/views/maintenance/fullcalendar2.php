@@ -100,7 +100,7 @@
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#addModal" class="btn btn-primary">Add Event</button>
         </div>
-      </div>
+      
   <div class="modal" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -128,7 +128,7 @@
                     <input type="date" class="form-control" name="start_date">
                 </div>
         </div>
-      </div>
+      
       <div class="modal-footer">
         <input type="button" class="btn btn-secondary" value="Close" data-dismiss="modal">
         <input type="submit" class="btn btn-primary" value="Add Event">
@@ -137,6 +137,9 @@
     </div>
   </div>
 </div>
+</div>
+
+
       <div class="col-md-13 mx-0 px-0">
 <div class="container">
     <div id="calendar"></div></div>   
@@ -186,6 +189,8 @@
 </div>
 </div>
 </body>
+
+
 <script type="text/javascript">
 $(document).ready(function() {
   var date_last_clicked = null;

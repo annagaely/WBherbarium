@@ -32,12 +32,7 @@
                     <label>Author Name:</label> <label style="color: red">*</label>
                     <input id="authorName" type="text" name="txtaName" placeholder="Author's Name" class="form-control">
                   </div> --> 
-                <div class="form-group">
-                    <label>Author Name:</label> <label style="color: red">*</label>
-                     <input list="authorname" name ="txtaID"  class="form-control" autocomplete="off">
-                     <datalist id ='authorname'>
-                     </datalist>
-                  </div>
+
                   <div class="form-group">
                     <label>Genus Name:</label> <label style="color: red">*</label>
                      <input list="genusname" name ="txtgID"  class="form-control" autocomplete="off">
@@ -51,6 +46,17 @@
                   <div class="form-group">
                     <label>Common Name:</label> <label style="color: red">*</label>
                     <input id="commonName" type="text" name="txtcoName" placeholder="Common Name" class="form-control">
+                  </div>
+                    <label>
+
+                      <input type="checkbox" name="check1" id="plantknown" onclick="disableMyText();">   Known Species
+
+                    </label>
+                    <div class="form-group">
+                    <label>Author Name:</label> <label style="color: red">*</label>
+                     <input list="authorname" name ="txtaID"  id = 'author' class="form-control" autocomplete="off" disabled>
+                     <datalist id ='authorname'>
+                     </datalist>
                   </div>
                   <!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
@@ -96,6 +102,12 @@
                     <label>Common Name:</label> <label style="color: red">*</label>
                     <input id="commonName1" type="text" name="txtecName" placeholder="Class Name" class="form-control">
                   </div>
+                    <div class="form-group">
+                    <label>Author Name:</label> <label style="color: red">*</label>
+                     <input list="authorname" name ="txteaID"  id = 'author' class="form-control" autocomplete="off">
+                     <datalist id ='authorname'>
+                     </datalist>
+                  </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" value="Save" id='btnEditSave' class="btn btn-primary">
@@ -117,6 +129,7 @@
                           <th scope="col" width= "10%">Genus Name</th>
                           <th scope="col" width= "10%">Species Name</th>
                           <th scope="col" width= "10%">Common Name</th>
+                          <th scope="col" width= "10%">Authors Name</th>
                           <th scope="col" width= "10%">Actions</th>
                         </tr>
                       </thead>
@@ -135,15 +148,21 @@
  <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
  <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
 
-<script>
-function resetForm() {
-    document.getElementById("addSpeciesForm").reset();
-}
-</script>
+
 
 
 <script type="text/javascript">
-
+     function disableMyText(){
+          if(document.getElementById("plantknown").checked == true)
+          {
+              document.getElementById("author").disabled=false;
+             
+          }
+          else
+          {
+            document.getElementById("author").disabled=true;
+          }
+     }
   function showAllSpecies()
   {
     $('#manageSpeciestbl').dataTable().fnClearTable();
@@ -167,7 +186,26 @@ function resetForm() {
       //show
     showAllSpecies();
     showSpeciesGenusName();
-
+    showSpeciesAuthorsName();
+function showSpeciesAuthorsName(){
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url() ?>admin/showSpeciesAuthorsName',
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html +='<option value="'+data[i].strAuthorsName+'">'+data[i].strAuthorsName+'</option>';
+          }
+          $('#authorname').html(html);;
+        },
+        error: function(){
+          alert('Could not get Data from Database');
+        }
+      });
+    }
 
 function showSpeciesGenusName(){
       $.ajax({
@@ -194,9 +232,10 @@ function showSpeciesGenusName(){
 $('#btnSave').click(function(event){
   var url = '<?php echo base_url()?>admin/addSpecies'
       var data = $('#addSpeciesForm').serialize();
-      alert(data)
+      alert($('#plantknown').val());
+
       //validate form
-      if($('#genusName').val()!=''){
+      /*if($('#genusName').val()!=''){
         if($('#speciesName').val()!=''){
           if($('#commonName').val()!=''){
             event.preventDefault();
@@ -266,7 +305,7 @@ $('#btnSave').click(function(event){
           title: 'Incomplete input!',
           text: 'Please fill up all the required fields.'
         });
-      }
+      }*/
     });
 
 $('#btnEditSave').click(function(){
@@ -314,6 +353,7 @@ $('#btnEditSave').click(function(){
           $('input[name=sesGID').val(data.strGenusName);
           $('input[name=txteSName]').val(data.strSpeciesName);
           $('input[name=txtecName]').val(data.strCommonName);
+          $('input[name=txteaID]').val(data.strAuthorsName);
           $('input[name=txtId]').val(data.intSpeciesID);
 
         },

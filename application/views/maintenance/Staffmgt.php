@@ -32,7 +32,7 @@
                     <div class="col-sm-6">
                     <label>Role:</label> <label style="color: red">*</label>
                     <select name="sRole" class="form-control">
-                      <option id="SA" name="nSA" value= "SUPER ADMINISTRATOR"> Super Administrator</option>
+                      <option id="SA" name="nSA" value= "ADMINISTRATOR">Administrator</option>
                       <option id="CR" name="nCR" value= "CURATOR"> Curator</option>
                       <option id="StA" name="nStA" value= "STUDENT ASSISTANT"> Student Assistant</option>
                     </select>
@@ -129,7 +129,7 @@
                     <div class="col-sm-6">
                     <label>Role:</label>
                     <select name="esRole" class="form-control">
-                      <option id="SA" value= "SUPER ADMINISTRATOR"> Super Administrator</option>
+                      <option id="SA" value= "ADMINISTRATOR">Administrator</option>
                       <option id="CR" value= "CURATOR"> Curator</option>
                      <option id="StA" name="nStA" value= "STUDENT ASSISTANT"> Student Assistant</option>
 
