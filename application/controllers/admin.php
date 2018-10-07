@@ -743,6 +743,10 @@ public function updateFamilyBox(){
 		$result = $this->m->showStaffName();
 		echo json_encode($result);
 	}
+			public function showeditStaffName(){
+		$result = $this->m->showeditStaffName();
+		echo json_encode($result);
+	}
 
 	/****** END account!!!!! ******/
 	/****** account START!!!!! ******/

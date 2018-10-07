@@ -1397,10 +1397,9 @@ public function updateAccounts(){
 	DECLARE @username		VARCHAR(50);
 	DECLARE @password		VARCHAR(50);
 
-	Set @staffName ='$staffname'
 	Set @username ='$username'
 	Set @password ='$password'
-	Set @staffID ='$staffid'
+	Set @staffID = '$staffid'
 
 
 		UPDATE tblAccounts
@@ -1419,7 +1418,18 @@ public function updateAccounts(){
 
 	public function showStaffName(){
 		$query = $this->db
-		->query("select Concat(strLastname, ' ', strNameSuffix, ', ',strFirstname,' ',strMiddlename,' ') as strFullName,intStaffID from tblHerbariumStaff where strHasAccount = 'No'
+		->query("select strFullName,HS.intStaffID from viewHerbariumStaff vHS join tblHerbariumStaff HS on vHS.intStaffID = hs.intStaffID where strHasAccount = 'No'
+		");
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
+	public function showeditStaffName(){
+		
+		$query = $this->db
+		->query("select strFullName,HS.intStaffID from viewHerbariumStaff vHS join tblHerbariumStaff HS on vHS.intStaffID = hs.intStaffID
 		");
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -2598,4 +2608,5 @@ if($this->db->query($query)){
 			return false;
 		}
 	}
+
 }?>

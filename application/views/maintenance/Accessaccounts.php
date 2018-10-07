@@ -69,7 +69,7 @@
           <div role="document" class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 id="exampleModalLabel" class="modal-title">Add Account</h5>
+                <h5 id="exampleModalLabel" class="modal-title">Edit Account</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
 
@@ -78,8 +78,8 @@
                <form id= "editAccountForm" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label>Staff Name:</label> <label style="color: red">*</label>
-                     <select id="showStaffName2" name ="eStaffName" class="form-control">
-                     </select>
+                     <input type="text" id="editstaffname" name ="eStaffName" class="form-control" disabled>
+                    
                   </div>
 
                    <div class = "row">
@@ -189,7 +189,7 @@ function resetForm() {
         }
 
 $(document).ready(function(){
-      //show-
+    //show-
     showAllAccounts();
     showStaffName();
 
@@ -207,7 +207,6 @@ $(document).ready(function(){
             html +='<option value="'+data[i].intStaffID+'">'+data[i].strFullName+'</option>';
           }
           $('#showStaffName').html(html);
-          $('#showStaffName2').html(html);
         },
         error: function(){
           alert('Could not get Data from Database');
@@ -215,7 +214,27 @@ $(document).ready(function(){
       });
 
 };
+showeditStaffName();
+ function showeditStaffName(){
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url() ?>admin/showeditStaffName',
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          var html = '';
+          var i;
+          for(i=0; i<data.length; i++){
+            html +='<option value="'+data[i].strFullName+'">'+data[i].strFullName+'</option>';
+          }
+          $('#editstaffname').html(html);
+        },
+        error: function(){
+          alert('Could not get Data from Database');
+        }
+      });
 
+};
 $('#btnSave').click(function(event){
       var data = $('#addAccountForm').serialize();
       //validate form
@@ -297,36 +316,6 @@ $('#btnSave').click(function(event){
       }
     });
 
-    $('#btnEditSave').click(function(){
-          var data = $('#editAccountForm').serialize();
-
-            $.ajax({
-              type: 'ajax',
-              method: 'post',
-              url: '<?php echo base_url() ?>admin/updateAccounts',
-              data: data,
-              async: false,
-              dataType: 'json',
-              success: function(response){
-                if(response==true){
-                  $('#myEditModal').modal('hide');
-                  $('#editAccountForm')[0].reset();
-             //     if(response.type=='add'){
-               //     var type = 'added'
-           //       }else if(response.type=='update'){
-              //      var type ="updated"
-                  //}
-                  showAllCollector();
-                }
-                else{
-                 alert('Error');
-                }
-              },
-              error: function(){
-                alert('Could not update data');
-              }
-            });
-        });
 
     $(document).on('click', '.account-edit', function(){
           var id = $(this).attr('data');
@@ -343,7 +332,8 @@ $('#btnSave').click(function(event){
               $('input[name=eAAUName]').val(data.strUsername);
               $('input[name=eAAPass]').val(data.strPassword);
               $('input[name=txtId]').val(data.intStaffID);
-              $('#myEditModal').find('.modal-title').text('Editing: '+data.strFullName+'');
+              $('input[name=eStaffName]').val(data.strFullName);
+              //$('#myEditModal').find('.modal-title').text('Editing: '+data.strFullName+'');
             },
             error: function(){
               alert('Could not Edit Data');
@@ -353,4 +343,34 @@ $('#btnSave').click(function(event){
 
       });
 });
+$('#btnEditSave').click(function(event){
+          var data = $('#editAccountForm').serialize();
+            $.ajax({
+              type: 'ajax',
+              method: 'post',
+              url: '<?php echo base_url() ?>admin/updateAccounts',
+              data: data,
+              async: false,
+              dataType: 'json',
+              success: function(response){
+                event.preventDefault();
+                if(response==true){
+                  $('#myEditModal').modal('hide');
+                  $('#editAccountForm')[0].reset();
+             //     if(response.type=='add'){
+               //     var type = 'added'
+           //       }else if(response.type=='update'){
+              //      var type ="updated"
+                  //}
+                 showAllAccounts();
+                }
+                else{
+                 alert('Error');
+                }
+              },
+              error: function(){
+                alert('Could not update data');
+              }
+            });
+          });
 </script>
