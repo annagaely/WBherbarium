@@ -1,3 +1,9 @@
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+
+<!--Table-->
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
 <style>
 
 /* Style the tab */
@@ -96,23 +102,62 @@
         <button class="tablinks2" onclick="openTab2(event, 'DepositsCurrent')">Deposit</button>
       </div>
       <div id="VisitsCurrent" class="tabcontent2">
-        CURRENT VISITS TO
-      </div>
+        <div class="table-responsive">
+          <table class="table dataTable no-footer" id="manageVisitsCurrent">
+            <thead>
+              <tr>
+                <th scope="col" width="10%">Date</th>
+                <th scope="col" width="10%">Description</th>
+                <th scope="col" width="10%">Actions</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        </div>
       <div id="DepositsCurrent" class="tabcontent2">
-        CURRENT DEPOSITS TO
+        <div class="table-responsive">
+          <table class="table dataTable no-footer" id="manageDepositsCurrent">
+            <thead>
+              <tr>
+                <th scope="col" width="10%">Date</th>
+                <th scope="col" width="10%">Description</th>
+                <th scope="col" width="10%">Actions</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </div>
-    </div>
-
+</div>
     <div id="Past" class="tabcontent">
       <div class="tab2">
         <button class="tablinks2" onclick="openTab2(event, 'VisitsPast')">Visit</button>
         <button class="tablinks2" onclick="openTab2(event, 'DepositsPast')">Deposit</button>
       </div>
       <div id="VisitsPast" class="tabcontent2">
-        PAST VISITS TO
+        <div class="table-responsive">
+          <table class="table dataTable no-footer" id="manageVisitsPast">
+            <thead>
+              <tr>
+                <th scope="col" width="10%">Date</th>
+                <th scope="col" width="10%">Description</th>
+                <th scope="col" width="10%">Actions</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </div>
       <div id="DepositsPast" class="tabcontent2">
-        PAST DEPOSITS TO
+        <div class="table-responsive">
+          <table class="table dataTable no-footer" id="manageDepositsPast">
+            <thead>
+              <tr>
+                <th scope="col" width="10%">Date</th>
+                <th scope="col" width="10%">Description</th>
+                <th scope="col" width="10%">Actions</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -149,5 +194,26 @@ function openTab2(evt, tab2Name) {
     document.getElementById(tab2Name).style.display = "block";
     evt.currentTarget.className += " active";
 }
-
+</script>
+<script type="text/javascript">
+  function showAllVisitsCurrent()
+  {
+    $('#manageVisitsCurrent').dataTable().fnClearTable();
+    $('#manageVisitsCurrent').dataTable().fnDraw();
+    $('#manageVisitsCurrent').dataTable().fnDestroy();
+    $('#manageVisitsCurrent').dataTable({
+      "autoWidth":false,
+        "processing": true,
+        "serverSide": false,
+        "sAjaxSource": "<?php echo base_url('admin/showAllPhylum')?>",
+        "deferLoading": 10,
+        "bPaginate": true,
+        "aaSorting": [[0,'asc']],
+        "fnInitComplete": function(){
+        }
+    });
+  }
+  $(document).ready(function(){
+    showAllVisitsCurrent();
+  })
 </script>
