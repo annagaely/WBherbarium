@@ -204,7 +204,7 @@ $(document).ready(function(){
           var html = '';
           var i;
           for(i=0; i<data.length; i++){
-            html +='<option value="'+data[i].strFullName+'">'+data[i].strFullName+'</option>';
+            html +='<option value="'+data[i].intStaffID+'">'+data[i].strFullName+'</option>';
           }
           $('#showStaffName').html(html);
           $('#showStaffName2').html(html);

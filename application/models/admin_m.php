@@ -498,12 +498,8 @@ if($this->db->query($query)){
 
 public function showAllSpecies(){
 		$result = array();
-		$query = $this->db->select('intSpeciesID,
-			 g.strGenusName,
-			 strSpeciesName,
-			 strCommonName')
-			->join('tblGenus g', 'g.intGenusID = s.intGenusID')
-			->get('tblSpecies s');
+		$query = $this->db
+			->get('viewTaxonSpecies');
 		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary species-edit" data="'.$r->intSpeciesID.'"><i class="far fa-edit"></i></button>';
@@ -513,6 +509,7 @@ public function showAllSpecies(){
 					$r->strGenusName,
 					$r->strSpeciesName,
 					$r->strCommonName,
+					$r->strAuthorsName,
 					$btn,
 					$r->intSpeciesID
 					);
@@ -541,6 +538,17 @@ public function showSpeciesGenusName(){
 		set @genusid = (select intGenusID from tblGenus where strGenusName = '".$intGenusID."')
 			insert into tblSpecies(intGenusID,strSpeciesName,strCommonName) VALUES (@genusid,'".$strSpeciesName."','".$strCommonName."')
 
+		IF @isVerified = 1
+			BEGIN
+				SET @speciesID = (SELECT intSpeciesID FROM tblSpecies WHERE strSpeciesName = @speciesName);
+				SET @authorID = (SELECT CASE
+									WHEN @isIDBase = 1 THEN @author
+									ELSE (SELECT intAuthorID FROM tblAuthor WHERE strAuthorsName = @author)
+								END);
+
+				INSERT INTO tblSpeciesAuthor (intSpeciesID, intAuthorID)
+				VALUES (@speciesID, @authorID)
+			END
 			";
 
 
@@ -556,12 +564,11 @@ public function showSpeciesGenusName(){
 		$id = $this->input->get('id');
 		$this->db->where('intSpeciesID', $id);
 		$query = $this->db->select('intSpeciesID,
-			 g.strGenusName,
-			 g.intGenusID,
+			 strGenusName,
 			 strSpeciesName,
-			 strCommonName')
-			->join('tblGenus g', 'g.intGenusID = s.intGenusID')
-			->get('tblSpecies s');
+			 strCommonName,
+			 strAuthorsName')
+			->get('viewTaxonSpecies');
 		if($query->num_rows() > 0){
 			return $query->row();
 		}else{
@@ -726,7 +733,7 @@ if($this->db->query($execquery)){
 	/****** LOCALITY START!!!!! ******/
 public function showAllLocality(){
 		$result = array();
-		$query = $this->db->get('tblLocality');
+		$query = $this->db->get('viewLocality');
 
 		foreach ($query->result() as $r)
 		{
@@ -734,13 +741,8 @@ public function showAllLocality(){
 
 			$result[] = array(
 					// $r->intLocalityID,
-					$r->strIsland,
-					$r->strRegion,
-					$r->strProvince,
-					$r->strCity,
-					$r->strArea,
-					$r->strSpecificLocation,
-					$r->strShortLocation,
+					$r->strFullLocality,
+					$r->strCountry,
 					$btn,
 					$r->intLocalityID
 					);
@@ -1194,7 +1196,8 @@ public function editValidator(){
       ,[strContactNumber]
       ,[strEmailAddress]
       ,[strRole]
-      ,[strCollegeDepartment]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."')
+      ,[strCollegeDepartment]
+      ,[strHasAccount]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."','No')
 
 	";
 		$this->db->query($query);
@@ -1322,23 +1325,20 @@ UPDATE tblHerbariumStaff
 	$query="
 
 	DECLARE @staffID 		INT;
-	DECLARE @staffName		VARCHAR(MAX);
 	DECLARE @username		VARCHAR(50);
 	DECLARE @password		VARCHAR(50);
 
-	Set @staffName ='$staffname'
+	Set @staffID ='$staffname'
 	Set @username ='$username'
 	Set @password ='$password'
 
-		SET @staffID = (SELECT intStaffID FROM viewHerbariumStaff WHERE strFullName = @staffName)
-
-		IF NOT EXISTS (SELECT intStaffID
-					   FROM tblAccounts
-					   WHERE intStaffID = @staffID AND strUsername = @username AND strPassword = @password)
-		BEGIN
 			INSERT INTO tblAccounts(intStaffID, strUsername, strPassword)
 			VALUES (@staffID, @username, @password)
-		END
+
+			update tblHerbariumStaff
+			set strHasAccount = 'Yes'
+			where intStaffID = @staffID
+
 	";
 
 
@@ -1356,13 +1356,6 @@ UPDATE tblHerbariumStaff
 				return false;
 			}
 
-		$this->db->query($query);
-
-		if($this->db->affected_rows() > 0){
-			return true;
-		}else{
-			return false;
-		}
 	}
 
 	public function editAccounts(){
@@ -1412,7 +1405,8 @@ public function updateAccounts(){
 
 
 	public function showStaffName(){
-		$query = $this->db->query("select * from viewHerbariumStaff
+		$query = $this->db
+		->query("select Concat(strLastname, ' ', strNameSuffix, ', ',strFirstname,' ',strMiddlename,' ') as strFullName,intStaffID from tblHerbariumStaff where strHasAccount = 'No'
 		");
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -2081,12 +2075,12 @@ $status = $this->input->post('txtStatus');
 	}
 
 	public function showAllAppointmentAll(){
-		$result = array();
-$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+		
+	$result = array();
+	$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID");
-
 		foreach ($query->result() as $r)
 		{
 
@@ -2155,18 +2149,22 @@ $query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',o
 
 public function updateEVStatus(){
 
-    $depositid = $this->input->post('txtId');
+    $depositid = $_POST['txtId'];
+    $result = $_POST['externalvalidator'];
+    $result_explode = explode('|', $result);
 
 	$query="
 
 	DECLARE @depositid 		INT;
 
 	Set @depositid ='$depositid'
+insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."')
 
-		UPDATE viewVerifyingDeposit
-		SET strStatus = 'For External Validation'
+		UPDATE tblPlantDeposit
+		SET strStatus = 'Sent For External Validation'
 		WHERE intPlantDepositID = @depositid;
-	";
+
+			";
 		if($this->db->query($query)){
 			return true;
 		}else{
@@ -2182,7 +2180,7 @@ public function showExValOkay(){
 
 		from tblPlantDeposit pd join tblCollector cl
 		on pd.intCollectorID = cl.intCollectorID
-		where strStatus= 'Sent External Validation'");
+		where strStatus= 'Sent For External Validation'");
 
 
 		foreach ($query->result() as $r)
@@ -2211,10 +2209,9 @@ public function showExValOkay(){
 public function EVEmailCon()
 {
 	$id = $this->input->get('id');
-	$this->db->where('intPlantDepositID', $id);
-		$query = $this->db->select("intPlantDepositID, strEmailAddress")
-		->join('tblOnlineUser ou','ou.intOUserID=dr.intOUserID')
-		->get('viewVerifyingDeposit');
+	$this->db->where('intDepositID', $id);
+		$query = $this->db->select("intDepositID, strEmailAddress")
+		->get('tblSentForVerify');
 
 		if($query->num_rows() > 0){
 			return $query->row();
@@ -2227,9 +2224,10 @@ public function EVEmailCon()
 
 public function EVConfirmation(){
 	$id = $this->input->get('id');
-	$this->db->where('intPlantDepositID', $id);
-		$query = $this->db->select("intPlantDepositID")
-		->get('viewVerifyingDeposit');
+	$this->db->where('intDepositID', $id);
+		$query = $this->db->select("intDepositID, V.strEmailAddress,intExValidatorID, Concat(V.strLastname,', ',V.strFirstname,' ',V.strMiddlename,' ',V.strNameSuffix) as strFullName,V.intValidatorID")
+		->join('tblValidator V','V.intValidatorID = SFV.intExValidatorID')
+		->get('tblSentForVerify SFV');
 
 		if($query->num_rows() > 0){
 			return $query->row();
@@ -2243,10 +2241,34 @@ public function updateEVConfirmation(){
 
 $depositid = $this->input->post('txtId');
 $status = $this->input->post('txtStatus');
+$validatorid= $this->input->post('txtId2');
+	
+if($status ==='Verified'){
+		$query="
+
+	DECLARE @depositid INT;
+	DECLARE @status		VARCHAR(50);
+	DECLARE @speciesid int;
+	Set @depositid ='$depositid'
+	Set @status ='$status'
+set @speciesid = (select intSpeciesID from tblVerifyingDeposit VD join tblPlantDeposit PD on PD.intPlantDepositID = VD.intPlantDepositID where PD.intPlantDepositID = @depositid);
+
+insert into tblHerbariumSheet(intPlantDepositID,intPlantReferenceID,intSpeciesID,intValidatorID,dateVerified) VALUES (@depositid,@depositid,@speciesid,'".$validatorid."',getdate());
 
 
+		UPDATE tblPlantDeposit
+		SET strStatus = @status
+		WHERE intPlantDepositID = @depositid;
 
-	$query="
+
+	";
+		if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
+	}else{
+		$query1="
 
 	DECLARE @depositid INT;
 	DECLARE @status		VARCHAR(50);
@@ -2255,15 +2277,20 @@ $status = $this->input->post('txtStatus');
 	Set @status ='$status'
 
 
-		UPDATE viewVerifyingDeposit
+
+		UPDATE tblPlantDeposit
 		SET strStatus = @status
 		WHERE intPlantDepositID = @depositid;
+
+
 	";
-		if($this->db->query($query)){
+		if($this->db->query($query1)){
 			return true;
 		}else{
 			return false;
 		}
+	}
+
 	}
 
 
@@ -2455,8 +2482,8 @@ public function showAllAltName()
 	}
 	public function editAltName(){
 		$id = $this->input->get('id');
-		$this->db->where('intPlantTypeId', $id);
-		$query = $this->db->get('tblPlantType');
+		$this->db->where('intAltNameID', $id);
+		$query = $this->db->get('viewSpeciesAlternate');
 		if($query->num_rows() > 0){
 			return $query->row();
 		}else{
@@ -2467,11 +2494,12 @@ public function showAllAltName()
 
 	 public function addAltName(){
 
-			$planttypecode=$this->input->post('txtPlantCode');
-			$planttypename=$this->input->post('txtPlantType');
-
+			$speciesid=$this->input->post('txttaxonName');
+			$language=$this->input->post('txtLanguage');
+			$altname=$this->input->post('txtAName');
 			$query="
-			insert into tblPlantType(strPlantTypeCode,strPlantTypeName) VALUES ('".$planttypecode."','".$planttypename."')
+						INSERT INTO tblSpeciesAlternateName (intSpeciesID, strLanguage, strAlternateName)
+			VALUES ('".$speciesid."','".$language."', '".$altname."')
 
 			";
 		if($this->db->query($query)){
@@ -2482,22 +2510,35 @@ public function showAllAltName()
 	}
     public function updateAltName(){
     $id = $this->input->post('txtId');
-    $field = array(
-    'strPlantTypeCode'=>$this->input->post('txtePlantCode'),
-    'strPlantTypeName'=>$this->input->post('txtePlantType')
-    );
-    $this->db->where('intPlantTypeID', $id);
-    $this->db->update('tblPlantType', $field);
-    if($this->db->affected_rows() > 0){
-      return true;
-    }else{
-      return false;
-    }
+    $intSpeciesID=$this->input->post('txtetaxonName');
+    $strLanguage=$this->input->post('txteLanguage');
+    $strAlternateName=$this->input->post('txteAName');
+
+ $query="
+			declare @speciesid int;
+
+		set @speciesid = (select intSpeciesID from viewTaxonSpecies where strScientificName = '".$intSpeciesID."')
+
+			update tblSpeciesAlternateName
+			set intSpeciesID = @speciesid,
+				strLanguage = '".$strLanguage."',
+				strAlternateName = '".$strAlternateName."'
+				where intAltNameID = ".$id."
+
+			";
+
+if($this->db->query($query)){
+			return true;
+		}else{
+			return false;
+		}
   }
+
+  
 	public function showAllExValidators(){
 		$query = $this->db->select("intValidatorID,
      Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName,
-			 strInstitution")
+			 strInstitution, strEmailAddress")
 		->where('strValidatorType','External')
 			->get('tblValidator');
 		if($query->num_rows() > 0){
@@ -2507,6 +2548,22 @@ public function showAllAltName()
 		}
 	}
 
+	public function showAllSpeciesName(){
+		$query = $this->db->get('viewTaxonSpecies');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
 
+	public function showSpeciesAuthorsName(){
+		$query = $this->db->get('tblAuthor');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
 
 }?>

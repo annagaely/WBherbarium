@@ -35,7 +35,8 @@
 
                   <div class="form-group">
                     <label>Taxon Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txttaxonName" id="strTaxonName" placeholder="Taxon Name" class="form-control" >
+                    <select name="txttaxonName" id="strTaxonName" placeholder="Taxon Name" class="form-control" >
+                    </select>
                   </div>
                   <div class="form-group">
                     <label>Language:</label> <label style="color: red">*</label>
@@ -72,19 +73,21 @@
               <div class="modal-body">
 
                 <form id= "editSpeciesAlternateForm" method="POST" enctype="multipart/form-data">
-                  <!-- <input type="hidden" name="act" id="act" value=""> -->
+                  <input type="hidden" name="txtId" id="act" value="0">
 
                 <div class="form-group">
                     <label>Taxon Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txttaxonName" id="strTaxonName" placeholder="Taxon Name" class="form-control" >
+                    <input list="speciesname" name="txtetaxonName" id="strTaxonName" placeholder="Taxon Name" class="form-control" >
+                    <datalist id="speciesname">
+                    </datalist>
                </div>
                 <div class="form-group">
                     <label>Language:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtLanguage" id="strLanguage" placeholder="Language" class="form-control" >
+                    <input type="text" name="txteLanguage" id="strLanguage" placeholder="Language" class="form-control" >
               </div>
               <div class="form-group">
                     <label>Alternate Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtAName" id="strAlternateName" placeholder="Alternate Name" class="form-control" >
+                    <input type="text" name="txteAName" id="strAlternateName" placeholder="Alternate Name" class="form-control" >
               </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -150,7 +153,7 @@
 
     //show
     showAllAltName();
-
+showAllSpeciesName();
 $(document).on('click', '.altname-edit', function(e){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
@@ -158,14 +161,15 @@ $(document).on('click', '.altname-edit', function(e){
       $.ajax({
         type: 'ajax',
         method: 'get',
-        url: '<?php echo base_url() ?>admin/editPlantType',
+        url: '<?php echo base_url() ?>admin/editAltName',
         data: {id: id},
         async: false,
         dataType: 'json',
         success: function(data){
-          $('input[name=txtePlantCode]').val(data.strPlantTypeCode);
-          $('input[name=txtePlantType]').val(data.strPlantTypeName);
-          $('input[name=txtId]').val(data.intPlantTypeID);
+          $('input[name=txtetaxonName]').val(data.strScientificName);
+          $('input[name=txteLanguage]').val(data.strLanguage);
+          $('input[name=txteAName]').val(data.strAlternateName);
+          $('input[name=txtId]').val(data.intAltNameID);
         },
         error: function(){
           alert('Could not Edit Data');
@@ -174,9 +178,29 @@ $(document).on('click', '.altname-edit', function(e){
     });
 
   });
+function showAllSpeciesName(){
+     $.ajax({
+       type: 'ajax',
+       url: '<?php echo base_url() ?>admin/showAllSpeciesName',
+       async: false,
+       dataType: 'json',
+       success: function(data){
+         var html = '';
+         var i;
+         for(i=0; i<data.length; i++){
+           html +='<option value="'+data[i].intSpeciesID+'">'+data[i].strScientificName+'</option>';
+         }
+         $('#strTaxonName').html(html);
+         $('#speciesname').html(html);
+       },
+       error: function(){
+         alert('Could not get Data from Database');
+       }
+     });
+   };
 
 $('#btnSave').click(function(event){
-      var url = '<?php echo base_url() ?>admin/addPlantType';
+      var url = '<?php echo base_url() ?>admin/addAltName';
       var data = $('#addSpeciesAlterateForm').serialize();
       //validate form
 
@@ -216,7 +240,7 @@ $('#btnSave').click(function(event){
                       showConfirmButton: false
                     }).then(function() {
                     $('#manageSpeciesAlternatetbl').dataTable().fnDestroy();
-                    showAllPlantType();
+                    showAllAltName();
                     $('#myModal').modal('hide');
                      document.getElementById("addSpeciesAlterateForm").reset();
                     event.preventDefault();
@@ -263,7 +287,6 @@ $('#btnSave').click(function(event){
     });
 
 $('#btnEditSave').click(function(event){
-      var data = $('#editPlantTypeForm').serialize();
 
         if($('#strPlantCode1').val()!=''){
           if($('#strPlantType1').val()!=''){
@@ -280,7 +303,7 @@ $('#btnEditSave').click(function(event){
                 $.ajax({
                   type: 'ajax',
                   method: 'post',
-                  url: '<?php echo base_url() ?>admin/updatePlantType',
+                  url: '<?php echo base_url() ?>admin/updateAltName',
                   data: data,
                   async: false,
                   dataType: 'json',
@@ -301,7 +324,7 @@ $('#btnEditSave').click(function(event){
                       }).then(function() {
                         event.preventDefault();
                         $('#managePlantTypetbl').dataTable().fnDestroy();
-                    showAllPlantType();
+                    showAllAltName();
                     $('#myEditModal').modal('hide');
                     document.getElementById("editAuthorForm").reset();
 
