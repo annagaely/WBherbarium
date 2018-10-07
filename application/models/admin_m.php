@@ -940,13 +940,12 @@ if($fname!=''){
   return false;
 }
 
-		if($this->db->affected_row() > 0)	{
+		if($this->db->affected_rows() > 0)	{
 			return true;
 		} else{
 			   return false;
 		  }
-
-	}
+}
 
 	public function updateCollector(){
 	$fname = $this->input->post('feName');
@@ -1018,9 +1017,9 @@ if($fname!=''){
       ,strMiddleInitial
       ,strNameSuffix
       ,strContactNumber
-      ,strEmailAddress,
-      strHomeAddress,
-			 strAffiliation')
+      ,strEmailAddress
+      ,strHomeAddress
+      ,strAffiliation')
 			->get('tblCollector');
 		if($query->num_rows() > 0){
 			return $query->row();
@@ -2113,8 +2112,8 @@ $status = $this->input->post('txtStatus');
 //EXTERNAL VALAIDATION
 	public function showExValPending(){
 		$result = array();
-		$query = $this->db->get('viewVerifyingDeposit');
-
+		$query = $this->db->where('strStatus', "Pending")
+							->get('viewVerifyingDeposit');
 
 		foreach ($query->result() as $r)
 		{
@@ -2589,6 +2588,15 @@ if($this->db->query($query)){
 		}
 	}
 
+	public function showCity(){
+		$query = $this->db
+		->get('tblProvince');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
 	public function showProvinces(){
 		$query = $this->db
 		->get('tblProvince');

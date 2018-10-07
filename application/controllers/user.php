@@ -71,7 +71,7 @@ class user extends CI_Controller {
 	{
 	if($this->session->userdata('strUserName')!=''){
 
-		$title['title'] = "PUPHerbarium | Home";
+		$title['title'] = "Welcome to PUPHerbarium!";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/landingpage');
 		$this->load->view('userside/footer');

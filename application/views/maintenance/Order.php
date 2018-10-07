@@ -248,7 +248,7 @@ $('#btnSave').click(function(event){
   }
     });
     //update class
-  $('#btnEditSave').click(function(){
+  $('#btnEditSave').click(function(event){
       var data = $('#editOrderForm').serialize();
       if($('#orderClassName1').val()!=''){
         if($('#orderName1').val()!=''){
@@ -320,7 +320,7 @@ $('#btnSave').click(function(event){
       }
     });
     //edit class
-$(document).on('click', '.order-edit', function(){
+$(document).on('click', '.order-edit', function(event){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Order');
