@@ -532,19 +532,21 @@ public function showSpeciesGenusName(){
 			$intGenusID=$this->input->post('txtgID');
 			$strSpeciesName=$this->input->post('txtsName');
 			$strCommonName=$this->input->post('txtcoName');
+			$strAuthorsName=$this->input->post('txtaID');
+			$isverified = $this->input->post('check1');
 			$query="
 			declare @genusid int;
-
-		set @genusid = (select intGenusID from tblGenus where strGenusName = '".$intGenusID."')
-			insert into tblSpecies(intGenusID,strSpeciesName,strCommonName) VALUES (@genusid,'".$strSpeciesName."','".$strCommonName."')
-
-		IF @isVerified = 1
+			declare @speciesID int;
+			declare @authorID int;
+declare @isVerified varchar(5);
+set @isVerified = '$isverified'
+		set @genusid = (select intGenusID from tblGenus where strGenusName = '".$intGenusID."');
+			insert into tblSpecies(intGenusID,strSpeciesName,strCommonName) VALUES (@genusid,'".$strSpeciesName."','".$strCommonName."');
+		
+		IF @isVerified = 'on'
 			BEGIN
-				SET @speciesID = (SELECT intSpeciesID FROM tblSpecies WHERE strSpeciesName = @speciesName);
-				SET @authorID = (SELECT CASE
-									WHEN @isIDBase = 1 THEN @author
-									ELSE (SELECT intAuthorID FROM tblAuthor WHERE strAuthorsName = @author)
-								END);
+				SET @speciesID = (SELECT intSpeciesID FROM tblSpecies WHERE strSpeciesName = '".$strSpeciesName."');
+				SET @authorID = (SELECT intAuthorID FROM tblAuthor WHERE strAuthorsName = '".$strAuthorsName."');
 
 				INSERT INTO tblSpeciesAuthor (intSpeciesID, intAuthorID)
 				VALUES (@speciesID, @authorID)
@@ -581,9 +583,12 @@ public function showSpeciesGenusName(){
     $intGenusID=$this->input->post('sesGID');
     $strSpeciesName=$this->input->post('txteSName');
 	$strCommonName=$this->input->post('txtecName');
+	$strAuthorsName=$this->input->post('txteaID');
  $query="
 			declare @genusid int;
 
+		DECLARE @speciesID INT
+		DECLARE @authorID INT
 		set @genusid = (select intGenusID from tblGenus where strGenusName = '".$intGenusID."')
 
 			update tblSpecies
@@ -591,6 +596,14 @@ public function showSpeciesGenusName(){
 				strSpeciesName = '".$strSpeciesName."',
 				strCommonName = '".$strCommonName."'
 				where intSpeciesID = ".$id."
+
+
+			SET @authorID = (SELECT intAuthorID FROM tblAuthor WHERE strAuthorsName = '".$strAuthorsName."')
+
+
+			UPDATE tblSpeciesAuthor
+			SET intAuthorID = @authorID
+			WHERE intSpeciesID = ".$id."
 
 			";
 
@@ -1384,10 +1397,9 @@ public function updateAccounts(){
 	DECLARE @username		VARCHAR(50);
 	DECLARE @password		VARCHAR(50);
 
-	Set @staffName ='$staffname'
 	Set @username ='$username'
 	Set @password ='$password'
-	Set @staffID ='$staffid'
+	Set @staffID = '$staffid'
 
 
 		UPDATE tblAccounts
@@ -1406,7 +1418,18 @@ public function updateAccounts(){
 
 	public function showStaffName(){
 		$query = $this->db
-		->query("select Concat(strLastname, ' ', strNameSuffix, ', ',strFirstname,' ',strMiddlename,' ') as strFullName,intStaffID from tblHerbariumStaff where strHasAccount = 'No'
+		->query("select strFullName,HS.intStaffID from viewHerbariumStaff vHS join tblHerbariumStaff HS on vHS.intStaffID = hs.intStaffID where strHasAccount = 'No'
+		");
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
+	public function showeditStaffName(){
+		
+		$query = $this->db
+		->query("select strFullName,HS.intStaffID from viewHerbariumStaff vHS join tblHerbariumStaff HS on vHS.intStaffID = hs.intStaffID
 		");
 		if($query->num_rows() > 0){
 			return $query->result();
@@ -2559,6 +2582,26 @@ if($this->db->query($query)){
 
 	public function showSpeciesAuthorsName(){
 		$query = $this->db->get('tblAuthor');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
+
+	public function showCountries(){
+		$query = $this->db
+		->get('tblCountry');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
+
+	public function showProvinces(){
+		$query = $this->db
+		->get('tblProvince');
 		if($query->num_rows() > 0){
 			return $query->result();
 		}else{
