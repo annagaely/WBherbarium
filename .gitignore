@@ -34,3 +34,5 @@ application/views/templates/header.php
 application/views/templates/header.php
 application/views/maintenance/Dashboard.php
 application/config/database.php
+application/config/database.php
+application/views/maintenance/Dashboard.php
