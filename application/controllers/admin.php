@@ -743,6 +743,10 @@ public function updateFamilyBox(){
 		$result = $this->m->showStaffName();
 		echo json_encode($result);
 	}
+			public function showeditStaffName(){
+		$result = $this->m->showeditStaffName();
+		echo json_encode($result);
+	}
 
 	/****** END account!!!!! ******/
 	/****** account START!!!!! ******/
@@ -1731,7 +1735,26 @@ public function showSpeciesAuthorsName(){
 	$result = $this->m->showSpeciesAuthorsName();
 	echo json_encode($result);
 	}
+public function showCountries(){
+	$result = $this->m->showCountries();
+	echo json_encode($result);
+	}
+public function showProvinces(){
+	$result = $this->m->showProvinces();
+	echo json_encode($result);
+	}
+public function showCity(){
+	$result = $this->m->showCity();
+	echo json_encode($result);
+	}
 
-
+public function showNotif(){
+	$result = $this->m->showNotif();
+	echo json_encode($result);
+	}
+public function showNotifCount(){
+	$result = $this->m->showNotifCount();
+	echo json_encode($result);
+	}
 
 }?>
