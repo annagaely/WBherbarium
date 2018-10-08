@@ -1739,15 +1739,22 @@ public function showCountries(){
 	$result = $this->m->showCountries();
 	echo json_encode($result);
 	}
-	public function showProvinces(){
+public function showProvinces(){
 	$result = $this->m->showProvinces();
 	echo json_encode($result);
 	}
-		public function showCity(){
+public function showCity(){
 	$result = $this->m->showCity();
 	echo json_encode($result);
 	}
 
-
+public function showNotif(){
+	$result = $this->m->showNotif();
+	echo json_encode($result);
+	}
+public function showNotifCount(){
+	$result = $this->m->showNotifCount();
+	echo json_encode($result);
+	}
 
 }?>

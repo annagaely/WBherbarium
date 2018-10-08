@@ -1309,6 +1309,7 @@ UPDATE tblHerbariumStaff
 	public function showAllAccounts(){
 		$result = array();
 		$query = $this->db->query("select * from viewAccounts
+
 		");
 
 	foreach ($query->result() as $r)
@@ -2608,5 +2609,46 @@ if($this->db->query($query)){
 			return false;
 		}
 	}
+
+public function showNotif(){
+if(isset($_POST["view"]))
+{
+ if($_POST["view"] != ''){
+$update_query= $this->db->query("update tblNotif set intNotifStatus = 1 where intNotifStatus = 0");
+
+}
+$query= $this->db->query("select top 20 strNotifContent from tblNotif order by intNotifID DESC ");
+
+if($query->num_rows() > 0){
+	
+return $query->result();
+		}else{
+			
+			return false;
+		}
+}
+
+//$query1= $this->db->query("select * from tblNotif where intNotifStatus = 0");
+			
+ //$count = $query1->num_rows();
+// $data = array(
+//  'notification'   => $query->result(),
+ // 'unseen_notification' => $count
+ //);
+
+
+}
+public function showNotifCount(){
+$query= $this->db->query("select count(intNotifID)as intcount from tblNotif where intNotifStatus = 0");
+if($query->num_rows() > 0){
+	
+return $query->row();
+		}else{
+			
+			return false;
+		}
+}
+
+
 
 }?>
