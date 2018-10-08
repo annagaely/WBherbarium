@@ -13,11 +13,7 @@
 </div>
 
 <!--Carousel Wrapper-->
-<<<<<<< HEAD
-<div id="carousel-example-2" class="carousel slide carousel-fadev h-100" data-ride="carousel">
-=======
     <div id="carousel-example-2" class="carousel slide carousel-fade vh-100" data-ride="carousel">
->>>>>>> bb5539b3b18e106fad3a266b5255776ab605e79a
         <!--Indicators-->
         <ol class="carousel-indicators">
             <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
@@ -43,7 +39,7 @@
                     </a>
                 </div>
               </div>
-        
+
 
             <div class="carousel-item">
             <!--Mask color-->
@@ -155,14 +151,14 @@
         <section class="my-5 mx-5">
             <!-- Section heading -->
             <h2 class="h1-responsive font-weight-bold text-center my-5">Top 10 Families with Most Number of Species Found in PUP Mabini Campus </h2>
-     
+
       <div class="row">
         <div class="col-md-7 pl-5">
 
             <div class="card-body">
               <canvas id="pieChart"></canvas>
             </div>
-         
+
         </div>
          <div class="col-md-5 pr-5">
 <!--           <div class="card"> -->
@@ -302,10 +298,3 @@
     }
 });
 </script>
-
-
-
-
-
-
-
