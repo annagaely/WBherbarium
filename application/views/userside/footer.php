@@ -28,7 +28,7 @@
              <br>
              <strong>PUP HERBARIUM CENTER</strong><br>
              South Wing, Room 403-B<br>
-             9:00 AM - 8:00 PM
+             9:00 AM - 6:00 PM
         
         </p> 
         </div>

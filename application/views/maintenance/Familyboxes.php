@@ -41,19 +41,19 @@
                   </div>
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
-                    <input id="boxLimit" type="text" name="txtBLLimit" placeholder="Box Limit" class="form-control">
+                    <input id="boxLimit" type="number" min="1" name="txtBLLimit" placeholder="Box Limit" class="form-control">
                   </div>
                    <div class="form-group">
                     <label>Rack Number:</label> <label style="color: red">*</label>
-                    <input id="rackNum" type="text" name="txtrackno" placeholder="Rack Number" class="form-control">
+                    <input id="rackNum" type="number" min="1"  name="txtrackno" placeholder="Rack Number" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Rack Row:</label> <label style="color: red">*</label>
-                    <input id="rackRow" type="text" name="txtrackrow" placeholder="Rack Row" class="form-control">
+                    <input id="rackRow" type="number" min="1"  name="txtrackrow" placeholder="Rack Row" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Rack Column:</label> <label style="color: red">*</label>
-                    <input int="rackCol" type="text" name="txtrackcol" placeholder="Rack Column" class="form-control">
+                    <input id="rackCol" type="number" min="1"  name="txtrackcol" placeholder="Rack Column" class="form-control">
                   </div>
                   <!--HANGGANG DITO LANG BOI-->
 
@@ -303,7 +303,7 @@ function resetForm() {
           }
         });
 
-$('#btnEditSave').click(function(){
+$('#btnEditSave').click(function(event){
       var data = $('#editFBForm').serialize();
         $.ajax({
           type: 'ajax',
@@ -332,7 +332,7 @@ $('#btnEditSave').click(function(){
         });
     });
     //edit class
- $(document).on('click', '.FB-edit', function(){
+ $(document).on('click', '.FB-edit', function(event){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Family Box');

@@ -349,9 +349,9 @@ public function updateProfile()
 	{
    		$id = $this->session->userdata['strUserName'];
    		$field = array(
-   			 'strFirstname'=>$this->input->post('txtfirstname'),
-   			 'strMiddlename'=>$this->input->post('txtmidname'),
-   			 'strLastname'=>$this->input->post('txtlastname'),
+   			 'strFirstName'=>$this->input->post('txtfirstname'),
+   			 'strMiddleName'=>$this->input->post('txtmidname'),
+   			 'strLastName'=>$this->input->post('txtlastname'),
    			 'strNameSuffix'=>$this->input->post('txtnamesuffix'),
    			 'strContactNumber'=>$this->input->post('txtphonenum'),
    			 'strPresentAddress'=>$this->input->post('txtpresentadd'),
@@ -361,6 +361,7 @@ public function updateProfile()
    			 'strAffiliationAddress'=>$this->input->post('txtaffaddress')
 
     );
+   		
     $this->db->where('strUserName', $id);
     $this->db->update('tblOnlineUser', $field);
     if($this->db->affected_rows() > 0){
@@ -369,6 +370,7 @@ public function updateProfile()
       return false;
     }
   }
+
 
 
 public function showPassword(){

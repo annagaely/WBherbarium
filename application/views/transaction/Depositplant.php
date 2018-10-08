@@ -82,9 +82,9 @@
 
 
          <!-- Modal-->
-     <div id="viewDepositReq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
-       <div role="document" class="modal-dialog modal-lg" >
-         <div class="modal-content" >
+<div id="viewDepositReq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
+  <div role="document" class="modal-dialog" >
+    <div class="modal-content" >
            <div class="modal-header">
 
              <h5 id="exampleModalLabel" class="modal-title">Plant Deposit</h5>
@@ -93,84 +93,60 @@
              </button>
            </div>
 
-          <div class="modal-body">
-             <div class="row">
-              <div class="col-md-6" style="margin-left: auto; margin-right: auto;">
-                 <form id= "updateStatusForm" method="POST" enctype="multipart/form-data"class="form-horizontal">
-                  <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Deposit ID:</label>
-                     </div>
-                     <div class="col-sm-8">
+      <div class="modal-body">
+          <form id= "updateStatusForm" method="POST" enctype="multipart/form-data">
+            
+          
+             
+                  <div class="form-group">
+                      <label style="font-size: 14px;">Deposit ID:</label>
                       <input type="hidden" name="txtId" id="txtID" value="0">
                        <input type="text" name="txtDepositReqID" id="intDepositReqID" class="form-control" disabled="">
-                     </div>
-                   </div>
-                  <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Scientific Name:</label>
-                     </div>
-                     <div class="col-sm-8">
-                       <input type="text" name="txtScientificName" id="strScientificName" class="form-control" disabled>
-                     </div>
-                   </div>
-                  <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Common Name:</label>
-                     </div>
-                    <div class="col-sm-8">
-                      <input type="text" name="txtCommonName" id="strCommonName" class="form-control" disabled="">
-                     </div>
                    </div>
 
-                    <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Full Locality:</label>
-                     </div>
-                     <div class="col-sm-8">
-                       <input type="text" name="txtFullLocation" id="strFullLocation" class="form-control" disabled="">
-                     </div>
+            <div class="row">
+                   <div class="col-sm-6" >
+                       <label style="font-size: 14px;">Scientific Name:</label>
+                       <input type="text" name="txtScientificName" id="strScientificName" class="form-control" disabled>
                    </div>
-                    <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Date Collected:</label>
+                     <div class="col-sm-6">
+                      <label style="font-size: 14px;">Common Name:</label>
+                      <input type="text" name="txtCommonName" id="strCommonName" class="form-control" disabled="">
                     </div>
-                     <div class="col-sm-8">
+            </div>
+
+                     <div class="form-group">
+                       <label style="font-size: 14px;">Full Locality:</label>
+                       <textarea name="txtFullLocation" id="strFullLocation" class="form-control" disabled=""></textarea>
+                     </div>
+                  
+
+            <div class="row">
+                     <div class="col-sm-6">
+                       <label style="font-size: 14px;">Date Collected:</label>
                        <input type="text" name="txtdDateCollected" id="dtDateCollected"  class="form-control" disabled="">
-                     </div>
-                   </div>
-                   <div class="form-group row">
-                     <div class="col-sm-4">
+                      </div>
+
+                     <div class="col-sm-6">
                        <label style="font-size: 14px;">Collector:</label>
-                     </div>
-                     <div class="col-sm-8">
                        <input type="text" name="txtCollector" id="strCollector"  class="form-control" disabled="">
                      </div>
-                   </div>
-                   <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Description:</label>
-                    </div>
-                     <div class="col-sm-8">
+            </div>
+                    <div class="form-group">
+                      <label style="font-size: 14px;">Description:</label>
                       <textarea name="txtDescription" class="form-control" rows="3" id="strPlantDesc" disabled=""></textarea>
-                     </div>
-                     </div>
-                      <div class="form-group row">
-
+                    </div>
+              
                      <div class="modal-footer">
-
-                     <input type="submit" id="btnSave" value="Proceed" class="btn btn-primary" style="margin-left: 300px">
-                   </div>
-                   </div>
+                      <input type="submit" id="btnSave" value="Proceed" class="btn btn-primary">
+                     </div>
+  
                  </form>
-               </div>
+         </div>
              </div>
           </div>
          </div>
        </div>
-     </div>
-     <!-- Modal-->
- </div>
 
 
 <div id="SecondTab" class="tabcontent">
@@ -409,7 +385,7 @@ $('#btnSave').click(function(){
           $('input[name=txtScientificName').val(data.strScientificName);
           $('input[name=txtCommonName').val(data.strCommonName);
           $('input[name=txtdDateCollected]').val(data.dtDateCollected);
-          $('input[name=txtFullLocation').val(data.strFullLocation);
+          $('textarea[name=txtFullLocation').val(data.strFullLocation);
           $('textarea[name=txtDescription]').val(data.strPlantDesc);
           $('input[name=txtId]').val(data.intDepositReqID)
 

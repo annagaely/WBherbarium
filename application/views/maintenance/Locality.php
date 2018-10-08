@@ -537,14 +537,20 @@ function showProvinces(){
        }
      });
    };
+
+
    showCity();
+
+
+
 function showCity(){
   var data = $('#addLocalityForm').serialize();
+
      $.ajax({
        type: 'ajax',
        url: '<?php echo base_url() ?>admin/showCity',
        async: false,
-       data: data;
+       data: data,
        dataType: 'json',
        success: function(data){
          var html = '';
@@ -561,6 +567,8 @@ function showCity(){
        }
      });
    };
+
+
 /////////////adding locality//////////
     $('#btnSave').click(function(){
       var data = $('#addLocalityForm').serialize();
