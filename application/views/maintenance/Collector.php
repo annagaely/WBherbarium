@@ -141,7 +141,7 @@
                   <div class="row">
                     <div class="form-group col-sm-12">
                     <label>Home Address:</label> <label style="color: red">*</label>
-                    <input type='text' name="cedName" id="strCollege" placeholder="Home Address" class="form-control">
+                    <input type='text' name="cedName"  placeholder="Home Address" class="form-control">
                   </div>
                   </div>
                   <div class="row">
@@ -221,7 +221,7 @@ $(document).ready(function() {
       //show
     showAllCollector();
 
-$('#btnSave').click(function(){
+$('#btnSave').click(function(event){
   var url = '<?php echo base_url()?>admin/addCollector';
       var data = $('#addCollectorForm').serialize();
       //validate form
@@ -330,7 +330,7 @@ $('#btnSave').click(function(){
     });
     //edit class
 
-    $(document).on('click', '.collector-edit', function(){
+    $(document).on('click', '.collector-edit', function(event){
 
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
@@ -351,8 +351,8 @@ $('#btnSave').click(function(){
           $('input[name=neSuffix]').val(data.strNameSuffix);
           $('input[name=ceName]').val(data.strContactNumber);
           $('input[name=eeMail]').val(data.strEmailAddress);
-          $('input[name=cdName]').val(data.strHomeAddress);
-          $('input[name=secName]').val(data.strAffiliation);
+          $('input[name=cedName]').val(data.strHomeAddress);
+          $('input[name=esecName]').val(data.strAffiliation);
           $('input[name=txtId]').val(data.intCollectorID);
 
         },
@@ -365,7 +365,7 @@ $('#btnSave').click(function(){
   });
 
 
-$('#btnEditSave').click(function(){
+$('#btnEditSave').click(function(event){
       var data = $('#editCollectorForm').serialize();
         $.ajax({
           type: 'ajax',

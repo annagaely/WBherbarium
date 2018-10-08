@@ -558,7 +558,7 @@ $(document).on('click', '.view-appointment', function(){
 
             if(response==true){
 
-              alert('oks')
+              alert('Done!')
             }else{
               alert('Error');
             }

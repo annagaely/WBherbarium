@@ -196,6 +196,8 @@ function hideNav() {
 
 </script>
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+
+
 <script>
 $('input[name=txtpresentadd]').keyup(function(){
   if (this.value.length > 0) {
@@ -257,23 +259,47 @@ function showAccount()
 </script>
 <script type="text/javascript">
 
- $('#btnSaveAccount').click(function(){
+ $('#btnSaveAccount').click(function(event){
       var data = $('#myaccForm').serialize();
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>user/updateAccount',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response.success){
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
-              }
-              showAllPhylum();
+      if($('#strEmailAdd').val()!=''){
+          event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+                 $.ajax({
+                   type: 'ajax',
+                   method: 'post',
+                   url: '<?php echo base_url() ?>user/updateAccount',
+                   data: data,
+                   async: false,
+                   dataType: 'json',
+                   success: function(response){
+                     if(response.success){
+                       if(response.type=='add'){
+                         var type = 'added'
+                       }else if(response.type=='update'){
+                         var type ="updated"
+                       }
+
+                let timerInterval
+                      swal({
+                        title: 'Saved',
+                        text: 'Email has been saved.',
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                      }).then(function() {
+                        event.preventDefault();
+                         showAccount();
+
+            });
+
             }else{
               alert('Error');
             }
@@ -282,7 +308,18 @@ function showAccount()
             alert('Could not update data');
           }
         });
-    });
+      }
+   })   
+            }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+
+          });
 
 </script>
 <script type="text/javascript">
@@ -318,25 +355,58 @@ function showProfile()
 
     //show
     showProfile();
+});
+</script>
 
+<script type="text/javascript">
+ $('#btnSaveProfile').click(function(event){
+  var data = $('#myprofileForm').serialize();
+    if($('#strFirstname').val()!=''){
+      if($('#strLastname').val()!=''){
+        if($('#strContactNumber').val()!=''){
+          if($('#strPresentAddress').val()!=''){
+            if($('#strPermanentAddress').val()!=''){
+              if($('#strAffiliationName').val()!=''){
+                if($('#strAffiliationPosition').val()!=''){
+                  if($('#strAffiliationAddress').val()!=''){
 
- $('#btnSaveProfile').click(function(){
-      var data = $('#myprofileForm').serialize();
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>user/updateProfile',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
+           event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+                 $.ajax({
+                 type: 'ajax',
+                 method: 'post',
+                 url: '<?php echo base_url() ?>user/updateProfile',
+                 data: data,
+                 async: false,
+                 dataType: 'json',
+                 success: function(response){
             if(response.success){
               if(response.type=='add'){
                 var type = 'added'
               }else if(response.type=='update'){
                 var type ="updated"
               }
-              showAllPhylum();
+                let timerInterval
+                      swal({
+                        title: 'Saved',
+                        text: 'Your Profie has been saved.',
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                      }).then(function() {
+                        event.preventDefault();
+       
+               showProfile();
+         });
+   
             }else{
               alert('Error');
             }
@@ -345,48 +415,101 @@ function showProfile()
             alert('Could not update data');
           }
         });
-    });
- });
+      }
+   })   
 
+        }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+ });
 
 </script>
 <script type="text/javascript">
 
-// function showPassword()
-// {
-//       $.ajax({
-//         type: 'ajax',
-//         url: '<?php echo base_url() ?>user/showPassword',
-//         async: false,
-//         dataType: 'json',
-//         success: function(data){
-//           $('input[name=txtCurPw]').val(data.strPassword);
 
-
-//         },
-//         error: function(){
-//           alert('Could not show Data');
-//         }
-
-//     });
-
-//   };
-
-//     $(document).ready(function(){
-
-//     //show
-//     showPassword();
-
-//   });
-
-
-$('#btnSavePassword').click(function(){
+$('#btnSavePassword').click(function(event){
       var data = $('#myPasswordForm').serialize();
 
 var newpw = document.getElementById("strNewPw").value;
 var verpw = document.getElementById("strVerPw").value;
 
-     if (newpw === verpw) {
+//if (newpw === verpw) {
+      if($('#strCurPw').val()!=''){
+        if($('#strNewPw').val()!=''){
+          if($('#strVerPw').val()!=''){
+
+             event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+
          $.ajax({
           type: 'ajax',
           method: 'post',
@@ -401,7 +524,19 @@ var verpw = document.getElementById("strVerPw").value;
               }else if(response.type=='update'){
                 var type ="updated"
               }
-              showAllPhylum();
+
+              let timerInterval
+                      swal({
+                        title: 'Saved',
+                        text: 'Your pasword has been saved.',
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                      }).then(function() {
+                        event.preventDefault();
+              showPassword();
+            });
+
             }else{
               alert('Error');
             }
@@ -410,13 +545,35 @@ var verpw = document.getElementById("strVerPw").value;
             alert('Could not update data');
           }
         });
+      }
+    })
+   
+
       }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
 
-        alert('di pareho new at verify')
-}
-
-    });
-
-
-
+         }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+          //}
+});
 </script>

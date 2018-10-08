@@ -123,7 +123,7 @@
                 </div>
         </div>
         <div class="form-group">
-                <label for="p-in" class="col-md-4 label-heading">Start Date</label>
+                <label for="p-in" class="col-md-4 label-heading">Date:</label>
                 <div class="col-md-8">
                     <input type="date" class="form-control" name="start_date">
                 </div>

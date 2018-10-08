@@ -70,13 +70,13 @@
                     <label>
                       <input type="hidden" name="txtId" value="0">
                     </label>
-                    <label>Order Name:</label> <label style="color: red">*</label>
+                    <label>Family Name:</label> <label style="color: red">*</label>
                      <input list="familyname" name ="segFID" placeholder="Family Name" class="form-control" autocomplete="off">
                      <datalist id ='familyname'>
                      </datalist>
                   </div>
                   <div class="form-group">
-                    <label>Family Name:</label> <label style="color: red">*</label>
+                    <label>Genus Name:</label> <label style="color: red">*</label>
                     <input id="genusName1" type="text" name="txteGName" placeholder="Class Name" class="form-control">
                   </div>
                   <div class="modal-footer">
@@ -242,7 +242,7 @@ function showGenusFamilyName(){
       }
     });
 
-$('#btnEditSave').click(function(){
+$('#btnEditSave').click(function(event){
       var data = $('#editGenusForm').serialize();
       if($('#famName1').val()!=''){
         if($('#genusName1').val()!=''){
@@ -315,7 +315,7 @@ $('#btnEditSave').click(function(){
       }
     });
     //edit class
-$(document).on('click', '.genus-edit', function(){
+$(document).on('click', '.genus-edit', function(event){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Genus');
