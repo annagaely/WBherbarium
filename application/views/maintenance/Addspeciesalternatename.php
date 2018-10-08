@@ -151,9 +151,11 @@
 
       $(document).ready(function(){
 
-    //show
-    showAllAltName();
+
+
+showAllAltName();
 showAllSpeciesName();
+
 $(document).on('click', '.altname-edit', function(e){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
@@ -199,95 +201,8 @@ function showAllSpeciesName(){
      });
    };
 
-$('#btnSave').click(function(event){
-      var url = '<?php echo base_url() ?>admin/addAltName';
-      var data = $('#addSpeciesAlterateForm').serialize();
-      //validate form
-
-        if($('#strTaxonName').val()!=''){
-          if($('#strLanguage').val()!=''){
-             if($('#strAlternateName').val()!=''){
-            event.preventDefault();
-            swal({
-              title: 'Are you sure?',
-              type: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, save it!'
-            }).then((result) => {
-              if (result.value) {
-                $.ajax({
-                type: 'ajax',
-                method: 'post',
-                url: url,
-                data: data,
-                async: false,
-                dataType: 'json',
-                success: function(response){
-                  if(response.success){
-                    if(response.type=='add'){
-                      var type = 'added'
-                    }else if(response.type=='update'){
-                      var type ="updated"
-                    }
-                    let timerInterval
-                    swal({
-                      title: 'Saved',
-                      text: 'Plant Type has been saved.',
-                      type: 'success',
-                      timer: 1500,
-                      showConfirmButton: false
-                    }).then(function() {
-                    $('#manageSpeciesAlternatetbl').dataTable().fnDestroy();
-                    showAllAltName();
-                    $('#myModal').modal('hide');
-                     document.getElementById("addSpeciesAlterateForm").reset();
-                    event.preventDefault();
-                    });
-
-                  }
-                },
-                error: function(){
-                  alert('Could not save Data');
-                }
-              });
-
-
-              }
-
-            })
-
-          }else{
-            event.preventDefault();
-            swal({
-              type: 'error',
-              title: 'Incomplete input!',
-              text: 'Please fill up all the required fields.'
-            });
-            }
-        }else{
-          event.preventDefault();
-          swal({
-            type: 'error',
-            title: 'Incomplete input!',
-            text: 'Please fill up all the required fields.'
-          });
-
-      }
-    }else{
-          event.preventDefault();
-          swal({
-            type: 'error',
-            title: 'Incomplete input!',
-            text: 'Please fill up all the required fields.'
-          });
-
-      }
-    });
-
-$('#btnEditSave').click(function(event){
-
+   $('#btnEditSave').click(function(event){
+var data = $('#editSpeciesAlternateForm').serialize();
         if($('#strPlantCode1').val()!=''){
           if($('#strPlantType1').val()!=''){
             event.preventDefault();
@@ -323,10 +238,10 @@ $('#btnEditSave').click(function(event){
                         showConfirmButton: false
                       }).then(function() {
                         event.preventDefault();
-                        $('#managePlantTypetbl').dataTable().fnDestroy();
+                        $('#manageSpeciesAlternatetbl').dataTable().fnDestroy();
                     showAllAltName();
                     $('#myEditModal').modal('hide');
-                    document.getElementById("editAuthorForm").reset();
+                    document.getElementById("editSpeciesAlternateForm").reset();
 
                       });
 
@@ -339,9 +254,9 @@ $('#btnEditSave').click(function(event){
                   }
                 });
 
-              }
+              };
 
-            })
+            });
 
           }else{
             event.preventDefault();
@@ -362,10 +277,91 @@ $('#btnEditSave').click(function(event){
 
 
     });
+      });
+
+ 
+
+$('#btnSave').click(function(event){
+      var url = '<?php echo base_url() ?>admin/addAltName';
+      var data = $('#addSpeciesAlterateForm').serialize();
+      //validate form
+
+        if($('#strTaxonName').val()!=''){
+          if($('#strLanguage').val()!=''){
+             if($('#strAlternateName').val()!=''){
+            event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+                $.ajax({
+                type: 'ajax',
+                method: 'post',
+                url: url,
+                data: data,
+                async: false,
+                dataType: 'json',
+                success: function(response){
+                    let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Plant Type has been saved.',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                    $('#manageSpeciesAlternatetbl').dataTable().fnDestroy();
+                    showAllAltName();
+                    $('#myModal').modal('hide');
+                     document.getElementById("addSpeciesAlterateForm").reset();
+                    event.preventDefault();
+                    });
+                  
+                },
+                error: function(){
+                  alert('Could not save Data');
+                }
+              });
+
+              }
+
+            });
+
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+
+      }
+    }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+
+      };
+
+    });   
 
 
 
 
-
-  });
         </script>
