@@ -346,4 +346,11 @@ public function userRegister(){
 
 //  }
 // }
+
+public function showAllVisitsLog(){
+	$result = $this->m->showAllVisitsLog();
+	echo json_encode($result);
+	}
+
+	
 }?>

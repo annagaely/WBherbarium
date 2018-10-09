@@ -19,7 +19,7 @@
                 <div class="name"><strong class="text-uppercase">Total<br>Accounts</strong>
                   <div class="count-number">
                     <?php
-                  $serverName = "LAPTOP-0L08K6U2";
+                  $serverName = "MSI";
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
@@ -49,7 +49,7 @@
 
                     <?php
 
-                  $serverName = "LAPTOP-0L08K6U2";
+                  $serverName = "MSI";
 
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
@@ -79,7 +79,7 @@
                   <div class="count-number">
 
                     <?php
-                  $serverName = "LAPTOP-0L08K6U2";
+                  $serverName = "MSi";
 
                   $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
