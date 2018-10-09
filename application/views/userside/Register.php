@@ -2,46 +2,65 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title><?php echo $title; ?></title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-    <!-- Bootstrap core CSS -->
-    <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/mdb.min.css" rel="stylesheet">
-    <!-- Your custom styles (optional) -->
-    <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/style.css" rel="stylesheet">
-    <link rel="shortcut icon" href="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/logo1.ico">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-'use strict';
-window.addEventListener('load', function() {
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.getElementsByClassName('needs-validation');
-  // Loop over them and prevent submission
-  var validation = Array.prototype.filter.call(forms, function(form) {
-    form.addEventListener('submit', function(event) {
-      if (form.checkValidity() === false) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      form.classList.add('was-validated');
-    }, false);
-  });
-}, false);
-})();
-    </script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title><?php echo $title; ?></title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/style.css" rel="stylesheet">
+  <link rel="shortcut icon" href="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/logo1.ico">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+  <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+  <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
+  <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+
 </head>
+
 <body>
 
+
+    <!-- Start your project here-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="<?php echo base_url()?>user/index"><strong>PUP Herbarium</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mr-auto smooth-scroll">
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/home">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/CollectionUser" data-offset="90">Collection</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/Contactuser" data-offset="90">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link waves-effect waves-light" href="<?php echo base_url()?>user/FAQsUser" data-offset="90">FAQs</a>
+            </li>
+
+
+          </ul>
+          <!-- Social Icon  -->
+        </div>
+      </div>
+    </nav>
+
 <!-- Card -->
-<div class="py-5">
+<div class="py-5 mt-5">
 <div class="card mx-auto px-4" style="width: 80%;">
 
     <!-- Card body -->
@@ -235,43 +254,157 @@ window.addEventListener('load', function() {
 
 <!-- Footer -->
 
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
     $(function(){
-      $('#btnSave').click(function(){
+      $('#btnSave').click(function(event){
 
         var data = $('#RegisterForm').serialize();
 
-        //validate form
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>user/userRegister',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(data){
-            if(data==true){
+        if($('#strFirstName').val()!=''){
+          if($('#strLastName').val()!=''){
+            if($('#strEmailAdd').val()!=''){
+              if($('#strPhoneNum').val()!=''){
+                if($('#strPresentAdd').val()!=''){
+                  if($('#strPermanentAdd').val()!=''){
+                    if($('#strAffiliation').val()!=''){
+                      if($('#strAffiliationPosition').val()!=''){
+                        if($('#strAffiliationAdd').val()!=''){
+                          if($('#strUsername').val()!=''){
+                            if($('#strPassword').val()!=''){
+                              event.preventDefault();
+                              swal({
+                                title: 'Are you sure?',
+                                type: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Yes, save it!'
+                              }).then((result) => {
+                                if (result.value){
+                                  //validate form
+                                  $.ajax({
+                                    type: 'ajax',
+                                    method: 'post',
+                                    url: '<?php echo base_url() ?>user/userRegister',
+                                    data: data,
+                                    async: false,
+                                    dataType: 'json',
+                                    success: function(data){
+                                      if(data==true){
+                                        let timerInterval
+                                        swal({
+                                          title: 'REgistered',
+                                          text: 'You have successfully registered.',
+                                          type: 'success',
+                                          timer: 1500,
+                                          showConfirmButton: false
+                                        }).then(function() {
+                                          document.getElementById("RegisterForm").reset();
+                                          window.location.href='<?php echo base_url();?>user/index';
+                                        });event.preventDefault();
+                                      }
+                                    },
+                                    error: function(){
+                                      event.preventDefault();
+                                      swal({
+                                        type: 'error',
+                                        title: "Can't Sign Up",
+                                        text: 'Invalid input.'
+                                      });
+                                    }
+                                  });
+                                }
+                              })
+                            }else{
+                              event.preventDefault();
+                              swal({
+                                type: 'error',
+                                title: 'Incomplete input!',
+                                text: 'Please fill up all the required fields.'
+                              });
+                              }
+                          }else{
+                            event.preventDefault();
+                            swal({
+                              type: 'error',
+                              title: 'Incomplete input!',
+                              text: 'Please fill up all the required fields.'
+                            });
+                            }
+                        }else{
+                          event.preventDefault();
+                          swal({
+                            type: 'error',
+                            title: 'Incomplete input!',
+                            text: 'Please fill up all the required fields.'
+                          });
+                          }
+                      }else{
+                        event.preventDefault();
+                        swal({
+                          type: 'error',
+                          title: 'Incomplete input!',
+                          text: 'Please fill up all the required fields.'
+                        });
+                        }
+                    }else{
+                      event.preventDefault();
+                      swal({
+                        type: 'error',
+                        title: 'Incomplete input!',
+                        text: 'Please fill up all the required fields.'
+                      });
+                      }
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Incomplete input!',
+                      text: 'Please fill up all the required fields.'
+                    });
+                    }
+                }else{
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Incomplete input!',
+                    text: 'Please fill up all the required fields.'
+                  });
+                  }
+              }else{
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Incomplete input!',
+                  text: 'Please fill up all the required fields.'
+                });
+                }
+            }else{
+              event.preventDefault();
               swal({
-                title: "Good job!",
-                text: "Congratulations! Your account has been created.",
-                icon: "success",
-                timer: 5000,
-                button: "OK!"
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
               });
-            } else {
-              swal({
-                title: "Incomplete input!",
-                text: "Please fill up all the required fields.",
-                icon: "warning",
-                button: "OK!"
-              }) 
+              }
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
             }
-          },
-          error: function(){
-            alert('Could not save Data');
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
           }
-        });
+
+
       });
     });
 </script>
@@ -327,3 +460,24 @@ function copy()
 }
 
 </script>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+'use strict';
+window.addEventListener('load', function() {
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.getElementsByClassName('needs-validation');
+  // Loop over them and prevent submission
+  var validation = Array.prototype.filter.call(forms, function(form) {
+    form.addEventListener('submit', function(event) {
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+}, false);
+})();
+    </script>

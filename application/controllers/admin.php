@@ -58,17 +58,17 @@ if($data){
 
     }else{
     	return false;
-        
+
     }
     echo json_encode($msg);
   }
 }
- 
+
   function logout(){
       $this->session->sess_destroy();
       redirect(base_url().'admin');
   }
- 
+
 
 
 
@@ -216,7 +216,7 @@ $msg['success'] = false;
 $msg['type'] = 'add';
 if($result){
   $msg['success'] = true;
- 
+
 }
 echo json_encode($msg);
 }
@@ -948,7 +948,7 @@ echo json_encode($msg);
 
 
 
-	
+
 public function SpeciesAltName()
 {
 	if($this->session->userdata('strUsername')!=''){
@@ -1653,7 +1653,7 @@ public function SendtoExValidator(){
             $_FILES['f']['size'] = $_FILES['userfile']['size'][$i];
 
             $this->load->library('upload', $config);
-            $this->upload->initialize($config);            
+            $this->upload->initialize($config);
             if (!$this->upload->do_upload('f'))
             {
                 $data['errors'] = $this->upload->display_errors();
@@ -1683,9 +1683,9 @@ public function SendtoExValidator(){
 		     $this->email->from('WBHerbariumTA@gmail.com');
 		    $this->email->to($result_explode[1]);
 		    $this->email->subject('TANGINAMo');
-           
+
             $handle=opendir($path);
-            while (($file = readdir($handle))) 
+            while (($file = readdir($handle)))
                   {
                        if(strlen($file)>3)
                            $this->email->attach($path.$file);
@@ -1697,7 +1697,7 @@ public function SendtoExValidator(){
 
 			//dedelete yung files
 	        $handle=opendir($path);
-            while (($file = readdir($handle))) 
+            while (($file = readdir($handle)))
                   {
                        if(strlen($file)>3)
                            unlink($path.$file);
@@ -1716,7 +1716,7 @@ redirect('admin/Externalvalidation');
 	        	//dedelete yung files
 	        redirect('admin/Externalvalidation');
             $handle=opendir($path);
-            while (($file = readdir($handle))) 
+            while (($file = readdir($handle)))
                   {
                        if(strlen($file)>3)
                            unlink($path.$file);
@@ -1757,4 +1757,10 @@ public function showNotifCount(){
 	echo json_encode($result);
 	}
 
+	public function Queries() {
+		$title['title'] = "PUPHerbarium | Queries";
+		$this->load->view('templates/header', $title);
+		$this->load->view('queries');
+		$this->load->view('templates/footer');
+	}
 }?>

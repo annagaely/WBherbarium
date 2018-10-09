@@ -1,14 +1,14 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<!-- 
+<!--
 <?php
     header('Content-Type: text/html; charset=utf-8' );
     ini_set('default_charset', 'utf-8');
 ?> -->
 
 <head>
-<!-- 
+<!--
  <meta http-equiv="Content-Type" content="text/html; charset= utf-8"> -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
@@ -129,9 +129,9 @@
                 </li>
               </ul>
             </li>
-              <li><a href="#"> <i class="fa fa-database"></i>Query</a></li>
+              <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
             <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
-         
+
 
 
           <!-- STUDENT ASSISTANT PART-->
@@ -240,7 +240,7 @@ function myFunction1() {
  <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
- 
+
  function load_unseen_notification(view = '')
  {
   $.ajax({
@@ -262,18 +262,17 @@ $(document).ready(function(){
           '</div></a></li>';
     }
     $('.dropdown-menu').html(html);
-    
+
    }
   });
  }
- 
+
 load_unseen_notification();
 
- 
 $('#clicknotif').click(function(){
   $('.badge').html('');
   load_unseen_notification('yes');
-  
+
  });
 
  countunreadnotif();
@@ -288,8 +287,8 @@ $('#clicknotif').click(function(){
 if(data.intcount!=0){
   $('.count').html(data.intcount);
 }
-    
-    
+
+
    }
   });
  }
