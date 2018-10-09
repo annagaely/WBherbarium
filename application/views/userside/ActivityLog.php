@@ -1,9 +1,8 @@
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/b-1.5.4/b-flash-1.5.4/b-print-1.5.4/r-2.2.2/rg-1.1.0/sc-1.5.0/datatables.min.css"/>
 
-<!--Table-->
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/b-1.5.4/b-flash-1.5.4/b-print-1.5.4/r-2.2.2/rg-1.1.0/sc-1.5.0/datatables.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
 <style>
 
 /* Style the tab */
@@ -37,7 +36,6 @@
 
 /* Style the tab content */
 .tabcontent {
-    display: none;
     padding: 0;
     border: 1px solid #ccc;
     border-top: none;
@@ -49,8 +47,8 @@
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     width: 11.2%;
-    height: 300px;
-    margin: 0
+    height: 100%;
+    margin: 0;
 }
 
 /* Style the buttons inside the tab */
@@ -80,91 +78,75 @@
 
 /* Style the ab content */
 .tabcontent2 {
-    display: none;
     float: left;
-    padding: 0px 12px;
     border: 1px solid #ccc;
     width: 88.8%;
     border-left: none;
-    height: 300px;
+    height: 100%;
 }
 </style>
-  <div class="card mx-auto" style="width: 80%; margin-top: 7%; margin-bottom: 5%">
+
+  <div class="card mx-auto" style="width: 100%; margin-top: 4.5%;">
     <div class="tab">
       <button class="tablinks" disabled>Activity Log</button>
-      <button class="tablinks" onclick="openTab(event, 'Current')">Current</button>
+      <button class="tablinks active" onclick="openTab(event, 'Current')">Current</button>
       <button class="tablinks" onclick="openTab(event, 'Past')">Past</button>
     </div>
 
     <div id="Current" class="tabcontent">
       <div class="tab2">
-        <button class="tablinks2" onclick="openTab2(event, 'VisitsCurrent')">Visit</button>
+        <button class="tablinks2 active" onclick="openTab2(event, 'VisitsCurrent')">Visit</button>
         <button class="tablinks2" onclick="openTab2(event, 'DepositsCurrent')">Deposit</button>
       </div>
       <div id="VisitsCurrent" class="tabcontent2">
-        <div class="table-responsive">
-          <table class="table dataTable no-footer" id="manageVisitsCurrent">
-            <thead>
-              <tr>
-                <th scope="col" width="10%">Date</th>
-                <th scope="col" width="10%">Description</th>
-                <th scope="col" width="10%">Actions</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-        </div>
-      <div id="DepositsCurrent" class="tabcontent2">
-        <div class="table-responsive">
-          <table class="table dataTable no-footer" id="manageDepositsCurrent">
-            <thead>
-              <tr>
-                <th scope="col" width="10%">Date</th>
-                <th scope="col" width="10%">Description</th>
-                <th scope="col" width="10%">Actions</th>
-              </tr>
-            </thead>
-          </table>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="<?php echo site_url('user/currentVisits');?>" width="100%" height="100%" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
         </div>
       </div>
-</div>
-    <div id="Past" class="tabcontent">
+      <div id="DepositsCurrent" class="tabcontent2" style="display: none;">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="<?php echo site_url('user/currentDeposits');?>" width="100%" height="100%" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
+        </div>
+      </div>
+    </div>
+    <div id="Past" class="tabcontent" style="display: none;">
       <div class="tab2">
         <button class="tablinks2" onclick="openTab2(event, 'VisitsPast')">Visit</button>
         <button class="tablinks2" onclick="openTab2(event, 'DepositsPast')">Deposit</button>
       </div>
       <div id="VisitsPast" class="tabcontent2">
-        <div class="table-responsive">
-          <table class="table dataTable no-footer" id="manageVisitsPast">
-            <thead>
-              <tr>
-                <th scope="col" width="10%">Date</th>
-                <th scope="col" width="10%">Description</th>
-                <th scope="col" width="10%">Actions</th>
-              </tr>
-            </thead>
-          </table>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="<?php echo site_url('user/pastVisits');?>" width="100%" height="100%" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
         </div>
       </div>
       <div id="DepositsPast" class="tabcontent2">
-        <div class="table-responsive">
-          <table class="table dataTable no-footer" id="manageDepositsPast">
-            <thead>
-              <tr>
-                <th scope="col" width="10%">Date</th>
-                <th scope="col" width="10%">Description</th>
-                <th scope="col" width="10%">Actions</th>
-              </tr>
-            </thead>
-          </table>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="<?php echo site_url('user/pastDeposits');?>" width="100%" height="100%" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
         </div>
       </div>
     </div>
 
 
   </div>
-
-
+  <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <script>
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
@@ -194,26 +176,4 @@ function openTab2(evt, tab2Name) {
     document.getElementById(tab2Name).style.display = "block";
     evt.currentTarget.className += " active";
 }
-</script>
-<script type="text/javascript">
-  function showAllVisitsCurrent()
-  {
-    $('#manageVisitsCurrent').dataTable().fnClearTable();
-    $('#manageVisitsCurrent').dataTable().fnDraw();
-    $('#manageVisitsCurrent').dataTable().fnDestroy();
-    $('#manageVisitsCurrent').dataTable({
-      "autoWidth":false,
-        "processing": true,
-        "serverSide": false,
-        "sAjaxSource": "<?php echo base_url('admin/showAllPhylum')?>",
-        "deferLoading": 10,
-        "bPaginate": true,
-        "aaSorting": [[0,'asc']],
-        "fnInitComplete": function(){
-        }
-    });
-  }
-  $(document).ready(function(){
-    showAllVisitsCurrent();
-  })
 </script>

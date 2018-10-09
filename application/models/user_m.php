@@ -74,7 +74,7 @@ class user_m extends CI_Model{
 					return false;
 				}
 
-                          
+
     }
 
 	public function addLoanReq(){
@@ -288,7 +288,7 @@ public function updateProfile()
    			 'strAffiliationAddress'=>$this->input->post('txtaffaddress')
 
     );
-   		
+
     $this->db->where('strUserName', $id);
     $this->db->update('tblOnlineUser', $field);
     if($this->db->affected_rows() > 0){
@@ -335,10 +335,10 @@ public function updatePassword(){
 			select * from tblAppointments where intOUserID = @id AND strStatus='Pending'
 
 			");
-                
+
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary phylum-edit" data="'.$r->intAppointmentID.'"><i class="far fa-edit"></i></button>';
+			$btn = '<button class="btn btn-primary phylum-edit" data-toggle="modal" data-target="#basicExampleModal" data="'.$r->intAppointmentID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					// $r->intPhylumID,
