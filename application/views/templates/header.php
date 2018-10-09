@@ -176,7 +176,7 @@
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 
                 <!-- Notifications dropdown-->
-                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell"></i><span id="BellIcon" class="badge badge-warning count"></span></a>
+                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell" id='clicknotif'></i><span id="BellIcon" class="badge badge-warning count"></span></a>
                   <ul aria-labelledby="notifications" class="dropdown-menu">
                     <li><a rel="nofollow" href="#" class="dropdown-item">
           <div class="notification d-flex justify-content-between">
@@ -269,15 +269,14 @@ $(document).ready(function(){
 
 load_unseen_notification();
 
-
- $(document).on('click', '.fa', function(event){
+$('#clicknotif').click(function(){
   $('.badge').html('');
   load_unseen_notification('yes');
 
  });
 
  countunreadnotif();
- function countunreadnotif()
+ function  countunreadnotif ()
  {
   $.ajax({
    url:"<?php echo base_url();?>admin/showNotifCount",
@@ -285,7 +284,7 @@ load_unseen_notification();
    dataType:"json",
    success:function(data)
    {
-if(data.incount!=0){
+if(data.intcount!=0){
   $('.count').html(data.intcount);
 }
 
@@ -293,10 +292,11 @@ if(data.incount!=0){
    }
   });
  }
- /**setInterval(function(){
-  load_unseen_notification();;
- }, 5000);*/
-
+ setInterval(function(){ 
+ load_unseen_notification();
+ countunreadnotif();
+ }, 3000);
+ 
 });
 </script>
 

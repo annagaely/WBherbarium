@@ -338,7 +338,7 @@ public function updatePassword(){
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary phylum-edit" data-toggle="modal" data-target="#basicExampleModal" data="'.$r->intAppointmentID.'"><i class="far fa-edit"></i></button>';
+			$btn = '<button class="btn btn-primary visitcurent-edit" data-toggle="modal" data-target="#basicExampleModal" data="'.$r->intAppointmentID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					// $r->intPhylumID,
@@ -354,5 +354,71 @@ public function updatePassword(){
 		return $result;
 	}
 
+	public function editCurrentVisit(){
+		$id = $this->input->get('id');
+		$this->db->where('intAppointmentID', $id);
+		$query = $this->db->get('tblAppointments');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+public function updateCurrentVisitResched(){
+    $id = $this->input->post('txtId');
+    $firstname = $this->session->userdata['strFirstname'];
+    $midinit = $this->session->userdata['strMiddleInitial'];
+    $lastname = $this->session->userdata['strLastname'];
+$date = $this->input->post('dtnewDate');
+
+ $querycheckdate=$this->db->query("select * from tblEvents where [start] = '".$date."'");
+
+if($querycheckdate->num_rows() == 0){
+ $queryupdate="
+
+			update tblAppointments
+			set dtAppointmentDate = '".$date."' 
+				where intAppointmentID = ".$id."
+
+			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has rescheduled his/her appointment to: ''".$date.", Visit ID: ','".$id."'),0)
+
+			";
+
+if($this->db->query($queryupdate)){
+			return true;
+		}else{
+			return false;
+		}
+  
+}else{
+	return false;
+}
+
+}
+
+public function updateCurrentVisitCancel(){
+    $id = $this->input->post('txtId');
+    $firstname = $this->session->userdata['strFirstname'];
+    $midinit = $this->session->userdata['strMiddleInitial'];
+    $lastname = $this->session->userdata['strLastname'];
+ $queryupdate="
+
+			update tblAppointments
+			set strStatus = 'Cancelled' 
+				where intAppointmentID = ".$id."
+
+			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has cancelld his/her appointment. Visit ID: ','".$id."'),0)
+
+			";
+
+if($this->db->query($queryupdate)){
+			return true;
+		}else{
+			return false;
+		}
+  
+}
 
 }?>
