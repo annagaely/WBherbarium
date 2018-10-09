@@ -12,7 +12,7 @@ class user_m extends CI_Model{
 		return $query;
 
 }
- public function userRegister(){
+public function userRegister(){
 			$firstname=$this->input->post('txtfirstname');
 			$middlename=$this->input->post('txtmidname');
 			$lastname=$this->input->post('txtlastname');
