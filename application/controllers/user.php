@@ -369,6 +369,30 @@ public function showAllVisitsLog(){
 		echo json_encode($response);
 		exit();
 	}
+public function editCurrentVisit(){
+$result = $this->m->editCurrentVisit();
+echo json_encode($result);
+}
 
+public function updateCurrentVisitResched(){
+$result = $this->m->updateCurrentVisitResched();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+
+
+public function updateCurrentVisitCancel(){
+$result = $this->m->updateCurrentVisitCancel();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
 
 }?>
