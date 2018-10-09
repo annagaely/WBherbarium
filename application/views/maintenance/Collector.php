@@ -268,7 +268,7 @@ $('#btnSave').click(function(event){
                               showConfirmButton: false
                             }).then(function() {
                               location.reload();
-                            });
+                            });   
                           }
                         },
                         error: function(){
