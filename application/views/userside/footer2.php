@@ -47,10 +47,10 @@
               <a href="<?php echo base_url(); ?>user/Collection">Collection</a>
             </li>
             <li>
-              <a href="<?php echo base_url(); ?>user/howtodeposit">Deposit Specimen</a>
+              <a href="<?php echo base_url(); ?>user/Deposits">Deposit Specimen</a>
             </li>
             <li>
-              <a href="<?php echo base_url(); ?>user/howtovisit">Visit Herbarium Center</a>
+              <a href="<?php echo base_url(); ?>user/appointment">Visit Herbarium Center</a>
             </li>
             <li>
               <a href="<?php echo base_url(); ?>user/contact">Contact</a>
