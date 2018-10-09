@@ -218,7 +218,7 @@ function resetForm() {
     //show
     showAllPlantBorrower();
 
-$('#btnSave').click(function(){
+$('#btnSave').click(function(event){
       
       var data = $('#addPlantBorrowerForm').serialize();
 
@@ -250,7 +250,7 @@ $('#btnSave').click(function(){
 
     });
 
-$(document).on('click', '.borrower-edit', function(){
+$(document).on('click', '.borrower-edit', function(event){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Plant Borrower');
@@ -281,7 +281,7 @@ $(document).on('click', '.borrower-edit', function(){
 
   });
 
-$('#btnEditSave').click(function(){
+$('#btnEditSave').click(function(event){
       var data = $('#editPlantBorrowerForm').serialize();
         $.ajax({
           type: 'ajax',

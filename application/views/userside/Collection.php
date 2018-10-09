@@ -1,5 +1,13 @@
+
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+ <script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/mdb.js"></script>
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
 <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/gallery/grid-gallery/grid-gallery.css">
+
+
+
 <!--Carousel Wrapper-->
     <div id="carousel-example-2" class="carousel slide carousel-fade vh-100" data-ride="carousel">
         <!--Indicators-->
@@ -58,8 +66,10 @@
             <!--/.Controls-->
     </div>
 
-    <div class="py-5" style="padding-left: 200px; padding-right: 200px;">
+<section>
+<div class="py-5" style="padding-left: 200px; padding-right: 200px;">
     <div class="row">
+
       <div class="col-md-3">
         <div class="card mb-4">
           <div class="view overlay">
@@ -71,10 +81,11 @@
           <div class="card-body">
             <h4 class="card-title">Angiosperms</h4>
             <p class="card-text">Flowering Plants.</p>
-            <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+            <button type="button" id= "btnAngiosperm" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modalAngiosperm">Read more</button>
           </div>
-        </div>
+        </div> 
       </div>
+
       <div class="col-md-3">
         <div class="card mb-4">
           <div class="view overlay">
@@ -90,6 +101,7 @@
             </div>
           </div>
       </div>
+
       <div class="col-md-3">
         <div class="card mb-4">
           <div class="view overlay">
@@ -105,6 +117,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-md-3">
         <div class="card mb-4">
           <div class="view overlay">
@@ -120,8 +133,34 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
+</section>
+<!-- Modals -- >
+<div class="modal fade" id="modalAngiosperm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #800000">
+        <h7 class="modal-title" id="exampleModalLabel" style="color: white" >Angiosperm</h7>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" style="color: white">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 14px">  
+          Angiosperms are seed-bearing vascular plants. Their reproductive structures are flowers in which the ovules are enclosed in an ovary. Angiosperms are found in almost every habitat from forests and grasslands to sea margins and deserts. Angiosperms display a huge variety of life forms including trees, herbs, submerged aquatics, bulbs and epiphytes. The largest plant families are Orchids, and Compositae (daisies) and Legumes (beans).
+
+         There are an estimated 352,000 species of flowering plants or angiosperms. 
+
+         Source: The Plant List http://www.theplantlist.org/browse/A/
+       </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <div style="padding-left: 200px; padding-right: 200px">
     <div class="card mb-5">
       <div class="card-header">
@@ -165,6 +204,7 @@
       </div>
     </div>
   </div>
+
   <!-- TABLE RANK RESULTS -->
   <center>
     <div style="padding-left: 200px; padding-right: 200px">
@@ -277,6 +317,8 @@
       </div>
     </div>
   </div>
+
+
   <!-- Central Modal Small -->
   <script>
     function showTableRank() {
@@ -292,3 +334,4 @@
       specietbl.style.display = "table";
     }
   </script>
+

@@ -1,4 +1,25 @@
 
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+'use strict';
+window.addEventListener('load', function() {
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.getElementsByClassName('needs-validation');
+  // Loop over them and prevent submission
+  var validation = Array.prototype.filter.call(forms, function(form) {
+    form.addEventListener('submit', function(event) {
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+}, false);
+})();
+    </script>
+
 <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/loan.jpg" style="height: 50vh; width: 100%;"  class="banner">
 
 <div class="container">
@@ -70,22 +91,40 @@
                           <i class="fa fa-user prefix grey-text"></i>
                           <input type="text" id="strFirstName" name="txtfirstname" class="form-control" autofocus required>
                           <label for="strFirstName" class="font-weight-light" style="margin-left: 55px;">First Name<span style="color: red"> *</span></label>
+                          <div class="invalid-feedback">
+                           Please enter your first name.
+                          </div>
+                          <div class="valid-feedback">
+                          Looks good!
+                          </div>
                         </div>
                         <div class="col-md-6">
                           <input type="text" id="strMiddleName" name="txtmidname" class="form-control" autofocus />
                           <label for="strMiddleName" class="font-weight-light ml-3">Middle Name</label>
+                          <div class="valid-feedback">
+                          Looks good!
+                          </div>                         
                         </div>
                       </div>
                     </div>
                     <div class="md-form">
                       <div class="row">
                         <div class="col-md-8">
-                          <input type="text" id="strLastName" name="txtlastname" class="ml-5 form-control" required autofocus>
+                          <input type="text" id="strLastName" name="txtlastname" class="ml-5 form-control" style="width: 90%" required autofocus>
                           <label for="strLastName" class="font-weight-light ml-5">Last Name<span style="color: red"> *</span></label>
+                          <div class="invalid-feedback">
+                           Please enter your last name.
+                          </div>
+                          <div class="valid-feedback">
+                          Looks good!
+                          </div>
                         </div>
                         <div class="col-md-4">
                           <input type="text" id="strNameSuffix" name="txtnamesuffix" class="form-control" autofocus>
                           <label for="strNameSuffix" class="font-weight-light ml-3">Name Suffix</label>
+                          <div class="valid-feedback">
+                          Looks good!
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -94,12 +133,23 @@
                             <i class="fa fa-phone prefix grey-text"></i>
                             <input type="text" id="strPhoneNum" name="txtphonenum" class="form-control" autofocus required>
                             <label for="strPhoneNum" class="font-weight-light" data-mask="9999 9999 999">Phone Number<span style="color: red"> *</span></label>
-
+                            <div class="invalid-feedback">
+                           Please enter your phone number.
+                          </div>
+                          <div class="valid-feedback">
+                          Looks good!
+                          </div>
                       </div>
                       <div class="md-form">
                         <i class="fas fa-map-marker-alt prefix grey-text"></i>
                         <input type="text" id="strPresentAdd" name="txtpresentadd" class="form-control" onkeyup="enableCheck();" autofocus required>
                         <label for="strPresentAdd" class="font-weight-light">Present Address<span style="color: red"> *</span></label>
+                        <div class="invalid-feedback">
+                           Please enter your present address.
+                          </div>
+                          <div class="valid-feedback">
+                          Looks good!
+                          </div>
                       </div>
                       <div class="md-form">
                         <i class="fa fa-home prefix grey-text"></i>
@@ -116,12 +166,23 @@
                             <i class="fa fa-users prefix grey-text"></i>
                             <input type="text" id="strAffiliation" name="txtaffname" class="form-control" autofocus required>
                             <label for="strAffiliation" class="font-weight-light" style="margin-left: 55px;">Affiliation<span style="color: red"> *</span></label>
-
+                            <div class="invalid-feedback">
+                           Please enter your affiliation.
+                          </div>
+                          <div class="valid-feedback">
+                          Looks good!
+                          </div>
                           </div>
                           <div class="col-md-6">
                             <i class="fas fa-street-view prefix grey-text"></i>
                             <input type="text" id="strAffiliationPosition" name="txtaffpos" class="form-control" autofocus required>
                             <label for="strAffiliationPosition" class="font-weight-light" style="margin-left: 55px;">Position<span style="color: red"> *</span></label>
+                            <div class="invalid-feedback">
+                           Please enter your position.
+                          </div>
+                          <div class="valid-feedback">
+                          Looks good!
+                          </div>
                           </div>
                         </div>
                       </div>
@@ -129,6 +190,12 @@
                         <i class="fa fa-map-pin prefix grey-text"></i>
                         <input type="text" id="strAffiliationAdd" name="txtaffaddress" class="form-control" autofocus required>
                         <label for="strAffiliationAdd" class="font-weight-light">Affiliation Address<span style="color: red"> *</span></label>
+                        <div class="invalid-feedback">
+                           Please enter your affiliation address.
+                          </div>
+                          <div class="valid-feedback">
+                          Looks good!
+                          </div>
                       </div>
 
                     <div class="text-center py-4 mt-3">
@@ -196,6 +263,8 @@ function hideNav() {
 
 </script>
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+
+
 <script>
 $('input[name=txtpresentadd]').keyup(function(){
   if (this.value.length > 0) {
@@ -232,7 +301,7 @@ function showAccount()
 {
       $.ajax({
         type: 'ajax',
-        url: '<?php echo base_url() ?>user/showAccount',
+        url: '<?php echo base_url();?>user/showAccount',
         async: false,
         dataType: 'json',
         success: function(data){
@@ -257,23 +326,47 @@ function showAccount()
 </script>
 <script type="text/javascript">
 
- $('#btnSaveAccount').click(function(){
+ $('#btnSaveAccount').click(function(event){
       var data = $('#myaccForm').serialize();
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>user/updateAccount',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response.success){
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
-              }
-              showAllPhylum();
+      if($('#strEmailAdd').val()!=''){
+          event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+                 $.ajax({
+                   type: 'ajax',
+                   method: 'post',
+                   url: '<?php echo base_url();?>user/updateAccount',
+                   data: data,
+                   async: false,
+                   dataType: 'json',
+                   success: function(response){
+                     if(response.success){
+                       if(response.type=='add'){
+                         var type = 'added'
+                       }else if(response.type=='update'){
+                         var type ="updated"
+                       }
+
+                let timerInterval
+                      swal({
+                        title: 'Saved',
+                        text: 'Email has been saved.',
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                      }).then(function() {
+                        event.preventDefault();
+                         showAccount();
+
+            });
+
             }else{
               alert('Error');
             }
@@ -282,7 +375,18 @@ function showAccount()
             alert('Could not update data');
           }
         });
-    });
+      }
+   })   
+            }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+
+          });
 
 </script>
 <script type="text/javascript">
@@ -291,7 +395,7 @@ function showProfile()
 {
       $.ajax({
         type: 'ajax',
-        url: '<?php echo base_url() ?>user/showProfile',
+        url: '<?php echo base_url();?>user/showProfile',
         async: false,
         dataType: 'json',
         success: function(data){
@@ -318,75 +422,83 @@ function showProfile()
 
     //show
     showProfile();
+});
+</script>
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+      $('#btnSaveProfile').click(function(event){
+
+        var data = $('#myprofileForm').serialize();
+        //validate form
 
 
- $('#btnSaveProfile').click(function(){
-      var data = $('#myprofileForm').serialize();
         $.ajax({
           type: 'ajax',
           method: 'post',
-          url: '<?php echo base_url() ?>user/updateProfile',
+          url: '<?php echo base_url();?>user/updateProfile',
           data: data,
           async: false,
           dataType: 'json',
           success: function(response){
             if(response.success){
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
-              }
-              showAllPhylum();
-            }else{
-              alert('Error');
+              event.preventDefault();
+              swal({
+                title: 'Are you sure?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, save it!'
+              }).then((result) => {
+                let timerInterval
+                swal({
+                              title: 'Saved',
+                              text: 'Your profile has been saved.',
+                              type: 'success',
+                              timer: 1500,
+                              showConfirmButton: false
+                            }).then(function() {
+                              location.reload();
+                            });
+              })
+              showProfile();
+            } else {
+              event.preventDefault();
             }
           },
           error: function(){
-            alert('Could not update data');
+            alert('Could not save Data');
           }
         });
+      });
     });
- });
-
-
 </script>
 <script type="text/javascript">
 
-// function showPassword()
-// {
-//       $.ajax({
-//         type: 'ajax',
-//         url: '<?php echo base_url() ?>user/showPassword',
-//         async: false,
-//         dataType: 'json',
-//         success: function(data){
-//           $('input[name=txtCurPw]').val(data.strPassword);
 
-
-//         },
-//         error: function(){
-//           alert('Could not show Data');
-//         }
-
-//     });
-
-//   };
-
-//     $(document).ready(function(){
-
-//     //show
-//     showPassword();
-
-//   });
-
-
-$('#btnSavePassword').click(function(){
+$('#btnSavePassword').click(function(event){
       var data = $('#myPasswordForm').serialize();
 
 var newpw = document.getElementById("strNewPw").value;
 var verpw = document.getElementById("strVerPw").value;
 
-     if (newpw === verpw) {
+
+      if($('#strCurPw').val()!=''){
+        if($('#strNewPw').val()!=''){
+          if($('#strVerPw').val()!=''){
+if (newpw == verpw) {
+             event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+
          $.ajax({
           type: 'ajax',
           method: 'post',
@@ -401,7 +513,19 @@ var verpw = document.getElementById("strVerPw").value;
               }else if(response.type=='update'){
                 var type ="updated"
               }
-              showAllPhylum();
+
+              let timerInterval
+                      swal({
+                        title: 'Saved',
+                        text: 'Your pasword has been saved.',
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: false
+                      }).then(function() {
+                        event.preventDefault();
+              showPassword();
+            });
+
             }else{
               alert('Error');
             }
@@ -410,13 +534,45 @@ var verpw = document.getElementById("strVerPw").value;
             alert('Could not update data');
           }
         });
+
+    }
+    })
+   
+      }
+      else{
+        event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Wrong input!',
+              text: 'Please verify your new password.'
+            });
+            
+      }
       }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
 
-        alert('di pareho new at verify')
-}
-
-    });
-
-
-
+         }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+          
+});
 </script>

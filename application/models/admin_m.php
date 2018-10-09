@@ -940,13 +940,12 @@ if($fname!=''){
   return false;
 }
 
-		if($this->db->affected_row() > 0)	{
+		if($this->db->affected_rows() > 0)	{
 			return true;
 		} else{
 			   return false;
 		  }
-
-	}
+}
 
 	public function updateCollector(){
 	$fname = $this->input->post('feName');
@@ -1018,9 +1017,9 @@ if($fname!=''){
       ,strMiddleInitial
       ,strNameSuffix
       ,strContactNumber
-      ,strEmailAddress,
-      strHomeAddress,
-			 strAffiliation')
+      ,strEmailAddress
+      ,strHomeAddress
+      ,strAffiliation')
 			->get('tblCollector');
 		if($query->num_rows() > 0){
 			return $query->row();
@@ -1309,6 +1308,7 @@ UPDATE tblHerbariumStaff
 	public function showAllAccounts(){
 		$result = array();
 		$query = $this->db->query("select * from viewAccounts
+
 		");
 
 	foreach ($query->result() as $r)
@@ -2123,8 +2123,8 @@ $status = $this->input->post('txtStatus');
 //EXTERNAL VALAIDATION
 	public function showExValPending(){
 		$result = array();
-		$query = $this->db->get('viewVerifyingDeposit');
-
+		$query = $this->db->where('strStatus', "Pending")
+							->get('viewVerifyingDeposit');
 
 		foreach ($query->result() as $r)
 		{
@@ -2599,6 +2599,15 @@ if($this->db->query($query)){
 		}
 	}
 
+	public function showCity(){
+		$query = $this->db
+		->get('tblProvince');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+	}
 	public function showProvinces(){
 		$query = $this->db
 		->get('tblProvince');
@@ -2608,5 +2617,46 @@ if($this->db->query($query)){
 			return false;
 		}
 	}
+
+public function showNotif(){
+if(isset($_POST["view"]))
+{
+ if($_POST["view"] != ''){
+$update_query= $this->db->query("update tblNotif set intNotifStatus = 1 where intNotifStatus = 0");
+
+}
+$query= $this->db->query("select top 20 strNotifContent from tblNotif order by intNotifID DESC ");
+
+if($query->num_rows() > 0){
+	
+return $query->result();
+		}else{
+			
+			return false;
+		}
+}
+
+//$query1= $this->db->query("select * from tblNotif where intNotifStatus = 0");
+			
+ //$count = $query1->num_rows();
+// $data = array(
+//  'notification'   => $query->result(),
+ // 'unseen_notification' => $count
+ //);
+
+
+}
+public function showNotifCount(){
+$query= $this->db->query("select count(intNotifID)as intcount from tblNotif where intNotifStatus = 0");
+if($query->num_rows() > 0){
+	
+return $query->row();
+		}else{
+			
+			return false;
+		}
+}
+
+
 
 }?>

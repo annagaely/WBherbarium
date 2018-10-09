@@ -308,7 +308,7 @@ $('#btnSave').click(function(event){
       }
     });
 
-$('#btnEditSave').click(function(){
+$('#btnEditSave').click(function(event){
       var data = $('#editSpeciesForm').serialize();
         $.ajax({
           type: 'ajax',
@@ -338,7 +338,7 @@ $('#btnEditSave').click(function(){
     });
 
     //edit class
- $(document).on('click', '.species-edit', function(){
+ $(document).on('click', '.species-edit', function(event){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Species');

@@ -112,12 +112,12 @@
              </div>
 
 
-                   <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-                   <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
 
-                   <!--Table-->
-                   <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
-                   <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+<!--Table-->
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
 
              <script>
              function resetForm() {
@@ -250,7 +250,7 @@
 
     });
    //update class
- $('#btnEditSave').click(function(){
+ $('#btnEditSave').click(function(event){
      var data = $('#editClassForm').serialize();
      if($('#phylumid2').val()!=''){
        if($('#classid2').val()!=''){
@@ -327,7 +327,7 @@
       }
    });
    //edit class
-  $(document).on('click', '.class-edit', function(e){
+  $(document).on('click', '.class-edit', function(event){
      var id = $(this).attr('data');
      $('#myEditModal').modal('show');
      $('#myEditModal').find('.modal-title').text('Edit Class');

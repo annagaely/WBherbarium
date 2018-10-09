@@ -176,26 +176,17 @@
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 
                 <!-- Notifications dropdown-->
-                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i onclick="myFunction()" class="fa fa-bell"></i><span id="BellIcon" class="badge badge-warning">2</span></a>
+                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell"></i><span id="BellIcon" class="badge badge-warning count"></span></a>
                   <ul aria-labelledby="notifications" class="dropdown-menu">
                     <li><a rel="nofollow" href="#" class="dropdown-item">
-                        <div class="notification d-flex justify-content-between">
-                          <div class="notification-content"><i class="fa fa-envelope"></i>You have 2 new messages
-                          </div>
-                          <div class="notification-time"><small>4 minutes ago</small></div>
-                        </div></a></li>
-
-                    <li><a rel="nofollow" href="#" class="dropdown-item">
-                        <div class="notification d-flex justify-content-between">
-                          <div class="notification-content"><i class="fa fa-upload"></i>Server Rebooted</div>
-                          <div class="notification-time"><small>4 minutes ago</small></div>
-                        </div></a></li>
-
-                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-bell"></i>view all notifications                                            </strong></a></li>
+          <div class="notification d-flex justify-content-between">
+          <div class="notification-content"></i>No New Notifications
+          </div>
+          </div></a></li>
                   </ul>
                 </li>
                 <!-- Messages dropdown-->
-                <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i onclick="myFunction1()" class="fa fa-envelope"></i><span id= "MessageIcon" class="badge badge-info">3</span></a>
+                <!--<li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i onclick="myFunction1()" class="fa fa-envelope"></i><span id= "MessageIcon" class="badge badge-info">3</span></a>
                   <ul aria-labelledby="notifications" class="dropdown-menu">
                     <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
                         <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/Nins.png" alt="..." class="img-fluid rounded-circle"></div>
@@ -214,7 +205,7 @@
                         </div></a></li>
                     <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
                   </ul>
-                </li>
+                </li>-->
                 <!-- Log out-->
                  <li class="nav-item"><a href="<?php echo base_url()?>admin/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
@@ -246,7 +237,68 @@ function myFunction1() {
     }
 }
 </script>
+ <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+ 
+ function load_unseen_notification(view = '')
+ {
+  $.ajax({
+   url:"<?php echo base_url();?>admin/showNotif",
+   method:"POST",
+   data:{view:view},
+   dataType:"json",
+   success:function(data)
+   {
 
+   var html = '';
+   var i;
+
+  for(i=0; i<data.length; i++){
+  html +='<li><a rel="nofollow" href="#" class="dropdown-item">'+
+          '<div class="notification d-flex justify-content-between">'+
+          '<div class="notification-content"><i class="fa fa-envelope"></i>'+data[i].strNotifContent+''+
+          '</div>'+
+          '</div></a></li>';
+    }
+    $('.dropdown-menu').html(html);
+    
+   }
+  });
+ }
+ 
+load_unseen_notification();
+
+ 
+ $(document).on('click', '.fa', function(event){
+  $('.badge').html('');
+  load_unseen_notification('yes');
+  
+ });
+
+ countunreadnotif();
+ function countunreadnotif()
+ {
+  $.ajax({
+   url:"<?php echo base_url();?>admin/showNotifCount",
+   method:"POST",
+   dataType:"json",
+   success:function(data)
+   {
+if(data.incount!=0){
+  $('.count').html(data.intcount);
+}
+    
+    
+   }
+  });
+ }
+ /**setInterval(function(){ 
+  load_unseen_notification();; 
+ }, 5000);*/
+ 
+});
+</script>
 
 
      </div>

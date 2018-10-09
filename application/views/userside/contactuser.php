@@ -29,11 +29,22 @@ window.addEventListener('load', function() {
         <p class="card-header white-text text-center py-4 h4" style="background-color: #800000;"> Contact Us </p>
           
           <div class= "md-form" id="caption">
-            <center><p class=" grey-text font-weight-light"> Got a question? </p></center>
+            <center><p class=" grey-text font-weight-light"> Got a question? Feel free to message us so that we can help you. </p></center>
+            <hr>
           </div>
 
-          <div class="details">
+          <div class="details" style="">
+          <center>
+            <h4 style="padding-bottom: 20px"> <span style="color: #800000"><strong>PUP </strong></span>Herbarium Center</h4>
+            
+            <p>
+              <i class="fas fa-map-marker-alt" style="color: #800000"></i>: South Wing, Room 403-B<br>
+              <i class="fas fa-clock"style="color: #800000"></i>: 9:00 AM - 6:00 PM <br>
+              <i class="fas fa-envelope" style="color: #800000"></i>: WBHerbariumTA@gmail.com <br>
+              <i class="fas fa-phone" style="color: #800000"></i>: 09999999999
+            </p>
 
+          </center>  
           </div>
   
            
