@@ -100,8 +100,8 @@
         <!-- Grid column -->
         <div class="col-md-4">
 
-          <a href="<?php echo base_url(); ?>user/howtodeposit"><i class="fas fa-file-alt fa-3x red-text"></i></a>
-          <a href="<?php echo base_url(); ?>user/howtodeposit"  style="color: black"><h5 class="font-weight-bold my-4">Deposit</h5></a>
+          <a href="<?php echo base_url(); ?>user/deposits"><i class="fas fa-file-alt fa-3x red-text"></i></a>
+          <a href="<?php echo base_url(); ?>user/deposits"  style="color: black"><h5 class="font-weight-bold my-4">Deposit</h5></a>
           <p class="black-text mb-md-0 mb-5">Depositing of plant species is available here at PUP Herbarium. Send your deposit request and wait for the further details.
           </p>
 
@@ -111,9 +111,9 @@
         <!-- Grid column -->
         <div class="col-md-4">
 
-           <a href="<?php echo base_url(); ?>user/CollectionUser"><i class="fas fa-search fa-3x cyan-text"></i></a>
-           <a href="<?php echo base_url(); ?>user/CollectionUser" style="color: black"><h5 class="font-weight-bold my-4">Search</h5></a>
-          <p class="black-text mb-md-0 mb-5">Get access to PUP herbarium specimens and descriptions by clicking  <a href="<?php echo base_url(); ?>user/CollectionUser" style="color: black">here. </a>
+           <a href="<?php echo base_url(); ?>user/Collection"><i class="fas fa-search fa-3x cyan-text"></i></a>
+           <a href="<?php echo base_url(); ?>user/Collection" style="color: black"><h5 class="font-weight-bold my-4">Search</h5></a>
+          <p class="black-text mb-md-0 mb-5">Get access to PUP herbarium specimens and descriptions by clicking  <a href="<?php echo base_url(); ?>user/Collection" style="color: black">here. </a>
           </p>
 
         </div>
@@ -123,7 +123,7 @@
         <div class="col-md-4">
 
           <a href="<?php echo base_url(); ?>user/howtovisit"><i class="fas fa-map-marked-alt fa-3x orange-text"></i></a>
-          <a href="<?php echo base_url(); ?>user/howtovisit"  style="color: black"><h5 class="font-weight-bold my-4">Visit</h5></a>
+          <a href="<?php echo base_url(); ?>user/appointment"  style="color: black"><h5 class="font-weight-bold my-4">Visit</h5></a>
           <p class="black-text mb-0">PUP Herbarium Center is open for visitors. Just set an appointment prior to your visit.
           </p>
 

@@ -17,6 +17,20 @@ class user extends CI_Controller {
 		$this->load->view('userside/landingpage');
 		$this->load->view('userside/footer');
 	}
+
+	public function home()
+	{
+	if($this->session->userdata('strUserName')!=''){
+
+		$title['title'] = "Welcome to PUPHerbarium!";
+		$this->load->view('userside/navbar2', $title);
+		$this->load->view('userside/landingpage2');
+		$this->load->view('userside/footer2');
+	}else{
+	redirect(base_url().'user/index');
+	}
+
+	}
 	public function FAQsUser()
 	{
 		$title['title'] = "PUPHerbarium | FAQ";
@@ -29,7 +43,7 @@ class user extends CI_Controller {
 		$title['title'] = "PUPHerbarium | FAQ";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/Faq');
-		$this->load->view('userside/footer');
+		$this->load->view('userside/footer2');
 	}
 
 	public function contactUser()
@@ -44,7 +58,7 @@ class user extends CI_Controller {
 		$title['title'] = "PUPHerbarium | Contact";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/contactuser');
-		$this->load->view('userside/footer');
+		$this->load->view('userside/footer2');
 	}
 
   public function CollectionUser()
@@ -59,7 +73,7 @@ class user extends CI_Controller {
 		$title['title'] = "PUPHerbarium |  Collection";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/collection');
-		$this->load->view('userside/footer');
+		$this->load->view('userside/footer2');
 	}
 	public function register()
 	{
@@ -67,26 +81,14 @@ class user extends CI_Controller {
 		$this->load->view('userside/register', $title);
 		$this->load->view('userside/footer');
 	}
-	public function home()
-	{
-	if($this->session->userdata('strUserName')!=''){
 
-		$title['title'] = "Welcome to PUPHerbarium!";
-		$this->load->view('userside/navbar2', $title);
-		$this->load->view('userside/landingpage');
-		$this->load->view('userside/footer');
-	}else{
-	redirect(base_url().'user/index');
-	}
-
-	}
 	public function deposits()
 	{
 	if($this->session->userdata('strUserName')!=''){
 		$title['title'] = "PUPHerbarium |  Deposits";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/Deposit');
-		$this->load->view('userside/footer');
+		$this->load->view('userside/footer2');
 	}
 	else{
 	redirect(base_url().'user/index');
@@ -99,7 +101,7 @@ class user extends CI_Controller {
 		$title['title'] = "PUPHerbarium |  Loans";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/Loan');
-		$this->load->view('userside/footer');
+		$this->load->view('userside/footer2');
 	}else{
 	redirect(base_url().'user/index');
 	}
@@ -190,7 +192,7 @@ public function userRegister(){
 	 $title['title'] = "PUPHerbarium | Appointment";
 	 $this->load->view('userside/navbar2', $title);
 	 $this->load->view('userside/Appointment');
-	 $this->load->view('userside/footer');
+	 $this->load->view('userside/footer2');
 	 	}else{
 	redirect(base_url().'user/index');
 	}
@@ -227,7 +229,7 @@ public function userRegister(){
     $title['title'] = "PUPHerbarium | Profile";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/MyProfile');
-		$this->load->view('userside/footer');
+		$this->load->view('userside/footer2');
   }
 
   else{
@@ -292,7 +294,7 @@ public function userRegister(){
     $title['title'] = "PUPHerbarium | Activity Log";
 		$this->load->view('userside/navbar2', $title);
 		$this->load->view('userside/ActivityLog');
-		$this->load->view('userside/footer');
+		$this->load->view('userside/footer2');
   }
 
   else{
@@ -344,4 +346,11 @@ public function userRegister(){
 
 //  }
 // }
+
+public function showAllVisitsLog(){
+	$result = $this->m->showAllVisitsLog();
+	echo json_encode($result);
+	}
+
+	
 }?>
