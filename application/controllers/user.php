@@ -302,7 +302,18 @@ public function userRegister(){
 	}
 	}
 
-
+	public function currentVisits() {
+		$this->load->view('userside/iframe/datatableCurrentVisits');
+	}
+	public function currentDeposits() {
+		$this->load->view('userside/iframe/datatableCurrentDeposits');
+	}
+	public function pastVisits() {
+		$this->load->view('userside/iframe/datatablePastVisits');
+	}
+	public function pastDeposits() {
+		$this->load->view('userside/iframe/datatablePastDeposits');
+	}
 // public function ContactUsEmail()
 // {
 
@@ -348,9 +359,16 @@ public function userRegister(){
 // }
 
 public function showAllVisitsLog(){
-	$result = $this->m->showAllVisitsLog();
-	echo json_encode($result);
+  $output = $this->m->showAllVisitsLog();
+	$response = array(
+		'aaData' => $output,
+		'iTotalRecords' => count($output),
+		'iTotalDisplayRecords' => count($output),
+		'iDisplayStart' => 0
+		);
+		echo json_encode($response);
+		exit();
 	}
 
-	
+
 }?>
