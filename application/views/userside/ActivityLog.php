@@ -105,7 +105,7 @@
       </div>
       <div id="DepositsCurrent" class="tabcontent2" style="display: none;">
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="<?php echo site_url('user/currentDeposits');?>" width="100%" height="100%" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
+          <iframe class="embed-responsive-item" src="<?php echo site_url('user/currentDeposits/');?>" width="100%" height="100%" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
         </div>
       </div>
     </div>

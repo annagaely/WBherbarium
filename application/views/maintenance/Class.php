@@ -141,7 +141,7 @@
         "sAjaxSource": "<?php echo base_url('admin/showAllClass')?>",
         "deferLoading": 10,
         "bPaginate": true,
-        "aaSorting": [[0,'asc']],
+        "aaSorting": [],
         "fnInitComplete": function(){
 
         }

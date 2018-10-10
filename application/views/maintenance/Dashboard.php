@@ -19,8 +19,8 @@
                 <div class="name"><strong class="text-uppercase">Total<br>Accounts</strong>
                   <div class="count-number">
                     <?php
-                  $serverName = "MSI";
-                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
+                  $serverName = "DEI";
+                  $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
                       die( print_r( sqlsrv_errors(), true));
@@ -43,15 +43,15 @@
             <!-- Count item widget-->
             <div class="col-xl-3 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
-                <div class="icon"><i class="icon-padnote"></i></div>
+                <div class="icon"><i class="icon-check"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br>Deposits</strong>
                   <div class="count-number">
 
                     <?php
 
-                  $serverName = "MSI";
+                  $serverName = "DEI";
 
-                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
+                  $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
                       die( print_r( sqlsrv_errors(), true));
@@ -72,16 +72,16 @@
               </div>
             </div>
             <!-- Count item widget-->
-            <div class="col-xl-2 col-md-4 col-6">
+            <div class="col-xl-3 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-bill"></i></div>
                 <div class="name"><strong class="text-uppercase">Total<br />Visits</strong>
                   <div class="count-number">
 
                     <?php
-                  $serverName = "MSi";
+                  $serverName = "DEI";
 
-                  $connectionInfo = array( "Database"=>"HerbariumDatabase", "UID"=>"sa", "PWD"=>"1234");
+                  $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
                     if( $conn === false ) {
                       die( print_r( sqlsrv_errors(), true));
@@ -101,7 +101,35 @@
                 </div>
               </div>
             </div>
+            <div class="col-xl-3 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-padnote"></i></div>
+                <div class="name"><strong class="text-uppercase">Total<br />Collectios</strong>
+                  <div class="count-number">
 
+                    <?php
+                  $serverName = "DEI";
+
+                  $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
+                  $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                    if( $conn === false ) {
+                      die( print_r( sqlsrv_errors(), true));
+                      }
+                         $sql = "select count(intHerbariumSheetID) as totalCollection
+                                  from viewHerbariumSheet";
+                        $stmt = sqlsrv_query( $conn, $sql );
+                    if( $stmt === false) {
+                     die( print_r( sqlsrv_errors(), true) );
+                      }
+                          while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                           echo $row['totalCollection']." <br/>";
+                      }
+                        sqlsrv_free_stmt( $stmt);
+                    ?>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
