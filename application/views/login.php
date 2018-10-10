@@ -116,8 +116,6 @@ ALTER COLUMN strPassword varchar(50) COLLATE Latin1_General_CS_AS;
                 dataType: 'json',
                success: function(response){
                   if(response.success){
-
-                    // document.getElementBYId("foldingcircle").style.display = 'block' ;
                     let timerInterval
                     swal({
                     title: 'Logged in',

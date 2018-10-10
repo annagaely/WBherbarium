@@ -176,7 +176,7 @@ public function howtovisit()
 		redirect(base_url().'user/index');
 	}
 
-public function userRegister(){
+	public function userRegister(){
 		$result = $this->m->userRegister();
     echo json_encode($result);
 }

@@ -1,3 +1,8 @@
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 <style>
 /* Style the tab */
 .tab {
@@ -138,7 +143,7 @@
         <form id="viewEVForm" action="<?php echo base_url(); ?>admin/SendtoExValidator" method="post" enctype="multipart/form-data">
               <div class = "row">
                 <div class="col-sm-6">
-                  <label><strong> Select Photos of the Specimen</strong></label>
+                  <label style="font-size: 14px;">Select photos of the specimen <span style="color: red"> *</span></label>
                   <input type="file" name="userfile[]" accept=".jpeg,.jpg,.png" multiple />
                 </div>
               </div>
@@ -197,7 +202,7 @@
 
               <div class = "row">
                 <div class="col-sm-6">
-                  <label><strong> Select Where to send the Specimen</strong></label>
+                  <label style="font-size: 14px;">Select where to send the Specimen <span style="color: red"> *</span></label>
                  <select name = 'externalvalidator' id='externalvalidators' class='form-control' required>
                   <option>Select External Validator</option>
                  </select>
@@ -256,9 +261,18 @@
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
-                            $('#btnSend').click(function(){
+                            $('#btnSend').click(function(event){
                                 var data = $('#EVemailform').serialize();
-                                
+                                event.preventDefault();
+        swal({
+               title: 'Are you sure?',
+               type: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes'
+             }).then((result) => {
+               if (result.value) {
                                   $.ajax({
                                   type: 'ajax',
                                   method: 'post',
@@ -269,10 +283,25 @@
                                   success: function(){
                                   },
                                   error: function(){
-                                    alert('Email Sent');
-                                  }
-                                });
-                            });
+                                     let timerInterval
+                    swal({
+                      title: 'Email has been sent!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                    
+                    showAllExValidators();
+                    showExValOkay();
+                    showExValAll();
+                    $('#EVEmailCon').modal('hide');
+                    document.getElementById("EVemailform").reset();
+                  });
+                }
+            });
+         }
+    })
+ });
                      </script>
                   </div>
           </form>
@@ -352,7 +381,7 @@
          "sAjaxSource": "<?php echo base_url('admin/showExValPending')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
                    
          }
@@ -434,7 +463,7 @@ $(document).on('click', '.view-EVPending', function(){
          "sAjaxSource": "<?php echo base_url('admin/showExValOkay')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
                    
          }
@@ -497,8 +526,19 @@ $(document).on('click', '.view-EVPending', function(){
     });
     });
 
-$('#btnConfirm').click(function(){
+$('#btnConfirm').click(function(event){
       var data = $('#EVConfirmForm').serialize();
+ event.preventDefault();
+     swal({
+               title: 'Are you sure?',
+               type: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes'
+             }).then((result) => {
+               if (result.value) {
+
         $.ajax({
           type: 'ajax',
           method: 'post',
@@ -514,13 +554,29 @@ $('#btnConfirm').click(function(){
             }else{
               alert('Error');
             }
+         let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Succesful!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                    
+                    showAllDepositReqPending();
+                    showAllDepositReqOkay();
+                    showAllDepositReqAll();
+                    $('#EVConfirmation').modal('hide');
+                    document.getElementById("EVConfirmForm").reset();
+                  });
           },
           error: function(){
             alert('Could not update data');
           }
         });
+      }
+    })
     });
-
 
 </script>
 
@@ -538,7 +594,7 @@ $('#btnConfirm').click(function(){
          "sAjaxSource": "<?php echo base_url('admin/showExValAll')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
                    
          }

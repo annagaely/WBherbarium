@@ -1,3 +1,8 @@
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 <style>
 /* Style the tab */
 .tab {
@@ -67,7 +72,7 @@
               <th scope="col" width= "10%">Visit ID</th>
               <th scope="col" width= "10%">Visitor's Name</th>
               <th scope="col" width= "10%">Visit Date</th>
-              <th scope="col" width= "10%">Visit Description</th>
+              <th scope="col" width= "10%">Visit Purpose</th>
               <th scope="col" width= "10%">Status</th>
               <th scope="col" width= "10%">Actions</th>
             </tr>
@@ -79,7 +84,7 @@
 
          <!-- Modal-->
 <div id="viewVisitReq" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
-       <div role="document" class="modal-dialog modal-lg" >
+       <div role="document" class="modal-dialog" >
          <div class="modal-content" >
            <div class="modal-header">
 
@@ -90,48 +95,44 @@
            </div>
 
           <div class="modal-body">
-             <div class="row">
-              <div class="col-md-6" style="margin-left: auto; margin-right: auto;">
+    
+<!--               <div class="col-md-6" style="margin-left: auto; margin-right: auto;"> -->
                  <form id= "updateVisitStatusForm" method="POST" enctype="multipart/form-data"class="form-horizontal">
-                  <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Visit ID:</label>
-                     </div>
-                     <div class="col-sm-8">
-                      <input type="hidden" name="txtId" id="txtID" value="0">
-                       <input type="text" name="txtAppointmentID" id="intAppointmentID" class="form-control" disabled="">
-                     </div>
-                   </div>
-                  <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Visitor's Name:</label>
-                     </div>
-                     <div class="col-sm-8">
-                       <input type="text" name="txtVisitorName" id="strFullame" class="form-control" disabled>
-                     </div>
-                   </div>
-                  <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Visit Date:</label>
-                     </div>
-                    <div class="col-sm-8">
-                      <input type="text" name="txtVisitDate" id="dtAppointmentDate" class="form-control" disabled="">
-                     </div>
-                   </div>
 
-                    <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Visit Purpose:</label>
-                     </div>
-                     <div class="col-sm-8">
-                       <input type="text" name="txtVisitPurpose" id="strVisitDescription" class="form-control" disabled="">
-                     </div>
-                   </div>
-                 <div class="form-group row">
-                  <div class="col-sm-4">
-                    <label style="font-size: 14px;">Status:</label>
+
+                  
+                    <div class="form-group">
+                       <label style="font-size: 14px;">Visit ID:</label>
+                       <input type="hidden" name="txtId" id="txtID" value="0">
+                       <input type="text" name="txtAppointmentID" id="intAppointmentID" class="form-control" disabled="">
+                   
+                  
+                    <div class="form-group">
+                       <label style="font-size: 14px;">Visitor's Name:</label>
+                       <input type="text" name="txtVisitorName" id="strFullame" class="form-control" disabled>
+                    </div>
+                 
+
+                 <div class="row">
+                  <div class="form-group col-sm-6">
+                      <label style="font-size: 14px;">Visit Date:</label>
+                      <input type="text" name="txtVisitDate" id="dtAppointmentDate" class="form-control" disabled="">
                   </div>
-                  <div class="col-sm-8">
+                 
+
+                     <div class="form-group col-sm-6">
+                      <label style="font-size: 14px;">Visit Purpose:</label>
+                       <input type="text" name="txtVisitPurpose" id="strVisitPurpose" class="form-control" disabled="">
+                     </div>
+                </div>
+
+                 <div class="form-group">
+                       <label style="font-size: 14px;">Visit Description:</label>
+                       <textarea name="txtVisitDescription" id="strVisitDescription" class="form-control" disabled> </textarea>
+                    </div>
+
+                 <div class="form-group">
+                  <label style="font-size: 14px;">Status:</label>
                    <select name="txtStatus" id="strStatus"  class="form-control">
                         <option value="For Visiting">Approve</option>
                         <option value="Rejected">Reject</option>
@@ -140,10 +141,9 @@
                 </div>
                  </form>
                </div>
-             </div>
-          </div>
+     
           <div class="modal-footer">
-             <input type="submit" value="Save" id='btnSave' class="btn btn-primary" style="margin-left: 300px">
+             <input type="submit" value="Save" id="btnSave" class="btn btn-primary" style="margin-left: 300px">
           </div>
          </div>
        </div>
@@ -160,7 +160,7 @@
                  <th scope="col" width= "10%">Visit ID</th>
                  <th scope="col" width= "10%">Visitor's Name</th>
                  <th scope="col" width= "10%">Visit Date</th>
-                 <th scope="col" width= "10%">Visit Description</th>
+                 <th scope="col" width= "10%">Visit Purpose</th>
                  <th scope="col" width= "10%">Status</th>
                  <th scope="col" width= "10%">Actions</th>
                 </tr>
@@ -205,9 +205,18 @@
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
-                            $('#btnSend').click(function(){
+                            $('#btnSend').click(function(event){
                                 var data = $('#emailform').serialize();
-                                  $.ajax({
+                                  event.preventDefault();
+           swal({
+               title: 'Are you sure?',
+               type: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes'
+             }).then((result) => {
+              $.ajax({
                                   type: 'ajax',
                                   method: 'post',
                                   url: '<?php echo base_url() ?>admin/visitsendMail',
@@ -217,11 +226,26 @@
                                   success: function(){
                                   },
                                   error: function(){
-                                    alert('Email Sent');
-                                  }
-                                });
-                            });
-                     </script>
+                                      let timerInterval
+                    swal({
+                      title: 'Email has been sent!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                    
+                showAllAppointmentPending();
+                showAllAppointmentExpect();
+                showAllAppointmentReject();
+                showAllAppointmentAll();
+                    $('#EmailVisitCon').modal('hide');
+                    document.getElementById("emailform").reset();
+                  });
+                }
+            });
+        
+    })
+ });                     </script>
                   </div>
           </form>
         </div>
@@ -239,7 +263,7 @@
                  <th scope="col" width= "10%">Visit ID</th>
                  <th scope="col" width= "10%">Visitor's Name</th>
                  <th scope="col" width= "10%">Visit Date</th>
-                 <th scope="col" width= "10%">Visit Description</th>
+                 <th scope="col" width= "10%">Visit Purpose</th>
                  <th scope="col" width= "10%">Status</th>
                  <th scope="col" width= "10%">Actions</th>
                 </tr>
@@ -285,8 +309,18 @@
                      <input type="submit" id="btnSendReject" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
-                            $('#btnSendReject').click(function(){
+                            $('#btnSendReject').click(function(event){
                                 var data = $('#emailformreject').serialize();
+            event.preventDefault();
+              swal({
+               title: 'Are you sure?',
+               type: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes'
+             }).then((result) => {
+               if (result.value) {
                                   $.ajax({
                                   type: 'ajax',
                                   method: 'post',
@@ -297,10 +331,27 @@
                                   success: function(){
                                   },
                                   error: function(){
-                                    alert('Email Sent');
-                                  }
-                                });
-                            });
+                let timerInterval
+                    swal({
+                      title: 'Email has been sent!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                    
+                showAllAppointmentPending();
+                showAllAppointmentExpect();
+                showAllAppointmentReject();
+                showAllAppointmentAll();
+                    $('#EmailVisitConReject').modal('hide');
+                    document.getElementById("emailformreject").reset();
+                  });
+                }
+            });
+         }
+    })
+ });
+
                      </script>
                   </div>
           </form>
@@ -319,7 +370,7 @@
                   <th scope="col" width= "10%">Visit ID</th>
                   <th scope="col" width= "10%">Visitor's Name</th>
                   <th scope="col" width= "10%">Visit Date</th>
-                  <th scope="col" width= "10%">Visit Description</th>
+                  <th scope="col" width= "10%">Visit Purpose</th>
                   <th scope="col" width= "10%">Status</th>
                 </tr>
               </thead>
@@ -402,7 +453,7 @@
          "sAjaxSource": "<?php echo base_url('admin/showAllAppointmentPending')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
 
          }
@@ -413,10 +464,19 @@
       showAllAppointmentPending();
 });
 
-  $('#btnSave').click(function(){
+  $('#btnSave').click(function(event){
 
       var data = $('#updateVisitStatusForm').serialize();
-
+     event.preventDefault();
+     swal({
+               title: 'Are you sure?',
+               type: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes'
+             }).then((result) => {
+               if (result.value) {
         $.ajax({
           type: 'ajax',
           method: 'post',
@@ -426,16 +486,33 @@
           dataType: 'json',
           success: function(data){
 
-            if(data=true){
-              location.reload();
+            if(data==true){
+              
             }else{
               alert('Error');
             }
+              let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Succesful!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                showAllAppointmentPending();
+                showAllAppointmentExpect();
+                showAllAppointmentReject();
+                showAllAppointmentAll();
+                    $('#viewVisitReq').modal('hide');
+                    document.getElementById("updateVisitStatusForm").reset();
+                  });
           },
           error: function(){
             alert('Could not update data');
           }
         });
+      }
+    })
     });
 
 $(document).on('click', '.view-appointment', function(){
@@ -452,9 +529,11 @@ $(document).on('click', '.view-appointment', function(){
         success: function(data){
           $('input[name=txtVisitorName]').val(data.strFullName);
           $('input[name=txtAppointmentID]').val(data.intAppointmentID);
-          $('input[name=txtVisitDate').val(data.dtAppointmentDate);
-          $('input[name=txtVisitPurpose').val(data.strVisitDescription);
-          $('input[name=txtId').val(data.intAppointmentID);
+          $('input[name=txtVisitDate]').val(data.dtAppointmentDate);
+          $('input[name=txtVisitPurpose]').val(data.strVisitPurpose);
+          $('textarea[name=txtVisitDescription]').val(data.strVisitDescription);
+          $('input[name=txtId]').val(data.intAppointmentID);
+
 
         },
         error: function(){
@@ -462,8 +541,7 @@ $(document).on('click', '.view-appointment', function(){
         }
 
     });
-});
-
+  });
 
 
 
@@ -483,7 +561,7 @@ $(document).on('click', '.view-appointment', function(){
          "sAjaxSource": "<?php echo base_url('admin/showAllAppointmentExpect')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
 
          }
@@ -544,8 +622,18 @@ $(document).on('click', '.view-appointment', function(){
     });
 
 
-   $('#btnConfirm').click(function(){
+   $('#btnConfirm').click(function(event){
       var data = $('#ConfirmForm').serialize();
+     event.preventDefault();
+     swal({
+               title: 'Are you sure?',
+               type: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes'
+             }).then((result) => {
+               if (result.value) {
 
         $.ajax({
           type: 'ajax',
@@ -557,20 +645,34 @@ $(document).on('click', '.view-appointment', function(){
           success: function(response){
 
             if(response==true){
-
-              alert('Done!')
             }else{
               alert('Error');
             }
+            let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Succesful!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                    
+                    showAllDepositReqPending();
+                    showAllDepositReqOkay();
+                    showAllDepositReqAll();
+                    $('#VisitConfirmation').modal('hide');
+                    document.getElementById("ConfirmForm").reset();
+                  });
           },
           error: function(){
             alert('Could not update data');
           }
         });
-    });
-
-
-    });
+      }
+    })
+ });
+  });
+      
 </script>
 
 <script type="text/javascript">
@@ -586,7 +688,7 @@ $(document).on('click', '.view-appointment', function(){
          "sAjaxSource": "<?php echo base_url('admin/showAllAppointmentReject')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
 
          }
@@ -595,7 +697,7 @@ $(document).on('click', '.view-appointment', function(){
 
     $(document).ready(function() {
       showAllAppointmentReject();
-
+});
      $(document).on('click', '.view-emailConReject', function(){
       var id = $(this).attr('data');
       $('#EmailVisitConReject').modal('show');
@@ -620,14 +722,14 @@ $(document).on('click', '.view-appointment', function(){
 
     });
 });
-});
+
 
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
       $(document).on('click', '.view-appointment', function(){
-      var id = $(this).attr('data');
+              var id = $(this).attr('data');
       $('#ViewVisitReq').modal('show');
       $('#ViewVisitReq').find('.modal-title').text('Visit Details');
       $.ajax({
@@ -640,17 +742,21 @@ $(document).on('click', '.view-appointment', function(){
         success: function(data){
           $('input[name=txtVisitorName]').val(data.strFullName);
           $('input[name=txtAppointmentID]').val(data.intAppointmentID);
-          $('input[name=txtVisitDate').val(data.dtAppointmentDate);
-          $('input[name=txtVisitPurpose').val(data.strVisitDescription);
-          $('input[name=txtId').val(data.intAppointmentID);
+          $('input[name=txtVisitDate]').val(data.dtAppointmentDate);
+          $('input[name=txtVisitPurpose]').val(data.strVisitPurpose);
+          $('textarea[name=txtVisitDescription]').val(data.strVisitDescription);
+          $('input[name=txtId]').val(data.intAppointmentID);
  },
         error: function(){
           alert('Could not Edit Data');
         }
 
     });
+      });
 
-</script>
+
+
+</script> -->
 <script>
     function showAllAppointmentAll(){
         
@@ -664,7 +770,7 @@ $(document).on('click', '.view-appointment', function(){
          "sAjaxSource": "<?php echo base_url('admin/showAllAppointmentAll')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
 
          }

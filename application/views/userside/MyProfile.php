@@ -357,7 +357,7 @@ function showAccount()
                 let timerInterval
                       swal({
                         title: 'Saved',
-                        text: 'Email has been saved.',
+                        text: 'Email Address has been saved.',
                         type: 'success',
                         timer: 1500,
                         showConfirmButton: false
