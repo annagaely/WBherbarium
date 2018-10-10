@@ -16,6 +16,8 @@
     <link href="<?php echo base_url();?>assets/bower_components/mdbootstrap/css/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/logo1.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"  crossorigin="anonymous">    
+ 
     <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
@@ -35,8 +37,10 @@ window.addEventListener('load', function() {
   });
 }, false);
 })();
-    </script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</script>
+
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
 </head>
 <body>
 
@@ -97,7 +101,7 @@ window.addEventListener('load', function() {
                   <div class="col-md-6">
                     <i class="fa fa-envelope prefix grey-text"></i>
                     <input type="email" id="strEmailAdd" name="txtemail" class="form-control" required>
-                    <label for="strEmailAdd" class="font-weight-light" style="margin-left: 55px;">Email Address<span style="color: red"> *</span></label>
+                    <label for="strEmailAdd" class="font-weight-light" style="margin-left: 55px;">Email Address<span style="color: red"> *</span> <span style="font-size: 10px"> Please use gmail accounts only </span></label>
                     <div class="invalid-feedback">
                       Please enter your valid email address.
                     </div>
@@ -107,7 +111,7 @@ window.addEventListener('load', function() {
                   </div>
                   <div class="col-md-6">
                     <i class="fa fa-phone prefix grey-text"></i>
-                    <input type="text" id="strPhoneNum" name="txtphonenum" class="form-control" required>
+                    <input type="text" id="strPhoneNum" name="txtphonenum" class="form-control" data-mask="99999999999" required>
                     <label for="strPhoneNum" class="font-weight-light" style="margin-left: 55px;">Phone Number (ex. 09*********)<span style="color: red"> *</span></label>
                   </div>
                   <div class="invalid-feedback">
@@ -236,7 +240,9 @@ window.addEventListener('load', function() {
 <!-- Footer -->
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript">
+
+<script type="text/javascript">
+
     $(function(){
       $('#btnSave').click(function(){
 
@@ -259,7 +265,9 @@ window.addEventListener('load', function() {
                 timer: 5000,
                 button: "OK!"
               });
-            } else {
+            }
+
+             else {
               swal({
                 title: "Incomplete input!",
                 text: "Please fill up all the required fields.",

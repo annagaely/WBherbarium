@@ -173,7 +173,7 @@ function resetForm() {
          "sAjaxSource": "<?php echo base_url('admin/showAllFamilyBoxes')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
 
          }

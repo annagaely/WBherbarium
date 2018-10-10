@@ -1,4 +1,9 @@
- <style>
+ <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
+<style>
 /* Style the tab */
 .tab {
     overflow: hidden;
@@ -212,9 +217,19 @@
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
-                            $('#btnSend').click(function(){
+                            $('#btnSend').click(function(event){
                                 var data = $('#emailform').serialize();
-                                
+                                      event.preventDefault();
+        swal({
+               title: 'Are you sure?',
+               type: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes'
+             }).then((result) => {
+               if (result.value) {
+
                                   $.ajax({
                                   type: 'ajax',
                                   method: 'post',
@@ -225,10 +240,25 @@
                                   success: function(){
                                   },
                                   error: function(){
-                                    alert('Email Sent');
-                                  }
-                                });
-                            });
+                                                let timerInterval
+                    swal({
+                      title: 'Email has been sent!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                    
+                    showAllDepositReqPending();
+                    showAllDepositReqOkay();
+                    showAllDepositReqAll();
+                    $('#EmailCon').modal('hide');
+                    document.getElementById("emailform").reset();
+                  });
+                }
+            });
+         }
+    })
+ });
                      </script>
                   </div>
           </form>
@@ -330,7 +360,7 @@
          "sAjaxSource": "<?php echo base_url('admin/showAllDepositReqPending')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
                    
          }
@@ -342,9 +372,19 @@
     //show
     showAllDepositReqPending();
 
-$('#btnSave').click(function(){
+$('#btnSave').click(function(event){
       var data = $('#updateStatusForm').serialize();
-      // alert(data)
+      event.preventDefault();
+     swal({
+               title: 'Are you sure?',
+               type: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes'
+             }).then((result) => {
+               if (result.value) {
+
         $.ajax({
           type: 'ajax',
           method: 'post',
@@ -355,16 +395,31 @@ $('#btnSave').click(function(){
           success: function(response){
 
             if(response==true){
-
-
             }else{
               alert('Error');
             }
+            let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Succesful!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                    
+                    showAllDepositReqPending();
+                    showAllDepositReqOkay();
+                    showAllDepositReqAll();
+                    $('#viewDepositReq').modal('hide');
+                    document.getElementById("updateStatusForm").reset();
+                  });
           },
           error: function(){
             alert('Could not update data');
           }
         });
+      }
+    })
     });
 
 
@@ -411,7 +466,7 @@ $('#btnSave').click(function(){
          "sAjaxSource": "<?php echo base_url('admin/showAllDepositReqOkay')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
                    
          }
@@ -449,7 +504,7 @@ $(document).ready(function() {
     });
     });
 
-     $(document).on('click', '.view-emailcon', function(){
+     $(document).on('click', '.view-emailcon', function(event){
       var id = $(this).attr('data');
       $('#EmailCon').modal('show');
       $('#EmailCon').find('.EmailCon').text('Email');
@@ -476,8 +531,20 @@ $(document).ready(function() {
     });
     });
 
-         $('#btnConfirm').click(function(){
+         $('#btnConfirm').click(function(event){
       var data = $('#ConfirmForm').serialize();
+
+       event.preventDefault();
+     swal({
+               title: 'Are you sure?',
+               type: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes'
+             }).then((result) => {
+               if (result.value) {
+
         $.ajax({
           type: 'ajax',
           method: 'post',
@@ -493,13 +560,30 @@ $(document).ready(function() {
             }else{
               alert('Error');
             }
+            let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Succesful!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                    
+                    showAllDepositReqPending();
+                    showAllDepositReqOkay();
+                    showAllDepositReqAll();
+                    $('#Confirmation').modal('hide');
+                    document.getElementById("ConfirmForm").reset();
+                  });
           },
           error: function(){
             alert('Could not update data');
           }
         });
-    });
+      }
+    })
 });
+       });
 </script>
 <script>
     function showAllDepositReqAll()
@@ -514,7 +598,7 @@ $(document).ready(function() {
          "sAjaxSource": "<?php echo base_url('admin/showAllDepositReqAll')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
                    
          }

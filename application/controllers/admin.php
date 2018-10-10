@@ -1602,8 +1602,8 @@ $message = $this->input->post('txtCustomMessage');
       $this->email->set_newline("\r\n");
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
-      $this->email->subject('GRRRR IVERIFY MO YAN O SOMBONG KITA KAY MAMA');
-      $this->email->message("Your deposit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Deposit Request ID:"  . $id ."<br> <br>" ."Date of Appointment: ".$date. "<br> <br>" .$message );
+      $this->email->subject('External Validation');
+      $this->email->message("Insert Message here ");
 
       if($this->email->send())
      {
@@ -1682,7 +1682,7 @@ public function SendtoExValidator(){
 		    $this->email->set_newline("\r\n");
 		     $this->email->from('WBHerbariumTA@gmail.com');
 		    $this->email->to($result_explode[1]);
-		    $this->email->subject('TANGINAMo');
+		    $this->email->subject('Ganda mo Mai');
            
             $handle=opendir($path);
             while (($file = readdir($handle))) 
@@ -1705,6 +1705,7 @@ public function SendtoExValidator(){
             closedir($handle);
 			rmdir($path);
 			$this->exvalchangestatus();
+
 redirect('admin/Externalvalidation');
 	        }
 	        else

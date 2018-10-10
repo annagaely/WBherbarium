@@ -483,7 +483,7 @@ function resetForm() {
          "sAjaxSource": "<?php echo base_url('admin/showAllLocality')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
 
          }
