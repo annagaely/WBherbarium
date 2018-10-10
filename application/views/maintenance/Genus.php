@@ -202,7 +202,7 @@ function showGenusFamilyName(){
                     let timerInterval
                     swal({
                       title: 'Saved',
-                      text: 'Your file has been saved.',
+                      text: 'Genus has been saved.',
                       type: 'success',
                       timer: 1500,
                       showConfirmButton: false
@@ -275,12 +275,19 @@ $('#btnEditSave').click(function(event){
               let timerInterval
               swal({
                 title: 'Saved',
-                text: 'Your file has been saved.',
+                text: 'Genus has been updated.',
                 type: 'success',
                 timer: 1500,
                 showConfirmButton: false
               }).then(function() {
                 location.reload();
+              });
+            }else {
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Error!',
+                text: 'Genus name already exists.'
               });
             }
           },

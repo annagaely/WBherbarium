@@ -238,7 +238,7 @@ function resetForm() {
                     let timerInterval
                     swal({
                       title: 'Saved',
-                      text: 'Your file has been saved.',
+                      text: 'Phylum has been saved.',
                       type: 'success',
                       timer: 1500,
                       showConfirmButton: false
@@ -249,7 +249,13 @@ function resetForm() {
                     document.getElementById("addPhylumForm").reset();
                     event.preventDefault();
                     });
-
+                  }else {
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Error!',
+                      text: 'Phylum name already exists.'
+                    });
                   }
                 },
                 error: function(){
@@ -320,7 +326,7 @@ function resetForm() {
                       let timerInterval
                       swal({
                         title: 'Saved',
-                        text: 'Phylum has been saved.',
+                        text: 'Phylum has been updated.',
                         type: 'success',
                         timer: 1500,
                         showConfirmButton: false
@@ -333,8 +339,13 @@ function resetForm() {
 
                       });
 
-                    }else{
-                      alert('Error');
+                    }else {
+                      event.preventDefault();
+                      swal({
+                        type: 'error',
+                        title: 'Error!',
+                        text: 'Phylum name already exists.'
+                      });
                     }
                   },
                   error: function(){

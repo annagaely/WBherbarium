@@ -20,7 +20,7 @@
                     <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner.jpg" alt="First slide">
                 </div>
 
-                
+
                 <div class="carousel-caption">
                     <a href=""><h3 class="h3-responsive">Title</h3></a>
                     <p>First text</p>
@@ -62,7 +62,6 @@
             <!--/.Controls-->
     </div>
 
-<section>
 <div class="py-5" style="padding-left: 200px; padding-right: 200px;">
     <div class="row">
 
@@ -79,7 +78,7 @@
             <p class="card-text">Flowering Plants.</p>
             <button type="button" id= "btnAngiosperm" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modalAngiosperm">Read more</button>
           </div>
-        </div> 
+        </div>
       </div>
 
       <div class="col-md-3">
@@ -132,32 +131,7 @@
 
     </div>
   </div>
-</section>
-<!-- Modals -- >
-<div class="modal fade" id="modalAngiosperm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #800000">
-        <h7 class="modal-title" id="exampleModalLabel" style="color: white" >Angiosperm</h7>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true" style="color: white">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p style="font-size: 14px">  
-          Angiosperms are seed-bearing vascular plants. Their reproductive structures are flowers in which the ovules are enclosed in an ovary. Angiosperms are found in almost every habitat from forests and grasslands to sea margins and deserts. Angiosperms display a huge variety of life forms including trees, herbs, submerged aquatics, bulbs and epiphytes. The largest plant families are Orchids, and Compositae (daisies) and Legumes (beans).
-
-         There are an estimated 352,000 species of flowering plants or angiosperms. 
-
-         Source: The Plant List http://www.theplantlist.org/browse/A/
-       </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  <div style="padding-left: 200px; padding-right: 200px">
+  <div style="padding-left: 200px; padding-right: 200px;">
     <div class="card mb-5">
       <div class="card-header">
         <h2 class="h2-responsive">Discover</h2>
@@ -201,23 +175,14 @@
     </div>
   </div>
 
+
+
+
   <!-- TABLE RANK RESULTS -->
   <center>
     <div style="padding-left: 200px; padding-right: 200px">
-        <table class="table table-hover table-bordered table-responsive text-nowrap" id="searchRankTable" style=" display: none;">
-          <thead>
-            <tr>
-              <th scope="col">Rank</th>
-              <th scope="col">Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Jacob</td>
-            </tr>
-          </tbody>
-        </table>
+      <iframe class="embed-responsive-item" src="<?php echo site_url('user/searchRank');?>" width="100%" height="100vh" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
+
     </div>
   </center>
 
@@ -330,4 +295,3 @@
       specietbl.style.display = "table";
     }
   </script>
-
