@@ -65,7 +65,7 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input  data-mask="9999 999 9999" type="text" name= "PBCNumber" id="strConactNumber" placeholder="Contact Number" class="form-control">
+                    <input  data-mask="99999999999" type="text" name= "PBCNumber" id="strConactNumber" placeholder="Contact Number" class="form-control">
                   </div>
                 <div class="col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
@@ -136,7 +136,7 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input  data-mask="9999 999 9999" type="text" name= "PBCNumber" id="strContactNumber" placeholder="Contact Number" class="form-control">
+                    <input  data-mask="99999999999" type="text" name= "PBCNumber" id="strContactNumber" placeholder="Contact Number" class="form-control">
                   </div>
                 <div class="col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
@@ -207,7 +207,7 @@ function resetForm() {
               "sAjaxSource": "<?php echo base_url('admin/showAllPlantBorrower')?>",
               "deferLoading": 10,
               "bPaginate": true,
-              "aaSorting": [[0,'asc']],
+              "aaSorting": [],
               "fnInitComplete": function(){
               }
           });

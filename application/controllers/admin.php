@@ -58,17 +58,17 @@ if($data){
 
     }else{
     	return false;
-        
+
     }
     echo json_encode($msg);
   }
 }
- 
+
   function logout(){
       $this->session->sess_destroy();
       redirect(base_url().'admin');
   }
- 
+
 
 
 
@@ -216,7 +216,7 @@ $msg['success'] = false;
 $msg['type'] = 'add';
 if($result){
   $msg['success'] = true;
- 
+
 }
 echo json_encode($msg);
 }
@@ -948,7 +948,7 @@ echo json_encode($msg);
 
 
 
-	
+
 public function SpeciesAltName()
 {
 	if($this->session->userdata('strUsername')!=''){
@@ -1602,8 +1602,8 @@ $message = $this->input->post('txtCustomMessage');
       $this->email->set_newline("\r\n");
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
-      $this->email->subject('GRRRR IVERIFY MO YAN O SOMBONG KITA KAY MAMA');
-      $this->email->message("Your deposit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Deposit Request ID:"  . $id ."<br> <br>" ."Date of Appointment: ".$date. "<br> <br>" .$message );
+      $this->email->subject('External Validation');
+      $this->email->message("Insert Message here ");
 
       if($this->email->send())
      {
@@ -1653,7 +1653,7 @@ public function SendtoExValidator(){
             $_FILES['f']['size'] = $_FILES['userfile']['size'][$i];
 
             $this->load->library('upload', $config);
-            $this->upload->initialize($config);            
+            $this->upload->initialize($config);
             if (!$this->upload->do_upload('f'))
             {
                 $data['errors'] = $this->upload->display_errors();
@@ -1682,10 +1682,11 @@ public function SendtoExValidator(){
 		    $this->email->set_newline("\r\n");
 		     $this->email->from('WBHerbariumTA@gmail.com');
 		    $this->email->to($result_explode[1]);
-		    $this->email->subject('TANGINAMo');
+
+		    $this->email->subject('Ganda mo Mai');
            
             $handle=opendir($path);
-            while (($file = readdir($handle))) 
+            while (($file = readdir($handle)))
                   {
                        if(strlen($file)>3)
                            $this->email->attach($path.$file);
@@ -1697,7 +1698,7 @@ public function SendtoExValidator(){
 
 			//dedelete yung files
 	        $handle=opendir($path);
-            while (($file = readdir($handle))) 
+            while (($file = readdir($handle)))
                   {
                        if(strlen($file)>3)
                            unlink($path.$file);
@@ -1705,6 +1706,7 @@ public function SendtoExValidator(){
             closedir($handle);
 			rmdir($path);
 			$this->exvalchangestatus();
+
 redirect('admin/Externalvalidation');
 	        }
 	        else
@@ -1716,7 +1718,7 @@ redirect('admin/Externalvalidation');
 	        	//dedelete yung files
 	        redirect('admin/Externalvalidation');
             $handle=opendir($path);
-            while (($file = readdir($handle))) 
+            while (($file = readdir($handle)))
                   {
                        if(strlen($file)>3)
                            unlink($path.$file);
@@ -1757,4 +1759,10 @@ public function showNotifCount(){
 	echo json_encode($result);
 	}
 
+	public function Queries() {
+		$title['title'] = "PUPHerbarium | Queries";
+		$this->load->view('templates/header', $title);
+		$this->load->view('queries');
+		$this->load->view('templates/footer');
+	}
 }?>

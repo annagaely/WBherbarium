@@ -1,4 +1,7 @@
+
+
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin_m extends CI_Model{
@@ -1902,7 +1905,7 @@ public function updateAcceptStatus(){
 
 
 		$result = array();
-		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose, strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
@@ -1916,7 +1919,7 @@ public function updateAcceptStatus(){
 					$r->intAppointmentID,
 					$r->strFullName,
 					$r->dtAppointmentDate,
-					$r->strVisitDescription,
+					$r->strVisitPurpose,
 					$r->strStatus,
 					$btn,
 					$r->intAppointmentID
@@ -1928,7 +1931,7 @@ public function updateAcceptStatus(){
 public function showAllAppointmentReject(){
 
 		$result = array();
-		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
@@ -1943,7 +1946,7 @@ public function showAllAppointmentReject(){
 					$r->intAppointmentID,
 					$r->strFullName,
 					$r->dtAppointmentDate,
-					$r->strVisitDescription,
+					$r->strVisitPurpose,
 					$r->strStatus,
 					$btn,
 					$r->intAppointmentID
@@ -1959,6 +1962,7 @@ public function ViewVisitReq(){
 		$query = $this->db->select("intAppointmentID
       ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
      ,dtAppointmentDate
+     ,strVisitPurpose
      ,strVisitDescription
      ,strStatus")
 		->join('tblOnlineUser ou','ou.intOUserID=ar.intOUserID')
@@ -2001,7 +2005,7 @@ DECLARE @status 		varchar(255);
 	public function showAllAppointmentExpect(){
 
 	$result = array();
-	$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+	$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
@@ -2016,7 +2020,7 @@ DECLARE @status 		varchar(255);
 					$r->intAppointmentID,
 					$r->strFullName,
 					$r->dtAppointmentDate,
-					$r->strVisitDescription,
+					$r->strVisitPurpose,
 					$r->strStatus,
 					$btn,
 					$r->intAppointmentID
@@ -2100,7 +2104,7 @@ $status = $this->input->post('txtStatus');
 	public function showAllAppointmentAll(){
 		
 	$result = array();
-	$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitDescription,strStatus
+	$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose,strStatus
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID");
@@ -2111,7 +2115,7 @@ $status = $this->input->post('txtStatus');
 					$r->intAppointmentID,
 					$r->strFullName,
 					$r->dtAppointmentDate,
-					$r->strVisitDescription,
+					$r->strVisitPurpose,
 					$r->strStatus,
 					$r->intAppointmentID
 					);
@@ -2123,7 +2127,7 @@ $status = $this->input->post('txtStatus');
 //EXTERNAL VALAIDATION
 	public function showExValPending(){
 		$result = array();
-		$query = $this->db->where('strStatus', "Pending")
+		$query = $this->db->where('strStatus', "Further Verification")
 							->get('viewVerifyingDeposit');
 
 		foreach ($query->result() as $r)
@@ -2190,6 +2194,7 @@ insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress) valu
 			";
 		if($this->db->query($query)){
 			return true;
+
 		}else{
 			return false;
 		}
@@ -2209,9 +2214,9 @@ public function showExValOkay(){
 		foreach ($query->result() as $r)
 		{
 
-		$btn = '<button class="btn btn-primary view-EVemailcon" data="'.$r->intPlantDepositID.'">Email</button>
+		$btn = '<button class="btn btn-primary view-EVemailcon" data="'.$r->intPlantDepositID.'"><i class="far fa-envelope"></i></button>
 
-				   <button class="btn btn-primary view-EVConfirmation" data="'.$r->intPlantDepositID.'">Confirmation</button>';
+				   <button class="btn btn-primary view-EVConfirmation" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
 
 
 			$result[] = array(

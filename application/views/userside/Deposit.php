@@ -181,12 +181,6 @@
             text: 'Please fill up all the required fields.'
           });
           }
-
-
-
-
-
-
       });
     });
 

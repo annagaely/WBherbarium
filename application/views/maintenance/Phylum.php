@@ -192,7 +192,7 @@ function resetForm() {
               "sAjaxSource": "<?php echo base_url('admin/showAllPhylum')?>",
               "deferLoading": 10,
               "bPaginate": true,
-              "aaSorting": [[0,'asc']],
+              "aaSorting": [],
               "fnInitComplete": function(){
               }
           });
@@ -214,7 +214,6 @@ function resetForm() {
             event.preventDefault();
             swal({
               title: 'Are you sure?',
-
               type: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
@@ -257,8 +256,6 @@ function resetForm() {
                   alert('Could not save Data');
                 }
               });
-
-
               }
 
             })

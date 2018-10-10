@@ -57,6 +57,7 @@
           <ul class="navbar-nav nav-flex-icons">
 
             <li class="nav-item">
+              
                 <button type="button" data-toggle="modal" data-target="#modalLoginForm" class=" btn btn-outline-light py-2" style="border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; border-top-left-radius: 25px; border-top-right-radius: 25px;">Login</button>
             </li>
           </ul>
