@@ -302,7 +302,18 @@ public function howtovisit()
 	}
 	}
 
-
+	public function currentVisits() {
+		$this->load->view('userside/iframe/datatableCurrentVisits');
+	}
+	public function currentDeposits() {
+		$this->load->view('userside/iframe/datatableCurrentDeposits');
+	}
+	public function pastVisits() {
+		$this->load->view('userside/iframe/datatablePastVisits');
+	}
+	public function pastDeposits() {
+		$this->load->view('userside/iframe/datatablePastDeposits');
+	}
 // public function ContactUsEmail()
 // {
 
@@ -347,10 +358,106 @@ public function howtovisit()
 //  }
 // }
 
+public function showCurrentVisitsLog(){
+  $output = $this->m->showCurrentVisitsLog();
+	$response = array(
+		'aaData' => $output,
+		'iTotalRecords' => count($output),
+		'iTotalDisplayRecords' => count($output),
+		'iDisplayStart' => 0
+		);
+		echo json_encode($response);
+		exit();
+	}
+public function editCurrentVisit(){
+$result = $this->m->editCurrentVisit();
+echo json_encode($result);
+}
+
+public function updateCurrentVisitResched(){
+$result = $this->m->updateCurrentVisitResched();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+
+
+public function updateCurrentVisitCancel(){
+$result = $this->m->updateCurrentVisitCancel();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+
+
+
 public function showAllVisitsLog(){
-	$result = $this->m->showAllVisitsLog();
-	echo json_encode($result);
+  $output = $this->m->showAllVisitsLog();
+	$response = array(
+		'aaData' => $output,
+		'iTotalRecords' => count($output),
+		'iTotalDisplayRecords' => count($output),
+		'iDisplayStart' => 0
+		);
+		echo json_encode($response);
+		exit();
+	}
+	public function showAllDepositLog(){
+  $output = $this->m->showAllDepositLog();
+	$response = array(
+		'aaData' => $output,
+		'iTotalRecords' => count($output),
+		'iTotalDisplayRecords' => count($output),
+		'iDisplayStart' => 0
+		);
+		echo json_encode($response);
+		exit();
 	}
 
-	
+	public function showCurrentDepositLog(){
+  $output = $this->m->showCurrentDepositLog();
+	$response = array(
+		'aaData' => $output,
+		'iTotalRecords' => count($output),
+		'iTotalDisplayRecords' => count($output),
+		'iDisplayStart' => 0
+		);
+		echo json_encode($response);
+		exit();
+	}
+
+public function editCurrentDeposit(){
+$result = $this->m->editCurrentDeposit();
+echo json_encode($result);
+}
+
+
+public function updateCurrentDepositResched(){
+$result = $this->m->updateCurrentDepositResched();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+
+public function updateCurrentDepositCancel(){
+$result = $this->m->updateCurrentDepositCancel();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+
+
+
 }?>

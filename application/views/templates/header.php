@@ -1,14 +1,14 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<!-- 
+<!--
 <?php
     header('Content-Type: text/html; charset=utf-8' );
     ini_set('default_charset', 'utf-8');
 ?> -->
 
 <head>
-<!-- 
+<!--
  <meta http-equiv="Content-Type" content="text/html; charset= utf-8"> -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
@@ -129,9 +129,9 @@
                 </li>
               </ul>
             </li>
-              <li><a href="#"> <i class="fa fa-database"></i>Query</a></li>
+              <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
             <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
-         
+
 
 
           <!-- STUDENT ASSISTANT PART-->
@@ -176,7 +176,7 @@
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
 
                 <!-- Notifications dropdown-->
-                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell"></i><span id="BellIcon" class="badge badge-warning count"></span></a>
+                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell" id='clicknotif'></i><span id="BellIcon" class="badge badge-warning count"></span></a>
                   <ul aria-labelledby="notifications" class="dropdown-menu">
                     <li><a rel="nofollow" href="#" class="dropdown-item">
           <div class="notification d-flex justify-content-between">
@@ -240,7 +240,7 @@ function myFunction1() {
  <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
- 
+
  function load_unseen_notification(view = '')
  {
   $.ajax({
@@ -262,22 +262,21 @@ $(document).ready(function(){
           '</div></a></li>';
     }
     $('.dropdown-menu').html(html);
-    
+
    }
   });
  }
- 
+
 load_unseen_notification();
 
- 
- $(document).on('click', '.fa', function(event){
+$('#clicknotif').click(function(){
   $('.badge').html('');
   load_unseen_notification('yes');
-  
+
  });
 
  countunreadnotif();
- function countunreadnotif()
+ function  countunreadnotif ()
  {
   $.ajax({
    url:"<?php echo base_url();?>admin/showNotifCount",
@@ -285,17 +284,18 @@ load_unseen_notification();
    dataType:"json",
    success:function(data)
    {
-if(data.incount!=0){
+if(data.intcount!=0){
   $('.count').html(data.intcount);
 }
-    
-    
+
+
    }
   });
  }
- /**setInterval(function(){ 
-  load_unseen_notification();; 
- }, 5000);*/
+ setInterval(function(){ 
+ load_unseen_notification();
+ countunreadnotif();
+ }, 3000);
  
 });
 </script>

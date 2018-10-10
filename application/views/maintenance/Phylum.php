@@ -214,7 +214,6 @@ function resetForm() {
             event.preventDefault();
             swal({
               title: 'Are you sure?',
-
               type: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
@@ -257,8 +256,6 @@ function resetForm() {
                   alert('Could not save Data');
                 }
               });
-
-
               }
 
             })

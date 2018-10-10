@@ -1,10 +1,11 @@
 <!-- Footer -->
     <!-- SCRIPTS -->
+    
     <!-- JQuery -->
     <script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/jquery-3.3.1.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
+    <!-- Bootstrap cor/e JavaScript -->
     <script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/mdb.min.js"></script>
@@ -30,8 +31,8 @@
              <strong>PUP HERBARIUM CENTER</strong><br>
              South Wing, Room 403-B<br>
              9:00 AM - 6:00 PM
-        
-        </p> 
+
+        </p>
         </div>
         <!-- Grid column -->
 
@@ -96,11 +97,11 @@
 
           <ul class="list-unstyled">
             <li>
-              <p> Armin S. Coronado, MSc.<br> 
+              <p> Armin S. Coronado, MSc.<br>
               <strong>Director</strong></p>
             </li>
             <li>
-              <p> Ma. Eleanor Salvador<br> 
+              <p> Ma. Eleanor Salvador<br>
               <strong>Curator</strong></p>
           </ul>
 

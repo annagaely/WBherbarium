@@ -12,7 +12,7 @@ class user_m extends CI_Model{
 		return $query;
 
 }
- public function userRegister(){
+public function userRegister(){
 			$firstname=$this->input->post('txtfirstname');
 			$middlename=$this->input->post('txtmidname');
 			$lastname=$this->input->post('txtlastname');
@@ -74,7 +74,7 @@ class user_m extends CI_Model{
 					return false;
 				}
 
-                          
+
     }
 
 	public function addLoanReq(){
@@ -288,7 +288,7 @@ public function updateProfile()
    			 'strAffiliationAddress'=>$this->input->post('txtaffaddress')
 
     );
-   		
+
     $this->db->where('strUserName', $id);
     $this->db->update('tblOnlineUser', $field);
     if($this->db->affected_rows() > 0){
@@ -327,7 +327,7 @@ public function updatePassword(){
     }
   }
 
-	public function showAllVisitsLog()
+	public function showCurrentVisitsLog()
 	{
 		$result = array();
 		$query = $this->db->query(" declare @id int; set @id = (select intOUserID from tblOnlineUser where strUserName ='".$this->session->userdata('strUserName')."')
@@ -335,16 +335,17 @@ public function updatePassword(){
 			select * from tblAppointments where intOUserID = @id AND strStatus='Pending'
 
 			");
-                
+
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary phylum-edit" data="'.$r->intAppointmentID.'"><i class="far fa-edit"></i></button>';
+			$btn = '<button class="btn btn-primary visitcurent-edit"  data="'.$r->intAppointmentID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
 					// $r->intPhylumID,
 					$r->dtAppointmentDate,
 					$r->strVisitPurpose,
 					$r->strVisitDescription,
+					$r->strStatus,
 					$btn,
 					$r->intAppointmentID
 					);
@@ -353,6 +354,221 @@ public function updatePassword(){
 
 		return $result;
 	}
+		public function showAllVisitsLog()
+	{
+		$result = array();
+		$query = $this->db->query(" declare @id int; set @id = (select intOUserID from tblOnlineUser where strUserName ='".$this->session->userdata('strUserName')."')
+
+			select * from tblAppointments where intOUserID = @id
+
+			");
+
+		foreach ($query->result() as $r)
+		{
+			
+			$result[] = array(
+					// $r->intPhylumID,
+					$r->dtAppointmentDate,
+					$r->strVisitPurpose,
+					$r->strVisitDescription,
+					$r->strStatus,
+					$r->intAppointmentID
+					);
+		}
+
+
+		return $result;
+	}
+
+	public function editCurrentVisit(){
+		$id = $this->input->get('id');
+		$this->db->where('intAppointmentID', $id);
+		$query = $this->db->get('tblAppointments');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+public function updateCurrentVisitResched(){
+    $id = $this->input->post('txtId');
+    $firstname = $this->session->userdata['strFirstname'];
+    $midinit = $this->session->userdata['strMiddleInitial'];
+    $lastname = $this->session->userdata['strLastname'];
+$date = $this->input->post('dtnewDate');
+
+ $querycheckdate=$this->db->query("select * from tblEvents where [start] = '".$date."'");
+
+if($querycheckdate->num_rows() == 0){
+ $queryupdate="
+
+			update tblAppointments
+			set dtAppointmentDate = '".$date."' 
+				where intAppointmentID = ".$id."
+
+			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has rescheduled his/her Visit appointment to: ''".$date.", Visit ID: ','".$id."'),0)
+
+			";
+
+if($this->db->query($queryupdate)){
+			return true;
+		}else{
+			return false;
+		}
+  
+}else{
+	return false;
+}
+
+}
+
+public function updateCurrentVisitCancel(){
+    $id = $this->input->post('txtId');
+    $firstname = $this->session->userdata['strFirstname'];
+    $midinit = $this->session->userdata['strMiddleInitial'];
+    $lastname = $this->session->userdata['strLastname'];
+ $queryupdate="
+
+			update tblAppointments
+			set strStatus = 'Cancelled' 
+				where intAppointmentID = ".$id."
+
+			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has cancelld his/her Visit appointment. Visit ID: ','".$id."'),0)
+
+			";
+
+if($this->db->query($queryupdate)){
+			return true;
+		}else{
+			return false;
+		}
+  
+}
+
+
+		public function showAllDepositLog()
+	{
+		$result = array();
+		$query = $this->db->query(" declare @id int; set @id = (select intOUserID from tblOnlineUser where strUserName ='".$this->session->userdata('strUserName')."')
+
+			select * from tblDepositReq where intOUserID = @id
+
+			");
+
+		foreach ($query->result() as $r)
+		{
+			// $btn = '<button class="btn btn-primary visitcurent-edit"  data="'.$r->intDepositReqID.'"><i class="far fa-edit"></i></button>';
+			$result[] = array(
+					// $r->intPhylumID,
+					$r->dtAppointmentDate,
+					$r->strScientificName,
+					$r->strCommonName,
+					$r->strStatus,
+					// $btn,
+					$r->intDepositReqID
+					);
+		}
+
+
+		return $result;
+	}
+	public function showCurrentDepositLog()
+	{
+		$result = array();
+		$query = $this->db->query(" declare @id int; set @id = (select intOUserID from tblOnlineUser where strUserName ='".$this->session->userdata('strUserName')."')
+
+			select * from tblDepositReq where intOUserID = @id AND strStatus ='Pending'
+
+			");
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary depositcurrent-edit"  data="'.$r->intDepositReqID.'"><i class="far fa-edit"></i></button>';
+			$result[] = array(
+					 //$r->intPhylumID,
+					$r->dtAppointmentDate,
+					$r->strScientificName,
+					$r->strCommonName,
+					$r->strStatus,
+					 $btn,
+					$r->intDepositReqID
+					);
+		}
+
+
+		return $result;
+	}
+
+	public function editCurrentDeposit(){
+		$id = $this->input->get('id');
+		$this->db->where('intDepositReqID', $id);
+		$query = $this->db->get('tblDepositReq');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+public function updateCurrentDepositResched(){
+    $id = $this->input->post('txtId');
+    $firstname = $this->session->userdata['strFirstname'];
+    $midinit = $this->session->userdata['strMiddleInitial'];
+    $lastname = $this->session->userdata['strLastname'];
+$date = $this->input->post('dtnewDate');
+
+ $querycheckdate=$this->db->query("select * from tblEvents where [start] = '".$date."'");
+
+if($querycheckdate->num_rows() == 0){
+ $queryupdate="
+
+			update tblDepositReq
+			set dtAppointmentDate = '".$date."' 
+				where intDepositReqID = ".$id."
+
+			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has rescheduled his/her Deposit Request appointment to: ''".$date.", Deposit Request ID: ','".$id."'),0)
+
+			";
+
+if($this->db->query($queryupdate)){
+			return true;
+		}else{
+			return false;
+		}
+  
+}else{
+	return false;
+}
+
+}
+
+public function updateCurrentDepositCancel(){
+    $id = $this->input->post('txtId');
+    $firstname = $this->session->userdata['strFirstname'];
+    $midinit = $this->session->userdata['strMiddleInitial'];
+    $lastname = $this->session->userdata['strLastname'];
+ $queryupdate="
+			update tblDepositReq
+			set strStatus = 'Cancelled' 
+				where intDepositReqID = ".$id."
+
+			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has cancelld his/her Deposit Request appointment.  Deposit Request ID: ','".$id."'),0)
+
+
+			";
+
+if($this->db->query($queryupdate)){
+			return true;
+		}else{
+			return false;
+		}
+  
+}
+
+
 
 
 }?>
