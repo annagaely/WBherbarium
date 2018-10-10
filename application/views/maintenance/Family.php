@@ -210,12 +210,19 @@ $('#btnSave').click(function(event){
             let timerInterval
             swal({
               title: 'Saved',
-              text: 'Your file has been saved.',
+              text: 'Family has been saved.',
               type: 'success',
               timer: 1500,
               showConfirmButton: false
             }).then(function() {
               location.reload();
+            });
+          }else {
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Error!',
+              text: 'Family name already exists.'
             });
           }
           },
@@ -283,12 +290,19 @@ $('#btnEditSave').click(function(event){
             let timerInterval
             swal({
               title: 'Saved',
-              text: 'Your file has been saved.',
+              text: 'Family has been updated.',
               type: 'success',
               timer: 1500,
               showConfirmButton: false
             }).then(function() {
               location.reload();
+            });
+          }else {
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Error!',
+              text: 'Family name already exists.'
             });
           }
           },

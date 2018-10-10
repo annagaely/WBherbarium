@@ -208,15 +208,20 @@
                    let timerInterval
                    swal({
                      title: 'Saved',
-                     text: 'Your file has been saved.',
+                     text: 'Class has been saved.',
                      type: 'success',
                      timer: 1500,
                      showConfirmButton: false
                    }).then(function() {
                      location.reload();
                    });
-
-
+                 }else {
+                   event.preventDefault();
+                   swal({
+                     type: 'error',
+                     title: 'Error!',
+                     text: 'Class name already exists.'
+                   });
                  }
                },
                error: function(){
@@ -283,7 +288,7 @@
              let timerInterval
              swal({
                title: 'Saved',
-               text: 'Your file has been updated.',
+               text: 'Class has been updated.',
                type: 'success',
                timer: 1500,
                showConfirmButton: false
@@ -291,8 +296,13 @@
                location.reload();
              });
              showAllClass();
-           }else{
-             alert('Error');
+           }else {
+             event.preventDefault();
+             swal({
+               type: 'error',
+               title: 'Error!',
+               text: 'Class name already exists.'
+             });
            }
          },
          error: function(){

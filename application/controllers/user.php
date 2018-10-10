@@ -394,5 +394,8 @@ if($result){
 }
 echo json_encode($msg);
 }
+public function searchRank(){
+	$this->load->view('userside/iframe/datatablesearchRank.php');
+}
 
 }?>

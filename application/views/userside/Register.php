@@ -293,8 +293,8 @@
                                       if(data==true){
                                         let timerInterval
                                         swal({
-                                          title: 'REgistered',
-                                          text: 'You have successfully registered.',
+                                          title: 'Registered',
+                                          text: 'You .',
                                           type: 'success',
                                           timer: 1500,
                                           showConfirmButton: false

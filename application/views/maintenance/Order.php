@@ -210,12 +210,19 @@ $('#btnSave').click(function(event){
                 let timerInterval
                 swal({
                   title: 'Saved',
-                  text: 'Your file has been saved.',
+                  text: 'Order has been saved.',
                   type: 'success',
                   timer: 1500,
                   showConfirmButton: false
                 }).then(function() {
                   location.reload();
+                });
+              }else {
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Error!',
+                  text: 'Order name already exists.'
                 });
               }
             },
@@ -281,7 +288,7 @@ $('#btnSave').click(function(event){
                     let timerInterval
                     swal({
                       title: 'Saved',
-                      text: 'Your file has been saved.',
+                      text: 'Order has been updated.',
                       type: 'success',
                       timer: 1500,
                       showConfirmButton: false
@@ -289,6 +296,13 @@ $('#btnSave').click(function(event){
                       location.reload();
                     });
 
+                  }else {
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Error!',
+                      text: 'Order name already exists.'
+                    });
                   }
                 },
                 error: function(){

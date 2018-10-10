@@ -31,7 +31,7 @@
 <!--                  <div class="form-group">
                     <label>Author Name:</label> <label style="color: red">*</label>
                     <input id="authorName" type="text" name="txtaName" placeholder="Author's Name" class="form-control">
-                  </div> --> 
+                  </div> -->
 
                   <div class="form-group">
                     <label>Genus Name:</label> <label style="color: red">*</label>
@@ -156,7 +156,7 @@
           if(document.getElementById("plantknown").checked == true)
           {
               document.getElementById("author").disabled=false;
-             
+
           }
           else
           {
@@ -230,14 +230,17 @@ function showSpeciesGenusName(){
 
 
 $('#btnSave').click(function(event){
-  var url = '<?php echo base_url()?>admin/addSpecies'
+  var url = '<?php echo base_url()?>admin/addSpecies';
       var data = $('#addSpeciesForm').serialize();
+
       //alert($('#plantknown').val());
 
       //validate form
       if($('#genusName').val()!=''){
         if($('#speciesName').val()!=''){
           if($('#commonName').val()!=''){
+            if(document.getElementById('plantknown').checked) {
+              $('#author').val()!='';
             event.preventDefault();
             swal({
               title: 'Are you sure?',
@@ -282,7 +285,15 @@ $('#btnSave').click(function(event){
         });
                }
              })
-          }else{
+        }else{
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
+              });
+            }
+      }else{
             event.preventDefault();
             swal({
               type: 'error',
