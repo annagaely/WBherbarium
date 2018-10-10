@@ -358,8 +358,8 @@ public function userRegister(){
 //  }
 // }
 
-public function showAllVisitsLog(){
-  $output = $this->m->showAllVisitsLog();
+public function showCurrentVisitsLog(){
+  $output = $this->m->showCurrentVisitsLog();
 	$response = array(
 		'aaData' => $output,
 		'iTotalRecords' => count($output),
@@ -394,5 +394,70 @@ if($result){
 }
 echo json_encode($msg);
 }
+
+
+
+public function showAllVisitsLog(){
+  $output = $this->m->showAllVisitsLog();
+	$response = array(
+		'aaData' => $output,
+		'iTotalRecords' => count($output),
+		'iTotalDisplayRecords' => count($output),
+		'iDisplayStart' => 0
+		);
+		echo json_encode($response);
+		exit();
+	}
+	public function showAllDepositLog(){
+  $output = $this->m->showAllDepositLog();
+	$response = array(
+		'aaData' => $output,
+		'iTotalRecords' => count($output),
+		'iTotalDisplayRecords' => count($output),
+		'iDisplayStart' => 0
+		);
+		echo json_encode($response);
+		exit();
+	}
+
+	public function showCurrentDepositLog(){
+  $output = $this->m->showCurrentDepositLog();
+	$response = array(
+		'aaData' => $output,
+		'iTotalRecords' => count($output),
+		'iTotalDisplayRecords' => count($output),
+		'iDisplayStart' => 0
+		);
+		echo json_encode($response);
+		exit();
+	}
+
+public function editCurrentDeposit(){
+$result = $this->m->editCurrentDeposit();
+echo json_encode($result);
+}
+
+
+public function updateCurrentDepositResched(){
+$result = $this->m->updateCurrentDepositResched();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+
+public function updateCurrentDepositCancel(){
+$result = $this->m->updateCurrentDepositCancel();
+$msg['success'] = false;
+$msg['type'] = 'update';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
+}
+
+
 
 }?>
