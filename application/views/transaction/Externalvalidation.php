@@ -563,9 +563,9 @@ $('#btnConfirm').click(function(event){
                       showConfirmButton: false
                     }).then(function() {
                     
-                    showAllDepositReqPending();
-                    showAllDepositReqOkay();
-                    showAllDepositReqAll();
+                    showAllExValidators();
+                    showExValOkay();
+                    showExValAll();
                     $('#EVConfirmation').modal('hide');
                     document.getElementById("EVConfirmForm").reset();
                   });
