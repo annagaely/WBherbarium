@@ -302,6 +302,13 @@
                                           document.getElementById("RegisterForm").reset();
                                           window.location.href='<?php echo base_url();?>user/index';
                                         });event.preventDefault();
+                                      }else {
+                                        event.preventDefault();
+                                        swal({
+                                          type: 'error',
+                                          title: 'Error!',
+                                          text: 'Username already exists.'
+                                        });
                                       }
                                     },
                                     error: function(){

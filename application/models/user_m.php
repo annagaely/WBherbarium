@@ -27,55 +27,58 @@ public function userRegister(){
 			$affposition=$this->input->post('txtaffpos');
 			$username=$this->input->post('txtusername');
 			$password=$this->input->post('txtpassword');
-		$query="
+			$querycheckuname=$this->db->query("select * from tblOnlineUser where [strUserName] = '".$username."'");
+			if($querycheckuname->num_rows() == 0){
+				$query="
 
-			DECLARE @firstname		VARCHAR(50);
-			DECLARE @middlename		VARCHAR(50);
-			DECLARE @lastname		VARCHAR(50);
-			DECLARE @middleinitial	VARCHAR(3);
-			DECLARE @namesuffix		VARCHAR(5);
-			DECLARE @contactno		VARCHAR(15);
-			DECLARE @email			VARCHAR(255);
-			DECLARE @presentadd		VARCHAR(100);
-			DECLARE @permaddress	VARCHAR(50);
+					DECLARE @firstname		VARCHAR(50);
+					DECLARE @middlename		VARCHAR(50);
+					DECLARE @lastname		VARCHAR(50);
+					DECLARE @middleinitial	VARCHAR(3);
+					DECLARE @namesuffix		VARCHAR(5);
+					DECLARE @contactno		VARCHAR(15);
+					DECLARE @email			VARCHAR(255);
+					DECLARE @presentadd		VARCHAR(100);
+					DECLARE @permaddress	VARCHAR(50);
 
-			DECLARE @affname		VARCHAR(255);
-			DECLARE @affaddress		VARCHAR(255);
-			DECLARE @affposition	VARCHAR(255);
-			DECLARE @username		VARCHAR(100);
-			DECLARE @password		VARCHAR(50);
+					DECLARE @affname		VARCHAR(255);
+					DECLARE @affaddress		VARCHAR(255);
+					DECLARE @affposition	VARCHAR(255);
+					DECLARE @username		VARCHAR(100);
+					DECLARE @password		VARCHAR(50);
 
-			SET @firstname	= '$firstname'
-			SET @middlename	= '$middlename'
-			SET @lastname	= '$lastname'
-			SET @middleinitial	= SUBSTRING(@middlename, 1, 1)
-			SET @namesuffix		= '$namesuffix'
-			SET @contactno		= '$contactno'
-			SET @email			= '$email'
-			SET @presentadd		= '$presentadd'
-			SET @permaddress	= '$permaddress'
+					SET @firstname	= '$firstname'
+					SET @middlename	= '$middlename'
+					SET @lastname	= '$lastname'
+					SET @middleinitial	= SUBSTRING(@middlename, 1, 1)
+					SET @namesuffix		= '$namesuffix'
+					SET @contactno		= '$contactno'
+					SET @email			= '$email'
+					SET @presentadd		= '$presentadd'
+					SET @permaddress	= '$permaddress'
 
-			SET @affname		= '$affname'
-			SET @affaddress		= '$affaddress'
-			SET @affposition	= '$affposition'
-			SET @username		= '$username'
-			SET @password		= '$password'
+					SET @affname		= '$affname'
+					SET @affaddress		= '$affaddress'
+					SET @affposition	= '$affposition'
+					SET @username		= '$username'
+					SET @password		= '$password'
 
-			SET NOCOUNT ON;
+					SET NOCOUNT ON;
 
-					INSERT INTO tblOnlineUser
-					VALUES (@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email,@presentadd,@permaddress, @affname, @affaddress, @affposition, @username,@password)
-
-
-			";
-			if($this->db->query($query)){
-					return true;
-				} else{
-					return false;
-				}
+							INSERT INTO tblOnlineUser
+							VALUES (@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email,@presentadd,@permaddress, @affname, @affaddress, @affposition, @username,@password)
 
 
-    }
+					";
+					if($this->db->query($query)){
+							return true;
+						} else{
+							return false;
+						}
+			}else {
+				return false;
+			}
+		}
 
 	public function addLoanReq(){
 		$getusername = $this->session->userdata['strUserName'];
@@ -379,7 +382,7 @@ if($querycheckdate->num_rows() == 0){
  $queryupdate="
 
 			update tblAppointments
-			set dtAppointmentDate = '".$date."' 
+			set dtAppointmentDate = '".$date."'
 				where intAppointmentID = ".$id."
 
 			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has rescheduled his/her appointment to: ''".$date.", Visit ID: ','".$id."'),0)
@@ -391,7 +394,7 @@ if($this->db->query($queryupdate)){
 		}else{
 			return false;
 		}
-  
+
 }else{
 	return false;
 }
@@ -406,7 +409,7 @@ public function updateCurrentVisitCancel(){
  $queryupdate="
 
 			update tblAppointments
-			set strStatus = 'Cancelled' 
+			set strStatus = 'Cancelled'
 				where intAppointmentID = ".$id."
 
 			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has cancelld his/her appointment. Visit ID: ','".$id."'),0)
@@ -418,7 +421,7 @@ if($this->db->query($queryupdate)){
 		}else{
 			return false;
 		}
-  
+
 }
 
 }?>
