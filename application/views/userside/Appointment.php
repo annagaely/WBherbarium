@@ -32,7 +32,7 @@
               </div>
             </div>
               <div class="md-form">
-              <textarea type="text" id="strVisitDescription" name="txtappdesc" class="md-textarea form-control" rows="2" required></textarea>
+              <textarea type="text" id="strVisitDescription" name="txtappdesc" class="md-textarea form-control" rows="2" ></textarea>
               <label for="strVisitDescription" class="font-weight-light">Visit Description<span style="color: red"> *</span></label>
               <div class="invalid-feedback">
                 Please provide visit description.
@@ -61,7 +61,30 @@ $(function(){
     $('#btnSubmit').click(function(event){
       var data = $('#addAppointmentForm').serialize();
 
-      if($('#dtAppointmentDate').val()!=''){
+var todayadd3 = new Date();
+var dd = todayadd3.getDate()+3;
+var mm = todayadd3.getMonth()+1; //January is 0!
+var yyyy = todayadd3.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+todayadd3 = yyyy + '-' + mm + '-' +dd ;
+
+      if($('#dtAppointmentDate').val()<todayadd3){
+                 event.preventDefault();
+                  swal({
+                     type: 'error',
+                     title: 'Invalid Date!',
+                     text: 'The appointment should be 3 days from now.'
+                   });
+      }else{
+        if($('#dtAppointmentDate').val()!=''){
         if($('input[name=radios]:checked').length){
           if($('#strVisitDescription').val()!=''){
             event.preventDefault();
@@ -93,8 +116,17 @@ $(function(){
                       }).then(function() {
                         document.getElementById("addAppointmentForm").reset();
                         event.preventDefault();
+                        
                       });
 
+                 }else{
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Invalid Date!',
+                    text: 'The Herbarium center is not available on the selected date.',
+                    showConfirmButton: true
+                  });
                  }
 
                   },
@@ -129,9 +161,9 @@ $(function(){
         });
         }
 
+      }
 
-
-});
+ });
     });
 </script>
 <!-- <script>
