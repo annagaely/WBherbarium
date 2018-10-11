@@ -118,7 +118,7 @@
                   <div class="col-md-6">
                     <i class="fa fa-envelope prefix grey-text"></i>
                     <input type="email" id="strEmailAdd" name="txtemail" class="form-control" required>
-                    <label for="strEmailAdd" class="font-weight-light" style="margin-left: 55px;">Email Address<span style="color: red"> * </span></label>
+                    <label for="strEmailAdd" class="font-weight-light" style="margin-left: 55px;">Email Address<span style="color: red"> * </span><span style="font-size: 10px">Please use gmail accouts only</span></label>
                     <div class="invalid-feedback">
                       Please enter your valid email address.
                     </div>
@@ -218,11 +218,8 @@
                   </div>
                   <div class="col-md-6">
                     <i class="fa fa-key prefix grey-text"></i>
-                    <input style="width: 420px; display: inline;" type="password" pattern=".{6,}" id="strPassword" name="txtpassword" class="form-control"  required><i style = "float: right;padding-bottom: 0px; size: 100px" class="fas fa-eye" onclick="showPassword()"></i>
+                    <input type="password" minlength="6" id="strPassword" name="txtpassword" class="form-control" pattern=".{6,}" required>
                     <label for="strPassword" class="font-weight-light" style="margin-left: 55px;">Password (6 or more characters)<span style="color: red"> *</span></label>
-
-                  
-
                     <div class="invalid-feedback">
                       Please enter your password.
                     </div>
@@ -256,16 +253,7 @@
 </div>
 </div>
 <!-- Card -->
-<script type="text/javascript">
-  function showPassword() {
-    var x = document.getElementById("strPassword");
-    if (x.type === "password") {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
-}
-</script>
+
 <!-- Footer -->
 
     <script type="text/javascript">

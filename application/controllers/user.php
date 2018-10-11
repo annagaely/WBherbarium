@@ -150,9 +150,9 @@ public function howtovisit()
 	        $lastname = $data['strLastname'];
 	        $sesdata = array(
 	            'strUserName'  => $username,
-	            'strFirstName' => $firstname,
+	            'strFirstname' => $firstname,
 	            'strMiddleInitial'=>$midinit,
-	            'strLastName'=>$lastname,
+	            'strLastname'=>$lastname,
 	            'logged_in' => TRUE
 	        );
 	        $this->session->set_userdata($sesdata);
@@ -314,7 +314,6 @@ public function howtovisit()
 	public function pastDeposits() {
 		$this->load->view('userside/iframe/datatablePastDeposits');
 	}
-
 // public function ContactUsEmail()
 // {
 
@@ -397,12 +396,6 @@ echo json_encode($msg);
 }
 public function searchRank(){
 	$this->load->view('userside/iframe/datatablesearchRank.php');
-}
-public function searchGenus() {
-	$this->load->view('userside/iframe/datatablesearchGenus');
-}
-public function searchSpecie() {
-	$this->load->view('userside/iframe/datatablesearchSpecie');
 }
 
 

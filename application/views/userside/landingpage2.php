@@ -1,35 +1,3 @@
-<style type="text/css">
-  #scroll {
-    position:fixed;
-    right:10px;
-    bottom:10px;
-    cursor:pointer;
-    width:50px;
-    height:50px;
-    background-color:#939393;
-    text-indent:-9999px;
-    display:none;
-    -webkit-border-radius:60px;
-    -moz-border-radius:60px;
-    border-radius:10px
-}
-#scroll span {
-    position:absolute;
-    top:50%;
-    left:50%;
-    margin-left:-8px;
-    margin-top:-12px;
-    height:0;
-    width:0;
-    border:8px solid transparent;
-    border-bottom-color:#ffffff;
-}
-#scroll:hover {
-    background-color:#3498db;
-    opacity:1;filter:"alpha(opacity=100)";
-    -ms-filter:"alpha(opacity=100)";
-}
-</style>
 <div class="preloader-wrapper big active crazy">
   <div class="spinner-layer spinner-blue-only">
     <div class="circle-clipper left">
@@ -100,10 +68,9 @@
                     <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner3.jpg" alt="Third slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
-                 <div class="carousel-caption" style="margin-bottom: 20px">
-                  <a href="#staff" style="color: white;">
-                    <h3 class="h3-responsive">Meet the PUP Herbarium Center's hardworking staffs</h3>
-                  </a>
+                <div class="carousel-caption">
+                    <h3 class="h3-responsive">Title</h3>
+                    <p>Third text</p>
                 </div>
             </div>
               </div>
@@ -118,11 +85,8 @@
            <span class="carousel-control-next-icon" aria-hidden="true"></span>
            <span class="sr-only">Next</span>
        </a>
+            <!--/Controls-->
 </div>
- <a href="#" id="scroll" style="display: none;"><span></span> 
-    </a>
-
-
     <div class="px-5 py-5 mx-0" >
     <section class="text-center mx-5 pb-5">
     <!-- Section heading -->
@@ -164,43 +128,30 @@
           </p>
 
         </div>
+        <!-- Grid column -->
+
       </div>
+      <!-- Grid row -->
+
     </section>
     </div>
-
- <div class="pt-10 pb-5 px-5">
-    <div id="topten"class="pt-5 pb-5 px-5 " >
-        <section class="my-5 mx-5" >
-            <!-- Section heading -->
-            <h2 class="h1-responsive font-weight-bold text-center my-5">Top 10 Families with Most Number of Species Found in PUP Mabini Campus </h2>
-
-      <div class="row">
-        <div class="col-md-7 pl-5">
-
-            <div class="card-body">
-              <canvas id="pieChart"></canvas>
+    <section  id="welcome" class="text-white mx-0 px-0" style="background-color: #800000; padding: 5rem 0;">
+        <div class="container py-5">
+            <div class="text-center">
+                <h2 >What is PUP Herbarium?</h2>
+                <div class="row">
+                    <div class="col-lg-9 mx-auto">
+                        <p class="lead text-white mt-2">
+                            The PUP Herbarium Center serves as a local point for botanical interactions of students a faculty. It provides documented flora as repository of preserved herbarium specimens. It is also serve as a venue for plant identification, information and education. It collects services for bioprospecting or other specialized projects. Lastly, it serves as a training ground for a budding plant biologist and taxonomist.
+                        </p>
+                    </div>
+                </div>
             </div>
-
         </div>
-         <div class="col-md-5 pr-5">
-<!--           <div class="card"> -->
-            <div class="card-body">
-          <h3 style="margin-top: 20px, margin-bottom: 5px"> Summary and Conclusions </h3>
-          <h6 style="text-indent: 10px"><strong>Initial floral inventory revealed:</strong>  </h6>
-          <ul class="list-styled">
-            <li style="margin-top: 10px"> Gymnosperms (5 species distributed to 4 families and 3 orders) </li>
-            <li style="margin-top: 10px">Angiosperms (203 species distributed to 67 families and 31 orders)</li>
-          </ul>
-         </div>
-<!--        </div> -->
-     </div>
-      </div>
 
-</section>
-</div>
-</div>
+    </section>
     <!-- Projects section v.3 -->
-    <div class="pt-0 pb-5 px-5" id="topten" >
+    <div class="pt-0 pb-5 px-5" id="topten">
         <section class="my-5 mx-5">
             <!-- Section heading -->
             <h2 class="h1-responsive font-weight-bold text-center my-5">Top 10 Families with Most Number of Species Found in PUP Mabini Campus </h2>
@@ -260,7 +211,7 @@
 
 </section> -->
 
-<div class="mt-100" >
+<!-- Card -->
 <section class="text-center mx-5 pl-5 py-5" >
     <div>
       <h2> <span style="color:#800000">PUP </span> Herbarium Staff </h2>
@@ -292,7 +243,7 @@
           </div>
           <div class="card-body">
             <h6 class="card-title">Ma. Eleanor C. Salvador</h4>
-            <p class="card-text" style="font-size: 12px">Head Curator - PUP Herbarium Center <br><br></p>
+            <p class="card-text" style="font-size: 12px">Head Curator - PUP Herbarium Center</p>
               <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modal2">Read more</button>
             </div>
           </div>
@@ -307,7 +258,7 @@
           </div>
           <div class="card-body">
             <h6 class="card-title">Enrykie Fortajada</h4>
-            <p class="card-text" style="font-size: 12px">Curator - PUP Herbarium Center <br><br><br></p>
+            <p class="card-text" style="font-size: 12px">Curator - PUP Herbarium Center</p>
             <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modal3">Read more</button>
           </div>
         </div>
@@ -322,7 +273,7 @@
           </div>
           <div class="card-body">
             <h6 class="card-title">Blank Muna</h6>
-            <p class="card-text" style="font-size: 12px"> wala pa details partial pa lang lahat <br><br><br></p>
+            <p class="card-text" style="font-size: 12px"> wala pa details partial pa lang lahat</p>
             <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modal4">Read more</button>
           </div>
         </div>
@@ -330,7 +281,7 @@
     </div>
   </div>
 </section>
-</div>
+
 <!-- Modal -->
 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -419,20 +370,5 @@
     options: {
         responsive: true
     }
-});
-</script>
-<script type="text/javascript">
-  $(document).ready(function(){ 
-    $(window).scroll(function(){ 
-        if ($(this).scrollTop() > 100) { 
-            $('#scroll').fadeIn(); 
-        } else { 
-            $('#scroll').fadeOut(); 
-        } 
-    }); 
-    $('#scroll').click(function(){ 
-        $("html, body").animate({ scrollTop: 0 }, 600); 
-        return false; 
-    }); 
 });
 </script>

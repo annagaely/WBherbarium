@@ -45,7 +45,7 @@
 
           <ul class="list-unstyled">
             <li>
-              <a href="<?php echo base_url(); ?>user/Collectionuser">Collection</a>
+              <a href="<?php echo base_url(); ?>user/Collection">Collection</a>
             </li>
             <li>
               <a href="<?php echo base_url(); ?>user/howtodeposit">Deposit Specimen</a>
@@ -54,7 +54,7 @@
               <a href="<?php echo base_url(); ?>user/howtovisit">Visit Herbarium Center</a>
             </li>
             <li>
-              <a href="<?php echo base_url(); ?>user/contactuser">Contact</a>
+              <a href="<?php echo base_url(); ?>user/contact">Contact</a>
             </li>
             <li>
               <a href="<?php echo base_url(); ?>user/FAQsUser">FAQs</a>
