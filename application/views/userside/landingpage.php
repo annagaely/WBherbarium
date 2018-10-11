@@ -1,4 +1,38 @@
-<div class="preloader-wrapper big active crazy">
+<style type="text/css">
+  #scroll {
+    position:fixed;
+    right:10px;
+    bottom:10px;
+    cursor:pointer;
+    width:50px;
+    height:50px;
+    background-color:#939393;
+    text-indent:-9999px;
+    display:none;
+    -webkit-border-radius:60px;
+    -moz-border-radius:60px;
+    border-radius:10px
+}
+#scroll span {
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-8px;
+    margin-top:-12px;
+    height:0;
+    width:0;
+    border:8px solid transparent;
+    border-bottom-color:#ffffff;
+}
+#scroll:hover {
+    background-color:#3498db;
+    opacity:1;filter:"alpha(opacity=100)";
+    -ms-filter:"alpha(opacity=100)";
+}
+</style>
+
+
+  <div class="preloader-wrapper big active crazy">
   <div class="spinner-layer spinner-blue-only">
     <div class="circle-clipper left">
       <div class="circle"></div>
@@ -68,9 +102,10 @@
                     <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner3.jpg" alt="Third slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
-                <div class="carousel-caption">
-                    <h3 class="h3-responsive">Title</h3>
-                    <p>Third text</p>
+                <div class="carousel-caption" style="margin-bottom: 20px">
+                  <a href="#staff" style="color: white;">
+                    <h3 class="h3-responsive">Meet the PUP Herbarium Center's hardworking staffs</h3>
+                  </a>
                 </div>
             </div>
               </div>
@@ -84,9 +119,13 @@
        <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
            <span class="carousel-control-next-icon" aria-hidden="true"></span>
            <span class="sr-only">Next</span>
-       </a>
-            <!--/Controls-->
+       </a>      <!--/Controls-->
 </div>
+
+
+  <a href="#" id="scroll" style="display: none;"> <span></span>
+    </a>
+
     <div class="px-5 py-5 mx-0" >
     <section class="text-center mx-5 pb-5">
     <!-- Section heading -->
@@ -139,10 +178,12 @@
 
     </section>
     </div>
-    <section  id="welcome" class="text-white mx-0 px-0" style="background-color: #800000; padding: 5rem 0;">
+
+     <div>
+    <section  id="welcome" class="text-white mx-0 px-0" style="background-color: #800000; padding: 5rem 0; ">
         <div class="container py-5">
             <div class="text-center">
-                <h2 >What is PUP Herbarium?</h2>
+                <h2>"What is PUP Herbarium?</h2>
                 <div class="row">
                     <div class="col-lg-9 mx-auto">
                         <p class="lead text-white mt-2">
@@ -152,11 +193,13 @@
                 </div>
             </div>
         </div>
-
     </section>
+    </div>
+
     <!-- Projects section v.3 -->
-    <div id="topten"class="pt-0 pb-5 px-5" >
-        <section class="my-5 mx-5">
+    <div class="pt-10 pb-5 px-5">
+    <div id="topten"class="pt-5 pb-5 px-5 " >
+        <section class="my-5 mx-5" >
             <!-- Section heading -->
             <h2 class="h1-responsive font-weight-bold text-center my-5">Top 10 Families with Most Number of Species Found in PUP Mabini Campus </h2>
 
@@ -182,8 +225,9 @@
      </div>
       </div>
 
-</section></div>
-
+</section>
+</div>
+</div>
 <!-- Projects section v.3 -->
 <!-- Section: Features v.1 -->
 <!-- <section class="text-center mt-4">
@@ -215,10 +259,11 @@
 
 </section> -->
 
-<!-- Card -->
-<section class="text-center mx-5 pl-5 py-5" >
+
+<div class="mt-100" >
+<section id="staff" class="text-center mx-5 pl-5 py-5" >
     <div>
-      <h2> <span style="color:#800000"><strong>PUP</strong> </span> Herbarium Staff </h2>
+      <h2 style="margin-top: 5rem"> <span style="color:#800000"><strong>PUP</strong> </span> Herbarium Staff </h2>
     </div>
   <div class="py-5" style="padding-left: 200px; padding-right: 200px;">
     <div class="row">
@@ -231,7 +276,7 @@
             </a>
           </div>
           <div class="card-body">
-            <h6 class="card-title">Armin S. Coronado, MSc.</h4>
+            <h6 class="card-title">Armin S. Coronado, MSc.</h6>
             <p class="card-text" style="font-size: 12px">Director - Institute for Science and Research Technology</p>
             <button type="button" class="btn btn-light-blue btn-md"  data-toggle="modal" data-target="#modal1">Read more</button>
           </div>
@@ -246,8 +291,8 @@
             </a>
           </div>
           <div class="card-body">
-            <h6 class="card-title">Ma. Eleanor C. Salvador</h4>
-            <p class="card-text" style="font-size: 12px">Head Curator - PUP Herbarium Center</p>
+            <h6 class="card-title">Ma. Eleanor C. Salvador</h6>
+            <p class="card-text" style="font-size: 12px">Head Curator - PUP Herbarium Center <br><br></p>
               <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modal2">Read more</button>
             </div>
           </div>
@@ -261,8 +306,8 @@
             </a>
           </div>
           <div class="card-body">
-            <h6 class="card-title">Enrykie Fortajada</h4>
-            <p class="card-text" style="font-size: 12px">Curator - PUP Herbarium Center</p>
+            <h6 class="card-title">Enrykie Fortajada</h6>
+            <p class="card-text" style="font-size: 12px">Curator - PUP Herbarium Center <br><br><br></p>
             <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modal3">Read more</button>
           </div>
         </div>
@@ -277,7 +322,7 @@
           </div>
           <div class="card-body">
             <h6 class="card-title">Blank Muna</h6>
-            <p class="card-text" style="font-size: 12px"> wala pa details partial pa lang lahat</p>
+            <p class="card-text" style="font-size: 12px"> wala pa details partial pa lang lahat <br><br><br></p>
             <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modal4">Read more</button>
           </div>
         </div>
@@ -285,6 +330,9 @@
     </div>
   </div>
 </section>
+</div>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -351,6 +399,8 @@
     </div>
   </div>
 </div>
+
+
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1365.0846300626363!2d121.01038434500167!3d14.596660128798504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9dd5ee0e457%3A0xe1e45b9db34d61a9!2sPUP+Main+Building!5e0!3m2!1sen!2sph!4v1535047021119" width="100%" height="450" style="border:none; padding-bottom:0; margin-bottom:0;" allowfullscreen></iframe>
 
 
@@ -374,5 +424,20 @@
     options: {
         responsive: true
     }
+});
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){ 
+    $(window).scroll(function(){ 
+        if ($(this).scrollTop() > 100) { 
+            $('#scroll').fadeIn(); 
+        } else { 
+            $('#scroll').fadeOut(); 
+        } 
+    }); 
+    $('#scroll').click(function(){ 
+        $("html, body").animate({ scrollTop: 0 }, 600); 
+        return false; 
+    }); 
 });
 </script>

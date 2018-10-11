@@ -64,12 +64,12 @@
         </div>
       </div>
     </nav>
-    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
                     <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"  onclick="resetForm()" >
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -101,6 +101,12 @@
             </div>
         </div>
     </div>
+<script>
+function resetForm() {
+    document.getElementById("loginForm").reset();
+}
+
+</script>
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function(){

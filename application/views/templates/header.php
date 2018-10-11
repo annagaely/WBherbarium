@@ -61,7 +61,7 @@
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
              <h2 class="h5">
               <?php
-                  echo $this->session->userdata('strFirstname'),' ',$this->session->userdata('strMiddleInitial'),' ',$this->session->userdata('strLastname');
+                  echo $this->session->userdata('strFirstname'),' ',$this->session->userdata('strMiddleinitial'),' ',$this->session->userdata('strLastname');
               ?>
             </h2>
               <span>
@@ -73,8 +73,9 @@
           </div>
 
           <!-- Small Brand information, appears on minimized sidebar-->
-          <div class="sidenav-header-logo"><a href="<?php echo base_url(); ?>admin/Dashboard" class="brand-small text-center"> <strong>A</strong><strong class="text-primary">B</strong></a></div>
+          <div class="sidenav-header-logo"><a href="<?php echo base_url(); ?>admin/Dashboard" class="brand-small text-center"> <img src = "<?php echo base_url();?>assets/bower_components/logoto.png"> </a>
           </div>
+   </div>
 
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
@@ -157,7 +158,7 @@
                 </li>
               </ul>
             </li>
-              <li><a href="#"> <i class="fa fa-database"></i>Query</a></li>
+              <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
             <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
             <?php endif;?>
         </div>
