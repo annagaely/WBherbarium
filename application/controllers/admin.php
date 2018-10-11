@@ -596,6 +596,11 @@ public function updateFamilyBox(){
 	}
 	public function updateCollector(){
 		$result = $this->m->updateCollector();
+		$msg['success'] = false;
+		$msg['type'] = 'update';
+		if($result){
+			$msg['success'] = true;
+		}
 		echo json_encode($result);
 
 	}

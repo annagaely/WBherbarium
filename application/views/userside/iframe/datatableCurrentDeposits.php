@@ -47,10 +47,10 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      <div class="modal-header" style="background-color: #800000">
+        <h5 class="modal-title"  style="color: white"  id="exampleModalLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true" style="color: white" >&times;</span>
         </button>
       </div>
       <div class="modal-body">
@@ -77,7 +77,7 @@
                    <input type="text" name="txtstatus" class="form-control" autocomplete=off disabled>
                  </div>
                  <div class="form-group">
-                   <label>Actions:</label><label style="color: red">*</label><label style="color: red; font-size: 9px">     Don't change anything here if you don't need to.</label>
+                   <label>Actions: <span style="color: red"> * </span><span style="color: red; font-size: 11px"> Don't change anything here if you don't need to.</span></label>
                    <select id='txtChange' class="form-control" autocomplete=off>
                     <option value='None'>None</option>
                     <option value='Reschedule'>Reschedule</option>
@@ -85,14 +85,14 @@
                    </select>
                  </div>
                  <div class="form-group">
-                   <label>New Date:</label><label style="color: red">*</label>
+                   <label>New Date: <span style="color: red">* </span></label>
                    <input type='date' name='dtnewDate' id='dtnewDateid' class="form-control" autocomplete=off disabled required>
                  </div>
 
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         <button type="button" id='btnSave' class="btn btn-primary">Save changes</button>
       </div>
        </form>
@@ -102,26 +102,7 @@
 </div>
 
 </table>
-<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+
 
 </body>
 <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>

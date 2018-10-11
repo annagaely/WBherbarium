@@ -223,23 +223,30 @@ window.addEventListener('load', function() {
                   <div class="row">
                     <div class="col-md-3"></div>
                       <div class="col-md-6">
-                          <input type="password" id="strNewPw" name="txtNewPw" class="form-control">
-                          <label for="strNewPw" class="ml-3 font-weight-light">New Password</label>
-                        </div>
+
+                          <input style="width: 350px; display: inline;" type="password" id="strNewPw" name="txtNewPw" class="form-control"> <i style = "float: right;padding-bottom: 0px; size: 100px" class="fas fa-eye" onclick="showPassword()"></i>
+                          <label for="strNewPw" class="ml-3 font-weight-light" >New Password</label>
+                           
                       </div>
                     </div>
                     <div class="md-form">
                     <div class="row">
                       <div class="col-md-3"></div>
                         <div class="col-md-6">
-                            <input type="password" id="strVerPw" name="txtVerPw" class="form-control">
+
+                            <input  style="width: 350px; display: inline;" type="password" id="strVerPw" name="txtVerPw" class="form-control"><i style = "float: right;padding-bottom: 0px; size: 100px" class="fas fa-eye" onclick="showPassword1()"></i>
                             <label for="strVerPw" class="ml-3 font-weight-light" >Verify Password</label>
+                            
                           </div>
                         </div>
                     </div>
                     <div class="text-center py-4 mt-3">
                       <button class="btn btn-danger" onclick="hideNav()">Cancel</button>
                       <button class="btn btn-primary" type="submit" id="btnSavePassword">Save Changes</button>
+
+
+                  
+
                     </div>
                    </form>
                   <div>
@@ -252,6 +259,27 @@ window.addEventListener('load', function() {
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  function showPassword() {
+    var x = document.getElementById("strNewPw");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+
+function showPassword1() {
+    var y = document.getElementById("strVerPw");
+    if (y.type === "password") {
+        y.type = "text";
+    } else {
+        y.type = "password";
+    }
+}
+</script>
+
 <script>
 function showNav() {
 document.getElementById("navi").style.display = 'block';
