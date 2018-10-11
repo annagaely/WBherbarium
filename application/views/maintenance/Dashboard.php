@@ -49,7 +49,7 @@
 
                     <?php
 
-                  $serverName = "DEI";
+                  $serverName = "MSi";
 
                   $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
@@ -79,7 +79,7 @@
                   <div class="count-number">
 
                     <?php
-                  $serverName = "DEI";
+                  $serverName = "MSI";
 
                   $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );
@@ -108,7 +108,7 @@
                   <div class="count-number">
 
                     <?php
-                  $serverName = "DEI";
+                  $serverName = "MSI";
 
                   $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
                   $conn = sqlsrv_connect( $serverName, $connectionInfo );

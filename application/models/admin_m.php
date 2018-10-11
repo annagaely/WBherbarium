@@ -1597,8 +1597,32 @@ public function updateAccounts(){
 
 public function add_event($data)
 {
-    $this->db->insert("tblEvents", $data);
+      $start_date = $this->input->post("start_date", TRUE);
+$querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+if($querycheckdepreqtbl->num_rows()==0){
+
+		$querycheckvisittbl=$this->db->query("select * from tblAppointments where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+						if($querycheckvisittbl->num_rows()==0){
+							$this->db->insert("tblEvents", $data);
+
+
+									 if($this->db->affected_rows() > 0){
+										return true;
+									}else{
+										return false;
+									}
+						}else{
+							return false;
+								}
+							    
+}else{
+	return false;
 }
+
+
+
+}
+
 
 public function get_event($id)
 {
@@ -1607,12 +1631,36 @@ public function get_event($id)
 
 public function update_event($id, $data)
 {
-    $this->db->where("ID", $id)->update("tblEvents", $data);
+    
+     $start_date = $this->input->post("start_date", TRUE);
+$querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+if($querycheckdepreqtbl->num_rows()==0){
+
+		$querycheckvisittbl=$this->db->query("select * from tblAppointments where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+						if($querycheckvisittbl->num_rows()==0){
+							$this->db->where("ID", $id)->update("tblEvents", $data);
+
+
+									 if($this->db->affected_rows() > 0){
+										return true;
+									}else{
+										return false;
+									}
+						}else{
+							return false;
+								}
+							    
+}else{
+	return false;
+}
+
 }
 
 public function delete_event($id)
 {
+
     $this->db->where("ID", $id)->delete("tblEvents");
+    
 }
 
 
@@ -1810,7 +1858,7 @@ public function showAllDepositReqOkay()
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID
-		where strStatus ='For Depositing'");
+		where strStatus ='For Depositing' OR strStatus = 'Email Sent'");
 
 		foreach ($query->result() as $r)
 		{
@@ -2067,7 +2115,7 @@ DECLARE @status 		varchar(255);
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
-		where strStatus ='For Visiting'");
+		where strStatus ='For Visiting'  OR strStatus ='Email Sent'");
 		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary view-emailcon" title="Send Email" data="'.$r->intAppointmentID.'"><i class="far fa-envelope"></i></button>
@@ -2720,6 +2768,45 @@ return $query->row();
 		}
 }
 
+public function changedepositstatus(){
 
+    $id=$this->input->post('txtId');
+
+
+	$query="
+
+		UPDATE tblDepositReq
+		SET strStatus = 'Email Sent'
+		WHERE intDepositReqID = '".$id."';
+
+			";
+		if($this->db->query($query)){
+			return true;
+
+		}else{
+			return false;
+		}
+	}
+
+
+public function changevisitstatus(){
+
+    $id=$this->input->post('txtId');
+
+
+	$query="
+
+		UPDATE tblAppointments
+		SET strStatus = 'Email Sent'
+		WHERE intAppointmentID = '".$id."';
+
+			";
+		if($this->db->query($query)){
+			return true;
+
+		}else{
+			return false;
+		}
+	}
 
 }?>

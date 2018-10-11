@@ -195,6 +195,10 @@ $doA = $this->input->post('dateAppointment');
 	$appPurpose = $this->input->post('radios');
 	$appdesc = $this->input->post('txtappdesc');
 $getusername = $this->session->userdata['strUserName'];
+
+
+$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$doA."' ");
+if($querycheckeventtbl->num_rows()==0){
 $query="
 
 DECLARE @appointmenttype VARCHAR(50);
@@ -226,10 +230,12 @@ declare @sessionid int;
 	{
 		return false;
 	}
+}else{
+	return false;
+}
 
 
-
-	}
+}
 
 public function getgenusname(){
 
