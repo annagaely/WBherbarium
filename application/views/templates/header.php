@@ -292,10 +292,10 @@ if(data.intcount!=0){
    }
   });
  }
- setInterval(function(){ 
- load_unseen_notification();
- countunreadnotif();
- }, 3000);
+ // setInterval(function(){ 
+ // load_unseen_notification();
+ // countunreadnotif();
+ // }, 3000);
  
 });
 </script>

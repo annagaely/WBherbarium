@@ -1091,15 +1091,21 @@ public function add_event()
        $end_date_timestamp = time();
     }
 
-    $this->admin_m->add_event(array(
+    $result=$this->m->add_event(array(
        "title" => $name,
        "description" => $desc,
        "start" => $start_date,
        "end" => $start_date
        )
     );
+$msg['success'] = false;
+$msg['type'] = 'add';
+if($result){
+  $msg['success'] = true;
+}
+echo json_encode($msg);
 
-    redirect(base_url("admin/view_calendar"));
+    
 }
 
 public function edit_event()
@@ -1140,19 +1146,26 @@ public function edit_event()
                     $end_date_timestamp = time();
                }
 
-               $this->admin_m->update_event($eventid, array(
+               $result=$this->admin_m->update_event($eventid, array(
                     "title" => $name,
                     "description" => $desc,
                     "start" => $start_date,
                     "end" => $start_date,
                     )
-               );
+           			);
+               	$msg['success'] = false;
+				$msg['type'] = 'add';
+				if($result){
+				  $msg['success'] = true;
+				}
+				echo json_encode($msg);
+               
 
           } else {
                $this->admin_m->delete_event($eventid);
           }
 
-        redirect(base_url("admin/view_calendar"));
+      
      }
 
 
@@ -1305,7 +1318,8 @@ $message = $this->input->post('txtCustomMessage');
 
       if($this->email->send())
      {
-     	return true;
+     	$result=$this->changedepositstatus();
+     	echo json_encode($result);
      }
      else
     {
@@ -1313,7 +1327,14 @@ $message = $this->input->post('txtCustomMessage');
 
  }
 }
-
+function changedepositstatus(){
+	$result=$this->m->changedepositstatus();
+	if($result){
+		return true;
+	}else{
+		return false;
+	}
+}
 public function visitsendMail()
 {
     $config = Array(
@@ -1339,7 +1360,8 @@ $message = $this->input->post('txtCustomMessage');
 
       if($this->email->send())
      {
-     	return true;
+     	$result=$this->changevisitstatus();
+     	echo json_encode($result);
      }
      else
     {
@@ -1347,6 +1369,15 @@ $message = $this->input->post('txtCustomMessage');
 
  }
 }
+ function changevisitstatus(){
+	$result=$this->m->changevisitstatus();
+	if($result){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 public function visitsendMailReject()
 {
   $config = Array(
@@ -1622,6 +1653,7 @@ public function showAllExValidators()
 }
 public function exvalchangestatus(){
 $this->m->updateEVStatus();
+
 }
 
 public function SendtoExValidator(){
@@ -1630,7 +1662,7 @@ public function SendtoExValidator(){
 
 
 
-    $this->load->helper('file');
+	$this->load->helper('file');
 	$path= './uploads/'. uniqid('attachment-', TRUE).'/';
 	mkdir($path);
 		$data = array();
@@ -1669,15 +1701,15 @@ public function SendtoExValidator(){
 
 
 			$config = Array(
-  'protocol' => 'smtp',
-  'smtp_host' => 'ssl://smtp.googlemail.com',
-  'smtp_port' => 465,
-  'smtp_user' => 'WBHerbariumTA@gmail.com', // change it to yours
-  'smtp_pass' => 'WBHerbarium2018', // change it to yours
-  'mailtype' => 'html',
-  'charset' => 'iso-8859-1',
-  'wordwrap' => TRUE
-);
+				'protocol' => 'smtp',
+				'smtp_host' => 'ssl://smtp.googlemail.com',
+				'smtp_port' => 465,
+				'smtp_user' => 'WBHerbariumTA@gmail.com', // change it to yours
+				'smtp_pass' => 'WBHerbarium2018', // change it to yours
+				'mailtype' => 'html',
+				'charset' => 'iso-8859-1',
+				'wordwrap' => TRUE
+				);
 		    $this->load->library('email', $config);
 		    $this->email->set_newline("\r\n");
 		     $this->email->from('WBHerbariumTA@gmail.com');
@@ -1707,7 +1739,7 @@ public function SendtoExValidator(){
 			rmdir($path);
 			$this->exvalchangestatus();
 
-redirect('admin/Externalvalidation');
+ redirect('admin/Externalvalidation');
 	        }
 	        else
 	        {
@@ -1726,6 +1758,8 @@ redirect('admin/Externalvalidation');
             closedir($handle);
             rmdir($path);
 	        }
+
+    
 	    }
 
 
