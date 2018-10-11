@@ -90,6 +90,10 @@
     <div class="px-5 py-5 mx-0" >
     <section class="text-center mx-5 pb-5">
     <!-- Section heading -->
+<!-- 
+<script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=5575d02bd4e845bc24dac524eb32f54d75edcc64'></script>
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/425554/t/5"></script> -->
+
       <h2 class="h1-responsive font-weight-bold my-5" >Welcome to PUP Herbarium</h2>
       <!-- Section description -->
       <p class="lead black-text w-responsive mx-auto mb-5">Come and explore the first Polytechnic University in the Philippines' herbarium specimen collections.</p>
@@ -151,7 +155,7 @@
 
     </section>
     <!-- Projects section v.3 -->
-    <div class="pt-0 pb-5 px-5" id="topten">
+    <div id="topten"class="pt-0 pb-5 px-5" >
         <section class="my-5 mx-5">
             <!-- Section heading -->
             <h2 class="h1-responsive font-weight-bold text-center my-5">Top 10 Families with Most Number of Species Found in PUP Mabini Campus </h2>
@@ -214,7 +218,7 @@
 <!-- Card -->
 <section class="text-center mx-5 pl-5 py-5" >
     <div>
-      <h2> <span style="color:#800000">PUP </span> Herbarium Staff </h2>
+      <h2> <span style="color:#800000"><strong>PUP</strong> </span> Herbarium Staff </h2>
     </div>
   <div class="py-5" style="padding-left: 200px; padding-right: 200px;">
     <div class="row">
@@ -351,7 +355,7 @@
 
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
- <script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/mdb.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/mdb.js"></script>
 
 <script>
   var ctxP = document.getElementById("pieChart").getContext('2d');

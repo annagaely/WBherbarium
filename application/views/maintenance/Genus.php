@@ -134,7 +134,7 @@ function resetForm() {
          "sAjaxSource": "<?php echo base_url('admin/showAllGenus')?>",
          "deferLoading": 10,
          "bPaginate": true,
-         "aaSorting": [[0,'asc']],
+         "aaSorting": [],
          "fnInitComplete": function(){
 
          }

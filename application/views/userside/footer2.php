@@ -9,6 +9,7 @@
     <script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/mdb.min.js"></script>
+ 
 <!-- Footer -->
 <footer class="page-footer font-small stylish-color-dark pt-4">
 
@@ -57,7 +58,7 @@
               <a href="<?php echo base_url(); ?>user/contact">Contact</a>
             </li>
             <li>
-              <a href="<?php echo base_url(); ?>user/faq">FAQs</a>
+              <a href="<?php echo base_url(); ?>user/FAQsUser">FAQs</a>
             </li>
           </ul>
 

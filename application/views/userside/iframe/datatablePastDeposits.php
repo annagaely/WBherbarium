@@ -25,21 +25,19 @@
   <table id="managepastDeposits" class="table table-striped"  width="100%">
   <thead>
     <tr>
-      <th class="th-sm">Date
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+      <th class="th-sm">Date of Appointment
+        
       </th>
       <th class="th-sm">Scientific Name
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        
       </th>
       <th class="th-sm">Common Name
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        
       </th>
       <th class="th-sm">Status
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        
       </th>
-      <th class="th-sm">Action
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
-      </th>
+
 
 
     </tr>
@@ -51,6 +49,8 @@
 </body>
 <script type="text/javascript">
 $(document).ready(function () {
+
+  function showAllDepositLog(){ 
   $('#managepastDeposits').dataTable().fnClearTable();
   $('#managepastDeposits').dataTable().fnDraw();
   $('#managepastDeposits').dataTable().fnDestroy();
@@ -58,7 +58,7 @@ $(document).ready(function () {
    "autoWidth":false,
        "processing": true,
        "serverSide": false,
-       "sAjaxSource": "<?php echo base_url('user/showAllVisitsLog')?>",
+       "sAjaxSource": "<?php echo base_url('user/showAllDepositLog')?>",
        "deferLoading": 10,
        "bPaginate": true,
        "aaSorting": [],
@@ -66,6 +66,9 @@ $(document).ready(function () {
 
        }
    });
+};
+
+showAllDepositLog()
 });
 </script>
 </html>

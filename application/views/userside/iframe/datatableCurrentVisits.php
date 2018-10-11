@@ -26,16 +26,19 @@
   <thead>
     <tr>
       <th class="th-sm">Date
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        
       </th>
       <th class="th-sm">Type of Visit
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+       
       </th>
       <th class="th-sm">Description
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        
+      </th>
+            <th class="th-sm">Status
+       
       </th>
       <th class="th-sm">Action
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+      
       </th>
 
 
@@ -46,10 +49,10 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      <div class="modal-header" style="background-color: #800000">
+        <h5 class="modal-title" style="color: white"  id="exampleModalLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true" style="color: white" >&times;</span>
         </button>
       </div>
       <div class="modal-body">
@@ -117,14 +120,16 @@ $(document).ready(function () {
             document.getElementById('dtnewDateid').disabled = true;
           }
         });
- function showTable(){ $('#manageCurrentVisits').dataTable().fnClearTable();
+ 
+ function showVisitCurrentTable(){ 
+  $('#manageCurrentVisits').dataTable().fnClearTable();
   $('#manageCurrentVisits').dataTable().fnDraw();
   $('#manageCurrentVisits').dataTable().fnDestroy();
   $('#manageCurrentVisits').dataTable({
    "autoWidth":false,
        "processing": true,
        "serverSide": false,
-       "sAjaxSource": "<?php echo base_url('user/showAllVisitsLog')?>",
+       "sAjaxSource": "<?php echo base_url('user/showCurrentVisitsLog')?>",
        "deferLoading": 10,
        "bPaginate": true,
        "aaSorting": [],
@@ -132,7 +137,8 @@ $(document).ready(function () {
 
        }
    });
-}showTable();
+}showVisitCurrentTable();
+
       $(document).on('click', '.visitcurent-edit', function(event){
      var id = $(this).attr('data');
      $('#myModal').modal('show');
@@ -193,10 +199,10 @@ if(document.getElementById('dtnewDateid').disabled == false){
                      timer: 1500,
                      showConfirmButton: false
                    }).then(function() {
-                     showTable();
+                     showVisitCurrentTable();
                     $('#myModal').modal('hide');
                     document.getElementById("editCurrentVisitform").reset();
-                    event.preventDefault();
+                   
                    });
 
 
@@ -253,7 +259,7 @@ event.preventDefault();
                      timer: 1500,
                      showConfirmButton: false
                    }).then(function() {
-                     showTable();
+                     showVisitCurrentTable();
                     $('#myModal').modal('hide');
                     document.getElementById("editCurrentVisitform").reset();
                     event.preventDefault();
@@ -264,8 +270,7 @@ event.preventDefault();
                   event.preventDefault();
                  swal({
                    type: 'error',
-                   title: 'Incorrect Date!',
-                   text: 'Herbarium Center is not Available on that date.'
+
                  });
                  }
                },

@@ -22,6 +22,8 @@
   <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
   <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+     
+    <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
 
 </head>
 
@@ -116,7 +118,7 @@
                   <div class="col-md-6">
                     <i class="fa fa-envelope prefix grey-text"></i>
                     <input type="email" id="strEmailAdd" name="txtemail" class="form-control" required>
-                    <label for="strEmailAdd" class="font-weight-light" style="margin-left: 55px;">Email Address<span style="color: red"> *</span></label>
+                    <label for="strEmailAdd" class="font-weight-light" style="margin-left: 55px;">Email Address<span style="color: red"> * </span><span style="font-size: 10px">Please use gmail accouts only</span></label>
                     <div class="invalid-feedback">
                       Please enter your valid email address.
                     </div>
@@ -126,8 +128,8 @@
                   </div>
                   <div class="col-md-6">
                     <i class="fa fa-phone prefix grey-text"></i>
-                    <input type="text" id="strPhoneNum" name="txtphonenum" class="form-control" required>
-                    <label for="strPhoneNum" class="font-weight-light" style="margin-left: 55px;">Phone Number (ex. 09*********)<span style="color: red"> *</span></label>
+                    <input type="text" id="strPhoneNum"  data-mask = "99999999999"  name="txtphonenum" class="form-control" required>
+                    <label for="strPhoneNum"class="font-weight-light" style="margin-left: 55px;">Phone Number (ex. 09*********)<span style="color: red"> *</span></label>
                   </div>
                   <div class="invalid-feedback">
                     Please enter your active phone number.
@@ -216,7 +218,7 @@
                   </div>
                   <div class="col-md-6">
                     <i class="fa fa-key prefix grey-text"></i>
-                    <input type="password" id="strPassword" name="txtpassword" class="form-control" pattern=".{6,}" required>
+                    <input type="password" minlength="6" id="strPassword" name="txtpassword" class="form-control" pattern=".{6,}" required>
                     <label for="strPassword" class="font-weight-light" style="margin-left: 55px;">Password (6 or more characters)<span style="color: red"> *</span></label>
                     <div class="invalid-feedback">
                       Please enter your password.
@@ -294,7 +296,7 @@
                                         let timerInterval
                                         swal({
                                           title: 'Registered',
-                                          text: 'You .',
+                                          text: 'You have successfully created your account .',
                                           type: 'success',
                                           timer: 1500,
                                           showConfirmButton: false

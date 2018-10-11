@@ -26,16 +26,16 @@
     <thead>
       <tr>
         <th class="th-sm">Date
-          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+          
         </th>
         <th class="th-sm">Type of Visit
-          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+          
         </th>
         <th class="th-sm">Description
-          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+          
         </th>
-        <th class="th-sm">Action
-          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+        <th class="th-sm">Status
+          
         </th>
 
 
@@ -47,7 +47,10 @@
 
 </body>
 <script type="text/javascript">
+  
 $(document).ready(function () {
+
+  function showAllVisitsLog(){ 
   $('#managepastVisits').dataTable().fnClearTable();
   $('#managepastVisits').dataTable().fnDraw();
   $('#managepastVisits').dataTable().fnDestroy();
@@ -63,6 +66,12 @@ $(document).ready(function () {
 
        }
    });
+
+}showAllVisitsLog();
+
+ 
+
 });
+
 </script>
 </html>
