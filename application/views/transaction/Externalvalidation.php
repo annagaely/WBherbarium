@@ -140,11 +140,11 @@
            </div>
 
       <div class="modal-body">
-        <form id="viewEVForm" action="<?php echo base_url(); ?>admin/SendtoExValidator" method="post" enctype="multipart/form-data">
+        <form id="viewEVForm"  method="post" enctype="multipart/form-data">
               <div class = "row">
                 <div class="col-sm-6">
                   <label style="font-size: 14px;">Select photos of the specimen <span style="color: red"> *</span></label>
-                  <input type="file" name="userfile[]" accept=".jpeg,.jpg,.png" multiple />
+                  <input type="file" name="userfile[]" accept=".jpeg,.jpg,.png" multiple id='files'>
                 </div>
               </div>
 <hr>
@@ -204,18 +204,22 @@
                 <div class="col-sm-6">
                   <label style="font-size: 14px;">Select where to send the Specimen <span style="color: red"> *</span></label>
                  <select name = 'externalvalidator' id='externalvalidators' class='form-control' required>
-                  <option>Select External Validator</option>
+                  <option value=''>Select External Validator</option>
                  </select>
                 </div>
               </div>
 
                    <div class="form-group">
                      <div class="modal-footer">
+                    <button style="margin-left: 300px" type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary"> Cancel</button>
                      <input type="submit" id="btnSave" value="Send" class="btn btn-primary" style="margin-left: 300px">
                     </div>
                    </div>
 
             </form>
+            <script type="text/javascript">
+              
+            </script>
           </div>
           </div>
         </div>
@@ -258,21 +262,22 @@
             </div>
 
                   <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary"> Cancel</button>
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
                             $('#btnSend').click(function(event){
                                 var data = $('#EVemailform').serialize();
                                 event.preventDefault();
-        swal({
-               title: 'Are you sure?',
-               type: 'warning',
-               showCancelButton: true,
-               confirmButtonColor: '#3085d6',
-               cancelButtonColor: '#d33',
-               confirmButtonText: 'Yes'
-             }).then((result) => {
-               if (result.value) {
+                              swal({
+                                     title: 'Are you sure?',
+                                     type: 'warning',
+                                     showCancelButton: true,
+                                     confirmButtonColor: '#3085d6',
+                                     cancelButtonColor: '#d33',
+                                     confirmButtonText: 'Yes'
+                                   }).then((result) => {
+                                     if (result.value) {
                                   $.ajax({
                                   type: 'ajax',
                                   method: 'post',
@@ -296,12 +301,12 @@
                     showExValAll();
                     $('#EVEmailCon').modal('hide');
                     document.getElementById("EVemailform").reset();
-                  });
-                }
-            });
-         }
-    })
- });
+                         });
+                        }
+                       });
+                      }
+                    })
+                   });
                      </script>
                   </div>
           </form>
@@ -357,6 +362,7 @@
             </div>
                     
                   <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary"> Cancel</button>
                      <input type="submit" id="btnConfirm" value="Confirm" class="btn btn-primary">
                   </div>
           </form>
@@ -414,6 +420,69 @@ showAllExValidators();
      });
    };
     });
+  // action="<?php echo base_url(); ?>admin/SendtoExValidator"
+              $('#viewEVForm').on('submit',function(event){
+              var data = $('#viewEVForm').serialize();
+              if($('#files').val()!=''){
+              if($('#externalvalidators').val()!=''){
+              event.preventDefault();
+               swal({
+                   title: 'Are you sure?',
+                   type: 'warning',
+                   showCancelButton: true,
+                   confirmButtonColor: '#3085d6',
+                   cancelButtonColor: '#d33',
+                   confirmButtonText: 'Yes'
+                 }).then((result) => {
+                   if (result.value) {
+                $.ajax({
+                type: 'ajax',
+                method: 'post',
+                url: '<?php echo base_url() ?>admin/SendtoExValidator',
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                async: false,
+                dataType: 'json',
+                success: function(){
+                },
+                error: function(){
+                   let timerInterval
+                    swal({
+                      title: 'Email has been sent!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                    
+                    showExValPending();
+                    showExValOkay();
+                    showExValAll();
+                    $('#viewEV').modal('hide');
+                    document.getElementById("viewEVForm").reset();
+                         });
+                        }
+                       });
+                      }
+                    });
+                   
+  }else{
+    event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please select a validator.'
+          });
+  }
+}else{
+    event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please select a File.'
+          });
+  }
+   });          
 
 $(document).on('click', '.view-EVPending', function(){
       var id = $(this).attr('data');
@@ -501,30 +570,30 @@ $(document).on('click', '.view-EVPending', function(){
     });
     });
 
-     $(document).on('click', '.view-EVemailcon', function(){
-      var id = $(this).attr('data');
-      $('#EVEmailCon').modal('show');
-      $('#EVEmailCon').find('.modal-title').text('Email');
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/EVEmailCon',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('#strEmailAdress').val(data.strEmailAddress);
-          $('#txtemail').val(data.strEmailAddress);
-          $('input[name=txtId]').val(data.intDepositID);
-          $('#txtreqID').val(data.intDepositID);
+      //  $(document).on('click', '.view-EVemailcon', function(){
+      //   var id = $(this).attr('data');
+      //   $('#EVEmailCon').modal('show');
+      //   $('#EVEmailCon').find('.modal-title').text('Email');
+      //   $.ajax({
+      //     type: 'ajax',
+      //     method: 'get',
+      //     url: '<?php echo base_url() ?>admin/EVEmailCon',
+      //     data: {id: id},
+      //     async: false,
+      //     dataType: 'json',
+      //     success: function(data){
+      //       $('#strEmailAdress').val(data.strEmailAddress);
+      //       $('#txtemail').val(data.strEmailAddress);
+      //       $('input[name=txtId]').val(data.intDepositID);
+      //       $('#txtreqID').val(data.intDepositID);
 
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
+      //     },
+      //     error: function(){
+      //       alert('Could not Edit Data');
+      //     }
 
-    });
-    });
+      // });
+      // });
 
 $('#btnConfirm').click(function(event){
       var data = $('#EVConfirmForm').serialize();

@@ -61,7 +61,7 @@
           <div class="sidenav-header-inner text-center"><img src="<?php echo base_url();?>assets/bower_components/logo1.ico" alt="person" class="img-fluid rounded-circle">
              <h2 class="h5">
               <?php
-                  echo $this->session->userdata('strFirstname'),' ',$this->session->userdata('strMiddleInitial'),' ',$this->session->userdata('strLastname');
+                  echo $this->session->userdata('strFirstname'),' ',$this->session->userdata('strMiddleinitial'),' ',$this->session->userdata('strLastname');
               ?>
             </h2>
               <span>
@@ -74,8 +74,12 @@
 
           <!-- Small Brand information, appears on minimized sidebar-->
           <div class="sidenav-header-logo"><a href="<?php echo base_url(); ?>admin/Dashboard" class="brand-small text-center"> <img src = "<?php echo base_url();?>assets/bower_components/logoto.png"> </a>
-          </div>
-</div>
+
+         </div>
+
+        </div>
+
+
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
           <h5 class="sidenav-heading">Main</h5>
@@ -157,7 +161,7 @@
                 </li>
               </ul>
             </li>
-            <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
+              <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
             <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
             <?php endif;?>
         </div>
@@ -292,10 +296,11 @@ if(data.intcount!=0){
    }
   });
  }
- //setInterval(function(){
- //load_unseen_notification();
- //countunreadnotif();
- //}, 3000);
+
+ // setInterval(function(){ 
+ // load_unseen_notification();
+ // countunreadnotif();
+ // }, 5000);
 
 });
 </script>

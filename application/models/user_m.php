@@ -151,6 +151,9 @@ public function addDeposit(){
 	$desiredDateDeposit = $this->input->post('txtDateDesired');
 	$getusername = $this->session->userdata['strUserName'];
 
+
+$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$desiredDateDeposit."' ");
+if($querycheckeventtbl->num_rows()==0){
 	$query="
 
 	DECLARE @scientificname	VARCHAR(255);
@@ -187,10 +190,9 @@ SET NOCOUNT ON;
 		{
 			return false;
 		}
-
-
-
-
+}else{
+	return false;
+}
 	}
 
 public function addAppointment(){
@@ -199,6 +201,10 @@ $doA = $this->input->post('dateAppointment');
 	$appPurpose = $this->input->post('radios');
 	$appdesc = $this->input->post('txtappdesc');
 $getusername = $this->session->userdata['strUserName'];
+
+
+$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$doA."' ");
+if($querycheckeventtbl->num_rows()==0){
 $query="
 
 DECLARE @appointmenttype VARCHAR(50);
@@ -230,15 +236,13 @@ declare @sessionid int;
 	{
 		return false;
 	}
-
-
-
-	}
-
-public function getgenusname(){
+}else{
+	return false;
+}
 
 
 }
+
 
 public function showAccount(){
 		$id = $this->session->userdata['strUserName'];
@@ -398,9 +402,9 @@ public function updatePassword(){
 
 public function updateCurrentVisitResched(){
     $id = $this->input->post('txtId');
-    $firstname = $this->session->userdata['strFirstname'];
+    $firstname = $this->session->userdata['strFirstName'];
     $midinit = $this->session->userdata['strMiddleInitial'];
-    $lastname = $this->session->userdata['strLastname'];
+    $lastname = $this->session->userdata['strLastName'];
 $date = $this->input->post('dtnewDate');
 
  $querycheckdate=$this->db->query("select * from tblEvents where [start] = '".$date."'");
@@ -430,9 +434,9 @@ if($this->db->query($queryupdate)){
 
 public function updateCurrentVisitCancel(){
     $id = $this->input->post('txtId');
-    $firstname = $this->session->userdata['strFirstname'];
+    $firstname = $this->session->userdata['strFirstName'];
     $midinit = $this->session->userdata['strMiddleInitial'];
-    $lastname = $this->session->userdata['strLastname'];
+    $lastname = $this->session->userdata['strLastName'];
  $queryupdate="
 
 			update tblAppointments
@@ -519,9 +523,9 @@ if($this->db->query($queryupdate)){
 
 public function updateCurrentDepositResched(){
     $id = $this->input->post('txtId');
-    $firstname = $this->session->userdata['strFirstname'];
+    $firstname = $this->session->userdata['strFirstName'];
     $midinit = $this->session->userdata['strMiddleInitial'];
-    $lastname = $this->session->userdata['strLastname'];
+    $lastname = $this->session->userdata['strLastName'];
 $date = $this->input->post('dtnewDate');
 
  $querycheckdate=$this->db->query("select * from tblEvents where [start] = '".$date."'");
