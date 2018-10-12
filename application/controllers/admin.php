@@ -1879,6 +1879,24 @@ $date=$this->input->post('txtReschedDate');
 	}
 }
 
+public function showAllOUser()
+{
 
+    $output = $this->admin_m->showAllOUser();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+public function editOUser(){
+	$result = $this->m->editOUser();
+	echo json_encode($result);
+}
 
 }?>
