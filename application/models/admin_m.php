@@ -1911,20 +1911,6 @@ public function viewDepositReq(){
 			return false;
 		}
 	}
-	public function DResched(){
-			$id = $this->input->get('id');
-			$this->db->where('intDepositReqID', $id);
-			$query = $this->db->select("intDepositReqID
-	      ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName")
-
-			->join('tblOnlineUser ou','ou.intOUserID=dr.intOUserID')
-			->get('tblDepositReq dr');
-			if($query->num_rows() > 0){
-				return $query->row();
-			}else{
-				return false;
-			}
-		}
 
 public function updateConfirmation(){
 
@@ -2240,20 +2226,6 @@ $status = $this->input->post('txtStatus');
 
 		return $result;
 }
-public function VResched(){
-		$id = $this->input->get('id');
-		$this->db->where('intAppointmentID', $id);
-		$query = $this->db->select("intAppointmentID
-      ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strVisitPurpose")
-
-		->join('tblOnlineUser ou','ou.intOUserID=ap.intOUserID')
-		->get('tblAppointments ap');
-		if($query->num_rows() > 0){
-			return $query->row();
-		}else{
-			return false;
-		}
-	}
 //EXTERNAL VALIDATION
 	public function showExValPending(){
 		$result = array();
