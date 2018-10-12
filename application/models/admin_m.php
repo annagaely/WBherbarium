@@ -2227,7 +2227,6 @@ $status = $this->input->post('txtStatus');
 
 		return $result;
 }
-
 //EXTERNAL VALIDATION
 	public function showExValPending(){
 		$result = array();
