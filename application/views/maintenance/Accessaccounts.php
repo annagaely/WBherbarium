@@ -79,7 +79,7 @@
                   <div class="form-group">
                     <label>Staff Name:</label> <label style="color: red">*</label>
                      <input type="text" id="editstaffname" name ="eStaffName" class="form-control" disabled>
-                    
+
                   </div>
 
                    <div class = "row">
@@ -270,7 +270,7 @@ $('#btnSave').click(function(event){
                       let timerInterval
                       swal({
                         title: 'Saved',
-                        text: 'Your file has been saved.',
+                        text: 'Account has been saved.',
                         type: 'success',
                         timer: 1500,
                         showConfirmButton: false
@@ -344,33 +344,82 @@ $('#btnSave').click(function(event){
       });
 });
 $('#btnEditSave').click(function(event){
-          var data = $('#editAccountForm').serialize();
-            $.ajax({
-              type: 'ajax',
-              method: 'post',
-              url: '<?php echo base_url() ?>admin/updateAccounts',
-              data: data,
-              async: false,
-              dataType: 'json',
-              success: function(response){
+  var data = $('#editAccountForm').serialize();
+  if($('#editstaffname').val()!=''){
+    if($('#username2').val()!=''){
+      if($('#eAAPassword').val()!=''){
                 event.preventDefault();
-                if(response==true){
-                  $('#myEditModal').modal('hide');
-                  $('#editAccountForm')[0].reset();
-             //     if(response.type=='add'){
-               //     var type = 'added'
-           //       }else if(response.type=='update'){
-              //      var type ="updated"
-                  //}
-                 showAllAccounts();
-                }
-                else{
-                 alert('Error');
-                }
-              },
-              error: function(){
-                alert('Could not update data');
+                swal({
+                 title: 'Are you sure?',
+                 type: 'warning',
+                 showCancelButton: true,
+                 confirmButtonColor: '#3085d6',
+                 cancelButtonColor: '#d33',
+                 confirmButtonText: 'Yes, save it!'
+               }).then((result) => {
+                 if (result.value) {
+                   $.ajax({
+                     type: 'ajax',
+                     method: 'post',
+                     url: '<?php echo base_url() ?>admin/updateAccounts',
+                     data: data,
+                     async: false,
+                     dataType: 'json',
+                     success: function(response){
+                       event.preventDefault();
+                       if(response.success){
+                         $('#editAccountForm').modal('hide');
+                         $('#editAccountForm')[0].reset();
+                        if(response.type=='add'){
+                          var type = 'added'
+                         }else if(response.type=='update'){
+                          var type ="updated"
+                         }
+
+                        showAllAccounts();
+
+                       }
+                       let timerInterval
+                       swal({
+                         title: 'Saved',
+                         text: 'Account has been updated.',
+                         type: 'success',
+                         timer: 1500,
+                         showConfirmButton: false
+                       }).then(function() {
+                         location.reload();
+                       });
+                     },
+                     error: function(){
+                       alert('Could not update data');
+                     }
+                   });
+                 }
+               })
+             }else{
+               event.preventDefault();
+               swal({
+                 type: 'error',
+                 title: 'Incomplete input!',
+                 text: 'Please fill up all the required fields.'
+               });
               }
+            }else{
+           event.preventDefault();
+           swal({
+             type: 'error',
+             title: 'Incomplete input!',
+             text: 'Please fill up all the required fields.'
+           });
+         }
+       }else{
+         event.preventDefault();
+         swal({
+           type: 'error',
+           title: 'Incomplete input!',
+           text: 'Please fill up all the required fields.'
+
             });
+          }
           });
 </script>

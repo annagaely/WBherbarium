@@ -397,7 +397,6 @@ echo json_encode($msg);
 public function searchRank(){
 	$this->load->view('userside/iframe/datatablesearchRank.php');
 }
-
 public function searchGenus() {
 	$this->load->view('userside/iframe/datatablesearchGenus');
 }

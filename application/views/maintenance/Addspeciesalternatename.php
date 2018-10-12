@@ -77,17 +77,17 @@
 
                 <div class="form-group">
                     <label>Taxon Name:</label> <label style="color: red">*</label>
-                    <input list="speciesname" name="txtetaxonName" id="strTaxonName" placeholder="Taxon Name" class="form-control" >
+                    <input list="speciesname" name="txtetaxonName" id="strTaxonName1" placeholder="Taxon Name" class="form-control" >
                     <datalist id="speciesname">
                     </datalist>
                </div>
                 <div class="form-group">
                     <label>Language:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteLanguage" id="strLanguage" placeholder="Language" class="form-control" >
+                    <input type="text" name="txteLanguage" id="strLanguage1" placeholder="Language" class="form-control" >
               </div>
               <div class="form-group">
                     <label>Alternate Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteAName" id="strAlternateName" placeholder="Alternate Name" class="form-control" >
+                    <input type="text" name="txteAName" id="strAlternateName1" placeholder="Alternate Name" class="form-control" >
               </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -203,55 +203,56 @@ function showAllSpeciesName(){
 
    $('#btnEditSave').click(function(event){
 var data = $('#editSpeciesAlternateForm').serialize();
-        if($('#strPlantCode1').val()!=''){
-          if($('#strPlantType1').val()!=''){
-            event.preventDefault();
-            swal({
-              title: 'Are you sure?',
-              type: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, save it!'
-            }).then((result) => {
-              if (result.value) {
-                $.ajax({
-                  type: 'ajax',
-                  method: 'post',
-                  url: '<?php echo base_url() ?>admin/updateAltName',
-                  data: data,
-                  async: false,
-                  dataType: 'json',
-                  success: function(response){
-                    if(response.success){
-                      if(response.type=='add'){
-                        var type = 'added'
-                      }else if(response.type=='update'){
-                        var type ="updated"
+if($('#strTaxonName1').val()!=''){
+   if($('#strLanguage1').val()!=''){
+     if($('#strAlternateName1').val()!=''){
+       event.preventDefault();
+       swal({
+         title: 'Are you sure?',
+         type: 'warning',
+         showCancelButton: true,
+         confirmButtonColor: '#3085d6',
+         cancelButtonColor: '#d33',
+         confirmButtonText: 'Yes, save it!'
+       }).then((result) => {
+         if (result.value) {
+           $.ajax({
+             type: 'ajax',
+             method: 'post',
+             url: '<?php echo base_url() ?>admin/updateAltName',
+             data: data,
+             async: false,
+             dataType: 'json',
+             success: function(response){
+               if(response.success){
+                 if(response.type=='add'){
+                   var type = 'added'
+                 }else if(response.type=='update'){
+                   var type ="updated"
+                 }
+                 let timerInterval
+                 swal({
+                   title: 'Saved',
+                   text: 'Plant Type has been saved.',
+                   type: 'success',
+                   timer: 1500,
+                   showConfirmButton: false
+                 }).then(function() {
+                   event.preventDefault();
+                   $('#manageSpeciesAlternatetbl').dataTable().fnDestroy();
+               showAllAltName();
+               $('#myEditModal').modal('hide');
+               document.getElementById("editSpeciesAlternateForm").reset();
+
+                 });
+
+               }else{
+                 alert('Error');
                       }
-                      let timerInterval
-                      swal({
-                        title: 'Saved',
-                        text: 'Plant Type has been saved.',
-                        type: 'success',
-                        timer: 1500,
-                        showConfirmButton: false
-                      }).then(function() {
-                        event.preventDefault();
-                        $('#manageSpeciesAlternatetbl').dataTable().fnDestroy();
-                    showAllAltName();
-                    $('#myEditModal').modal('hide');
-                    document.getElementById("editSpeciesAlternateForm").reset();
-
-                      });
-
-                    }else{
-                      alert('Error');
+                    },
+                 error: function(){
+                   alert('Could not update data');
                     }
-                  },
-                  error: function(){
-                    alert('Could not update data');
-                  }
                 });
 
               };
@@ -259,6 +260,15 @@ var data = $('#editSpeciesAlternateForm').serialize();
             });
 
           }else{
+                     event.preventDefault();
+                     swal({
+                       type: 'error',
+                       title: 'Incomplete input!',
+                       text: 'Please fill up all the required fields.'
+                     });
+                     }
+                     }
+                     else{
             event.preventDefault();
             swal({
               type: 'error',
@@ -279,7 +289,7 @@ var data = $('#editSpeciesAlternateForm').serialize();
     });
       });
 
- 
+
 
 $('#btnSave').click(function(event){
       var url = '<?php echo base_url() ?>admin/addAltName';
@@ -321,7 +331,7 @@ $('#btnSave').click(function(event){
                      document.getElementById("addSpeciesAlterateForm").reset();
                     event.preventDefault();
                     });
-                  
+
                 },
                 error: function(){
                   alert('Could not save Data');
@@ -359,7 +369,7 @@ $('#btnSave').click(function(event){
 
       };
 
-    });   
+    });
 
 
 

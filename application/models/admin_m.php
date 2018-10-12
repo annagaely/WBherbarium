@@ -22,7 +22,7 @@ class admin_m extends CI_Model{
 
 /****** PHYLUM ONLY!!!!! ******/
 
- 
+
 	public function showAllPhylum()
 	{
 		$result = array();
@@ -92,8 +92,6 @@ class admin_m extends CI_Model{
     'strKingdomName'=>$this->input->post('txtekName'),
     'strPhylumName'=>$this->input->post('txtepName')
     );
-		$querycheckphylum=$this->db->query("select * from tblPhylum where [strPhylumName] = '".$phylumName."'");
-		if($querycheckphylum->num_rows() == 0){
 			$this->db->where('intPhylumID', $id);
 			$this->db->update('tblPhylum', $field);
 			if($this->db->affected_rows() > 0){
@@ -101,12 +99,8 @@ class admin_m extends CI_Model{
 			}else{
 				return false;
 			}
-		}else{
-			return false;
 		}
 
-
-  }
 
 	/****** END PHYLUM!!!!! ******/
 	/****** CLASS START!!!!! ******/
@@ -208,9 +202,7 @@ public function showAllClass()
 
     $phylumname=$this->input->post('speID');
     $classname=$this->input->post('txteCName');
-			$querycheckclass=$this->db->query("select * from tblClass where [strClassName] = '".$classname."'");
 
-			if($querycheckclass->num_rows() == 0){
 				$query="
 				declare @phylumid int;
 
@@ -228,9 +220,7 @@ public function showAllClass()
 						}else{
 							return false;
 						}
-			}else {
-				return false;
-			}
+
 	}
 
 	/****** END CLASS!!!!! ******/
@@ -318,8 +308,6 @@ public function showAllClass()
 
 $intClassID=$this->input->post('sceID');
     $strOrderName=$this->input->post('txteOName');
-		$querycheckorder=$this->db->query("select * from tblOrder where [strOrderName] = '".$strOrderName."'");
-		if($querycheckorder->num_rows() == 0){
 			$query="
 						declare @classid int;
 
@@ -337,9 +325,7 @@ $intClassID=$this->input->post('sceID');
 					}else{
 						return false;
 					}
-		}else {
-			return false;
-		}
+
   }
 	/****** END ORDER!!!!! ******/
 	/****** FAMILY START!!!!! ******/
@@ -425,9 +411,7 @@ public function showFamilyOrderName(){
 	$intOrderID=$this->input->post('seOID');
 	$strFamilyName=$this->input->post('txteFName');
 
-	$querycheckfam=$this->db->query("select * from tblFamily where [strFamilyName] = '".$strFamilyName."'");
 
-	if($querycheckfam->num_rows() == 0){
 		$query="
 		declare @orderid int;
 
@@ -441,9 +425,6 @@ if($this->db->query($query)){
 	}else{
 		return false;
 	}
-}else {
-	return false;
-}
 
   }
 
@@ -529,8 +510,6 @@ public function showGenusFamilyName(){
 
     $intFamilyID=$this->input->post('segFID');
     $strGenusName=$this->input->post('txteGName');
-		$querycheckgenus=$this->db->query("select * from tblGenus where [strGenusName] = '".$strGenusName."'");
-		if($querycheckgenus->num_rows() == 0) {
 			$query="
 				declare @familyid int;
 
@@ -548,9 +527,7 @@ public function showGenusFamilyName(){
 			}else{
 				return false;
 			}
-		}else {
-			return false;
-		}
+
 
   }
 
@@ -1258,28 +1235,32 @@ public function editValidator(){
 	$email = $this->input->post('SMgtEAdd');
 	$role = $this->input->post('sRole');
 	$department = $this->input->post('sCollege');
+	$querycheckemail=$this->db->query("select * from tblHerbariumStaff where [strEmailAddress] = '".$email."'");
+	if($querycheckemail->num_rows() == 0){
 
+			$query="
+			insert into tblHerbariumStaff([strFirstname]
+		      ,[strMiddlename]
+		      ,[strLastname]
+		      ,[strMiddleInitial]
+		      ,[strNameSuffix]
+		      ,[strContactNumber]
+		      ,[strEmailAddress]
+		      ,[strRole]
+		      ,[strCollegeDepartment]
+		      ,[strHasAccount]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."','No')
 
-	$query="
-	insert into tblHerbariumStaff([strFirstname]
-      ,[strMiddlename]
-      ,[strLastname]
-      ,[strMiddleInitial]
-      ,[strNameSuffix]
-      ,[strContactNumber]
-      ,[strEmailAddress]
-      ,[strRole]
-      ,[strCollegeDepartment]
-      ,[strHasAccount]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."','No')
+			";
+				$this->db->query($query);
 
-	";
-		$this->db->query($query);
-
-		if($this->db->affected_rows() > 0){
-			return true;
-		}else{
-			return false;
-		}
+				if($this->db->affected_rows() > 0){
+					return true;
+				}else{
+					return false;
+				}
+	} else{
+		return false;
+	}
 	}
 
 	public function editStaff(){
@@ -1393,43 +1374,36 @@ UPDATE tblHerbariumStaff
 	$staffname = $this->input->post('StaffName');
 	$username = $this->input->post('AAUName');
 	$password = $this->input->post('AAPass');
+	$querycheckuname=$this->db->query("select * from tblAccounts where [strUserName] = '".$username."'");
+	if($querycheckuname->num_rows() == 0) {
+		$query="
+
+		DECLARE @staffID 		INT;
+		DECLARE @username		VARCHAR(50);
+		DECLARE @password		VARCHAR(50);
+
+		Set @staffID ='$staffname'
+		Set @username ='$username'
+		Set @password ='$password'
+
+				INSERT INTO tblAccounts(intStaffID, strUsername, strPassword)
+				VALUES (@staffID, @username, @password)
+
+				update tblHerbariumStaff
+				set strHasAccount = 'Yes'
+				where intStaffID = @staffID
+
+		";
 
 
-
-	$query="
-
-	DECLARE @staffID 		INT;
-	DECLARE @username		VARCHAR(50);
-	DECLARE @password		VARCHAR(50);
-
-	Set @staffID ='$staffname'
-	Set @username ='$username'
-	Set @password ='$password'
-
-			INSERT INTO tblAccounts(intStaffID, strUsername, strPassword)
-			VALUES (@staffID, @username, @password)
-
-			update tblHerbariumStaff
-			set strHasAccount = 'Yes'
-			where intStaffID = @staffID
-
-	";
-
-
-	if($staffname!=''){
-			if($username!=''){
-				if($password!=''){
-					$this->db->query($query);
-				}else{
-					return false;
-				}
-			}else {
-				return false;
-			}
-		}else {
-				return false;
-			}
-
+		if($this->db->query($query)) {
+			return true;
+		} else {
+			return false;
+		}
+	}else {
+		return false;
+	}
 	}
 
 	public function editAccounts(){
@@ -1863,7 +1837,6 @@ public function showAllDepositReqOkay()
 		foreach ($query->result() as $r)
 		{
 			$btn = '<button style= "margin-right:2px" class="btn btn-primary btn-sm view-emailcon" title="Send Email" data="'.$r->intDepositReqID.'"><i class="far fa-envelope"></i></button><button style= "margin-right:2px" class="btn btn-primary btn-sm view-DResched" title="Re-schedule" data="'.$r->intDepositReqID.'"><i class="fas fa-calendar-alt"></i></button><button class="btn btn-primary btn-sm view-depositcon" title="Confirm" data="'.$r->intDepositReqID.'"><i class="fas fa-check"></i></button>';
-
 			$result[] = array(
 					$r->intDepositReqID,
 					$r->strFullName,
@@ -1938,6 +1911,20 @@ public function viewDepositReq(){
 			return false;
 		}
 	}
+	public function DResched(){
+			$id = $this->input->get('id');
+			$this->db->where('intDepositReqID', $id);
+			$query = $this->db->select("intDepositReqID
+	      ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName")
+
+			->join('tblOnlineUser ou','ou.intOUserID=dr.intOUserID')
+			->get('tblDepositReq dr');
+			if($query->num_rows() > 0){
+				return $query->row();
+			}else{
+				return false;
+			}
+		}
 
 public function updateConfirmation(){
 
@@ -2253,8 +2240,21 @@ $status = $this->input->post('txtStatus');
 
 		return $result;
 }
+public function VResched(){
+		$id = $this->input->get('id');
+		$this->db->where('intAppointmentID', $id);
+		$query = $this->db->select("intAppointmentID
+      ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strVisitPurpose")
 
-//EXTERNAL VALAIDATION
+		->join('tblOnlineUser ou','ou.intOUserID=ap.intOUserID')
+		->get('tblAppointments ap');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+//EXTERNAL VALIDATION
 	public function showExValPending(){
 		$result = array();
 		$query = $this->db->where('strStatus', "Further Verification")
@@ -2263,7 +2263,8 @@ $status = $this->input->post('txtStatus');
 		foreach ($query->result() as $r)
 		{
 
-		$btn = '<button class="btn btn-primary view-EVPending" title="View" data="'.$r->intPlantDepositID.'"><i class="far fa-eye"></i></button>';
+			$btn = '<button class="btn btn-primary view-EVConfirmation" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
+
 
 			$result[] = array(
 					$r->strAccessionNumber,

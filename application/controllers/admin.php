@@ -1267,7 +1267,17 @@ public function edit_event()
 		echo json_encode($result);
 
 	}
+	public function DResched(){
+			$result = $this->m->DResched();
+			echo json_encode($result);
 
+		}
+
+		public function VResched(){
+			$result = $this->m->VResched();
+			echo json_encode($result);
+
+		}
 
 
 	//SENDING EMAIL NOT YET FINAL
@@ -1626,7 +1636,6 @@ public function showExValAll()
           exit();
     }
 
-
 // public function EVSendMail()
 // {
 //     $config = Array(
@@ -1661,6 +1670,7 @@ public function showExValAll()
 
 //  }
 // }
+
 public function showAllExValidators()
 {
 	$result = $this->m->showAllExValidators();
@@ -1731,7 +1741,7 @@ public function SendtoExValidator(){
 		    $this->email->to($result_explode[1]);
 
 		    $this->email->subject('Ganda mo Mai');
-           
+
             $handle=opendir($path);
             while (($file = readdir($handle)))
                   {

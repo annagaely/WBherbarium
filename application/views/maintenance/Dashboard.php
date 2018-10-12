@@ -44,6 +44,7 @@
                   //          echo $row['totalDeposit']." <br />";
                   //     }
                   //       sqlsrv_free_stmt( $stmt);
+
                     ?>
                   </div>
                 </div>
@@ -57,6 +58,7 @@
                   <div class="count-number">
 
                     <?php
+
 
     $query = $this->db->query('select count(intOUserID) as totalAcc
                                    from tblOnlineUser');
@@ -86,6 +88,7 @@
                   //     }
                   //       sqlsrv_free_stmt( $stmt);
 
+
                     ?>
                   </div>
                 </div>
@@ -99,6 +102,7 @@
                   <div class="count-number">
 
                     <?php
+
 
                         $query = $this->db->query('select count(intAppointmentID) as totalVisit
                                   from tblAppointments');
@@ -129,6 +133,7 @@
                   //     }
                   //       sqlsrv_free_stmt( $stmt);
 
+
                     ?>
                   </div>
                 </div>
@@ -141,6 +146,7 @@
                   <div class="count-number">
 
                     <?php
+
                   // $serverName = "MSI";
                                             $query = $this->db->query('select count(intHerbariumSheetID) as totalCollection
                                   from viewHerbariumSheet');
