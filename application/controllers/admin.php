@@ -1814,4 +1814,105 @@ public function showNotifCount(){
 		$this->load->view('queries');
 		$this->load->view('templates/footer');
 	}
+
+
+
+public function DepReschedSendMail()
+{
+			$config = Array(
+				'protocol' => 'smtp',
+				'smtp_host' => 'ssl://smtp.googlemail.com',
+				'smtp_port' => 465,
+				'smtp_user' => 'WBHerbariumTA@gmail.com', // change it to yours
+				'smtp_pass' => 'WBHerbarium2018', // change it to yours
+				'mailtype' => 'html',
+				'charset' => 'iso-8859-1',
+				'wordwrap' => TRUE
+				);
+
+$email=$this->input->post('txtemail');
+$id=$this->input->post('txtId');
+$message = $this->input->post('txtreasonforresched');
+$date=$this->input->post('txtReschedDate');
+
+
+      $this->load->library('email', $config);
+      $this->email->set_newline("\r\n");
+      $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
+      $this->email->to($email);// change it to yours
+      $this->email->subject('External Validation');
+      $this->email->message("Insert Message here '".$message."' NEW DATE:'".$date."'");
+
+      if($this->email->send())
+     {
+     	// $result=$this->reschedadmin();
+     	// echo json_encode($result);
+     	return true;
+     }
+     else
+    {
+     show_error($this->email->print_debugger());
+
+ }
+}
+ function depreschedadmin(){
+	$result=$this->m->depreschedadmin();
+	if($result){
+	$mail=$this->DepReschedSendMail();
+	echo json_encode($mail);
+	}else{
+		return false;
+	}
+}
+
+public function VisitReschedSendMail()
+{
+			$config = Array(
+				'protocol' => 'smtp',
+				'smtp_host' => 'ssl://smtp.googlemail.com',
+				'smtp_port' => 465,
+				'smtp_user' => 'WBHerbariumTA@gmail.com', // change it to yours
+				'smtp_pass' => 'WBHerbarium2018', // change it to yours
+				'mailtype' => 'html',
+				'charset' => 'iso-8859-1',
+				'wordwrap' => TRUE
+				);
+
+$email=$this->input->post('txtemail');
+$id=$this->input->post('txtId');
+$message = $this->input->post('txtreasonforresched');
+$date=$this->input->post('txtReschedDate');
+
+
+      $this->load->library('email', $config);
+      $this->email->set_newline("\r\n");
+      $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
+      $this->email->to($email);// change it to yours
+      $this->email->subject('External Validation');
+      $this->email->message("Insert Message here '".$message."' NEW DATE:'".$date."'");
+
+      if($this->email->send())
+     {
+     	return true;
+     	// $result=$this->visitreschedadmin();
+     	// echo json_encode($result);
+     }
+     else
+    {
+     show_error($this->email->print_debugger());
+
+ }
+}
+ function visitreschedadmin(){
+	$result=$this->m->visitreschedadmin();
+	if($result){
+	$mail=$this->VisitReschedSendMail();
+	echo json_encode($mail);
+	}else{
+		return false;
+	}
+}
+
+
+
 }?>
