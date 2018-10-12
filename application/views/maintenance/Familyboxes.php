@@ -34,7 +34,7 @@
                   <div>
                     <label>Plant Family:</label> <label style="color: red">*</label>
 
-                     <input list="familyname" name ="sfbFID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <input id="famN" list="familyname" name ="sfbFID" placeholder="Family Name" class="form-control" autocomplete="off">
                      <datalist id ='familyname'>
                      </datalist>
 
@@ -89,7 +89,7 @@
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Family Name:</label> <label style="color: red">*</label>
-                     <input list="familyname" name ="sefbFID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <input id="famName1" list="familyname" name ="sefbFID" placeholder="Family Name" class="form-control" autocomplete="off">
                      <datalist id ='familyname'>
                      </datalist>
                   </div>
@@ -103,11 +103,11 @@
                   </div>
                   <div class="form-group">
                     <label>Rack Row:</label> <label style="color: red">*</label>
-                    <input id="rackRow" type="text" name="txterackrow" placeholder="Rack Row" class="form-control">
+                    <input id="rackRow1" type="text" name="txterackrow" placeholder="Rack Row" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Rack Column:</label> <label style="color: red">*</label>
-                    <input id="rackCol" type="text" name="txterackcol" placeholder="Rack Column" class="form-control">
+                    <input id="rackCol1" type="text" name="txterackcol" placeholder="Rack Column" class="form-control">
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -305,31 +305,98 @@ function resetForm() {
 
 $('#btnEditSave').click(function(event){
       var data = $('#editFBForm').serialize();
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/updateFamilyBox',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response.success){
-              $('#editFBForm').modal('hide');
-              $('#editFBForm')[0].reset();
-              if(editFBForm.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
+      if($('#famName1').val()!=''){
+     if($('#boxLimit1').val()!=''){
+       if($('#rackNum1').val()!=''){
+         if($('#rackRow1').val()!=''){
+           if($('#rackCol1').val()!=''){
+             event.preventDefault();
+             swal({
+               title: 'Are you sure?',
+               type: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes, save it!'
+             }).then((result) => {
+               if(result.value) {
+                 $.ajax({
+                   type: 'ajax',
+                   method: 'post',
+                   url: '<?php echo base_url() ?>admin/updateFamilyBox',
+                   data: data,
+                   async: false,
+                   dataType: 'json',
+                   success: function(response){
+                     if(response.success){
+                       $('#editFBForm').modal('hide');
+                       $('#editFBForm')[0].reset();
+                       if(editFBForm.type=='add'){
+                         var type = 'added'
+                       }else if(response.type=='update'){
+                         var type ="updated"
+                       }
+                       let timerInterval
+                       swal({
+                         title: 'Saved',
+                         text: 'Family box has been updated.',
+                         type: 'success',
+                         timer: 1500,
+                         showConfirmButton: false
+                       }).then(function() {
+                         location.reload();
+                       });
+                       showAllPhylum();
+                     }else{
+                       alert('Error');
+                     }
+                   },
+                   error: function(){
+                     alert('Could not update data');
+                   }
+                 });
+               }
+             })
+           }else{
+             event.preventDefault();
+             swal({
+               type: 'error',
+               title: 'Incomplete input!',
+               text: 'Please fill up all the required fields.'
+             });
               }
-              showAllPhylum();
             }else{
-              alert('Error');
-            }
-          },
-          error: function(){
-            alert('Could not update data');
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
+              });
           }
+        }else{
+       event.preventDefault();
+       swal({
+         type: 'error',
+         title: 'Incomplete input!',
+         text: 'Please fill up all the required fields.'
+       });
+     }
+     }else{
+       event.preventDefault();
+       swal({
+         type: 'error',
+         title: 'Incomplete input!',
+         text: 'Please fill up all the required fields.'
+       });
+     }
+   }else{
+     event.preventDefault();
+     swal({
+       type: 'error',
+       title: 'Incomplete input!',
+       text: 'Please fill up all the required fields.'
         });
+      }
     });
     //edit class
  $(document).on('click', '.FB-edit', function(event){
