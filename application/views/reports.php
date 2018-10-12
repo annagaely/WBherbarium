@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <!--
@@ -16,14 +17,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
-    <!--swal-->
-    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
-    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
-
-
     <!--PREMIUM-->
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -94,8 +87,8 @@
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
 <?php if(($this->session->userdata('strRole')=='CURATOR') || ($this->session->userdata('strRole')=='ADMINISTRATOR')):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
-              <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
+            <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+              <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
                   <ul id="TaxHierDropdown" class="collapse list-unstyled">
@@ -121,7 +114,7 @@
                 <li><a href="<?php echo base_url(); ?>admin/Staffmgt">Staff Management</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/Speciesauthor">Species Author</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/PlantType">Plant Type</a></li>
-                 <li class="active"><a href="<?php echo base_url(); ?>admin/SpeciesAltName">Species Alternate Name</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/SpeciesAltName">Species Alternate Name</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/Plantborrower">Plant Borrower</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
@@ -141,7 +134,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
-            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
 
 
 
@@ -317,375 +310,402 @@ if(data.intcount!=0){
       </div>
       </nav>
       </header>
-
-<div class="breadcrumb-holder">
+      <section class="dashboard-counts section-padding pb-0">
         <div class="container-fluid">
-          <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard" >Home</a></li>
-            <li class="breadcrumb-item">Maintenance</li>
-            <li class="breadcrumb-item active">Add Species Alternate Name</li>
-          </ul>
-        </div>
-</div>
+          <div class="row">
 
-      <!--ADD PHYLUM MODAL HAHAHAHAHAHA-->
-     <div class="card">
-        <div class="card-header d-flex align-items-center" >
-          <button type="button" id="btnAdd " data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Species Alternate Name</button>
-        </div>
+            <!-- Count item widget-->
+            <div class="col-xl-3 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-user"></i></div>
+                <div class="name"><strong class="text-uppercase">Total<br>Accounts</strong>
+                  <div class="count-number">
+                    <?php
+    $query = $this->db->query('select count(intDepositReqID) as totalDeposit from tblDepositReq');
+    if($query->num_rows() > 0){
+      foreach ($query->row() as $key => $query) {
+    echo $query;
+    }
 
-        <!-- Modal-->
-<div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
-  <div role="document" class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
+    }else{
+      return false;
+    }
+                  // $serverName = "MSI";
+                  // $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
+                  // $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                  //   if( $conn === false ) {
+                  //     die( print_r( sqlsrv_errors(), true));
+                  //     }
+                  //        $sql = "select count(intDepositReqID) as totalDeposit
+                  //                 from tblDepositReq";
+                  //       $stmt = sqlsrv_query( $conn, $sql );
+                  //   if( $stmt === false) {
+                  //    die( print_r( sqlsrv_errors(), true) );
+                  //     }
+                  //         while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                  //          echo $row['totalDeposit']." <br />";
+                  //     }
+                  //       sqlsrv_free_stmt( $stmt);
 
-                <h5 id="exampleModalLabel" class="modal-title">Add Species Alternate Name</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
+                    ?>
+                  </div>
+                </div>
               </div>
-         <div class="modal-body">
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-3 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-check"></i></div>
+                <div class="name"><strong class="text-uppercase">Total<br>Deposits</strong>
+                  <div class="count-number">
 
-                <form id= "addSpeciesAlterateForm" method="POST" enctype="multipart/form-data">
+                    <?php
 
-                  <div class="form-group">
-                    <label>Taxon Name:</label> <label style="color: red">*</label>
-                    <select name="txttaxonName" id="strTaxonName" placeholder="Taxon Name" class="form-control" >
-                    </select>
+
+    $query = $this->db->query('select count(intOUserID) as totalAcc
+                                   from tblOnlineUser');
+    if($query->num_rows() > 0){
+      foreach ($query->row() as $key => $query) {
+    echo $query;
+    }
+
+    }else{
+      return false;
+    }
+                  // $serverName = "MSI";
+
+                  // $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
+                  // $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                  //   if( $conn === false ) {
+                  //     die( print_r( sqlsrv_errors(), true));
+                  //     }
+                  //        $sql = "select count(intOUserID) as totalAcc
+                  //                 from tblOnlineUser";
+                  //       $stmt = sqlsrv_query( $conn, $sql );
+                  //   if( $stmt === false) {
+                  //    die( print_r( sqlsrv_errors(), true) );
+                  //     }
+                  //         while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                  //          echo $row['totalAcc']." <br />";
+                  //     }
+                  //       sqlsrv_free_stmt( $stmt);
+
+
+                    ?>
                   </div>
-                  <div class="form-group">
-                    <label>Language:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtLanguage" id="strLanguage" placeholder="Language" class="form-control" >
-                  </div>
-
-                  <div class="form-group">
-                    <label>Alternate Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtAName" id="strAlternateName" placeholder="Alternate Name" class="form-control" >
-                  </div>
-                  <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary">
-                    <input type="submit" value="Save" id='btnSave' class="btn btn-primary">
-                  </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-      <!--END PHYLUM MODAL-->
-        <!--ADD EDIT PHYLUM MODAL-->
-
-        <!-- Modal-->
-        <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
-          <div role="document" class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-
-                <h5 id="exampleModalLabel" class="modal-title">Edit Species Alternate Name</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+                </div>
               </div>
-              <div class="modal-body">
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-3 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-bill"></i></div>
+                <div class="name"><strong class="text-uppercase">Total<br />Visits</strong>
+                  <div class="count-number">
 
-                <form id= "editSpeciesAlternateForm" method="POST" enctype="multipart/form-data">
-                  <input type="hidden" name="txtId" id="act" value="0">
+                    <?php
 
-                <div class="form-group">
-                    <label>Taxon Name:</label> <label style="color: red">*</label>
-                    <input list="speciesname" name="txtetaxonName" id="strTaxonName1" placeholder="Taxon Name" class="form-control" >
-                    <datalist id="speciesname">
-                    </datalist>
-               </div>
-                <div class="form-group">
-                    <label>Language:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteLanguage" id="strLanguage1" placeholder="Language" class="form-control" >
-              </div>
-              <div class="form-group">
-                    <label>Alternate Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteAName" id="strAlternateName1" placeholder="Alternate Name" class="form-control" >
-              </div>
-                  <div class="modal-footer">
-                    <input type="reset" value="Clear" class="btn btn-secondary">
-                    <input type="submit" value="Save" id='btnEditSave' class="btn btn-primary">
+
+                        $query = $this->db->query('select count(intAppointmentID) as totalVisit
+                                  from tblAppointments');
+    if($query->num_rows() > 0){
+      foreach ($query->row() as $key => $query) {
+
+     echo $query;
+    }
+
+    }else{
+      return false;
+    }
+                  // $serverName = "MSI";
+
+                  // $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
+                  // $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                  //   if( $conn === false ) {
+                  //     die( print_r( sqlsrv_errors(), true));
+                  //     }
+                  //        $sql = "select count(intAppointmentID) as totalVisit
+                  //                 from tblAppointments";
+                  //       $stmt = sqlsrv_query( $conn, $sql );
+                  //   if( $stmt === false) {
+                  //    die( print_r( sqlsrv_errors(), true) );
+                  //     }
+                  //         while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                  //          echo $row['totalVisit']." <br />";
+                  //     }
+                  //       sqlsrv_free_stmt( $stmt);
+
+
+                    ?>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-padnote"></i></div>
+                <div class="name"><strong class="text-uppercase">Total<br />Collections</strong>
+                  <div class="count-number">
 
-                </form>
+                    <?php
+
+                  // $serverName = "MSI";
+                                            $query = $this->db->query('select count(intHerbariumSheetID) as totalCollection
+                                  from viewHerbariumSheet');
+    if($query->num_rows() > 0){
+      foreach ($query->row() as $key => $query) {
+
+     echo $query;
+    }
+
+    }else{
+      return false;
+    }
+
+                  // $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
+                  // $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                  //   if( $conn === false ) {
+                  //     die( print_r( sqlsrv_errors(), true));
+                  //     }
+                  //        $sql = "select count(intHerbariumSheetID) as totalCollection
+                  //                 from viewHerbariumSheet";
+                  //       $stmt = sqlsrv_query( $conn, $sql );
+                  //   if( $stmt === false) {
+                  //    die( print_r( sqlsrv_errors(), true) );
+                  //     }
+                  //         while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                  //          echo $row['totalCollection']." <br/>";
+                  //     }
+                  //       sqlsrv_free_stmt( $stmt);
+
+                    ?>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      <!--END PHYLUM MODAL-->
-      <div class="card">
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table dataTable no-footer" id="manageSpeciesAlternatetbl">
-              <thead>
-                <tr>
-                  <!-- <th scope="col" width= "10%">Phylum ID</th> -->
-                  <th scope="col" width= "10%">Taxon Name</th>
-                  <th scope="col" width= "10%">Language</th>
-                  <th scope="col" width= "10%">Alternate Name</th>
-                  <th scope="col" width= "10%">Actions</th>
-                </tr>
-              </thead>
-            </table>
+      </section>
+      <section class="dashboard-counts section-padding pt-1">
+        <div class="container-fluid">
+          <div class="row">
+
+            <!-- Count item widget-->
+            <div class="col-xl-3 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-user"></i></div>
+                <div class="name"><strong class="text-uppercase">Total<br>Accounts</strong>
+                  <div class="count-number">
+                    <?php
+    $query = $this->db->query('select count(intDepositReqID) as totalDeposit from tblDepositReq');
+    if($query->num_rows() > 0){
+      foreach ($query->row() as $key => $query) {
+    echo $query;
+    }
+
+    }else{
+      return false;
+    }
+                  // $serverName = "MSI";
+                  // $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
+                  // $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                  //   if( $conn === false ) {
+                  //     die( print_r( sqlsrv_errors(), true));
+                  //     }
+                  //        $sql = "select count(intDepositReqID) as totalDeposit
+                  //                 from tblDepositReq";
+                  //       $stmt = sqlsrv_query( $conn, $sql );
+                  //   if( $stmt === false) {
+                  //    die( print_r( sqlsrv_errors(), true) );
+                  //     }
+                  //         while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                  //          echo $row['totalDeposit']." <br />";
+                  //     }
+                  //       sqlsrv_free_stmt( $stmt);
+
+                    ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-3 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-check"></i></div>
+                <div class="name"><strong class="text-uppercase">Total<br>Deposits</strong>
+                  <div class="count-number">
+
+                    <?php
+
+
+    $query = $this->db->query('select count(intOUserID) as totalAcc
+                                   from tblOnlineUser');
+    if($query->num_rows() > 0){
+      foreach ($query->row() as $key => $query) {
+    echo $query;
+    }
+
+    }else{
+      return false;
+    }
+                  // $serverName = "MSI";
+
+                  // $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
+                  // $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                  //   if( $conn === false ) {
+                  //     die( print_r( sqlsrv_errors(), true));
+                  //     }
+                  //        $sql = "select count(intOUserID) as totalAcc
+                  //                 from tblOnlineUser";
+                  //       $stmt = sqlsrv_query( $conn, $sql );
+                  //   if( $stmt === false) {
+                  //    die( print_r( sqlsrv_errors(), true) );
+                  //     }
+                  //         while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                  //          echo $row['totalAcc']." <br />";
+                  //     }
+                  //       sqlsrv_free_stmt( $stmt);
+
+
+                    ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Count item widget-->
+            <div class="col-xl-3 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-bill"></i></div>
+                <div class="name"><strong class="text-uppercase">Total<br />Visits</strong>
+                  <div class="count-number">
+
+                    <?php
+
+
+                        $query = $this->db->query('select count(intAppointmentID) as totalVisit
+                                  from tblAppointments');
+    if($query->num_rows() > 0){
+      foreach ($query->row() as $key => $query) {
+
+     echo $query;
+    }
+
+    }else{
+      return false;
+    }
+                  // $serverName = "MSI";
+
+                  // $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
+                  // $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                  //   if( $conn === false ) {
+                  //     die( print_r( sqlsrv_errors(), true));
+                  //     }
+                  //        $sql = "select count(intAppointmentID) as totalVisit
+                  //                 from tblAppointments";
+                  //       $stmt = sqlsrv_query( $conn, $sql );
+                  //   if( $stmt === false) {
+                  //    die( print_r( sqlsrv_errors(), true) );
+                  //     }
+                  //         while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                  //          echo $row['totalVisit']." <br />";
+                  //     }
+                  //       sqlsrv_free_stmt( $stmt);
+
+
+                    ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-4 col-6">
+              <div class="wrapper count-title d-flex">
+                <div class="icon"><i class="icon-padnote"></i></div>
+                <div class="name"><strong class="text-uppercase">Total<br />Collections</strong>
+                  <div class="count-number">
+
+                    <?php
+
+                  // $serverName = "MSI";
+                                            $query = $this->db->query('select count(intHerbariumSheetID) as totalCollection
+                                  from viewHerbariumSheet');
+    if($query->num_rows() > 0){
+      foreach ($query->row() as $key => $query) {
+
+     echo $query;
+    }
+
+    }else{
+      return false;
+    }
+
+                  // $connectionInfo = array( "Database"=>"HerbariumDatabaseBackup", "UID"=>"sa", "PWD"=>"1234");
+                  // $conn = sqlsrv_connect( $serverName, $connectionInfo );
+                  //   if( $conn === false ) {
+                  //     die( print_r( sqlsrv_errors(), true));
+                  //     }
+                  //        $sql = "select count(intHerbariumSheetID) as totalCollection
+                  //                 from viewHerbariumSheet";
+                  //       $stmt = sqlsrv_query( $conn, $sql );
+                  //   if( $stmt === false) {
+                  //    die( print_r( sqlsrv_errors(), true) );
+                  //     }
+                  //         while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+                  //          echo $row['totalCollection']." <br/>";
+                  //     }
+                  //       sqlsrv_free_stmt( $stmt);
+
+                    ?>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
+      <div class="card">
+        <div class="card-header d-flex align-items-center">
+          <button type="button" class="btn btn-primary">Print Reports</button>
+        </div>
       </div>
+      <div class="card">
+       <div class="card-body">
+        <div class="table-responsive">
+           <table class="table dataTable no-footer" id="manageEVReqAlltbl">
+             <thead>
+               <tr>
+                 <th scope="col" width= "10%">Accession Number</th>
+                 <th scope="col" width= "10%">Species Name</th>
+                 <th scope="col" width= "10%">Collector Name</th>
+                 <th scope="col" width= "10%">Date Deposited</th>
+                 <th scope="col" width= "10%">Status</th>
+               </tr>
+             </thead>
+           </table>
+       </div>
+     </div>
+   </div>
+   <script type="text/javascript">
+       function showExValAll(){
 
+         $('#manageEVReqAlltbl').dataTable().fnClearTable();
+         $('#manageEVReqAlltbl').dataTable().fnDraw();
+         $('#manageEVReqAlltbl').dataTable().fnDestroy();
+         $('#manageEVReqAlltbl').dataTable({
+           "autoWidth":false,
+            "processing": true,
+            "serverSide": false,
+            "sAjaxSource": "<?php echo base_url('admin/showExValAll')?>",
+            "deferLoading": 10,
+            "bPaginate": true,
+            "aaSorting": [],
+            "fnInitComplete": function(){
 
-
-      </main>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
-
-      <!--Table-->
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
-      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
-
-<script type="text/javascript">
-
-    function showAllAltName()
-        {
-          $('#manageSpeciesAlternatetbl').dataTable().fnClearTable();
-          $('#manageSpeciesAlternatetbl').dataTable().fnDraw();
-          $('#manageSpeciesAlternatetbl').dataTable().fnDestroy();
-          $('#manageSpeciesAlternatetbl').dataTable({
-            "autoWidth":false,
-              "processing": true,
-              "serverSide": false,
-              "sAjaxSource": "<?php echo base_url('admin/showAllAltName')?>",
-              "deferLoading": 10,
-              "bPaginate": true,
-              "aaSorting": [],
-              "fnInitComplete": function(){
-              }
-          });
-        }
-
-
-      $(document).ready(function(){
-
-
-
-showAllAltName();
-showAllSpeciesName();
-
-$(document).on('click', '.altname-edit', function(e){
-      var id = $(this).attr('data');
-      $('#myEditModal').modal('show');
-      $('#myEditModal').find('.modal-title').text('Edit Author');
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/editAltName',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('input[name=txtetaxonName]').val(data.strScientificName);
-          $('input[name=txteLanguage]').val(data.strLanguage);
-          $('input[name=txteAName]').val(data.strAlternateName);
-          $('input[name=txtId]').val(data.intAltNameID);
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
-
-    });
-
-  });
-function showAllSpeciesName(){
-     $.ajax({
-       type: 'ajax',
-       url: '<?php echo base_url() ?>admin/showAllSpeciesName',
-       async: false,
-       dataType: 'json',
-       success: function(data){
-         var html = '';
-         var i;
-         for(i=0; i<data.length; i++){
-           html +='<option value="'+data[i].intSpeciesID+'">'+data[i].strScientificName+'</option>';
-         }
-         $('#strTaxonName').html(html);
-         $('#speciesname').html(html);
-       },
-       error: function(){
-         alert('Could not get Data from Database');
-       }
-     });
-   };
-
-   $('#btnEditSave').click(function(event){
-var data = $('#editSpeciesAlternateForm').serialize();
-if($('#strTaxonName1').val()!=''){
-   if($('#strLanguage1').val()!=''){
-     if($('#strAlternateName1').val()!=''){
-       event.preventDefault();
-       swal({
-         title: 'Are you sure?',
-         type: 'warning',
-         showCancelButton: true,
-         confirmButtonColor: '#3085d6',
-         cancelButtonColor: '#d33',
-         confirmButtonText: 'Yes, save it!'
-       }).then((result) => {
-         if (result.value) {
-           $.ajax({
-             type: 'ajax',
-             method: 'post',
-             url: '<?php echo base_url() ?>admin/updateAltName',
-             data: data,
-             async: false,
-             dataType: 'json',
-             success: function(response){
-               if(response.success){
-                 if(response.type=='add'){
-                   var type = 'added'
-                 }else if(response.type=='update'){
-                   var type ="updated"
-                 }
-                 let timerInterval
-                 swal({
-                   title: 'Saved',
-                   text: 'Plant Type has been saved.',
-                   type: 'success',
-                   timer: 1500,
-                   showConfirmButton: false
-                 }).then(function() {
-                   event.preventDefault();
-                   $('#manageSpeciesAlternatetbl').dataTable().fnDestroy();
-               showAllAltName();
-               $('#myEditModal').modal('hide');
-               document.getElementById("editSpeciesAlternateForm").reset();
-
-                 });
-
-               }else{
-                 alert('Error');
-                      }
-                    },
-                 error: function(){
-                   alert('Could not update data');
-                    }
-                });
-
-              };
-
-            });
-
-          }else{
-                     event.preventDefault();
-                     swal({
-                       type: 'error',
-                       title: 'Incomplete input!',
-                       text: 'Please fill up all the required fields.'
-                     });
-                     }
-                     }
-                     else{
-            event.preventDefault();
-            swal({
-              type: 'error',
-              title: 'Incomplete input!',
-              text: 'Please fill up all the required fields.'
-            });
             }
-        }else{
-          event.preventDefault();
-          swal({
-            type: 'error',
-            title: 'Incomplete input!',
-            text: 'Please fill up all the required fields.'
-          });
-          }
-
-
-    });
-      });
-
-
-
-$('#btnSave').click(function(event){
-      var url = '<?php echo base_url() ?>admin/addAltName';
-      var data = $('#addSpeciesAlterateForm').serialize();
-      //validate form
-
-        if($('#strTaxonName').val()!=''){
-          if($('#strLanguage').val()!=''){
-             if($('#strAlternateName').val()!=''){
-            event.preventDefault();
-            swal({
-              title: 'Are you sure?',
-              type: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, save it!'
-            }).then((result) => {
-              if (result.value) {
-                $.ajax({
-                type: 'ajax',
-                method: 'post',
-                url: url,
-                data: data,
-                async: false,
-                dataType: 'json',
-                success: function(response){
-                    let timerInterval
-                    swal({
-                      title: 'Saved',
-                      text: 'Plant Type has been saved.',
-                      type: 'success',
-                      timer: 1500,
-                      showConfirmButton: false
-                    }).then(function() {
-                    $('#manageSpeciesAlternatetbl').dataTable().fnDestroy();
-                    showAllAltName();
-                    $('#myModal').modal('hide');
-                     document.getElementById("addSpeciesAlterateForm").reset();
-                    event.preventDefault();
-                    });
-
-                },
-                error: function(){
-                  alert('Could not save Data');
-                }
-              });
-
-              }
-
-            });
-
-          }else{
-            event.preventDefault();
-            swal({
-              type: 'error',
-              title: 'Incomplete input!',
-              text: 'Please fill up all the required fields.'
-            });
-            }
-        }else{
-          event.preventDefault();
-          swal({
-            type: 'error',
-            title: 'Incomplete input!',
-            text: 'Please fill up all the required fields.'
-          });
-
+        });
       }
-    }else{
-          event.preventDefault();
-          swal({
-            type: 'error',
-            title: 'Incomplete input!',
-            text: 'Please fill up all the required fields.'
-          });
 
-      };
-
-    });
-
-
-
-
-        </script>
+    $(document).ready(function() {
+       //show
+       showExValAll();
+      });
+   </script>
