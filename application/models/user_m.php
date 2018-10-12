@@ -147,6 +147,9 @@ public function addDeposit(){
 	$desiredDateDeposit = $this->input->post('txtDateDesired');
 	$getusername = $this->session->userdata['strUserName'];
 
+
+$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$desiredDateDeposit."' ");
+if($querycheckeventtbl->num_rows()==0){
 	$query="
 
 	DECLARE @scientificname	VARCHAR(255);
@@ -183,10 +186,9 @@ SET NOCOUNT ON;
 		{
 			return false;
 		}
-
-
-
-
+}else{
+	return false;
+}
 	}
 
 public function addAppointment(){
@@ -237,10 +239,6 @@ declare @sessionid int;
 
 }
 
-public function getgenusname(){
-
-
-}
 
 public function showAccount(){
 		$id = $this->session->userdata['strUserName'];
