@@ -297,7 +297,7 @@ if(data.intcount!=0){
   });
  }
 
- // setInterval(function(){ 
+ // setInterval(function(){
  // load_unseen_notification();
  // countunreadnotif();
  // }, 5000);
