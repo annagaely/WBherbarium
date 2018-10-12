@@ -138,7 +138,7 @@
         }
 
 
-      $(document).ready(function(){
+      $(document).ready(function(){ 
 
     //show
     showAllPlantType();
@@ -171,6 +171,7 @@ $('#btnSave').click(function(event){
       var url = '<?php echo base_url() ?>admin/addPlantType';
       var data = $('#addPlantTypeForm').serialize();
       //validate form
+      
         if($('#strPlantCode').val()!=''){
           if($('#strPlantType').val()!=''){
             event.preventDefault();
@@ -212,7 +213,7 @@ $('#btnSave').click(function(event){
                      document.getElementById("addPlantTypeForm").reset();
                     event.preventDefault();
                     });
-
+                    
                   }
                 },
                 error: function(){
@@ -240,13 +241,13 @@ $('#btnSave').click(function(event){
             title: 'Incomplete input!',
             text: 'Please fill up all the required fields.'
           });
-
+          
       }
     });
-
+  
 $('#btnEditSave').click(function(event){
       var data = $('#editPlantTypeForm').serialize();
-
+      
         if($('#strPlantCode1').val()!=''){
           if($('#strPlantType1').val()!=''){
             event.preventDefault();
@@ -286,9 +287,9 @@ $('#btnEditSave').click(function(event){
                     showAllPlantType();
                     $('#myEditModal').modal('hide');
                     document.getElementById("editAuthorForm").reset();
-
+                    
                       });
-
+                      
                     }else{
                       alert('Error');
                     }
