@@ -85,6 +85,7 @@
                   //          echo $row['totalAcc']." <br />";
                   //     }
                   //       sqlsrv_free_stmt( $stmt);
+
                     ?>
                   </div>
                 </div>
@@ -98,6 +99,7 @@
                   <div class="count-number">
 
                     <?php
+
                         $query = $this->db->query('select count(intAppointmentID) as totalVisit
                                   from tblAppointments');
     if($query->num_rows() > 0){
@@ -126,6 +128,7 @@
                   //          echo $row['totalVisit']." <br />";
                   //     }
                   //       sqlsrv_free_stmt( $stmt);
+
                     ?>
                   </div>
                 </div>
@@ -166,6 +169,7 @@
                   //          echo $row['totalCollection']." <br/>";
                   //     }
                   //       sqlsrv_free_stmt( $stmt);
+
                     ?>
                   </div>
                 </div>
