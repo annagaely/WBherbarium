@@ -344,6 +344,7 @@ $('#btnSave').click(function(event){
       });
 });
 $('#btnEditSave').click(function(event){
+  var data = $('#editAccountForm').serialize();
   if($('#editstaffname').val()!=''){
     if($('#username2').val()!=''){
       if($('#eAAPassword').val()!=''){
@@ -366,29 +367,28 @@ $('#btnEditSave').click(function(event){
                      dataType: 'json',
                      success: function(response){
                        event.preventDefault();
-                       if(response==true){
-                         $('#myEditModal').modal('hide');
+                       if(response.success){
+                         $('#editAccountForm').modal('hide');
                          $('#editAccountForm')[0].reset();
-                    //     if(response.type=='add'){
-                      //     var type = 'added'
-                  //       }else if(response.type=='update'){
-                     //      var type ="updated"
-                         //}
-                         let timerInterval
-                         swal({
-                           title: 'Saved',
-                           text: 'Account has been updated.',
-                           type: 'success',
-                           timer: 1500,
-                           showConfirmButton: false
-                         }).then(function() {
-                           location.reload();
-                         });
+                        if(response.type=='add'){
+                          var type = 'added'
+                         }else if(response.type=='update'){
+                          var type ="updated"
+                         }
+
                         showAllAccounts();
+
                        }
-                       else{
-                        alert('Error');
-                       }
+                       let timerInterval
+                       swal({
+                         title: 'Saved',
+                         text: 'Account has been updated.',
+                         type: 'success',
+                         timer: 1500,
+                         showConfirmButton: false
+                       }).then(function() {
+                         location.reload();
+                       });
                      },
                      error: function(){
                        alert('Could not update data');

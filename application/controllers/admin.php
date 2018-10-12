@@ -40,15 +40,15 @@ function auth(){
         $midinit = $data['strMiddleInitial'];
         $lastname = $data['strLastname'];
         $role = $data['strRole'];
-        $sesdata = array(
+        $adminsesdata = array(
             'strUsername'  => $username,
             'strFirstname' => $firstname,
-            'strMiddleInitial'=>$midinit,
+            'strMiddleinitial'=>$midinit,
             'strLastname'=>$lastname,
             'strRole'     => $role,
             'logged_in' => TRUE
         );
-        $this->session->set_userdata($sesdata);
+        $this->session->set_userdata($adminsesdata);
         // access login for admin
 
 $msg['success'] = false;
@@ -1244,7 +1244,17 @@ public function edit_event()
 		echo json_encode($result);
 
 	}
+	public function DResched(){
+			$result = $this->m->DResched();
+			echo json_encode($result);
 
+		}
+
+		public function VResched(){
+			$result = $this->m->VResched();
+			echo json_encode($result);
+
+		}
 
 
 	//SENDING EMAIL NOT YET FINAL
@@ -1598,28 +1608,27 @@ public function EVSendMail()
   'charset' => 'iso-8859-1',
   'wordwrap' => TRUE
 );
-
-$email=$this->input->post('txtEmail');
-$id=$this->input->post('txtId');
-$message = $this->input->post('txtCustomMessage');
-
-      $this->load->library('email', $config);
-      $this->email->set_newline("\r\n");
-      $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
-      $this->email->to($email);// change it to yours
-      $this->email->subject('External Validation');
-      $this->email->message("Insert Message here ");
-
-      if($this->email->send())
-     {
-     	return true;
-     }
-     else
-    {
-     show_error($this->email->print_debugger());
-
- }
-}
+}//$email=$this->input->post('txtEmail');
+//$id=$this->input->post('txtId');
+//$message = $this->input->post('txtCustomMessage');
+//
+//      $this->load->library('email', $config);
+//      $this->email->set_newline("\r\n");
+//      $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
+//      $this->email->to($email);// change it to yours
+//      $this->email->subject('External Validation');
+//      $this->email->message("Insert Message here ");
+//
+//      if($this->email->send())
+//     {
+//     	return true;
+//     }
+//     else
+//    {
+//     show_error($this->email->print_debugger());
+//
+// }
+//}
 public function showAllExValidators()
 {
 	$result = $this->m->showAllExValidators();
@@ -1689,7 +1698,7 @@ public function SendtoExValidator(){
 		    $this->email->to($result_explode[1]);
 
 		    $this->email->subject('Ganda mo Mai');
-           
+
             $handle=opendir($path);
             while (($file = readdir($handle)))
                   {

@@ -92,7 +92,7 @@
           <div class="card-body">
             <h4 class="card-title">Gymnosperms</h4>
             <p class="card-text">Vascular plants.</p>
-              <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+              <button type="button" data-toggle="modal" data-target="#modalGymnosperm" class="btn btn-light-blue btn-md">Read more</button>
             </div>
           </div>
       </div>
@@ -108,7 +108,7 @@
           <div class="card-body">
             <h4 class="card-title">Algae</h4>
             <p class="card-text">Unicellular or multicellular.</p>
-            <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+            <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modalAlgae">Read more</button>
           </div>
         </div>
       </div>
@@ -124,7 +124,7 @@
           <div class="card-body">
             <h4 class="card-title">Bryophytes</h4>
             <p class="card-text">Mosses and liverworts.</p>
-            <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+            <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modalBryophytes">Read more</button>
           </div>
         </div>
       </div>
@@ -174,10 +174,147 @@
       </div>
     </div>
   </div>
+  <!--modal angiosperm-->
+  <div class="modal fade" id="modalAngiosperm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <div class="modal-content">
+        <div class="modal-header white-text" style="background-color: #800000;">
+          <h4 class="title">Angiosperm</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body mb-0 text-center">
+          <p>
+            A plant that has flowers and produces seeds enclosed within a carpel. The angiosperms are a large group and include herbaceous plants, shrubs, grasses, and most trees.
+          </p>
+          <section class="gallery-block grid-gallery my-0 py-0">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 item">
+                    <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/angiosperm.jpg">
+                        <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/angiosperm.jpg">
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4 item">
+                    <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/angiosperm2.jpg">
+                        <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/angiosperm2.jpg">
+                    </a>
+                </div>
+                <div class="col-md-36 col-lg-4 item">
+                    <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/angiosperm3.jpg">
+                        <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/angiosperm3.jpg">
+                    </a>
+                </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!--modal gymnosperm-->
+  <div class="modal fade" id="modalGymnosperm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <div class="modal-content">
+        <div class="modal-header white-text" style="background-color: #800000;">
+          <h4 class="title">Gymnosperm</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body mb-0 text-center">
+          <p>
+            A plant that has seeds unprotected by an ovary or fruit. Gymnosperms include the conifers, cycads, and ginkgo.
+          </p>
+          <section class="gallery-block grid-gallery my-0 py-0">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 item">
+                    <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/gymnosperm.jpg">
+                        <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/gymnosperm.jpg">
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4 item">
+                    <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/gymnosperm2.jpg">
+                        <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/gymnosperm2.jpg">
+                    </a>
+                </div>
+                <div class="col-md-36 col-lg-4 item">
+                    <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/gymnosperm3.jpg">
+                        <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/gymnosperm3.jpg">
+                    </a>
+                </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-
+  <!--modal algae-->
+  <div class="modal fade" id="modalAlgae" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <div class="modal-content">
+        <div class="modal-header white-text" style="background-color: #800000;">
+          <h4 class="title">Algae</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body mb-0 text-center">
+          <p>
+            A group of photosynthetic organisms that in general possess pigments such as chlorophyll but lack true roots, stems and leaves characteristic of terrestrial plants.
+          </p>
+          <section class="gallery-block grid-gallery my-0 py-0">planttypes/algae.jpgs="row">
+                <div class="col-md-6 col-lg-4 item">
+                    <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/algae.jpg">
+                        <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/algae.jpg">
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4 item">
+                    <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/algae2.jpg">
+                        <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/algae2.jpg">
+                    </a>
+                </div>
+                <div class="col-md-36 col-lg-4 item">
+                    <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/algae3.jpg">
+                        <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/algae3.jpg">
+                    </a>
+                </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--modal bryophytes-->
+  <div class="modal fade" id="modalBryophytes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+      <div class="modal-content">
+        <div class="modal-header white-text" style="background-color: #800000;">
+          <h4 class="title">Bryophytes</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body mb-0 text-center">
+          <p>
+            A small flowerless green plant of the division Bryophyta, which comprises the mosses and liverworts.
+          </p>
+          <section class="gallery-block grid-gallery my-0 py-0">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 item">
+                    <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/bryophyte.jpg">
+                        <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/bryophyte.jpg">
+                    </a>
+                </div>
+                <div class="col-md-6 col-lg-4 item">
+                    <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/bryophyte2.jpg">
+                        <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/bryophyte2.jpg">
+                    </a>
+                </div>
+                <div class="col-md-36 col-lg-4 item">
+                    <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/bryophyte3.jpg">
+                        <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/bryophyte3.jpg">
+                    </a>
+                </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- TABLE RANK RESULTS -->
   <center>
     <div id="searchRankTable" style="padding-left: 200px; padding-right: 200px; display: none">
@@ -224,31 +361,7 @@
               </div>
             </div>
           </div>
-          <section class="gallery-block grid-gallery pt-5">
-              <div class="container">
-                  <div class="row px-5">
-                      <div class="col-md-6 col-lg-4 item">
-                          <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/gallery/img/image1.jpg">
-                              <img class="img-fluid image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/gallery/img/image1.jpg">
-                          </a>
-                      </div>
-                      <div class="col-md-6 col-lg-4 item">
-                          <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/gallery/img/image1.jpg">
-                              <img class="img-fluid image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/gallery/img/image1.jpg">
-                          </a>
-                      </div>
-                      <div class="col-md-36 col-lg-4 item">
-                          <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/gallery/img/image1.jpg">
-                              <img class="img-fluid image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/gallery/img/image1.jpg">
-                          </a>
-                      </div>
-                  </div>
-              </div>
-          </section>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-          <script>
-              baguetteBox.run('.grid-gallery', { animation: 'slideIn'});
-          </script>
+
         </div>
       </div>
     </div>
@@ -281,4 +394,8 @@
       ranktbl.style.display = "none";
       genustbl.style.display="none";
     }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+  <script>
+      baguetteBox.run('.grid-gallery', { animation: 'slideIn'});
   </script>

@@ -73,9 +73,9 @@
           </div>
 
           <!-- Small Brand information, appears on minimized sidebar-->
-          <div class="sidenav-header-logo"><a href="<?php echo base_url(); ?>admin/Dashboard" class="brand-small text-center"> <strong>A</strong><strong class="text-primary">B</strong></a></div>
+          <div class="sidenav-header-logo"><a href="<?php echo base_url(); ?>admin/Dashboard" class="brand-small text-center"> <img src = "<?php echo base_url();?>assets/bower_components/logoto.png"> </a>
           </div>
-
+</div>
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
           <h5 class="sidenav-heading">Main</h5>
@@ -157,7 +157,7 @@
                 </li>
               </ul>
             </li>
-              <li><a href="#"> <i class="fa fa-database"></i>Query</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
             <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
             <?php endif;?>
         </div>
@@ -292,11 +292,11 @@ if(data.intcount!=0){
    }
   });
  }
- //setInterval(function(){ 
+ //setInterval(function(){
  //load_unseen_notification();
  //countunreadnotif();
  //}, 3000);
- 
+
 });
 </script>
 

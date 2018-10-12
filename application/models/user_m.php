@@ -27,7 +27,8 @@ public function userRegister(){
 			$affposition=$this->input->post('txtaffpos');
 			$username=$this->input->post('txtusername');
 			$password=$this->input->post('txtpassword');
-			$querycheckuname=$this->db->query("select * from tblOnlineUser where [strUserName] = '".$username."'");
+			// and [strEmailAdd	ress] = '".$email."'
+			$querycheckuname=$this->db->query("select * from tblOnlineUser where [strUserName] = '".$username."' OR [strEmailAddress] = '".$email."' ");
 			if($querycheckuname->num_rows() == 0){
 				$query="
 
@@ -76,7 +77,7 @@ public function userRegister(){
 							return false;
 						}
 			}else {
-				return false;
+				return $querycheckuname->row();
 			}
 		}
 
@@ -368,7 +369,7 @@ public function updatePassword(){
 
 		foreach ($query->result() as $r)
 		{
-			
+
 			$result[] = array(
 					// $r->intPhylumID,
 					$r->dtAppointmentDate,
@@ -529,7 +530,7 @@ if($querycheckdate->num_rows() == 0){
  $queryupdate="
 
 			update tblDepositReq
-			set dtAppointmentDate = '".$date."' 
+			set dtAppointmentDate = '".$date."'
 				where intDepositReqID = ".$id."
 
 			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has rescheduled his/her Deposit Request appointment to: ''".$date.", Deposit Request ID: ','".$id."'),0)
@@ -541,7 +542,7 @@ if($this->db->query($queryupdate)){
 		}else{
 			return false;
 		}
-  
+
 }else{
 	return false;
 }
@@ -555,7 +556,7 @@ public function updateCurrentDepositCancel(){
     $lastname = $this->session->userdata['strLastname'];
  $queryupdate="
 			update tblDepositReq
-			set strStatus = 'Cancelled' 
+			set strStatus = 'Cancelled'
 				where intDepositReqID = ".$id."
 
 			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has cancelld his/her Deposit Request appointment.  Deposit Request ID: ','".$id."'),0)
@@ -568,7 +569,7 @@ if($this->db->query($queryupdate)){
 		}else{
 			return false;
 		}
-  
+
 }
 
 

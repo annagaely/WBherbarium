@@ -4,8 +4,7 @@
 <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 
-
-        <div class="breadcrumb-holder">
+<div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard" >Home</a></li>
@@ -38,6 +37,7 @@
                     <div class="col-sm-6">
                     <label>Role:</label> <label style="color: red">*</label>
                     <select id="role" name="sRole" class="form-control">
+                      <option value =''> </option>
                       <option id="SA" name="nSA" value= "ADMINISTRATOR">Administrator</option>
                       <option id="CR" name="nCR" value= "CURATOR"> Curator</option>
                       <option id="StA" name="nStA" value= "STUDENT ASSISTANT"> Student Assistant</option>
@@ -143,7 +143,7 @@
                   </div>
                   </div>
                  <label>First Name:</label> <label style="color: red">*</label>
-                      <input id="fName1" type="text" name="eSMgtFName" placeholder="First Name " class="form-control">
+                      <input  id="fName1" type="text" name="eSMgtFName" placeholder="First Name " class="form-control">
                       <input type="hidden" name="txtId" value="0">
                   <div class="row">
                     <div class="form-group col-sm-8">
@@ -169,7 +169,7 @@
                   <div class="row">
                   <div class="col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input id="contactNum1" type="text"  data-mask="99999999999" name= "eSMgtCNumber" placeholder="Contact Number" class="form-control">
+                    <input id="contactNum1" type="text" pattern="^(09|\+639)\d{9}$" name= "eSMgtCNumber" placeholder="Contact Number" class="form-control">
                   </div>
 
                      <div class="col-sm-6"> <label style="color: red">*</label>
@@ -181,7 +181,7 @@
                   <div class="row">
                     <div class="col-sm-6">
                     <label>College Department:</label> <label style="color: red">*</label>
-                    <select id=cDepartment1 name = "esCollege" class="form-control">
+                    <select id="cDeparmtent1" name = "esCollege" class="form-control">
                       <option value= "College of Accountancy and Finance"> College of Accountancy and Finance</option>
                       <option value= "College of Architecture and Fine Arts"> College of Architecture and Fine Arts</option>
                       <option value= "College of Arts and Letters"> College of Arts and Letters</option>
@@ -238,8 +238,12 @@
         </div>
       </div>
     </div>
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
 
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+    <!--Table-->
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
     function showAllStaff()
     {
@@ -263,10 +267,11 @@
        showAllStaff();
 
     ///////adding//////
-$('#btnSave').click(function(){
+$('#btnSave').click(function(event){
+  var url = '<?php echo base_url();?>admin/addStaff';
       var data = $('#addStaffForm').serialize();
-      //validate form
-      +      if($('#role').val()!=''){
+
+      if($('#role').val()!=''){
         if($('#fName').val()!=''){
           if($('#lName').val()!=''){
             if($('#contactNum').val()!=''){
@@ -285,7 +290,7 @@ $('#btnSave').click(function(){
                       $.ajax({
                         type: 'ajax',
                         method: 'post',
-                        url: '<?php echo base_url() ?>admin/addStaff',
+                        url: url,
                         data: data,
                         async: false,
                         dataType: 'json',
@@ -295,19 +300,25 @@ $('#btnSave').click(function(){
                             $('#addStaffForm')[0].reset();
                             if(response.type=='add'){
                               var type = 'added'
-                              alert('asd');
                             }else if(response.type=='update'){
                               var type ="updated"
                             }
                             let timerInterval
                             swal({
                               title: 'Saved',
-                              text: 'Staff Info has been saved.',
+                              text: 'Account has been saved.',
                               type: 'success',
                               timer: 1500,
                               showConfirmButton: false
                             }).then(function() {
                               location.reload();
+                            });
+                          }else {
+                            event.preventDefault();
+                            swal({
+                              type: 'error',
+                              title: 'Error!',
+                              text: 'Email Address already exists.'
                             });
                           }
                         },
@@ -324,7 +335,7 @@ $('#btnSave').click(function(){
                     title: 'Incomplete input!',
                     text: 'Please fill up all the required fields.'
                   });
-                }
+                  }
               }else{
                 event.preventDefault();
                 swal({
@@ -332,7 +343,7 @@ $('#btnSave').click(function(){
                   title: 'Incomplete input!',
                   text: 'Please fill up all the required fields.'
                 });
-              }
+                }
             }else{
               event.preventDefault();
               swal({
@@ -340,8 +351,16 @@ $('#btnSave').click(function(){
                 title: 'Incomplete input!',
                 text: 'Please fill up all the required fields.'
               });
-            }
+              }
           }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
           event.preventDefault();
           swal({
             type: 'error',
@@ -349,25 +368,123 @@ $('#btnSave').click(function(){
             text: 'Please fill up all the required fields.'
           });
           }
-        }else{
-     event.preventDefault();
-     swal({
-       type: 'error',
-       title: 'Incomplete input!',
-       text: 'Please fill up all the required fields.'
-     });
-   }
- }else{
-   event.preventDefault();
-   swal({
-     type: 'error',
-     title: 'Incomplete input!',
-     text: 'Please fill up all the required fields.'
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
         });
-}
+        }
     });
 
-    $(document).on('click', '.staff-edit', function(){
+
+    $('#btnEditSave').click(function(event){
+    var url = '<?php echo base_url();?>admin/updateStaff';
+      var data = $('#editStaffForm').serialize();
+      //validate form
+      if($('#role1').val()!=''){
+        if($('#fName1').val()!=''){
+          if($('#lName1').val()!=''){
+            if($('#contactNum1').val()!=''){
+              if($('#emailAdd1').val()!=''){
+                if($('#cDepartment1').val()!=''){
+                  event.preventDefault();
+                  swal({
+                    title: 'Are you sure?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, save it!'
+                  }).then((result) => {
+                    if(result.value) {
+                      $.ajax({
+                        type: 'ajax',
+                        method: 'post',
+                        url: '<?php echo base_url() ?>admin/updateStaff',
+                        data: data,
+                        async: false,
+                        dataType: 'json',
+                        success: function(response){
+                          if(response.success){
+                            $('#editStaffForm').modal('hide');
+                            $('#editStaffForm')[0].reset();
+                            if(response.type=='add'){
+                              var type = 'added'
+                            }else if(response.type=='update'){
+                              var type ="updated"
+                            }
+                            showAllStaff();
+
+                          }
+                          let timerInterval
+                          swal({
+                            title: 'Saved',
+                            text: 'Phylum has been saved.',
+                            type: 'success',
+                            timer: 1500,
+                            showConfirmButton: false
+                          }).then(function() {
+                            location.reload();
+                          });
+                        },
+                        error: function(){
+                          alert('Could not save Data');
+                        }
+                      });
+                    }
+                  })
+                }else{
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Incomplete input!',
+                    text: 'Please fill up all the required fields.'
+                  });
+                  }
+              }else{
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Incomplete input!',
+                  text: 'Please fill up all the required fields.'
+                });
+                }
+            }else{
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
+              });
+              }
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+          }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+        }
+    });
+    $(document).on('click', '.staff-edit', function(event){
       var id = $(this).attr('data');
       $('#myEditModal').modal('show');
       $('#myEditModal').find('.modal-title').text('Edit Staff');
@@ -398,114 +515,5 @@ $('#btnSave').click(function(){
     });
 
   });
-
-$('#btnEditSave').click(function(){
-      var data = $('#editStaffForm').serialize();
-      +      if($('#role1').val()!=''){
-      if($('#fName1').val()!=''){
-        if($('#lName1').val()!=''){
-          if($('#contactNum1').val()!=''){
-            if($('#emailAdd1').val()!=''){
-              if($('#cDepartment1').val()!=''){
-                event.preventDefault();
-                swal({
-                  title: 'Are you sure?',
-                  type: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Yes, save it!'
-                }).then((result) => {
-                  if(result.value) {
-                    $.ajax({
-                      type: 'ajax',
-                      method: 'post',
-                      url: '<?php echo base_url() ?>admin/updateStaff',
-                      data: data,
-                      async: false,
-                      dataType: 'json',
-                      success: function(response){
-                        if(response==true){
-                          $('#myEditModal').modal('hide');
-                          $('#editStaffForm')[0].reset();
-                     //     if(response.type=='add'){
-                       //     var type = 'added'
-                   //       }else if(response.type=='update'){
-                      //      var type ="updated"
-                          //}
-                          let timerInterval
-                          swal({
-                            title: 'Saved',
-                            text: 'Staff Info has been updated.',
-                            type: 'success',
-                            timer: 1500,
-                            showConfirmButton: false
-                          }).then(function() {
-                            location.reload();
-                          });
-                          showAllCollector();
-                        }
-                        else{
-                         alert('Error');
-                        }
-                      },
-                      error: function(){
-                        alert('Could not update data');
-                      }
-                    });
-                  }
-                })
-              }else{
-                event.preventDefault();
-                swal({
-                  type: 'error',
-                  title: 'Incomplete input!',
-                  text: 'Please fill up all the required fields.'
-                });
-              }
-            }else{
-              event.preventDefault();
-              swal({
-                type: 'error',
-                title: 'Incomplete input!',
-                text: 'Please fill up all the required fields.'
-              });
-            }
-          }else{
-            event.preventDefault();
-            swal({
-              type: 'error',
-              title: 'Incomplete input!',
-              text: 'Please fill up all the required fields.'
-            });
-            }
-          }else{
-           event.preventDefault();
-           swal({
-             type: 'error',
-             title: 'Incomplete input!',
-             text: 'Please fill up all the required fields.'
-           });
-          }
-        }else{
-        event.preventDefault();
-        swal({
-          type: 'error',
-          title: 'Incomplete input!',
-          text: 'Please fill up all the required fields.'
-        });
-      }
-    }else{
-      event.preventDefault();
-      swal({
-        type: 'error',
-        title: 'Incomplete input!',
-        text: 'Please fill up all the required fields.'
-        });
-      }
-    });
-
-
-
-    });
+});
 </script>
