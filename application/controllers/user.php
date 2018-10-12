@@ -152,7 +152,7 @@ public function howtovisit()
 	            'strUserName'  => $username,
 	            'strFirstName' => $firstname,
 	            'strMiddleInitial'=>$midinit,
-	            'strLastname'=>$lastname,
+	            'strLastName'=>$lastname,
 	            'logged_in' => TRUE
 	        );
 	        $this->session->set_userdata($sesdata);
