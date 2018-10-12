@@ -180,26 +180,50 @@
 
   <!-- TABLE RANK RESULTS -->
   <center>
-    <div id="searchRankTable" style="padding-left: 200px; padding-right: 200px; display: none">
-      <iframe class="embed-responsive-item" src="<?php echo site_url('user/searchRank');?>" width="100%" height="500vh" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
+    <div style="padding-left: 200px; padding-right: 200px">
+      <iframe class="embed-responsive-item" src="<?php echo site_url('user/searchRank');?>" width="100%" height="100vh" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
 
     </div>
   </center>
 
   <!--TABLE GENUS RESULTS-->
   <center>
-    <div id="searchGenusTable" style="padding-left: 200px; padding-right: 200px; display: none;">
-      <iframe class="embed-responsive-item" src="<?php echo site_url('user/searchGenus');?>" width="100%" height="500vh" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
+    <div style="padding-left: 200px; padding-right: 200px">
+        <table class="table-responsive text-nowrap table table-hover table-bordered" id="searchGenusTable" style="display: none;">
+          <thead>
+            <tr>
+              <th scope="col">Genus</th>
+              <th scope="col">Phylum</th>
+              <th scope="col">Family</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Jacob</td>
+              <td>Jacob</td>
+            </tr>
+          </tbody>
+        </table>
     </div>
   </center>
 
   <!--TABLE SPECIE RESULTS-->
   <center>
-    <div id="searchSpecieTable" style="padding-left: 350px; padding-right: 350px; display: none;">
-      <iframe class="embed-responsive-item" src="<?php echo site_url('user/searchSpecie');?>" width="100%" height="500vh" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
+    <div style="padding-left: 350px; padding-right: 350px">
+        <table class="table-responsive text-nowrap table table-hover table-bordered" id="searchSpecieTable" style="display: none;">
+          <thead>
+            <tr>
+              <th scope="col">Specie Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a data-toggle="modal" data-target="#herbariumSheet">Jacob</a></td>
+            </tr>
+          </tbody>
+        </table>
     </div>
-    <!--              <td><a data-toggle="modal" data-target="#herbariumSheet">Jacob</a></td>
--->
   </center>
   <!-- Central Modal Small -->
 <div class="modal fade" id="herbariumSheet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -260,26 +284,14 @@
   <script>
     function showTableRank() {
       var ranktbl = document.getElementById("searchRankTable");
-      var genustbl = document.getElementById("searchGenusTable");
-      var specietbl = document.getElementById("searchSpecieTable");
-      ranktbl.style.display = "block";
-      genustbl.style.display="none";
-      specietbl.styyle.display="none";
+      ranktbl.style.display = "table";
     }
     function showTableGenus() {
-      var ranktbl = document.getElementById("searchRankTable");
-      var specietbl = document.getElementById("searchSpecieTable");
       var genustbl = document.getElementById("searchGenusTable");
-      genustbl.style.display = "block";
-      ranktbl.style.display="none";
-      specietbl.style.display="none";
+      genustbl.style.display = "table";
     }
     function showTableSpecie() {
-      var ranktbl = document.getElementById("searchRankTable");
-      var genustbl = document.getElementById("searchGenusTable");
       var specietbl = document.getElementById("searchSpecieTable");
-      specietbl.style.display = "block";
-      ranktbl.style.display = "none";
-      genustbl.style.display="none";
+      specietbl.style.display = "table";
     }
   </script>
