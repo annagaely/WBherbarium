@@ -1218,16 +1218,7 @@ public function edit_event()
           exit();
 
     }
-    public function DResched(){
-		$result = $this->m->DResched();
-		echo json_encode($result);
 
-	}
-	public function VResched(){
-		$result = $this->m->VResched();
-		echo json_encode($result);
-
-	}
 	public function showAllDepositReqAll(){
 		$output = $this->admin_m->showAllDepositReqAll();
 
