@@ -57,7 +57,7 @@
           <ul class="navbar-nav nav-flex-icons">
 
             <li class="nav-item">
-              
+
                 <button type="button" data-toggle="modal" data-target="#modalLoginForm" class=" btn btn-outline-light py-2" style="border-bottom-left-radius: 25px; border-bottom-right-radius: 25px; border-top-left-radius: 25px; border-top-right-radius: 25px;">Login</button>
             </li>
           </ul>
@@ -65,10 +65,10 @@
       </div>
     </nav>
     <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog cascading-modal" role="document" >
             <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                <div class="modal-header text-center white-text" style="background-color: #800000">
+                    <h4 class="title">Sign in</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
