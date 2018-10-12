@@ -100,9 +100,9 @@
 
       <div class="modal-body">
           <form id= "updateStatusForm" method="POST" enctype="multipart/form-data">
-            
-          
-             
+
+
+
                   <div class="form-group">
                       <label style="font-size: 14px;">Deposit ID:</label>
                       <input type="hidden" name="txtId" id="txtID" value="0">
@@ -124,7 +124,7 @@
                        <label style="font-size: 14px;">Full Locality:</label>
                        <textarea name="txtFullLocation" id="strFullLocation" class="form-control" disabled=""></textarea>
                      </div>
-                  
+
 
             <div class="row">
                      <div class="col-sm-6">
@@ -141,12 +141,13 @@
                       <label style="font-size: 14px;">Description:</label>
                       <textarea name="txtDescription" class="form-control" rows="3" id="strPlantDesc" disabled=""></textarea>
                     </div>
-              
+
                      <div class="modal-footer">
                       <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
+
                       <input type="submit" id="btnSave" value="Proceed" class="btn btn-primary">
                      </div>
-  
+
                  </form>
          </div>
              </div>
@@ -206,6 +207,7 @@
                      <label>Date :</label>
                      <input type="Date" name="txtolddate" id="dtoldDate"  class="form-control" disabled="">
                    </div>
+
 
                    <div class="form-group">
                        <label>Reason for rescheduling :</label>
@@ -346,7 +348,7 @@
               <input type ="hidden" name = "txtEmail" id = "txtemail" value ="0">
               <input type="email" name="txtEmailCon" id="strEmailAdress" class="form-control col-sm-10" disabled>
             </div>
-             
+
             <div class="form-group row pr-4">
                       <label class="col-sm-2">From:</label>
                       <input type="email" class="form-control col-sm-10" value= "WBHerbariumTA@gmail.com" disabled>
@@ -364,11 +366,13 @@
             </div>
             <div class="form-group">
                <label>Message:</label>
-                <textarea  id="strCustomMessage" name="txtCustomMessage" class="form-control" placeholder="Type your message here.." ></textarea> 
+                <textarea  id="strCustomMessage" name="txtCustomMessage" class="form-control" placeholder="Type your message here.." ></textarea>
             </div>
 
                   <div class="modal-footer">
+
                     <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
+
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
@@ -409,7 +413,6 @@
                               });
                                   },
                                   error: function(){
-
                 }
             });
          }
@@ -460,20 +463,16 @@
 
         <div class="modal-body">
           <form id= "ConfirmForm" method="POST" enctype="multipart/form-data">
-            <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Deposit ID:</label>
-                     </div>
-                     <div class="col-sm-8">
+            <div class="form-group row">>
+              <label style="font-size: 14px;">Deposit ID:</label>
+
+              <div class="col-sm-8">
                       <input type="hidden" name="txtId" id="txtID" value="0">
                        <input type="text" name="txtDepositReqID" id="intDepositReqID" class="form-control" disabled="">
                      </div>
             </div>
            <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Collector's Name:</label>
-                     </div>
-                     <div class="col-sm-8">
+             <label style="font-size: 14px;">Collector's Name:</label>
                       <input type="hidden" name="txtId" id="txtID" value="0">
                        <input type="text" name="txtCollectorName" id="strFullName" class="form-control" disabled="">
                      </div>
@@ -489,8 +488,9 @@
                       </select>
                      </div>
             </div>
-                    
+
                   <div class="modal-footer">
+
                     <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
                      <input type="submit" id="btnConfirm" value="Confirm" class="btn btn-primary">
                   </div>
@@ -498,11 +498,11 @@
         </div>
       </div>
     </div>
-  </div>
+
 
  </main>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
- 
+
 
  <script type="text/javascript">
     function showAllDepositReqPending()
@@ -519,7 +519,7 @@
          "bPaginate": true,
          "aaSorting": [],
          "fnInitComplete": function(){
-                   
+
          }
      });
    }
@@ -563,7 +563,7 @@ $('#btnSave').click(function(event){
                       timer: 1500,
                       showConfirmButton: false
                     }).then(function() {
-                    
+
                     showAllDepositReqPending();
                     showAllDepositReqOkay();
                     showAllDepositReqAll();
@@ -625,7 +625,7 @@ $('#btnSave').click(function(event){
          "bPaginate": true,
          "aaSorting": [],
          "fnInitComplete": function(){
-                   
+
          }
      });
    }
@@ -710,7 +710,7 @@ $(document).ready(function() {
           async: false,
           dataType: 'json',
           success: function(response){
-         
+
             if(response==true){
 
 
@@ -725,7 +725,7 @@ $(document).ready(function() {
                       timer: 1500,
                       showConfirmButton: false
                     }).then(function() {
-                    
+
                     showAllDepositReqPending();
                     showAllDepositReqOkay();
                     showAllDepositReqAll();
@@ -783,14 +783,14 @@ $(document).ready(function() {
          "bPaginate": true,
          "aaSorting": [],
          "fnInitComplete": function(){
-                   
+
          }
      });
    }
 
 $(document).ready(function() {
     //show
-    showAllDepositReqAll(); 
+    showAllDepositReqAll();
 
 
 });
