@@ -283,9 +283,11 @@ public function showProfile(){
 public function updateProfile()
 	{
    		$id = $this->session->userdata['strUserName'];
+   		$initial=$this->input->post('txtmidname');
    		$field = array(
    			 'strFirstName'=>$this->input->post('txtfirstname'),
    			 'strMiddleName'=>$this->input->post('txtmidname'),
+   			 'strMiddleInitial'=> substr($initial,0,1),
    			 'strLastName'=>$this->input->post('txtlastname'),
    			 'strNameSuffix'=>$this->input->post('txtnamesuffix'),
    			 'strContactNumber'=>$this->input->post('txtphonenum'),

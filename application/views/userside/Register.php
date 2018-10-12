@@ -272,7 +272,10 @@
                       if($('#strAffiliationPosition').val()!=''){
                         if($('#strAffiliationAdd').val()!=''){
                           if($('#strUsername').val()!=''){
-                            if($('#strPassword').val()!='' && $('#strPassword'.val() < 6)){
+                            if($('#strPassword').val()!=''){
+                              value = document.getElementById('strPassword').value;
+ // if (value.length < 3)
+                               if (value.length > 5){
                               event.preventDefault();
                               swal({
                                 title: 'Are you sure?',
@@ -305,14 +308,14 @@
                                           window.location.href='<?php echo base_url();?>user/index';
                                         });event.preventDefault();
                                       }else {
-                                        if($('#strUserName').val()==data.strUserName){
+                                        if($('#strUsername').val()==data.strUserName){
                                           event.preventDefault();
                                           swal({
                                             type: 'error',
                                             title: 'Error!',
                                             text: 'Username already exists.'
                                           });
-                                        }if($('#strEmailAdd')){
+                                        }if($('#strEmailAdd').val()==data.strEmailAddress){
                                           event.preventDefault();
                                           swal({
                                             type: 'error',
@@ -334,6 +337,14 @@
                                   });
                                 }
                               })
+                              }else{
+                              event.preventDefault();
+                              swal({
+                                type: 'error',
+                                title: 'Invalid input!',
+                                text: 'Password must be 6 characters and above.'
+                              });
+                              }
                             }else{
                               event.preventDefault();
                               swal({
