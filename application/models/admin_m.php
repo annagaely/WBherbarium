@@ -55,15 +55,22 @@ class admin_m extends CI_Model{
 			$kingdomName=$this->input->post('txtkName');
 			$phylumName=$this->input->post('txtpName');
 
-			$query="
-			insert into tblPhylum(strDomainName,strKingdomName,strPhylumName) VALUES ('".$domainName."','".$kingdomName."','".$phylumName."')
+			$querycheckphylum=$this->db->query("select * from tblPhylum where [strPhylumName] = '".$phylumName."'");
+			if($querycheckphylum->num_rows() == 0){
+				$query="
+				insert into tblPhylum(strDomainName,strKingdomName,strPhylumName) VALUES ('".$domainName."','".$kingdomName."','".$phylumName."')
 
-			";
-		if($this->db->query($query)){
-			return true;
-		}else{
+				";
+			if($this->db->query($query)){
+				return true;
+			}else{
+				return false;
+			}
+		}else {
 			return false;
 		}
+
+
 	}
 
 	public function editPhylum(){
@@ -79,18 +86,26 @@ class admin_m extends CI_Model{
 
     public function updatePhylum(){
     $id = $this->input->post('txtId');
+		$phylumName = $this->input->post('txtepName');
     $field = array(
     'strDomainName'=>$this->input->post('txtedName'),
     'strKingdomName'=>$this->input->post('txtekName'),
     'strPhylumName'=>$this->input->post('txtepName')
     );
-    $this->db->where('intPhylumID', $id);
-    $this->db->update('tblPhylum', $field);
-    if($this->db->affected_rows() > 0){
-      return true;
-    }else{
-      return false;
-    }
+		$querycheckphylum=$this->db->query("select * from tblPhylum where [strPhylumName] = '".$phylumName."'");
+		if($querycheckphylum->num_rows() == 0){
+			$this->db->where('intPhylumID', $id);
+			$this->db->update('tblPhylum', $field);
+			if($this->db->affected_rows() > 0){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+
+
   }
 
 	/****** END PHYLUM!!!!! ******/
@@ -139,20 +154,27 @@ public function showAllClass()
 			$phylumID=$this->input->post('spID');
 			$className=$this->input->post('txtCName');
 
-			$query="
-		declare @phylumid int;
+			$querycheckclass=$this->db->query("select * from tblClass where [strClassName] = '".$className."'");
 
-		set @phylumid = (select intPhylumID from tblPhylum where strPhylumName = '".$phylumID."')
+			if($querycheckclass->num_rows() == 0) {
+				$query="
+			declare @phylumid int;
 
-insert into tblClass(intPhylumID,strClassname) VALUES (@phylumid,'".$className."')
+			set @phylumid = (select intPhylumID from tblPhylum where strPhylumName = '".$phylumID."')
 
-			";
+	insert into tblClass(intPhylumID,strClassname) VALUES (@phylumid,'".$className."')
 
-		if($this->db->query($query)){
-			return true;
-		}else{
+				";
+
+			if($this->db->query($query)){
+				return true;
+			}else{
+				return false;
+			}
+		}else {
 			return false;
 		}
+
 	}
 
 
@@ -186,24 +208,29 @@ insert into tblClass(intPhylumID,strClassname) VALUES (@phylumid,'".$className."
 
     $phylumname=$this->input->post('speID');
     $classname=$this->input->post('txteCName');
+			$querycheckclass=$this->db->query("select * from tblClass where [strClassName] = '".$classname."'");
 
-$query="
-declare @phylumid int;
+			if($querycheckclass->num_rows() == 0){
+				$query="
+				declare @phylumid int;
 
-		set @phylumid = (select intPhylumID from tblPhylum where strPhylumName = '".$phylumname."')
+						set @phylumid = (select intPhylumID from tblPhylum where strPhylumName = '".$phylumname."')
 
-			update tblClass
-			set intPhylumID = @phylumid,
-				strClassName = '".$classname."'
-				where intClassID = ".$id."
+							update tblClass
+							set intPhylumID = @phylumid,
+								strClassName = '".$classname."'
+								where intClassID = ".$id."
 
-			";
+							";
 
-if($this->db->query($query)){
-			return true;
-		}else{
-			return false;
-		}
+				if($this->db->query($query)){
+							return true;
+						}else{
+							return false;
+						}
+			}else {
+				return false;
+			}
 	}
 
 	/****** END CLASS!!!!! ******/
@@ -249,20 +276,26 @@ if($this->db->query($query)){
 			$intClassID=$this->input->post('txtcID');
 			$strOrderName=$this->input->post('txtOName');
 
-			$query="
-			declare @classid int;
+			$querycheckorder=$this->db->query("select * from tblOrder where [strOrderName] = '".$strOrderName."'");
+			if($querycheckorder->num_rows() == 0){
+				$query="
+				declare @classid int;
 
-		set @classid = (select intClassID from tblClass where strClassName = '".$intClassID."')
-			insert into tblOrder(intClassID,strOrderName) VALUES (@classid,'".$strOrderName."')
+			set @classid = (select intClassID from tblClass where strClassName = '".$intClassID."')
+				insert into tblOrder(intClassID,strOrderName) VALUES (@classid,'".$strOrderName."')
 
-			";
+				";
 
 
-					if($this->db->query($query)){
-			return true;
-		}else{
+						if($this->db->query($query)){
+				return true;
+			}else{
+				return false;
+			}
+		}else {
 			return false;
 		}
+
 	}
 		public function editOrder(){
 
@@ -285,25 +318,28 @@ if($this->db->query($query)){
 
 $intClassID=$this->input->post('sceID');
     $strOrderName=$this->input->post('txteOName');
+		$querycheckorder=$this->db->query("select * from tblOrder where [strOrderName] = '".$strOrderName."'");
+		if($querycheckorder->num_rows() == 0){
+			$query="
+						declare @classid int;
 
-$query="
-			declare @classid int;
+					set @classid = (select intClassID from tblClass where strClassName = '".$intClassID."')
 
-		set @classid = (select intClassID from tblClass where strClassName = '".$intClassID."')
+						update tblOrder
+						set intClassID = @classid,
+							strOrderName = '".$strOrderName."'
+							where intOrderID = ".$id."
 
-			update tblOrder
-			set intClassID = @classid,
-				strOrderName = '".$strOrderName."'
-				where intOrderID = ".$id."
+						";
 
-			";
-
-if($this->db->query($query)){
-			return true;
-		}else{
+			if($this->db->query($query)){
+						return true;
+					}else{
+						return false;
+					}
+		}else {
 			return false;
 		}
-
   }
 	/****** END ORDER!!!!! ******/
 	/****** FAMILY START!!!!! ******/
@@ -346,20 +382,27 @@ public function showFamilyOrderName(){
 
 			$intOrderID=$this->input->post('txtoID');
 			$strFamilyName=$this->input->post('txtfName');
-			$query="
-			declare @orderid int;
 
-		set @orderid = (select intOrderID from tblOrder where strOrderName = '".$intOrderID."')
-			insert into tblFamily(intOrderID,strFamilyName) VALUES (@orderid,'".$strFamilyName."')
+			$querycheckfam=$this->db->query("select * from tblFamily where [strFamilyName] = '".$strFamilyName."'");
+			if($querycheckfam->num_rows() == 0) {
+				$query="
+				declare @orderid int;
 
-			";
+			set @orderid = (select intOrderID from tblOrder where strOrderName = '".$intOrderID."')
+				insert into tblFamily(intOrderID,strFamilyName) VALUES (@orderid,'".$strFamilyName."')
+
+				";
 
 
-					if($this->db->query($query)){
-			return true;
-		}else{
+						if($this->db->query($query)){
+				return true;
+			}else{
+				return false;
+			}
+		}else {
 			return false;
 		}
+
 	}
 	public function editFamily(){
 
@@ -381,23 +424,27 @@ public function showFamilyOrderName(){
     $id = $this->input->post('txtId');
 	$intOrderID=$this->input->post('seOID');
 	$strFamilyName=$this->input->post('txteFName');
-			$query="
-			declare @orderid int;
 
-		set @orderid = (select intOrderID from tblOrder where strOrderName = '".$intOrderID."')
+	$querycheckfam=$this->db->query("select * from tblFamily where [strFamilyName] = '".$strFamilyName."'");
 
-			update tblFamily
-			set intOrderID = @orderid,
-				strFamilyName = '".$strFamilyName."'
-				where intFamilyID = ".$id."
+	if($querycheckfam->num_rows() == 0){
+		$query="
+		declare @orderid int;
 
-			";
+	set @orderid = (select intOrderID from tblOrder where strOrderName = '".$intOrderID."')
+	insert into tblFamily(intOrderID, strFamilyName) VALUES (@orderid, '".$strFamilyName."')
+
+		";
 
 if($this->db->query($query)){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
+	}else{
+		return false;
+	}
+}else {
+	return false;
+}
+
   }
 
 	/****** END FAMILY!!!!! ******/
@@ -441,18 +488,23 @@ public function showGenusFamilyName(){
 
 			$intFamilyID=$this->input->post('txtoID');
 			$strGenusName=$this->input->post('txtgName');
-			$query="
-			declare @familyid int;
+			$querycheckgenus=$this->db->query("select * from tblGenus where [strGenusName] = '".$strGenusName."'");
+			if($querycheckgenus->num_rows() == 0) {
+				$query="
+				declare @familyid int;
 
-		set @familyid = (select intFamilyID from tblFamily where strFamilyName = '".$intFamilyID."')
-			insert into tblGenus(intFamilyID,strGenusName) VALUES (@familyid,'".$strGenusName."')
+			set @familyid = (select intFamilyID from tblFamily where strFamilyName = '".$intFamilyID."')
+				insert into tblGenus(intFamilyID,strGenusName) VALUES (@familyid,'".$strGenusName."')
 
-			";
+				";
 
 
-					if($this->db->query($query)){
-			return true;
-		}else{
+						if($this->db->query($query)){
+				return true;
+			}else{
+				return false;
+			}
+		}else {
 			return false;
 		}
 	}
@@ -477,23 +529,29 @@ public function showGenusFamilyName(){
 
     $intFamilyID=$this->input->post('segFID');
     $strGenusName=$this->input->post('txteGName');
-    $query="
-			declare @familyid int;
+		$querycheckgenus=$this->db->query("select * from tblGenus where [strGenusName] = '".$strGenusName."'");
+		if($querycheckgenus->num_rows() == 0) {
+			$query="
+				declare @familyid int;
 
-		set @familyid = (select intFamilyID from tblFamily where strFamilyName = '".$intFamilyID."')
+			set @familyid = (select intFamilyID from tblFamily where strFamilyName = '".$intFamilyID."')
 
-			update tblGenus
-			set intFamilyID = @familyid,
-				strGenusName = '".$strGenusName."'
-				where intGenusID = ".$id."
+				update tblGenus
+				set intFamilyID = @familyid,
+					strGenusName = '".$strGenusName."'
+					where intGenusID = ".$id."
 
-			";
+				";
 
-if($this->db->query($query)){
-			return true;
-		}else{
+	if($this->db->query($query)){
+				return true;
+			}else{
+				return false;
+			}
+		}else {
 			return false;
 		}
+
   }
 
 	/****** END GENUS!!!!! ******/
@@ -545,7 +603,7 @@ declare @isVerified varchar(5);
 set @isVerified = '$isverified'
 		set @genusid = (select intGenusID from tblGenus where strGenusName = '".$intGenusID."');
 			insert into tblSpecies(intGenusID,strSpeciesName,strCommonName) VALUES (@genusid,'".$strSpeciesName."','".$strCommonName."');
-		
+
 		IF @isVerified = 'on'
 			BEGIN
 				SET @speciesID = (SELECT intSpeciesID FROM tblSpecies WHERE strSpeciesName = '".$strSpeciesName."');
@@ -1430,7 +1488,7 @@ public function updateAccounts(){
 		}
 	}
 	public function showeditStaffName(){
-		
+
 		$query = $this->db
 		->query("select strFullName,HS.intStaffID from viewHerbariumStaff vHS join tblHerbariumStaff HS on vHS.intStaffID = hs.intStaffID
 		");
@@ -1539,8 +1597,32 @@ public function updateAccounts(){
 
 public function add_event($data)
 {
-    $this->db->insert("tblEvents", $data);
+      $start_date = $this->input->post("start_date", TRUE);
+$querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+if($querycheckdepreqtbl->num_rows()==0){
+
+		$querycheckvisittbl=$this->db->query("select * from tblAppointments where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+						if($querycheckvisittbl->num_rows()==0){
+							$this->db->insert("tblEvents", $data);
+
+
+									 if($this->db->affected_rows() > 0){
+										return true;
+									}else{
+										return false;
+									}
+						}else{
+							return false;
+								}
+							    
+}else{
+	return false;
 }
+
+
+
+}
+
 
 public function get_event($id)
 {
@@ -1549,12 +1631,36 @@ public function get_event($id)
 
 public function update_event($id, $data)
 {
-    $this->db->where("ID", $id)->update("tblEvents", $data);
+    
+     $start_date = $this->input->post("start_date", TRUE);
+$querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+if($querycheckdepreqtbl->num_rows()==0){
+
+		$querycheckvisittbl=$this->db->query("select * from tblAppointments where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+						if($querycheckvisittbl->num_rows()==0){
+							$this->db->where("ID", $id)->update("tblEvents", $data);
+
+
+									 if($this->db->affected_rows() > 0){
+										return true;
+									}else{
+										return false;
+									}
+						}else{
+							return false;
+								}
+							    
+}else{
+	return false;
+}
+
 }
 
 public function delete_event($id)
 {
+
     $this->db->where("ID", $id)->delete("tblEvents");
+    
 }
 
 
@@ -1752,7 +1858,7 @@ public function showAllDepositReqOkay()
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID
-		where strStatus ='For Depositing'");
+		where strStatus ='For Depositing' OR strStatus = 'Email Sent'");
 
 		foreach ($query->result() as $r)
 		{
@@ -2021,7 +2127,7 @@ DECLARE @status 		varchar(255);
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
-		where strStatus ='For Visiting'");
+		where strStatus ='For Visiting'  OR strStatus ='Email Sent'");
 		foreach ($query->result() as $r)
 		{
 			$btn = '<button style= "margin-right:2px" class="btn btn-primary btn-sm view-emailcon" title="Send Email" data="'.$r->intAppointmentID.'"><i class="far fa-envelope"></i></button><button style= "margin-right:2px" class="btn btn-primary btn-sm view-VResched" title="Re-schedule" data="'.$r->intAppointmentID.'"><i class="fas fa-calendar-alt"></i></button><button class="btn btn-primary btn-sm view-appcon" title="Confirm" data="'.$r->intAppointmentID.'"><i class="fas fa-check"></i></button>';
@@ -2125,7 +2231,7 @@ $status = $this->input->post('txtStatus');
 	}
 
 	public function showAllAppointmentAll(){
-		
+
 	$result = array();
 	$query = $this->db->query("select intAppointmentID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose,strStatus
 
@@ -2291,7 +2397,7 @@ public function updateEVConfirmation(){
 $depositid = $this->input->post('txtId');
 $status = $this->input->post('txtStatus');
 $validatorid= $this->input->post('txtId2');
-	
+
 if($status ==='Verified'){
 		$query="
 
@@ -2583,7 +2689,7 @@ if($this->db->query($query)){
 		}
   }
 
-  
+
 	public function showAllExValidators(){
 		$query = $this->db->select("intValidatorID,
      Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName,
@@ -2654,16 +2760,16 @@ $update_query= $this->db->query("update tblNotif set intNotifStatus = 1 where in
 $query= $this->db->query("select top 20 strNotifContent from tblNotif order by intNotifID DESC ");
 
 if($query->num_rows() > 0){
-	
+
 return $query->result();
 		}else{
-			
+
 			return false;
 		}
 }
 
 //$query1= $this->db->query("select * from tblNotif where intNotifStatus = 0");
-			
+
  //$count = $query1->num_rows();
 // $data = array(
 //  'notification'   => $query->result(),
@@ -2675,14 +2781,53 @@ return $query->result();
 public function showNotifCount(){
 $query= $this->db->query("select count(intNotifID)as intcount from tblNotif where intNotifStatus = 0");
 if($query->num_rows() > 0){
-	
+
 return $query->row();
 		}else{
-			
+
 			return false;
 		}
 }
 
+public function changedepositstatus(){
 
+    $id=$this->input->post('txtId');
+
+
+	$query="
+
+		UPDATE tblDepositReq
+		SET strStatus = 'Email Sent'
+		WHERE intDepositReqID = '".$id."';
+
+			";
+		if($this->db->query($query)){
+			return true;
+
+		}else{
+			return false;
+		}
+	}
+
+
+public function changevisitstatus(){
+
+    $id=$this->input->post('txtId');
+
+
+	$query="
+
+		UPDATE tblAppointments
+		SET strStatus = 'Email Sent'
+		WHERE intAppointmentID = '".$id."';
+
+			";
+		if($this->db->query($query)){
+			return true;
+
+		}else{
+			return false;
+		}
+	}
 
 }?>

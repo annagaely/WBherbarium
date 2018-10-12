@@ -265,15 +265,15 @@
                             $('#btnSend').click(function(event){
                                 var data = $('#emailform').serialize();
                                       event.preventDefault();
-        swal({
-               title: 'Are you sure?',
-               type: 'warning',
-               showCancelButton: true,
-               confirmButtonColor: '#3085d6',
-               cancelButtonColor: '#d33',
-               confirmButtonText: 'Yes'
-             }).then((result) => {
-               if (result.value) {
+                                swal({
+                                   title: 'Are you sure?',
+                                   type: 'warning',
+                                   showCancelButton: true,
+                                   confirmButtonColor: '#3085d6',
+                                   cancelButtonColor: '#d33',
+                                   confirmButtonText: 'Yes'
+                                 }).then((result) => {
+                                   if (result.value) {
 
                                   $.ajax({
                                   type: 'ajax',
@@ -283,22 +283,23 @@
                                   async: false,
                                   dataType: 'json',
                                   success: function(){
+                              let timerInterval
+                                swal({
+                                  title: 'Email has been sent!',
+                                  type: 'success',
+                                  timer: 1500,
+                                  showConfirmButton: false
+                                }).then(function() {
+                                
+                                showAllDepositReqPending();
+                                showAllDepositReqOkay();
+                                showAllDepositReqAll();
+                                $('#EmailCon').modal('hide');
+                                document.getElementById("emailform").reset();
+                              });
                                   },
                                   error: function(){
-                                                let timerInterval
-                    swal({
-                      title: 'Email has been sent!',
-                      type: 'success',
-                      timer: 1500,
-                      showConfirmButton: false
-                    }).then(function() {
-                    
-                    showAllDepositReqPending();
-                    showAllDepositReqOkay();
-                    showAllDepositReqAll();
-                    $('#EmailCon').modal('hide');
-                    document.getElementById("emailform").reset();
-                  });
+
                 }
             });
          }

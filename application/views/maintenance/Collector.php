@@ -59,7 +59,9 @@
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text" name="cName" data-mask="99999999999" placeholder="Contact Number" class="form-control" required>
+
+                    <input id="contactNum" type="text" name="cName" data-mask="9999 999 9999" placeholder="Contact Number" class="form-control" required>
+
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
@@ -105,7 +107,7 @@
                     <div class="form-group col-sm-8">
                        <input type="hidden" name="txtId" value="0">
                       <label>First Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="feName" placeholder="First Name " class="form-control" >
+                      <input type="text" id="strFirstname1" name="feName" placeholder="First Name " class="form-control" >
                     </div>
                   </div>
                   <div class="row">
@@ -121,7 +123,7 @@
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Last Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="leName" placeholder="Last Name" class="form-control">
+                      <input id="strLastname1" type="text" name="leName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Name Suffix:</label> <label style="color: red">*</label>
@@ -131,23 +133,25 @@
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text" name="ceName" data-mask="99999999999" placeholder="Contact Number" class="form-control">
+
+                    <input id="contactNum1" type="text" name="ceName" data-mask="9999 999 9999" placeholder="Contact Number" class="form-control">
+
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
-                    <input type="text" name="eeMail" placeholder="Email Address" class="form-control">
+                    <input id="emailAdd1" type="text" name="eeMail" placeholder="Email Address" class="form-control">
                   </div>
                 </div>
                   <div class="row">
                     <div class="form-group col-sm-12">
                     <label>Home Address:</label> <label style="color: red">*</label>
-                    <input type='text' name="cedName"  placeholder="Home Address" class="form-control">
+                    <input id="strCollege1" type='text' name="cedName"  placeholder="Home Address" class="form-control">
                   </div>
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-12">
                     <label>Affiliation:</label> <label style="color: red">*</label>
-                    <input type="text" name="esecName" placeholder="Affiliation" class="form-control">
+                    <input id="affiliation1" type="text" name="esecName" placeholder="Affiliation" class="form-control">
                   </div>
                 </div>
                   <!--HANGGANG DITO LANG BOI-->
@@ -221,62 +225,84 @@ $(document).ready(function() {
       //show
     showAllCollector();
 
-$('#btnSave').click(function(event){
-  var url = '<?php echo base_url()?>admin/addCollector';
-      var data = $('#addCollectorForm').serialize();
-      //validate form
-      if($('#strFirstname').val!='')
-      if($('#strFirstname').val!=''){
-        if($('#strLastname').val!=''){
-          if($('#contactNum').val!=''){
-            if($('#emailAdd').val!=''){
-              if($('#strCollege').val!=''){
-                if($('#affiliation').val!=''){
-                  event.preventDefault();
-                  swal({
-                    title: 'Are you sure?',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, save it!'
-                  }).then((result) => {
-                    if (result.value) {
 
-                      $.ajax({
-                        type: 'ajax',
-                        method: 'post',
-                        url: '<?php echo base_url() ?>admin/addCollector',
-                        data: data,
-                        async: false,
-                        dataType: 'json',
-                        success: function(response){
-                          if(response.success){
-                            $('#addCollectorForm').modal('hide');
-                            $('#addCollectorForm')[0].reset();
-                            if(response.type=='add'){
-                              var type = 'added'
-                            }else if(response.type=='update'){
-                              var type ="updated"
+    //edit class
+
+    $('#btnSave').click(function(event){
+      var url = '<?php echo base_url()?>admin/addCollector';
+          var data = $('#addCollectorForm').serialize();
+          //validate form
+          if($('#strFirstname').val()!=''){
+            if($('#strLastname').val()!=''){
+              if($('#contactNum').val()!=''){
+                if($('#emailAdd').val()!=''){
+                  if($('#strCollege').val()!=''){
+                    if($('#affiliation').val()!=''){
+                      event.preventDefault();
+                      swal({
+                        title: 'Are you sure?',
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, save it!'
+                      }).then((result) => {
+                        if (result.value) {
+                          $.ajax({
+                            type: 'ajax',
+                            method: 'post',
+                            url: url,
+                            data: data,
+                            async: false,
+                            dataType: 'json',
+                            success: function(response){
+                              if(response.success){
+                                $('#addCollectorForm').modal('hide');
+                                $('#addCollectorForm')[0].reset();
+                                if(response.type=='add'){
+                                  var type = 'added'
+                                }else if(response.type=='update'){
+                                  var type ="updated"
+                                }
+                                let timerInterval
+                                swal({
+                                  title: 'Saved',
+                                  text: 'Your file has been saved.',
+                                  type: 'success',
+                                  timer: 1500,
+                                  showConfirmButton: false
+                                }).then(function() {
+                                  location.reload();
+                                });
+                              }
+                            },
+                            error: function(){
+                              event.preventDefault();
+                              swal({
+                                type: 'error',
+                                title: 'Incorrect input!',
+                                text: 'Order name does not exist.'
+                              });
                             }
-                            let timerInterval
-                            swal({
-                              title: 'Saved',
-                              text: 'Your file has been saved.',
-                              type: 'success',
-                              timer: 1500,
-                              showConfirmButton: false
-                            }).then(function() {
-                              location.reload();
-                            });   
-                          }
-                        },
-                        error: function(){
-                          alert('Could not save Data');
-                        }
+                          });
+                         }
+                       })
+                    }else{
+                      event.preventDefault();
+                      swal({
+                        type: 'error',
+                        title: 'Incomplete input!',
+                        text: 'Please fill up all the required fields.'
                       });
-                     }
-                   })
+                    }
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Incomplete input!',
+                      text: 'Please fill up all the required fields.'
+                    });
+                  }
                 }else{
                   event.preventDefault();
                   swal({
@@ -309,27 +335,118 @@ $('#btnSave').click(function(event){
               text: 'Please fill up all the required fields.'
             });
           }
-        }else{
-          event.preventDefault();
-          swal({
-            type: 'error',
-            title: 'Incomplete input!',
-            text: 'Please fill up all the required fields.'
-          });
-        }
-      }else{
-        event.preventDefault();
-        swal({
-          type: 'error',
-          title: 'Incomplete input!',
-          text: 'Please fill up all the required fields.'
+
+
         });
-      }
 
+        $('#btnEditSave').click(function(event){
+              var data = $('#editCollectorForm').serialize();
+              //validate form
+              if($('#strFirstname1').val()!=''){
+                if($('#strLastname1').val()!=''){
+                  if($('#contactNum1').val()!=''){
+                    if($('#emailAdd1').val()!=''){
+                      if($('#strCollege1').val()!=''){
+                        if($('#affiliation1').val()!=''){
+                          event.preventDefault();
+                          swal({
+                            title: 'Are you sure?',
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, save it!'
+                          }).then((result) => {
+                            if (result.value) {
+                              $.ajax({
+                                type: 'ajax',
+                                method: 'post',
+                                url: '<?php echo base_url() ?>admin/updateCollector',
+                                data: data,
+                                async: false,
+                                dataType: 'json',
+                                success: function(response){
+                                  if(response.success){
+                                    $('#editCollectorForm').modal('hide');
+                                    $('#editCollectorForm')[0].reset();
+                                    if(response.type=='add'){
+                                      var type = 'added'
+                                    }else if(response.type=='update'){
+                                      var type ="updated"
+                                    }
+                                  }
+                                  let timerInterval
+                                  swal({
+                                    title: 'Saved',
+                                    text: 'Your data has been updated.',
+                                    type: 'success',
+                                    timer: 1500,
+                                    showConfirmButton: false
+                                  }).then(function() {
+                                    location.reload(true);
 
-    });
-    //edit class
-
+                                  });
+                                },
+                                error: function(){
+                                  event.preventDefault();
+                                  swal({
+                                    type: 'error',
+                                    title: 'Incorrect input!',
+                                    text: 'Order name does not exist.'
+                                  });
+                                }
+                              });
+                             }
+                           })
+                        }else{
+                          event.preventDefault();
+                          swal({
+                            type: 'error',
+                            title: 'Incomplete input!',
+                            text: 'Please fill up all the required fields.'
+                          });
+                        }
+                      }else{
+                        event.preventDefault();
+                        swal({
+                          type: 'error',
+                          title: 'Incomplete input!',
+                          text: 'Please fill up all the required fields.'
+                        });
+                      }
+                    }else{
+                      event.preventDefault();
+                      swal({
+                        type: 'error',
+                        title: 'Incomplete input!',
+                        text: 'Please fill up all the required fields.'
+                      });
+                    }
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Incomplete input!',
+                      text: 'Please fill up all the required fields.'
+                    });
+                  }
+                }else{
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Incomplete input!',
+                    text: 'Please fill up all the required fields.'
+                  });
+                }
+              }else{
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Incomplete input!',
+                  text: 'Please fill up all the required fields.'
+                });
+              }
+            });
     $(document).on('click', '.collector-edit', function(event){
 
       var id = $(this).attr('data');
@@ -365,46 +482,5 @@ $('#btnSave').click(function(event){
   });
 
 
-$('#btnEditSave').click(function(event){
-      var data = $('#editCollectorForm').serialize();
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/updateCollector',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response==true){
-              $('#myEditModal').modal('hide');
-              $('#editCollectorForm')[0].reset();
-         //     if(response.type=='add'){
-           //     var type = 'added'
-       //       }else if(response.type=='update'){
-          //      var type ="updated"
-              //}
-              showAllCollector();
-            }
-            else{
-             alert('Error');
-            }
-          },
-          error: function(){
-            alert('Could not update data');
-          }
-        });
-    });
-
     });
 </script>
-<div class="card">
-                <div class="card-header">Folding circle</div>
-                <div class="card-body d-flex justify-content-center pt-5 pb-5">
-                  <div class="sk-folding-cube">
-                    <div class="sk-cube1 sk-cube"></div>
-                    <div class="sk-cube2 sk-cube"></div>
-                    <div class="sk-cube4 sk-cube"></div>
-                    <div class="sk-cube3 sk-cube"></div>
-                  </div>
-                </div>
-              </div>

@@ -1,6 +1,13 @@
 
 <head>
 <meta charset='utf-8' />
+
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
+
 <link href='<?php echo base_url();?>assets/bower_components/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
 <link href='<?php echo base_url();?>assets/bower_components/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 <script src='<?php echo base_url();?>assets/bower_components/fullcalendar/lib/moment.min.js'></script>
@@ -109,30 +116,142 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-      <?php echo form_open(base_url("admin/add_event"), array("class" => "form-horizontal")) ?>
+        <form id= "add_event" method="POST" enctype="multipart/form-data">
+    <!--   <?php echo form_open(base_url("admin/add_event"), array("class" => "form-horizontal")) ?> -->
       <div class="form-group">
                 <label for="p-in" class="col-md-4 label-heading">Event Name</label>
                 <div class="col-md-8 ui-front">
-                    <input type="text" class="form-control" name="name" value="" autocomplete="off">
+                    <input type="text" class="form-control" id='name' name="name" value="" autocomplete="off">
                 </div>
         </div>
         <div class="form-group">
                 <label for="p-in" class="col-md-4 label-heading">Description</label>
                 <div class="col-md-8 ui-front">
-                    <input type="text" class="form-control" name="description">
+                    <input type="text" class="form-control" id='description' name="description">
                 </div>
         </div>
         <div class="form-group">
                 <label for="p-in" class="col-md-4 label-heading">Date:</label>
                 <div class="col-md-8">
-                    <input type="date" class="form-control" name="start_date">
+                    <input type="date" class="form-control" id='start_date' name="start_date">
                 </div>
         </div>
       
       <div class="modal-footer">
         <input type="button" class="btn btn-secondary" value="Close" data-dismiss="modal">
-        <input type="submit" class="btn btn-primary" value="Add Event">
-        <?php echo form_close() ?>
+        <input type="submit" class="btn btn-primary" id='btnSave' value="Add Event">
+        <!-- <?php echo form_close() ?> -->
+      </form>
+      <script type="text/javascript">
+        $('#btnSave').click(function(event){
+      var url = '<?php echo base_url()?>admin/add_event';
+      var data = $('#add_event').serialize();
+      //validate form
+           var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+today = yyyy + '-' + mm + '-' +dd ;
+
+      if($('#start_date').val()<today){//check if date is before today
+        
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Invalid Date!',
+          text: 'Date selected is past the current date.'
+        });
+     
+       }else{
+        if($('#name').val()!=''){//check ng values
+        if($('#description').val()!=''){
+          if($('#start_date').val()!=''){
+          event.preventDefault();
+          swal({
+            title: 'Are you sure?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, save it!'
+          }).then((result) => {
+            if (result.value) {
+              $.ajax({
+              type: 'ajax',
+              method: 'post',
+              url: url,
+              data: data,
+              async: false,
+              dataType: 'json',
+              success: function(response){
+                if(response.success){
+                    let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Your Event has been saved.',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: true
+                    }).then(function() {
+                      location.reload();
+                    });
+                }else{swal({
+                  type: 'error',
+                  title: 'Date Invalid',
+                  text: 'Date has pending appointments or on going appointments, cancel it first.'
+                });
+              }
+              },
+              error: function(){
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Date Invalid',
+                  text: 'Date has pending appointments or on going appointments, cancel it first.'
+                });
+              }
+            });
+
+         }
+
+       })
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      }
+     }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      } 
+       }
+    });
+
+      </script>
       </div>
     </div>
   </div>
@@ -152,37 +271,145 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-      <?php echo form_open(base_url("admin/edit_event"), array("class" => "form-horizontal")) ?>
+      <!-- ?php echo form_open(base_url("admin/edit_event"), array("class" => "form-horizontal")) ?> -->
+      <form id= "edit_event" method="POST" enctype="multipart/form-data">
       <div class="form-group">
                 <label for="p-in" class="col-md-4 label-heading">Event Name</label>
                 <div class="col-md-8 ui-front">
-                    <input type="text" class="form-control" name="name" value="" id="eventname">
+                    <input type="text" class="form-control" name="name" value="" id="eeventname">
                 </div>
         </div>
         <div class="form-group">
                 <label for="p-in" class="col-md-4 label-heading">Description</label>
                 <div class="col-md-8 ui-front">
-                    <input type="text" class="form-control" name="description" id="description">
+                    <input type="text" class="form-control" name="description" id="edescription">
                 </div>
         </div>
         <div class="form-group">
                 <label for="p-in" class="col-md-4 label-heading">Date</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" name="start_date" id="start_date">
+                    <input type="text" class="form-control" name="start_date" id="estart_date">
                 </div>
         </div>
-        <div class="form-group">
+<!--         <div class="form-group">
                     <label for="p-in" class="col-md-4 label-heading">Delete Event</label>
                     <div class="col-md-8">
                         <input type="checkbox" name="delete" value="1">
                     </div>
-            </div>
+            </div> -->
             <input type="hidden" name="eventid" id="event_id" value="0" />
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-primary" value="Update Event">
-        <?php echo form_close() ?>
+        <input type="submit" class="btn btn-primary" id=btnEditSave value="Update Event">
+        <!-- <?php echo form_close() ?> -->
+      </form>
+      <script type="text/javascript">
+        $('#btnEditSave').click(function(event){
+      var url = '<?php echo base_url()?>admin/edit_event';
+      var data = $('#edit_event').serialize();
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+if(mm<10) {
+    mm = '0'+mm
+} 
+today = yyyy + '-' + mm + '-' +dd ;
+      //validate form
+    if(moment($('#estart_date').val()).format('YYYY-MM-DD')<today){//check if date is before today
+      event.preventDefault();
+      swal({
+        type: 'error',
+        title: 'Invalid Date!',
+        text: 'Date selected is past the current date.'
+      });
+    }else{
+      if($('#eeventname').val()!=''){
+        if($('#edescription').val()!=''){
+          if($('#estart_date').val()!=''){
+          event.preventDefault();
+          swal({
+            title: 'Are you sure?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, save it!'
+          }).then((result) => {
+            if (result.value) {
+              $.ajax({
+              type: 'ajax',
+              method: 'post',
+              url: url,
+              data: data,
+              async: false,
+              dataType: 'json',
+              success: function(response){
+                if(response.success){
+                    let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Your Event has been saved.',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: true
+                    }).then(function() {
+                      location.reload();
+                    });
+                }else{swal({
+                  type: 'error',
+                  title: 'Date Invalid',
+                  text: 'Date has pending appointments or on going appointments, cancel it first.'
+                });
+              }
+              },
+              error: function(){
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Date Invalid',
+                  text: 'Date has pending appointments or on going appointments, cancel it first.'
+                });
+              }
+            });
+
+         }
+
+       })
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      }
+     }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      } 
+    }
+
+
+    });
+      </script>
       </div>
     </div>
   </div>
@@ -215,13 +442,13 @@ $(document).ready(function() {
     },
     ],
     eventClick: function(event, jsEvent, view) {
-          $('#eventname').val(event.title);
-          $('#description').val(event.description);
-          $('#start_date').val(moment(event.start).format('YYYY/MM/DD'));
+          $('#eeventname').val(event.title);
+          $('#edescription').val(event.description);
+          $('#estart_date').val(moment(event.start).format('YYYY-MM-DD'));
           if(event.end) {
-            $('#end_date').val(moment(event.end).format('YYYY/MM/DD'));
+            $('#end_date').val(moment(event.end).format('YYYY-MM-DD'));
           } else {
-            $('#end_date').val(moment(event.start).format('YYYY/MM/DD'));
+            $('#end_date').val(moment(event.start).format('YYYY-MM-DD'));
           }
           $('#event_id').val(event.id);
           $('#editModal').modal();

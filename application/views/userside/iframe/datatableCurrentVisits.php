@@ -57,11 +57,11 @@
       </div>
       <div class="modal-body">
                 <form id= "editCurrentVisitform" method="POST" enctype="multipart/form-data"> <!--dito ka magbabago sa loob nito-->
-                
+
               <div class="row">
                  <div class="form-group col-sm-6">
                    <input type="hidden" name="txtId" value="0">
-                   <label>Appointment Date:<span style="color: red">*</span></label> 
+                   <label>Appointment Date:<span style="color: red">*</span></label>
                    <input type="text" name ="txtAppointment"  class="form-control" autocomplete=off disabled>
                  </div>
                  <div class="form-group col-sm-6">
@@ -294,8 +294,8 @@ event.preventDefault();
          });
           }
 
-       
-      
+
+
 
     });
 

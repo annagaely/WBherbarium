@@ -207,47 +207,49 @@
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
-                            $('#btnSend').click(function(event){
-                                var data = $('#emailform').serialize();
-                                  event.preventDefault();
-           swal({
-               title: 'Are you sure?',
-               type: 'warning',
-               showCancelButton: true,
-               confirmButtonColor: '#3085d6',
-               cancelButtonColor: '#d33',
-               confirmButtonText: 'Yes'
-             }).then((result) => {
-              $.ajax({
-                                  type: 'ajax',
-                                  method: 'post',
-                                  url: '<?php echo base_url() ?>admin/visitsendMail',
-                                  data: data,
-                                  async: false,
-                                  dataType: 'json',
-                                  success: function(){
-                                  },
-                                  error: function(){
-                                      let timerInterval
-                    swal({
-                      title: 'Email has been sent!',
-                      type: 'success',
-                      timer: 1500,
-                      showConfirmButton: false
-                    }).then(function() {
-                    
-                showAllAppointmentPending();
-                showAllAppointmentExpect();
-                showAllAppointmentReject();
-                showAllAppointmentAll();
-                    $('#EmailVisitCon').modal('hide');
-                    document.getElementById("emailform").reset();
-                  });
-                }
-            });
-        
-    })
- });                     </script>
+                    $('#btnSend').click(function(event){
+                        var data = $('#emailform').serialize();
+                          event.preventDefault();
+                         swal({
+                             title: 'Are you sure?',
+                             type: 'warning',
+                             showCancelButton: true,
+                             confirmButtonColor: '#3085d6',
+                             cancelButtonColor: '#d33',
+                             confirmButtonText: 'Yes'
+                           }).then((result) => {
+                            $.ajax({
+                            type: 'ajax',
+                            method: 'post',
+                            url: '<?php echo base_url() ?>admin/visitsendMail',
+                            data: data,
+                            async: false,
+                            dataType: 'json',
+                            success: function(){
+                               let timerInterval
+                                swal({
+                                  title: 'Email has been sent!',
+                                  type: 'success',
+                                  timer: 1500,
+                                  showConfirmButton: false
+                                }).then(function() {
+                                
+                            showAllAppointmentPending();
+                            showAllAppointmentExpect();
+                            showAllAppointmentReject();
+                            showAllAppointmentAll();
+                                $('#EmailVisitCon').modal('hide');
+                                document.getElementById("emailform").reset();
+                              });
+                            },
+                            error: function(){
+
+                              }
+                          });
+                      
+                          })
+                       });                     
+                </script>
                   </div>
           </form>
         </div>
@@ -349,17 +351,17 @@
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
                             $('#btnSendReject').click(function(event){
-                                var data = $('#emailformreject').serialize();
-            event.preventDefault();
-              swal({
-               title: 'Are you sure?',
-               type: 'warning',
-               showCancelButton: true,
-               confirmButtonColor: '#3085d6',
-               cancelButtonColor: '#d33',
-               confirmButtonText: 'Yes'
-             }).then((result) => {
-               if (result.value) {
+                              var data = $('#emailformreject').serialize();
+                              event.preventDefault();
+                                swal({
+                                 title: 'Are you sure?',
+                                 type: 'warning',
+                                 showCancelButton: true,
+                                 confirmButtonColor: '#3085d6',
+                                 cancelButtonColor: '#d33',
+                                 confirmButtonText: 'Yes'
+                               }).then((result) => {
+                                 if (result.value) {
                                   $.ajax({
                                   type: 'ajax',
                                   method: 'post',
