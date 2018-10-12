@@ -15,12 +15,12 @@
 </div>
 
 <div class="container-fluid">
-  <div class="row">
+
     <div class="col-md-4">
       <div class="row">
         <div class="col-md-12">
           <div class="card mt-4">
-            <select name="account" class="form-control">
+            <select id="selectquery" class="form-control">
               <option>Phylum</option>
               <option>Class</option>
               <option>Order</option>
@@ -31,33 +31,60 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card px-3 py-3">
-            <input id="radioCustom2" type="radio" value="option2" name="a" class="form-control-custom radio-custom">
-            <label for="radioCustom2">sample</label>
-            
-            <input id="radioCustom1" type="radio" value="option1" name="a" class="form-control-custom radio-custom">
-            <label for="radioCustom1">asd</label>
-          </div>
-        </div>
-      </div>
     </div>
-    <div class="col-md-8" id='divTable'>
+    <div class="col-md-20" id='divTable'>
       <div class="card mt-4 px-3 py-3">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytbl">
             <thead>
               <tr role="row">
-                <th>Scientific Name</th>
-                <th>Common Name</th>
+                <th>Domain Name</th>
+                <th>Kingdom Name</th>
+                <th>Phylum Name</th>
+                <th>Action</th>
               </tr>
             </thead>
           </table>
         </div>
       </div>
     </div>
-    <div class="col-md-8" id='divTable1'>
+    <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+          <div role="document" class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+
+                <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+
+                <form id= "editPhylumForm" method="POST" enctype="multipart/form-data">
+                  <!-- <input type="hidden" name="act" id="act" value=""> -->
+
+                  <div class="form-group">
+                    <label>Domain Name:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtedName" id="strDomainName1" placeholder="Domain Name" class="form-control" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Kingdom Name:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtekName" id="strKingdomName1" placeholder="Kingdom Name" class="form-control" disabled>
+                  </div>
+                      <input type="hidden" name="txtId" value="0">
+                  <div class="form-group">
+                    <label>Phylum Name:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtepName" id="pNameid1" placeholder="Phylum Name" class="form-control" disabled>
+                  </div>
+                  <div class="modal-footer">
+                    <input type="reset" value="Clear" class="btn btn-secondary">
+                    <input type="submit" value="Save" id='btnEditSave' class="btn btn-primary">
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    <div class="col-md-20" id='divTable1'>
       <div class="card mt-4 px-3 py-3">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytbl2">
@@ -71,7 +98,7 @@
         </div>
       </div>
     </div>
-  </div>
+
 </div>
 <script type="text/javascript">
 $(document).ready(function () {
@@ -83,7 +110,7 @@ $(document).ready(function () {
    "autoWidth":false,
        "processing": true,
        "serverSide": false,
-       "sAjaxSource": "<?php echo base_url('user/showAllVisitsLog')?>",
+       "sAjaxSource": "<?php echo base_url('admin/showAllPhylum')?>",
        "deferLoading": 10,
        "bPaginate": true,
        "aaSorting": [],
@@ -91,9 +118,45 @@ $(document).ready(function () {
 
        }
    });
- $("#radioCustom2").change(function () {
+
+     $(document).on('click', '.phylum-edit', function(e){
+      var id = $(this).attr('data');
+      $('#myEditModal').modal('show');
+      $('#myEditModal').find('.modal-title').text('Edit Phylum');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/editPhylum',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtedName]').val(data.strDomainName);
+          $('input[name=txtekName]').val(data.strKingdomName);
+          $('input[name=txtepName]').val(data.strPhylumName);
+          $('input[name=txtId]').val(data.intPhylumID);
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+
+  });
+
+
+
+
+ $("#selectquery").change(function () {
+  var val = $(this).val();
+  if(val=='Phylum'){
+  $('#divTable1').hide();
+  $('#divTable').show();
+  }else{
   $('#divTable').hide();
   $('#divTable1').show();
+  }
+ 
 
  });
 
