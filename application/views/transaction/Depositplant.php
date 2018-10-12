@@ -189,35 +189,145 @@
            </div>
 
       <div class="modal-body">
-          <form id= "DResched" method="POST" enctype="multipart/form-data">
-          
+          <form id= "reschedform" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                       <label>Deposit ID:</label>
                       <input type="hidden" name="txtId" id="txtID" value="0">
+                      <input type="hidden" name="txtemail" id="txtEmail" value="">
                        <input type="text" name="txtDepositReqID" id="intDepositReqID" class="form-control" disabled="">
                    </div>
 
+                   <div class="form-group">
+                     <label>Collector:</label>
+                     <input type="text" name="txtCollector" id="strFullName"  class="form-control" disabled="">
+                   </div>
 
-                     <div class="form-group">
-                       <label>Collector:</label>
-                       <input type="text" name="txtCollector" id="strFullName"  class="form-control" disabled="">
-                     </div>
+                   <div class="form-group">
+                     <label>Date :</label>
+                     <input type="Date" name="txtolddate" id="dtoldDate"  class="form-control" disabled="">
+                   </div>
 
+                   <div class="form-group">
+                       <label>Reason for rescheduling :</label>
+                       <textarea row = '5' name="txtreasonforresched" id="txtreason"  class="form-control" ></textarea>
+                    </div>
 
-                     <div class="form-group">
-                       <label>Date :</label>
-                       <input type="Date" name="txtReschedDate" id="dtReschedDate"  class="form-control" disabled="">
-                     </div>
-            
-             </form>
-            </div>
+                    <div class="form-group">
+                       <label>New Date :</label>
+                       <input type="Date" name="txtReschedDate" id="dtReschedDate"   class="form-control">
+                   </div>
+             
+                   </div>
                     
                      <div class="modal-footer">
                        <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
-                      <input type="submit" id="btnSave" value="Proceed" class="btn btn-primary">
+                      <input type="submit" id="btnSaveResched" value="Proceed" class="btn btn-primary">
                      </div>
+                    </form>
+                    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+                     <script type="text/javascript">
+                     $('#btnSaveResched').click(function(event){
+                          var data = $('#reschedform').serialize();
+                          var todayadd3 = new Date();
+                          var dd = todayadd3.getDate()+3;
+                          var mm = todayadd3.getMonth()+1; //January is 0!
+                          var yyyy = todayadd3.getFullYear();
 
-           
+                          if(dd<10) {
+                              dd = '0'+dd
+                          } 
+
+                          if(mm<10) {
+                              mm = '0'+mm
+                          } 
+
+                          todayadd3 = yyyy + '-' + mm + '-' +dd ;
+
+                                if($('#dtReschedDate').val()<todayadd3){
+                                           event.preventDefault();
+                                            swal({
+                                               type: 'error',
+                                               title: 'Invalid Date!',
+                                               text: 'The new appointment date should be 3 days from now.'
+                                             });
+                                }else{
+                                    if($('#txtreason').val()!=''){
+                                      if($('#dtReschedDate').val()!=''){
+                                      event.preventDefault();
+                                        swal({
+                                           title: 'Are you sure?',
+                                           type: 'warning',
+                                           showCancelButton: true,
+                                           confirmButtonColor: '#3085d6',
+                                           cancelButtonColor: '#d33',
+                                           confirmButtonText: 'Yes'
+                                         }).then((result) => {
+                                           if (result.value) {
+
+                                              $.ajax({
+                                                type: 'ajax',
+                                                method: 'post',
+                                                 url: '<?php echo base_url() ?>admin/depreschedadmin',
+                                                data: data,
+                                                async: false,
+                                                dataType: 'json',
+                                                success: function(response){
+                                                  if(response==true){
+                                                     let timerInterval
+                                                          swal({
+                                                            title: 'Saved',
+                                                            text: 'Succesful!',
+                                                            type: 'success',
+                                                            timer: 1500,
+                                                            showConfirmButton: false
+                                                          }).then(function() {
+                                                          
+                                                          showAllDepositReqPending();
+                                                          showAllDepositReqOkay();
+                                                          showAllDepositReqAll();
+                                                          $('#DResched').modal('hide');
+                                                          document.getElementById("reschedform").reset();
+                                                        });
+                                                  }else{
+                                               event.preventDefault();
+                                                swal({
+                                                  type: 'error',
+                                                  title: 'Invalid Date!',
+                                                  text: 'The Herbarium center is not available on the selected date.',
+                                                  showConfirmButton: true
+                                                });
+                                                  }
+
+                                                },
+                                                error: function(){
+                                               event.preventDefault();
+                                                swal({
+                                                  type: 'error',
+                                                  title: 'Fatal Error'
+                                                });
+                                                }
+                                              });
+                                            }
+                                          })
+                                      }else{
+                                       event.preventDefault();
+                                      swal({
+                                        type: 'error',
+                                        title: 'Incomplete input!',
+                                        text: 'Please fill up all the required fields.'
+                                      });
+                                      }
+                                  }else{
+                                     event.preventDefault();
+                                    swal({
+                                      type: 'error',
+                                      title: 'Incomplete input!',
+                                      text: 'Please fill up all the required fields.'
+                                    });
+                                  }
+                                  }
+                                });
+                     </script>
          </div>
  </div>
 </div>
@@ -630,7 +740,7 @@ $(document).ready(function() {
       }
     })
 });
-                $(document).on('click', '.view-DResched', function(){
+      $(document).on('click', '.view-DResched', function(){
       var id = $(this).attr('data');
       $('#DResched').modal('show');
       $('#DResched').find('.modal-title').text('Re-Schedule');
@@ -645,7 +755,8 @@ $(document).ready(function() {
           $('input[name=txtId]').val(data.intDepositReqID)
           $('input[name=txtCollector]').val(data.strFullName);
           $('input[name=txtDepositReqID]').val(data.intDepositReqID);
-
+          $('input[name=txtolddate]').val(data.dtAppointmentDate);
+          $('input[name=txtemail]').val(data.strEmailAddress);
 
 
         },
