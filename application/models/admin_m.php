@@ -1588,7 +1588,7 @@ if($querycheckdepreqtbl->num_rows()==0){
 						}else{
 							return false;
 								}
-							    
+
 }else{
 	return false;
 }
@@ -1605,7 +1605,7 @@ public function get_event($id)
 
 public function update_event($id, $data)
 {
-    
+
      $start_date = $this->input->post("start_date", TRUE);
 $querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
 if($querycheckdepreqtbl->num_rows()==0){
@@ -1623,7 +1623,7 @@ if($querycheckdepreqtbl->num_rows()==0){
 						}else{
 							return false;
 								}
-							    
+
 }else{
 	return false;
 }
@@ -1634,7 +1634,7 @@ public function delete_event($id)
 {
 
     $this->db->where("ID", $id)->delete("tblEvents");
-    
+
 }
 
 
@@ -1912,6 +1912,7 @@ public function viewDepositReq(){
 		}
 	}
 
+
 public function updateConfirmation(){
 
 $depositid = $this->input->post('txtId');
@@ -2132,7 +2133,7 @@ public function VResched(){
 		}else{
 			return false;
 		}
-	}	
+	}
 public function VisitConfirmation(){
 	$id = $this->input->get('id');
 	$this->db->where('intAppointmentID', $id);
