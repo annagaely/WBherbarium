@@ -398,9 +398,9 @@ public function updatePassword(){
 
 public function updateCurrentVisitResched(){
     $id = $this->input->post('txtId');
-    $firstname = $this->session->userdata['strFirstname'];
+    $firstname = $this->session->userdata['strFirstName'];
     $midinit = $this->session->userdata['strMiddleInitial'];
-    $lastname = $this->session->userdata['strLastname'];
+    $lastname = $this->session->userdata['strLastName'];
 $date = $this->input->post('dtnewDate');
 
  $querycheckdate=$this->db->query("select * from tblEvents where [start] = '".$date."'");
@@ -430,9 +430,9 @@ if($this->db->query($queryupdate)){
 
 public function updateCurrentVisitCancel(){
     $id = $this->input->post('txtId');
-    $firstname = $this->session->userdata['strFirstname'];
+    $firstname = $this->session->userdata['strFirstName'];
     $midinit = $this->session->userdata['strMiddleInitial'];
-    $lastname = $this->session->userdata['strLastname'];
+    $lastname = $this->session->userdata['strLastName'];
  $queryupdate="
 
 			update tblAppointments
