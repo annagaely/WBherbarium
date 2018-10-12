@@ -143,7 +143,8 @@
                </div>
      
           <div class="modal-footer">
-             <input type="submit" value="Save" id="btnSave" class="btn btn-primary" style="margin-left: 300px">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
+             <input type="submit" value="Save" id="btnSave" class="btn btn-primary" >
           </div>
          </div>
        </div>
@@ -202,50 +203,53 @@
                 <textarea  id="strCustomMessage" name="txtCustomMessage" class="form-control" placeholder="Type your message here.." ></textarea>
             </div>
                   <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
-                            $('#btnSend').click(function(event){
-                                var data = $('#emailform').serialize();
-                                  event.preventDefault();
-           swal({
-               title: 'Are you sure?',
-               type: 'warning',
-               showCancelButton: true,
-               confirmButtonColor: '#3085d6',
-               cancelButtonColor: '#d33',
-               confirmButtonText: 'Yes'
-             }).then((result) => {
-              $.ajax({
-                                  type: 'ajax',
-                                  method: 'post',
-                                  url: '<?php echo base_url() ?>admin/visitsendMail',
-                                  data: data,
-                                  async: false,
-                                  dataType: 'json',
-                                  success: function(){
-                                  },
-                                  error: function(){
-                                      let timerInterval
-                    swal({
-                      title: 'Email has been sent!',
-                      type: 'success',
-                      timer: 1500,
-                      showConfirmButton: false
-                    }).then(function() {
-                    
-                showAllAppointmentPending();
-                showAllAppointmentExpect();
-                showAllAppointmentReject();
-                showAllAppointmentAll();
-                    $('#EmailVisitCon').modal('hide');
-                    document.getElementById("emailform").reset();
-                  });
-                }
-            });
-        
-    })
- });                     </script>
+                    $('#btnSend').click(function(event){
+                        var data = $('#emailform').serialize();
+                          event.preventDefault();
+                         swal({
+                             title: 'Are you sure?',
+                             type: 'warning',
+                             showCancelButton: true,
+                             confirmButtonColor: '#3085d6',
+                             cancelButtonColor: '#d33',
+                             confirmButtonText: 'Yes'
+                           }).then((result) => {
+                            $.ajax({
+                            type: 'ajax',
+                            method: 'post',
+                            url: '<?php echo base_url() ?>admin/visitsendMail',
+                            data: data,
+                            async: false,
+                            dataType: 'json',
+                            success: function(){
+                               let timerInterval
+                                swal({
+                                  title: 'Email has been sent!',
+                                  type: 'success',
+                                  timer: 1500,
+                                  showConfirmButton: false
+                                }).then(function() {
+                                
+                            showAllAppointmentPending();
+                            showAllAppointmentExpect();
+                            showAllAppointmentReject();
+                            showAllAppointmentAll();
+                                $('#EmailVisitCon').modal('hide');
+                                document.getElementById("emailform").reset();
+                              });
+                            },
+                            error: function(){
+
+                              }
+                          });
+                      
+                          })
+                       });                     
+                </script>
                   </div>
           </form>
         </div>
@@ -273,7 +277,157 @@
       </div>
  </div>
 </div>
+<div id="VResched" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+    <div role="document" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="exampleModalLabel" class="modal-title">Re-schedule</h5>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+        </div>
 
+        <div class="modal-body">
+          <form id= "VReschedForm" method="POST" enctype="multipart/form-data">
+
+          <div class="form-group">
+               <label>Visit ID:</label> 
+                <input type="hidden" name="txtId" id="txtID" value="0">
+                <input type="hidden" name="txtemail" id="txtEmail" value="">
+                 <input type="text" name="txtVisitID" id="intAppointmentID" class="form-control" disabled="">
+          </div>
+          <div class="form-group">
+               <label>Collector's Name:</label> 
+               <input type="text" name="txtVisitorName" id="strCollector" class="form-control" disabled="">
+          </div>
+           <div class="form-group">
+           <label>Visit Purpose:</label>
+                <input type="text" name="txtVisitPurpose" id="strVisitPurpose" class="form-control" disabled="">
+          </div>
+          <div class="form-group">
+              <label>Date of Visit:</label>
+              <input type="Dextate" name="oldtxtdate" id="txtdateID" class="form-control" disabled >
+          </div>
+          <div class="form-group">
+             <label>Reason for rescheduling :</label>
+             <textarea row = '5' name="txtreasonforresched" id="txtreason"  class="form-control" ></textarea>
+          </div>
+           <div class="form-group">
+              <label>New Date of Visit:</label>
+              <input type="Date" name="txtReschedDate" id="newtxtdateID" class="form-control" >
+          </div>
+           <div class="modal-footer">
+               <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
+               <input type="submit" value="Save" id="btnSaveResched" class="btn btn-primary">
+           </div>
+           <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+                     <script type="text/javascript">
+                     $('#btnSaveResched').click(function(event){
+                          var data = $('#VReschedForm').serialize();
+                          var todayadd3 = new Date();
+                          var dd = todayadd3.getDate()+3;
+                          var mm = todayadd3.getMonth()+1; //January is 0!
+                          var yyyy = todayadd3.getFullYear();
+
+                          if(dd<10) {
+                              dd = '0'+dd
+                          } 
+
+                          if(mm<10) {
+                              mm = '0'+mm
+                          } 
+
+                          todayadd3 = yyyy + '-' + mm + '-' +dd ;
+
+                                if($('#newtxtdateID').val()<todayadd3){
+                                           event.preventDefault();
+                                            swal({
+                                               type: 'error',
+                                               title: 'Invalid Date!',
+                                               text: 'The new appointment date should be 3 days from now.'
+                                             });
+                                }else{
+                                    if($('#txtreason').val()!=''){
+                                      if($('#newtxtdateID').val()!=''){
+                                      event.preventDefault();
+                                        swal({
+                                           title: 'Are you sure?',
+                                           type: 'warning',
+                                           showCancelButton: true,
+                                           confirmButtonColor: '#3085d6',
+                                           cancelButtonColor: '#d33',
+                                           confirmButtonText: 'Yes'
+                                         }).then((result) => {
+                                           if (result.value) {
+
+                                              $.ajax({
+                                                type: 'ajax',
+                                                method: 'post',
+                                                 url: '<?php echo base_url() ?>admin/visitreschedadmin',
+                                                data: data,
+                                                async: false,
+                                                dataType: 'json',
+                                                success: function(response){
+                                                  if(response==true){
+                                                     let timerInterval
+                                                          swal({
+                                                            title: 'Saved',
+                                                            text: 'Succesful!',
+                                                            type: 'success',
+                                                             timer: 1500,
+                                                            showConfirmButton: false
+                                                          }).then(function() {
+                                                          
+                                                          showAllAppointmentPending();
+                                                          showAllAppointmentExpect();
+                                                          showAllAppointmentReject();
+                                                          showAllAppointmentAll();
+                                                          $('#VResched').modal('hide');
+                                                          document.getElementById("VReschedForm").reset();
+                                                        });
+                                               }else{
+                                               event.preventDefault();
+                                                swal({
+                                                  type: 'error',
+                                                  title: 'Invalid Date!',
+                                                  text: 'The Herbarium center is not available on the selected date.',
+                                                  showConfirmButton: true
+                                                });
+                                                  }
+
+                                                },
+                                                error: function(){
+                                               event.preventDefault();
+                                                swal({
+                                                  type: 'error',
+                                                  title: 'Fatal Error'
+                                                });
+                                                }
+                                              });
+                                            }
+                                          })
+                                      }else{
+                                       event.preventDefault();
+                                      swal({
+                                        type: 'error',
+                                        title: 'Incomplete input!',
+                                        text: 'Please fill up all the required fields.'
+                                      });
+                                      }
+                                  }else{
+                                     event.preventDefault();
+                                    swal({
+                                      type: 'error',
+                                      title: 'Incomplete input!',
+                                      text: 'Please fill up all the required fields.'
+                                    });
+                                  }
+                                  }
+                                });
+                     </script>
+</form>
+</div>
+</div>
+</div>
+</div>
  <div id="EmailVisitConReject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
     <div role="document" class="modal-dialog">
       <div class="modal-content">
@@ -306,21 +460,22 @@
                 <textarea  id="strCustomMessage" name="txtCustomMessageReject" class="form-control" placeholder="Type your message here.." ></textarea>
             </div>
                   <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
                      <input type="submit" id="btnSendReject" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
                             $('#btnSendReject').click(function(event){
-                                var data = $('#emailformreject').serialize();
-            event.preventDefault();
-              swal({
-               title: 'Are you sure?',
-               type: 'warning',
-               showCancelButton: true,
-               confirmButtonColor: '#3085d6',
-               cancelButtonColor: '#d33',
-               confirmButtonText: 'Yes'
-             }).then((result) => {
-               if (result.value) {
+                              var data = $('#emailformreject').serialize();
+                              event.preventDefault();
+                                swal({
+                                 title: 'Are you sure?',
+                                 type: 'warning',
+                                 showCancelButton: true,
+                                 confirmButtonColor: '#3085d6',
+                                 cancelButtonColor: '#d33',
+                                 confirmButtonText: 'Yes'
+                               }).then((result) => {
+                                 if (result.value) {
                                   $.ajax({
                                   type: 'ajax',
                                   method: 'post',
@@ -424,6 +579,7 @@
             </div>
 
                   <div class="modal-footer">
+                  <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
                      <input type="submit" id="btnConfirm" value="Confirm" class="btn btn-primary">
                   </div>
           </form>
@@ -671,6 +827,33 @@ $(document).on('click', '.view-appointment', function(){
       }
     })
  });
+
+    $(document).on('click', '.view-VResched', function(){
+      var id = $(this).attr('data');
+      $('#VResched').modal('show');
+      $('#VResched').find('.modal-title').text('Re-schedule');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/VResched',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtId]').val(data.intAppointmentID);
+          $('input[name=txtVisitID]').val(data.intAppointmentID);
+         $('input[name=txtVisitorName]').val(data.strFullName);
+         $('input[name=txtVisitPurpose]').val(data.strVisitPurpose);
+        $('input[name=txtemail]').val(data.strEmailAddress);
+        $('input[name=oldtxtdate]').val(data.dtAppointmentDate);
+        },
+
+        error: function(){
+          alert('Could not Edit Data');
+        }
+    });
+    });
+    
   });
       
 </script>

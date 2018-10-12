@@ -84,11 +84,58 @@
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 
     <script type="text/javascript">
-    $(function(){
+    $(document).ready(function(){
       $('#btnDeposit').click(function(event){
         var data = $('#addDepositForm').serialize();
         //validate form
-        if($('#strScientificName').val()!=''){
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+today = yyyy + '-' + mm + '-' +dd ;
+
+
+var todayadd3 = new Date();
+var dd = todayadd3.getDate()+3;
+var mm = todayadd3.getMonth()+1; //January is 0!
+var yyyy = todayadd3.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+todayadd3 = yyyy + '-' + mm + '-' +dd ;
+
+      if($('#dtAppointmentDate').val()<todayadd3){
+                 event.preventDefault();
+                  swal({
+                     type: 'error',
+                     title: 'Invalid Date!',
+                     text: 'The appointment should be 3 days from now.'
+                   });
+      }else{
+        if($('#dtDateCollected').val()>=today){
+                 event.preventDefault();
+                  swal({
+                     type: 'error',
+                     title: 'Invalid Date!',
+                     text: 'Invalid date collected.'
+                   });
+        }else{
+          if($('#strScientificName').val()!=''){
           if($('#strCommonName').val()!=''){
             if($('#strLocation').val()!=''){
               if($('#dtDateCollected').val()!=''){
@@ -125,7 +172,15 @@
                                 event.preventDefault();
                               });
 
-                            }
+                            }else{
+                              event.preventDefault();
+                              swal({
+                                type: 'error',
+                                title: 'Invalid Date!',
+                                text: 'The Herbarium center is not available on the selected date.',
+                                showConfirmButton: true
+                              });
+                             }
                           },
                           error: function(){
                             alert('Could not save Data');
@@ -181,6 +236,12 @@
             text: 'Please fill up all the required fields.'
           });
           }
+        }
+        
+      }
+
+
+        
       });
     });
 
