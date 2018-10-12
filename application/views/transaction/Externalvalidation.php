@@ -211,6 +211,7 @@
 
                    <div class="form-group">
                      <div class="modal-footer">
+                    <button style="margin-left: 300px" type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary"> Cancel</button>
                      <input type="submit" id="btnSave" value="Send" class="btn btn-primary" style="margin-left: 300px">
                     </div>
                    </div>
@@ -258,6 +259,7 @@
             </div>
 
                   <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary"> Cancel</button>
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
@@ -357,6 +359,7 @@
             </div>
                     
                   <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary"> Cancel</button>
                      <input type="submit" id="btnConfirm" value="Confirm" class="btn btn-primary">
                   </div>
           </form>
@@ -501,30 +504,30 @@ $(document).on('click', '.view-EVPending', function(){
     });
     });
 
-     $(document).on('click', '.view-EVemailcon', function(){
-      var id = $(this).attr('data');
-      $('#EVEmailCon').modal('show');
-      $('#EVEmailCon').find('.modal-title').text('Email');
-      $.ajax({
-        type: 'ajax',
-        method: 'get',
-        url: '<?php echo base_url() ?>admin/EVEmailCon',
-        data: {id: id},
-        async: false,
-        dataType: 'json',
-        success: function(data){
-          $('#strEmailAdress').val(data.strEmailAddress);
-          $('#txtemail').val(data.strEmailAddress);
-          $('input[name=txtId]').val(data.intDepositID);
-          $('#txtreqID').val(data.intDepositID);
+      //  $(document).on('click', '.view-EVemailcon', function(){
+      //   var id = $(this).attr('data');
+      //   $('#EVEmailCon').modal('show');
+      //   $('#EVEmailCon').find('.modal-title').text('Email');
+      //   $.ajax({
+      //     type: 'ajax',
+      //     method: 'get',
+      //     url: '<?php echo base_url() ?>admin/EVEmailCon',
+      //     data: {id: id},
+      //     async: false,
+      //     dataType: 'json',
+      //     success: function(data){
+      //       $('#strEmailAdress').val(data.strEmailAddress);
+      //       $('#txtemail').val(data.strEmailAddress);
+      //       $('input[name=txtId]').val(data.intDepositID);
+      //       $('#txtreqID').val(data.intDepositID);
 
-        },
-        error: function(){
-          alert('Could not Edit Data');
-        }
+      //     },
+      //     error: function(){
+      //       alert('Could not Edit Data');
+      //     }
 
-    });
-    });
+      // });
+      // });
 
 $('#btnConfirm').click(function(event){
       var data = $('#EVConfirmForm').serialize();

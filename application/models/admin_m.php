@@ -1756,8 +1756,7 @@ public function showAllDepositReqOkay()
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary view-emailcon" title="Send Email" data="'.$r->intDepositReqID.'"><i class="far fa-envelope"></i></button>
-				   <button class="btn btn-primary view-depositcon" title="Confirm" data="'.$r->intDepositReqID.'"><i class="fas fa-check"></i></button>';
+			$btn = '<button style= "margin-right:2px" class="btn btn-primary btn-sm view-emailcon" title="Send Email" data="'.$r->intDepositReqID.'"><i class="far fa-envelope"></i></button><button style= "margin-right:2px" class="btn btn-primary btn-sm view-DResched" title="Re-schedule" data="'.$r->intDepositReqID.'"><i class="fas fa-calendar-alt"></i></button><button class="btn btn-primary btn-sm view-depositcon" title="Confirm" data="'.$r->intDepositReqID.'"><i class="fas fa-check"></i></button>';
 
 			$result[] = array(
 					$r->intDepositReqID,
@@ -1774,7 +1773,20 @@ public function showAllDepositReqOkay()
 		return $result;
 }
 
+public function DResched(){
+		$id = $this->input->get('id');
+		$this->db->where('intDepositReqID', $id);
+		$query = $this->db->select("intDepositReqID
+      ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName")
 
+		->join('tblOnlineUser ou','ou.intOUserID=dr.intOUserID')
+		->get('tblDepositReq dr');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
 
 public function showAllDepositReqAll()
 {
@@ -2012,9 +2024,7 @@ DECLARE @status 		varchar(255);
 		where strStatus ='For Visiting'");
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary view-emailcon" title="Send Email" data="'.$r->intAppointmentID.'"><i class="far fa-envelope"></i></button>
-
-				   <button class="btn btn-primary view-appcon" title="Confirm" data="'.$r->intAppointmentID.'"><i class="fas fa-check"></i></button>';
+			$btn = '<button style= "margin-right:2px" class="btn btn-primary btn-sm view-emailcon" title="Send Email" data="'.$r->intAppointmentID.'"><i class="far fa-envelope"></i></button><button style= "margin-right:2px" class="btn btn-primary btn-sm view-VResched" title="Re-schedule" data="'.$r->intAppointmentID.'"><i class="fas fa-calendar-alt"></i></button><button class="btn btn-primary btn-sm view-appcon" title="Confirm" data="'.$r->intAppointmentID.'"><i class="fas fa-check"></i></button>';
 
 			$result[] = array(
 					$r->intAppointmentID,
@@ -2029,7 +2039,20 @@ DECLARE @status 		varchar(255);
 
 		return $result;
 }
+public function VResched(){
+		$id = $this->input->get('id');
+		$this->db->where('intAppointmentID', $id);
+		$query = $this->db->select("intAppointmentID
+      ,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strVisitPurpose")
 
+		->join('tblOnlineUser ou','ou.intOUserID=ap.intOUserID')
+		->get('tblAppointments ap');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}	
 public function VisitConfirmation(){
 	$id = $this->input->get('id');
 	$this->db->where('intAppointmentID', $id);
@@ -2214,9 +2237,7 @@ public function showExValOkay(){
 		foreach ($query->result() as $r)
 		{
 
-		$btn = '<button class="btn btn-primary view-EVemailcon" data="'.$r->intPlantDepositID.'"><i class="far fa-envelope"></i></button>
-
-				   <button class="btn btn-primary view-EVConfirmation" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
+		$btn = '<button class="btn btn-primary view-EVConfirmation" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
 
 
 			$result[] = array(

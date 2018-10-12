@@ -143,6 +143,7 @@
                     </div>
               
                      <div class="modal-footer">
+                      <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
                       <input type="submit" id="btnSave" value="Proceed" class="btn btn-primary">
                      </div>
   
@@ -176,7 +177,50 @@
         </div>
       </div>
     </div>
+<div id="DResched" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
+  <div role="document" class="modal-dialog" >
+    <div class="modal-content" >
+           <div class="modal-header">
 
+             <h5 id="exampleModalLabel" class="modal-title">Re-schedule</h5>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+
+      <div class="modal-body">
+          <form id= "DResched" method="POST" enctype="multipart/form-data">
+          
+                  <div class="form-group">
+                      <label>Deposit ID:</label>
+                      <input type="hidden" name="txtId" id="txtID" value="0">
+                       <input type="text" name="txtDepositReqID" id="intDepositReqID" class="form-control" disabled="">
+                   </div>
+
+
+                     <div class="form-group">
+                       <label>Collector:</label>
+                       <input type="text" name="txtCollector" id="strFullName"  class="form-control" disabled="">
+                     </div>
+
+
+                     <div class="form-group">
+                       <label>Date :</label>
+                       <input type="Date" name="txtReschedDate" id="dtReschedDate"  class="form-control" disabled="">
+                     </div>
+            
+             </form>
+            </div>
+                    
+                     <div class="modal-footer">
+                       <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
+                      <input type="submit" id="btnSave" value="Proceed" class="btn btn-primary">
+                     </div>
+
+           
+         </div>
+ </div>
+</div>
  <div id="EmailCon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
     <div role="document" class="modal-dialog">
       <div class="modal-content">
@@ -214,6 +258,7 @@
             </div>
 
                   <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
@@ -335,6 +380,7 @@
             </div>
                     
                   <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
                      <input type="submit" id="btnConfirm" value="Confirm" class="btn btn-primary">
                   </div>
           </form>
@@ -583,6 +629,31 @@ $(document).ready(function() {
       }
     })
 });
+                $(document).on('click', '.view-DResched', function(){
+      var id = $(this).attr('data');
+      $('#DResched').modal('show');
+      $('#DResched').find('.modal-title').text('Re-Schedule');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/DResched',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtId]').val(data.intDepositReqID)
+          $('input[name=txtCollector]').val(data.strFullName);
+          $('input[name=txtDepositReqID]').val(data.intDepositReqID);
+
+
+
+        },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+    });
+    });
+                
        });
 </script>
 <script>

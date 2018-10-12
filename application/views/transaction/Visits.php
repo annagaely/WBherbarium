@@ -143,6 +143,7 @@
                </div>
      
           <div class="modal-footer">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary" style="margin-left: 300px">Cancel</button>
              <input type="submit" value="Save" id="btnSave" class="btn btn-primary" style="margin-left: 300px">
           </div>
          </div>
@@ -202,6 +203,7 @@
                 <textarea  id="strCustomMessage" name="txtCustomMessage" class="form-control" placeholder="Type your message here.." ></textarea>
             </div>
                   <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
                      <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
@@ -273,7 +275,43 @@
       </div>
  </div>
 </div>
+<div id="VResched" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+    <div role="document" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="exampleModalLabel" class="modal-title">Re-schedule</h5>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+        </div>
 
+        <div class="modal-body">
+          <form id= "VReschedForm" method="POST" enctype="multipart/form-data">
+
+          <div class="form-group">
+               <label>Visit ID:</label> 
+                <input type="hidden" name="txtId" id="txtID" value="0">
+                 <input type="text" name="txtVisitID" id="intAppointmentID" class="form-control" disabled="">
+          </div>
+          <div class="form-group">
+               <label>Collector's Name:</label> 
+               <input type="text" name="txtVisitorName" id="strCollector" class="form-control" disabled="">
+          </div>
+           <div class="form-group">
+           <label>Visit Purpose:</label>
+                <input type="text" name="txtVisitPurpose" id="strVisitPurpose" class="form-control" disabled="">
+          </div>
+          <div class="form-group">
+              <label>Date of Visit:</label>
+              <input type="Date" name="ntxtdateid" id="txtdateID" class="form-control" >
+          </div>
+           <div class="modal-footer">
+               <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
+               <input type="submit" value="Save" id="btnEditSave" class="btn btn-primary">
+           </div>
+</form>
+</div>
+</div>
+</div>
+</div>
  <div id="EmailVisitConReject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
     <div role="document" class="modal-dialog">
       <div class="modal-content">
@@ -306,6 +344,7 @@
                 <textarea  id="strCustomMessage" name="txtCustomMessageReject" class="form-control" placeholder="Type your message here.." ></textarea>
             </div>
                   <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
                      <input type="submit" id="btnSendReject" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
@@ -424,6 +463,7 @@
             </div>
 
                   <div class="modal-footer">
+                  <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary">Cancel</button>
                      <input type="submit" id="btnConfirm" value="Confirm" class="btn btn-primary">
                   </div>
           </form>
@@ -671,6 +711,31 @@ $(document).on('click', '.view-appointment', function(){
       }
     })
  });
+
+    $(document).on('click', '.view-VResched', function(){
+      var id = $(this).attr('data');
+      $('#VResched').modal('show');
+      $('#VResched').find('.modal-title').text('Re-schedule');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/VResched',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+          $('input[name=txtId]').val(data.txtID);
+          $('input[name=txtVisitID]').val(data.intAppointmentID);
+         $('input[name=txtVisitorName]').val(data.strFullName);
+         $('input[name=txtVisitPurpose]').val(data.strVisitPurpose);
+        },
+
+        error: function(){
+          alert('Could not Edit Data');
+        }
+    });
+    });
+    
   });
       
 </script>

@@ -1,3 +1,35 @@
+<style type="text/css">
+  #scroll {
+    position:fixed;
+    right:10px;
+    bottom:10px;
+    cursor:pointer;
+    width:50px;
+    height:50px;
+    background-color:#939393;
+    text-indent:-9999px;
+    display:none;
+    -webkit-border-radius:60px;
+    -moz-border-radius:60px;
+    border-radius:10px
+}
+#scroll span {
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-8px;
+    margin-top:-12px;
+    height:0;
+    width:0;
+    border:8px solid transparent;
+    border-bottom-color:#ffffff;
+}
+#scroll:hover {
+    background-color:#3498db;
+    opacity:1;filter:"alpha(opacity=100)";
+    -ms-filter:"alpha(opacity=100)";
+}
+</style>
 <div class="preloader-wrapper big active crazy">
   <div class="spinner-layer spinner-blue-only">
     <div class="circle-clipper left">
@@ -68,9 +100,10 @@
                     <img class="d-block w-100" style="height: 60vh;" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/banner3.jpg" alt="Third slide">
                     <div class="mask rgba-black-light"></div>
                 </div>
-                <div class="carousel-caption">
-                    <h3 class="h3-responsive">Title</h3>
-                    <p>Third text</p>
+             <div class="carousel-caption" style="margin-bottom: 20px">
+                  <a href="#staff" style="color: white;">
+                    <h3 class="h3-responsive">Meet the PUP Herbarium Center's hardworking staffs</h3>
+                  </a>
                 </div>
             </div>
               </div>
@@ -87,9 +120,15 @@
        </a>
             <!--/Controls-->
 </div>
+<a href="#" id="scroll" style="display: none;"> <span></span>
+    </a>
     <div class="px-5 py-5 mx-0" >
     <section class="text-center mx-5 pb-5">
     <!-- Section heading -->
+<!-- 
+<script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=5575d02bd4e845bc24dac524eb32f54d75edcc64'></script>
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/425554/t/5"></script> -->
+
       <h2 class="h1-responsive font-weight-bold my-5" >Welcome to PUP Herbarium</h2>
       <!-- Section description -->
       <p class="lead black-text w-responsive mx-auto mb-5">Come and explore the first Polytechnic University in the Philippines' herbarium specimen collections.</p>
@@ -113,7 +152,7 @@
 
            <a href="<?php echo base_url(); ?>user/Collection"><i class="fas fa-search fa-3x cyan-text"></i></a>
            <a href="<?php echo base_url(); ?>user/Collection" style="color: black"><h5 class="font-weight-bold my-4">Search</h5></a>
-          <p class="black-text mb-md-0 mb-5">Get access to PUP herbarium specimens and descriptions by clicking  <a href="<?php echo base_url(); ?>user/Collection" style="color: black">here. </a>
+          <p class="black-text mb-md-0 mb-5">Get access to PUP herbarium specimens and descriptions by clicking  <a href="<?php echo base_url(); ?>user/CollectionUser" style="color: black">here. </a>
           </p>
 
         </div>
@@ -122,7 +161,7 @@
         <!-- Grid column -->
         <div class="col-md-4">
 
-          <a href="<?php echo base_url(); ?>user/howtovisit"><i class="fas fa-map-marked-alt fa-3x orange-text"></i></a>
+          <a href="<?php echo base_url(); ?>user/appointment"><i class="fas fa-map-marked-alt fa-3x orange-text"></i></a>
           <a href="<?php echo base_url(); ?>user/appointment"  style="color: black"><h5 class="font-weight-bold my-4">Visit</h5></a>
           <p class="black-text mb-0">PUP Herbarium Center is open for visitors. Just set an appointment prior to your visit.
           </p>
@@ -135,7 +174,8 @@
 
     </section>
     </div>
-    <section  id="welcome" class="text-white mx-0 px-0" style="background-color: #800000; padding: 5rem 0;">
+ <div>
+    <section  id="welcome" class="text-white mx-0 px-0" style="background-color: #800000; padding: 5rem 0; ">
         <div class="container py-5">
             <div class="text-center">
                 <h2 >What is PUP Herbarium?</h2>
@@ -148,17 +188,17 @@
                 </div>
             </div>
         </div>
-
-    </section>
+      </section>
+    </div>
     <!-- Projects section v.3 -->
-    <div class="pt-0 pb-5 px-5" id="topten">
-        <section class="my-5 mx-5">
+   <div class="pt-5 px-5 pb-5 h-100">
+    <div class="pt-5 px-5"  id="topten">
+        <section class="mt-5 mx-5">
             <!-- Section heading -->
             <h2 class="h1-responsive font-weight-bold text-center my-5">Top 10 Families with Most Number of Species Found in PUP Mabini Campus </h2>
 
       <div class="row">
         <div class="col-md-7 pl-5">
-
             <div class="card-body">
               <canvas id="pieChart"></canvas>
             </div>
@@ -178,7 +218,9 @@
      </div>
       </div>
 
-</section></div>
+</section>
+</div>
+</div>
 
 <!-- Projects section v.3 -->
 <!-- Section: Features v.1 -->
@@ -212,9 +254,10 @@
 </section> -->
 
 <!-- Card -->
-<section class="text-center mx-5 pl-5 py-5" >
+<div style="background-color: #dcdcdc" >
+<section class="text-center mx-3 px-5 pt-3" id = "staff">
     <div>
-      <h2> <span style="color:#800000">PUP </span> Herbarium Staff </h2>
+      <h2 style="margin-top: 5rem"> <span style="color:#800000"><strong>PUP</strong> </span> Herbarium Staff </h2>
     </div>
   <div class="py-5" style="padding-left: 200px; padding-right: 200px;">
     <div class="row">
@@ -227,7 +270,7 @@
             </a>
           </div>
           <div class="card-body">
-            <h6 class="card-title">Armin S. Coronado, MSc.</h4>
+            <h6 class="card-title">Armin S. Coronado, MSc.</h6>
             <p class="card-text" style="font-size: 12px">Director - Institute for Science and Research Technology</p>
             <button type="button" class="btn btn-light-blue btn-md"  data-toggle="modal" data-target="#modal1">Read more</button>
           </div>
@@ -242,10 +285,10 @@
             </a>
           </div>
           <div class="card-body">
-            <h6 class="card-title">Ma. Eleanor C. Salvador</h4>
-            <p class="card-text" style="font-size: 12px">Head Curator - PUP Herbarium Center</p>
+            <h6 class="card-title">Ma. Eleanor C. Salvador</h6>
+            <p class="card-text" style="font-size: 12px">Head Curator - PUP Herbarium Center <br><br></p>
               <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modal2">Read more</button>
-            </div>
+          </div>
           </div>
       </div>
       <div class="col-md-3">
@@ -257,8 +300,8 @@
             </a>
           </div>
           <div class="card-body">
-            <h6 class="card-title">Enrykie Fortajada</h4>
-            <p class="card-text" style="font-size: 12px">Curator - PUP Herbarium Center</p>
+            <h6 class="card-title">Enrykie Fortajada</h6>
+            <p class="card-text" style="font-size: 12px">Curator - PUP Herbarium Center<br><br><br></p>
             <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modal3">Read more</button>
           </div>
         </div>
@@ -273,7 +316,7 @@
           </div>
           <div class="card-body">
             <h6 class="card-title">Blank Muna</h6>
-            <p class="card-text" style="font-size: 12px"> wala pa details partial pa lang lahat</p>
+            <p class="card-text" style="font-size: 12px"> wala pa details partial pa lang lahat<br><br><br></p>
             <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modal4">Read more</button>
           </div>
         </div>
@@ -281,6 +324,7 @@
     </div>
   </div>
 </section>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -351,8 +395,23 @@
 
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
- <script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/mdb.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/mdb.js"></script>
 
+<script type="text/javascript">
+  $(document).ready(function(){ 
+    $(window).scroll(function(){ 
+        if ($(this).scrollTop() > 100) { 
+            $('#scroll').fadeIn(); 
+        } else { 
+            $('#scroll').fadeOut(); 
+        } 
+    }); 
+    $('#scroll').click(function(){ 
+        $("html, body").animate({ scrollTop: 0 }, 600); 
+        return false; 
+    }); 
+});
+</script>
 <script>
   var ctxP = document.getElementById("pieChart").getContext('2d');
   var myPieChart = new Chart(ctxP, {
