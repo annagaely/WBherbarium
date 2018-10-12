@@ -1267,17 +1267,7 @@ public function edit_event()
 		echo json_encode($result);
 
 	}
-	public function DResched(){
-			$result = $this->m->DResched();
-			echo json_encode($result);
 
-		}
-
-		public function VResched(){
-			$result = $this->m->VResched();
-			echo json_encode($result);
-
-		}
 
 
 	//SENDING EMAIL NOT YET FINAL
