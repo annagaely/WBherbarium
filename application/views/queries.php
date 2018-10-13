@@ -142,7 +142,7 @@
               </ul>
             </li>
               <li class="active"><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url();?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
 
@@ -332,7 +332,6 @@ if(data.intcount!=0){
 </div>
 
 <div class="container-fluid">
-    <div class="col-md-4">
       <div class="row">
         <div class="col-md-12">
           <div class="card mt-4">
@@ -352,6 +351,7 @@ if(data.intcount!=0){
           </div>
         </div>
       </div>
+
     </div>
     <!--PHYLUM PART-->
     <div class="col-md-20" id='divTablePhylum'>
@@ -371,6 +371,7 @@ if(data.intcount!=0){
       </div>
     </div>
     <div id="myPhylumModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+
           <div role="document" class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -1497,7 +1498,7 @@ $(document).on('click', '.altname-edit', function(e){
   $('#divTableClass').hide();
   $('#divTableOrder').hide();
   }
- 
+
 
  });
 
