@@ -142,7 +142,7 @@
               </ul>
             </li>
               <li class="active"><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url();?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
 
@@ -329,7 +329,6 @@ if(data.intcount!=0){
 </div>
 
 <div class="container-fluid">
-    <div class="col-md-4">
       <div class="row">
         <div class="col-md-12">
           <div class="card mt-4">
@@ -344,24 +343,26 @@ if(data.intcount!=0){
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-20" id='divTable'>
-      <div class="card mt-4 px-3 py-3">
+<div class="row">
+  <div class="col-md-12" id='divTable'>
+    <div class="card mt-1 px-3 py-3">
 
-        <div class="table-responsive">
-          <table class="table table-striped table-hover" id="manageQuerytbl">
-            <thead>
-              <tr role="row">
-                <th>Domain Name</th>
-                <th>Kingdom Name</th>
-                <th>Phylum Name</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover" id="manageQuerytbl">
+          <thead>
+            <tr role="row">
+              <th>Domain Name</th>
+              <th>Kingdom Name</th>
+              <th>Phylum Name</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+        </table>
       </div>
     </div>
+  </div>
+</div>
+
     <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
           <div role="document" class="modal-dialog">
             <div class="modal-content">
@@ -469,7 +470,7 @@ $(document).ready(function () {
   $('#divTable').hide();
   $('#divTable1').show();
   }
- 
+
 
  });
 
