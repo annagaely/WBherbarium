@@ -329,7 +329,7 @@ if(data.intcount!=0){
         </div>
       </div>
 <!--ADD Collector MODAL asdadsasd -->
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Collector</button>
         </div>
@@ -480,7 +480,7 @@ if(data.intcount!=0){
         </div>
       <!-- update collector modal -->
 
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-body">
            <div class="table-responsive">
               <table class="table dataTable no-footer" id="manageCollectortbl">
