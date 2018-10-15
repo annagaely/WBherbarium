@@ -2437,7 +2437,7 @@ public function showExValAll(){
 		{
 
 			$result[] = array(
-					
+
 					$r->strAccessionNumber,
 					$r->strScientificName,
 					$r->strCollector,
@@ -2906,7 +2906,7 @@ WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018'");
 FROM viewHerbariumSheet
 WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018'");
 
-		if($query->num_rows() > 0){
+
 			$output = '<style>
 table {
     font-family: arial, sans-serif;
@@ -2973,9 +2973,7 @@ tr:nth-child(even) {
 		}
 		$output .= '</table>';
 		return $output;
-		}else{
-			return false;
-		}
+
 	}
 
 
