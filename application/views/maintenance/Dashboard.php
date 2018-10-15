@@ -292,10 +292,10 @@ if(data.intcount!=0){
             <div class="col-xl-3 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-user"></i></div>
-                <div class="name"><strong class="text-uppercase">Total<br>Accounts</strong>
+                <div class="name"><strong class="text-uppercase">Total Online<br>User Accounts</strong>
                   <div class="count-number">
                     <?php
-    $query = $this->db->query('select count(intDepositReqID) as totalDeposit from tblDepositReq');
+    $query = $this->db->query('select count(intOUserID) as totalOUser from tblOnlineUser');
     if($query->num_rows() > 0){
       foreach ($query->row() as $key => $query) {
     echo $query;
@@ -467,64 +467,292 @@ if(data.intcount!=0){
                         <h4>Line Chart Example</h4>
                       </div>
                       <div class="card-body">
-                        <canvas id="lineChartExample"></canvas>
+                      <canvas id="lineChart"></canvas>
                       </div>
                     </div>
+
                   </div>
                   <div class="xol-lg-6">
                     <div class="card pie-chart-example">
                       <div class="card-header d-flex align-items-center">
-                        <h4>Pie Chart Example</h4>
+                        <h4>Herbarium Collections</h4>
                       </div>
                       <div class="card-body">
                         <div class="chart-container">
-                          <canvas id="pieChartExample"></canvas>
+                          <canvas id="pieChart"></canvas>
                         </div>
                       </div>
                     </div>
                   </div>
 
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 
-<script>//bar
-var ctxB = document.getElementById("barChart").getContext('2d');
-var myBarChart = new Chart(ctxB, {
-    type: 'bar',
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/mdb.js"></script>
+
+     
+
+ <script>
+
+//bar
+var ctxP = document.getElementById("pieChart").getContext('2d');
+var myPieChart = new Chart(ctxP, {
+    type: 'pie',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
+        labels: ["Externally Verified",  "Total Collections"],
+        datasets: [
+            {
+        data: [<?php 
+                $query = $this->db->query('select count(intPlantDepositID) from tblHerbariumSheet pd join tblSentForVerify sv on pd.intPlantDepositID=sv.intDepositID');
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>,
+                <?php 
+                $query = $this->db->query('select count(intPlantDepositID) from tblHerbariumSheet');
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>],
+                backgroundColor: ["#F7464A",  "#FDB45C"],
+                hoverBackgroundColor: ["#FF5A5E",  "#FFC870"]
+            }
+        ]
     },
     options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
+        responsive: true
     }
-});</script>
+});
 
+</script>
+<script>
+var ctxL = document.getElementById("lineChart").getContext('2d');
+var myLineChart = new Chart(ctxL, {
+  type: 'line',
+  data: {
+    labels: ["January", "February", "March", "April", "May", "June", "July","August", "September", "October", "November", "December"],
+    datasets: [{
+        label: "Visits",
+        data: [<?php 
+                $query = $this->db->query("Select count(dtAppointmentDate) from tblAppointments where dtAppointmentDate BETWEEN '2018-01-01' AND '2018-01-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>,
+                <?php 
+                $query = $this->db->query("Select count(dtAppointmentDate) from tblAppointments where dtAppointmentDate BETWEEN '2018-02-01' AND '2018-02-28'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>,
+                <?php 
+                $query = $this->db->query("Select count(dtAppointmentDate) from tblAppointments where dtAppointmentDate BETWEEN '2018-03-01' AND '2018-03-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>,
+                <?php 
+                $query = $this->db->query("Select count(dtAppointmentDate) from tblAppointments where dtAppointmentDate BETWEEN '2018-04-01' AND '2018-04-30'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>,
+                 <?php 
+                $query = $this->db->query("Select count(dtAppointmentDate) from tblAppointments where dtAppointmentDate BETWEEN '2018-05-01' AND '2018-05-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtAppointmentDate) from tblAppointments where dtAppointmentDate BETWEEN '2018-06-01' AND '2018-06-30'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtAppointmentDate) from tblAppointments where dtAppointmentDate BETWEEN '2018-07-01' AND '2018-07-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtAppointmentDate) from tblAppointments where dtAppointmentDate BETWEEN '2018-08-01' AND '2018-08-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtAppointmentDate) from tblAppointments where dtAppointmentDate BETWEEN '2018-09-01' AND '2018-09-30'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtAppointmentDate) from tblAppointments where dtAppointmentDate BETWEEN '2018-10-01' AND '2018-10-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtAppointmentDate) from tblAppointments where dtAppointmentDate BETWEEN '2018-11-01' AND '2018-11-30'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtAppointmentDate) from tblAppointments where dtAppointmentDate BETWEEN '2018-12-01' AND '2018-12-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>],
+        backgroundColor: [
+          'rgba(105, 0, 132, .2)',
+        ],
+        borderColor: [
+          'rgba(200, 99, 132, .7)',
+        ],
+        borderWidth: 2
+      },
+      {
+        label: "Deposits",
+        data: [<?php 
+                $query = $this->db->query("Select count(dtDateCollected) from tblDepositReq where dtDateCollected BETWEEN '2018-01-01' AND '2018-01-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>,
+                <?php 
+                $query = $this->db->query("Select count(dtDateCollected) from tblDepositReq where dtDateCollected BETWEEN '2018-02-01' AND '2018-02-28'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>,
+                <?php 
+                $query = $this->db->query("Select count(dtDateCollected) from tblDepositReq where dtDateCollected BETWEEN '2018-03-01' AND '2018-03-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>,
+                <?php 
+                $query = $this->db->query("Select count(dtDateCollected) from tblDepositReq where dtDateCollected BETWEEN '2018-04-01' AND '2018-04-30'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>,
+                 <?php 
+                $query = $this->db->query("Select count(dtDateCollected) from tblDepositReq where dtDateCollected BETWEEN '2018-05-01' AND '2018-05-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtDateCollected) from tblDepositReq where dtDateCollected BETWEEN '2018-06-01' AND '2018-06-30'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtDateCollected) from tblDepositReq where dtDateCollected BETWEEN '2018-07-01' AND '2018-07-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtDateCollected) from tblDepositReq where dtDateCollected BETWEEN '2018-08-01' AND '2018-08-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtDateCollected) from tblDepositReq where dtDateCollected BETWEEN '2018-09-01' AND '2018-09-30'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtDateCollected) from tblDepositReq where dtDateCollected BETWEEN '2018-10-01' AND '2018-10-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtDateCollected) from tblDepositReq where dtDateCollected BETWEEN '2018-11-01' AND '2018-11-30'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>, 
+                <?php 
+                $query = $this->db->query("Select count(dtDateCollected) from tblDepositReq where dtDateCollected BETWEEN '2018-12-01' AND '2018-12-31'");
+                if($query->num_rows() > 0){
+                foreach ($query->row() as $key => $query) {
+                echo $query; }
+                }else{
+                return false;}
+                ?>],
+        backgroundColor: [
+          'rgba(0, 137, 132, .2)',
+        ],
+        borderColor: [
+          'rgba(0, 10, 130, .7)',
+        ],
+        borderWidth: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true
+  }
+});
+</script>
    <footer class="main-footer">
         <div class="container-fluid">
           <div class="row">
