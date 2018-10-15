@@ -70,6 +70,7 @@ $(document).ready(function () {
        "deferLoading": 10,
        "bPaginate": true,
        "aaSorting": [],
+       "searching": false,
        "fnInitComplete": function(){
 
        }

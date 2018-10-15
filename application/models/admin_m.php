@@ -536,8 +536,8 @@ public function showGenusFamilyName(){
 
 public function showAllSpecies(){
 		$result = array();
-		$query = $this->db
-			->get('viewTaxonSpecies');
+		$query = $this->db->join('tblGenus g','s.intGenusID = g.intGenusID')
+			->get('tblSpecies s');
 		foreach ($query->result() as $r)
 		{
 			$btn = '<button class="btn btn-primary species-edit" data="'.$r->intSpeciesID.'"><i class="far fa-edit"></i></button>';
@@ -547,7 +547,7 @@ public function showAllSpecies(){
 					$r->strGenusName,
 					$r->strSpeciesName,
 					$r->strCommonName,
-					$r->strAuthorsName,
+					// $r->strAuthorsName,
 					$btn,
 					$r->intSpeciesID
 					);
@@ -2236,6 +2236,7 @@ $status = $this->input->post('txtStatus');
 		foreach ($query->result() as $r)
 		{
 
+
 			$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
 
 
@@ -2441,9 +2442,10 @@ public function showExValAll(){
 		{
 
 			$result[] = array(
-					$r->intPlantDepositID,
-					$r->intAccessionNumber,
-					$r->strFullName,
+					
+					$r->strAccessionNumber,
+					$r->strScientificName,
+					$r->strCollector,
 					$r->dateDeposited,
 					$r->strStatus
 
@@ -2894,6 +2896,93 @@ public function showAllOUser()
 			return false;
 		}
 	}
+
+	public function getmonth($key){
+		$query = $this->db->query("SELECT *
+FROM viewHerbariumSheet
+WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018'");
+
+		if($query->num_rows() > 0){
+
+
+}}
+	public function pdfgetfromdb($key){
+		$query = $this->db->query("SELECT *
+FROM viewHerbariumSheet
+WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018'");
+
+		if($query->num_rows() > 0){
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+			<table width="100%" cellspacing="5" cellpadding="5">
+			<thEAD>
+			<tr>
+			<td><b>Accession Number</td>
+			<td><b>Family Name</td>
+			<td><b>Scientific Name</td>
+			<td><b>Common Name</td>
+			<td><b>Full Locality</td>
+			<td><b>Date Verified</td>
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="20%">
+					<p>'.$row->strAccessionNumber.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strFamilyName.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strScientificName.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strCommonName.'</p>
+
+				</td>
+								<td width="50%">
+
+					<p>'.$row->strFullLocality.' </p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->dateVerified.' </p>
+				</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output;
+		}else{
+			return false;
+		}
+	}
+
 
 
 }?>

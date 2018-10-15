@@ -377,7 +377,7 @@ if(data.intcount!=0){
 
 
 <div class="tabcontent" id="FirstTab">
-       <div class="card">
+       <div class="card mx-4 mt-4">
         <div class="card-body">
          <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageDepositReqPendingtbl">
@@ -472,7 +472,7 @@ if(data.intcount!=0){
 
 
 <div id="SecondTab" class="tabcontent">
-   <div class="card">
+   <div class="card mx-4 mt-4">
         <div class="card-body">
          <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageDepositReqForDepositingtbl">
@@ -745,7 +745,7 @@ if(data.intcount!=0){
 
 
  <div id="ThirdTab" class="tabcontent">
-  <div class="card">
+  <div class="card mx-4 mt-4">
         <div class="card-body">
          <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageAllDeposittbl">
@@ -778,16 +778,20 @@ if(data.intcount!=0){
 
         <div class="modal-body">
           <form id= "ConfirmForm" method="POST" enctype="multipart/form-data">
-            <div class="form-group row">>
+            <div class="form-group row">
+            <div class="col-sm-4">
               <label style="font-size: 14px;">Deposit ID:</label>
-
+              </div>
               <div class="col-sm-8">
                       <input type="hidden" name="txtId" id="txtID" value="0">
                        <input type="text" name="txtDepositReqID" id="intDepositReqID" class="form-control" disabled="">
                      </div>
             </div>
            <div class="form-group row">
-             <label style="font-size: 14px;">Collector's Name:</label>
+            <div class="col-sm-4">
+                     <label style="font-size: 14px;">Collector's Name:</label>
+                   </div>
+                      <div class="col-sm-8">
                       <input type="hidden" name="txtId" id="txtID" value="0">
                        <input type="text" name="txtCollectorName" id="strFullName" class="form-control" disabled="">
                      </div>

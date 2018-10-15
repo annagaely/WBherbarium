@@ -329,7 +329,7 @@ if(data.intcount!=0){
       </div>
 
       <!--ADD PHYLUM MODAL HAHAHAHAHAHA-->
-<div class="card">
+<div class="card mx-4">
         <div class="card-header d-flex align-items-center" >
           <button type="button" id="btnAdd " data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Plant Borrower</button>
         </div>
@@ -379,7 +379,7 @@ if(data.intcount!=0){
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input  data-mask="99999999999" type="text" name= "PBCNumber" id="strConactNumber" placeholder="Contact Number" class="form-control">
+                    <input  data-mask="99999999999" type="text" name= "PBCNumber" id="strContactNumber" placeholder="Contact Number" class="form-control">
                   </div>
                 <div class="col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
@@ -421,7 +421,7 @@ if(data.intcount!=0){
                   <div class="form-group">
                    <input type="hidden" name="txtId" value="0">
                   <label>First Name:</label> <label style="color: red">*</label>
-                  <input type="text" id="strFirstname" name="PBFName" placeholder="First Name " class="form-control">
+                  <input type="text" id="strFirstname1" name="PBFName" placeholder="First Name " class="form-control">
                 </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
@@ -436,7 +436,7 @@ if(data.intcount!=0){
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Last Name:</label> <label style="color: red">*</label>
-                      <input type="text" id="strLastname" name="PBLName" placeholder="Last Name" class="form-control">
+                      <input type="text" id="strLastname1" name="PBLName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Name Suffix:</label>
@@ -445,21 +445,21 @@ if(data.intcount!=0){
                   </div>
                 <div class="form-group">
                   <label>Home Address:</label> <label style="color: red">*</label>
-                    <input type="text" name="PBHAddress" id="strHomeAddress" placeholder="Home Address" class="form-control">
+                    <input type="text" name="PBHAddress" id="strHomeAddress1" placeholder="Home Address" class="form-control">
                 </div>
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input  data-mask="99999999999" type="text" name= "PBCNumber" id="strContactNumber" placeholder="Contact Number" class="form-control">
+                    <input  data-mask="99999999999" type="text" name= "PBCNumber" id="strContactNumber1" placeholder="Contact Number" class="form-control">
                   </div>
                 <div class="col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
-                    <input type="text" name= "PBEAddress" id="strEmailAddress" placeholder="emailaddress@example.com" class="form-control">
+                    <input type="text" name= "PBEAddress" id="strEmailAddress1" placeholder="emailaddress@example.com" class="form-control">
                 </div>
                 </div>
                 <div class="form-group">
                   <label>Affliation:</label> <label style="color: red">*</label>
-                    <input type="text" name="PBAffiliation" id="strAffiliation" placeholder="Affliation" class="form-control">
+                    <input type="text" name="PBAffiliation" id="strAffiliation1" placeholder="Affliation" class="form-control">
                 </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -472,7 +472,7 @@ if(data.intcount!=0){
           </div>
         </div>
       <!--END PHYLUM MODAL-->
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-body">
           <div class="table-responsive">
             <table class="table dataTable no-footer" id="managePlantBorrowertbl">
@@ -535,32 +535,108 @@ function resetForm() {
 $('#btnSave').click(function(event){
 
       var data = $('#addPlantBorrowerForm').serialize();
-
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/addPlantBorrower',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response.success){
-              $('#addPlantBorrowerForm').modal('hide');
-              $('#addPlantBorrowerForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
+      if($('#strFirstname').val()!=''){
+        if($('#strLastname').val()!=''){
+          if($('#strHomeAddress').val()!=''){
+            if($('#strContactNumber').val()!=''){
+              if($('#strEmailAddress').val()!=''){
+                if($('#strAffiliation').val()!=''){
+                  event.preventDefault();
+                  swal({
+                    title: 'Are you sure?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, save it!'
+                  }).then((result) => {
+                    if(result.value) {
+                      $.ajax({
+                        type: 'ajax',
+                        method: 'post',
+                        url: '<?php echo base_url() ?>admin/addPlantBorrower',
+                        data: data,
+                        async: false,
+                        dataType: 'json',
+                        success: function(response){
+                          if(response.success){
+                            $('#addPlantBorrowerForm').modal('hide');
+                            $('#addPlantBorrowerForm')[0].reset();
+                            if(response.type=='add'){
+                              var type = 'added'
+                            }else if(response.type=='update'){
+                              var type ="updated"
+                            }
+                            let timerInterval
+                            swal({
+                              title: 'Saved',
+                              text: 'Family has been saved.',
+                              type: 'success',
+                              timer: 1500,
+                              showConfirmButton: false
+                            }).then(function() {
+                              location.reload();
+                            });
+                          }else{
+                            alert('Error');
+                          }
+                        },
+                        error: function(){
+                          alert('Could not save Data');
+                        }
+                      });
+                    }
+                  })
+                }else{
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Incomplete input!',
+                    text: 'Please fill up all the required fields.'
+                  });
+                }
+              }else{
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Incomplete input!',
+                  text: 'Please fill up all the required fields.'
+                });
               }
-              showAllPhylum();
             }else{
-              alert('Error');
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
+              });
             }
-          },
-          error: function(){
-            alert('Could not save Data');
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
           }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
         });
+      }
+
+
 
     });
 
@@ -597,31 +673,109 @@ $(document).on('click', '.borrower-edit', function(event){
 
 $('#btnEditSave').click(function(event){
       var data = $('#editPlantBorrowerForm').serialize();
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/updatePlantBorrower',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response.success){
-              $('#editPlantBorrowerForm').modal('hide');
-              $('#editPlantBorrowerForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
+      if($('#strFirstname1').val()!=''){
+        if($('#strLastname1').val()!=''){
+          if($('strHomeAddress1').val()!=''){
+            if($('#strContactNumber1').val()!=''){
+              if($('#strEmailAddress1').val()!=''){
+                if($('#strAffiliation1').val()!=''){
+                  event.preventDefault();
+                  swal({
+                    title: 'Are you sure?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, save it!'
+                  }).then((result) => {
+                    if(result.value) {
+                      $.ajax({
+                        type: 'ajax',
+                        method: 'post',
+                        url: '<?php echo base_url() ?>admin/updatePlantBorrower',
+                        data: data,
+                        async: false,
+                        dataType: 'json',
+                        success: function(response){
+                          if(response.success){
+                            $('#editPlantBorrowerForm').modal('hide');
+                            $('#editPlantBorrowerForm')[0].reset();
+                            if(response.type=='add'){
+                              var type = 'added'
+                            }else if(response.type=='update'){
+                              var type ="updated"
+                            }
+                            let timerInterval
+                            swal({
+                              title: 'Saved',
+                              text: 'Family has been updated.',
+                              type: 'success',
+                              timer: 1500,
+                              showConfirmButton: false
+                            }).then(function() {
+                              location.reload();
+                            });
+                          }else{
+                            alert('Error');
+                          }
+                        },
+                        error: function(){
+                          alert('Could not update data');
+                        }
+                      });
+                    }
+                  })
+                }else{
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Incomplete input!',
+                    text: 'Please fill up all the required fields.'
+                  });
+                }
+              }else{
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Incomplete input!',
+                  text: 'Please fill up all the required fields.'
+                });
               }
-              showAllPlantBorrower();
             }else{
-              alert('Error');
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
+              });
             }
-          },
-          error: function(){
-            alert('Could not update data');
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
           }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
         });
+      }
+
+
+
     });
 
   });

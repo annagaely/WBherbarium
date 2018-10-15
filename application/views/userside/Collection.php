@@ -144,7 +144,9 @@
                 <h5 class="h5-responsive">Enter rank above the level of Genus:</h5>
                   <form class="form-inline">
                     <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Phylum, Class, Order, Family" aria-label="Search">
-                    <button onclick="showTableRank()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">Search</button>
+                    <button onclick="showTableRank()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
+                      <a href="<?php echo base_url();?>user/usersearchRank" style="color: inherit!important">Search</a>
+                    </button>
                 </form>
               </div>
             </div>
@@ -153,7 +155,9 @@
                 <h5 class="h5-responsive">Enter a Genus Name:</h5>
                 <form class="form-inline">
                   <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Acacia, Pinus" title="Refers to general type of plants" aria-label="Search">
-                  <button onclick="showTableGenus()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">Search</button>
+
+                  <button onclick="showTableGenus()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
+                    <a href="<?php echo base_url();?>user/usersearchGenus" style="color: inherit!important">Search</a></button>
                 </form>
               </div>
             </div>
@@ -162,7 +166,9 @@
                 <h5 class="h5-responsive">Enter a Specie Name:</h5>
                 <form class="form-inline">
                   <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Indicus, Purpurea" title="Refers to a group of closely related plants" aria-label="Search">
-                  <button onclick="showTableSpecie()" type="button" class="btn btnsearch btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">Search</button>
+                  <button onclick="showTableSpecie()" type="button" class="btn btnsearch btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
+                    <a href="<?php echo base_url();?>user/usersearchSpecie" style="color: inherit!important">Search</a>
+                  </button>
                 </form>
               </div>
             </div>
@@ -173,6 +179,27 @@
         </div>
       </div>
     </div>
+
+    <table id="data">
+  <tr> <td>Row 1</td></tr>
+  <tr> <td>Row 2</td></tr>
+  <tr> <td>Row 3 </td></tr>
+  <tr> <td>Row 4</td></tr>
+  <tr> <td>Row 5</td></tr>
+  <tr> <td>Row 6</td></tr>
+  <tr> <td>Row 7</td></tr>
+  <tr> <td>Row 8</td></tr>
+  <tr> <td>Row 9</td></tr>
+  <tr> <td>Row 10</td></tr>
+  <tr> <td>Row 11</td></tr>
+  <tr> <td>Row 12</td></tr>
+  <tr> <td>Row 13</td></tr>
+  <tr> <td>Row 14</td></tr>
+  <tr> <td>Row 15</td></tr>
+  <tr> <td>Row 16</td></tr>
+  <tr> <td>Row 17</td></tr>
+  <tr> <td>Row 18</td></tr>
+</table>
   </div>
   <!--modal angiosperm-->
   <div class="modal fade" id="modalAngiosperm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -234,7 +261,7 @@
                         <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/gymnosperm2.jpg">
                     </a>
                 </div>
-                <div class="col-md-36 col-lg-4 item">
+                <div class="col-md-6 col-lg-4 item">
                     <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/gymnosperm3.jpg">
                         <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/gymnosperm3.jpg">
                     </a>
@@ -258,7 +285,8 @@
           <p>
             A group of photosynthetic organisms that in general possess pigments such as chlorophyll but lack true roots, stems and leaves characteristic of terrestrial plants.
           </p>
-          <section class="gallery-block grid-gallery my-0 py-0">planttypes/algae.jpgs="row">
+          <section class="gallery-block grid-gallery my-0 py-0">
+            <div class="row">
                 <div class="col-md-6 col-lg-4 item">
                     <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/algae.jpg">
                         <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/algae.jpg">
@@ -269,17 +297,19 @@
                         <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/algae2.jpg">
                     </a>
                 </div>
-                <div class="col-md-36 col-lg-4 item">
+                <div class="col-md-6 col-lg-4 item">
                     <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/algae3.jpg">
                         <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/algae3.jpg">
                     </a>
                 </div>
             </div>
+            </div>
           </section>
-        </div>
+
       </div>
     </div>
   </div>
+
   <!--modal bryophytes-->
   <div class="modal fade" id="modalBryophytes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog cascading-modal" role="document">
@@ -315,86 +345,9 @@
       </div>
     </div>
   </div>
-  <!-- TABLE RANK RESULTS -->
-  <center>
-    <div id="searchRankTable" style="padding-left: 200px; padding-right: 200px; display: none">
-    <iframe class="embed-responsive-item" src="<?php echo site_url('user/searchRank');?>" width="100%" height="500vh" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
-    </div>
-  </center>
-
-  <!--TABLE GENUS RESULTS-->
-  <center>
-     <div id="searchGenusTable" style="padding-left: 200px; padding-right: 200px; display: none;">
-      <iframe class="embed-responsive-item" src="<?php echo site_url('user/searchGenus');?>" width="100%" height="500vh" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
-    </div>
-  </center>
-  <!--              <td><a data-toggle="modal" data-target="#herbariumSheet">Jacob</a></td>
--->
-
-  <!--TABLE SPECIE RESULTS-->
-  <center>
-      <div id="searchSpecieTable" style="padding-left: 350px; padding-right: 350px; display: none;">
-      <iframe class="embed-responsive-item" src="<?php echo site_url('user/searchSpecie');?>" width="100%" height="500vh" style="padding-top: 10px; padding-left: 2px;border: none;"></iframe>
-    </div>
-  </center>
-  <!-- Central Modal Small -->
-<div class="modal fade" id="herbariumSheet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <!-- Change class .modal-sm to change the size of the modal -->
-    <div class="modal-dialog modal-fluid" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body px-5 mx-5">
-          <div class="row mx-5">
-            <div class="col-md-4">
-              <div class="card">
-                img of herbarium sheet
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="card">
-                contents
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
 
 
-  <!-- Central Modal Small -->
-  <script>
-    function showTableRank() {
-      var ranktbl = document.getElementById("searchRankTable");
-      var genustbl = document.getElementById("searchGenusTable");
-     var specietbl = document.getElementById("searchSpecieTable");
-     ranktbl.style.display = "block";
-     genustbl.style.display="none";
-     specietbl.styyle.display="none";
-    }
-    function showTableGenus() {
-      var ranktbl = document.getElementById("searchRankTable");
-      var specietbl = document.getElementById("searchSpecieTable");
-      var genustbl = document.getElementById("searchGenusTable");
-      genustbl.style.display = "block";
-           ranktbl.style.display="none";
-           specietbl.style.display="none";
-         }
-    function showTableSpecie() {
-      var ranktbl = document.getElementById("searchRankTable");
- var genustbl = document.getElementById("searchGenusTable");
-      var specietbl = document.getElementById("searchSpecieTable");
-      specietbl.style.display = "block";
-      ranktbl.style.display = "none";
-      genustbl.style.display="none";
-    }
-  </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
   <script>
       baguetteBox.run('.grid-gallery', { animation: 'slideIn'});
