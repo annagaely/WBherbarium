@@ -145,7 +145,7 @@
                   <form class="form-inline">
                     <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Phylum, Class, Order, Family" aria-label="Search">
                     <button onclick="showTableRank()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
-                      <a href="<?php echo base_url();?>user/usersearchRank" style="color: inherit!important">Search</a>
+                      <a href="<?php echo base_url();?>user/searchRank" style="color: inherit!important">Search</a>
                     </button>
                 </form>
               </div>
@@ -156,7 +156,7 @@
                 <form class="form-inline">
                   <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Acacia, Pinus" title="Refers to general type of plants" aria-label="Search">
                   <button onclick="showTableGenus()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
-                    <a href="<?php echo base_url();?>user/usersearchGenus" style="color: inherit!important">Search</a></button>
+                    <a href="<?php echo base_url();?>user/searchGenus" style="color: inherit!important">Search</a></button>
                 </form>
               </div>
             </div>
@@ -166,7 +166,7 @@
                 <form class="form-inline">
                   <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Indicus, Purpurea" title="Refers to a group of closely related plants" aria-label="Search">
                   <button onclick="showTableSpecie()" type="button" class="btn btnsearch btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
-                    <a href="<?php echo base_url();?>user/usersearchSpecie" style="color: inherit!important">Search</a>
+                    <a href="<?php echo base_url();?>user/searchSpecie" style="color: inherit!important">Search</a>
                   </button>
                 </form>
               </div>
@@ -323,7 +323,34 @@
       </div>
     </div>
   </div>
+<div class="modal fade" id="herbariumSheet" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- Change class .modal-sm to change the size of the modal -->
+    <div class="modal-dialog modal-fluid" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body px-5 mx-5">
+          <div class="row mx-5">
+            <div class="col-md-4">
+              <div class="card">
+                img of herbarium sheet
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card">
+                contents
+              </div>
+            </div>
+          </div>
 
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>

@@ -378,7 +378,7 @@ if(data.intcount!=0){
 </div>
 
 <div class="tabcontent" id="FirstTab">
-  <div class="card">
+  <div class="card mx-4 mt-4">
     <div class="card-body">
       <div class="table-responsive">
         <table class="table table-striped" id="manageVisittbl">
@@ -467,7 +467,7 @@ if(data.intcount!=0){
 </div>
 
 <div id="SecondTab" class="tabcontent">
-     <div class="card">
+     <div class="card mx-4 mt-4">
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-striped" id="manageExpecttbl">
@@ -573,7 +573,7 @@ if(data.intcount!=0){
   </div>
 
 <div id="RejectTab" class="tabcontent">
-  <div class="card">
+  <div class="card mx-4 mt-4">
     <div class="card-body">
       <div class="table-responsive">
         <table class="table table-striped" id="manageRejectbl">
@@ -831,7 +831,7 @@ if(data.intcount!=0){
   </div>
 
 <div id="ThirdTab" class="tabcontent">
-     <div class="card">
+     <div class="card mx-4 mt-4">
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-striped" id="manageAlltbl">

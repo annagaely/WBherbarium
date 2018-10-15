@@ -331,7 +331,7 @@ if(data.intcount!=0){
        </div>
      </div>
  <!--ADD Class MODAL-->
-     <div class="card">
+     <div class="card mx-4">
        <div class="card-header d-flex align-items-center">
          <button type="button" button data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Class</button>
        </div>
@@ -406,7 +406,7 @@ if(data.intcount!=0){
          </div>
        </div>
      <!--END EDIT CLASS MODAL-->
-     <div class="card">
+     <div class="card mx-4">
 
                <div class="card-body">
                  <div class="table-responsive">
