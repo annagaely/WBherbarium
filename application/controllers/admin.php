@@ -75,7 +75,6 @@ if($data){
 	if($this->session->userdata('strUsername')!=''){
 		$title['title'] = "PUPHerbarium | Dashboard";
 		$this->load->view('maintenance/Dashboard', $title);
-		$this->load->view('templates/footer');
 	}
 	else{
 	redirect(base_url().'admin');
@@ -1781,7 +1780,11 @@ public function showNotifCount(){
 		$this->load->view('templates/footer');
 	}
 
-
+	public function reports() {
+		$title['title'] = "PUPHerbarium | Queries";
+		$this->load->view('reports', $title);
+		$this->load->view('templates/footer');
+	}
 
 public function DepReschedSendMail()
 {
@@ -1879,6 +1882,24 @@ $date=$this->input->post('txtReschedDate');
 	}
 }
 
+public function showAllOUser()
+{
 
+    $output = $this->admin_m->showAllOUser();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+public function editOUser(){
+	$result = $this->m->editOUser();
+	echo json_encode($result);
+}
 
 }?>
