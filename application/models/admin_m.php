@@ -2929,6 +2929,7 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 </style>
+<img src="assets/bower_components/pdfheader.png" />
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thEAD>
 			<tr>

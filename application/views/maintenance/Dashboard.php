@@ -103,7 +103,7 @@
                   </ul>
                 </li>
                 <li><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
+                <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
 
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
@@ -140,7 +140,7 @@
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
 
-                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
+              <!--  <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
 <!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
@@ -492,7 +492,7 @@ if(data.intcount!=0){
            <p>Herbarium</p>
          </div>
          <div class="col-sm-6 text-right">
-           <p>&copy Copyright 2018 &nbsp<a href="https://bootstrapious.com" class="external"> Sad Ratbhus</a></p>
+           <p>&copy Copyright 2018 &nbsp<a href="https://bootstrapious.com" class="external"> WBHIS</a></p>
          </div>
        </div>
      </div>
