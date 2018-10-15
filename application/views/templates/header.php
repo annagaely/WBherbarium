@@ -74,9 +74,11 @@
 
           <!-- Small Brand information, appears on minimized sidebar-->
           <div class="sidenav-header-logo"><a href="<?php echo base_url(); ?>admin/Dashboard" class="brand-small text-center"> <img src = "<?php echo base_url();?>assets/bower_components/logoto.png"> </a>
+
          </div>
 
         </div>
+
 
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
@@ -295,12 +297,11 @@ if(data.intcount!=0){
   });
  }
 
- // setInterval(function(){ 
+ // setInterval(function(){
  // load_unseen_notification();
  // countunreadnotif();
  // }, 5000);
 
- 
 });
 </script>
 

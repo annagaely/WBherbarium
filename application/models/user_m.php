@@ -27,55 +27,59 @@ public function userRegister(){
 			$affposition=$this->input->post('txtaffpos');
 			$username=$this->input->post('txtusername');
 			$password=$this->input->post('txtpassword');
-		$query="
+			// and [strEmailAdd	ress] = '".$email."'
+			$querycheckuname=$this->db->query("select * from tblOnlineUser where [strUserName] = '".$username."' OR [strEmailAddress] = '".$email."' ");
+			if($querycheckuname->num_rows() == 0){
+				$query="
 
-			DECLARE @firstname		VARCHAR(50);
-			DECLARE @middlename		VARCHAR(50);
-			DECLARE @lastname		VARCHAR(50);
-			DECLARE @middleinitial	VARCHAR(3);
-			DECLARE @namesuffix		VARCHAR(5);
-			DECLARE @contactno		VARCHAR(15);
-			DECLARE @email			VARCHAR(255);
-			DECLARE @presentadd		VARCHAR(100);
-			DECLARE @permaddress	VARCHAR(50);
+					DECLARE @firstname		VARCHAR(50);
+					DECLARE @middlename		VARCHAR(50);
+					DECLARE @lastname		VARCHAR(50);
+					DECLARE @middleinitial	VARCHAR(3);
+					DECLARE @namesuffix		VARCHAR(5);
+					DECLARE @contactno		VARCHAR(15);
+					DECLARE @email			VARCHAR(255);
+					DECLARE @presentadd		VARCHAR(100);
+					DECLARE @permaddress	VARCHAR(50);
 
-			DECLARE @affname		VARCHAR(255);
-			DECLARE @affaddress		VARCHAR(255);
-			DECLARE @affposition	VARCHAR(255);
-			DECLARE @username		VARCHAR(100);
-			DECLARE @password		VARCHAR(50);
+					DECLARE @affname		VARCHAR(255);
+					DECLARE @affaddress		VARCHAR(255);
+					DECLARE @affposition	VARCHAR(255);
+					DECLARE @username		VARCHAR(100);
+					DECLARE @password		VARCHAR(50);
 
-			SET @firstname	= '$firstname'
-			SET @middlename	= '$middlename'
-			SET @lastname	= '$lastname'
-			SET @middleinitial	= SUBSTRING(@middlename, 1, 1)
-			SET @namesuffix		= '$namesuffix'
-			SET @contactno		= '$contactno'
-			SET @email			= '$email'
-			SET @presentadd		= '$presentadd'
-			SET @permaddress	= '$permaddress'
+					SET @firstname	= '$firstname'
+					SET @middlename	= '$middlename'
+					SET @lastname	= '$lastname'
+					SET @middleinitial	= SUBSTRING(@middlename, 1, 1)
+					SET @namesuffix		= '$namesuffix'
+					SET @contactno		= '$contactno'
+					SET @email			= '$email'
+					SET @presentadd		= '$presentadd'
+					SET @permaddress	= '$permaddress'
 
-			SET @affname		= '$affname'
-			SET @affaddress		= '$affaddress'
-			SET @affposition	= '$affposition'
-			SET @username		= '$username'
-			SET @password		= '$password'
+					SET @affname		= '$affname'
+					SET @affaddress		= '$affaddress'
+					SET @affposition	= '$affposition'
+					SET @username		= '$username'
+					SET @password		= '$password'
 
-			SET NOCOUNT ON;
+					SET NOCOUNT ON;
 
-					INSERT INTO tblOnlineUser
-					VALUES (@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email,@presentadd,@permaddress, @affname, @affaddress, @affposition, @username,@password)
-
-
-			";
-			if($this->db->query($query)){
-					return true;
-				} else{
-					return false;
-				}
+							INSERT INTO tblOnlineUser
+							VALUES (@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email,@presentadd,@permaddress, @affname, @affaddress, @affposition, @username,@password)
 
 
-    }
+					";
+					if($this->db->query($query)){
+							return true;
+						} else{
+							return false;
+						}
+			}else {
+				return $querycheckuname->row();
+			}
+		}
 
 	public function addLoanReq(){
 		$getusername = $this->session->userdata['strUserName'];
@@ -279,9 +283,11 @@ public function showProfile(){
 public function updateProfile()
 	{
    		$id = $this->session->userdata['strUserName'];
+   		$initial=$this->input->post('txtmidname');
    		$field = array(
    			 'strFirstName'=>$this->input->post('txtfirstname'),
    			 'strMiddleName'=>$this->input->post('txtmidname'),
+   			 'strMiddleInitial'=> substr($initial,0,1),
    			 'strLastName'=>$this->input->post('txtlastname'),
    			 'strNameSuffix'=>$this->input->post('txtnamesuffix'),
    			 'strContactNumber'=>$this->input->post('txtphonenum'),
@@ -369,7 +375,7 @@ public function updatePassword(){
 
 		foreach ($query->result() as $r)
 		{
-			
+
 			$result[] = array(
 					// $r->intPhylumID,
 					$r->dtAppointmentDate,
@@ -409,7 +415,7 @@ if($querycheckdate->num_rows() == 0){
  $queryupdate="
 
 			update tblAppointments
-			set dtAppointmentDate = '".$date."' 
+			set dtAppointmentDate = '".$date."'
 				where intAppointmentID = ".$id."
 
 			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has rescheduled his/her Visit appointment to: ''".$date.", Visit ID: ','".$id."'),0)
@@ -421,7 +427,7 @@ if($this->db->query($queryupdate)){
 		}else{
 			return false;
 		}
-  
+
 }else{
 	return false;
 }
@@ -436,7 +442,7 @@ public function updateCurrentVisitCancel(){
  $queryupdate="
 
 			update tblAppointments
-			set strStatus = 'Cancelled' 
+			set strStatus = 'Cancelled'
 				where intAppointmentID = ".$id."
 
 			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has cancelld his/her Visit appointment. Visit ID: ','".$id."'),0)
@@ -448,7 +454,7 @@ if($this->db->query($queryupdate)){
 		}else{
 			return false;
 		}
-  
+
 }
 
 
@@ -519,9 +525,9 @@ if($this->db->query($queryupdate)){
 
 public function updateCurrentDepositResched(){
     $id = $this->input->post('txtId');
-    $firstname = $this->session->userdata['strFirstname'];
+    $firstname = $this->session->userdata['strFirstName'];
     $midinit = $this->session->userdata['strMiddleInitial'];
-    $lastname = $this->session->userdata['strLastname'];
+    $lastname = $this->session->userdata['strLastName'];
 $date = $this->input->post('dtnewDate');
 
  $querycheckdate=$this->db->query("select * from tblEvents where [start] = '".$date."'");
@@ -530,7 +536,7 @@ if($querycheckdate->num_rows() == 0){
  $queryupdate="
 
 			update tblDepositReq
-			set dtAppointmentDate = '".$date."' 
+			set dtAppointmentDate = '".$date."'
 				where intDepositReqID = ".$id."
 
 			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has rescheduled his/her Deposit Request appointment to: ''".$date.", Deposit Request ID: ','".$id."'),0)
@@ -542,7 +548,7 @@ if($this->db->query($queryupdate)){
 		}else{
 			return false;
 		}
-  
+
 }else{
 	return false;
 }
@@ -556,7 +562,7 @@ public function updateCurrentDepositCancel(){
     $lastname = $this->session->userdata['strLastname'];
  $queryupdate="
 			update tblDepositReq
-			set strStatus = 'Cancelled' 
+			set strStatus = 'Cancelled'
 				where intDepositReqID = ".$id."
 
 			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has cancelld his/her Deposit Request appointment.  Deposit Request ID: ','".$id."'),0)
@@ -569,7 +575,7 @@ if($this->db->query($queryupdate)){
 		}else{
 			return false;
 		}
-  
+
 }
 
 

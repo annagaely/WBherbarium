@@ -195,7 +195,7 @@
     <div class="pt-5 px-5"  id="topten">
         <section class="mt-5 mx-5">
             <!-- Section heading -->
-            <h2 class="h1-responsive font-weight-bold text-center my-5">Top 10 Families with Most Number of Species Found in PUP Mabini Campus </h2>
+            <h2 class="h1-responsive font-weight-bold text-center my-5">Top 10 Families with Most Number of Species Found in PUP Mabini Campus<span style="font-size: 20px"> (As of February 2016) </span> </h2>
 
       <div class="row">
         <div class="col-md-7 pl-5">
@@ -328,7 +328,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog cascading-modal" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color: #800000">
         <h7 class="modal-title" id="exampleModalLabel" style="color: white" >Armin S. Coronado, MSc.</h7>

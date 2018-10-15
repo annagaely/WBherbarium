@@ -22,7 +22,7 @@
   <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
   <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-     
+
     <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
 
 </head>
@@ -272,7 +272,10 @@
                       if($('#strAffiliationPosition').val()!=''){
                         if($('#strAffiliationAdd').val()!=''){
                           if($('#strUsername').val()!=''){
-                            if($('#strPassword').val()!='' && $('#strPassword'.val() < 6)){
+                            if($('#strPassword').val()!=''){
+                              value = document.getElementById('strPassword').value;
+ // if (value.length < 3)
+                               if (value.length > 5){
                               event.preventDefault();
                               swal({
                                 title: 'Are you sure?',
@@ -304,6 +307,23 @@
                                           document.getElementById("RegisterForm").reset();
                                           window.location.href='<?php echo base_url();?>user/index';
                                         });event.preventDefault();
+                                      }else {
+                                        if($('#strUsername').val()==data.strUserName){
+                                          event.preventDefault();
+                                          swal({
+                                            type: 'error',
+                                            title: 'Error!',
+                                            text: 'Username already exists.'
+                                          });
+                                        }if($('#strEmailAdd').val()==data.strEmailAddress){
+                                          event.preventDefault();
+                                          swal({
+                                            type: 'error',
+                                            title: 'Error!',
+                                            text: 'Email Address already exists.'
+                                          });
+                                        }
+
                                       }
                                     },
                                     error: function(){
@@ -317,6 +337,14 @@
                                   });
                                 }
                               })
+                              }else{
+                              event.preventDefault();
+                              swal({
+                                type: 'error',
+                                title: 'Invalid input!',
+                                text: 'Password must be 6 characters and above.'
+                              });
+                              }
                             }else{
                               event.preventDefault();
                               swal({

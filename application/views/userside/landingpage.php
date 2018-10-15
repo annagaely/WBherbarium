@@ -195,7 +195,7 @@
     <div class="pt-5 px-5"  id="topten">
         <section class="mt-5 mx-5">
             <!-- Section heading -->
-            <h2 class="h1-responsive font-weight-bold text-center my-5">Top 10 Families with Most Number of Species Found in PUP Mabini Campus </h2>
+            <h2 class="h1-responsive font-weight-bold text-center my-5">Top 10 Families with Most Number of Species Found in PUP Mabini Campus <span style="font-size: 20px"> (As of February 2016) </span> </h2>
 
       <div class="row">
         <div class="col-md-7 pl-5">

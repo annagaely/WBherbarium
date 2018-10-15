@@ -47,7 +47,7 @@
 
 </table>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog cascading-modal" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color: #800000">
         <h5 class="modal-title" style="color: white"  id="exampleModalLabel">Modal title</h5>
@@ -94,7 +94,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
         <button type="button" id='btnSave' class="btn btn-primary">Save changes</button>
       </div>
        </form>
@@ -155,7 +155,7 @@ $(document).ready(function () {
          $('input[name=txtAppointment]').val(data.dtAppointmentDate);
          $('input[name=txtvisitp]').val(data.strVisitPurpose);
          $('input[name=txtvisitdesc]').val(data.strVisitDescription);
-         $('input[name=txtstatus]').val(data.strVisitDescription);
+         $('input[name=txtstatus]').val(data.strStatus);
         $('input[name=txtId]').val(data.intAppointmentID);
        },
        error: function(){

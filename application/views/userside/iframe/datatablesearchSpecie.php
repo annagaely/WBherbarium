@@ -25,10 +25,7 @@
   <table id="manageCurrentDeposits" class="table table-striped"  width="100%">
   <thead>
     <tr>
-      <th class="th-sm">Rank
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
-      </th>
-      <th class="th-sm">Name
+      <th class="th-sm">Specie Name
         <i class="fa fa-sort float-right" aria-hidden="true"></i>
       </th>
     </tr>
@@ -36,7 +33,7 @@
 
 </table>
 <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog  cascading-modal" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
