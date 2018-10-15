@@ -379,7 +379,7 @@ if(data.intcount!=0){
 
 
 <div class="tabcontent" id="FirstTab">
-       <div class="card">
+       <div class="card mx-4 mt-4">
         <div class="card-body">
          <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageEVReqPendingtbl">
@@ -401,7 +401,7 @@ if(data.intcount!=0){
     </div>
 </div>
 <div id="SecondTab" class="tabcontent">
-     <div class="card">
+     <div class="card mx-4 mt-4">
         <div class="card-body">
          <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageEVReqOkaytbl">
@@ -424,7 +424,7 @@ if(data.intcount!=0){
 </div>
 
 <div id="ThirdTab" class="tabcontent">
-       <div class="card">
+       <div class="card mx-4 mt-4">
         <div class="card-body">
          <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageEVReqAlltbl">
@@ -934,12 +934,7 @@ $('#btnConfirm').click(function(event){
           success: function(response){
 
             if(response==true){
-
-
-            }else{
-              alert('Error');
-            }
-         let timerInterval
+            let timerInterval
                     swal({
                       title: 'Saved',
                       text: 'Succesful!',
@@ -948,12 +943,17 @@ $('#btnConfirm').click(function(event){
                       showConfirmButton: false
                     }).then(function() {
 
-                    showAllExValidators();
+                    showExValPending();
                     showExValOkay();
                     showExValAll();
                     $('#EVConfirmation').modal('hide');
                     document.getElementById("EVConfirmForm").reset();
                   });
+
+            }else{
+              alert('Error');
+            }
+         
           },
           error: function(){
             alert('Could not update data');

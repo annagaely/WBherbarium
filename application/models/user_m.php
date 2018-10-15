@@ -557,9 +557,9 @@ if($this->db->query($queryupdate)){
 
 public function updateCurrentDepositCancel(){
     $id = $this->input->post('txtId');
-    $firstname = $this->session->userdata['strFirstname'];
+    $firstname = $this->session->userdata['strFirstName'];
     $midinit = $this->session->userdata['strMiddleInitial'];
-    $lastname = $this->session->userdata['strLastname'];
+    $lastname = $this->session->userdata['strLastName'];
  $queryupdate="
 			update tblDepositReq
 			set strStatus = 'Cancelled'

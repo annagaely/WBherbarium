@@ -328,7 +328,7 @@ if(data.intcount!=0){
         </div>
       </div>
       <!-- ADD ACCES ACC MODAL-->
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Account</button>
         </div>
@@ -425,7 +425,7 @@ if(data.intcount!=0){
           </div>
         </div>
 
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-body">
           <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageAAccountstbl">

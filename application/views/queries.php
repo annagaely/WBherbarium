@@ -385,16 +385,16 @@ if(data.intcount!=0){
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                   <div class="form-group">
-                    <label>Domain Name:</label> 
+                    <label>Domain Name:</label>
                     <input type="text" name="txtedName" id="strDomainName1" placeholder="Domain Name" class="form-control" disabled>
                   </div>
                   <div class="form-group">
-                    <label>Kingdom Name:</label> 
+                    <label>Kingdom Name:</label>
                     <input type="text" name="txtekName" id="strKingdomName1" placeholder="Kingdom Name" class="form-control" disabled>
                   </div>
                       <input type="hidden" name="txtId" value="0">
                   <div class="form-group">
-                    <label>Phylum Name:</label> 
+                    <label>Phylum Name:</label>
                     <input type="text" name="txtepName" id="pNameid1" placeholder="Phylum Name" class="form-control" disabled>
                   </div>
                   <div class="modal-footer">
@@ -438,13 +438,13 @@ if(data.intcount!=0){
                    <label>
                      <input type="hidden" name="txtId" value="0">
                    </label>
-                   <label>Phylum Name:</label> 
+                   <label>Phylum Name:</label>
                      <input list="phylumname" name ="speID" placeholder="Phylum Name" class="form-control" disabled>
                      <datalist id ='phylumname'>
                      </datalist>
                  </div>
                  <div class="form-group">
-                   <label>Class Name:</label> 
+                   <label>Class Name:</label>
                    <input type="text" id="classid2" name="txteCName" placeholder="Class Name" class="form-control" disabled>
                  </div>
                  <div class="modal-footer">
@@ -487,14 +487,14 @@ if(data.intcount!=0){
                   <div class="form-group">
                     <label>
                       <input type="hidden" name="txtId" value="0">
-                    </label> 
+                    </label>
                     <label>Class Name:</label>
                      <input list="classname" name ="sceID" placeholder="Class Name" class="form-control" autocomplete="off" disabled>
                      <datalist id ='classname'>
                      </datalist>
                   </div>
                   <div class="form-group">
-                    <label>Order Name:</label> 
+                    <label>Order Name:</label>
                     <input type="text" id="orderName1" name="txteOName" placeholder="Class Name" class="form-control" disabled>
                   </div>
                   <div class="modal-footer">
@@ -538,13 +538,13 @@ if(data.intcount!=0){
                     <label>
                       <input type="hidden" name="txtId" value="0">
                     </label>
-                    <label>Order Name:</label> 
+                    <label>Order Name:</label>
                      <input list="ordername" name ="seOID" placeholder="Order Name" class="form-control" autocomplete="off" disabled="">
                      <datalist id ='ordername'>
                      </datalist>
                   </div>
                   <div class="form-group">
-                    <label>Family Name:</label> 
+                    <label>Family Name:</label>
                     <input id="famName1" type="text" name="txteFName" placeholder="Class Name" class="form-control" disabled="">
                   </div>
                   <div class="modal-footer">
@@ -589,7 +589,7 @@ if(data.intcount!=0){
                     <label>
                       <input type="hidden" name="txtId" value="0">
                     </label>
-                    <label>Family Name:</label> 
+                    <label>Family Name:</label>
                      <input list="familyname" name ="segFID" placeholder="Family Name" class="form-control" autocomplete="off" disabled="">
                      <datalist id ='familyname'>
                      </datalist>
@@ -642,7 +642,7 @@ if(data.intcount!=0){
                     <label>
                       <input type="hidden" name="txtId" value="0">
                     </label>
-                    <label>Genus Name:</label> 
+                    <label>Genus Name:</label>
                      <input list="genusname" name ="sesGID" placeholder="Family Name" class="form-control" autocomplete="off" disabled="">
                      <datalist id ='genusname'>
                      </datalist>
@@ -652,11 +652,11 @@ if(data.intcount!=0){
                     <input id="speciesName1" type="text" name="txteSName" placeholder="Class Name" class="form-control" disabled="">
                   </div>
                   <div class="form-group">
-                    <label>Common Name:</label> 
+                    <label>Common Name:</label>
                     <input id="commonName1" type="text" name="txtecName" placeholder="Class Name" class="form-control" disabled="">
                   </div>
                     <div class="form-group">
-                    <label>Author Name:</label> 
+                    <label>Author Name:</label>
                      <input list="authorname" name ="txteaID"  id = 'author' class="form-control" autocomplete="off" disabled="">
                      <datalist id ='authorname'>
                      </datalist>
@@ -699,7 +699,7 @@ if(data.intcount!=0){
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <input type="hidden" name="txtId" value="0">
-                      <label>First Name:</label> 
+                      <label>First Name:</label>
                       <input type="text" name="txteFName"  class="form-control" disabled="">
                     </div>
                   </div>
@@ -715,11 +715,11 @@ if(data.intcount!=0){
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
-                      <label>Last Name:</label> 
+                      <label>Last Name:</label>
                       <input type="text" name="txteLName"  class="form-control" disabled>
                     </div>
                     <div class="form-group col-sm-4">
-                      <label>Name Suffix:</label> 
+                      <label>Name Suffix:</label>
                       <input type="text" name="txteNSuffix"  class="form-control" disabled>
                     </div>
                   </div>
@@ -729,12 +729,12 @@ if(data.intcount!=0){
                     <input type="text"  data-mask="99999999999" name="txteCNumber"  class="form-control" disabled>
                   </div>
                   <div class="form-group col-sm-6">
-                    <label>Email Address:</label> 
+                    <label>Email Address:</label>
                     <input type="text" name="txteEMail"  class="form-control" disabled>
                   </div>
                 </div>
                   <div class="form-group">
-                    <label>Institution:</label> 
+                    <label>Institution:</label>
                     <input type="text" name="txteInstitution"  class="form-control" disabled>
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
@@ -776,7 +776,7 @@ if(data.intcount!=0){
 
                  <div class="form-group">
                   <input type="hidden" name="txtId" value="0">
-                    <label>Author Name:</label> 
+                    <label>Author Name:</label>
                     <input type="text" name="txteAName" id="strAuthorName1" placeholder="Author Name" class="form-control" disabled>
                   </div>
                   <div class="form-group">
@@ -823,17 +823,17 @@ if(data.intcount!=0){
                   <input type="hidden" name="txtId" id="act" value="0">
 
                 <div class="form-group">
-                    <label>Taxon Name:</label> 
+                    <label>Taxon Name:</label>
                     <input list="speciesname" name="txtetaxonName" id="strTaxonName1" placeholder="Taxon Name" class="form-control" disabled="">
                     <datalist id="speciesname">
                     </datalist>
                </div>
                 <div class="form-group">
-                    <label>Language:</label> 
+                    <label>Language:</label>
                     <input type="text" name="txteLanguage" id="strLanguage1" placeholder="Language" class="form-control" disabled="" >
               </div>
               <div class="form-group">
-                    <label>Alternate Name:</label> 
+                    <label>Alternate Name:</label>
                     <input type="text" name="txteAName" id="strAlternateName1" placeholder="Alternate Name" class="form-control" disabled="" >
               </div>
                   <div class="modal-footer">
@@ -885,30 +885,30 @@ if(data.intcount!=0){
                       <div class="md-form">
                              <label for="strPhoneNum" class="font-weight-light" data-mask="9999 9999 999">Phone Number</label>
                             <input type="text" id="strPhoneNum" name="txtphonenum" class="form-control" autofocus disabled>
-                           
+
                           </div>
-                      
+
                       <div class="md-form">
                         <label for="strPresentAdd" class="font-weight-light">Present Address</label>
                         <input type="text" id="strPresentAdd" name="txtpresentadd" class="form-control" onkeyup="enableCheck();" autofocus disabled>
-                       
+
                       </div>
                       <div class="md-form">
                         <label for="strPermanentAdd" class="font-weight-light">Permanent Address</label>
                         <input type="text" id="strPermanentAdd" name="txtpermaadd"  class="form-control" autofocus disabled>
-                        
+
                       </div>
                       <div class="md-form">
                         <div class="row">
                           <div class="col-md-6">
                           <label for="strAffiliation" class="font-weight-light" style="margin-left: 5px;">Affiliation Name</label>
                             <input type="text" id="strAffiliation" name="txtaffname" class="form-control" autofocus disabled>
-                            
+
                           </div>
                           <div class="col-md-6">
                              <label for="strAffiliationPosition" class="font-weight-light" style="margin-left: 5px;">Affiliation Position</label>
                             <input type="text" id="strAffiliationPosition" name="txtaffpos" class="form-control" autofocus disabled>
-                           
+
                           </div>
                         </div>
                       </div>
@@ -923,13 +923,13 @@ if(data.intcount!=0){
 
                   </div>
 
-                
+
               </div>
             </div>
           </div>
-       
+
         <!--Alt NAME part-->
-</div><!-- CONTAINER END-->
+<!-- CONTAINER END-->
 <script type="text/javascript">
 $(document).ready(function () {
   $('#divTableClass').hide();
@@ -942,7 +942,7 @@ $(document).ready(function () {
   $('#divTableAuthor').hide();
   $('#divTableAltName').hide();
   $('#divTableOUser').hide();
-  
+
   showPhylum();
   showClass();
   showOrder();
@@ -1005,7 +1005,7 @@ $(document).ready(function () {
 
        }
    });
-  } 
+  }
   function showFamily(){
   $('#manageQuerytblFamily').dataTable().fnClearTable();
   $('#manageQuerytblFamily').dataTable().fnDraw();
@@ -1022,7 +1022,7 @@ $(document).ready(function () {
 
        }
    });
-  } 
+  }
   function showGenus(){
   $('#manageQuerytblGenus').dataTable().fnClearTable();
   $('#manageQuerytblGenus').dataTable().fnDraw();
@@ -1039,7 +1039,7 @@ $(document).ready(function () {
 
        }
    });
-  } 
+  }
     function showSpecies(){
   $('#manageQuerytblSpecies').dataTable().fnClearTable();
   $('#manageQuerytblSpecies').dataTable().fnDraw();
@@ -1056,7 +1056,7 @@ $(document).ready(function () {
 
        }
    });
-  } 
+  }
   function showExVal(){
   $('#manageQuerytblExVal').dataTable().fnClearTable();
   $('#manageQuerytblExVal').dataTable().fnDraw();
@@ -1073,7 +1073,7 @@ $(document).ready(function () {
 
        }
    });
-  } 
+  }
 
   function showAuthor(){
   $('#manageQuerytblAuthor').dataTable().fnClearTable();
@@ -1108,7 +1108,7 @@ $(document).ready(function () {
 
        }
    });
-  } 
+  }
   function showOUser(){
   $('#manageQuerytblOUser').dataTable().fnClearTable();
   $('#manageQuerytblOUser').dataTable().fnDraw();
@@ -1125,7 +1125,7 @@ $(document).ready(function () {
 
        }
    });
-  } 
+  }
 
 
 
@@ -1274,7 +1274,7 @@ $(document).on('click', '.genus-edit', function(event){
     $(document).on('click', '.validator-edit', function(){
       var id = $(this).attr('data');
       $('#myExValModal').modal('show');
-      
+
       $.ajax({
         type: 'ajax',
         method: 'get',
@@ -1305,7 +1305,7 @@ $(document).on('click', '.genus-edit', function(event){
 $(document).on('click', '.author-edit', function(e){
       var id = $(this).attr('data');
       $('#myAuthorModal').modal('show');
-     
+
       $.ajax({
         type: 'ajax',
         method: 'get',

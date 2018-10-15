@@ -7,6 +7,7 @@ class admin extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('admin_m', 'm');
+        $this->load->library('Pdf');
     }
 
    	public function index()
@@ -1781,7 +1782,7 @@ public function showNotifCount(){
 	}
 
 	public function reports() {
-		$title['title'] = "PUPHerbarium | Queries";
+		$title['title'] = "PUPHerbarium | Reports";
 		$this->load->view('reports', $title);
 		$this->load->view('templates/footer');
 	}
@@ -1901,5 +1902,56 @@ public function editOUser(){
 	$result = $this->m->editOUser();
 	echo json_encode($result);
 }
+
+
+
+public function VResched(){
+$result = $this->m->VResched();
+echo json_encode($result);
+}
+
+public function DResched(){
+$result = $this->m->DResched();
+echo json_encode($result);
+}
+
+
+
+
+
+
+
+public function pdf(){
+
+$month = $this->input->post('month');
+//$document->loadHtml($html);
+
+$html_content = $this->m->pdfgetfromdb($month);
+//$document->loadHtml($page);
+
+//echo $output;
+if($html_content!='false'){
+$this->pdf->loadHtml($html_content);
+
+//set page size and orientation
+
+$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+//Render the HTML as PDF
+
+$this->pdf->render();
+
+//Get output of generated pdf in Browser
+
+$this->pdf->stream("Webslesson", array("Attachment"=>0));
+//1  = Download
+//0 = Preview
+}else{
+	echo 'shit';
+}
+
+
+}
+
 
 }?>

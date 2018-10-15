@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-md-4 mt-3 pt-2">
                             <div class="view z-depth-1">
-                                <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/pupherbarium.jpg" alt="" class="img-fluid">
+                                <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/herbarium.jpg" alt="" class="img-fluid">
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-md-4 mt-3 pt-2">
                             <div class="view z-depth-1">
-                                <img src="https://mdbootstrap.com/img/Photos/Others/nature.jpeg" alt="" class="img-fluid">
+                                <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/pupherbarium.jpg" alt="" class="img-fluid">
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
             <div class="card-header blue lighten-3 z-depth-1" role="tab" id="heading98">
                 <h5 class="text-uppercase mb-0 py-1">
                     <a class="collapsed font-weight-bold white-text" data-toggle="collapse" href="#collapse98" aria-expanded="false" aria-controls="collapse98">
-                        I am the third title of accordion
+                        Where can I find PUP Herbarium CenteR?
                     </a>
                 </h5>
             </div>

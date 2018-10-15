@@ -308,7 +308,7 @@ if(data.intcount!=0){
         </div>
       </div>
   <!--ADD Order MODAL-->
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-header d-flex align-items-center">
           <button type="button" button data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Order</button>
         </div>
@@ -363,8 +363,8 @@ if(data.intcount!=0){
                   <div class="form-group">
                     <label>
                       <input type="hidden" name="txtId" value="0">
-                    </label> <label style="color: red">*</label>
-                    <label>Class Name:</label>
+                    </label> 
+                    <label>Class Name:</label><label style="color: red">*</label>
                      <input list="classname" name ="sceID" placeholder="Class Name" class="form-control" autocomplete="off">
                      <datalist id ='classname'>
                      </datalist>
@@ -385,7 +385,7 @@ if(data.intcount!=0){
         </div>
       <!--END EDIT CLASS MODAL-->
 
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-body">
           <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageOrdertbl">

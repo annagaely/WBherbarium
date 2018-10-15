@@ -72,7 +72,7 @@ class user extends CI_Controller {
 	{
 		$title['title'] = "PUPHerbarium |  Collection";
 		$this->load->view('userside/navbar2', $title);
-		$this->load->view('userside/collection');
+		$this->load->view('userside/Collection2');
 		$this->load->view('userside/footer2');
 	}
 	public function register()
@@ -394,14 +394,41 @@ if($result){
 }
 echo json_encode($msg);
 }
+public function usersearchRank(){
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+	$this->load->view('userside/searchResults/searchRank');
+	$this->load->view('userside/footer');
+}
+public function usersearchGenus() {
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+	$this->load->view('userside/searchResults/searchGenus');
+	$this->load->view('userside/footer');
+}
+public function usersearchSpecie() {
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+	$this->load->view('userside/searchResults/searchSpecie');
+	$this->load->view('userside/footer');
+}
 public function searchRank(){
-	$this->load->view('userside/iframe/datatablesearchRank.php');
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar2', $title);
+	$this->load->view('userside/searchResults/searchRank');
+	$this->load->view('userside/footer');
 }
 public function searchGenus() {
-	$this->load->view('userside/iframe/datatablesearchGenus');
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar2', $title);
+	$this->load->view('userside/searchResults/searchGenus');
+	$this->load->view('userside/footer');
 }
 public function searchSpecie() {
-	$this->load->view('userside/iframe/datatablesearchSpecie');
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar2', $title);
+	$this->load->view('userside/searchResults/searchSpecie');
+	$this->load->view('userside/footer');
 }
 
 
