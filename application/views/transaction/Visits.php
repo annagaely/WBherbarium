@@ -771,7 +771,7 @@ if(data.intcount!=0){
               <input type="text" name="txtreqid" id="txtreqIDReject" class="form-control" disabled>
             </div>
             <div class="form-group">
-               <label>Message:</label>
+               <label>Reason for Rejecting:</label>
                 <textarea  id="strCustomMessage" name="txtCustomMessageReject" class="form-control" placeholder="Type your message here.." ></textarea>
             </div>
                   <div class="modal-footer">

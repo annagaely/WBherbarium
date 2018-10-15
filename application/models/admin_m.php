@@ -2236,7 +2236,7 @@ $status = $this->input->post('txtStatus');
 		foreach ($query->result() as $r)
 		{
 
-			$btn = '<button class="btn btn-primary view-EVConfirmation" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
+			$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'"><i class="fas fa-eye"></i></button>';
 
 
 			$result[] = array(
