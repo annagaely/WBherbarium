@@ -41,6 +41,12 @@
   <!-- Custom stylesheet - for your changes-->
 <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/css/custom.css">
     <!--END PREMIUM-->
+    <!--SWAL-->
+    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 
 
     <!-- Favicon-->
@@ -338,7 +344,7 @@ if(data.intcount!=0){
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>First Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="txtFName" placeholder="First Name " class="form-control">
+                      <input id="firstName" type="text" name="txtFName" placeholder="First Name " class="form-control">
                     </div>
                   </div>
                   <div class="row">
@@ -354,7 +360,7 @@ if(data.intcount!=0){
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Last Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="txtLName" placeholder="Last Name" class="form-control">
+                      <input id="lastName" type="text" name="txtLName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Name Suffix:</label>
@@ -364,16 +370,16 @@ if(data.intcount!=0){
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text"  data-mask="99999999999"name="txtCNumber" placeholder="Contact Number" class="form-control">
+                    <input id="contactNum" type="text"  data-mask="99999999999"name="txtCNumber" placeholder="Contact Number" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtEMail" placeholder="Email Address" class="form-control">
+                    <input id="emailAdd" type="text" name="txtEMail" placeholder="Email Address" class="form-control">
                   </div>
                 </div>
                   <div class="form-group">
                     <label>Institution:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtInstitution" placeholder="Institution" class="form-control">
+                    <input id="institution" type="text" name="txtInstitution" placeholder="Institution" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -400,7 +406,7 @@ if(data.intcount!=0){
                     <div class="form-group col-sm-8">
                       <input type="hidden" name="txtId" value="0">
                       <label>First Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="txteFName" placeholder="First Name " class="form-control">
+                      <input id="firstName1" type="text" name="txteFName" placeholder="First Name " class="form-control">
                     </div>
                   </div>
                   <div class="row">
@@ -416,7 +422,7 @@ if(data.intcount!=0){
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Last Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="txteLName" placeholder="Last Name" class="form-control">
+                      <input id="lastName1" type="text" name="txteLName" placeholder="Last Name" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Name Suffix:</label> <label style="color: red">*</label>
@@ -426,16 +432,16 @@ if(data.intcount!=0){
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input type="text"  data-mask="99999999999" name="txteCNumber" placeholder="Contact Number" class="form-control">
+                    <input id="contactNum1" type="text"  data-mask="99999999999" name="txteCNumber" placeholder="Contact Number" class="form-control">
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteEMail" placeholder="Email Address" class="form-control">
+                    <input id="emailAdd1" type="text" name="txteEMail" placeholder="Email Address" class="form-control">
                   </div>
                 </div>
                   <div class="form-group">
                     <label>Institution:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteInstitution" placeholder="Institution" class="form-control">
+                    <input id="institution1" type="text" name="txteInstitution" placeholder="Institution" class="form-control">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -499,33 +505,195 @@ if(data.intcount!=0){
     $('#btnSave').click(function(){
       var data = $('#addValidatorForm').serialize();
       //validate form
-
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/addValidator',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function($response){
-            if(response.success){
-              $('#addValidatorForm').modal('hide');
-              $('#addValidatorForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
+      if($('#firstName').val()!=''){
+        if($('#lastName').val()!=''){
+          if($('#contactNum').val()!=''){
+            if($('#emailAdd').val()!=''){
+              if($('#institution').val()!=''){
+                event.preventDefault();
+                swal({
+                  title: 'Are you sure?',
+                  type: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, save it!'
+                }).then((result) => {
+                  if(result.value) {
+                    $.ajax({
+                      type: 'ajax',
+                      method: 'post',
+                      url: '<?php echo base_url() ?>admin/addValidator',
+                      data: data,
+                      async: false,
+                      dataType: 'json',
+                      success: function(response){
+                        if(response.success){
+                          $('#addValidatorForm').modal('hide');
+                          $('#addValidatorForm')[0].reset();
+                          if(response.type=='add'){
+                            var type = 'added'
+                          }else if(response.type=='update'){
+                            var type ="updated"
+                          }
+                          let timerInterval
+                          swal({
+                            title: 'Saved',
+                            text: 'Family has been saved.',
+                            type: 'success',
+                            timer: 1500,
+                            showConfirmButton: false
+                          }).then(function() {
+                            location.reload();
+                          });
+                        }else{
+                          alert('Error');
+                        }
+                      },
+                      error: function(){
+                        alert('Could not save Data');
+                      }
+                    });
+                  }
+                })
+              }else{
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Incomplete input!',
+                  text: 'Please fill up all the required fields.'
+                });
               }
             }else{
-              alert('Error');
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
+              });
             }
-          },
-          error: function(){
-            alert('Could not save Data');
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
           }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      }
+    });
+
+
+
+        $('#btnEditSave').click(function(){
+          var data = $('#EditValidatorForm').serialize();
+
+          if($('#firstName1').val()!=''){
+            if($('#lastName1').val()!=''){
+              if($('#contactNum1').val()!=''){
+                if($('#emailAdd1').val()!=''){
+                  if($('#institution1').val()!=''){
+                    event.preventDefault();
+                    swal({
+                      title: 'Are you sure?',
+                      type: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Yes, save it!'
+                    }).then((result) => {
+                      if(result.value) {
+                        $.ajax({
+                          type: 'ajax',
+                          method: 'post',
+                          url: '<?php echo base_url() ?>admin/updateValidator',
+                          data: data,
+                          async: false,
+                          dataType: 'json',
+                          success: function(response){
+                            if(response==true){
+                              $('#myEditModal').modal('hide');
+                              $('#EditValidatorForm')[0].reset();
+                              showAllValidator();
+                              let timerInterval
+                              swal({
+                                title:'Saved',
+                                text: 'External Validator has been updated.',
+                                type: 'success',
+                                timer: 1500,
+                                showConfirmButton: false
+                              }).then(function() {
+                                location.reload();
+                              });
+                            }
+                            else{
+                             alert('Error');
+                            }
+                          },
+                          error: function(){
+                            alert('Could not update data');
+                          }
+                        });
+                      }
+                    })
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Incomplete input!',
+                      text: 'Please fill up all the required fields.'
+                    });
+                  }
+                }else{
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Incomplete input!',
+                    text: 'Please fill up all the required fields.'
+                  });
+                }
+              }else{
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Incomplete input!',
+                  text: 'Please fill up all the required fields.'
+                });
+              }
+            }else{
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
+              });
+            }
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+          }
+
         });
 
-    });
     ////// edit validator
     $(document).on('click', '.validator-edit', function(){
       var id = $(this).attr('data');
@@ -557,31 +725,6 @@ if(data.intcount!=0){
     });
 
   });
-
-    $('#btnEditSave').click(function(){
-      var data = $('#EditValidatorForm').serialize();
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/updateValidator',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response==true){
-              $('#myEditModal').modal('hide');
-              $('#EditValidatorForm')[0].reset();
-              showAllValidator();
-            }
-            else{
-             alert('Error');
-            }
-          },
-          error: function(){
-            alert('Could not update data');
-          }
-        });
-    });
 
 
 

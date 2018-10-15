@@ -1778,10 +1778,14 @@ public function showNotifCount(){
 		$title['title'] = "PUPHerbarium | Queries";
 		$this->load->view('queries', $title);
 		$this->load->view('templates/footer');
+
+
+
+
 	}
 
 	public function reports() {
-		$title['title'] = "PUPHerbarium | Queries";
+		$title['title'] = "PUPHerbarium | Reports";
 		$this->load->view('reports', $title);
 		$this->load->view('templates/footer');
 	}
