@@ -114,7 +114,7 @@
                   </ul>
                 </li>
                 <li><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
+                <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
 
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
@@ -152,7 +152,7 @@
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
 
-                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
+              <!--  <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
 <!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
@@ -961,7 +961,7 @@ $('#btnConfirm').click(function(event){
             }else{
               alert('Error');
             }
-         
+
           },
           error: function(){
             alert('Could not update data');

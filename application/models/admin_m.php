@@ -2438,7 +2438,7 @@ public function showExValAll(){
 		{
 
 			$result[] = array(
-					
+
 					$r->strAccessionNumber,
 					$r->strScientificName,
 					$r->strCollector,
@@ -2911,7 +2911,7 @@ WHERE MONTH(dateVerified)='10' AND YEAR(dateVerified)=@currentyr");
 FROM viewHerbariumSheet
 WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018'");
 
-		if($query->num_rows() > 0){
+
 			$output = '<style>
 table {
     font-family: arial, sans-serif;
@@ -2929,6 +2929,7 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 </style>
+<img src="assets/bower_components/pdfheader.png" />
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thEAD>
 			<tr>
@@ -2978,9 +2979,7 @@ tr:nth-child(even) {
 		}
 		$output .= '</table>';
 		return $output;
-		}else{
-			return false;
-		}
+
 	}
 
 

@@ -103,7 +103,7 @@
                   </ul>
                 </li>
                 <li><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
+                <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
 
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
@@ -140,7 +140,7 @@
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
 
-                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
+              <!--  <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
@@ -764,7 +764,23 @@ var myLineChart = new Chart(ctxL, {
             </div>
           </div>
         </div>
-  </footer>
+
+      </div>
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+<footer class="main-footer">
+     <div class="container-fluid">
+       <div class="row">
+         <div class="col-sm-6">
+           <p>Herbarium</p>
+         </div>
+         <div class="col-sm-6 text-right">
+           <p>&copy Copyright 2018 &nbsp<a href="https://bootstrapious.com" class="external"> WBHIS</a></p>
+         </div>
+       </div>
+     </div>
+</footer>
+
+
 
 
   </div>
