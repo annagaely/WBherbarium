@@ -234,7 +234,7 @@
                         <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/gymnosperm2.jpg">
                     </a>
                 </div>
-                <div class="col-md-36 col-lg-4 item">
+                <div class="col-md-6 col-lg-4 item">
                     <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/gymnosperm3.jpg">
                         <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/gymnosperm3.jpg">
                     </a>
@@ -258,7 +258,8 @@
           <p>
             A group of photosynthetic organisms that in general possess pigments such as chlorophyll but lack true roots, stems and leaves characteristic of terrestrial plants.
           </p>
-          <section class="gallery-block grid-gallery my-0 py-0">planttypes/algae.jpgs="row">
+          <section class="gallery-block grid-gallery my-0 py-0">
+            <div class="row">
                 <div class="col-md-6 col-lg-4 item">
                     <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/algae.jpg">
                         <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/algae.jpg">
@@ -269,17 +270,19 @@
                         <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/algae2.jpg">
                     </a>
                 </div>
-                <div class="col-md-36 col-lg-4 item">
+                <div class="col-md-6 col-lg-4 item">
                     <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/algae3.jpg">
                         <img class="img-thumbnail image scale-on-hover" src="<?php echo base_url()?>assets/bower_components/planttypes/algae3.jpg">
                     </a>
                 </div>
             </div>
+            </div>
           </section>
-        </div>
+
       </div>
     </div>
   </div>
+
   <!--modal bryophytes-->
   <div class="modal fade" id="modalBryophytes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog cascading-modal" role="document">
