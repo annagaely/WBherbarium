@@ -130,7 +130,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
 
@@ -158,7 +158,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-file"></i>Reports</a></li>
             <?php endif;?>
         </div>
       </div>
@@ -460,96 +460,71 @@ if(data.intcount!=0){
           </div>
         </div>
       </section>
-      <div class="row">
-                  <div class="col-lg-6">
-                    <div class="card line-chart-example">
-                      <div class="card-header d-flex align-items-center">
-                        <h4>Line Chart Example</h4>
-                      </div>
-                      <div class="card-body">
-                        <canvas id="lineChartExample"></canvas>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="xol-lg-6">
-                    <div class="card pie-chart-example">
-                      <div class="card-header d-flex align-items-center">
-                        <h4>Pie Chart Example</h4>
-                      </div>
-                      <div class="card-body">
-                        <div class="chart-container">
-                          <canvas id="pieChartExample"></canvas>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-
-<script>//bar
-var ctxB = document.getElementById("barChart").getContext('2d');
-var myBarChart = new Chart(ctxB, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});</script>
-
-   <footer class="main-footer">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-6">
-              <p>Herbarium</p>
+      <div class="row px-5">
+        <div class="col-lg-6">
+          <div class="card line-chart-example">
+            <div class="card-header d-flex align-items-center">
+              <h4>Line Chart Example</h4>
             </div>
-            <div class="col-sm-6 text-right">
-              <p>&copy Copyright 2018 &nbsp<a href="https://bootstrapious.com" class="external"> Sad Ratbhus</a></p>
+            <div class="card-body">
+              <canvas id="lineChartExample"></canvas>
             </div>
           </div>
         </div>
-  </footer>
+        <div class="col-lg-6">
+          <div class="card pie-chart-example">
+            <div class="card-header d-flex align-items-center">
+              <h4>Pie Chart Example</h4>
+            </div>
+            <div class="card-body">
+              <div class="chart-container">
+                <canvas id="pieChartExample"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+<footer class="main-footer">
+     <div class="container-fluid">
+       <div class="row">
+         <div class="col-sm-6">
+           <p>Herbarium</p>
+         </div>
+         <div class="col-sm-6 text-right">
+           <p>&copy Copyright 2018 &nbsp<a href="https://bootstrapious.com" class="external"> Sad Ratbhus</a></p>
+         </div>
+       </div>
+     </div>
+</footer>
+
 
 
   </div>
 
-<!-- JavaScript files-->
 
-<!-- <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>  -->
-<!--     <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
-  <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/bootstrap/js/bootstrap.min.js"></script>
-    -->
 
     <!--PREMIUM-->
+    <!-- JavaScript files-->
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/jquery/jquery.min.js"></script>
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/popper.js/umd/popper.min.js"> </script>
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/js/grasp_mobile_progress_circle-1.0.0.min.js"></script>
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/jquery.cookie/jquery.cookie.js"> </script>
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/chart.js/Chart.min.js"></script>
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/jquery-validation/jquery.validate.min.js"></script>
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <!-- Data Tables-->
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/datatables.net/js/jquery.dataTables.js"></script>
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/js/tables-datatable.js"></script>
+        <!-- Main File-->
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/js/front.js"></script>
 
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
+        <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/js/components-preloader.js"> </script>
     <!-- JavaScript files-->
     <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/popper.js/umd/popper.min.js"> </script>
