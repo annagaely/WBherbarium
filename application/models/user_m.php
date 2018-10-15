@@ -593,10 +593,10 @@ $this->db->like('strGenusName',$keyword);
 }
 
 public function searchSpecies($keyword){
-$this->db->like('strSpeciesName ',$keyword);
+$this->db->like('strScientificName ',$keyword);
 
         $query = $this->db
-        ->get('viewTaxonSpecies');
+        ->get('viewHerbariumSheet');
         return $query->result();
 }
 
@@ -609,10 +609,10 @@ $this->db->like('strGenusName',$keyword);
 }
 
 public function searchSpecies1($keyword){
-$this->db->like('strSpeciesName ',$keyword);
+$this->db->like('strScientificName ',$keyword);
 
         $query = $this->db
-        ->get('viewTaxonSpecies');
+        ->get('viewHerbariumSheet');
         return $query->result();
 }
 }?>

@@ -2237,7 +2237,7 @@ $status = $this->input->post('txtStatus');
 		{
 
 
-			$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
+			$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'"><i class="fas fa-eye"></i></button>';
 
 
 			$result[] = array(
@@ -2431,11 +2431,7 @@ insert into tblHerbariumSheet(intPlantDepositID,intPlantReferenceID,intSpeciesID
 
 public function showExValAll(){
 		$result = array();
-		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
-
-		from tblPlantDeposit pd join tblCollector cl
-		on pd.intCollectorID = cl.intCollectorID
-		");
+		$query = $this->db->get('viewHerbariumSheet');
 
 
 		foreach ($query->result() as $r)

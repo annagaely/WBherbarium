@@ -3,6 +3,7 @@
   <table class="table table-hover" id="data">
     <thead class="grey lighten-2">
       <tr>
+        <th></th>
         <th>Specie Name</th>
         <th>Genues Name</th>
       </tr>
@@ -12,8 +13,11 @@
     foreach ($results as $row) {
 ?>
 <tr>
-    <td><?php echo $row->strSpeciesName?></td>
-    <td><?php echo $row->strGenusName?></td>
+  <td width="50%"><?php echo "
+<img class='img-thumbnail image scale-on-hover' alt=Embedded Image src=\"data:image/png;base64, ".base64_encode($row->picHerbariumSheet)."\" />";?></td>
+    
+    <td><?php echo $row->strScientificName?></td>
+    <td><?php echo $row->strFamilyName?></td>
 </tr>
 <?php   
 }
