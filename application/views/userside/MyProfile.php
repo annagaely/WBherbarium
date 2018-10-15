@@ -103,7 +103,7 @@ window.addEventListener('load', function() {
                           <label for="strMiddleName" class="font-weight-light ml-3">Middle Name</label>
                           <div class="valid-feedback">
                           Looks good!
-                          </div>                         
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -226,7 +226,7 @@ window.addEventListener('load', function() {
 
                           <input style="width: 350px; display: inline;" type="password" id="strNewPw" name="txtNewPw" class="form-control"> <i style = "float: right;padding-bottom: 0px; size: 100px" class="fas fa-eye" onclick="showPassword()"></i>
                           <label for="strNewPw" class="ml-3 font-weight-light" >New Password</label>
-                           
+
                       </div>
                     </div>
                     <div class="md-form">
@@ -236,7 +236,7 @@ window.addEventListener('load', function() {
 
                             <input  style="width: 350px; display: inline;" type="password" id="strVerPw" name="txtVerPw" class="form-control"><i style = "float: right;padding-bottom: 0px; size: 100px" class="fas fa-eye" onclick="showPassword1()"></i>
                             <label for="strVerPw" class="ml-3 font-weight-light" >Verify Password</label>
-                            
+
                           </div>
                         </div>
                     </div>
@@ -245,7 +245,7 @@ window.addEventListener('load', function() {
                       <button class="btn btn-primary" type="submit" id="btnSavePassword">Save Changes</button>
 
 
-                  
+
 
                     </div>
                    </form>
@@ -404,7 +404,7 @@ function showAccount()
           }
         });
       }
-   })   
+   })
             }else{
             event.preventDefault();
             swal({
@@ -459,46 +459,125 @@ function showProfile()
 
         var data = $('#myprofileForm').serialize();
         //validate form
-
-
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url();?>user/updateProfile',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response.success){
+        if($('#strFirstName').val()!=''){
+          if($('#strLastName').val()!=''){
+            if($('#strPhoneNum').val()!=''){
+              if($('#strPresentAdd').val()!=''){
+                if($('#strPermanentAdd').val()!=''){
+                  if($('#strAffiliation').val()!=''){
+                    if($('#strAffiliationPosition').val()!=''){
+                      if($('#strAffiliationAdd').val()!=''){
+                        event.preventDefault();
+                        swal({
+                          title: 'Are you sure?',
+                          type: 'warning',
+                          showCancelButton: true,
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          confirmButtonText: 'Yes, save it!'
+                        }).then((result) => {
+                          if(result.value){
+                            $.ajax({
+                              type: 'ajax',
+                              method: 'post',
+                              url: '<?php echo base_url();?>user/updateProfile',
+                              data: data,
+                              async: false,
+                              dataType: 'json',
+                              success: function(response){
+                                if(response.success){
+                                  if(response.type=='add'){
+                                    var type = 'added'
+                                  }else if(response.type=='update'){
+                                    var type="updated"
+                                  }
+                                  let timerInterval
+                                  swal({
+                                    title: 'Saved',
+                                    text: 'Class has been saved.',
+                                    type: 'success',
+                                    timer: 1500,
+                                    showConfirmButton: false
+                                  }).then(function() {
+                                    location.reload();
+                                  });
+                                } else {
+                                  event.preventDefault();
+                                }
+                              },
+                              error: function(){
+                                alert('Could not save Data');
+                              }
+                            });
+                          }
+                        })
+                      }else{
+                        event.preventDefault();
+                        swal({
+                          type: 'error',
+                          title: 'Incomplete input!',
+                          text: 'Please fill up all the required fields.'
+                        });
+                        }
+                    }else{
+                      event.preventDefault();
+                      swal({
+                        type: 'error',
+                        title: 'Incomplete input!',
+                        text: 'Please fill up all the required fields.'
+                      });
+                      }
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Incomplete input!',
+                      text: 'Please fill up all the required fields.'
+                    });
+                    }
+                }else{
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Incomplete input!',
+                    text: 'Please fill up all the required fields.'
+                  });
+                  }
+              }else{
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Incomplete input!',
+                  text: 'Please fill up all the required fields.'
+                });
+                }
+            }else{
               event.preventDefault();
               swal({
-                title: 'Are you sure?',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, save it!'
-              }).then((result) => {
-                let timerInterval
-                swal({
-                              title: 'Saved',
-                              text: 'Your profile has been saved.',
-                              type: 'success',
-                              timer: 1500,
-                              showConfirmButton: false
-                            }).then(function() {
-                              location.reload();
-                            });
-              })
-              showProfile();
-            } else {
-              event.preventDefault();
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
+              });
+              }
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
             }
-          },
-          error: function(){
-            alert('Could not save Data');
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
           }
-        });
+
+
+
       });
     });
 </script>
@@ -565,7 +644,7 @@ if (newpw == verpw) {
 
     }
     })
-   
+
       }
       else{
         event.preventDefault();
@@ -574,7 +653,7 @@ if (newpw == verpw) {
               title: 'Wrong input!',
               text: 'Please verify your new password.'
             });
-            
+
       }
       }else{
             event.preventDefault();
@@ -601,6 +680,7 @@ if (newpw == verpw) {
               text: 'Please fill up all the required fields.'
             });
             }
-          
+
 });
 </script>
+</div>

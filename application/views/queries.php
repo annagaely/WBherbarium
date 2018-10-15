@@ -355,7 +355,7 @@ if(data.intcount!=0){
     </div>
     <!--PHYLUM PART-->
     <div class="col-md-20" id='divTablePhylum'>
-      <div class="card mt-4 px-3 py-3">
+      <div class="card mt-4 px-3 py-3 mx-4">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytblPhylum">
             <thead>
@@ -408,7 +408,7 @@ if(data.intcount!=0){
         </div>
          <!--CLASS PART-->
     <div class="col-md-20" id='divTableClass'>
-      <div class="card mt-4 px-3 py-3">
+      <div class="card mt-4 px-3 py-3 mx-4">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytblClass">
             <thead>
@@ -458,7 +458,7 @@ if(data.intcount!=0){
        </div>
        <!--ORDER PART-->
    <div class="col-md-20" id='divTableOrder'>
-      <div class="card mt-4 px-3 py-3">
+      <div class="card mt-4 px-3 py-3  mx-4">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytblOrder">
             <thead>
@@ -508,7 +508,7 @@ if(data.intcount!=0){
         </div><!--Order part-->
  <!--Family PART-->
    <div class="col-md-20" id='divTableFamily'>
-      <div class="card mt-4 px-3 py-3">
+      <div class="card mt-4 px-3 py-3 mx-4">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytblFamily">
             <thead>
@@ -559,7 +559,7 @@ if(data.intcount!=0){
         <!--Family part-->
         <!--Genus PART-->
    <div class="col-md-20" id='divTableGenus'>
-      <div class="card mt-4 px-3 py-3">
+      <div class="card mt-4 px-3 py-3 mx-4">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytblGenus">
             <thead>
@@ -610,7 +610,7 @@ if(data.intcount!=0){
         <!--GEnus part-->
         <!--Species PART-->
    <div class="col-md-20" id='divTableSpecies'>
-      <div class="card mt-4 px-3 py-3">
+      <div class="card mt-4 px-3 py-3 mx-4">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytblSpecies">
             <thead>
@@ -673,7 +673,7 @@ if(data.intcount!=0){
         <!--Species part-->
         <!--EX VAl PART-->
    <div class="col-md-20" id='divTableExVal'>
-      <div class="card mt-4 px-3 py-3">
+      <div class="card mt-4 px-3 py-3 mx-4">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytblExVal">
             <thead>
@@ -747,7 +747,7 @@ if(data.intcount!=0){
         <!--Ex VAl part-->
         <!--author PART-->
    <div class="col-md-20" id='divTableAuthor'>
-      <div class="card mt-4 px-3 py-3">
+      <div class="card mt-4 px-3 py-3 mx-4">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytblAuthor">
             <thead>
@@ -794,7 +794,7 @@ if(data.intcount!=0){
         <!--author part-->
         <!--ALT NAME PART-->
    <div class="col-md-20" id='divTableAltName'>
-      <div class="card mt-4 px-3 py-3">
+      <div class="card mt-4 px-3 py-3 mx-4">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytblAltName">
             <thead>
@@ -848,7 +848,7 @@ if(data.intcount!=0){
         <!--Alt NAME part-->
                 <!--ALT NAME PART-->
    <div class="col-md-20" id='divTableOUser'>
-      <div class="card mt-4 px-3 py-3">
+      <div class="card mt-4 px-3 py-3 mx-4">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytblOUser">
             <thead>
