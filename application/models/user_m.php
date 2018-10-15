@@ -578,7 +578,41 @@ if($this->db->query($queryupdate)){
 
 }
 
+public function searchRank($keyword){
+$this->db->like('strPhylumName',$keyword);
+        $query = $this->db->get('tblPhylum');
+        return $query->result();
+}
 
+public function searchGenus($keyword){
+$this->db->like('strGenusName',$keyword);
+        $query = $this->db
+        ->join('tblFamily f','f.intFamilyID=g.intFamilyID')
+        ->get('tblGenus g');
+        return $query->result();
+}
 
+public function searchSpecies($keyword){
+$this->db->like('strSpeciesName ',$keyword);
 
+        $query = $this->db
+        ->get('viewTaxonSpecies');
+        return $query->result();
+}
+
+public function searchGenus1($keyword){
+$this->db->like('strGenusName',$keyword);
+        $query = $this->db
+        ->join('tblFamily f','f.intFamilyID=g.intFamilyID')
+        ->get('tblGenus g');
+        return $query->result();
+}
+
+public function searchSpecies1($keyword){
+$this->db->like('strSpeciesName ',$keyword);
+
+        $query = $this->db
+        ->get('viewTaxonSpecies');
+        return $query->result();
+}
 }?>

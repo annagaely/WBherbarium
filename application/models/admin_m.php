@@ -2898,9 +2898,13 @@ public function showAllOUser()
 	}
 
 	public function getmonth($key){
-		$query = $this->db->query("SELECT *
+		$query = $this->db->query("declare @currentyr int;
+
+set @currentyr=(select YEAR(getdate()))
+
+SELECT *
 FROM viewHerbariumSheet
-WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018'");
+WHERE MONTH(dateVerified)='10' AND YEAR(dateVerified)=@currentyr");
 
 		if($query->num_rows() > 0){
 

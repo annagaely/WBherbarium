@@ -494,5 +494,65 @@ echo json_encode($msg);
 }
 
 
+public function searchingRank(){
+			$this->load->helper('file');
+        $keyword = $this->input->post('phylumkey');
+        $data['results'] = $this->m->searchRank($keyword);
+
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+ $this->load->view('userside/searchResults/searchRank', $data);	
+	$this->load->view('userside/footer');
+       
+}
+public function searchingGenus(){
+			$this->load->helper('file');
+        $keyword = $this->input->post('genuskey');
+        $data['results'] = $this->m->searchGenus($keyword);
+
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+ $this->load->view('userside/searchResults/searchGenus', $data);	
+	$this->load->view('userside/footer');
+       
+}
+
+public function searchingSpecies(){
+			$this->load->helper('file');
+        $keyword = $this->input->post('specieskey');
+        $data['results'] = $this->m->searchSpecies($keyword);
+
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+ $this->load->view('userside/searchResults/searchSpecie', $data);	
+	$this->load->view('userside/footer');
+       
+}
+
+public function searchingGenus1(){
+			$this->load->helper('file');
+        $keyword = $this->input->post('genuskey');
+        $data['results'] = $this->m->searchGenus($keyword);
+
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar2', $title);
+ $this->load->view('userside/searchResults/searchGenus', $data);	
+	$this->load->view('userside/footer');
+       
+}
+
+public function searchingSpecies1(){
+			$this->load->helper('file');
+        $keyword = $this->input->post('specieskey');
+        $data['results'] = $this->m->searchSpecies($keyword);
+
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar2', $title);
+ $this->load->view('userside/searchResults/searchSpecie', $data);	
+	$this->load->view('userside/footer');
+       
+}
+
+
 
 }?>

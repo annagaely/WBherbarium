@@ -140,35 +140,39 @@
         <div class="row">
           <div class="col-md-6">
             <div class="row">
-              <div class="col-md-12">
+<!--               <div class="col-md-12">
                 <h5 class="h5-responsive">Enter rank above the level of Genus:</h5>
-                  <form class="form-inline">
-                    <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Phylum, Class, Order, Family" aria-label="Search">
+                  <form class="form-inline" method="POST" action="<?php echo base_url(); ?>user/searchingRank" enctype="multipart/form-data">
+                    <input class="form-control form-control-sm w-75" name='phylumkey' type="text" placeholder="e.g. Phylum, Class, Order, Family" aria-label="Search">
                     <button onclick="showTableRank()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
-                      <a href="<?php echo base_url();?>user/usersearchRank" style="color: inherit!important">Search</a>
+                      <a href="<?php echo base_url();?>user/usersearchRank" style="color: inherit!important">Search</a> 
                     </button>
+                    <input type="submit" value='Search'>
                 </form>
-              </div>
+              </div> -->
             </div>
             <div class="row">
               <div class="col-md-12">
                 <h5 class="h5-responsive">Enter a Genus Name:</h5>
-                <form class="form-inline">
-                  <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Acacia, Pinus" title="Refers to general type of plants" aria-label="Search">
+                <form class="form-inline"  method="POST" action="<?php echo base_url(); ?>user/searchingGenus" enctype="multipart/form-data">
+                  <input class="form-control form-control-sm w-75" name='genuskey' type="text" placeholder="e.g. Acacia, Pinus" title="Refers to general type of plants" aria-label="Search" autocomplete="off">
 
-                  <button onclick="showTableGenus()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
-                    <a href="<?php echo base_url();?>user/usersearchGenus" style="color: inherit!important">Search</a></button>
+                  <!-- <button onclick="showTableGenus()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
+                    <a href="<?php echo base_url();?>user/usersearchGenus" style="color: inherit!important">Search</a></button> -->
+                    <input type="submit" value='Search'>
                 </form>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
                 <h5 class="h5-responsive">Enter a Specie Name:</h5>
-                <form class="form-inline">
-                  <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Indicus, Purpurea" title="Refers to a group of closely related plants" aria-label="Search">
+                <form class="form-inline" method="POST" action="<?php echo base_url(); ?>user/searchingSpecies" enctype="multipart/form-data" >
+                  <input class="form-control form-control-sm w-75" name='specieskey' type="text" placeholder="e.g. Indicus, Purpurea" title="Refers to a group of closely related plants" aria-label="Search" autocomplete="off"><!-- 
                   <button onclick="showTableSpecie()" type="button" class="btn btnsearch btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
-                    <a href="<?php echo base_url();?>user/usersearchSpecie" style="color: inherit!important">Search</a>
-                  </button>
+                    <a href="<?php echo base_url();?>user/usersearchSpecie" style="color: inherit!important">Search</a> --> 
+
+                  <!-- </button> -->
+                   <input type="submit" value='Search'>
                 </form>
               </div>
             </div>
@@ -180,26 +184,6 @@
       </div>
     </div>
 
-    <table id="data">
-  <tr> <td>Row 1</td></tr>
-  <tr> <td>Row 2</td></tr>
-  <tr> <td>Row 3 </td></tr>
-  <tr> <td>Row 4</td></tr>
-  <tr> <td>Row 5</td></tr>
-  <tr> <td>Row 6</td></tr>
-  <tr> <td>Row 7</td></tr>
-  <tr> <td>Row 8</td></tr>
-  <tr> <td>Row 9</td></tr>
-  <tr> <td>Row 10</td></tr>
-  <tr> <td>Row 11</td></tr>
-  <tr> <td>Row 12</td></tr>
-  <tr> <td>Row 13</td></tr>
-  <tr> <td>Row 14</td></tr>
-  <tr> <td>Row 15</td></tr>
-  <tr> <td>Row 16</td></tr>
-  <tr> <td>Row 17</td></tr>
-  <tr> <td>Row 18</td></tr>
-</table>
   </div>
   <!--modal angiosperm-->
   <div class="modal fade" id="modalAngiosperm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

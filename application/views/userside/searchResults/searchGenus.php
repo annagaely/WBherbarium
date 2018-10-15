@@ -4,30 +4,22 @@
     <thead class="grey lighten-2">
       <tr>
         <th>Genus</th>
-        <th>Phylum</th>
+        
         <Th>Family</Th>
       </tr>
     </thead>
-    <tr>
-      <td>Row 1</td>
-      <td>Row 1</td>
-      <td>Row 1</td>
-    </tr>
-    <tr>
-      <td>Row 2</td>
-      <td>Row 1</td>
-      <td>Row 1</td>
-    </tr>
-    <tr>
-      <td>Row 2</td>
-      <td>Row 1</td>
-      <td>Row 1</td>
-    </tr>
-    <tr>
-      <td>Row 2</td>
-      <td>Row 1</td>
-      <td>Row 1</td>
-    </tr>
+    <tbody>
+      <?php
+    foreach ($results as $row) {
+?>
+<tr>
+    <td><?php echo $row->strGenusName?></td>
+    <td><?php echo $row->strFamilyName?></td>
+</tr>
+<?php   
+}
+?>
+    </tbody>
   </table>
 </div>
 

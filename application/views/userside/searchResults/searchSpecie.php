@@ -4,11 +4,21 @@
     <thead class="grey lighten-2">
       <tr>
         <th>Specie Name</th>
+        <th>Genues Name</th>
       </tr>
     </thead>
-    <tr>
-      <td><a data-toggle="modal" data-target="#herbariumSheet">Row 1</a></td>
-    </tr>
+    <tbody>
+      <?php
+    foreach ($results as $row) {
+?>
+<tr>
+    <td><?php echo $row->strSpeciesName?></td>
+    <td><?php echo $row->strGenusName?></td>
+</tr>
+<?php   
+}
+?>
+    </tbody>
 
   </table>
 </div>

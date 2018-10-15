@@ -1947,7 +1947,7 @@ $this->pdf->stream("Webslesson", array("Attachment"=>0));
 //1  = Download
 //0 = Preview
 }else{
-	echo 'shit';
+	
 }
 
 
