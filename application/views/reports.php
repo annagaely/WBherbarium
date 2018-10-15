@@ -344,7 +344,36 @@ if(data.intcount!=0){
           </form>
         </div>
       </div>
-      
+
+      <div class="card">
+
+        <div class="card-header"><h4>External Validation Reports</h4></div>
+       <div class="card-body">
+        <div class="table-responsive">
+          <table cellspacing="5" cellpadding="5" border="0">
+        <tbody><tr>
+            <td>Start Date:</td>
+            <td><input id="min" name="min" type="text"></td>
+        </tr>
+        <tr>
+            <td>End Date:</td>
+            <td><input id="max" name="max" type="text"></td>
+        </tr>
+    </tbody></table>
+           <table class="table dataTable no-footer" id="manageEVReqAlltbl">
+             <thead>
+               <tr>
+                 <th scope="col" width= "10%">Accession Number</th>
+                 <th scope="col" width= "10%">Species Name</th>
+                 <th scope="col" width= "10%">Collector Name</th>
+                 <th scope="col" width= "10%">Date Deposited</th>
+                 <th scope="col" width= "10%">Status</th>
+               </tr>
+             </thead>
+           </table>
+       </div>
+     </div>
+   </div>
    <script type="text/javascript">
        
    </script>
