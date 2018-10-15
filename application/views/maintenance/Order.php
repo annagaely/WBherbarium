@@ -363,8 +363,8 @@ if(data.intcount!=0){
                   <div class="form-group">
                     <label>
                       <input type="hidden" name="txtId" value="0">
-                    </label> <label style="color: red">*</label>
-                    <label>Class Name:</label>
+                    </label> 
+                    <label>Class Name:</label><label style="color: red">*</label>
                      <input list="classname" name ="sceID" placeholder="Class Name" class="form-control" autocomplete="off">
                      <datalist id ='classname'>
                      </datalist>
