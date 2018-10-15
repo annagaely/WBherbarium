@@ -72,7 +72,7 @@ class user extends CI_Controller {
 	{
 		$title['title'] = "PUPHerbarium |  Collection";
 		$this->load->view('userside/navbar2', $title);
-		$this->load->view('userside/collection');
+		$this->load->view('userside/Collection2');
 		$this->load->view('userside/footer2');
 	}
 	public function register()
@@ -394,14 +394,41 @@ if($result){
 }
 echo json_encode($msg);
 }
+public function usersearchRank(){
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+	$this->load->view('userside/searchResults/searchRank');
+	$this->load->view('userside/footer');
+}
+public function usersearchGenus() {
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+	$this->load->view('userside/searchResults/searchGenus');
+	$this->load->view('userside/footer');
+}
+public function usersearchSpecie() {
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+	$this->load->view('userside/searchResults/searchSpecie');
+	$this->load->view('userside/footer');
+}
 public function searchRank(){
-	$this->load->view('userside/iframe/datatablesearchRank.php');
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar2', $title);
+	$this->load->view('userside/searchResults/searchRank');
+	$this->load->view('userside/footer');
 }
 public function searchGenus() {
-	$this->load->view('userside/iframe/datatablesearchGenus');
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar2', $title);
+	$this->load->view('userside/searchResults/searchGenus');
+	$this->load->view('userside/footer');
 }
 public function searchSpecie() {
-	$this->load->view('userside/iframe/datatablesearchSpecie');
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar2', $title);
+	$this->load->view('userside/searchResults/searchSpecie');
+	$this->load->view('userside/footer');
 }
 
 
@@ -464,6 +491,66 @@ if($result){
   $msg['success'] = true;
 }
 echo json_encode($msg);
+}
+
+
+public function searchingRank(){
+			$this->load->helper('file');
+        $keyword = $this->input->post('phylumkey');
+        $data['results'] = $this->m->searchRank($keyword);
+
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+ $this->load->view('userside/searchResults/searchRank', $data);	
+	$this->load->view('userside/footer');
+       
+}
+public function searchingGenus(){
+			$this->load->helper('file');
+        $keyword = $this->input->post('genuskey');
+        $data['results'] = $this->m->searchGenus($keyword);
+
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+ $this->load->view('userside/searchResults/searchGenus', $data);	
+	$this->load->view('userside/footer');
+       
+}
+
+public function searchingSpecies(){
+			$this->load->helper('file');
+        $keyword = $this->input->post('specieskey');
+        $data['results'] = $this->m->searchSpecies($keyword);
+
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+ $this->load->view('userside/searchResults/searchSpecie', $data);	
+	$this->load->view('userside/footer');
+       
+}
+
+public function searchingGenus1(){
+			$this->load->helper('file');
+        $keyword = $this->input->post('genuskey');
+        $data['results'] = $this->m->searchGenus($keyword);
+
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar2', $title);
+ $this->load->view('userside/searchResults/searchGenus', $data);	
+	$this->load->view('userside/footer');
+       
+}
+
+public function searchingSpecies1(){
+			$this->load->helper('file');
+        $keyword = $this->input->post('specieskey');
+        $data['results'] = $this->m->searchSpecies($keyword);
+
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar2', $title);
+ $this->load->view('userside/searchResults/searchSpecie', $data);	
+	$this->load->view('userside/footer');
+       
 }
 
 

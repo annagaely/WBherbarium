@@ -125,7 +125,7 @@
     <div class="px-5 py-5 mx-0" >
     <section class="text-center mx-5 pb-5">
     <!-- Section heading -->
-<!-- 
+<!--
 <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=5575d02bd4e845bc24dac524eb32f54d75edcc64'></script>
 <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/425554/t/5"></script> -->
 
@@ -398,18 +398,18 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/js/mdb.js"></script>
 
 <script type="text/javascript">
-  $(document).ready(function(){ 
-    $(window).scroll(function(){ 
-        if ($(this).scrollTop() > 100) { 
-            $('#scroll').fadeIn(); 
-        } else { 
-            $('#scroll').fadeOut(); 
-        } 
-    }); 
-    $('#scroll').click(function(){ 
-        $("html, body").animate({ scrollTop: 0 }, 600); 
-        return false; 
-    }); 
+  $(document).ready(function(){
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('#scroll').fadeIn();
+        } else {
+            $('#scroll').fadeOut();
+        }
+    });
+    $('#scroll').click(function(){
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+    });
 });
 </script>
 <script>
@@ -430,4 +430,12 @@
         responsive: true
     }
 });
+</script>
+
+
+
+<script>
+#data tr {
+display: none;
+}
 </script>

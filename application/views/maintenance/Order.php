@@ -155,8 +155,8 @@
                 <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
-
+<!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+ -->
               </ul>
             </li>
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
@@ -308,7 +308,7 @@ if(data.intcount!=0){
         </div>
       </div>
   <!--ADD Order MODAL-->
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-header d-flex align-items-center">
           <button type="button" button data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Order</button>
         </div>
@@ -385,7 +385,7 @@ if(data.intcount!=0){
         </div>
       <!--END EDIT CLASS MODAL-->
 
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-body">
           <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageOrdertbl">

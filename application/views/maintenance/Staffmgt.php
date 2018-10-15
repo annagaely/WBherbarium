@@ -154,7 +154,7 @@
                 <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+           <!--      <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
 
               </ul>
             </li>
@@ -329,7 +329,7 @@ if(data.intcount!=0){
       </div>
 
       <!--ADD STAFFMGT-->
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Staff</button>
         </div>
@@ -532,7 +532,7 @@ if(data.intcount!=0){
           </div>
         </div>
 
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-striped" id="manageStafftbl">
@@ -735,7 +735,7 @@ $('#btnSave').click(function(event){
                           let timerInterval
                           swal({
                             title: 'Saved',
-                            text: 'Phylum has been saved.',
+                            text: 'Changes has been saved.',
                             type: 'success',
                             timer: 1500,
                             showConfirmButton: false

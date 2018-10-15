@@ -155,7 +155,7 @@
                 <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+<!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
 
               </ul>
             </li>
@@ -379,7 +379,7 @@ if(data.intcount!=0){
 
 
 <div class="tabcontent" id="FirstTab">
-       <div class="card">
+       <div class="card mx-4 mt-4">
         <div class="card-body">
          <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageEVReqPendingtbl">
@@ -401,7 +401,7 @@ if(data.intcount!=0){
     </div>
 </div>
 <div id="SecondTab" class="tabcontent">
-     <div class="card">
+     <div class="card mx-4 mt-4">
         <div class="card-body">
          <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageEVReqOkaytbl">
@@ -424,7 +424,7 @@ if(data.intcount!=0){
 </div>
 
 <div id="ThirdTab" class="tabcontent">
-       <div class="card">
+       <div class="card mx-4 mt-4">
         <div class="card-body">
          <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageEVReqAlltbl">

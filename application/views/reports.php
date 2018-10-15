@@ -321,13 +321,45 @@ if(data.intcount!=0){
 
       <div class="card">
         <div class="card-header d-flex align-items-center">
-          <button type="button" class="btn btn-primary">Print Reports</button>
+          
+          <!-- <a href="<?php echo base_url(); ?>admin/pdf" >Print Reports</a> -->
+          <form method="post" action="<?php echo base_url(); ?>admin/pdf" enctype="multipart/form-data">
+            <label>Select a month</label><br>
+          <select name='month'>
+            <option value=1>January</option>
+            <option value=2>February</option>
+            <option value=3>March</option>
+            <option value=4>April</option>
+            <option value=5>May</option>
+            <option value=6>June</option>
+            <option value=7>July</option>
+            <option value=8>August</option>
+            <option value=9>September</option>
+            <option value=10>October</option>
+            <option value=11>November</option>
+            <option value=12>December</option>
+          </select>
+          <input type="submit" value ='Print Report' class="btn btn-primary">
+         <!--  <input type = 'submit' value="Search"> -->
+          </form>
         </div>
       </div>
+
       <div class="card">
+
         <div class="card-header"><h4>External Validation Reports</h4></div>
        <div class="card-body">
         <div class="table-responsive">
+          <table cellspacing="5" cellpadding="5" border="0">
+        <tbody><tr>
+            <td>Start Date:</td>
+            <td><input id="min" name="min" type="text"></td>
+        </tr>
+        <tr>
+            <td>End Date:</td>
+            <td><input id="max" name="max" type="text"></td>
+        </tr>
+    </tbody></table>
            <table class="table dataTable no-footer" id="manageEVReqAlltbl">
              <thead>
                <tr>
@@ -343,27 +375,5 @@ if(data.intcount!=0){
      </div>
    </div>
    <script type="text/javascript">
-       function showExValAll(){
-
-         $('#manageEVReqAlltbl').dataTable().fnClearTable();
-         $('#manageEVReqAlltbl').dataTable().fnDraw();
-         $('#manageEVReqAlltbl').dataTable().fnDestroy();
-         $('#manageEVReqAlltbl').dataTable({
-           "autoWidth":false,
-            "processing": true,
-            "serverSide": false,
-            "sAjaxSource": "<?php echo base_url('admin/showExValAll')?>",
-            "deferLoading": 10,
-            "bPaginate": true,
-            "aaSorting": [],
-            "fnInitComplete": function(){
-
-            }
-        });
-      }
-
-    $(document).ready(function() {
-       //show
-       showExValAll();
-      });
+       
    </script>

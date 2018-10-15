@@ -152,8 +152,8 @@
                 <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
-
+ <!--                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+ -->
               </ul>
             </li>
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
@@ -327,7 +327,7 @@ if(data.intcount!=0){
       </div>
 
 <!--ADD FAMBOX MODAL-->
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Family Box</button>
         </div>
@@ -407,6 +407,7 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
+
                    <input id="boxLimit1" type="number" min="1" name="txteBLLimit" placeholder="Box Limit" class="form-control">
                   </div>
                     <div class="form-group">
@@ -420,6 +421,7 @@ if(data.intcount!=0){
                   <div class="form-group">
                     <label>Rack Column:</label> <label style="color: red">*</label>
                     <input id="rackCol1" type="number" min="1" name="txterackcol" placeholder="Rack Column" class="form-control">
+
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -431,7 +433,7 @@ if(data.intcount!=0){
             </div>
           </div>
         </div>
- <div class="card">
+ <div class="card mx-4">
   <div class="card-body">
     <div class="table-responsive">
       <table class="table dataTable no-footer" id="manageFamBoxtbl">
