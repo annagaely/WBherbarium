@@ -142,7 +142,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
 
@@ -363,8 +363,8 @@ if(data.intcount!=0){
                   <div class="form-group">
                     <label>
                       <input type="hidden" name="txtId" value="0">
-                    </label> <label style="color: red">*</label>
-                    <label>Class Name:</label>
+                    </label> 
+                    <label>Class Name:</label><label style="color: red">*</label>
                      <input list="classname" name ="sceID" placeholder="Class Name" class="form-control" autocomplete="off">
                      <datalist id ='classname'>
                      </datalist>

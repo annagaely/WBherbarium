@@ -18,15 +18,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
     <!--PREMIUM-->
-      <!--SWAL-->
-      <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
-      <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
-      <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-      <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
-      <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
-
-
-
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/bootstrap/css/bootstrap.min.css">
@@ -96,15 +87,15 @@
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
 <?php if(($this->session->userdata('strRole')=='CURATOR') || ($this->session->userdata('strRole')=='ADMINISTRATOR')):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
-              <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
+            <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+              <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
-                <li class="active"><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
-                  <ul id="TaxHierDropdown" class="collapse list-unstyled show">
+                <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
+                  <ul id="TaxHierDropdown" class="collapse list-unstyled">
 
                     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Phylum"> &nbsp; &nbsp; &nbsp; &nbsp; Phylum</a></li>
 
-                    <li class="active" style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Class"> &nbsp; &nbsp; &nbsp; &nbsp; Class</a></li>
+                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Class"> &nbsp; &nbsp; &nbsp; &nbsp; Class</a></li>
 
                     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Order"> &nbsp; &nbsp; &nbsp; &nbsp; Order</a></li>
 
@@ -143,7 +134,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
-            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
+            <li class="active"><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
 
@@ -171,7 +162,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li class="active"><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
             <?php endif;?>
         </div>
       </div>
@@ -319,363 +310,60 @@ if(data.intcount!=0){
       </div>
       </nav>
       </header>
+      <div class="breadcrumb-holder">
+              <div class="container-fluid">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard" >Home</a></li>
+                  <li class="breadcrumb-item active">Reports</li>
+                </ul>
+              </div>
+      </div>
 
-       <div class="breadcrumb-holder">
-       <div class="container-fluid">
-         <ul class="breadcrumb">
-           <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard" >Home</a></li>
-           <li class="breadcrumb-item">Maintenance</li>
-           <li class="breadcrumb-item">Taxonomic Hierarchy</li>
-           <li class="breadcrumb-item active">Class </li>
-         </ul>
+      <div class="card">
+        <div class="card-header d-flex align-items-center">
+          <button type="button" class="btn btn-primary">Print Reports</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h4>External Validation Reports</h4></div>
+       <div class="card-body">
+        <div class="table-responsive">
+           <table class="table dataTable no-footer" id="manageEVReqAlltbl">
+             <thead>
+               <tr>
+                 <th scope="col" width= "10%">Accession Number</th>
+                 <th scope="col" width= "10%">Species Name</th>
+                 <th scope="col" width= "10%">Collector Name</th>
+                 <th scope="col" width= "10%">Date Deposited</th>
+                 <th scope="col" width= "10%">Status</th>
+               </tr>
+             </thead>
+           </table>
        </div>
      </div>
- <!--ADD Class MODAL-->
-     <div class="card">
-       <div class="card-header d-flex align-items-center">
-         <button type="button" button data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Class</button>
-       </div>
-       <!-- Modal-->
-       <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide"  data-backdrop="static" data-keyboard="false">
-         <div role="document" class="modal-dialog">
-           <div class="modal-content">
-             <div class="modal-header">
-               <h5 id="exampleModalLabel" class="modal-title">Add Class</h5>
-               <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
-             </div>
-             <div class="modal-body">
-               <form id= "addClassForm" method="POST" enctype="multipart/form-data"> <!--dito ka magbabago sa loob nito-->
-                 <div class="form-group">
-                   <label>Phylum Name:</label> <label style="color: red">*</label>
-                     <input list="phylumname" name ="spID" placeholder="Phylum Name" class="form-control" autocomplete=off>
-                     <datalist id ='phylumname'>
-                     </datalist>
-                 </div>
-                 <div class="form-group">
-                   <label>Class Name:</label> <label style="color: red">*</label>
-                   <input type="text" name="txtCName" id='classid' placeholder="Class Name" class="form-control">
-                 </div><!--HANGGANG DITO LANG BOI-->
-                 <div class="modal-footer">
-                   <input type="reset" value="Clear" class="btn btn-secondary">
-                   <input type="submit" value="Save" id="btnSave" class="btn btn-primary">
-                 </div>
-               </form>
+   </div>
+   <script type="text/javascript">
+       function showExValAll(){
 
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-     <!--END PHYLUM MODAL-->
-     <!--ADD EDIT CLASS MODAL-->
+         $('#manageEVReqAlltbl').dataTable().fnClearTable();
+         $('#manageEVReqAlltbl').dataTable().fnDraw();
+         $('#manageEVReqAlltbl').dataTable().fnDestroy();
+         $('#manageEVReqAlltbl').dataTable({
+           "autoWidth":false,
+            "processing": true,
+            "serverSide": false,
+            "sAjaxSource": "<?php echo base_url('admin/showExValAll')?>",
+            "deferLoading": 10,
+            "bPaginate": true,
+            "aaSorting": [],
+            "fnInitComplete": function(){
 
-       <!-- Modal-->
-       <div id="myEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
-         <div role="document" class="modal-dialog">
-           <div class="modal-content">
-             <div class="modal-header">
-
-               <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
-               <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
-             </div>
-             <div class="modal-body">
-
-               <form id= "editClassForm" method="POST" enctype="multipart/form-data">
-                 <!-- <input type="hidden" name="act" id="act" value=""> -->
-                 <div class="form-group">
-                   <label>
-                     <input type="hidden" name="txtId" value="0">
-                   </label>
-                   <label>Phylum Name:</label> <label style="color: red">*</label>
-                     <input list="phylumname" name ="speID" placeholder="Phylum Name" class="form-control">
-                     <datalist id ='phylumname'>
-                     </datalist>
-                 </div>
-                 <div class="form-group">
-                   <label>Class Name:</label> <label style="color: red">*</label>
-                   <input type="text" id="classid2" name="txteCName" placeholder="Class Name" class="form-control">
-                 </div>
-                 <div class="modal-footer">
-                   <input type="reset" value="Clear" class="btn btn-secondary">
-                   <input type="submit" value="Save" id='btnEditSave' class="btn btn-primary">
-                 </div>
-
-               </form>
-             </div>
-           </div>
-         </div>
-       </div>
-     <!--END EDIT CLASS MODAL-->
-     <div class="card">
-
-               <div class="card-body">
-                 <div class="table-responsive">
-                   <table class="table table-striped" id="manageClasstbl">
-                     <thead>
-                       <tr>
-                         <!-- <th scope="col" width= "10%">Class ID</th> -->
-                         <th scope="col" width= "10%">  Phylum Name</th>
-                         <th scope="col" width= "10%">Class Name</th>
-                         <th scope="col" width= "10%">Actions</th>
-                       </tr>
-                     </thead>
-<!--                       <tbody tbody id="showdata">
-                     </tbody> -->
-                   </table>
-                 </div>
-               </div>
-             </div>
-
-
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
-
-<!--Table-->
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
-<script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
-
-             <script>
-             function resetForm() {
-                 document.getElementById("addPhylumForm").reset();
-             }
-
-             </script>
-
-
-<script type="text/javascript">
-
- function showAllClass()
- {
-   $('#manageClasstbl').dataTable().fnClearTable();
-   $('#manageClasstbl').dataTable().fnDraw();
-   $('#manageClasstbl').dataTable().fnDestroy();
-   $('#manageClasstbl').dataTable({
-    "autoWidth":false,
-        "processing": true,
-        "serverSide": false,
-        "sAjaxSource": "<?php echo base_url('admin/showAllClass')?>",
-        "deferLoading": 10,
-        "bPaginate": true,
-        "aaSorting": [],
-        "fnInitComplete": function(){
-
-        }
-    });
-  }
-   $(document).ready(function(){
-
-   //show
-   showAllClass();
-   showClassPhylumName();
-
-     function showClassPhylumName(){
-     $.ajax({
-       type: 'ajax',
-       url: '<?php echo base_url() ?>admin/showClassPhylumName',
-       async: false,
-       dataType: 'json',
-       success: function(data){
-         var html = '';
-         var i;
-         for(i=0; i<data.length; i++){
-           html +='<option value="'+data[i].strPhylumName+'">'+data[i].strPhylumName+'</option>';
-         }
-         $('#showClassPhylumName').html(html);
-         $('#phylumname').html(html);
-       },
-       error: function(){
-         alert('Could not get Data from Database');
-       }
-     });
-   };
-
-   $('#btnSave').click(function(event){
-     var data = $('#addClassForm').serialize();
-     //validate form
-     if($('#phylumid').val()!=''){
-       if($('#classid').val()!=''){
-         event.preventDefault();
-         swal({
-           title: 'Are you sure?',
-           type: 'warning',
-           showCancelButton: true,
-           confirmButtonColor: '#3085d6',
-           cancelButtonColor: '#d33',
-           confirmButtonText: 'Yes, save it!'
-         }).then((result) => {
-           if (result.value) {
-             $.ajax({
-               type: 'ajax',
-               method: 'post',
-               url: '<?php echo base_url() ?>admin/addClass',
-               data: data,
-               async: false,
-               dataType: 'json',
-               success: function(response){
-                 if(response.success){
-                   $('#addClassForm').modal('hide');
-                   $('#addClassForm')[0].reset();
-                   if(response.type=='add'){
-                     var type = 'added'
-                   }else if(response.type=='update'){
-                     var type ="updated"
-                   }
-                   let timerInterval
-                   swal({
-                     title: 'Saved',
-                     text: 'Class has been saved.',
-                     type: 'success',
-                     timer: 1500,
-                     showConfirmButton: false
-                   }).then(function() {
-                     location.reload();
-                   });
-                 }else {
-                   event.preventDefault();
-                   swal({
-                     type: 'error',
-                     title: 'Error!',
-                     text: 'Class name already exists.'
-                   });
-                 }
-               },
-               error: function(){
-                 event.preventDefault();
-                 swal({
-                   type: 'error',
-                   title: 'Incorrect input!',
-                   text: 'Phylum name does not exist.'
-                 });
-               }
-             });
             }
-          })
-        }else{
-          event.preventDefault();
-          swal({
-            type: 'error',
-            title: 'Incomplete input!',
-            text: 'Please fill up all the required fields.'
-          });
-        }
-      }else{
-        event.preventDefault();
-        swal({
-          type: 'error',
-          title: 'Incomplete input!',
-          text: 'Please fill up all the required fields.'
         });
       }
 
-
-    });
-   //update class
- $('#btnEditSave').click(function(event){
-     var data = $('#editClassForm').serialize();
-     if($('#phylumid2').val()!=''){
-       if($('#classid2').val()!=''){
-         event.preventDefault();
-         swal({
-           title: 'Are you sure?',
-           type: 'warning',
-           showCancelButton: true,
-           confirmButtonColor: '#3085d6',
-           cancelButtonColor: '#d33',
-           confirmButtonText: 'Yes, save it!'
-         }).then((result) => {
-           if (result.value) {
-             $.ajax({
-         type: 'ajax',
-         method: 'post',
-         url: '<?php echo base_url() ?>admin/updateClass',
-         data: data,
-         async: false,
-         dataType: 'json',
-         success: function(response){
-           if(response.success){
-             $('#editClassForm').modal('hide');
-             $('#editClassForm')[0].reset();
-             if(response.type=='add'){
-               var type = 'added'
-             }else if(response.type=='update'){
-               var type ="updated"
-             }
-             let timerInterval
-             swal({
-               title: 'Saved',
-               text: 'Class has been updated.',
-               type: 'success',
-               timer: 1500,
-               showConfirmButton: false
-             }).then(function() {
-               location.reload();
-             });
-             showAllClass();
-           }else {
-             event.preventDefault();
-             swal({
-               type: 'error',
-               title: 'Error!',
-               text: 'Class name already exists.'
-             });
-           }
-         },
-         error: function(){
-           event.preventDefault();
-           swal({
-             type: 'error',
-             title: 'Incorrect input!',
-             text: 'Phylum name does not exist.'
-           });
-         }
-       });
-
-            }
-
-          })
-
-        }else{
-          event.preventDefault();
-          swal({
-            type: 'error',
-            title: 'Incomplete input!',
-            text: 'Please fill up all the required fields.'
-          });
-        }
-      }else{
-        event.preventDefault();
-        swal({
-          type: 'error',
-          title: 'Incomplete input!',
-          text: 'Please fill up all the required fields.'
-        });
-      }
-   });
-   //edit class
-  $(document).on('click', '.class-edit', function(event){
-     var id = $(this).attr('data');
-     $('#myEditModal').modal('show');
-     $('#myEditModal').find('.modal-title').text('Edit Class');
-     $.ajax({
-       type: 'ajax',
-       method: 'get',
-       url: '<?php echo base_url() ?>admin/editClass',
-       data: {id: id},
-       async: false,
-       dataType: 'json',
-       success: function(data){
-
-         $('input[name=speID]').val(data.strPhylumName);
-         $('input[name=txteCName]').val(data.strClassName);
-         $('input[name=txtId]').val(data.intClassID);
-
-       },
-       error: function(){
-         alert('Could not Edit Data');
-       }
-
-   });
-
- });
- });
-</script>
+    $(document).ready(function() {
+       //show
+       showExValAll();
+      });
+   </script>

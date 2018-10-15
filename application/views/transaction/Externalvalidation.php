@@ -142,7 +142,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
 
@@ -934,12 +934,7 @@ $('#btnConfirm').click(function(event){
           success: function(response){
 
             if(response==true){
-
-
-            }else{
-              alert('Error');
-            }
-         let timerInterval
+            let timerInterval
                     swal({
                       title: 'Saved',
                       text: 'Succesful!',
@@ -948,12 +943,17 @@ $('#btnConfirm').click(function(event){
                       showConfirmButton: false
                     }).then(function() {
 
-                    showAllExValidators();
+                    showExValPending();
                     showExValOkay();
                     showExValAll();
                     $('#EVConfirmation').modal('hide');
                     document.getElementById("EVConfirmForm").reset();
                   });
+
+            }else{
+              alert('Error');
+            }
+         
           },
           error: function(){
             alert('Could not update data');

@@ -2236,7 +2236,7 @@ $status = $this->input->post('txtStatus');
 		foreach ($query->result() as $r)
 		{
 
-			$btn = '<button class="btn btn-primary view-EVConfirmation" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
+			$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'"><i class="fas fa-eye"></i></button>';
 
 
 			$result[] = array(
@@ -2594,7 +2594,7 @@ public function showAllAltName()
 
 		foreach ($query->result() as $r)
 		{
-			$btn = '<button class="btn btn-primary altname-edit" data="'.$r->intAltNameID.'">Edit</button>';
+			$btn = '<button class="btn btn-primary altname-edit" data="'.$r->intAltNameID.'"><i class="far fa-edit"></button>';
 
 			$result[] = array(
 					// $r->intPhylumID,
@@ -2853,6 +2853,46 @@ if($querycheckeventtbl->num_rows()==0){
 		echo json_encode($msg);
 	}
 }
+
+
+public function showAllOUser()
+	{
+		$result = array();
+		$query = $this->db->select("intOUserID,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName,strContactNumber,strEmailAddress,strPresentAddress,strPermanentAddress,strAffiliationName,strAffiliationAddress,strAffiliationPosition")
+                ->get('tblOnlineUser');
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary OUser-edit" data="'.$r->intOUserID.'"><i class="far fa-edit"></button>';
+
+			$result[] = array(
+					// $r->intPhylumID,
+
+					$r->strFullName,
+					$r->strContactNumber,
+					$r->strEmailAddress,
+					$r->strPresentAddress,
+					$r->strAffiliationName,
+					$r->strAffiliationPosition,
+					$btn,
+					$r->intOUserID
+					);
+		}
+
+
+		return $result;
+	}
+	public function editOUser(){
+		$id = $this->input->get('id');
+		$this->db->where('intOUserID', $id);
+		$query = $this->db->select("intOUserID,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName,strContactNumber,strEmailAddress,strPresentAddress,strPermanentAddress,strAffiliationName,strAffiliationAddress,strAffiliationPosition")
+		->get('tblOnlineUser');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
 
 
 }?>

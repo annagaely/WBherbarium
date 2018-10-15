@@ -75,7 +75,6 @@ if($data){
 	if($this->session->userdata('strUsername')!=''){
 		$title['title'] = "PUPHerbarium | Dashboard";
 		$this->load->view('maintenance/Dashboard', $title);
-		$this->load->view('templates/footer');
 	}
 	else{
 	redirect(base_url().'admin');
@@ -1779,9 +1778,17 @@ public function showNotifCount(){
 		$title['title'] = "PUPHerbarium | Queries";
 		$this->load->view('queries', $title);
 		$this->load->view('templates/footer');
+
+
+
+
 	}
 
-
+	public function reports() {
+		$title['title'] = "PUPHerbarium | Reports";
+		$this->load->view('reports', $title);
+		$this->load->view('templates/footer');
+	}
 
 public function DepReschedSendMail()
 {
@@ -1878,6 +1885,39 @@ $date=$this->input->post('txtReschedDate');
 		return false;
 	}
 }
+
+public function showAllOUser()
+{
+
+    $output = $this->admin_m->showAllOUser();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+public function editOUser(){
+	$result = $this->m->editOUser();
+	echo json_encode($result);
+}
+
+
+
+public function VResched(){
+$result = $this->m->VResched();
+echo json_encode($result);
+}
+
+public function DResched(){
+$result = $this->m->DResched();
+echo json_encode($result);
+}
+
 
 
 

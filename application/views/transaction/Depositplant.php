@@ -141,7 +141,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
 
@@ -778,16 +778,20 @@ if(data.intcount!=0){
 
         <div class="modal-body">
           <form id= "ConfirmForm" method="POST" enctype="multipart/form-data">
-            <div class="form-group row">>
+            <div class="form-group row">
+            <div class="col-sm-4">
               <label style="font-size: 14px;">Deposit ID:</label>
-
+              </div>
               <div class="col-sm-8">
                       <input type="hidden" name="txtId" id="txtID" value="0">
                        <input type="text" name="txtDepositReqID" id="intDepositReqID" class="form-control" disabled="">
                      </div>
             </div>
            <div class="form-group row">
-             <label style="font-size: 14px;">Collector's Name:</label>
+            <div class="col-sm-4">
+                     <label style="font-size: 14px;">Collector's Name:</label>
+                   </div>
+                      <div class="col-sm-8">
                       <input type="hidden" name="txtId" id="txtID" value="0">
                        <input type="text" name="txtCollectorName" id="strFullName" class="form-control" disabled="">
                      </div>

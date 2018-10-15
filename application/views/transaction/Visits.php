@@ -141,7 +141,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
 
@@ -771,7 +771,7 @@ if(data.intcount!=0){
               <input type="text" name="txtreqid" id="txtreqIDReject" class="form-control" disabled>
             </div>
             <div class="form-group">
-               <label>Message:</label>
+               <label>Reason for Rejecting:</label>
                 <textarea  id="strCustomMessage" name="txtCustomMessageReject" class="form-control" placeholder="Type your message here.." ></textarea>
             </div>
                   <div class="modal-footer">
