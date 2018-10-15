@@ -325,9 +325,20 @@ if(data.intcount!=0){
         </div>
       </div>
       <div class="card">
+
         <div class="card-header"><h4>External Validation Reports</h4></div>
        <div class="card-body">
         <div class="table-responsive">
+          <table cellspacing="5" cellpadding="5" border="0">
+        <tbody><tr>
+            <td>Start Date:</td>
+            <td><input id="min" name="min" type="text"></td>
+        </tr>
+        <tr>
+            <td>End Date:</td>
+            <td><input id="max" name="max" type="text"></td>
+        </tr>
+    </tbody></table>
            <table class="table dataTable no-footer" id="manageEVReqAlltbl">
              <thead>
                <tr>

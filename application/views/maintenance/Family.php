@@ -153,8 +153,8 @@
                 <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
-
+<!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+ -->
               </ul>
             </li>
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>

@@ -154,7 +154,7 @@
                 <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+           <!--      <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
 
               </ul>
             </li>
@@ -735,7 +735,7 @@ $('#btnSave').click(function(event){
                           let timerInterval
                           swal({
                             title: 'Saved',
-                            text: 'Phylum has been saved.',
+                            text: 'Changes has been saved.',
                             type: 'success',
                             timer: 1500,
                             showConfirmButton: false

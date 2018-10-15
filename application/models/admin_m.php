@@ -2236,7 +2236,7 @@ $status = $this->input->post('txtStatus');
 		foreach ($query->result() as $r)
 		{
 
-			$btn = '<button class="btn btn-primary view-EVConfirmation" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
+			$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
 
 
 			$result[] = array(
@@ -2433,7 +2433,8 @@ public function showExValAll(){
 		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
 
 		from tblPlantDeposit pd join tblCollector cl
-		on pd.intCollectorID = cl.intCollectorID");
+		on pd.intCollectorID = cl.intCollectorID
+		");
 
 
 		foreach ($query->result() as $r)

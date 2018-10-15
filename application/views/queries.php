@@ -725,7 +725,7 @@ if(data.intcount!=0){
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
-                    <label>Contact Number:</label>>
+                    <label>Contact Number:</label>
                     <input type="text"  data-mask="99999999999" name="txteCNumber"  class="form-control" disabled>
                   </div>
                   <div class="form-group col-sm-6">
@@ -879,41 +879,41 @@ if(data.intcount!=0){
               <form name="profileform" class="needs-validation" id= "myprofileForm" method="POST" enctype="multipart/form-data" autocomplete="off" novalidate>
                   <div class="md-form">
 
-                          <label for="strFirstName" class="font-weight-light" style="margin-left: 5px;">Full Name</label>
+                          <label for="strFirstName" class="font-weight-light" style="margin-left: 5px;">Full Name:</label>
                           <input type="text" id="strFirstName" name="txtfirstname" class="form-control" autofocus disabled>
                     </div>
                       <div class="md-form">
-                             <label for="strPhoneNum" class="font-weight-light" data-mask="9999 9999 999">Phone Number</label>
+                             <label for="strPhoneNum" class="font-weight-light" data-mask="9999 9999 999">Phone Number:</label>
                             <input type="text" id="strPhoneNum" name="txtphonenum" class="form-control" autofocus disabled>
                            
                           </div>
                       
                       <div class="md-form">
-                        <label for="strPresentAdd" class="font-weight-light">Present Address</label>
+                        <label for="strPresentAdd" class="font-weight-light">Present Address:</label>
                         <input type="text" id="strPresentAdd" name="txtpresentadd" class="form-control" onkeyup="enableCheck();" autofocus disabled>
                        
                       </div>
                       <div class="md-form">
-                        <label for="strPermanentAdd" class="font-weight-light">Permanent Address</label>
+                        <label for="strPermanentAdd" class="font-weight-light">Permanent Address:</label>
                         <input type="text" id="strPermanentAdd" name="txtpermaadd"  class="form-control" autofocus disabled>
                         
                       </div>
                       <div class="md-form">
                         <div class="row">
                           <div class="col-md-6">
-                          <label for="strAffiliation" class="font-weight-light" style="margin-left: 5px;">Affiliation Name</label>
+                          <label for="strAffiliation" class="font-weight-light" style="margin-left: 5px;">Affiliation Name:</label>
                             <input type="text" id="strAffiliation" name="txtaffname" class="form-control" autofocus disabled>
                             
                           </div>
                           <div class="col-md-6">
-                             <label for="strAffiliationPosition" class="font-weight-light" style="margin-left: 5px;">Affiliation Position</label>
+                             <label for="strAffiliationPosition" class="font-weight-light" style="margin-left: 5px;">Affiliation Position:</label>
                             <input type="text" id="strAffiliationPosition" name="txtaffpos" class="form-control" autofocus disabled>
                            
                           </div>
                         </div>
                       </div>
                       <div class="md-form">
-                        <label for="strAffiliationAdd" class="font-weight-light">Affiliation Address</label>
+                        <label for="strAffiliationAdd" class="font-weight-light">Affiliation Address:</label>
                         <input type="text" id="strAffiliationAdd" name="txtaffaddress" class="form-control" autofocus disabled>
                       </div>
                  </form>

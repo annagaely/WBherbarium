@@ -1781,7 +1781,7 @@ public function showNotifCount(){
 	}
 
 	public function reports() {
-		$title['title'] = "PUPHerbarium | Queries";
+		$title['title'] = "PUPHerbarium | Reports";
 		$this->load->view('reports', $title);
 		$this->load->view('templates/footer');
 	}
