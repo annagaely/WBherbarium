@@ -7,6 +7,7 @@ class admin extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('admin_m', 'm');
+        $this->load->library('Pdf');
     }
 
    	public function index()
@@ -1778,10 +1779,6 @@ public function showNotifCount(){
 		$title['title'] = "PUPHerbarium | Queries";
 		$this->load->view('queries', $title);
 		$this->load->view('templates/footer');
-
-
-
-
 	}
 
 	public function reports() {
@@ -1919,6 +1916,42 @@ echo json_encode($result);
 }
 
 
+
+
+
+
+
+public function pdf(){
+
+$month = $this->input->post('month');
+//$document->loadHtml($html);
+
+$html_content = $this->m->pdfgetfromdb($month);
+//$document->loadHtml($page);
+
+//echo $output;
+if($html_content!='false'){
+$this->pdf->loadHtml($html_content);
+
+//set page size and orientation
+
+$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+//Render the HTML as PDF
+
+$this->pdf->render();
+
+//Get output of generated pdf in Browser
+
+$this->pdf->stream("Webslesson", array("Attachment"=>0));
+//1  = Download
+//0 = Preview
+}else{
+	echo 'shit';
+}
+
+
+}
 
 
 }?>
