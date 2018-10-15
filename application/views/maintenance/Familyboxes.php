@@ -407,19 +407,19 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
-                   <input id="boxLimit1" type="text" name="txteBLLimit" placeholder="Box Limit" class="form-control">
+                   <input id="boxLimit1" type="number" min="1" name="txteBLLimit" placeholder="Box Limit" class="form-control">
                   </div>
                     <div class="form-group">
                     <label>Rack Number:</label> <label style="color: red">*</label>
-                    <input id="rackNum1" type="text" name="txterackno" placeholder="Rack Number" class="form-control">
+                    <input id="rackNum1" type="number" min="1" name="txterackno" placeholder="Rack Number" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Rack Row:</label> <label style="color: red">*</label>
-                    <input id="rackRow1" type="text" name="txterackrow" placeholder="Rack Row" class="form-control">
+                    <input id="rackRow1" type="number" min="1" name="txterackrow" placeholder="Rack Row" class="form-control">
                   </div>
                   <div class="form-group">
                     <label>Rack Column:</label> <label style="color: red">*</label>
-                    <input id="rackCol1" type="text" name="txterackcol" placeholder="Rack Column" class="form-control">
+                    <input id="rackCol1" type="number" min="1" name="txterackcol" placeholder="Rack Column" class="form-control">
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -529,6 +529,10 @@ function resetForm() {
               if($('#rackNum').val()!=''){
                 if($('#rackRow').val()!=''){
                   if($('#rackCol').val()!=''){
+                    if($('#boxLimit').val()!='0'){
+                     if($('#rackNum').val()!='0'){
+                      if($('#rackRow').val()!='0'){
+                       if($('#rackCol').val()!='0'){
                     event.preventDefault();
                     swal({
                       title: 'Are you sure?',
@@ -577,6 +581,38 @@ function resetForm() {
                     event.preventDefault();
                     swal({
                       type: 'error',
+                      title: 'Rack Column cannot be zero',
+                      text: 'Please fill up the fields with valid details.'
+                    });
+                  }
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Rack Row cannot be zero',
+                      text: 'Please fill up the fields with valid details.'
+                    });
+                  }
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Rack Number cannot be zero',
+                      text: 'Please fill up the fields with valid details.'
+                    });
+                  }
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Box Limit cannot be zero',
+                      text: 'Please fill up the fields with valid details.'
+                    });
+                  }
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
                       title: 'Incomplete input!',
                       text: 'Please fill up all the required fields.'
                     });
@@ -617,11 +653,17 @@ function resetForm() {
 
 $('#btnEditSave').click(function(event){
       var data = $('#editFBForm').serialize();
-      if($('#famName1').val()!=''){
-     if($('#boxLimit1').val()!=''){
+    if($('#famName1').val()!=''){
+     if($('#boxLimit1').val()!='') {
        if($('#rackNum1').val()!=''){
          if($('#rackRow1').val()!=''){
            if($('#rackCol1').val()!=''){
+             if($('#boxLimit1').val()!='0'){
+              if($('#rackNum1').val()!='0'){
+                if($('#rackRow1').val()!='0'){
+                  if($('#rackCol1').val()!='0'){
+
+        
              event.preventDefault();
              swal({
                title: 'Are you sure?',
@@ -669,6 +711,38 @@ $('#btnEditSave').click(function(event){
                  });
                }
              })
+           }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Rack Column cannot be zero',
+                      text: 'Please fill up the fields with valid details.'
+                    });
+                  }
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Rack Row cannot be zero',
+                      text: 'Please fill up the fields with valid details.'
+                    });
+                  }
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Rack Number cannot be zero',
+                      text: 'Please fill up the fields with valid details.'
+                    });
+                  }
+                  }else{
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Box Limit cannot be zero',
+                      text: 'Please fill up the fields with valid details.'
+                    });
+                  }
            }else{
              event.preventDefault();
              swal({

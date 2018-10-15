@@ -467,15 +467,20 @@ if(data.intcount!=0){
 
 
 <script type="text/javascript">
+  disableMyText();
      function disableMyText(){
           if(document.getElementById("plantknown").checked == true)
           {
               document.getElementById("author").disabled=false;
+              // document.getElementById("commonName").disabled=false;
+              $("#commonName").val('');
 
           }
           else
           {
             document.getElementById("author").disabled=true;
+            // document.getElementById("commonName").disabled=true;
+           $("#commonName").val('sp.');
           }
      }
   function showAllSpecies()
@@ -554,53 +559,53 @@ $('#btnSave').click(function(event){
       if($('#genusName').val()!=''){
         if($('#speciesName').val()!=''){
           if($('#commonName').val()!=''){
-            if(document.getElementById('plantknown').checked) {
-              $('#author').val()!='';
-            event.preventDefault();
-            swal({
-              title: 'Are you sure?',
-              type: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, save it!'
-            }).then((result) => {
-              if (result.value) {
-                $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/addSpecies',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(response){
-            if(response.success){
-              $('#addSpeciesForm').modal('hide');
-              $('#addSpeciesForm')[0].reset();
-              if(response.type=='add'){
-                var type = 'added'
-              }else if(response.type=='update'){
-                var type ="updated"
-              }
-              let timerInterval
-              swal({
-                title: 'Saved',
-                text: 'Your file has been saved.',
-                type: 'success',
-                timer: 1500,
-                showConfirmButton: false
-              }).then(function() {
-                location.reload();
-              });
-            }
-          },
-          error: function(){
-            alert('Could not save Data');
-          }
-        });
-               }
-             })
-        }else{
+            if($('#plantknown').prop("checked") == true) {
+              if($('#author').val()!=''){
+                            event.preventDefault();
+                          swal({
+                            title: 'Are you sure?',
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, save it!'
+                          }).then((result) => {
+                            if (result.value) {
+                              $.ajax({
+                        type: 'ajax',
+                        method: 'post',
+                        url: '<?php echo base_url() ?>admin/addSpecies',
+                        data: data,
+                        async: false,
+                        dataType: 'json',
+                        success: function(response){
+                          if(response.success){
+                            $('#addSpeciesForm').modal('hide');
+                            $('#addSpeciesForm')[0].reset();
+                            if(response.type=='add'){
+                              var type = 'added'
+                            }else if(response.type=='update'){
+                              var type ="updated"
+                            }
+                            let timerInterval
+                            swal({
+                              title: 'Saved',
+                              text: 'Your file has been saved.',
+                              type: 'success',
+                              timer: 1500,
+                              showConfirmButton: false
+                            }).then(function() {
+                              location.reload();
+                            });
+                          }
+                        },
+                        error: function(){
+                          alert('Could not save Data');
+                        }
+                      });
+                             }
+                           })
+              }else{
               event.preventDefault();
               swal({
                 type: 'error',
@@ -608,6 +613,53 @@ $('#btnSave').click(function(event){
                 text: 'Please fill up all the required fields.'
               });
             }
+
+        }else{
+                                      event.preventDefault();
+                          swal({
+                            title: 'Are you sure?',
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, save it!'
+                          }).then((result) => {
+                            if (result.value) {
+                              $.ajax({
+                        type: 'ajax',
+                        method: 'post',
+                        url: '<?php echo base_url() ?>admin/addSpecies',
+                        data: data,
+                        async: false,
+                        dataType: 'json',
+                        success: function(response){
+                          if(response.success){
+                            $('#addSpeciesForm').modal('hide');
+                            $('#addSpeciesForm')[0].reset();
+                            if(response.type=='add'){
+                              var type = 'added'
+                            }else if(response.type=='update'){
+                              var type ="updated"
+                            }
+                            let timerInterval
+                            swal({
+                              title: 'Saved',
+                              text: 'Your file has been saved.',
+                              type: 'success',
+                              timer: 1500,
+                              showConfirmButton: false
+                            }).then(function() {
+                              location.reload();
+                            });
+                          }
+                        },
+                        error: function(){
+                          alert('Could not save Data');
+                        }
+                      });
+                             }
+                           })
+        }
       }else{
             event.preventDefault();
             swal({

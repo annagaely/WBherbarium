@@ -155,6 +155,7 @@
                 <h5 class="h5-responsive">Enter a Genus Name:</h5>
                 <form class="form-inline">
                   <input class="form-control form-control-sm w-75" type="text" placeholder="e.g. Acacia, Pinus" title="Refers to general type of plants" aria-label="Search">
+
                   <button onclick="showTableGenus()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
                     <a href="<?php echo base_url();?>user/usersearchGenus" style="color: inherit!important">Search</a></button>
                 </form>
@@ -178,6 +179,27 @@
         </div>
       </div>
     </div>
+
+    <table id="data">
+  <tr> <td>Row 1</td></tr>
+  <tr> <td>Row 2</td></tr>
+  <tr> <td>Row 3 </td></tr>
+  <tr> <td>Row 4</td></tr>
+  <tr> <td>Row 5</td></tr>
+  <tr> <td>Row 6</td></tr>
+  <tr> <td>Row 7</td></tr>
+  <tr> <td>Row 8</td></tr>
+  <tr> <td>Row 9</td></tr>
+  <tr> <td>Row 10</td></tr>
+  <tr> <td>Row 11</td></tr>
+  <tr> <td>Row 12</td></tr>
+  <tr> <td>Row 13</td></tr>
+  <tr> <td>Row 14</td></tr>
+  <tr> <td>Row 15</td></tr>
+  <tr> <td>Row 16</td></tr>
+  <tr> <td>Row 17</td></tr>
+  <tr> <td>Row 18</td></tr>
+</table>
   </div>
   <!--modal angiosperm-->
   <div class="modal fade" id="modalAngiosperm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

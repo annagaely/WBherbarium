@@ -501,7 +501,7 @@ if(data.intcount!=0){
     $(document).ready(function() {
       showAllValidator();
     //////////// add validator
-    $('#btnSave').click(function(){
+    $('#btnSave').click(function(event){
       var data = $('#addValidatorForm').serialize();
       //validate form
       if($('#firstName').val()!=''){
@@ -599,7 +599,7 @@ if(data.intcount!=0){
 
 
 
-        $('#btnEditSave').click(function(){
+        $('#btnEditSave').click(function(event){
           var data = $('#EditValidatorForm').serialize();
 
           if($('#firstName1').val()!=''){

@@ -934,12 +934,7 @@ $('#btnConfirm').click(function(event){
           success: function(response){
 
             if(response==true){
-
-
-            }else{
-              alert('Error');
-            }
-         let timerInterval
+            let timerInterval
                     swal({
                       title: 'Saved',
                       text: 'Succesful!',
@@ -948,12 +943,17 @@ $('#btnConfirm').click(function(event){
                       showConfirmButton: false
                     }).then(function() {
 
-                    showAllExValidators();
+                    showExValPending();
                     showExValOkay();
                     showExValAll();
                     $('#EVConfirmation').modal('hide');
                     document.getElementById("EVConfirmForm").reset();
                   });
+
+            }else{
+              alert('Error');
+            }
+         
           },
           error: function(){
             alert('Could not update data');
