@@ -77,7 +77,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 
 	//LAPTOP-0L08K6U2
-	'hostname' => 'DEI',
+	'hostname' => 'MSI',
 	'username' => 'sa',
 	'password' => '1234',
 	'database' => 'HerbariumDatabaseBackup',

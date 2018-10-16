@@ -22,8 +22,7 @@
 
 
                 <div class="carousel-caption">
-                    <a href=""><h3 class="h3-responsive">Title</h3></a>
-                    <p>First text</p>
+                    
                 </div>
             </div>
             <div class="carousel-item">
@@ -33,8 +32,7 @@
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">
-                    <a href=""><h3 class="h3-responsive">Title</h3></a>
-                    <p>Secondary text</p>
+                    
                 </div>
             </div>
             <div class="carousel-item">
@@ -44,8 +42,7 @@
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">
-                    <a href=""><h3 class="h3-responsive">Title</h3></a>
-                    <p>Third text</p>
+                    
                 </div>
             </div>
         </div>

@@ -1297,7 +1297,7 @@ $message = $this->input->post('txtCustomMessage');
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Depositing of Specimen');
       $this->email->message("Dear Collector, <br> <br>
-	Good day! We are happy to inform you that your deposit has been granted. You may now proceed to the next step. Please go to the PUP Herbarium Center located at PUP Main Campus South Wing, Room 403-B from 9:00 am to 6:00pm based on the date of your request and present the given deposit request id for authorization. Thank you and God bless! <br><br> " .$message. "
+	Good day! We are happy to inform you that your deposit has been granted. You may now proceed to the next step. Please go to the PUP Herbarium Center located at PUP Main Campus South Wing, Room 403-B from 9:00 am to 6:00pm based on the date of your request and present the given deposit request id for authorization together with your dried plant neatly attached to the herbarium sheet. Thank you and God bless! <br><br> " .$message. "
  		<br><br><strong>Deposit Request ID:</strong>"  . $id ."<br>" ."<strong> Date of Appointment: </strong>".$date. "<br> <br>" );
 
       if($this->email->send())
