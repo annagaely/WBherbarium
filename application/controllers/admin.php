@@ -1296,7 +1296,9 @@ $message = $this->input->post('txtCustomMessage');
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Depositing of Specimen');
-      $this->email->message("Your deposit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Deposit Request ID:"  . $id ."<br> <br>" ."Date of Appointment: ".$date. "<br> <br>" .$message );
+      $this->email->message("Dear Collector, <br> <br>
+	Good day! We are happy to inform you that your deposit has been granted. You may now proceed to the next step. Please go to the PUP Herbarium Center located at PUP Main Campus South Wing, Room 403-B from 9:00 am to 6:00pm based on the date of your request and present the given deposit request id for authorization together with your dried plant neatly attached to the herbarium sheet. Thank you and God bless! <br><br> " .$message. "
+ 		<br><br><strong>Deposit Request ID:</strong>"  . $id ."<br>" ."<strong> Date of Appointment: </strong>".$date. "<br> <br>" );
 
       if($this->email->send())
      {
@@ -1338,7 +1340,9 @@ $message = $this->input->post('txtCustomMessage');
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Visiting');
-      $this->email->message("Your Visit request is granted.You are now allowed to do the next step. Go to the PUP herbarium Center based on the date of your request, and present this request id for authorization. Visit Request ID:" . $id ."<br> <br>" . $message );
+      $this->email->message("Dear Visitor, <br> <br>
+	Good day! We are happy to inform you that your request to visit PUP Herbarium Center has been granted. Please go to the PUP Herbarium Center located at PUP Main Campus South Wing, Room 403-B from 9:00 am to 6:00pm based on the date of your request and present the visit request id for authorizaton. Thank you and God bless!<br><br> " .$message. "
+ 		<br><br><strong> Visit Request ID:</strong>" . $id ."<br> <br>");
 
       if($this->email->send())
      {
@@ -1381,7 +1385,8 @@ $message = $this->input->post('txtCustomMessageReject');
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
       $this->email->subject('PUP Herbarium Visiting');
-      $this->email->message("This message is to inform you that your visit request has been rejected. Thank you very much for your interest in visiting the PUP Herbarium Center.  <br> Visit Request ID:" . $id ."<br><br> Reason for rejection: <br>" . $message );
+      $this->email->message("Dear Visitor,
+	Good day. We regret to inform you that your request to visit PUP Herbarium Center has been rejected but, you can still send another request to visit our Herbarium Center. Thank you and God bless! <br><br> <strong> Reason for rejecting: </strong>".$message. " <br><br><strong> Visit Request ID:</strong>" . $id ."<br> <br>" );
 
       if($this->email->send())
      {
@@ -1606,6 +1611,12 @@ public function showExValAll()
 //   'wordwrap' => TRUE
 // );
 
+
+
+// $familyname=$this->input->post('txtFamilyName');
+// $scientificname=$this->input->post('txtScientificName');
+// $commonname=$this->input->post('txtCommonName');
+// $description=$this->input->post('txtDescription');
 // $email=$this->input->post('txtEmail');
 // $id=$this->input->post('txtId');
 // $message = $this->input->post('txtCustomMessage');
@@ -1615,7 +1626,9 @@ public function showExValAll()
 //       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
 //       $this->email->to($email);// change it to yours
 //       $this->email->subject('External Validation');
-//       $this->email->message("Insert Message here ");
+//       $this->email->message("To Whom It May Concern, <br><br>
+// 	Good day! We are from the Polytechnic University of the Philippines Herbarium Center and we would kindly like to ask you to spare some of your time on validating the attached details of the plant. Your response is a huge help for us and would be highly appreciated. Thank you and God bless! <br>
+// 	<br>Family Name:" .$familyname. "<br> Scientific Name:" .$scientificname. "<br> Common Name:".$commonname."<br> Description:".$description);
 
 //       if($this->email->send())
 //      {
@@ -1643,7 +1656,10 @@ public function SendtoExValidator(){
             $result_explode = explode('|', $result);
 
 
-
+            $familyname=$this->input->post('txtfn');
+			$scientificname=$this->input->post('txtsn');
+			$commonname=$this->input->post('txtcn');
+			$description=$this->input->post('txtd');
 	$this->load->helper('file');
 	$path= './uploads/'. uniqid('attachment-', TRUE).'/';
 	mkdir($path);
@@ -1665,6 +1681,7 @@ public function SendtoExValidator(){
             $_FILES['f']['tmp_name'] = $_FILES['userfile']['tmp_name'][$i];
             $_FILES['f']['error'] = $_FILES['userfile']['error'][$i];
             $_FILES['f']['size'] = $_FILES['userfile']['size'][$i];
+
 
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
@@ -1697,7 +1714,11 @@ public function SendtoExValidator(){
 		     $this->email->from('WBHerbariumTA@gmail.com');
 		    $this->email->to($result_explode[1]);
 
-		    $this->email->subject('Ganda mo Mai');
+		    $this->email->subject('PUP Herbarium External Validation');
+		    $this->email->message("To Whom It May Concern, <br><br>
+	Good day! We are from the Polytechnic University of the Philippines Herbarium Center and we would kindly like to ask you to spare some of your time on validating the attached details of the plant. Your response is a huge help for us and would be highly appreciated. Thank you and God bless! <br>
+	<br><strong>Family Name:</strong> ".$familyname. "<br> <strong>Scientific Name: </strong>" .$scientificname. "<br> <strong>Common Name: </strong>".$commonname."<br><strong> Description: </strong>".$description);
+
 
             $handle=opendir($path);
             while (($file = readdir($handle)))
@@ -1810,8 +1831,9 @@ $date=$this->input->post('txtReschedDate');
       $this->email->set_newline("\r\n");
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
-      $this->email->subject('External Validation');
-      $this->email->message("Insert Message here '".$message."' NEW DATE:'".$date."'");
+      $this->email->subject('PUP Herbarium Depositing of Specimen');
+      $this->email->message("Dear Collector, <br><br>
+		Good day! We want to inform you that your appointment to PUP Herbarium Center has been re-scheduled on  <strong>" .$date. "</strong>  due to some reasons. Please go to the Herbarium Center  located at PUP Main Campus South Wing, Room 403-B from 9:00 am to 6:00pm based on the re-scheduled date given and present the visit request id for authorization. Thank you and God bless!<br><br><strong> Reason for re-scheduling:</strong>" .$message."");
 
       if($this->email->send())
      {
@@ -1858,8 +1880,9 @@ $date=$this->input->post('txtReschedDate');
       $this->email->set_newline("\r\n");
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
-      $this->email->subject('External Validation');
-      $this->email->message("Insert Message here '".$message."' NEW DATE:'".$date."'");
+      $this->email->subject('PUP Herbarium Visiting');
+      $this->email->message("Dear Visitor, <br><br>
+		Good day! We want to inform you that your appointment to PUP Herbarium Center has been re-scheduled on  <strong>" .$date. "</strong>  due to some reasons. Please go to the Herbarium Center  located at PUP Main Campus South Wing, Room 403-B from 9:00 am to 6:00pm based on the re-scheduled date given and present the visit request id for authorization. Thank you and God bless!<br><br><strong> Reason for re-scheduling: </strong>" .$message."");
 
       if($this->email->send())
      {
@@ -1947,7 +1970,7 @@ $this->pdf->stream("Webslesson", array("Attachment"=>0));
 //1  = Download
 //0 = Preview
 }else{
-	echo 'shit';
+	
 }
 
 

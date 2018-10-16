@@ -2237,7 +2237,7 @@ $status = $this->input->post('txtStatus');
 		{
 
 
-			$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
+			$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'"><i class="fas fa-eye"></i></button>';
 
 
 			$result[] = array(
@@ -2431,11 +2431,7 @@ insert into tblHerbariumSheet(intPlantDepositID,intPlantReferenceID,intSpeciesID
 
 public function showExValAll(){
 		$result = array();
-		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
-
-		from tblPlantDeposit pd join tblCollector cl
-		on pd.intCollectorID = cl.intCollectorID
-		");
+		$query = $this->db->get('viewHerbariumSheet');
 
 
 		foreach ($query->result() as $r)
@@ -2898,9 +2894,13 @@ public function showAllOUser()
 	}
 
 	public function getmonth($key){
-		$query = $this->db->query("SELECT *
+		$query = $this->db->query("declare @currentyr int;
+
+set @currentyr=(select YEAR(getdate()))
+
+SELECT *
 FROM viewHerbariumSheet
-WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018'");
+WHERE MONTH(dateVerified)='10' AND YEAR(dateVerified)=@currentyr");
 
 		if($query->num_rows() > 0){
 
@@ -2929,9 +2929,10 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 </style>
-<img src="assets/bower_components/pdfheader.png" />
+&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
+<center><h3>Monthly External Validation Report</h3></center><br><br>
 			<table width="100%" cellspacing="5" cellpadding="5">
-			<thEAD>
+			<thead>
 			<tr>
 			<td><b>Accession Number</td>
 			<td><b>Family Name</td>

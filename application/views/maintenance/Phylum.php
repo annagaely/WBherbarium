@@ -169,7 +169,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Reports" <i class="fa fa-file"></i>Reports</a></li>
             <?php endif;?>
         </div>
       </div>

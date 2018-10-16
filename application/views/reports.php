@@ -319,13 +319,14 @@ if(data.intcount!=0){
               </div>
       </div>
 
-      <div class="card">
-        <div class="card-header d-flex align-items-center">
-          
+      <div class="card mx-4">
+        <div class="card-header align-items-center container-fluid">
+          <div class="row">
+            <div class="col-md-12">
           <!-- <a href="<?php echo base_url(); ?>admin/pdf" >Print Reports</a> -->
           <form method="post" action="<?php echo base_url(); ?>admin/pdf" enctype="multipart/form-data">
-            <label>Select a month</label><br>
-          <select name='month'>
+            <label>Select a month</label><br/>
+          <select name='month' class="form-control">
             <option value=1>January</option>
             <option value=2>February</option>
             <option value=3>March</option>
@@ -339,13 +340,21 @@ if(data.intcount!=0){
             <option value=11>November</option>
             <option value=12>December</option>
           </select>
-          <input type="submit" value ='Print Report' class="btn btn-primary">
-         <!--  <input type = 'submit' value="Search"> -->
+          </div>
+          <div class="row">
+            <div class="col mx-3 mt-3">
+             <input type="submit" value ='Print Report' class="btn btn-primary">
+            </div>
+          </div>
           </form>
-        </div>
+        
       </div>
-
-      <div class="card">
+        
+    
+      </div>
+    </div>
+<!--
+      <div class="card mx-4">
 
         <div class="card-header"><h4>External Validation Reports</h4></div>
        <div class="card-body">
@@ -373,7 +382,7 @@ if(data.intcount!=0){
            </table>
        </div>
      </div>
-   </div>
+   </div>-->
    <script type="text/javascript">
        
    </script>

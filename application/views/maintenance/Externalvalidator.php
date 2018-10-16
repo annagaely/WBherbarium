@@ -168,7 +168,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
             <?php endif;?>
         </div>
       </div>
@@ -341,7 +341,7 @@ if(data.intcount!=0){
               <div class="modal-body">
               <form id= "addValidatorForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="row">
-                    <div class="form-group col-sm-8">
+                    <div class="form-group col-sm-12">
                       <label>First Name:</label> <label style="color: red">*</label>
                       <input id="firstName" type="text" name="txtFName" placeholder="First Name " class="form-control">
                     </div>
@@ -402,7 +402,7 @@ if(data.intcount!=0){
               <div class="modal-body">
               <form id= "EditValidatorForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="row">
-                    <div class="form-group col-sm-8">
+                    <div class="form-group col-sm-12">
                       <input type="hidden" name="txtId" value="0">
                       <label>First Name:</label> <label style="color: red">*</label>
                       <input id="firstName1" type="text" name="txteFName" placeholder="First Name " class="form-control">

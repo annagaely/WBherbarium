@@ -494,7 +494,7 @@ function showProfile()
                                   let timerInterval
                                   swal({
                                     title: 'Saved',
-                                    text: 'Class has been saved.',
+                                    text: 'Your profile has been updated.',
                                     type: 'success',
                                     timer: 1500,
                                     showConfirmButton: false

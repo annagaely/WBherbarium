@@ -170,7 +170,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
             <?php endif;?>
         </div>
       </div>
@@ -472,16 +472,19 @@ if(data.intcount!=0){
                   </div>
                   <div class="col-sm-6" >
                         <label style="font-size: 14px;">Family Name:</label>
+                        <input type="hidden" name="txtfn" id="txtFN" value="">
                         <input type="text" name="txtFamilyName" id="strFamilyName" class="form-control" disabled>
                   </div>
               </div>
               <div class = "row"  style="margin-top: 5px">
                   <div class="col-sm-6">
                        <label style="font-size: 14px;">Scientific Name:</label>
+                       <input type="hidden" name="txtsn" id="txtSN" value="">
                       <input type="text" name="txtScientificName" id="strScientificName" class="form-control" disabled="">
                   </div>
                   <div class="col-sm-6" >
                        <label style="font-size: 14px;">Common Name:</label>
+                       <input type="hidden" name="txtcn" id="txtCN" value="">
                        <input type="text" name="txtCommonName" id="strCommonName" class="form-control" disabled="">
                    </div>
               </div>
@@ -512,6 +515,7 @@ if(data.intcount!=0){
               </div>
                     <div class="form-group"  style="margin-top: 5px">
                        <label style="font-size: 14px;">Description:</label>
+                       <input type="hidden" name="txtd" id="txtD" value="0">
                        <textarea name="txtDescription" class="form-control" id="strDescription" disabled=""></textarea>
                      </div>
                     <hr>
@@ -527,8 +531,8 @@ if(data.intcount!=0){
 
                    <div class="form-group">
                      <div class="modal-footer">
-                    <button style="margin-left: 300px" type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary"> Cancel</button>
-                     <input type="submit" id="btnSave" value="Send" class="btn btn-primary" style="margin-left: 300px">
+                    <button  type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary" style="margin-left: 300px"> Cancel</button>
+                     <input type="submit" id="btnSave" value="Send" class="btn btn-primary" ">
                     </div>
                    </div>
 
@@ -678,7 +682,7 @@ if(data.intcount!=0){
             </div>
 
                   <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary"> Cancel</button>
+                    <button type="button" data-dismiss="modal"  staria-label="Close" class="btn btn-secondary" style="float: right"> Cancel</button>
                      <input type="submit" id="btnConfirm" value="Confirm" class="btn btn-primary">
                   </div>
           </form>
@@ -823,7 +827,11 @@ $(document).on('click', '.view-EVPending', function(){
           $('input[name=txtdDateCollected').val(data.dateCollected);
           $('input[name=txtDateDeposited]').val(data.dateDeposited);
           $('textarea[name=txtDescription]').val(data.strDescription);
-          $('input[name=txtId]').val(data.intPlantDepositID)
+          $('input[name=txtId]').val(data.intPlantDepositID);
+          $('input[name=txtfn]').val(data.strFamilyName);
+          $('input[name=txtsn]').val(data.strScientificName);
+          $('input[name=txtcn]').val(data.strCommonName);
+          $('input[name=txtd]').val(data.strDescription);
    },
         error: function(){
           alert('Could not Edit Data');
