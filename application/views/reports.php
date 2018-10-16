@@ -319,13 +319,14 @@ if(data.intcount!=0){
               </div>
       </div>
 
-      <div class="card">
-        <div class="card-header d-flex align-items-center">
-          
+      <div class="card mx-4">
+        <div class="card-header align-items-center container-fluid">
+          <div class="row">
+            <div class="col-md-12">
           <!-- <a href="<?php echo base_url(); ?>admin/pdf" >Print Reports</a> -->
           <form method="post" action="<?php echo base_url(); ?>admin/pdf" enctype="multipart/form-data">
-            <label>Select a month</label><br>
-          <select name='month'>
+            <label>Select a month</label><br/>
+          <select name='month' class="form-control">
             <option value=1>January</option>
             <option value=2>February</option>
             <option value=3>March</option>
@@ -339,12 +340,49 @@ if(data.intcount!=0){
             <option value=11>November</option>
             <option value=12>December</option>
           </select>
-          <input type="submit" value ='Print Report' class="btn btn-primary">
-         <!--  <input type = 'submit' value="Search"> -->
+          </div>
+          <div class="row">
+            <div class="col mx-3 mt-3">
+             <input type="submit" value ='Print Report' class="btn btn-primary">
+            </div>
+          </div>
           </form>
-        </div>
+        
       </div>
-      
+        
+    
+      </div>
+    </div>
+<!--
+      <div class="card mx-4">
+
+        <div class="card-header"><h4>External Validation Reports</h4></div>
+       <div class="card-body">
+        <div class="table-responsive">
+          <table cellspacing="5" cellpadding="5" border="0">
+        <tbody><tr>
+            <td>Start Date:</td>
+            <td><input id="min" name="min" type="text"></td>
+        </tr>
+        <tr>
+            <td>End Date:</td>
+            <td><input id="max" name="max" type="text"></td>
+        </tr>
+    </tbody></table>
+           <table class="table dataTable no-footer" id="manageEVReqAlltbl">
+             <thead>
+               <tr>
+                 <th scope="col" width= "10%">Accession Number</th>
+                 <th scope="col" width= "10%">Species Name</th>
+                 <th scope="col" width= "10%">Collector Name</th>
+                 <th scope="col" width= "10%">Date Deposited</th>
+                 <th scope="col" width= "10%">Status</th>
+               </tr>
+             </thead>
+           </table>
+       </div>
+     </div>
+   </div>-->
    <script type="text/javascript">
        
    </script>

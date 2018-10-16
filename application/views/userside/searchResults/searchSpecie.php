@@ -3,12 +3,31 @@
   <table class="table table-hover" id="data">
     <thead class="grey lighten-2">
       <tr>
+        <th></th>
         <th>Specie Name</th>
+        <th>Genuss Name</th>
+        <th>Family Name</th>
+        <th>Common Name</th>
+        <th>Collector Name</th>
       </tr>
     </thead>
-    <tr>
-      <td><a data-toggle="modal" data-target="#herbariumSheet">Row 1</a></td>
-    </tr>
+    <tbody>
+      <?php
+    foreach ($results as $row) {
+?>
+<tr>
+  <td width="50%"><?php echo "
+<img class='img-thumbnail image scale-on-hover' alt=Embedded Image src=\"data:image/png;base64, ".base64_encode($row->picHerbariumSheet)."\" />";?></td>
+    <td><?php echo $row->strAccessionNumber?></td>
+    <td><?php echo $row->strScientificName?></td>
+    <td><?php echo $row->strFamilyName?></td>
+    <td><?php echo $row->strCommonName?></td>
+    <td><?php echo $row->strCollector?></td>
+</tr>
+<?php   
+}
+?>
+    </tbody>
 
   </table>
 </div>

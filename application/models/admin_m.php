@@ -2236,6 +2236,7 @@ $status = $this->input->post('txtStatus');
 		foreach ($query->result() as $r)
 		{
 
+
 			$btn = '<button class="btn btn-primary view-EVPending" data="'.$r->intPlantDepositID.'"><i class="fas fa-eye"></i></button>';
 
 
@@ -2430,14 +2431,14 @@ insert into tblHerbariumSheet(intPlantDepositID,intPlantReferenceID,intSpeciesID
 
 public function showExValAll(){
 		$result = array();
-		$query = $this->db->get('viewVerifyingDeposit');
+		$query = $this->db->get('viewHerbariumSheet');
 
 
 		foreach ($query->result() as $r)
 		{
 
 			$result[] = array(
-					
+
 					$r->strAccessionNumber,
 					$r->strScientificName,
 					$r->strCollector,
@@ -2893,9 +2894,13 @@ public function showAllOUser()
 	}
 
 	public function getmonth($key){
-		$query = $this->db->query("SELECT *
+		$query = $this->db->query("declare @currentyr int;
+
+set @currentyr=(select YEAR(getdate()))
+
+SELECT *
 FROM viewHerbariumSheet
-WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018'");
+WHERE MONTH(dateVerified)='10' AND YEAR(dateVerified)=@currentyr");
 
 		if($query->num_rows() > 0){
 
@@ -2906,7 +2911,7 @@ WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018'");
 FROM viewHerbariumSheet
 WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018'");
 
-		if($query->num_rows() > 0){
+
 			$output = '<style>
 table {
     font-family: arial, sans-serif;
@@ -2924,8 +2929,10 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 </style>
+&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
+<center><h3>Monthly External Validation Report</h3></center><br><br>
 			<table width="100%" cellspacing="5" cellpadding="5">
-			<thEAD>
+			<thead>
 			<tr>
 			<td><b>Accession Number</td>
 			<td><b>Family Name</td>
@@ -2973,9 +2980,7 @@ tr:nth-child(even) {
 		}
 		$output .= '</table>';
 		return $output;
-		}else{
-			return false;
-		}
+
 	}
 
 

@@ -1,7 +1,7 @@
 <img src="<?php echo base_url()?>assets/bower_components/mdbootstrap/img/loan.jpg" style="height: 60vh; width: 100%;"  class="banner">
 <div class="row">
 
-      <div class="card w-75">
+      <div class="card w-100">
         <div class="card-body">
         	<p class="card-header white-text text-center py-4 h4" style="background-color: #800000;">How to Deposit Plant Specimen?</p>
 

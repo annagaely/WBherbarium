@@ -114,7 +114,7 @@
                   </ul>
                 </li>
                 <li><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
+                <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
 
                 <li class="active"><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
@@ -151,11 +151,11 @@
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
 
-                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
+                <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
-
+<!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+ -->
               </ul>
             </li>
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
@@ -185,17 +185,21 @@
                   </div></a>
               </div>
               <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-
                 <!-- Notifications dropdown-->
-                <li class="nav-item dropdown"> <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell" id='clicknotif'></i><span id="BellIcon" class="badge badge-warning count"></span></a>
-                  <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item">
-          <div class="notification d-flex justify-content-between">
-          <div class="notification-content"></i>No New Notifications
-          </div>
-          </div></a></li>
+                <li class="nav-item dropdown">
+                  <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                    <i class="fa fa-bell" id='clicknotif'></i>
+                    <span id="BellIcon" class="badge badge-warning count"></span>
+                  </a>
+                  <ul aria-labelledby="notifications" class="mx-3 dropdown-menu" style="overflow-y: auto"><li><a rel="nofollow" href="#" class="row dropdown-item">
+                      <div class="notification d-flex justify-content-between">
+                        <div class="notification-content">
+                          No New Notifications
+                        </div>
+                      </div>
+                    </a></li>
                   </ul>
-                </li>
+              </li>
                 <!-- Messages dropdown-->
                 <!--<li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i onclick="myFunction1()" class="fa fa-envelope"></i><span id= "MessageIcon" class="badge badge-info">3</span></a>
                   <ul aria-labelledby="notifications" class="dropdown-menu">

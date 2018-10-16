@@ -112,7 +112,7 @@
                   </ul>
                 </li>
                 <li class="active"><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
+                <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
 
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
@@ -149,11 +149,11 @@
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
 
-                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
+              <!--  <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
-
+ <!--                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+ -->
               </ul>
             </li>
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
@@ -167,7 +167,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
             <?php endif;?>
         </div>
       </div>
@@ -407,6 +407,7 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
+
                    <input id="boxLimit1" type="number" min="1" name="txteBLLimit" placeholder="Box Limit" class="form-control">
                   </div>
                     <div class="form-group">
@@ -420,6 +421,7 @@ if(data.intcount!=0){
                   <div class="form-group">
                     <label>Rack Column:</label> <label style="color: red">*</label>
                     <input id="rackCol1" type="number" min="1" name="txterackcol" placeholder="Rack Column" class="form-control">
+
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -663,7 +665,7 @@ $('#btnEditSave').click(function(event){
                 if($('#rackRow1').val()!='0'){
                   if($('#rackCol1').val()!='0'){
 
-        
+
              event.preventDefault();
              swal({
                title: 'Are you sure?',
