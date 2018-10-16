@@ -5,7 +5,10 @@
       <tr>
         <th></th>
         <th>Specie Name</th>
-        <th>Genues Name</th>
+        <th>Genuss Name</th>
+        <th>Family Name</th>
+        <th>Common Name</th>
+        <th>Collector Name</th>
       </tr>
     </thead>
     <tbody>
@@ -15,9 +18,11 @@
 <tr>
   <td width="50%"><?php echo "
 <img class='img-thumbnail image scale-on-hover' alt=Embedded Image src=\"data:image/png;base64, ".base64_encode($row->picHerbariumSheet)."\" />";?></td>
-    
+    <td><?php echo $row->strAccessionNumber?></td>
     <td><?php echo $row->strScientificName?></td>
     <td><?php echo $row->strFamilyName?></td>
+    <td><?php echo $row->strCommonName?></td>
+    <td><?php echo $row->strCollector?></td>
 </tr>
 <?php   
 }

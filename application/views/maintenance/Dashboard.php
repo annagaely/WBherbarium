@@ -158,7 +158,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
-            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
             <?php endif;?>
         </div>
       </div>
@@ -336,8 +336,8 @@ if(data.intcount!=0){
                     <?php
 
 
-    $query = $this->db->query('select count(intOUserID) as totalAcc
-                                   from tblOnlineUser');
+    $query = $this->db->query('select count(intDepositReqID) as totalDepreq
+                                   from tblDepositReq ');
     if($query->num_rows() > 0){
       foreach ($query->row() as $key => $query) {
     echo $query;
@@ -464,7 +464,7 @@ if(data.intcount!=0){
                   <div class="col-lg-6">
                     <div class="card line-chart-example">
                       <div class="card-header d-flex align-items-center">
-                        <h4>Line Chart Example</h4>
+                        <h4>Total Number of Visits and Deposits per Month</h4>
                       </div>
                       <div class="card-body">
                       <canvas id="lineChart"></canvas>

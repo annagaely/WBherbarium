@@ -2929,9 +2929,10 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 </style>
-<img src="assets/bower_components/pdfheader.png" />
+&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
+<center><h3>Monthly External Validation Report</h3></center><br><br>
 			<table width="100%" cellspacing="5" cellpadding="5">
-			<thEAD>
+			<thead>
 			<tr>
 			<td><b>Accession Number</td>
 			<td><b>Family Name</td>
