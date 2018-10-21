@@ -829,6 +829,17 @@ public function updateFamilyBox(){
 	redirect(base_url().'admin');
 	}
 }
+public function AnswersExValidation()
+{
+if($this->session->userdata('strUsername')!=''){
+	$title['title'] = "PUPHerbarium | Answers External Validation";
+	$this->load->view('transaction/AnswersExValidation', $title);
+	$this->load->view('templates/footer');
+}
+else{
+redirect(base_url().'admin');
+}
+}
 
 
 

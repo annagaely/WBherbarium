@@ -136,7 +136,7 @@
                 <li><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
   <ul id="ExValidationDropdown" class="collapse list-unstyled">
     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp; &nbsp; &nbsp; Send to External Validator</a></li>
-    <li style="background-color: #303030;"><a href=""> &nbsp; &nbsp; &nbsp; &nbsp; Answers (tempo)</a></li>
+    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp; &nbsp; &nbsp; Answers (tempo)</a></li>
   </ul>
 </li>
                 <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
