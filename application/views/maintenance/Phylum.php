@@ -350,23 +350,31 @@ if(data.intcount!=0){
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                   <div class="form-group">
-                    <label>Domain Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" class="form-control" >
+                    <label>Domain Name:</label>
+                    <input type="text" name="txtdName" id="strDomainName" placeholder="Domain Name" value="Eukaryota" class="form-control" disabled >
                   </div>
                   <div class="form-group">
-                    <label>Kingdom Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtkName" id="strKingdomName" placeholder="Kingdom Name" class="form-control" >
-                  </div>
-                  <div class="form-group">
-                    <label>
-
-                      <input type="checkbox" name="check1" id="plantCategory" onclick="disableMyText();"> Under the Plant Category
-
-                    </label>
+                    <label>Kingdom Name:</label>
+                    <input type="text" name="txtkName" id="strKingdomName" placeholder="Kingdom Name"  value="Plantae" class="form-control" disabled>
                   </div>
                   <div class="form-group">
                     <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control" >
+                    <input list="phylumname" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control" autocomplete="off" >
+                    <datalist id="phylumname">
+                      <option>Anthocerotophyta</option>
+                      <option>Bryophyta</option>
+                      <option>Charophyta</option>
+                      <option>Chlorophyta</option>
+                      <option>Cycadophyta</option>
+                      <option>Ginkogphyta</option>
+                      <option>Glaucophyta</option>
+                      <option>Gnetophyta</option>
+                      <option>Lycopodiophyta</option>
+                      <option>Magnoliophyta</option>
+                      <option>Marchantiophyta</option>
+                      <option>Pinophyta</option>
+                      <option>Pteridophyta</option>
+                    </datalist>
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
