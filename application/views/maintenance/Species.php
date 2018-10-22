@@ -140,7 +140,15 @@
                 </li>
               </ul>
             </li>
-              <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
+ <li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
+                <ul id="QueriesDropdown" class="collapse list-unstyled ">
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
+                   <li><a href="<?php echo base_url(); ?>admin/QueriesDeposits">&nbsp &nbsp &nbsp Deposits</a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
+                     <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
+                   </ul>
+                </li>       
             <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
@@ -349,13 +357,14 @@ if(data.intcount!=0){
 
                   <div class="form-group">
                     <label>Genus Name:</label> <label style="color: red">*</label>
-                     <input list="genusname" name ="txtgID"  class="form-control" autocomplete="off">
+                     <input list="genusname" name ="txtgID"  class="form-control" autocomplete="off" placeholder="Genus Name">
                      <datalist id ='genusname'>
                      </datalist>
                   </div>
                   <div class="form-group">
                     <label>Species Name:</label> <label style="color: red">*</label>
-                    <input id="speciesName" type="text" name="txtsName" placeholder="Species Name" class="form-control">
+                    <input list="speciesname" id="speciesName" name="txtsName" placeholder="Species Name" class="form-control" autocomplete="off">
+                    <datalist id="speciesname"></datalist>
                   </div>
                   <div class="form-group">
                     <label>Common Name:</label> <label style="color: red">*</label>
@@ -368,7 +377,7 @@ if(data.intcount!=0){
                     </label>
                     <div class="form-group">
                     <label>Author Name:</label> <label style="color: red">*</label>
-                     <input list="authorname" name ="txtaID"  id = 'author' class="form-control" autocomplete="off" disabled>
+                     <input list="authorname" name ="txtaID"  id = 'author' class="form-control" autocomplete="off" placeholder="Author's Name" disabled>
                      <datalist id ='authorname'>
                      </datalist>
                   </div>
@@ -404,21 +413,22 @@ if(data.intcount!=0){
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Genus Name:</label> <label style="color: red">*</label>
-                     <input list="genusname" name ="sesGID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <input list="genusname" name ="sesGID" placeholder="Genus Name" class="form-control" autocomplete="off">
                      <datalist id ='genusname'>
                      </datalist>
                   </div>
                   <div class="form-group">
                     <label>Species Name:</label> <label style="color: red">*</label>
-                    <input id="speciesName1" type="text" name="txteSName" placeholder="Class Name" class="form-control">
+                    <input list="speciesname" id="speciesName1"  name="txteSName" placeholder="Species Name" class="form-control" autocomplete="off">
+                    <datalist id="speciesname"></datalist>
                   </div>
                   <div class="form-group">
                     <label>Common Name:</label> <label style="color: red">*</label>
-                    <input id="commonName1" type="text" name="txtecName" placeholder="Class Name" class="form-control">
+                    <input id="commonName1" type="text" name="txtecName" placeholder="Common Name" class="form-control">
                   </div>
                     <div class="form-group">
                     <label>Author Name:</label> <label style="color: red">*</label>
-                     <input list="authorname" name ="txteaID"  id = 'author' class="form-control" autocomplete="off">
+                     <input list="authorname" name ="txteaID"  id = 'author' class="form-control" autocomplete="off" placeholder="Author's Name">
                      <datalist id ='authorname'>
                      </datalist>
                   </div>
@@ -443,7 +453,7 @@ if(data.intcount!=0){
                           <th scope="col" width= "10%">Genus Name</th>
                           <th scope="col" width= "10%">Species Name</th>
                           <th scope="col" width= "10%">Common Name</th>
-                          <th scope="col" width= "10%">Authors Name</th>
+<!--                           <th scope="col" width= "10%">Authors Name</th> -->
                           <th scope="col" width= "10%">Actions</th>
                         </tr>
                       </thead>
@@ -506,6 +516,8 @@ if(data.intcount!=0){
     showAllSpecies();
     showSpeciesGenusName();
     showSpeciesAuthorsName();
+     showSpecieName();
+
 function showSpeciesAuthorsName(){
       $.ajax({
         type: 'ajax',
@@ -546,6 +558,27 @@ function showSpeciesGenusName(){
         }
       });
     }
+
+function showSpecieName(){
+     $.ajax({
+       type: 'ajax',
+       url: '<?php echo base_url() ?>admin/showSpecieName',
+       async: false,
+       dataType: 'json',
+       success: function(data){
+         var html = '';
+         var i;
+         for(i=0; i<data.length; i++){
+           html +='<option value="'+data[i].strCSpeciesName+'">'+data[i].strCSpeciesName+'</option>';
+         }
+
+         $('#speciesname').html(html);
+       },
+       error: function(){
+         alert('Could not get Data from Database');
+       }
+     });
+   };
 
 
 $('#btnSave').click(function(event){
