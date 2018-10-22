@@ -1962,31 +1962,83 @@ echo json_encode($result);
 
 
 public function pdf(){
-
+$transac= $this->input->post('transaction');
 $month = $this->input->post('month');
 //$document->loadHtml($html);
+if($transac=='exval'){
+		$html_content = $this->m->pdfgetfromdb($month);
+		//$document->loadHtml($page);
 
-$html_content = $this->m->pdfgetfromdb($month);
-//$document->loadHtml($page);
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
 
-//echo $output;
-if($html_content!='false'){
-$this->pdf->loadHtml($html_content);
+		//set page size and orientation
 
-//set page size and orientation
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
 
-$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+		//Render the HTML as PDF
 
-//Render the HTML as PDF
+		$this->pdf->render();
 
-$this->pdf->render();
+		//Get output of generated pdf in Browser
 
-//Get output of generated pdf in Browser
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}else if($transac=='deposit'){
+//deposit
+$html_content = $this->m->pdfgetfromdbdeposit($month);
+		//$document->loadHtml($page);
 
-$this->pdf->stream("Webslesson", array("Attachment"=>0));
-//1  = Download
-//0 = Preview
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
 }else{
+  //visit
+$html_content = $this->m->pdfgetfromdbvisit($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
 
 }
 
@@ -1998,6 +2050,8 @@ public function QueriesAccounts() {
 	$title['title'] = "PUPHerbarium | Queries";
 	$this->load->view('QueriesAccounts', $title);
 	$this->load->view('templates/footer');
+=======
+
 }
 
 public function showAllOUser()
@@ -2016,6 +2070,7 @@ public function showAllAdmin()
 
     $output = $this->admin_m->showAllAdmin();
  echo json_encode($output);
+
 
 }
 
