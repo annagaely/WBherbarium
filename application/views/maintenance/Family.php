@@ -144,7 +144,15 @@
                 </li>
               </ul>
             </li>
-              <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
+ <li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
+                <ul id="QueriesDropdown" class="collapse list-unstyled ">
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
+                   <li><a href="<?php echo base_url(); ?>admin/QueriesDeposits">&nbsp &nbsp &nbsp Deposits</a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
+                     <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
+                   </ul>
+                </li>       
             <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
@@ -358,7 +366,8 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <input id="famName" type="text" name="txtfName" placeholder="Family Name" class="form-control">
+                    <input list="familyname" id="famName"  name="txtfName" placeholder="Family Name" class="form-control" autocomplete="off">
+                    <datalist id = "familyname"></datalist>
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -398,7 +407,8 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <input id="famName1" type="text" name="txteFName" placeholder="Class Name" class="form-control">
+                    <input list="familyname" id="famName1"  name="txteFName" placeholder="Family Name" class="form-control" autocomplete="off">
+                    <datalist id="familyname"></datalist>
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -468,6 +478,8 @@ function resetForm() {
        //show
         showAllFamily();
         showFamilyOrderName();
+        showFamilyName();
+    
 
 
 function showFamilyOrderName(){
@@ -491,6 +503,29 @@ function showFamilyOrderName(){
         }
       });
     };
+
+
+function showFamilyName(){
+     $.ajax({
+       type: 'ajax',
+       url: '<?php echo base_url() ?>admin/showFamilyName',
+       async: false,
+       dataType: 'json',
+       success: function(data){
+         var html = '';
+         var i;
+         for(i=0; i<data.length; i++){
+           html +='<option value="'+data[i].strCFamilyName+'">'+data[i].strCFamilyName+'</option>';
+         }
+
+         $('#familyname').html(html);
+       },
+       error: function(){
+         alert('Could not get Data from Database');
+       }
+     });
+   };
+
 
 
 $('#btnSave').click(function(event){

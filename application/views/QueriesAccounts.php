@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <!--
@@ -17,6 +16,15 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
+    <!--swal-->
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/popper.js/umd/popper.min.js"> </script>
+    <!--Table-->
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/dataTables.bootstrap4.min.js"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.dataTables.min.js"></script>
+
+
+
     <!--PREMIUM-->
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -87,8 +95,8 @@
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
 <?php if(($this->session->userdata('strRole')=='CURATOR') || ($this->session->userdata('strRole')=='ADMINISTRATOR')):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
-              <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
+            <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+              <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
                   <ul id="TaxHierDropdown" class="collapse list-unstyled">
@@ -107,7 +115,7 @@
                   </ul>
                 </li>
                 <li><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
-                <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
+                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
 
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
@@ -117,7 +125,7 @@
                  <li><a href="<?php echo base_url(); ?>admin/SpeciesAltName">Species Alternate Name</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/Plantborrower">Plant Borrower</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-                <li class="active"><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
 <!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
 
               </ul>
@@ -127,18 +135,14 @@
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
-                <li><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
-  <ul id="ExValidationDropdown" class="collapse list-unstyled">
-    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp; &nbsp; &nbsp; Send to External Validator</a></li>
-    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp; &nbsp; &nbsp; Answers (tempo)</a></li>
-  </ul>
-</li>
+                <li><a href="<?php echo base_url(); ?>admin/Externalvalidation">External Validation</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
 
                 </li>
               </ul>
             </li>
-                           <li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
+
+<li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
                 <ul id="QueriesDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
                   <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
@@ -146,8 +150,8 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
-                </li>
-            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
+                </li>  
+            <li><a href="<?php echo base_url();?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
 
@@ -157,10 +161,10 @@
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
 
-                <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
+                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-<!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
+                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
 
               </ul>
             </li>
@@ -175,7 +179,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
-            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
+            <li><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
             <?php endif;?>
         </div>
       </div>
@@ -202,27 +206,7 @@
           </div></a></li>
                   </ul>
                 </li>
-                <!-- Messages dropdown-->
-                <!--<li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i onclick="myFunction1()" class="fa fa-envelope"></i><span id= "MessageIcon" class="badge badge-info">3</span></a>
-                  <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-                        <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/Nins.png" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Ni&ntildeo Escueta</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-                        <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/sheng.png" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Rhisiel Valle</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-                        <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/mai.png" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Maica Ope&ntildea</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
-                  </ul>
-                </li>-->
+ 
                 <!-- Log out-->
                  <li class="nav-item"><a href="<?php echo base_url()?>admin/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
@@ -324,4 +308,232 @@ if(data.intcount!=0){
       </nav>
       </header>
 
-    <iframe src="<?php echo site_url('admin/view_calendar');?>" width="100%" height="650px" style="border:none; "></iframe>
+<!-- HEADER ENDS-->
+
+
+<div class="breadcrumb-holder">
+  <div class="container-fluid">
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard" >Home</a></li>
+      <li class="breadcrumb-item">Queries</li>
+      <li class="breadcrumb-item active">Accounts</li>
+    </ul>
+  </div>
+</div>
+
+
+
+<form id= "queriesDateForm" method="POST" enctype="multipart/form-data">
+<div class="container-fluid mt-4">
+  <div class="row">
+ <div class="col-md-4">
+  <label>Account Type:</label>
+   <select id="accounttype" class="form-control">
+      <option>-- Select Account Type --</option>
+      <option>User</option>
+      <option>Admin</option>
+    </select>
+  </div>
+   <div class="col-md-4">
+        <label> Register/Added Date:</label>
+        <input type="date" name="dateStart"  id="dtStart" class="form-control" >
+   </div>
+  <div class="col-md-4">
+        <label> &nbsp</label>
+        <input type="date" name="dateEnd"  id="dtEnd" class="form-control" >
+  </div>
+  <div class="col-md-12 mt-4" >
+        <input type="button" id="btnApply" class="btn btn-primary" value="Apply" style="float: right;" >
+  </div>
+  </div>
+</div>
+</form>
+
+
+<div class="mx-4">
+   <div class="col-md-20 mt-4" id="divTableOUser">
+      <div class="card  px-3 py-3 ">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover" id="querytblOUser">
+            <thead>
+              <tr role="row">
+                <th scope="col" width= "30%">Full Name</th>
+                <th scope="col" width= "20%">Contact Number</th>
+                <th scope="col" width= "10%">Email Address</th>
+                <th scope="col" width= "30%">Present Address</th>
+                <th scope="col" width= "10%">Affiliation Name</th>
+                <th scope="col" width= "10%">Affiliation Position</th>
+                <th scope="col" width= "10%">Registered Date</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="mx-4">
+   <div class="col-md-20 mt-4" id="divTableHerbariumStaff">
+      <div class="card  px-3 py-3 ">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover" id="querytblHerbariumStaff">
+            <thead>
+              <tr role="row">
+                <th scope="col" width= "10%">Full Name</th>
+                <th scope="col" width= "10%">Contact Number</th>
+                <th scope="col" width= "10%">Email Address</th>
+                <th scope="col" width= "10%">Role</th>
+                <th scope="col" width= "10%">College Department</th>
+                <th scope="col" width= "10%">Registered Date</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    $('#divTableOUser').hide();
+    $('#divTableHerbariumStaff').hide();
+
+  });
+
+</script>
+
+<script type="text/javascript">
+
+ $("#accounttype").change(function () {
+  var val = $(this).val();
+  if(val=='User'){
+    $('#divTableOUser').show();
+    $('#divTableHerbariumStaff').hide();
+}
+else{
+   $('#divTableOUser').hide();
+   $('#divTableHerbariumStaff').show();
+}
+});
+
+</script>
+
+
+<script type="text/javascript">
+
+  function showAllOUser(){
+  $('#querytblOUser').dataTable().fnClearTable();
+  $('#querytblOUser').dataTable().fnDraw();
+  $('#querytblOUser').dataTable().fnDestroy();
+  $('#querytblOUser').dataTable({
+ 
+       "processing": true,
+       "serverSide": false,
+       // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
+       "deferLoading": 10,
+       "bPaginate": true,
+       "aaSorting": [],
+       "fnInitComplete": function(){
+
+       }
+   });
+  }
+
+ function showAllAdmin(){
+  $('#querytblHerbariumStaff').dataTable().fnClearTable();
+  $('#querytblHerbariumStaff').dataTable().fnDraw();
+  $('#querytblHerbariumStaff').dataTable().fnDestroy();
+  $('#querytblHerbariumStaff').dataTable({
+ 
+       "processing": true,
+       "serverSide": false,
+       // "sAjaxSource": "<?php echo base_url('admin/showAllAdmin')?>",
+       "deferLoading": 10,
+       "bPaginate": true,
+       "aaSorting": [],
+       "fnInitComplete": function(){
+
+       }
+   });
+  }
+       $('#btnApply').click(function(event){
+      var data = $('#queriesDateForm').serialize();
+
+
+  var val = $('#accounttype').val();
+  if(val=='User'){
+        $.ajax({
+          type: 'ajax',
+          method: 'post',
+          url: '<?php echo base_url() ?>admin/showAllOUser',
+          data: data,
+          async: false,
+          dataType: 'json',
+          success: function(data){
+              $('#querytblOUser').dataTable().fnClearTable();
+              $('#querytblOUser').dataTable().fnDraw();
+              $('#querytblOUser').dataTable().fnDestroy();
+            var t = $('#querytblOUser').DataTable();
+            var i;
+          for(i=0; i<data.length; i++){
+            t.row.add( [
+            data[i].strFullName,
+            data[i].strContactNumber,
+            data[i].strEmailAddress,
+            data[i].strPresentAddress,
+            data[i].strAffiliationName,
+            data[i].strAffiliationPosition,
+            data[i].dtDateAdded
+        ] ).draw( false );
+          }
+           $('#divTableOUser').show();
+           $('#divTableHerbariumStaff').hide();
+           $('#dtStart').val("");
+           $('#dtEnd').val("");
+           $('#accounttype').val("-- Select Account Type --");
+
+          },
+          error: function(){ 
+          }
+        });
+}
+else {
+   $.ajax({
+          type: 'ajax',
+          method: 'post',
+          url: '<?php echo base_url() ?>admin/showAllAdmin',
+          data: data,
+          async: false,
+          dataType: 'json',
+          success: function(data){
+             var t = $('#querytblHerbariumStaff').DataTable();
+    
+            var i;
+          for(i=0; i<data.length; i++){
+            t.row.add( [
+            data[i].strFullName,
+            data[i].strContactNumber,
+            data[i].strEmailAddress,
+            data[i].strRole,
+            data[i].strCollegeDepartment,
+            data[i].dtDateAdded
+        ] ).draw( false );
+          }
+
+             $('#divTableOUser').hide();
+             $('#divTableHerbariumStaff').show();
+            $('#dtStart').val("");
+           $('#dtEnd').val("");
+           $('#accounttype').val("-- Select Account Type --");
+          },
+          error: function(){
+            
+          }
+        });
+}
+
+    });   
+
+
+</script>
