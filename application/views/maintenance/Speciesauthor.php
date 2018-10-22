@@ -134,13 +134,26 @@
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
-                <li><a href="<?php echo base_url(); ?>admin/Externalvalidation">External Validation</a></li>
+                <li><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
+  <ul id="ExValidationDropdown" class="collapse list-unstyled">
+    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp; &nbsp; &nbsp; Send to External Validator</a></li>
+    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp; &nbsp; &nbsp; Answers (tempo)</a></li>
+  </ul>
+</li>
                 <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
 
                 </li>
               </ul>
             </li>
-              <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
+ <li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
+                <ul id="QueriesDropdown" class="collapse list-unstyled ">
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
+                   <li><a href="<?php echo base_url(); ?>admin/QueriesDeposits">&nbsp &nbsp &nbsp Deposits</a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
+                     <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
+                   </ul>
+                </li>       
             <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
@@ -349,8 +362,8 @@ if(data.intcount!=0){
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                   <div class="form-group">
-                    <label>Author Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtAName" id="strAuthorName" placeholder="Author Name" class="form-control" >
+                    <label>Author's Name:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtAName" id="strAuthorName" placeholder="Author's Name" class="form-control" >
                   </div>
                   <div class="form-group">
                     <label>Species Author Suffix:</label> <label style="color: red">*</label>
@@ -387,8 +400,8 @@ if(data.intcount!=0){
 
                  <div class="form-group">
                   <input type="hidden" name="txtId" value="0">
-                    <label>Author Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteAName" id="strAuthorName1" placeholder="Author Name" class="form-control" >
+                    <label>Author's Name:</label> <label style="color: red">*</label>
+                    <input type="text" name="txteAName" id="strAuthorName1" placeholder="Author's Name" class="form-control" >
                   </div>
                   <div class="form-group">
                     <label>Species Author Suffix:</label> <label style="color: red">*</label>

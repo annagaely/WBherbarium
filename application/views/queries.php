@@ -354,7 +354,7 @@ if(data.intcount!=0){
 
     </div>
     <!--PHYLUM PART-->
-    <div class="col-md-20" id='divTablePhylum'>
+    <div class="col-md-20" id="divTablePhylum">
       <div class="card mt-4 px-3 py-3 mx-4">
         <div class="table-responsive">
           <table class="table table-striped table-hover" id="manageQuerytblPhylum">
