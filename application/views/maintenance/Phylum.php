@@ -374,7 +374,9 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control" >
+                    <input list="phylumname" name="txtpName" id="pNameid" placeholder="Phylum Name" class="form-control" autocomplete="off" >
+                     <datalist id ='phylumname'>
+                     </datalist>
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -420,7 +422,9 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtepName" id="pNameid1" placeholder="Phylum Name" class="form-control">
+                    <input list="phylumname" name="txtepName" id="pNameid1" placeholder="Phylum Name" class="form-control">
+                    <datalist id ='phylumname'>
+                     </datalist>
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -524,7 +528,28 @@ function resetForm() {
 
     //show
     showAllPhylum();
+    showPhylumName();
 
+ function showPhylumName(){
+     $.ajax({
+       type: 'ajax',
+       url: '<?php echo base_url() ?>admin/showPhylumName',
+       async: false,
+       dataType: 'json',
+       success: function(data){
+         var html = '';
+         var i;
+         for(i=0; i<data.length; i++){
+           html +='<option value="'+data[i].strCPhylumName+'">'+data[i].strCPhylumName+'</option>';
+         }
+
+         $('#phylumname').html(html);
+       },
+       error: function(){
+         alert('Could not get Data from Database');
+       }
+     });
+   };
     //add
     $('#btnSave').click(function(event){
       var url = '<?php echo base_url() ?>admin/addPhylum';

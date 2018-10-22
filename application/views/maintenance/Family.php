@@ -361,7 +361,8 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <input id="famName" type="text" name="txtfName" placeholder="Family Name" class="form-control">
+                    <input list="familyname" id="famName"  name="txtfName" placeholder="Family Name" class="form-control" autocomplete="off">
+                    <datalist id = "familyname"></datalist>
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -401,7 +402,8 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <input id="famName1" type="text" name="txteFName" placeholder="Class Name" class="form-control">
+                    <input list="familyname" id="famName1"  name="txteFName" placeholder="Family Name" class="form-control" autocomplete="off">
+                    <datalist id="familyname"></datalist>
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -471,6 +473,8 @@ function resetForm() {
        //show
         showAllFamily();
         showFamilyOrderName();
+        showFamilyName();
+    
 
 
 function showFamilyOrderName(){
@@ -494,6 +498,29 @@ function showFamilyOrderName(){
         }
       });
     };
+
+
+function showFamilyName(){
+     $.ajax({
+       type: 'ajax',
+       url: '<?php echo base_url() ?>admin/showFamilyName',
+       async: false,
+       dataType: 'json',
+       success: function(data){
+         var html = '';
+         var i;
+         for(i=0; i<data.length; i++){
+           html +='<option value="'+data[i].strCFamilyName+'">'+data[i].strCFamilyName+'</option>';
+         }
+
+         $('#familyname').html(html);
+       },
+       error: function(){
+         alert('Could not get Data from Database');
+       }
+     });
+   };
+
 
 
 $('#btnSave').click(function(event){

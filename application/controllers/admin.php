@@ -112,6 +112,12 @@ public function showAllPhylum()
 
 }
 
+public function showPhylumName()
+{
+	$result = $this->m->showPhylumName();
+	echo json_encode($result);
+}
+
 
 
 //add phylum
@@ -173,7 +179,11 @@ public function showClassPhylumName()
 	$result = $this->m->showClassPhylumName();
 	echo json_encode($result);
 }
-
+public function showClassName()
+{
+	$result = $this->m->showClassName();
+	echo json_encode($result);
+}
 //update class
 public function updateClass(){
 $result = $this->m->updateClass();
@@ -232,6 +242,12 @@ echo json_encode($msg);
 	$result = $this->m->showOrderClassName();
 	echo json_encode($result);
 	}
+
+	public function showOrderName()
+{
+	$result = $this->m->showOrderName();
+	echo json_encode($result);
+}
 
 	//add Order
 	public function addOrder(){
@@ -293,6 +309,11 @@ echo json_encode($msg);
 	echo json_encode($result);
 	}
 
+	public function showFamilyName()
+{
+	$result = $this->m->showFamilyName();
+	echo json_encode($result);
+}
 	//add Order
 	public function addFamily(){
 		$result = $this->m->addFamily();
@@ -351,6 +372,12 @@ public function updateFamily(){
 	echo json_encode($result);
 	}
 
+	public function showGenusName()
+{
+	$result = $this->m->showGenusName();
+	echo json_encode($result);
+}
+
 	//add Order
 	public function addGenus(){
 		$result = $this->m->addGenus();
@@ -406,6 +433,12 @@ public function showSpeciesGenusName(){
 	$result = $this->m->showSpeciesGenusName();
 	echo json_encode($result);
 	}
+
+	public function showSpecieName()
+{
+	$result = $this->m->showSpecieName();
+	echo json_encode($result);
+}
 
 	//add Order
 	public function addSpecies(){

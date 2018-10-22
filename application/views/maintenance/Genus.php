@@ -361,7 +361,8 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Genus Name:</label> <label style="color: red">*</label>
-                    <input id="genusName" type="text" name="txtgName" placeholder="Genus Name" class="form-control">
+                    <input list="genusname" id="genusName"  name="txtgName" placeholder="Genus Name" class="form-control" autocomplete="off">
+                    <datalist id="genusname"></datalist>
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -401,7 +402,8 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Genus Name:</label> <label style="color: red">*</label>
-                    <input id="genusName1" type="text" name="txteGName" placeholder="Class Name" class="form-control">
+                    <input list="genusname" id="genusName1"  name="txteGName" placeholder="Class Name" class="form-control" autocomplete="off">
+                    <datalist id="genusname"></datalist>
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -469,6 +471,7 @@ function resetForm() {
       //show
     showAllGenus();
     showGenusFamilyName();
+     showGenusName();
 
 
 function showGenusFamilyName(){
@@ -491,6 +494,30 @@ function showGenusFamilyName(){
         }
       });
     };
+
+    
+function showGenusName(){
+     $.ajax({
+       type: 'ajax',
+       url: '<?php echo base_url() ?>admin/showGenusName',
+       async: false,
+       dataType: 'json',
+       success: function(data){
+         var html = '';
+         var i;
+         for(i=0; i<data.length; i++){
+           html +='<option value="'+data[i].strCGenusName+'">'+data[i].strCGenusName+'</option>';
+         }
+
+         $('#genusname').html(html);
+       },
+       error: function(){
+         alert('Could not get Data from Database');
+       }
+     });
+   };
+
+
     $('#btnSave').click(function(event){
       var url = '<?php echo base_url()?>admin/addGenus';
       var data = $('#addGenusForm').serialize();

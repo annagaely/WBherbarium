@@ -361,7 +361,9 @@ if(data.intcount!=0){
                  </div>
                  <div class="form-group">
                    <label>Class Name:</label> <label style="color: red">*</label>
-                   <input type="text" name="txtCName" id='classid' placeholder="Class Name" class="form-control">
+                   <input list="classname" name="txtCName" id='classid' placeholder="Class Name" class="form-control" autocomplete="off">
+                   <datalist id ='classname'>
+                     </datalist>
                  </div><!--HANGGANG DITO LANG BOI-->
                  <div class="modal-footer">
                    <input type="reset" value="Clear" class="btn btn-secondary">
@@ -395,13 +397,15 @@ if(data.intcount!=0){
                      <input type="hidden" name="txtId" value="0">
                    </label>
                    <label>Phylum Name:</label> <label style="color: red">*</label>
-                     <input list="phylumname" name ="speID" placeholder="Phylum Name" class="form-control">
+                     <input list="phylumname" name ="speID" placeholder="Phylum Name" class="form-control" autocomplete="off">
                      <datalist id ='phylumname'>
                      </datalist>
                  </div>
                  <div class="form-group">
                    <label>Class Name:</label> <label style="color: red">*</label>
-                   <input type="text" id="classid2" name="txteCName" placeholder="Class Name" class="form-control">
+                   <input list="classname" id="classid2" name="txteCName" placeholder="Class Name" class="form-control" autocomplete="off">
+                    <datalist id ='classname'>
+                     </datalist>
                  </div>
                  <div class="modal-footer">
                    <input type="reset" value="Clear" class="btn btn-secondary">
@@ -475,6 +479,7 @@ if(data.intcount!=0){
    //show
    showAllClass();
    showClassPhylumName();
+   showClassName();
 
      function showClassPhylumName(){
      $.ajax({
@@ -490,6 +495,29 @@ if(data.intcount!=0){
          }
          $('#showClassPhylumName').html(html);
          $('#phylumname').html(html);
+       },
+       error: function(){
+         alert('Could not get Data from Database');
+       }
+     });
+   };
+
+
+
+ function showClassName(){
+     $.ajax({
+       type: 'ajax',
+       url: '<?php echo base_url() ?>admin/showClassName',
+       async: false,
+       dataType: 'json',
+       success: function(data){
+         var html = '';
+         var i;
+         for(i=0; i<data.length; i++){
+           html +='<option value="'+data[i].strCClassName+'">'+data[i].strCClassName+'</option>';
+         }
+
+         $('#classname').html(html);
        },
        error: function(){
          alert('Could not get Data from Database');

@@ -339,7 +339,8 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
-                    <input id="orderName" type="text" name="txtOName" placeholder="Order Name" class="form-control">
+                    <input list="ordername" type="text" name="txtOName" placeholder="Order Name" class="form-control" autocomplete="off">
+                    <datalist id = 'ordername'></datalist>
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -379,7 +380,8 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
-                    <input type="text" id="orderName1" name="txteOName" placeholder="Class Name" class="form-control">
+                    <input list="ordername" id="orderName1" name="txteOName" placeholder="Order Name" class="form-control" autocomplete="off">
+                    <datalist id="ordername"></datalist>
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -451,6 +453,7 @@ $(document).ready(function(){
       //show
     showAllOrder();
     showOrderClassName();
+    showOrderName();
 
 
 function showOrderClassName(){
@@ -474,6 +477,26 @@ function showOrderClassName(){
       });
     };
 
+function showOrderName(){
+     $.ajax({
+       type: 'ajax',
+       url: '<?php echo base_url() ?>admin/showOrderName',
+       async: false,
+       dataType: 'json',
+       success: function(data){
+         var html = '';
+         var i;
+         for(i=0; i<data.length; i++){
+           html +='<option value="'+data[i].strCOrderName+'">'+data[i].strCOrderName+'</option>';
+         }
+
+         $('#ordername').html(html);
+       },
+       error: function(){
+         alert('Could not get Data from Database');
+       }
+     });
+   };
 
 $('#btnSave').click(function(event){
 

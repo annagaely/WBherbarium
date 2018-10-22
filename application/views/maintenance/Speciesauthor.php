@@ -357,8 +357,8 @@ if(data.intcount!=0){
                   <!-- <input type="hidden" name="act" id="act" value=""> -->
 
                   <div class="form-group">
-                    <label>Author Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtAName" id="strAuthorName" placeholder="Author Name" class="form-control" >
+                    <label>Author's Name:</label> <label style="color: red">*</label>
+                    <input type="text" name="txtAName" id="strAuthorName" placeholder="Author's Name" class="form-control" >
                   </div>
                   <div class="form-group">
                     <label>Species Author Suffix:</label> <label style="color: red">*</label>
@@ -395,8 +395,8 @@ if(data.intcount!=0){
 
                  <div class="form-group">
                   <input type="hidden" name="txtId" value="0">
-                    <label>Author Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteAName" id="strAuthorName1" placeholder="Author Name" class="form-control" >
+                    <label>Author's Name:</label> <label style="color: red">*</label>
+                    <input type="text" name="txteAName" id="strAuthorName1" placeholder="Author's Name" class="form-control" >
                   </div>
                   <div class="form-group">
                     <label>Species Author Suffix:</label> <label style="color: red">*</label>

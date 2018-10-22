@@ -47,6 +47,16 @@ class admin_m extends CI_Model{
 
 
 
+	public function showPhylumName(){
+		$query = $this->db->get('tblCPhylum');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+
+	}
+
 	 public function addPhylum(){
 
 			$domainName=$this->input->post('txtdName');
@@ -141,6 +151,15 @@ public function showAllClass()
 
 	}
 
+	public function showClassName(){
+		$query = $this->db->get('tblCClass');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+
+	}
 	public function addClass(){
 
 			$phylumID=$this->input->post('spID');
@@ -259,6 +278,16 @@ public function showAllClass()
 
 	}
 
+	public function showOrderName(){
+		$query = $this->db->get('tblCOrder');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+
+	}
+
 		public function addOrder(){
 
 			$intClassID=$this->input->post('txtcID');
@@ -362,6 +391,16 @@ public function showFamilyOrderName(){
 		}
 	}
 
+		public function showFamilyName(){
+		$query = $this->db->get('tblCFamily');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+
+	}
+
 	public function addFamily(){
 
 			$intOrderID=$this->input->post('txtoID');
@@ -463,6 +502,15 @@ public function showGenusFamilyName(){
 		}
 	}
 
+public function showGenusName(){
+		$query = $this->db->get('tblCGenus');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+
+	}
 	public function addGenus(){
 
 			$intFamilyID=$this->input->post('txtoID');
@@ -561,6 +609,16 @@ public function showSpeciesGenusName(){
 		}else{
 			return false;
 		}
+	}
+
+public function showSpecieName(){
+		$query = $this->db->get('tblCSpecies');
+		if($query->num_rows() > 0){
+			return $query->result();
+		}else{
+			return false;
+		}
+
 	}
 
 	public function addSpecies(){
