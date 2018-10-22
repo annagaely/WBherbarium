@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin extends CI_Controller {
@@ -81,20 +81,6 @@ if($data){
 	redirect(base_url().'admin');
 }
 }
-
-
-// public function DashboardCurator()
-// 	{
-// 	if($this->session->userdata('level')==='1'){
-// 		$title['title'] = "PUPHerbarium | Dashboard";
-// 		$this->load->view('templates/headercurator', $title);
-// 		$this->load->view('maintenance/Dashboard');
-// 		$this->load->view('templates/footer');
-// 	}
-// 	else{
-// 	redirect(base_url().'admin');
-// 	}
-// }
 
 
 /****** PHYLUM ONLY!!!!! ******/
@@ -1802,6 +1788,7 @@ public function showNotifCount(){
 		$this->load->view('templates/footer');
 	}
 
+
 	public function reports() {
 		$title['title'] = "PUPHerbarium | Reports";
 		$this->load->view('reports', $title);
@@ -1906,21 +1893,7 @@ $date=$this->input->post('txtReschedDate');
 	}
 }
 
-public function showAllOUser()
-{
 
-    $output = $this->admin_m->showAllOUser();
-
-    $response = array(
-      'aaData' => $output,
-      'iTotalRecords' => count($output),
-      'iTotalDisplayRecords' => count($output),
-      'iDisplayStart' => 0
-      );
-      echo json_encode($response);
-      exit();
-
-}
 public function editOUser(){
 	$result = $this->m->editOUser();
 	echo json_encode($result);
@@ -1976,5 +1949,172 @@ $this->pdf->stream("Webslesson", array("Attachment"=>0));
 
 }
 
+//QUERIES
+public function QueriesAccounts() {
+	$title['title'] = "PUPHerbarium | Queries";
+	$this->load->view('QueriesAccounts', $title);
+	$this->load->view('templates/footer');
+}
+
+public function showAllOUser()
+{
+
+    $output = $this->admin_m->showAllOUser();
+
+
+      echo json_encode($output);
+
+
+}
+
+public function showAllAdmin()
+{
+
+    $output = $this->admin_m->showAllAdmin();
+ echo json_encode($output);
+
+}
+
+public function QueriesEvents() {
+	$title['title'] = "PUPHerbarium | Queries";
+	$this->load->view('QueriesEvents', $title);
+	$this->load->view('templates/footer');
+
+}
+
+public function showAllEvents()
+{
+
+    $output = $this->admin_m->showAllEvents();
+ echo json_encode($output);
+
+}
+
+public function QueriesDeposits() {
+	$title['title'] = "PUPHerbarium | Queries";
+	$this->load->view('QueriesDeposits', $title);
+	$this->load->view('templates/footer');
+
+}
+
+public function showAllPendingD()
+{
+
+    $output = $this->admin_m->showAllPendingD();
+ echo json_encode($output);
+
+}
+public function showAllForDepositD()
+{
+
+    $output = $this->admin_m->showAllForDepositD();
+ echo json_encode($output);
+
+}
+public function showAllArrivedD()
+{
+
+    $output = $this->admin_m->showAllArrivedD();
+ echo json_encode($output);
+
+}
+public function showAllDidNotArriveD()
+{
+
+    $output = $this->admin_m->showAllDidNotArriveD();
+ echo json_encode($output);
+
+}
+public function showAllD()
+{
+
+    $output = $this->admin_m->showAllD();
+ echo json_encode($output);
+
+}
+
+public function QueriesVisits() {
+	$title['title'] = "PUPHerbarium | Queries";
+	$this->load->view('QueriesVisits', $title);
+	$this->load->view('templates/footer');
+}
+
+public function showAllPendingV()
+{
+
+    $output = $this->admin_m->showAllPendingV();
+ echo json_encode($output);
+
+}
+public function showAllForVisitingV()
+{
+
+    $output = $this->admin_m->showAllForVisitingV();
+ echo json_encode($output);
+
+}
+public function showAllRejectedV()
+{
+
+    $output = $this->admin_m->showAllRejectedV();
+ echo json_encode($output);
+
+}
+public function showAllArrivedV()
+{
+
+    $output = $this->admin_m->showAllArrivedV();
+ echo json_encode($output);
+
+}
+public function showAllDidNotArriveV()
+{
+
+    $output = $this->admin_m->showAllDidNotArriveV();
+ echo json_encode($output);
+
+}
+public function showAllV()
+{
+
+    $output = $this->admin_m->showAllV();
+ echo json_encode($output);
+
+}
+
+public function QueriesExternalValidation() {
+	$title['title'] = "PUPHerbarium | Queries";
+	$this->load->view('QueriesExternalValidation', $title);
+	$this->load->view('templates/footer');
+}
+
+public function showAllPendingEV()
+{
+
+    $output = $this->admin_m->showAllPendingEV();
+ echo json_encode($output);
+
+}
+public function showAllEV()
+{
+
+    $output = $this->admin_m->showAllEV();
+ echo json_encode($output);
+
+}
+public function showAllVerifiedEV()
+{
+
+    $output = $this->admin_m->showAllVerifiedEV();
+ echo json_encode($output);
+
+}
+public function showAllNotVerifiedEV()
+{
+
+    $output = $this->admin_m->showAllNotVerifiedEV();
+ echo json_encode($output);
+
+}
 
 }?>

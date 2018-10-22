@@ -67,7 +67,7 @@ public function userRegister(){
 					SET NOCOUNT ON;
 
 							INSERT INTO tblOnlineUser
-							VALUES (@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email,@presentadd,@permaddress, @affname, @affaddress, @affposition, @username,@password)
+							VALUES (@firstname, @middlename, @lastname, @middleinitial, @namesuffix, @contactno, @email,@presentadd,@permaddress, @affname, @affaddress, @affposition, @username,@password, getdate())
 
 
 					";

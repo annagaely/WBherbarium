@@ -1,5 +1,3 @@
-
-
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -1358,7 +1356,7 @@ UPDATE tblHerbariumStaff
 			$btn = '<button class="btn btn-primary account-edit" data="'.$r->intStaffID.'"><i class="far fa-edit"></i></button>';
 
 			$result[] = array(
-					$r->intStaffID,
+					// $r->intStaffID,
 					$r->strFullName,
 					$r->strUsername,
 					$btn,
@@ -1387,7 +1385,7 @@ UPDATE tblHerbariumStaff
 		Set @password ='$password'
 
 				INSERT INTO tblAccounts(intStaffID, strUsername, strPassword)
-				VALUES (@staffID, @username, @password)
+				VALUES (@staffID, @username, @password, getdate())
 
 				update tblHerbariumStaff
 				set strHasAccount = 'Yes'
@@ -2854,33 +2852,7 @@ if($querycheckeventtbl->num_rows()==0){
 }
 
 
-public function showAllOUser()
-	{
-		$result = array();
-		$query = $this->db->select("intOUserID,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName,strContactNumber,strEmailAddress,strPresentAddress,strPermanentAddress,strAffiliationName,strAffiliationAddress,strAffiliationPosition")
-                ->get('tblOnlineUser');
 
-		foreach ($query->result() as $r)
-		{
-			$btn = '<button class="btn btn-primary OUser-edit" data="'.$r->intOUserID.'"><i class="far fa-edit"></button>';
-
-			$result[] = array(
-					// $r->intPhylumID,
-
-					$r->strFullName,
-					$r->strContactNumber,
-					$r->strEmailAddress,
-					$r->strPresentAddress,
-					$r->strAffiliationName,
-					$r->strAffiliationPosition,
-					$btn,
-					$r->intOUserID
-					);
-		}
-
-
-		return $result;
-	}
 	public function editOUser(){
 		$id = $this->input->get('id');
 		$this->db->where('intOUserID', $id);
@@ -2934,12 +2906,12 @@ tr:nth-child(even) {
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
-			<td><b>Accession Number</td>
-			<td><b>Family Name</td>
-			<td><b>Scientific Name</td>
-			<td><b>Common Name</td>
-			<td><b>Full Locality</td>
-			<td><b>Date Verified</td>
+			<td><center><b>Accession Number</td>
+			<td><center><b>Family Name</td>
+			<td><center><b>Scientific Name</td>
+			<td><center><b>Common Name</td>
+			<td><center><b>Full Locality</td>
+			<td><center><b>Date Verified</td>
 			</tr>
 			</thead>';
 		foreach($query->result() as $row)
@@ -2961,9 +2933,9 @@ tr:nth-child(even) {
 					<p>'.$row->strScientificName.'</p>
 
 				</td>
-								<td width="20%">
+								<td width="20%"><center>
 
-					<p>'.$row->strCommonName.'</p>
+					<p>'.$row->strCommonName.'</p></center>
 
 				</td>
 								<td width="50%">
@@ -2971,7 +2943,7 @@ tr:nth-child(even) {
 					<p>'.$row->strFullLocality.' </p>
 
 				</td>
-								<td width="20%">
+								<td width="30%">
 
 					<p>'.$row->dateVerified.' </p>
 				</td>
@@ -2983,6 +2955,296 @@ tr:nth-child(even) {
 
 	}
 
+//Queries
+public function showAllOUser()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+
+		$result = array();
+		$query = $this->db->query("Select intOUserID,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName,strContactNumber,strEmailAddress,strPresentAddress,strPermanentAddress,strAffiliationName,strAffiliationAddress,strAffiliationPosition,dtDateAdded
+			from tblOnlineUser where dtDateAdded BETWEEN '".$startdate."' AND '".$enddate."'");
+
+return $query->result();
+	}
+
+	
+public function showAllAdmin()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+
+		$result = array();
+		$query = $this->db->query("Select intStaffID,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName,strContactNumber,strEmailAddress,strRole,strCollegeDepartment,dtDateAdded
+			from tblHerbariumStaff where dtDateAdded BETWEEN '".$startdate."' AND '".$enddate."'");
 
 
+return $query->result();
+	}
+
+
+public function showAllEvents()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+
+		$result = array();
+		$query = $this->db->query("Select ID, (title) as eventtitle, (start) as startdate, description from tblEvents where start BETWEEN '".$startdate."' AND '".$enddate."'");
+
+
+return $query->result();
+	}
+
+public function showAllPendingD()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select intDepositReqID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, dtDateCollected, strFullLocation, dtAppointmentDate, strStatus
+
+		from tblDepositReq td join tblOnlineUser ou
+		on td.intOUserID = ou.intOUserID
+		   where (dtAppointmentDate BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+
+return $query->result();
+	}
+
+public function showAllForDepositD()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select intDepositReqID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, dtDateCollected, strFullLocation, dtAppointmentDate, strStatus
+
+		from tblDepositReq td join tblOnlineUser ou
+		on td.intOUserID = ou.intOUserID
+		   where (dtAppointmentDate BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+
+return $query->result();
+	}
+
+public function showAllArrivedD()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select intDepositReqID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, dtDateCollected, strFullLocation, dtAppointmentDate, strStatus
+
+		from tblDepositReq td join tblOnlineUser ou
+		on td.intOUserID = ou.intOUserID
+		   where (dtAppointmentDate BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+
+return $query->result();
+	}
+
+public function showAllDidNotArriveD()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select intDepositReqID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, dtDateCollected, strFullLocation, dtAppointmentDate, strStatus
+
+		from tblDepositReq td join tblOnlineUser ou
+		on td.intOUserID = ou.intOUserID
+		   where (dtAppointmentDate BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+
+return $query->result();
+	}
+
+public function showAllD()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select intDepositReqID, Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, dtDateCollected, strFullLocation, dtAppointmentDate, strStatus
+
+		from tblDepositReq td join tblOnlineUser ou
+		on td.intOUserID = ou.intOUserID
+		   where (dtAppointmentDate BETWEEN '".$startdate."' AND '".$enddate."')");
+
+return $query->result();
+	}
+
+//** VISITS
+	
+public function showAllPendingV()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose, strStatus
+
+		from tblAppointments ap join tblOnlineUser ou
+		on ap.intOUserID = ou.intOUserID
+		   where (dtAppointmentDate BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+
+return $query->result();
+	}
+
+public function showAllForVisitingV()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose, strStatus
+
+		from tblAppointments ap join tblOnlineUser ou
+		on ap.intOUserID = ou.intOUserID
+		   where (dtAppointmentDate BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+
+return $query->result();
+	}
+
+public function showAllRejectedV()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose, strStatus
+
+		from tblAppointments ap join tblOnlineUser ou
+		on ap.intOUserID = ou.intOUserID
+		   where (dtAppointmentDate BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+return $query->result();
+	}
+
+public function showAllArrivedV()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose, strStatus
+
+		from tblAppointments ap join tblOnlineUser ou
+		on ap.intOUserID = ou.intOUserID
+		   where (dtAppointmentDate BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+return $query->result();
+	}
+
+public function showAllDidNotArriveV()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose, strStatus
+
+		from tblAppointments ap join tblOnlineUser ou
+		on ap.intOUserID = ou.intOUserID
+		   where (dtAppointmentDate BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+return $query->result();
+	}
+
+public function showAllV()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose, strStatus
+
+		from tblAppointments ap join tblOnlineUser ou
+		on ap.intOUserID = ou.intOUserID
+		   where (dtAppointmentDate BETWEEN '".$startdate."' AND '".$enddate."')");
+return $query->result();
+	}
+
+public function showAllPendingEV()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select strAccessionNumber,strScientificName,strCollector,dateDeposited,strStatus
+
+		from viewVerifyingDeposit
+		   where (dateDeposited BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+
+return $query->result();
+	}
+
+public function showAllEV()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select strAccessionNumber,strScientificName,strCollector,dateDeposited,strStatus
+
+		from viewVerifyingDeposit
+		   where (dateDeposited BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+
+return $query->result();
+	}
+
+public function showAllVerifiedEV()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select strAccessionNumber,strScientificName,strCollector,dateDeposited,strStatus
+
+		from viewVerifyingDeposit
+		   where (dateDeposited BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+
+return $query->result();
+	}
+
+public function showAllNotVErifiedEV()
+	{
+
+		$startdate =$this->input->post('dateStart');
+		$enddate =$this->input->post('dateEnd');
+		$status = $this->input->post('status');
+
+		$result = array();
+		$query = $this->db->query("select strAccessionNumber,strScientificName,strCollector,dateDeposited,strStatus
+
+		from viewVerifyingDeposit
+		   where (dateDeposited BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
+
+return $query->result();
+	}
 }?>
+
