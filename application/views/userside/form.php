@@ -2,6 +2,14 @@
 <html lang="en">
 
 <head>
+
+
+    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -31,7 +39,7 @@
 
     <!-- Form -->
     <label><span style="color: red">*Refer to the Images and details attached to the email that was sent to you. </span></label>
-    <form  style="color: #757575;">
+    <form id='evalForm' style="color: #757575;"  method="POST" enctype="multipart/form-data">
       <ol>
 
         <li>Is the condition of the specimen okay?</li>
@@ -149,7 +157,97 @@
 
 
       <!-- Sign in button -->
-      <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" style="color: #800000!important;border: 2px #800000 solid!important" type="submit">Submit</button>
+      <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" style="color: #800000!important;border: 2px #800000 solid!important" id=btnSave type="submit">Submit</button>
+      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+      <script type="text/javascript">
+        $('#btnSave').click(function(event){
+
+      var data = $('#evalForm').serialize();
+      //validate form
+      if($('#strDomainName').val()!=''){
+        if($('#strKingdomName').val()!=''){
+          if($('#pNameid').val()!=''){
+            event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+                $.ajax({
+                type: 'ajax',
+                method: 'post',
+                url: '<?php echo base_url() ?>user/addAnswer',
+                data: data,
+                async: false,
+                dataType: 'json',
+                success: function(response){
+                  if(response.success){
+                    if(response.type=='add'){
+                      var type = 'added'
+                    }else if(response.type=='update'){
+                      var type ="updated"
+                    }
+                    let timerInterval
+                    swal({
+                      title: 'Saved',
+                      text: 'Phylum has been saved.',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+                    $('#managePhylumtbl').dataTable().fnDestroy();
+                    showAllPhylum();
+                    $('#myModal').modal('hide');
+                    document.getElementById("addPhylumForm").reset();
+                    event.preventDefault();
+                    });
+                  }else {
+                    event.preventDefault();
+                    swal({
+                      type: 'error',
+                      title: 'Error!',
+                      text: 'Phylum name already exists.'
+                    });
+                  }
+                },
+                error: function(){
+                  alert('Could not save Data');
+                }
+              });
+              }
+
+            })
+
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+          }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+        }
+    });
+      </script>
 
 
     </form>

@@ -564,4 +564,13 @@ public function confirm()
 	$title['title'] = "PUPHerbarium | Confirm";
 	$this->load->view('userside/confirmForm', $title);
 }
+
+
+public function checkCode(){
+$result = $this->m->checkCode();
+echo json_encode($result);
+}
+
+
+
 }?>

@@ -1676,8 +1676,8 @@ public function showAllExValidators()
 	$result = $this->m->showAllExValidators();
 	echo json_encode($result);
 }
-public function exvalchangestatus(){
-$this->m->updateEVStatus();
+public function exvalchangestatus($getdepositid){
+$this->m->updateEVStatus($getdepositid);
 
 }
 
@@ -1727,8 +1727,9 @@ public function SendtoExValidator(){
 
             }
         }
-
-
+       		$depositid = $_POST['txtId'];
+			$id = uniqid();
+			$getdepositid= substr($id,0,6).$depositid;
 			$config = Array(
 				'protocol' => 'smtp',
 				'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -1739,6 +1740,7 @@ public function SendtoExValidator(){
 				'charset' => 'iso-8859-1',
 				'wordwrap' => TRUE
 				);
+			
 		    $this->load->library('email', $config);
 		    $this->email->set_newline("\r\n");
 		     $this->email->from('WBHerbariumTA@gmail.com');
@@ -1747,7 +1749,7 @@ public function SendtoExValidator(){
 		    $this->email->subject('PUP Herbarium External Validation');
 		    $this->email->message("To Whom It May Concern, <br><br>
 	Good day! We are from the Polytechnic University of the Philippines Herbarium Center and we would kindly like to ask you to spare some of your time on validating the attached details of the plant. Your response is a huge help for us and would be highly appreciated. Thank you and God bless! <br>
-	<br><strong>Family Name:</strong> ".$familyname. "<br> <strong>Scientific Name: </strong>" .$scientificname. "<br> <strong>Common Name: </strong>".$commonname."<br><strong> Description: </strong>".$description);
+	<br><strong>Family Name:</strong> ".$familyname. "<br> <strong>Scientific Name: </strong>" .$scientificname. "<br> <strong>Common Name: </strong>".$commonname."<br><strong> Description: </strong>".$description." link: ".base_url()."user/confirm/"." password: ".$getdepositid);
 
 
             $handle=opendir($path);
@@ -1770,7 +1772,7 @@ public function SendtoExValidator(){
                   }
             closedir($handle);
 			rmdir($path);
-			$this->exvalchangestatus();
+			$this->exvalchangestatus($getdepositid);
 
  redirect('admin/Externalvalidation');
 	        }

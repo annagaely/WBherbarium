@@ -615,4 +615,21 @@ $this->db->like('strScientificName ',$keyword);
         ->get('viewHerbariumSheet');
         return $query->result();
 }
+
+
+	public function checkCode(){
+$password= $this->input->post('code');
+$code=substr($password,0,6);
+$id=substr($password,6);
+
+		$query = $this->db->query("select intDepositID from tblSentForVerify where intDepositID = '".$id."' and strCode like'%".$code."%'");
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+
 }?>

@@ -2335,7 +2335,7 @@ $status = $this->input->post('txtStatus');
 		}
 	}
 
-public function updateEVStatus(){
+public function updateEVStatus($getdepositid){
 
     $depositid = $_POST['txtId'];
     $result = $_POST['externalvalidator'];
@@ -2346,7 +2346,7 @@ public function updateEVStatus(){
 	DECLARE @depositid 		INT;
 
 	Set @depositid ='$depositid'
-insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."')
+insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress,strCode) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."','".$getdepositid."')
 
 		UPDATE tblPlantDeposit
 		SET strStatus = 'Sent For External Validation'
