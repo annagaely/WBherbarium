@@ -325,6 +325,12 @@ if(data.intcount!=0){
             <div class="col-md-12">
           <!-- <a href="<?php echo base_url(); ?>admin/pdf" >Print Reports</a> -->
           <form method="post" action="<?php echo base_url(); ?>admin/pdf" enctype="multipart/form-data">
+            <label>Select a transaction</label><br/>
+          <select name='transaction' class="form-control">
+            <option value='deposit'>Deposit</option>
+            <option value='exval'>External Validation</option>
+            <option value='visit'>Visit</option>
+          </select>
             <label>Select a month</label><br/>
           <select name='month' class="form-control">
             <option value=1>January</option>
