@@ -2217,4 +2217,30 @@ public function showAllNotVerifiedEV()
 
 }
 
+
+
+
+
+public function showalleval()
+{
+
+    $output = $this->admin_m->showalleval();
+
+    $response = array(
+      'aaData' => $output,
+      'iTotalRecords' => count($output),
+      'iTotalDisplayRecords' => count($output),
+      'iDisplayStart' => 0
+      );
+      echo json_encode($response);
+      exit();
+
+}
+public function showeacheval(){
+
+$result = $this->m->showeacheval();
+echo json_encode($result);
+
+}
+
 }?>
