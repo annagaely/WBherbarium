@@ -78,7 +78,7 @@
                      timer: 1500,
                      showConfirmButton: false
                    }).then(function() {
-                      window.location.href='<?php echo base_url();?>user/form?id='+data.intDepositID+'/';
+                      window.location.href='<?php echo base_url();?>user/form?id='+data.intDepositID+'';
                    });
                },
                error: function(){
