@@ -1729,7 +1729,6 @@ public function SendtoExValidator(){
         }
        		$depositid = $_POST['txtId'];
 			$id = uniqid();
-			$getdepositid= substr($id,0,6).$depositid;
 			$getdepositid= $id.$depositid;
 			$config = Array(
 				'protocol' => 'smtp',
