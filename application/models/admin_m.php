@@ -2335,7 +2335,7 @@ $status = $this->input->post('txtStatus');
 		}
 	}
 
-public function updateEVStatus(){
+public function updateEVStatus($getdepositid){
 
     $depositid = $_POST['txtId'];
     $result = $_POST['externalvalidator'];
@@ -2346,7 +2346,7 @@ public function updateEVStatus(){
 	DECLARE @depositid 		INT;
 
 	Set @depositid ='$depositid'
-insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."')
+insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress,strCode) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."','".$getdepositid."')
 
 		UPDATE tblPlantDeposit
 		SET strStatus = 'Sent For External Validation'
@@ -2923,25 +2923,28 @@ if($querycheckeventtbl->num_rows()==0){
 		}
 	}
 
-	public function getmonth($key){
-		$query = $this->db->query("declare @currentyr int;
+// 	public function getmonth($key){
+// 		$query = $this->db->query("declare @currentyr int;
 
-set @currentyr=(select YEAR(getdate()))
+// set @currentyr=(select YEAR(getdate()))
 
-SELECT *
-FROM viewHerbariumSheet
-WHERE MONTH(dateVerified)='10' AND YEAR(dateVerified)=@currentyr");
+// SELECT *
+// FROM viewHerbariumSheet
+// WHERE MONTH(dateVerified)='10' AND YEAR(dateVerified)=@currentyr");
 
-		if($query->num_rows() > 0){
+// 		if($query->num_rows() > 0){
 
 
-}}
+// }}
 	public function pdfgetfromdb($key){
 		$query = $this->db->query("SELECT *
-FROM viewHerbariumSheet
-WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018'");
-
-
+FROM viewHerbariumSheet vh 
+join tblSentForVerify SFV
+on sfv.intDepositID = vh.intPlantDepositID
+WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018' ");
+$month = $this->input->post('month');
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
 			$output = '<style>
 table {
     font-family: arial, sans-serif;
@@ -2960,7 +2963,7 @@ tr:nth-child(even) {
 }
 </style>
 &nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly External Validation Report</h3></center><br><br>
+<center><h3>Monthly External Validation Report - '.$monthName.' '.date("Y").' </h3></center><br><br>
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -3304,5 +3307,167 @@ public function showAllNotVErifiedEV()
 
 return $query->result();
 	}
+ 	public function pdfgetfromdbdeposit($key){
+		$query = $this->db->query("SELECT *,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
+FROM tblDepositReq dr
+join tblOnlineUser ou
+on ou.intOUserID = dr.intOUserID
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Arrived'");
+
+$month = $this->input->post('month');
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
+<center><h3>Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' </h3></center><br><br>
+			<table width="100%" cellspacing="5" cellpadding="5">
+			<thead>
+			<tr>
+			<td><b>Plant Deposit ID</td>
+			<td><b>Collector Name</td>
+			<td><b>Date Collected</td>
+			<td><b>Scientific Name</td>
+			<td><b>Common Name</td>
+			<td><b>Location</td>
+			
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="20%">
+					<p>'.$row->intDepositReqID.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strFullName.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->dtDateCollected.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strScientificName.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strCommonName.' </p>
+
+				</td>
+								<td width="50%">
+
+					<p>'.$row->strFullLocation.' </p>
+				</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output;
+
+	}
+	public function pdfgetfromdbvisit($key){
+		$query = $this->db->query("SELECT *,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
+FROM tblAppointments dr
+join tblOnlineUser ou
+on ou.intOUserID = dr.intOUserID
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Arrived'");
+
+$month = $this->input->post('month');
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
+<center><h3>Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' </h3></center><br><br>
+			<table width="100%" cellspacing="5" cellpadding="5">
+			<thead>
+			<tr>
+			<td><b>Visit Appointment ID</td>
+			<td><b>Date of Appointment</td>
+			<td><b>Name</td>
+			<td><b>Visit Purpose</td>
+			<td><b>Visit Description</td>
+			<td><b>Status</td>
+			
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="20%">
+					<p>'.$row->intAppointmentID.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->dtAppointmentDate.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strFullName.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strVisitPurpose.'</p>
+
+				</td>
+								<td width="50%">
+
+					<p>'.$row->strVisitDescription.' </p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strStatus.' </p>
+				</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output; 
+	}
+  
 }?>
 

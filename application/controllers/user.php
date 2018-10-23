@@ -501,9 +501,9 @@ public function searchingRank(){
 
 	$title['title'] = "PUPHerbarium | Results";
 	$this->load->view('userside/navbar', $title);
- $this->load->view('userside/searchResults/searchRank', $data);	
+ $this->load->view('userside/searchResults/searchRank', $data);
 	$this->load->view('userside/footer');
-       
+
 }
 public function searchingGenus(){
 			$this->load->helper('file');
@@ -512,9 +512,9 @@ public function searchingGenus(){
 
 	$title['title'] = "PUPHerbarium | Results";
 	$this->load->view('userside/navbar', $title);
- $this->load->view('userside/searchResults/searchGenus', $data);	
+ $this->load->view('userside/searchResults/searchGenus', $data);
 	$this->load->view('userside/footer');
-       
+
 }
 
 public function searchingSpecies(){
@@ -524,9 +524,9 @@ public function searchingSpecies(){
 
 	$title['title'] = "PUPHerbarium | Results";
 	$this->load->view('userside/navbar', $title);
- $this->load->view('userside/searchResults/searchSpecie', $data);	
+ $this->load->view('userside/searchResults/searchSpecie', $data);
 	$this->load->view('userside/footer');
-       
+
 }
 
 public function searchingGenus1(){
@@ -536,9 +536,9 @@ public function searchingGenus1(){
 
 	$title['title'] = "PUPHerbarium | Results";
 	$this->load->view('userside/navbar2', $title);
- $this->load->view('userside/searchResults/searchGenus', $data);	
+ $this->load->view('userside/searchResults/searchGenus', $data);
 	$this->load->view('userside/footer');
-       
+
 }
 
 public function searchingSpecies1(){
@@ -548,9 +548,27 @@ public function searchingSpecies1(){
 
 	$title['title'] = "PUPHerbarium | Results";
 	$this->load->view('userside/navbar2', $title);
- $this->load->view('userside/searchResults/searchSpecie', $data);	
+ $this->load->view('userside/searchResults/searchSpecie', $data);
 	$this->load->view('userside/footer');
-       
+
+}
+
+
+public function form()
+{
+	$title['title'] = "PUPHerbarium | Form";
+	$this->load->view('userside/form', $title);
+}
+public function confirm()
+{
+	$title['title'] = "PUPHerbarium | Confirm";
+	$this->load->view('userside/confirmForm', $title);
+}
+
+
+public function checkCode(){
+$result = $this->m->checkCode();
+echo json_encode($result);
 }
 
 

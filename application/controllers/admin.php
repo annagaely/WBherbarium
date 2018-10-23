@@ -848,6 +848,17 @@ public function updateFamilyBox(){
 	redirect(base_url().'admin');
 	}
 }
+public function AnswersExValidation()
+{
+if($this->session->userdata('strUsername')!=''){
+	$title['title'] = "PUPHerbarium | Answers External Validation";
+	$this->load->view('transaction/AnswersExValidation', $title);
+	$this->load->view('templates/footer');
+}
+else{
+redirect(base_url().'admin');
+}
+}
 
 
 
@@ -1665,8 +1676,8 @@ public function showAllExValidators()
 	$result = $this->m->showAllExValidators();
 	echo json_encode($result);
 }
-public function exvalchangestatus(){
-$this->m->updateEVStatus();
+public function exvalchangestatus($getdepositid){
+$this->m->updateEVStatus($getdepositid);
 
 }
 
@@ -1716,8 +1727,9 @@ public function SendtoExValidator(){
 
             }
         }
-
-
+       		$depositid = $_POST['txtId'];
+			$id = uniqid();
+			$getdepositid= substr($id,0,6).$depositid;
 			$config = Array(
 				'protocol' => 'smtp',
 				'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -1728,6 +1740,7 @@ public function SendtoExValidator(){
 				'charset' => 'iso-8859-1',
 				'wordwrap' => TRUE
 				);
+			
 		    $this->load->library('email', $config);
 		    $this->email->set_newline("\r\n");
 		     $this->email->from('WBHerbariumTA@gmail.com');
@@ -1736,7 +1749,7 @@ public function SendtoExValidator(){
 		    $this->email->subject('PUP Herbarium External Validation');
 		    $this->email->message("To Whom It May Concern, <br><br>
 	Good day! We are from the Polytechnic University of the Philippines Herbarium Center and we would kindly like to ask you to spare some of your time on validating the attached details of the plant. Your response is a huge help for us and would be highly appreciated. Thank you and God bless! <br>
-	<br><strong>Family Name:</strong> ".$familyname. "<br> <strong>Scientific Name: </strong>" .$scientificname. "<br> <strong>Common Name: </strong>".$commonname."<br><strong> Description: </strong>".$description);
+	<br><strong>Family Name:</strong> ".$familyname. "<br> <strong>Scientific Name: </strong>" .$scientificname. "<br> <strong>Common Name: </strong>".$commonname."<br><strong> Description: </strong>".$description." link: ".base_url()."user/confirm/"." password: ".$getdepositid);
 
 
             $handle=opendir($path);
@@ -1759,7 +1772,7 @@ public function SendtoExValidator(){
                   }
             closedir($handle);
 			rmdir($path);
-			$this->exvalchangestatus();
+			$this->exvalchangestatus($getdepositid);
 
  redirect('admin/Externalvalidation');
 	        }
@@ -1951,32 +1964,84 @@ echo json_encode($result);
 
 
 public function pdf(){
-
+$transac= $this->input->post('transaction');
 $month = $this->input->post('month');
 //$document->loadHtml($html);
+if($transac=='exval'){
+		$html_content = $this->m->pdfgetfromdb($month);
+		//$document->loadHtml($page);
 
-$html_content = $this->m->pdfgetfromdb($month);
-//$document->loadHtml($page);
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
 
-//echo $output;
-if($html_content!='false'){
-$this->pdf->loadHtml($html_content);
+		//set page size and orientation
 
-//set page size and orientation
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
 
-$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+		//Render the HTML as PDF
 
-//Render the HTML as PDF
+		$this->pdf->render();
 
-$this->pdf->render();
+		//Get output of generated pdf in Browser
 
-//Get output of generated pdf in Browser
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}else if($transac=='deposit'){
+//deposit
+$html_content = $this->m->pdfgetfromdbdeposit($month);
+		//$document->loadHtml($page);
 
-$this->pdf->stream("Webslesson", array("Attachment"=>0));
-//1  = Download
-//0 = Preview
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
 }else{
-	
+  //visit
+$html_content = $this->m->pdfgetfromdbvisit($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+
 }
 
 
@@ -1987,6 +2052,7 @@ public function QueriesAccounts() {
 	$title['title'] = "PUPHerbarium | Queries";
 	$this->load->view('QueriesAccounts', $title);
 	$this->load->view('templates/footer');
+
 }
 
 public function showAllOUser()
@@ -2005,6 +2071,7 @@ public function showAllAdmin()
 
     $output = $this->admin_m->showAllAdmin();
  echo json_encode($output);
+
 
 }
 
