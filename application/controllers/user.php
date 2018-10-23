@@ -559,4 +559,9 @@ public function form()
 	$title['title'] = "PUPHerbarium | Form";
 	$this->load->view('userside/form', $title);
 }
+public function confirm()
+{
+	$title['title'] = "PUPHerbarium | Confirm";
+	$this->load->view('userside/confirmForm', $title);
+}
 }?>
