@@ -29,9 +29,11 @@
   <div class="card-body px-lg-5 pt-0 py-5">
 
     <!-- Form -->
+    <label><span style="color: red">*Refer to the Images and details attached to the email that was sent to you. </span></label>
     <form  style="color: #757575;">
       <ol>
-        <li><p>Is the condition of the specimen okay?</p></li>
+
+        <li>Is the condition of the specimen okay?</li>
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="yes">
             <label class="custom-control-label" for="yes">Yes</label>
@@ -40,11 +42,7 @@
             <input type="checkbox" class="custom-control-input" id="no">
             <label class="custom-control-label" for="no">No</label>
         </div>
-        <div class="md-form mt-3">
-          <textarea type="text" class="md-textarea form-control" rows="2"></textarea>
-          <label for="form7">Comments...</label>
-        </div>
-        <li>Is the specimen identifiable?</li>
+        <li>Is the specimen identifiable using the images?</li>
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="yes">
             <label class="custom-control-label" for="yes">Yes</label>
@@ -53,11 +51,8 @@
             <input type="checkbox" class="custom-control-input" id="no">
             <label class="custom-control-label" for="no">No</label>
         </div>
-        <div class="md-form mt-3">
-          <textarea type="text" class="md-textarea form-control" rows="2"></textarea>
-          <label for="form7">Comments...</label>
-        </div>
-        <li>Does the parts of the specimen match?</li>
+
+        <li>Does the flower of the specimen match the indicated Specie?</li>
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="yes">
             <label class="custom-control-label" for="yes">Yes</label>
@@ -66,11 +61,7 @@
             <input type="checkbox" class="custom-control-input" id="no">
             <label class="custom-control-label" for="no">No</label>
         </div>
-        <div class="md-form mt-3">
-          <textarea type="text" class="md-textarea form-control" rows="2"></textarea>
-          <label for="form7">Comments...</label>
-        </div>
-        <li>Are the indicated details of Herbarium Sheet accurate? (e.g Description, Scientific Name, Common Name, Collector Name)</li>
+        <li>Does the stem of the specimen match the indicated Specie?</li>
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="yes">
             <label class="custom-control-label" for="yes">Yes</label>
@@ -79,11 +70,7 @@
             <input type="checkbox" class="custom-control-input" id="no">
             <label class="custom-control-label" for="no">No</label>
         </div>
-        <div class="md-form mt-3">
-          <textarea type="text" class="md-textarea form-control" rows="2"></textarea>
-          <label for="form7">Comments...</label>
-        </div>
-        <li>Does the digital photo of the Herbarium Sheet matches the actual Herbarium Sheet?</li>
+        <li>Does the leaf of the specimen match the indicated Specie?</li>
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="yes">
             <label class="custom-control-label" for="yes">Yes</label>
@@ -92,11 +79,7 @@
             <input type="checkbox" class="custom-control-input" id="no">
             <label class="custom-control-label" for="no">No</label>
         </div>
-        <div class="md-form mt-3">
-          <textarea type="text" class="md-textarea form-control" rows="2"></textarea>
-          <label for="form7">Comments...</label>
-        </div>
-        <li>Is the quality of the digital photo of Herbarium Sheet acceptable?</li>
+        <li>Does the fruit of the specimen match the indicated Specie?</li>
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="yes">
             <label class="custom-control-label" for="yes">Yes</label>
@@ -105,11 +88,9 @@
             <input type="checkbox" class="custom-control-input" id="no">
             <label class="custom-control-label" for="no">No</label>
         </div>
-        <div class="md-form mt-3">
-          <textarea type="text" class="md-textarea form-control" rows="2"></textarea>
-          <label for="form7">Comments...</label>
-        </div>
-        <li>How about the dryness of the specimen? Does it reached the right amount of dryness?</li>
+
+
+        <li>Are the indicated details of Herbarium Sheet accurate? (e.g Description, Scientific Name, Common Name)</li>
         <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="yes">
             <label class="custom-control-label" for="yes">Yes</label>
@@ -118,9 +99,47 @@
             <input type="checkbox" class="custom-control-input" id="no">
             <label class="custom-control-label" for="no">No</label>
         </div>
+
+<!--         <li>Does the digital photo of the Herbarium Sheet matches the actual Herbarium Sheet?</li>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="yes">
+            <label class="custom-control-label" for="yes">Yes</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="no">
+            <label class="custom-control-label" for="no">No</label>
+        </div> -->
+
+<!--         <li>Is the quality of the digital photo of Herbarium Sheet acceptable?</li>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="yes">
+            <label class="custom-control-label" for="yes">Yes</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="no">
+            <label class="custom-control-label" for="no">No</label>
+        </div> -->
+
+<!--         <li>How about the dryness of the specimen? Does it reached the right amount of dryness?</li>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="yes">
+            <label class="custom-control-label" for="yes">Yes</label>
+        </div>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="no">
+            <label class="custom-control-label" for="no">No</label>
+        </div> -->
         <div class="md-form mt-3">
           <textarea type="text" class="md-textarea form-control" rows="2"></textarea>
-          <label for="form7">Comments...</label>
+          <label for="form7">Comments/Corrections</label>
+        </div>
+        <label>Remarks: </label>
+         <div class="md-form mt-3">
+         <select class="md-select form-control">
+           <option>Approved</option>
+           <option>Disapproved</option>
+           <option>Needs Correction</option>
+         </select>
         </div>
       </ol>
       <!-- Default unchecked -->

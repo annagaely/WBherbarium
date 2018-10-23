@@ -3467,6 +3467,7 @@ tr:nth-child(even) {
 		}
 		$output .= '</table>';
 		return $output; 
+	}
   
 }?>
 

@@ -2050,7 +2050,6 @@ public function QueriesAccounts() {
 	$title['title'] = "PUPHerbarium | Queries";
 	$this->load->view('QueriesAccounts', $title);
 	$this->load->view('templates/footer');
-=======
 
 }
 
