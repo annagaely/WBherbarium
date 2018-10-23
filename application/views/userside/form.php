@@ -147,7 +147,7 @@
          <div class="md-form mt-3">
          <select name='remarks' class="md-select form-control">
            <option>Approved</option>
-           <option>Disapproved</option>
+           <option>Unidentifiable</option>
            <option>Needs Correction</option>
          </select>
         </div>
