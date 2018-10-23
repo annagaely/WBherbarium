@@ -571,6 +571,9 @@ $result = $this->m->checkCode();
 echo json_encode($result);
 }
 
-
+public function addAnswer(){
+$result = $this->m->addAnswer();
+echo json_encode($result);
+}
 
 }?>

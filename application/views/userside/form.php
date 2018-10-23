@@ -43,71 +43,72 @@
       <ol>
 
         <li>Is the condition of the specimen okay?</li>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="yes">
-            <label class="custom-control-label" for="yes">Yes</label>
+        <input type="hidden" name="txtid" id="act" value=<?php echo $_GET['id']?>>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="Yes" id="q1Yes" name="q1">
+          <label class="custom-control-label" for="q1Yes">Yes</label>
         </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="no">
-            <label class="custom-control-label" for="no">No</label>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="No" id="q1No" name="q1">
+          <label class="custom-control-label" for="q1No">No</label>
         </div>
         <li>Is the specimen identifiable using the images?</li>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="yes">
-            <label class="custom-control-label" for="yes">Yes</label>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="Yes" id="q2Yes" name="q2">
+          <label class="custom-control-label" for="q2Yes">Yes</label>
         </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="no">
-            <label class="custom-control-label" for="no">No</label>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="No" id="q2No" name="q2">
+          <label class="custom-control-label" for="q2No">No</label>
         </div>
 
         <li>Does the flower of the specimen match the indicated Specie?</li>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="yes">
-            <label class="custom-control-label" for="yes">Yes</label>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="Yes" id="q3Yes" name="q3">
+          <label class="custom-control-label" for="q3Yes">Yes</label>
         </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="no">
-            <label class="custom-control-label" for="no">No</label>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="No" id="q3No" name="q3">
+          <label class="custom-control-label" for="q3No">No</label>
         </div>
         <li>Does the stem of the specimen match the indicated Specie?</li>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="yes">
-            <label class="custom-control-label" for="yes">Yes</label>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="Yes" id="q4Yes" name="q4">
+          <label class="custom-control-label" for="q4Yes">Yes</label>
         </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="no">
-            <label class="custom-control-label" for="no">No</label>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="No" id="q4No" name="q4">
+          <label class="custom-control-label" for="q4No">No</label>
         </div>
         <li>Does the leaf of the specimen match the indicated Specie?</li>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="yes">
-            <label class="custom-control-label" for="yes">Yes</label>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="Yes" id="q5Yes" name="q5">
+          <label class="custom-control-label" for="q5Yes">Yes</label>
         </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="no">
-            <label class="custom-control-label" for="no">No</label>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="No" id="q5No" name="q5">
+          <label class="custom-control-label" for="q5No">No</label>
         </div>
         <li>Does the fruit of the specimen match the indicated Specie?</li>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="yes">
-            <label class="custom-control-label" for="yes">Yes</label>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="Yes" id="q6Yes" name="q6">
+          <label class="custom-control-label" for="q6Yes">Yes</label>
         </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="no">
-            <label class="custom-control-label" for="no">No</label>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="No" id="q6No" name="q6">
+          <label class="custom-control-label" for="q6No">No</label>
         </div>
 
 
         <li>Are the indicated details of Herbarium Sheet accurate? (e.g Description, Scientific Name, Common Name)</li>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="yes">
-            <label class="custom-control-label" for="yes">Yes</label>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="Yes" id="q7Yes" name="q7">
+          <label class="custom-control-label" for="q7Yes">Yes</label>
         </div>
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="no">
-            <label class="custom-control-label" for="no">No</label>
-        </div>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="No" id="q7No" name="q7">
+          <label class="custom-control-label" for="q7No">No</label>
+        </div> 
 
 <!--         <li>Does the digital photo of the Herbarium Sheet matches the actual Herbarium Sheet?</li>
         <div class="custom-control custom-checkbox">
@@ -139,12 +140,12 @@
             <label class="custom-control-label" for="no">No</label>
         </div> -->
         <div class="md-form mt-3">
-          <textarea type="text" class="md-textarea form-control" rows="2"></textarea>
+          <textarea type="text" name='comments' class="md-textarea form-control" rows="2"></textarea>
           <label for="form7">Comments/Corrections</label>
         </div>
         <label>Remarks: </label>
          <div class="md-form mt-3">
-         <select class="md-select form-control">
+         <select name='remarks' class="md-select form-control">
            <option>Approved</option>
            <option>Disapproved</option>
            <option>Needs Correction</option>
@@ -164,9 +165,9 @@
 
       var data = $('#evalForm').serialize();
       //validate form
-      if($('#strDomainName').val()!=''){
-        if($('#strKingdomName').val()!=''){
-          if($('#pNameid').val()!=''){
+      // if($('#strDomainName').val()!=''){
+      //   if($('#strKingdomName').val()!=''){
+      //     if($('#pNameid').val()!=''){
             event.preventDefault();
             swal({
               title: 'Are you sure?',
@@ -185,33 +186,25 @@
                 async: false,
                 dataType: 'json',
                 success: function(response){
-                  if(response.success){
-                    if(response.type=='add'){
-                      var type = 'added'
-                    }else if(response.type=='update'){
-                      var type ="updated"
-                    }
+                  if(response==true){
+
                     let timerInterval
                     swal({
                       title: 'Saved',
-                      text: 'Phylum has been saved.',
+                      text: 'Your evaluation has been saved. Please close this window now.',
                       type: 'success',
-                      timer: 1500,
-                      showConfirmButton: false
+                      // timer: 1500,
+                      showConfirmButton: true
                     }).then(function() {
-                    $('#managePhylumtbl').dataTable().fnDestroy();
-                    showAllPhylum();
-                    $('#myModal').modal('hide');
-                    document.getElementById("addPhylumForm").reset();
-                    event.preventDefault();
+                      location.reload();
                     });
                   }else {
-                    event.preventDefault();
-                    swal({
-                      type: 'error',
-                      title: 'Error!',
-                      text: 'Phylum name already exists.'
-                    });
+                    // event.preventDefault();
+                    // swal({
+                    //   type: 'error',
+                    //   title: 'Error!',
+                    //   text: 'Phylum name already exists.'
+                    // });
                   }
                 },
                 error: function(){
@@ -222,30 +215,30 @@
 
             })
 
-          }else{
-            event.preventDefault();
-            swal({
-              type: 'error',
-              title: 'Incomplete input!',
-              text: 'Please fill up all the required fields.'
-            });
-            }
-        }else{
-          event.preventDefault();
-          swal({
-            type: 'error',
-            title: 'Incomplete input!',
-            text: 'Please fill up all the required fields.'
-          });
-          }
-      }else{
-        event.preventDefault();
-        swal({
-          type: 'error',
-          title: 'Incomplete input!',
-          text: 'Please fill up all the required fields.'
-        });
-        }
+      //     }else{
+      //       event.preventDefault();
+      //       swal({
+      //         type: 'error',
+      //         title: 'Incomplete input!',
+      //         text: 'Please fill up all the required fields.'
+      //       });
+      //       }
+      //   }else{
+      //     event.preventDefault();
+      //     swal({
+      //       type: 'error',
+      //       title: 'Incomplete input!',
+      //       text: 'Please fill up all the required fields.'
+      //     });
+      //     }
+      // }else{
+      //   event.preventDefault();
+      //   swal({
+      //     type: 'error',
+      //     title: 'Incomplete input!',
+      //     text: 'Please fill up all the required fields.'
+      //   });
+      //   }
     });
       </script>
 
