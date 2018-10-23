@@ -2236,5 +2236,11 @@ public function showalleval()
       exit();
 
 }
+public function showeacheval(){
+
+$result = $this->m->showeacheval();
+echo json_encode($result);
+
+}
 
 }?>

@@ -418,81 +418,80 @@ if(data.intcount!=0){
       <div class="modal-body">
         <form id="viewEVForm"  method="post" enctype="multipart/form-data">
               <div class = "row">
-                <div class="col-sm-6">
-                  <label style="font-size: 14px;">Select photos of the specimen <span style="color: red"> *</span></label>
-                  <input type="file" name="userfile[]" accept=".jpeg,.jpg,.png" multiple id='files'>
-                </div>
-              </div>
-<hr>
-              <div class = "row">
+
                   <div class="col-sm-6" >
-                        <label style="font-size: 14px;">Accession Number:</label>
+                        <label style="font-size: 14px;">Deposit ID:</label>
                         <input type="hidden" name="txtId" id="txtID" value="0">
-                        <input type="text" name="txtAccNum" id="strAccessionNumber" class="form-control" disabled="">
+                        <input type="text" name="txtDepositID" id="strAccessionNumber" class="form-control" disabled="">
                   </div>
-                  <div class="col-sm-6" >
-                        <label style="font-size: 14px;">Family Name:</label>
+                                  <div class="col-sm-6" >
+                        <label style="font-size: 14px;">External Validator Name:</label>
                         <input type="hidden" name="txtfn" id="txtFN" value="">
-                        <input type="text" name="txtFamilyName" id="strFamilyName" class="form-control" disabled>
+                        <input type="text" name="txtValidatorName" id="strFamilyName" class="form-control" disabled>
                   </div>
+                  
               </div>
               <div class = "row"  style="margin-top: 5px">
-                  <div class="col-sm-6">
-                       <label style="font-size: 14px;">Scientific Name:</label>
+
+                           <div class="col-sm-6">
+                       <label style="font-size: 14px;">Is the specimen identifiable using the images?</label>
                        <input type="hidden" name="txtsn" id="txtSN" value="">
-                      <input type="text" name="txtScientificName" id="strScientificName" class="form-control" disabled="">
+                      <input type="text" name="q1" id="strScientificName" class="form-control" disabled="">
                   </div>
-                  <div class="col-sm-6" >
-                       <label style="font-size: 14px;">Common Name:</label>
+                  <div class="col-sm-6">
+                       <label style="font-size: 14px;">Is the specimen identifiable using the images?</label>
+                       <input type="hidden" name="txtsn" id="txtSN" value="">
+                      <input type="text" name="q2" id="strScientificName" class="form-control" disabled="">
+                  </div>
+                  
+              </div>
+              <div class = "row"  style="margin-top: 5px">
+                <div class="col-sm-6" >
+                       <label style="font-size: 14px;">Does the flower of the specimen match the indicated Specie?</label>
                        <input type="hidden" name="txtcn" id="txtCN" value="">
-                       <input type="text" name="txtCommonName" id="strCommonName" class="form-control" disabled="">
+                       <input type="text" name="q3" id="strCommonName" class="form-control" disabled="">
                    </div>
-              </div>
-                   <div class="form-group"  style="margin-top: 5px">
-                       <label style="font-size: 14px;">Full Locality:</label>
-                       <!-- <input type="text" name="txtFullLocality" class="form-control" id="strFullLocality" disabled=""> -->
-                       <textarea type="text" name="txtFullLocality" class="form-control" id="strFullLocality" disabled=""></textarea>
+                  <div class="col-sm-6">
+                       <label style="font-size: 14px;">Does the stem of the specimen match the indicated Specie?</label>
+                       <input type="hidden" name="txtsn" id="txtSN" value="">
+                      <input type="text" name="q4" id="strScientificName" class="form-control" disabled="">
                   </div>
+                  
+              </div>
               <div class = "row"  style="margin-top: 5px">
+                <div class="col-sm-6" >
+                       <label style="font-size: 14px;">Does the leaf of the specimen match the indicated Specie?</label>
+                       <input type="hidden" name="txtcn" id="txtCN" value="">
+                       <input type="text" name="q5" id="strCommonName" class="form-control" disabled="">
+                   </div>
                   <div class="col-sm-6" >
-                       <label style="font-size: 14px;">Collector:</label>
-                       <input type="text" name="txtCollector" id="strCollector"  class="form-control" disabled="">
+                       <label style="font-size: 14px;">Does the fruit of the specimen match the indicated Specie?</label>
+                       <input type="text" name="q6" id="strCollector"  class="form-control" disabled="">
                   </div>
-                     <div class="col-sm-6" >
-                       <label style="font-size: 14px;">Staff:</label>
-                       <input type="text" name="txtStaff" class="form-control" id="strStaff" disabled="">
-                     </div>
+
               </div>
               <div class = "row"  style="margin-top: 5px">
-                    <div class="col-sm-6" >
-                       <label style="font-size: 14px;">Date Collected:</label>
-                       <input type="text" name="txtdDateCollected" class="form-control" id="dtDateCollected" disabled="">
+                     <div class="col-sm-6" >
+                       <label style="font-size: 14px;">Are the indicated details of Herbarium Sheet accurate? (e.g Description, Scientific Name, Common Name)</label>
+                       <input type="text" name="q7" class="form-control" id="strStaff" disabled="">
                      </div>
                     <div class="col-sm-6" >
-                       <label style="font-size: 14px;">Date Deposited:</label>
-                       <input type="text" name="txtDateDeposited" class="form-control" id="dtDateDeposited" disabled="">
+                       <label style="font-size: 14px;">Remarks</label>
+                       <input type="text" name="txtremarks" class="form-control" id="dtDateCollected" disabled="">
                      </div>
               </div>
                     <div class="form-group"  style="margin-top: 5px">
-                       <label style="font-size: 14px;">Description:</label>
+                       <label style="font-size: 14px;">Comments/Corrections:</label>
                        <input type="hidden" name="txtd" id="txtD" value="0">
-                       <textarea name="txtDescription" class="form-control" id="strDescription" disabled=""></textarea>
+                       <textarea name="txtComments" id='comment' class="form-control" id="strDescription" disabled=""></textarea>
                      </div>
                     <hr>
 
-              <div class = "row">
-                <div class="col-sm-6">
-                  <label style="font-size: 14px;">Select where to send the Specimen <span style="color: red"> *</span></label>
-                 <select name = 'externalvalidator' id='externalvalidators' class='form-control' required>
-                  <option value=''>Select External Validator</option>
-                 </select>
-                </div>
-              </div>
 
                    <div class="form-group">
                      <div class="modal-footer">
-                    <button  type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary" style="margin-left: 300px"> Cancel</button>
-                     <input type="submit" id="btnSave" value="Send" class="btn btn-primary">
+                    <button  type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary" style="margin-left: 300px"> Close</button>
+                    <!--  <input type="submit" id="btnSave" value="Send" class="btn btn-primary"> -->
                     </div>
                    </div>
 
@@ -540,15 +539,22 @@ if(data.intcount!=0){
       $.ajax({
         type: 'ajax',
         method: 'get',
-        url: '<?php echo base_url() ?>',
+        url: '<?php echo base_url()?>admin/showeacheval',
         data: {id: id},
         async: false,
         dataType: 'json',
         success: function(data){
-          $('input[name=txtedName]').val(data.strDomainName);
-          $('input[name=txtekName]').val(data.strKingdomName);
-          $('input[name=txtepName]').val(data.strPhylumName);
-          $('input[name=txtId]').val(data.intPhylumID);
+          $('input[name=txtDepositID]').val(data.intDepositID);
+          $('input[name=txtValidatorName]').val(data.strFullName);
+          $('input[name=q1]').val(data.strQ1);
+          $('input[name=q2]').val(data.strQ2);
+          $('input[name=q3]').val(data.strQ3);
+          $('input[name=q4]').val(data.strQ4);
+          $('input[name=q5]').val(data.strQ5);
+          $('input[name=q6]').val(data.strQ6);
+          $('input[name=q7]').val(data.strQ7);
+          $('#comment').val(data.strComments);
+          $('input[name=txtremarks]').val(data.strRemarks);
         },
         error: function(){
           alert('Could not Edit Data');
