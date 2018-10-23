@@ -689,7 +689,8 @@ if(data.intcount!=0){
                      <div class="col-sm-8">
                      <select name="txtStatus" id="strStatus"  class="form-control">
                         <option value="Verified">Verified</option>
-                        <option value="Not Verified">Not Verified</option>
+                        <option value="Send to other Validator">Send to other Validator</option>
+                        <option value="Needs Correction">Needs Correction</option>
                       </select>
                      </div>
             </div>

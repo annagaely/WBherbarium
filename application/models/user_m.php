@@ -615,4 +615,41 @@ $this->db->like('strScientificName ',$keyword);
         ->get('viewHerbariumSheet');
         return $query->result();
 }
+
+
+	public function checkCode(){
+$password= $this->input->post('code');
+$code=substr($password,0,6);
+$id=substr($password,6);
+
+		$query = $this->db->query("select intDepositID from tblSentForVerify where intDepositID = '".$id."' and strCode like'%".$code."%'");
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+public function addAnswer(){
+$id=$this->input->post('txtid');
+$q1=$this->input->post('q1');
+$q2=$this->input->post('q2');
+$q3=$this->input->post('q3');
+$q4=$this->input->post('q4');
+$q5=$this->input->post('q5');
+$q6=$this->input->post('q6');
+$q7=$this->input->post('q7');
+$comment =$this->input->post('comments');
+$remarks=$this->input->post('remarks');
+	$query="insert into tblAnswers(intDepositID,strQ1,strQ2,strQ3,strQ4,strQ5,strQ6,strQ7,strComments,strRemarks) values (".$id.",'".$q1."','".$q2."','".$q3."','".$q4."','".$q5."','".$q6."','".$q7."','".$comment."','".$remarks."')
+		";
+		if($this->db->query($query))
+		{
+			return true;
+		}else{
+
+		}
+		
+
+}
 }?>

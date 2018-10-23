@@ -2286,8 +2286,10 @@ $status = $this->input->post('txtStatus');
 //EXTERNAL VALIDATION
 	public function showExValPending(){
 		$result = array();
-		$query = $this->db->where('strStatus', "Further Verification")
-							->get('viewVerifyingDeposit');
+		$query = $this->db->query("select * from viewVerifyingDeposit where (strStatus = 'Further Verification') OR
+                         (strStatus = 'Send to other Validator')");
+		// where('strStatus', "Further Verification")
+		// 					->get('viewVerifyingDeposit');
 
 		foreach ($query->result() as $r)
 		{
@@ -2335,7 +2337,7 @@ $status = $this->input->post('txtStatus');
 		}
 	}
 
-public function updateEVStatus(){
+public function updateEVStatus($getdepositid){
 
     $depositid = $_POST['txtId'];
     $result = $_POST['externalvalidator'];
@@ -2346,7 +2348,7 @@ public function updateEVStatus(){
 	DECLARE @depositid 		INT;
 
 	Set @depositid ='$depositid'
-insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."')
+insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress,strCode) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."','".$getdepositid."')
 
 		UPDATE tblPlantDeposit
 		SET strStatus = 'Sent For External Validation'
@@ -3467,6 +3469,64 @@ tr:nth-child(even) {
 		}
 		$output .= '</table>';
 		return $output; 
+	}
   
+
+
+	public function showalleval()
+	{
+		$result = array();
+		$query = $this->db->select("*,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName")
+				->join('tblSentForVerify sfv','sfv.intDepositID=a.intDepositID')
+				->join('tblValidator v','v.intValidatorID=sfv.intExValidatorID')
+                ->get('tblAnswers a');
+
+		foreach ($query->result() as $r)
+		{
+			$btn = '<button class="btn btn-primary eval-edit" data="'.$r->intAnswerID.'"><i class="far fa-eye"></i></button>';
+
+			$result[] = array(
+					// $r->intPhylumID,
+					$r->intDepositID,
+					// $r->strQ1,
+					// $r->strQ2,
+					// $r->strQ3,
+					// $r->strQ4,
+					// $r->strQ5,
+					// $r->strQ6,
+					// $r->strQ7,
+					// $r->strComments,
+					$r->strFullName,
+					$r->strRemarks,
+					$btn,
+					$r->intAnswerID
+					);
+		}
+
+
+		return $result;
+	}
+
+
+	public function showeacheval(){
+		$id = $this->input->get('id');
+		$this->db->where('intAnswerID', $id);
+
+		$query = $this->db
+		->select("*,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName")
+		->join('tblSentForVerify sfv','sfv.intDepositID=a.intDepositID')
+		->join('tblValidator v','v.intValidatorID=sfv.intExValidatorID')
+		->get('tblAnswers a');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
+
+
+
 }?>
 

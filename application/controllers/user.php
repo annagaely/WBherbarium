@@ -559,4 +559,21 @@ public function form()
 	$title['title'] = "PUPHerbarium | Form";
 	$this->load->view('userside/form', $title);
 }
+public function confirm()
+{
+	$title['title'] = "PUPHerbarium | Confirm";
+	$this->load->view('userside/confirmForm', $title);
+}
+
+
+public function checkCode(){
+$result = $this->m->checkCode();
+echo json_encode($result);
+}
+
+public function addAnswer(){
+$result = $this->m->addAnswer();
+echo json_encode($result);
+}
+
 }?>
