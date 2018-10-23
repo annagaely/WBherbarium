@@ -165,15 +165,15 @@
 
       var data = $('#evalForm').serialize();
       //validate form
-      if(('#q1').val()!=''){
-       if(('#q2').val()!=''){
-         if(('#q3').val()!=''){
-           if(('#q4').val()!=''){
-             if(('#q5').val()!=''){
-               if(('#q6').val()!=''){
-                  if(('#q7').val()!=''){
-                    if(('#comment').val()!=''){
-                      if(('#remark').val()!=''){
+      if($('input[name=q1]:checked').length){
+       if($('input[name=q2]:checked').length){
+         if($('input[name=q3]:checked').length){
+           if($('input[name=q4]:checked').length){
+            if($('input[name=q5]:checked').length){
+               if($('input[name=q6]:checked').length){
+                 if($('input[name=q7]:checked').length){
+                    if($('#comment').val()!=''){
+                      if($('#remark').val()!=''){
                        event.preventDefault();
                         swal({
                           title: 'Are you sure?',
