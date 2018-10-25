@@ -140,12 +140,12 @@
             <label class="custom-control-label" for="no">No</label>
         </div> -->
         <div class="md-form mt-3">
-          <textarea type="text" name='comments' class="md-textarea form-control" rows="2"></textarea>
+          <textarea type="text" name='comments' id='comment' class="md-textarea form-control" rows="2"></textarea>
           <label for="form7">Comments/Corrections</label>
         </div>
         <label>Remarks: </label>
          <div class="md-form mt-3">
-         <select name='remarks' class="md-select form-control">
+         <select name='remarks' id='remark' class="md-select form-control">
            <option>Approved</option>
            <option>Unidentifiable</option>
            <option>Needs Correction</option>
@@ -165,55 +165,135 @@
 
       var data = $('#evalForm').serialize();
       //validate form
-      // if($('#strDomainName').val()!=''){
-      //   if($('#strKingdomName').val()!=''){
-      //     if($('#pNameid').val()!=''){
-            event.preventDefault();
-            swal({
-              title: 'Are you sure?',
-              type: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, save it!'
-            }).then((result) => {
-              if (result.value) {
-                $.ajax({
-                type: 'ajax',
-                method: 'post',
-                url: '<?php echo base_url() ?>user/addAnswer',
-                data: data,
-                async: false,
-                dataType: 'json',
-                success: function(response){
-                  if(response==true){
+      if($('input[name=q1]:checked').length){
+       if($('input[name=q2]:checked').length){
+         if($('input[name=q3]:checked').length){
+           if($('input[name=q4]:checked').length){
+            if($('input[name=q5]:checked').length){
+               if($('input[name=q6]:checked').length){
+                 if($('input[name=q7]:checked').length){
+                    if($('#comment').val()!=''){
+                      if($('#remark').val()!=''){
+                       event.preventDefault();
+                        swal({
+                          title: 'Are you sure?',
+                          type: 'warning',
+                          showCancelButton: true,
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          confirmButtonText: 'Yes, save it!'
+                        }).then((result) => {
+                          if (result.value) {
+                            $.ajax({
+                            type: 'ajax',
+                            method: 'post',
+                            url: '<?php echo base_url() ?>user/addAnswer',
+                            data: data,
+                            async: false,
+                            dataType: 'json',
+                            success: function(response){
+                              if(response==true){
 
-                    let timerInterval
+                                let timerInterval
+                                swal({
+                                  title: 'Saved',
+                                  text: 'Your evaluation has been saved. Please close this window now.',
+                                  type: 'success',
+                                  // timer: 1500,
+                                  showConfirmButton: true
+                                }).then(function() {
+                                  location.reload();
+                                });
+                              }else {
+                                // event.preventDefault();
+                                // swal({
+                                //   type: 'error',
+                                //   title: 'Error!',
+                                //   text: 'Phylum name already exists.'
+                                // });
+                              }
+                            },
+                            error: function(){
+                              alert('Could not save Data');
+                            }
+                          });
+                          }
+
+                          })
+                      }else{
+                            event.preventDefault();
+                            swal({
+                              type: 'error',
+                              title: 'Incomplete input!',
+                              text: 'Please fill up all the required fields.'
+                            });
+                            }
+                    }else{
+                        event.preventDefault();
+                        swal({
+                          type: 'error',
+                          title: 'Incomplete input!',
+                          text: 'Please fill up all the required fields.'
+                        });
+                        }
+                  }else{
+                      event.preventDefault();
+                      swal({
+                        type: 'error',
+                        title: 'Incomplete input!',
+                        text: 'Please fill up all the required fields.'
+                      });
+                      }
+                }else{
+                    event.preventDefault();
                     swal({
-                      title: 'Saved',
-                      text: 'Your evaluation has been saved. Please close this window now.',
-                      type: 'success',
-                      // timer: 1500,
-                      showConfirmButton: true
-                    }).then(function() {
-                      location.reload();
+                      type: 'error',
+                      title: 'Incomplete input!',
+                      text: 'Please fill up all the required fields.'
                     });
-                  }else {
-                    // event.preventDefault();
-                    // swal({
-                    //   type: 'error',
-                    //   title: 'Error!',
-                    //   text: 'Phylum name already exists.'
-                    // });
+                    }
+              }else{
+                  event.preventDefault();
+                  swal({
+                    type: 'error',
+                    title: 'Incomplete input!',
+                    text: 'Please fill up all the required fields.'
+                  });
                   }
-                },
-                error: function(){
-                  alert('Could not save Data');
+            }else{
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Incomplete input!',
+                  text: 'Please fill up all the required fields.'
+                });
                 }
+          }else{
+              event.preventDefault();
+              swal({
+                type: 'error',
+                title: 'Incomplete input!',
+                text: 'Please fill up all the required fields.'
               });
               }
+        } else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+            }
+      }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+          }
 
-            })
+           
 
       //     }else{
       //       event.preventDefault();
