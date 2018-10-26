@@ -138,7 +138,7 @@
                 <li><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
   <ul id="ExValidationDropdown" class="collapse list-unstyled">
     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp;Send to External Validator</a></li>
-    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Verification</a></li>
+    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
             
@@ -386,6 +386,7 @@ if(data.intcount!=0){
 <div class="tab" >
           <button id = "defaultOpen" class="tablinks" onclick="openCity(event, 'FirstTab')" style="color:white;">Pending</button>
           <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">Sent For Validation</button>
+          <button class="tablinks" onclick="openCity(event, 'FourthTab') " style="color:white;">Evaluated Specimen</button>
           <button class="tablinks" onclick="openCity(event, 'ThirdTab') " style="color:white;">All</button>
 </div>
 
@@ -455,7 +456,28 @@ if(data.intcount!=0){
       </div>
     </div>
 </div>
-
+<div id="FourthTab" class="tabcontent">
+     <div class="card mx-4 mt-4">
+        <div class="card-body">
+         <div class="table-responsive">
+            <table class="table dataTable no-footer" id="manageEVReqEvaltbl">
+              <thead>
+                <tr>
+                  <th scope="col" width= "10%">Accession Number</th>
+                  <th scope="col" width= "10%">Species Name</th>
+                  <th scope="col" width= "10%">Collector Name</th>
+                  <th scope="col" width= "10%">Date Deposited</th>
+                  <th scope="col" width= "10%">Status</th>
+                  <th scope="col" width= "10%">Action</th>
+                </tr>
+              </thead>
+            </table>
+<!--               <tbody tbody id="showdata1">
+            </tbody> -->
+        </div>
+      </div>
+    </div>
+</div>
    <!-- Modal-->
  <div id="viewEV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
   <div role="document" class="modal-dialog modal-lg" >
@@ -987,7 +1009,31 @@ $('#btnConfirm').click(function(event){
 
 </script>
 
+<script type="text/javascript">
+      function showExValEval(){
 
+      $('#manageEVReqEvaltbl').dataTable().fnClearTable();
+      $('#manageEVReqEvaltbl').dataTable().fnDraw();
+      $('#manageEVReqEvaltbl').dataTable().fnDestroy();
+      $('#manageEVReqEvaltbl').dataTable({
+        "autoWidth":false,
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showExValEval')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [],
+         "fnInitComplete": function(){
+
+         }
+     });
+   }
+
+ $(document).ready(function() {
+    //show
+    showExValEval();
+   });
+</script>
 <script type="text/javascript">
     function showExValAll(){
 

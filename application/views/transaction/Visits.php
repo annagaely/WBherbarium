@@ -138,7 +138,7 @@
                 <li><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
   <ul id="ExValidationDropdown" class="collapse list-unstyled">
     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp; Send to External Validator</a></li>
-    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Verification</a></li>
+    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
             
@@ -812,9 +812,7 @@ if(data.intcount!=0){
                                   data: data,
                                   async: false,
                                   dataType: 'json',
-                                  success: function(){
-                                  },
-                                  error: function(){
+                                  success: function(){  
                 let timerInterval
                     swal({
                       title: 'Email has been sent!',
@@ -829,12 +827,17 @@ if(data.intcount!=0){
                 showAllAppointmentAll();
                     $('#EmailVisitConReject').modal('hide');
                     document.getElementById("emailformreject").reset();
+
                   });
-                }
-            });
-         }
+                },
+               error: function(){
+      }
+      });
+     }
     })
  });
+
+
 
                      </script>
                   </div>

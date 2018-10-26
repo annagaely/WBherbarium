@@ -1615,6 +1615,18 @@ public function EVEmailCon(){
 		echo json_encode($result);
 
 	}
+public function showExValEval()
+{
+	 $output = $this->admin_m->showExValEval();
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+    }
 public function showExValAll()
 {
 	 $output = $this->admin_m->showExValAll();
