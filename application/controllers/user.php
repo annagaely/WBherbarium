@@ -394,10 +394,28 @@ if($result){
 }
 echo json_encode($msg);
 }
+public function usernoResults(){
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar', $title);
+	$this->load->view('userside/searchResults/noResults');
+	$this->load->view('userside/footer');
+}
+public function noResults(){
+	$title['title'] = "PUPHerbarium | Results";
+	$this->load->view('userside/navbar2', $title);
+	$this->load->view('userside/searchResults/noResults');
+	$this->load->view('userside/footer2');
+}
 public function usersearchRank(){
 	$title['title'] = "PUPHerbarium | Results";
 	$this->load->view('userside/navbar', $title);
 	$this->load->view('userside/searchResults/searchRank');
+	$this->load->view('userside/footer');
+}
+public function usersearchSpecieSample(){
+	$title['title'] = "sample lang";
+	$this->load->view('userside/navbar', $title);
+	$this->load->view('userside/searchResults/searchSpecieSample');
 	$this->load->view('userside/footer');
 }
 public function usersearchGenus() {

@@ -1,10 +1,10 @@
-<div class="card mb-5 pt-5 mx-auto px-5" style="margin-top: 100px; width: 70%">
-<div class="card-title">Search Results</div>
-  <table class="table" id="data">
+<div class="card mb-5 pt-5 mx-auto px-5" style="width:70%;margin-top: 100px;">
+<h4 class="card-title">Search Results</h4>
+<hr />
+<table class="table" id="data">
     <thead class="grey lighten-2">
       <tr>
         <th>Genus</th>
-        
         <Th>Family</Th>
       </tr>
     </thead>
@@ -16,7 +16,7 @@
     <td><?php echo $row->strGenusName?></td>
     <td><?php echo $row->strFamilyName?></td>
 </tr>
-<?php   
+<?php
 }
 ?>
     </tbody>
