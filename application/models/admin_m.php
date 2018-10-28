@@ -2316,12 +2316,7 @@ $status = $this->input->post('txtStatus');
 	public function showExValForConfirmation(){
 		$result = array();
 		
-		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
-
-		from tblPlantDeposit pd join tblCollector cl
-		on pd.intCollectorID = cl.intCollectorID
-		where strStatus= 'For Confirmation'");
-	
+		$query = $this->db->query("select * from viewVerifyingDeposit where strStatus = 'For Confirmation'");
 		foreach ($query->result() as $r)
 		{
 
@@ -2343,6 +2338,7 @@ $status = $this->input->post('txtStatus');
 
 		return $result;
 }
+
 	public function viewEVForConfirmation(){
 		$id = $this->input->get('id');
 
@@ -2396,7 +2392,7 @@ public function updateEVStatus($getdepositid){
 insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress,strCode) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."','".$getdepositid."')
 
 		UPDATE tblPlantDeposit
-		SET strStatus = 'For Confirmation'
+		SET strStatus = 'Sent For External Validation'
 		WHERE intPlantDepositID = @depositid;
 
 			";
