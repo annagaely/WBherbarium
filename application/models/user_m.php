@@ -639,9 +639,11 @@ $q4=$this->input->post('q4');
 $q5=$this->input->post('q5');
 $q6=$this->input->post('q6');
 $q7=$this->input->post('q7');
+$q8=$this->input->post('q8');
+$q9=$this->input->post('q9');
 $comment =$this->input->post('comments');
 $remarks=$this->input->post('remarks');
-	$query="insert into tblAnswers(intDepositID,strQ1,strQ2,strQ3,strQ4,strQ5,strQ6,strQ7,strComments,strRemarks) values (".$id.",'".$q1."','".$q2."','".$q3."','".$q4."','".$q5."','".$q6."','".$q7."','".$comment."','".$remarks."')
+	$query="insert into tblAnswers(intDepositID,strQ1,strQ2,strQ3,strQ4,strQ5,strQ6,strQ7,strQ8,strQ9,strComments,strRemarks) values (".$id.",'".$q1."','".$q2."','".$q3."','".$q4."','".$q5."','".$q6."','".$q7."','".$q8."','".$q9."','".$comment."','".$remarks."')
 
 		insert into tblNotif(strNotifContent,intNotifStatus) VALUES ('External Validator has evaluated the Plant Deposit: ".$id."',0)
 

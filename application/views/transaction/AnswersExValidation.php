@@ -442,18 +442,30 @@ if(data.intcount!=0){
                   </div>
 
               </div>
+               <div class = "row"  style="margin-top: 5px">
+                <div class="col-sm-6" >
+                       <label style="font-size: 14px;">Does the seed of the specimen match the indicated Specie?</label>
+                       <input type="hidden" name="txtcn" id="txtCN" value="">
+                       <input type="text" name="q7" id="strCommonName" class="form-control" disabled="">
+                   </div>
+                  <div class="col-sm-6" >
+                       <label style="font-size: 14px;"?>Is the Herbarium specimen correctly attached in the herbarium sheet?</label>
+                       <input type="text" name="q8" id="strCollector"  class="form-control" disabled="">
+                  </div>
+
+              </div>
               <div class = "row"  style="margin-top: 5px">
                      <div class="col-sm-6" >
                        <label style="font-size: 14px;">Are the indicated details of Herbarium Sheet accurate? (e.g Description, Scientific Name, Common Name)</label>
-                       <input type="text" name="q7" class="form-control" id="strStaff" disabled="">
+                       <input type="text" name="q9" class="form-control" id="strStaff" disabled="">
                      </div>
                     <div class="col-sm-6" >
-                       <label style="font-size: 14px;">Remarks</label>
+                       <label style="font-size: 14px;; color: red">Remarks</label>
                        <input type="text" name="txtremarks" class="form-control" id="dtDateCollected" disabled="">
                      </div>
               </div>
                     <div class="form-group"  style="margin-top: 5px">
-                       <label style="font-size: 14px;">Comments/Corrections:</label>
+                       <label style="font-size: 14px">Comments/Corrections:</label>
                        <input type="hidden" name="txtd" id="txtD" value="0">
                        <textarea name="txtComments" id='comment' class="form-control" id="strDescription" disabled=""></textarea>
                      </div>
@@ -525,6 +537,8 @@ if(data.intcount!=0){
           $('input[name=q5]').val(data.strQ5);
           $('input[name=q6]').val(data.strQ6);
           $('input[name=q7]').val(data.strQ7);
+          $('input[name=q8]').val(data.strQ8);
+          $('input[name=q9]').val(data.strQ9);  
           $('#comment').val(data.strComments);
           $('input[name=txtremarks]').val(data.strRemarks);
         },
