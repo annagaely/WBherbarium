@@ -386,8 +386,8 @@ if(data.intcount!=0){
 <div class="tab" >
           <button id = "defaultOpen" class="tablinks" onclick="openCity(event, 'FirstTab')" style="color:white;">Pending</button>
           <button class="tablinks" onclick="openCity(event, 'ForConfirmationTab') " style="color:white;">For Confirmation</button>
-          <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">Sent For Validation</button>
-          <button class="tablinks" onclick="openCity(event, 'FourthTab') " style="color:white;">Evaluated Specimen</button>
+          <button class="tablinks" onclick="openCity(event, 'FourthTab') " style="color:white;">Sent For Validation</button>
+          <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">Evaluated Specimen</button>
           <button class="tablinks" onclick="openCity(event, 'ThirdTab') " style="color:white;">All</button>
 </div>
 
@@ -422,11 +422,9 @@ if(data.intcount!=0){
             <table class="table dataTable no-footer" id="manageEVReqForContbl">
               <thead>
                 <tr>
-                  <th scope="col" width= "10%">Accession Number</th>
-                  <th scope="col" width= "10%">Species Name</th>
-                  <th scope="col" width= "10%">Collector Name</th>
-                  <th scope="col" width= "10%">Date Deposited</th>
-                  <th scope="col" width= "10%">Status</th>
+                  <th scope="col" width= "10%">Plant Deposit ID</th>
+                  <th scope="col" width= "10%">Validator Name</th>
+                  <th scope="col" width= "10%">Validator Email Address</th>
                   <th scope="col" width= "10%">Action</th>
                 </tr>
               </thead>
@@ -615,7 +613,7 @@ if(data.intcount!=0){
           <form id= "EVemailform" method="POST" enctype="multipart/form-data">
             <div class="form-group row pr-4">
               <label class="col-sm-2">To:</label>
-              <input type ="hidden" name = "txtEmail" id = "txtemail" value ="0">
+              <input type ="hidden" name ="txtEmail" id ="txtemail" value ="0">
               <input type="email" name="txtEmailCon" id="strEmailAdress" class="form-control col-sm-10" disabled>
             </div>
 
@@ -634,10 +632,10 @@ if(data.intcount!=0){
               <input type ="hidden" name = "txtdate" id = "txtID" value ="0">
               <input type="text" name="ntxtdateid" id="txtdateID" class="form-control" disabled>
             </div> -->
-            <div class="form-group">
+<!--             <div class="form-group">
                <label>Message:</label>
                 <textarea  id="strCustomMessage" name="txtCustomMessage" class="form-control" placeholder="Type your message here.." ></textarea>
-            </div>
+            </div> -->
 
                   <div class="modal-footer">
                     <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary"> Cancel</button>
@@ -706,27 +704,34 @@ if(data.intcount!=0){
           <form id= "EVForConfirmationForm" method="POST" enctype="multipart/form-data">
             <div class="form-group row pr-4">
               <label class="col-sm-2">To:</label>
-              <input type ="hidden" name = "txtEmail" id = "txtemail" value ="0">
-              <input type="email" name="txtEmailCon" id="strEmailAdress" class="form-control col-sm-10" disabled>
+              <input type ="hidden" name = "txtadd" id = "txtemail" value ="0">
+              <input type="email" name="txtvalidatoradd" id="strEmailAdress" class="form-control col-sm-10" disabled>
             </div>
 
             <div class="form-group row pr-4">
                       <label class="col-sm-2">From:</label>
                       <input type="email" class="form-control col-sm-10" value= "WBHerbariumTA@gmail.com" disabled>
+                      <input type="hidden" name="txtadd" id="txtID" value="0">
+                      <input type="hidden" name="txtpdid" id="txtID" value="0">
+                      <input type="hidden" name="txtID" id="txtID" value="0">
             </div>
             <br>
             <div class="form-group row pr-4">
                       <label class="col-sm-2">Deposit ID:</label>
                       <input type="text" name="txtPlantDepositReq" id="intPlantDepositID" class="form-control col-sm-10" disabled>
             </div>
+              <div class="form-group row pr-4">
+                      <label class="col-sm-2">Validator Name:</label>
+                      <input type="text" name="txtvalidatorname"  class="form-control col-sm-10" disabled="">
+            </div>
 
 
                   <div class="modal-footer">
                     <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary"> Cancel</button>
-                     <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
+                     <input type="submit" id="btnSendCode" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
-                            $('#btnSend').click(function(event){
+                            $('#btnSendCode').click(function(event){
                                 var data = $('#EVForConfirmationForm').serialize();
                                 event.preventDefault();
                               swal({
@@ -825,6 +830,7 @@ if(data.intcount!=0){
       </div>
     </div>
   </div>
+
 </main>
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 
@@ -1029,30 +1035,30 @@ $(document).on('click', '.view-EVPending', function(){
     });
     });
 
-      //  $(document).on('click', '.view-EVemailcon', function(){
-      //   var id = $(this).attr('data');
-      //   $('#EVEmailCon').modal('show');
-      //   $('#EVEmailCon').find('.modal-title').text('Email');
-      //   $.ajax({
-      //     type: 'ajax',
-      //     method: 'get',
-      //     url: '<?php echo base_url() ?>admin/EVEmailCon',
-      //     data: {id: id},
-      //     async: false,
-      //     dataType: 'json',
-      //     success: function(data){
-      //       $('#strEmailAdress').val(data.strEmailAddress);
-      //       $('#txtemail').val(data.strEmailAddress);
-      //       $('input[name=txtId]').val(data.intDepositID);
-      //       $('#txtreqID').val(data.intDepositID);
+       $(document).on('click', '.view-EVemailcon', function(){
+        var id = $(this).attr('data');
+        $('#EVEmailCon').modal('show');
+        // $('#EVEmailCon').find('.modal-title').text('Email Reminder');
+        $.ajax({
+          type: 'ajax',
+          method: 'get',
+          url: '<?php echo base_url() ?>admin/EVEmailCon',
+          data: {id: id},
+          async: false,
+          dataType: 'json',
+          success: function(data){
+            $('#strEmailAdress').val(data.strEmailAddress);
+            $('input[name=txtEmail]').val(data.strEmailAddress);
+            $('input[name=txtId]').val(data.intDepositID);
+            $('#txtreqID').val(data.intDepositID);
 
-      //     },
-      //     error: function(){
-      //       alert('Could not Edit Data');
-      //     }
+          },
+          error: function(){
+            alert('Could not Edit Data');
+          }
 
-      // });
-      // });
+      });
+      });
 
 $('#btnConfirm').click(function(event){
       var data = $('#EVConfirmForm').serialize();
@@ -1130,7 +1136,7 @@ $('#btnConfirm').click(function(event){
 
  $(document).ready(function() {
     //show
-    showExValEval();
+     showExValEval();
    });
 </script>
 <script type="text/javascript">
@@ -1188,8 +1194,8 @@ $('#btnConfirm').click(function(event){
 
  $(document).on('click', '.view-EVForConfirmation', function(){
       var id = $(this).attr('data');
-      $('#viewEVForConfirmation').modal('show');
-      $('#viewEVForConfirmation').find('.modal-title').text('Send Entry Code');
+      $('#EVForConfirmation').modal('show');
+      $('#EVForConfirmation').find('.modal-title').text('Send Entry Code');
       $.ajax({
         type: 'ajax',
         method: 'get',
@@ -1199,7 +1205,13 @@ $('#btnConfirm').click(function(event){
         dataType: 'json',
         success: function(data){
 
-          $('input[name=txtAccNum').val(data.strAccessionNumber);
+          $('input[name=txtPlantDepositReq').val(data.intPlantDepositID);
+          $('input[name=txtvalidatorname').val(data.strFullName);
+          $('input[name=txtvalidatoradd').val(data.strEmailAddress);
+          $('input[name=txtadd').val(data.strEmailAddress);
+          $('input[name=txtID').val(data.strCode);
+          $('input[name=txtpdid').val(data.intPlantDepositID);
+          
 
 
    },

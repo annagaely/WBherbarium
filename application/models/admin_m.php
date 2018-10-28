@@ -2316,18 +2316,48 @@ $status = $this->input->post('txtStatus');
 	public function showExValForConfirmation(){
 		$result = array();
 		
-		$query = $this->db->query("select * from viewVerifyingDeposit where strStatus = 'For Confirmation'");
+		$query = $this->db->query("select *,Concat(V.strLastname,', ',V.strFirstname,' ',V.strMiddlename,' ',V.strNameSuffix) as strFullName 
+from tblSentForVerify sfv 
+join tblPlantDeposit vd on sfv.intDepositID = vd.intPlantDepositID 
+join tblValidator v on sfv.intExValidatorID = v.intValidatorID where strStatus = 'For Confirmation'");
 		foreach ($query->result() as $r)
 		{
 
 
-			$btn = '<button class="btn btn-primary view-EVForConfirmation" data="'.$r->intPlantDepositID.'"><i class="fas fa-eye"></i></button>';
+			$btn = '<button class="btn btn-primary view-EVForConfirmation" data="'.$r->intSentVerifyID.'"><i class="fas fa-eye"></i></button>';
 
 
 			$result[] = array(
-					$r->strAccessionNumber,
-					$r->strScientificName,
-					$r->strCollector,
+					$r->intPlantDepositID,
+					$r->strFullName,
+					$r->strEmailAddress,
+					$btn,
+					$r->intSentVerifyID
+
+					);
+		}
+
+		return $result;
+}
+	public function showExValEval(){
+		$result = array();
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
+
+		from tblPlantDeposit pd join tblCollector cl
+		on pd.intCollectorID = cl.intCollectorID
+		where strStatus= 'Sent For External Validation'");
+
+
+		foreach ($query->result() as $r)
+		{
+
+		$btn = '<button class="btn btn-primary view-EVemailcon" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
+
+
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->intAccessionNumber,
+					$r->strFullName,
 					$r->dateDeposited,
 					$r->strStatus,
 					$btn,
@@ -2341,12 +2371,10 @@ $status = $this->input->post('txtStatus');
 
 	public function viewEVForConfirmation(){
 		$id = $this->input->get('id');
-
-	$this->db->where('intPlantDepositID', $id);
-		$query = $this->db->select("intPlantDepositID
-			,strAccessionNumber")
-		->get('viewVerifyingDeposit');
-
+		$query = $this->db->query("select intPlantDepositID,strCode,sfv.strEmailAddress,Concat(V.strLastname,', ',V.strFirstname,' ',V.strMiddlename,' ',V.strNameSuffix) as strFullName 
+from tblSentForVerify sfv 
+join tblPlantDeposit vd on sfv.intDepositID = vd.intPlantDepositID 
+join tblValidator v on sfv.intExValidatorID = v.intValidatorID where strStatus = 'For Confirmation' AND intSentVerifyID = ".$id."");
 			if($query->num_rows() > 0){
 			return $query->row();
 		}else{
@@ -2392,8 +2420,25 @@ public function updateEVStatus($getdepositid){
 insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress,strCode) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."','".$getdepositid."')
 
 		UPDATE tblPlantDeposit
-		SET strStatus = 'Sent For External Validation'
+		SET strStatus = 'For Confirmation'
 		WHERE intPlantDepositID = @depositid;
+
+			";
+		if($this->db->query($query)){
+			return true;
+
+		}else{
+			return false;
+		}
+	}
+
+	public function updateEVConfirmStatus($pdid){
+
+	$query="
+
+		UPDATE tblPlantDeposit
+		SET strStatus = 'Sent For External Validation'
+		WHERE intPlantDepositID = ".$pdid.";
 
 			";
 		if($this->db->query($query)){
@@ -2412,7 +2457,7 @@ public function showExValOkay(){
 
 		from tblPlantDeposit pd join tblCollector cl
 		on pd.intCollectorID = cl.intCollectorID
-		where strStatus= 'Sent For External Validation'");
+		where strStatus= 'With Results'");
 
 
 		foreach ($query->result() as $r)
