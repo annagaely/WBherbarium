@@ -125,6 +125,7 @@
               <ul id="TransactionDropdown" class="collapse list-unstyled ">
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
+                   <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
                 <li><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
                   <ul id="ExValidationDropdown" class="collapse list-unstyled">

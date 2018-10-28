@@ -1639,7 +1639,23 @@ public function showExValAll()
           echo json_encode($response);
           exit();
     }
+public function showExValForConfirmation()
+{
+	 $output = $this->admin_m->showExValForConfirmation();
+        $response = array(
+          'aaData' => $output,
+          'iTotalRecords' => count($output),
+          'iTotalDisplayRecords' => count($output),
+          'iDisplayStart' => 0
+          );
+          echo json_encode($response);
+          exit();
+    }
+ public function viewEVForConfirmation(){
+		$result = $this->m->viewEV();
+		echo json_encode($result);
 
+	}
 // public function EVSendMail()
 // {
 //     $config = Array(
@@ -1760,19 +1776,19 @@ public function SendtoExValidator(){
 
 		    $this->email->subject('PUP Herbarium External Validation');
 		    $this->email->message("To Whom It May Concern, <br><br>
-	Good day! We are from the Polytechnic University of the Philippines - Herbarium Center.  and we would like to ask you to spare some of your time on validating the attached details of the plant. <br><br>
+	Good day! We are from the Polytechnic University of the Philippines - Herbarium Center.  We would like to ask you to spare some of your time on validating the attached details of the plant. <br><br>
 
 The following plant specimen that was deposited in our center needs your outmost help and knowledge in validating the said collection. Attached below are the details of the plant specimen for your reference. <br><br>
 
 To evaluate, please refer on this link  ".base_url()."user/confirm/".". In order to access the form, enter this code:<strong> ".$getdepositid." </strong> <br><br>
 
-Your response is a huge help for us and would be highly appreciated. Thank you and God bless! <br><br>
-
+<strong>We look forward to hearing from you once you have received this message.</strong> Your response is a huge help for us and would be highly appreciated. Thank you and God bless! <br><br>
 Sincerly yours,<br>
 
 PUP Herbarium Team <br>
 	<br><strong>Family Name:</strong> ".$familyname. "<br> <strong>Scientific Name: </strong>" .$scientificname. "<br> <strong>Common Name: </strong>".$commonname."<br><strong> Description: </strong>".$description."");
 
+// Please let us know if you already read this message.
 
             $handle=opendir($path);
             while (($file = readdir($handle)))
@@ -1818,6 +1834,44 @@ PUP Herbarium Team <br>
 
 
 	    }
+
+
+public function EVForConfirmationSendMail()
+{
+    $config = Array(
+  'protocol' => 'smtp',
+  'smtp_host' => 'ssl://smtp.googlemail.com',
+  'smtp_port' => 465,
+  'smtp_user' => 'WBHerbariumTA@gmail.com', // change it to yours
+  'smtp_pass' => 'WBHerbarium2018', // change it to yours
+  'mailtype' => 'html',
+  'charset' => 'iso-8859-1',
+  'wordwrap' => TRUE
+);
+
+
+$email=$this->input->post('txtEmail');
+$id=$this->input->post('txtId');
+
+
+      $this->load->library('email', $config);
+      $this->email->set_newline("\r\n");
+      $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
+      $this->email->to($email);// change it to yours
+      $this->email->subject('Entry Code - PUP Herbarium External Validation');
+      $this->email->message("To Whom It May Concern, <br><br>
+	Good day! This will be the entry code [<strong> INSERT CODE HERE!!!!</strong>] that you will use to access the verification form. Thank you very much and God Bless! <br><br> Sincerly, <br> PUP Herbarium Team  ");
+
+      if($this->email->send())
+     {
+     	return true;
+     }
+     else
+    {
+     show_error($this->email->print_debugger());
+
+ }
+}
 
 
 public function showAllSpeciesName(){

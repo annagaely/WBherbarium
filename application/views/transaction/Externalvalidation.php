@@ -385,6 +385,7 @@ if(data.intcount!=0){
 
 <div class="tab" >
           <button id = "defaultOpen" class="tablinks" onclick="openCity(event, 'FirstTab')" style="color:white;">Pending</button>
+          <button class="tablinks" onclick="openCity(event, 'ForConfirmationTab') " style="color:white;">For Confirmation</button>
           <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">Sent For Validation</button>
           <button class="tablinks" onclick="openCity(event, 'FourthTab') " style="color:white;">Evaluated Specimen</button>
           <button class="tablinks" onclick="openCity(event, 'ThirdTab') " style="color:white;">All</button>
@@ -397,6 +398,28 @@ if(data.intcount!=0){
         <div class="card-body">
          <div class="table-responsive">
             <table class="table dataTable no-footer" id="manageEVReqPendingtbl">
+              <thead>
+                <tr>
+                  <th scope="col" width= "10%">Accession Number</th>
+                  <th scope="col" width= "10%">Species Name</th>
+                  <th scope="col" width= "10%">Collector Name</th>
+                  <th scope="col" width= "10%">Date Deposited</th>
+                  <th scope="col" width= "10%">Status</th>
+                  <th scope="col" width= "10%">Action</th>
+                </tr>
+              </thead>
+<!--                 <tbody tbody id="showdata">
+                </tbody> -->
+            </table>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="tabcontent" id="ForConfirmationTab">
+       <div class="card mx-4 mt-4">
+        <div class="card-body">
+         <div class="table-responsive">
+            <table class="table dataTable no-footer" id="manageEVReqForContbl">
               <thead>
                 <tr>
                   <th scope="col" width= "10%">Accession Number</th>
@@ -669,6 +692,90 @@ if(data.intcount!=0){
       </div>
     </div>
   </div>
+
+
+ <div id="EVForConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
+    <div role="document" class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="exampleModalLabel" class="modal-title">Email For Confirmation</h5>
+          <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
+        </div>
+
+        <div class="modal-body">
+          <form id= "EVForConfirmationForm" method="POST" enctype="multipart/form-data">
+            <div class="form-group row pr-4">
+              <label class="col-sm-2">To:</label>
+              <input type ="hidden" name = "txtEmail" id = "txtemail" value ="0">
+              <input type="email" name="txtEmailCon" id="strEmailAdress" class="form-control col-sm-10" disabled>
+            </div>
+
+            <div class="form-group row pr-4">
+                      <label class="col-sm-2">From:</label>
+                      <input type="email" class="form-control col-sm-10" value= "WBHerbariumTA@gmail.com" disabled>
+            </div>
+            <br>
+            <div class="form-group row pr-4">
+                      <label class="col-sm-2">Deposit ID:</label>
+                      <input type="text" name="txtPlantDepositReq" id="intPlantDepositID" class="form-control col-sm-10" disabled>
+            </div>
+
+
+                  <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary"> Cancel</button>
+                     <input type="submit" id="btnSend" value="Send" class="btn btn-primary">
+                     <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
+                     <script type="text/javascript">
+                            $('#btnSend').click(function(event){
+                                var data = $('#EVForConfirmationForm').serialize();
+                                event.preventDefault();
+                              swal({
+                                     title: 'Are you sure?',
+                                     type: 'warning',
+                                     showCancelButton: true,
+                                     confirmButtonColor: '#3085d6',
+                                     cancelButtonColor: '#d33',
+                                     confirmButtonText: 'Yes'
+                                   }).then((result) => {
+                                     if (result.value) {
+                                  $.ajax({
+                                  type: 'ajax',
+                                  method: 'post',
+                                  url: '<?php echo base_url() ?>admin/EVForConfirmationSendMail',
+                                  data: data,
+                                  async: false,
+                                  dataType: 'json',
+                                  success: function(){
+                                  },
+                                  error: function(){
+                                     let timerInterval
+                    swal({
+                      title: 'Email has been sent!',
+                      type: 'success',
+                      timer: 1500,
+                      showConfirmButton: false
+                    }).then(function() {
+
+                    showAllExValidators();
+                    showExValOkay();
+                    showExValAll();
+                    $('#EVForConfirmation').modal('hide');
+                    document.getElementById("EVForConfirmationForm").reset();
+                         });
+                        }
+                       });
+                      }
+                    })
+                   });
+                     </script>
+                  </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 <div id="EVConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
     <div role="document" class="modal-dialog">
       <div class="modal-content">
@@ -695,15 +802,7 @@ if(data.intcount!=0){
                        <input type="text" name="txtvalidatorname" id="txtvalidatornames " class="form-control" disabled="">
                      </div>
             </div>
-           <!-- <div class="form-group row">
-                     <div class="col-sm-4">
-                       <label style="font-size: 14px;">Collector's Name:</label>
-                     </div>
-                     <div class="col-sm-8">
-                      <input type="hidden" name="txtId" id="txtID" value="0">
-                       <input type="text" name="txtCollectorName" id="strFullName" class="form-control" disabled="">
-                     </div>
-            </div> -->
+
             <div class="form-group row">
                      <div class="col-sm-4">
                        <label style="font-size: 14px;">Status:</label>
@@ -1058,6 +1157,59 @@ $('#btnConfirm').click(function(event){
     //show
     showExValAll();
    });
+</script>
+
+
+<script type="text/javascript">
+    function showExValForConfirmation(){
+
+      $('#manageEVReqForContbl').dataTable().fnClearTable();
+      $('#manageEVReqForContbl').dataTable().fnDraw();
+      $('#manageEVReqForContbl').dataTable().fnDestroy();
+      $('#manageEVReqForContbl').dataTable({
+        "autoWidth":false,
+         "processing": true,
+         "serverSide": false,
+         "sAjaxSource": "<?php echo base_url('admin/showExValForConfirmation')?>",
+         "deferLoading": 10,
+         "bPaginate": true,
+         "aaSorting": [],
+         "fnInitComplete": function(){
+
+         }
+     });
+   }
+
+ $(document).ready(function() {
+    //show
+    showExValForConfirmation();
+   });
+
+
+ $(document).on('click', '.view-EVForConfirmation', function(){
+      var id = $(this).attr('data');
+      $('#viewEVForConfirmation').modal('show');
+      $('#viewEVForConfirmation').find('.modal-title').text('Send Entry Code');
+      $.ajax({
+        type: 'ajax',
+        method: 'get',
+        url: '<?php echo base_url() ?>admin/viewEVForConfirmation',
+        data: {id: id},
+        async: false,
+        dataType: 'json',
+        success: function(data){
+
+          $('input[name=txtAccNum').val(data.strAccessionNumber);
+
+
+   },
+        error: function(){
+          alert('Could not Edit Data');
+        }
+
+    });
+   });
+
 </script>
 
 <script>
