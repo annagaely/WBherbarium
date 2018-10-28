@@ -98,16 +98,34 @@
           <input type="radio" class="custom-control-input" value="No" id="q6No" name="q6">
           <label class="custom-control-label" for="q6No">No</label>
         </div>
-
-
-        <li>Are the indicated details of Herbarium Sheet accurate? (e.g Description, Scientific Name, Common Name)</li>
+        <li>Does the seed of the specimen match the indicated Specie?</li>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
           <input type="radio" class="custom-control-input" value="Yes" id="q7Yes" name="q7">
           <label class="custom-control-label" for="q7Yes">Yes</label>
         </div>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="No" id="q7No" name="q7">
+          <input type="radio" class="custom-control-input" value="No" id="q7NO" name="q7">
           <label class="custom-control-label" for="q7No">No</label>
+        </div>
+        <li>Is the Herbarium specimen correctly attached in the herbarium sheet?</li>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="Yes" id="q8Yes" name="q8">
+          <label class="custom-control-label" for="q8Yes">Yes</label>
+        </div>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="No" id="q8No" name="q8">
+          <label class="custom-control-label" for="q8No">No</label>
+        </div>
+
+
+        <li>Are the indicated details of Herbarium Sheet accurate? (e.g Description, Scientific Name, Common Name)</li>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="Yes" id="q9Yes" name="q9">
+          <label class="custom-control-label" for="q9Yes">Yes</label>
+        </div>
+        <div class="custom-control custom-radio"  style="margin-left: 38px;">
+          <input type="radio" class="custom-control-input" value="No" id="q9No" name="q9">
+          <label class="custom-control-label" for="q9No">No</label>
         </div> 
 
 <!--         <li>Does the digital photo of the Herbarium Sheet matches the actual Herbarium Sheet?</li>
@@ -165,15 +183,17 @@
 
       var data = $('#evalForm').serialize();
       //validate form
-      if(('#q1').val()!=''){
-       if(('#q2').val()!=''){
-         if(('#q3').val()!=''){
-           if(('#q4').val()!=''){
-             if(('#q5').val()!=''){
-               if(('#q6').val()!=''){
-                  if(('#q7').val()!=''){
-                    if(('#comment').val()!=''){
-                      if(('#remark').val()!=''){
+      if($('input[name=q1]:checked').length){
+       if($('input[name=q2]:checked').length){
+         if($('input[name=q3]:checked').length){
+           if($('input[name=q4]:checked').length){
+            if($('input[name=q5]:checked').length){
+               if($('input[name=q6]:checked').length){
+                 if($('input[name=q7]:checked').length){
+                  if($('input[name=q8]:checked').length){
+                    if($('input[name=q9]:checked').length){
+                    if($('#comment').val()!=''){
+                      if($('#remark').val()!=''){
                        event.preventDefault();
                         swal({
                           title: 'Are you sure?',
@@ -220,7 +240,24 @@
                           }
 
                           })
+
                       }else{
+                            event.preventDefault();
+                            swal({
+                              type: 'error',
+                              title: 'Incomplete input!',
+                              text: 'Please fill up all the required fields.'
+                            });
+                            }
+                    }else{
+                            event.preventDefault();
+                            swal({
+                              type: 'error',
+                              title: 'Incomplete input!',
+                              text: 'Please fill up all the required fields.'
+                            });
+                            }
+                    }else{
                             event.preventDefault();
                             swal({
                               type: 'error',

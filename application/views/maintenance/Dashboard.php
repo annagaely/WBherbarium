@@ -122,14 +122,15 @@
               <ul id="TransactionDropdown" class="collapse list-unstyled ">
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
+                   <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
                 <li><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
   <ul id="ExValidationDropdown" class="collapse list-unstyled">
-    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp; &nbsp; &nbsp; Send to External Validator</a></li>
-    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp; &nbsp; &nbsp; Answers (tempo)</a></li>
+    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp;Send to External Validator</a></li>
+    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-                <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
+            
 
                 </li>
               </ul>
@@ -305,7 +306,7 @@ if(data.intcount!=0){
             <div class="col-xl-3 col-md-4 col-6">
               <div class="wrapper count-title d-flex">
                 <div class="icon"><i class="icon-user"></i></div>
-                <div class="name"><strong class="text-uppercase">Total Online<br>User Accounts</strong>
+                <div class="name"><strong class="text-uppercase">Total User<br> Accounts</strong>
                   <div class="count-number">
                     <?php
     $query = $this->db->query('select count(intOUserID) as totalOUser from tblOnlineUser');

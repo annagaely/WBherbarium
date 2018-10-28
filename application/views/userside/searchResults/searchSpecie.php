@@ -1,5 +1,6 @@
-<div class="card mb-5 pt-5 mx-auto px-5" style="width:50%;margin-top: 100px;">
-<div class="card-title">Search Results</div>
+<div class="card mb-5 pt-5 mx-auto px-5" style="width:90%;margin-top: 100px;">
+<h4 class="card-title">Search Results</h4>
+<hr />
   <table class="table table-hover" id="data">
     <thead class="grey lighten-2">
       <tr>
@@ -9,6 +10,7 @@
         <th>Family Name</th>
         <th>Common Name</th>
         <th>Collector Name</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -16,15 +18,18 @@
     foreach ($results as $row) {
 ?>
 <tr>
-  <td width="50%"><?php echo "
-<img class='img-thumbnail image scale-on-hover' alt=Embedded Image src=\"data:image/png;base64, ".base64_encode($row->picHerbariumSheet)."\" />";?></td>
+  <td><?php echo "<button style='padding: 0px;' class='btn searchSpecie-view' data='".$row->intHerbariumSheetID."' 
+    data-toggle='modal'
+    data-target='#herbariumSheet' 
+>
+          <img style='max-width: 200px; width: auto; height: 200px;' class='img-thumbnail image scale-on-hover' alt=Embedded Image src=\"data:image/png;base64, ".base64_encode($row->picHerbariumSheet)."\" '/></button>";?></td>
     <td><?php echo $row->strAccessionNumber?></td>
     <td><?php echo $row->strScientificName?></td>
     <td><?php echo $row->strFamilyName?></td>
     <td><?php echo $row->strCommonName?></td>
     <td><?php echo $row->strCollector?></td>
 </tr>
-<?php   
+<?php
 }
 ?>
     </tbody>
@@ -38,13 +43,13 @@
     <div class="modal-dialog modal-fluid" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title w-100" id="myModalLabel">Modal title</h4>
+          <h4 class="modal-title w-100" id="myModalLabel">View Specie</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body px-5 mx-5 text-center">
-          <div class="row mx-5">
+<!--           <div class="row mx-5">
             <div class="col-md-4">
               <div class="card">
                 img of herbarium sheet
@@ -55,10 +60,13 @@
                 contents
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="row">
-            <div class="col-md-12">
-              <section class="gallery-block grid-gallery my-0" style="padding-left: 30%; padding-right: 30%">
+            <div id='div' class="col-md-12">
+<form method="Get" action='<?php echo base_url()?>user/viewSpecie' enctype="multipart/form-data">
+<?php echo "<img style='max-width: 1000px; width: auto; height: 1000px;' alt=Embedded Image src=\"data:image/png;base64, ".base64_encode($row->picHerbariumSheet)."\" '/>";?>
+</form>
+<!--               <section class="gallery-block grid-gallery my-0" style="padding-left: 30%; padding-right: 30%">
                 <div class="row">
                     <div class="col-md-6 col-lg-4 item">
                         <a class="lightbox" href="<?php echo base_url()?>assets/bower_components/planttypes/angiosperm.jpg">
@@ -76,7 +84,7 @@
                         </a>
                     </div>
                 </div>
-              </section>
+              </section> -->
             </div>
           </div>
 
@@ -121,4 +129,7 @@ $(document).ready(function(){
       css('display','table-row').animate({opacity:1}, 300);
   });
 });
+
+
+
 </script>

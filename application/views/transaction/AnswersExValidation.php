@@ -138,7 +138,7 @@
                 <li class="active"><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
   <ul id="ExValidationDropdown" class="collapse list-unstyled show">
     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp; &nbsp; &nbsp; Send to External Validator</a></li>
-    <li style="background-color: #303030;"  class="active"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp; &nbsp; &nbsp; Answers (tempo)</a></li>
+    <li style="background-color: #303030;"  class="active"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp; &nbsp; &nbsp; Evaluation Results</a></li>
   </ul>
 </li>
                 <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
@@ -146,7 +146,15 @@
                 </li>
               </ul>
             </li>
-              <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
+ <li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
+                <ul id="QueriesDropdown" class="collapse list-unstyled ">
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
+                   <li><a href="<?php echo base_url(); ?>admin/QueriesDeposits">&nbsp &nbsp &nbsp Deposits</a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
+                     <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
+                   </ul>
+                </li>       
             <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
@@ -324,52 +332,14 @@ if(data.intcount!=0){
       </nav>
       </header>
 
-<style>
-/* Style the tab */
-.tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #800000;
-}
-
-/* Style the buttons inside the tab */
-.tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-    background-color: #4b0000;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-    background-color: #4b0000;
-    color: white;
-}
-
-/* Style the tab content */
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
-}
-</style>
 
 <div class="breadcrumb-holder">
         <div class="container-fluid">
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>Maintenance/Dashboard" >Home</a></li>
             <li class="breadcrumb-item">Transaction</li>
-            <li class="breadcrumb-item active">External Validation</li>
+            <li class="breadcrumb-item">External Validation</li>
+            <li class="breadcrumb-item active">Answers</li>
           </ul>
         </div>
 </div>
@@ -398,10 +368,12 @@ if(data.intcount!=0){
               </thead>
 <!--                 <tbody tbody id="showdata">
                 </tbody> -->
+
             </table>
         </div>
       </div>
     </div>
+
 
    <!-- Modal-->
  <div id="viewEV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-justify hide" data-backdrop="static" data-keyboard="false">
@@ -470,18 +442,30 @@ if(data.intcount!=0){
                   </div>
 
               </div>
+               <div class = "row"  style="margin-top: 5px">
+                <div class="col-sm-6" >
+                       <label style="font-size: 14px;">Does the seed of the specimen match the indicated Specie?</label>
+                       <input type="hidden" name="txtcn" id="txtCN" value="">
+                       <input type="text" name="q7" id="strCommonName" class="form-control" disabled="">
+                   </div>
+                  <div class="col-sm-6" >
+                       <label style="font-size: 14px;"?>Is the Herbarium specimen correctly attached in the herbarium sheet?</label>
+                       <input type="text" name="q8" id="strCollector"  class="form-control" disabled="">
+                  </div>
+
+              </div>
               <div class = "row"  style="margin-top: 5px">
                      <div class="col-sm-6" >
                        <label style="font-size: 14px;">Are the indicated details of Herbarium Sheet accurate? (e.g Description, Scientific Name, Common Name)</label>
-                       <input type="text" name="q7" class="form-control" id="strStaff" disabled="">
+                       <input type="text" name="q9" class="form-control" id="strStaff" disabled="">
                      </div>
                     <div class="col-sm-6" >
-                       <label style="font-size: 14px;">Remarks</label>
+                       <label style="font-size: 14px;; color: red">Remarks</label>
                        <input type="text" name="txtremarks" class="form-control" id="dtDateCollected" disabled="">
                      </div>
               </div>
                     <div class="form-group"  style="margin-top: 5px">
-                       <label style="font-size: 14px;">Comments/Corrections:</label>
+                       <label style="font-size: 14px">Comments/Corrections:</label>
                        <input type="hidden" name="txtd" id="txtD" value="0">
                        <textarea name="txtComments" id='comment' class="form-control" id="strDescription" disabled=""></textarea>
                      </div>
@@ -553,6 +537,8 @@ if(data.intcount!=0){
           $('input[name=q5]').val(data.strQ5);
           $('input[name=q6]').val(data.strQ6);
           $('input[name=q7]').val(data.strQ7);
+          $('input[name=q8]').val(data.strQ8);
+          $('input[name=q9]').val(data.strQ9);  
           $('#comment').val(data.strComments);
           $('input[name=txtremarks]').val(data.strRemarks);
         },

@@ -2964,9 +2964,17 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 </style>
-&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly External Validation Report - '.$monthName.' '.date("Y").' </h3></center><br><br>
-			<table width="100%" cellspacing="5" cellpadding="5">
+
+&nbsp; &nbsp; &nbsp;
+
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly External Validation Report - '.$monthName.' '.date("Y").' 
+</h3>
+</center>
+<br><br>
+		<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
 			<td><center><b>Accession Number</td>
@@ -3001,14 +3009,14 @@ tr:nth-child(even) {
 					<p>'.$row->strCommonName.'</p></center>
 
 				</td>
-								<td width="50%">
+								<td width="50%"><center>
 
-					<p>'.$row->strFullLocality.' </p>
+					<p>'.$row->strFullLocality.' </p></center>
 
 				</td>
-								<td width="30%">
+								<td width="30%"><center>
 
-					<p>'.$row->dateVerified.' </p>
+					<p>'.$row->dateVerified.' </p> </center>
 				</td>
 			</tr>
 			';
@@ -3341,12 +3349,12 @@ tr:nth-child(even) {
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
-			<td><b>Plant Deposit ID</td>
-			<td><b>Collector Name</td>
-			<td><b>Date Collected</td>
-			<td><b>Scientific Name</td>
-			<td><b>Common Name</td>
-			<td><b>Location</td>
+			<td><strong><center>Plant Deposit ID</center></td>
+			<td><strong><center>Collector Name</center></td>
+			<td><strong><center>Date Collected</center></td>
+			<td><strong><center>Scientific Name</center></td>
+			<td><strong><center>Common Name</center></td>
+			<td><strong><center>Location</center></td>
 			
 			</tr>
 			</thead>';
@@ -3355,33 +3363,33 @@ tr:nth-child(even) {
 			$output .= '
 
 			<tr>
-				<td width="20%">
-					<p>'.$row->intDepositReqID.'</p>
+				<td width="20%"><center>
+					<p>'.$row->intDepositReqID.'</p></center>
 
 				</td>
-								<td width="20%">
+								<td width="20%"><center>
 
-					<p>'.$row->strFullName.'</p>
-
-				</td>
-								<td width="20%">
-
-					<p>'.$row->dtDateCollected.'</p>
+					<p>'.$row->strFullName.'</p></center>
 
 				</td>
-								<td width="20%">
+								<td width="20%"><center>
 
-					<p>'.$row->strScientificName.'</p>
-
-				</td>
-								<td width="20%">
-
-					<p>'.$row->strCommonName.' </p>
+					<p>'.$row->dtDateCollected.'</p></center>
 
 				</td>
-								<td width="50%">
+								<td width="20%"><center>
 
-					<p>'.$row->strFullLocation.' </p>
+					<p>'.$row->strScientificName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strCommonName.' </p></center>
+
+				</td>
+								<td width="50%"><center>
+
+					<p>'.$row->strFullLocation.' </p></center>
 				</td>
 			</tr>
 			';
@@ -3422,12 +3430,12 @@ tr:nth-child(even) {
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
-			<td><b>Visit Appointment ID</td>
-			<td><b>Date of Appointment</td>
-			<td><b>Name</td>
-			<td><b>Visit Purpose</td>
-			<td><b>Visit Description</td>
-			<td><b>Status</td>
+			<td><strong><center>Visit Appointment ID</center></strong></td>
+			<td><strong><center>Date of Appointment</center></strong></td>
+			<td><strong><center>Name</center></strong></td>
+			<td><strong><center>Visit Purpose</center></strong></td>
+			<td><strong><center>Visit Description</center></strong></td>
+			<td><strong><center>Status</center></strong></td>
 			
 			</tr>
 			</thead>';
@@ -3436,23 +3444,23 @@ tr:nth-child(even) {
 			$output .= '
 
 			<tr>
-				<td width="20%">
-					<p>'.$row->intAppointmentID.'</p>
+				<td width="20%"><center>
+					<p>'.$row->intAppointmentID.'</p></center>
 
 				</td>
-								<td width="20%">
+								<td width="20%"><center>
 
-					<p>'.$row->dtAppointmentDate.'</p>
-
-				</td>
-								<td width="20%">
-
-					<p>'.$row->strFullName.'</p>
+					<p>'.$row->dtAppointmentDate.'</p></center>
 
 				</td>
-								<td width="20%">
+								<td width="20%"><center>
 
-					<p>'.$row->strVisitPurpose.'</p>
+					<p>'.$row->strFullName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strVisitPurpose.'</p></center>
 
 				</td>
 								<td width="50%">
@@ -3460,9 +3468,9 @@ tr:nth-child(even) {
 					<p>'.$row->strVisitDescription.' </p>
 
 				</td>
-								<td width="20%">
+								<td width="20%"><center>
 
-					<p>'.$row->strStatus.' </p>
+					<p>'.$row->strStatus.' </p></center>
 				</td>
 			</tr>
 			';
