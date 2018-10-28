@@ -2313,6 +2313,47 @@ $status = $this->input->post('txtStatus');
 		return $result;
 }
 
+	public function showExValForConfirmation(){
+		$result = array();
+		
+		$query = $this->db->query("select * from viewVerifyingDeposit where strStatus = 'For Confirmation'");
+		foreach ($query->result() as $r)
+		{
+
+
+			$btn = '<button class="btn btn-primary view-EVForConfirmation" data="'.$r->intPlantDepositID.'"><i class="fas fa-eye"></i></button>';
+
+
+			$result[] = array(
+					$r->strAccessionNumber,
+					$r->strScientificName,
+					$r->strCollector,
+					$r->dateDeposited,
+					$r->strStatus,
+					$btn,
+					$r->intPlantDepositID
+
+					);
+		}
+
+		return $result;
+}
+
+	public function viewEVForConfirmation(){
+		$id = $this->input->get('id');
+
+	$this->db->where('intPlantDepositID', $id);
+		$query = $this->db->select("intPlantDepositID
+			,strAccessionNumber")
+		->get('viewVerifyingDeposit');
+
+			if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
 	public function viewEV(){
 		$id = $this->input->get('id');
 
