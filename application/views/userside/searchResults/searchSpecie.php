@@ -1,5 +1,6 @@
-<div class="card mb-5 pt-5 mx-auto px-5" style="width:50%;margin-top: 100px;">
-<div class="card-title">Search Results</div>
+<div class="card mb-5 pt-5 mx-auto px-5" style="width:90%;margin-top: 100px;">
+<h4 class="card-title">Search Results</h4>
+<hr />
   <table class="table table-hover" id="data">
     <thead class="grey lighten-2">
       <tr>
@@ -24,7 +25,7 @@
     <td><?php echo $row->strCommonName?></td>
     <td><?php echo $row->strCollector?></td>
 </tr>
-<?php   
+<?php
 }
 ?>
     </tbody>

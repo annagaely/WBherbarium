@@ -1,6 +1,6 @@
-<div class="card mb-5 pt-5 mx-auto px-5" style="margin-top: 100px; width: 60%">
-<div class="card-header">
-  Search Results</div>
+<div class="card mb-5 pt-5 mx-auto px-5" style="width:70%;margin-top: 100px;">
+<h4 class="card-title">Search Results</h4>
+<hr />
   <table class="table" id="data">
     <thead class="grey lighten-2">
       <tr>
@@ -16,7 +16,7 @@
     <td><?php echo $row->strPhylumName?></td>
     <td><?php echo $row->strPhylumName?></td>
 </tr>
-<?php   
+<?php
 }
 ?>
     </tbody>

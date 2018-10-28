@@ -22,7 +22,7 @@
 
 
                 <div class="carousel-caption">
-                    
+
                 </div>
             </div>
             <div class="carousel-item">
@@ -32,7 +32,7 @@
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">
-                    
+
                 </div>
             </div>
             <div class="carousel-item">
@@ -42,7 +42,7 @@
                     <div class="mask rgba-black-light"></div>
                 </div>
                 <div class="carousel-caption">
-                    
+
                 </div>
             </div>
         </div>
@@ -142,7 +142,7 @@
                   <form class="form-inline" method="POST" action="<?php echo base_url(); ?>user/searchingRank" enctype="multipart/form-data">
                     <input class="form-control form-control-sm w-75" name='phylumkey' type="text" placeholder="e.g. Phylum, Class, Order, Family" aria-label="Search">
                     <button onclick="showTableRank()" type="button" class="btn btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
-                      <a href="<?php echo base_url();?>user/usersearchRank" style="color: inherit!important">Search</a> 
+                      <a href="<?php echo base_url();?>user/usersearchRank" style="color: inherit!important">Search</a>
                     </button>
                     <input type="submit" value='Search'>
                 </form>
@@ -164,9 +164,9 @@
               <div class="col-md-12">
                 <h5 class="h5-responsive">Enter a Specie Name:</h5>
                 <form class="form-inline" method="POST" action="<?php echo base_url(); ?>user/searchingSpecies" enctype="multipart/form-data" >
-                  <input class="form-control form-control-sm w-75" name='specieskey' type="text" placeholder="e.g. Indicus, Purpurea" title="Refers to a group of closely related plants" aria-label="Search" autocomplete="off"><!-- 
+                  <input class="form-control form-control-sm w-75" name='specieskey' type="text" placeholder="e.g. Indicus, Purpurea" title="Refers to a group of closely related plants" aria-label="Search" autocomplete="off"><!--
                   <button onclick="showTableSpecie()" type="button" class="btn btnsearch btn-outline-primary waves-effect" style="padding-top:1%; padding-bottom: 1%;padding-left: 2%; padding-right:2%; border: 2px solid #800000!important; color: #800000!important; font-size: 11px!important;">
-                    <a href="<?php echo base_url();?>user/usersearchSpecie" style="color: inherit!important">Search</a> --> 
+                    <a href="<?php echo base_url();?>user/usersearchSpecie" style="color: inherit!important">Search</a> -->
 
                   <!-- </button> -->
                    <input type="submit" value='Search'>
