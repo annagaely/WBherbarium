@@ -655,7 +655,21 @@ $remarks=$this->input->post('remarks');
 		}else{
 
 		}
-		
+		}
 
-}
+
+
+	public function viewSpecie(){
+		$id = $this->input->get('id');
+		$this->db->where('vhs.intHerbariumSheetID', $id);
+		$query = $this->db->select('CAST(picHerbariumSheet as varchar(max)) AS picText')
+		->get('viewHerbariumSheet vhs');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
+
 }?>
