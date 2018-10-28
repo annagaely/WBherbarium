@@ -594,4 +594,12 @@ $result = $this->m->addAnswer();
 echo json_encode($result);
 }
 
+
+public function viewSpecie(){
+$result = $this->m->viewSpecie();
+echo json_encode($result);
+}
+
+
+
 }?>
