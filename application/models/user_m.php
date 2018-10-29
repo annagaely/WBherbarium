@@ -620,7 +620,7 @@ $this->db->like('strScientificName ',$keyword);
 	public function checkCode(){
 $password= $this->input->post('code');
 $code=substr($password,0,6);
-$id=substr($password,6);
+$id=substr($password,13);
 
 		$query = $this->db->query("select intDepositID from tblSentForVerify where intDepositID = '".$id."' and strCode like'%".$code."%'");
 		if($query->num_rows() > 0){
@@ -647,6 +647,9 @@ $remarks=$this->input->post('remarks');
 
 		insert into tblNotif(strNotifContent,intNotifStatus) VALUES ('External Validator has evaluated the Plant Deposit: ".$id."',0)
 
+		UPDATE tblPlantDeposit
+		SET strStatus = 'With Results'
+		WHERE intPlantDepositID = ".$id.";
 
 		";
 		if($this->db->query($query))

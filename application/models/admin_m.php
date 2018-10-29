@@ -2313,6 +2313,75 @@ $status = $this->input->post('txtStatus');
 		return $result;
 }
 
+	public function showExValForConfirmation(){
+		$result = array();
+		
+		$query = $this->db->query("select *,Concat(V.strLastname,', ',V.strFirstname,' ',V.strMiddlename,' ',V.strNameSuffix) as strFullName 
+from tblSentForVerify sfv 
+join tblPlantDeposit vd on sfv.intDepositID = vd.intPlantDepositID 
+join tblValidator v on sfv.intExValidatorID = v.intValidatorID where strStatus = 'For Confirmation'");
+		foreach ($query->result() as $r)
+		{
+
+
+			$btn = '<button class="btn btn-primary view-EVForConfirmation" data="'.$r->intSentVerifyID.'"><i class="fas fa-eye"></i></button>';
+
+
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->strFullName,
+					$r->strEmailAddress,
+					$btn,
+					$r->intSentVerifyID
+
+					);
+		}
+
+		return $result;
+}
+	public function showExValEval(){
+		$result = array();
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
+
+		from tblPlantDeposit pd join tblCollector cl
+		on pd.intCollectorID = cl.intCollectorID
+		where strStatus= 'Sent For External Validation'");
+
+
+		foreach ($query->result() as $r)
+		{
+
+		$btn = '<button class="btn btn-primary view-EVemailcon" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
+
+
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->intAccessionNumber,
+					$r->strFullName,
+					$r->dateDeposited,
+					$r->strStatus,
+					$btn,
+					$r->intPlantDepositID
+
+					);
+		}
+
+		return $result;
+}
+
+	public function viewEVForConfirmation(){
+		$id = $this->input->get('id');
+		$query = $this->db->query("select intPlantDepositID,strCode,sfv.strEmailAddress,Concat(V.strLastname,', ',V.strFirstname,' ',V.strMiddlename,' ',V.strNameSuffix) as strFullName 
+from tblSentForVerify sfv 
+join tblPlantDeposit vd on sfv.intDepositID = vd.intPlantDepositID 
+join tblValidator v on sfv.intExValidatorID = v.intValidatorID where strStatus = 'For Confirmation' AND intSentVerifyID = ".$id."");
+			if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
 	public function viewEV(){
 		$id = $this->input->get('id');
 
@@ -2348,11 +2417,30 @@ public function updateEVStatus($getdepositid){
 	DECLARE @depositid 		INT;
 
 	Set @depositid ='$depositid'
-insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress,strCode) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."','".$getdepositid."')
+insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress,strCode,strNotif) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."','".$getdepositid."','Not Yet Done')
+
+		UPDATE tblPlantDeposit
+		SET strStatus = 'For Confirmation'
+		WHERE intPlantDepositID = @depositid;
+
+			";
+		if($this->db->query($query)){
+			return true;
+
+		}else{
+			return false;
+		}
+	}
+
+	public function updateEVConfirmStatus($pdid){
+
+	$query="
 
 		UPDATE tblPlantDeposit
 		SET strStatus = 'Sent For External Validation'
-		WHERE intPlantDepositID = @depositid;
+		WHERE intPlantDepositID = ".$pdid.";
+
+		update tblSentForVerify set dtDateSent = getdate() where intDepositID=".$pdid."
 
 			";
 		if($this->db->query($query)){
@@ -2371,7 +2459,7 @@ public function showExValOkay(){
 
 		from tblPlantDeposit pd join tblCollector cl
 		on pd.intCollectorID = cl.intCollectorID
-		where strStatus= 'Sent For External Validation'");
+		where strStatus= 'With Results'");
 
 
 		foreach ($query->result() as $r)
@@ -3533,8 +3621,52 @@ tr:nth-child(even) {
 	}
 
 
+public function checkexvalnotif(){
+$query= $this->db->query("select * from tblSentForVerify where dtDateSent = CONVERT(VARCHAR(10),DATEADD(mm,2,CONVERT(VARCHAR(10), getdate(), 111)),111) AND strNotif !='Done'
 
 
+
+
+	");
+if($query->num_rows() > 0){
+		foreach ($query->result() as $r)
+		{
+			$result[] = array(
+					$r->intDepositID
+					);
+
+
+
+		}
+		 return $this->addexvalnotif($result);
+		}else{
+
+			return false;
+		}
+}
+
+
+
+	public function addexvalnotif($idarray){
+		foreach ($idarray as $r)
+		{
+
+$i = 0;
+	$query="
+		update tblSentForVerify 
+		set strNotif = 'Done'
+		where intDepositID = '".$r[$i]."';
+
+		insert into tblNotif(strNotifContent,intNotifStatus) VALUES ('2 Months passed since plant deposit ID:".$r[$i]." was sent to external validator',0);
+			";
+			$this->db->query($query);
+			$i+= $i+1;
+			
+		}
+return $i;
+
+
+	}
 
 }?>
 
