@@ -142,22 +142,22 @@
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-       
-         
+
+
 
                 </li>
               </ul>
-            </li
-<li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
-                <ul id="QueriesDropdown" class="collapse list-unstyled ">
-                  <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
-                  <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
-                   <li><a href="<?php echo base_url(); ?>admin/QueriesDeposits">&nbsp &nbsp &nbsp Deposits</a></li>
-                    <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
-                     <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
+            </li>
+<li class="active"><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
+                <ul id="QueriesDropdown" class="collapse list-unstyled show">
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp; &nbsp; &nbsp; Accounts</a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp; &nbsp; &nbsp; Events </a></li>
+                   <li><a href="<?php echo base_url(); ?>admin/QueriesDeposits">&nbsp; &nbsp; &nbsp; Deposits</a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp; &nbsp; &nbsp; Visits</a></li>
+                     <li class="active"><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp; &nbsp; &nbsp; External Validation</a></li>
                    </ul>
-                </li>  
-  
+                </li>
+
             <li><a href="<?php echo base_url();?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
@@ -213,7 +213,7 @@
           </div></a></li>
                   </ul>
                 </li>
- 
+
                 <!-- Log out-->
                  <li class="nav-item"><a href="<?php echo base_url()?>admin/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
@@ -449,7 +449,7 @@ if(data.intcount!=0){
     $('#divTableVerifiedEV').hide();
   });
 
-</script> 
+</script>
 
 <script type="text/javascript">
 
@@ -460,10 +460,10 @@ if(data.intcount!=0){
     $('#divTableEV').hide();
     $('#divTableNotVerifiedEV').hide();
     $('#divTableVerifiedEV').hide();
- 
+
 }
 else if(val=='Further Verification')
-{ 
+{
     $('#divTablePendingEV').hide();
     $('#divTableEV').show();
     $('#divTableNotVerifiedEV').hide();
@@ -471,15 +471,15 @@ else if(val=='Further Verification')
 
 }
 else if(val=='Verified')
-{ 
+{
     $('#divTablePendingEV').hide();
     $('#divTableEV').hide();
     $('#divTableNotVerifiedEV').hide();
     $('#divTableVerifiedEV').show();
 
 }
-else 
-{ 
+else
+{
     $('#divTablePendingEV').hide();
     $('#divTableEV').hide();
     $('#divTableNotVerifiedEV').show();
@@ -499,7 +499,7 @@ else
   $('#querytblPendingEV').dataTable().fnDraw();
   $('#querytblPendingEV').dataTable().fnDestroy();
   $('#querytblPendingEV').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
@@ -517,7 +517,7 @@ else
   $('#querytblEV').dataTable().fnDraw();
   $('#querytblEV').dataTable().fnDestroy();
   $('#querytblEV').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
@@ -536,7 +536,7 @@ else
   $('#querytblVerifiedEV').dataTable().fnDraw();
   $('#querytblVerifiedEV').dataTable().fnDestroy();
   $('#querytblVerifiedEV').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
@@ -553,7 +553,7 @@ else
   $('#querytblNotVerifiedEV').dataTable().fnDraw();
   $('#querytblNotVerifiedEV').dataTable().fnDestroy();
   $('#querytblNotVerifiedEV').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
@@ -567,7 +567,7 @@ else
   }
 
 
-   $('#btnApply').click(function(event){ 
+   $('#btnApply').click(function(event){
    var data = $('#queriesDateForm').serialize();
 
 
@@ -608,7 +608,7 @@ else
            // location.reload(true);
 
           },
-          error: function(){ 
+          error: function(){
           }
         });
 }
@@ -622,7 +622,7 @@ else if(val=='Further Verification') {
           dataType: 'json',
           success: function(data){
              var t = $('#querytblEV').DataTable();
-    
+
             var i;
           for(i=0; i<data.length; i++){
             t.row.add( [
@@ -644,7 +644,7 @@ else if(val=='Further Verification') {
            $('#statustype').val("-- Select Status --");
           },
           error: function(){
-            
+
           }
         });
 }
@@ -658,7 +658,7 @@ else if(val=='Verified') {
           dataType: 'json',
           success: function(data){
              var t = $('#querytblVerifiedEV').DataTable();
-    
+
             var i;
           for(i=0; i<data.length; i++){
             t.row.add( [
@@ -679,7 +679,7 @@ else if(val=='Verified') {
            $('#statustype').val("-- Select Status --");
           },
           error: function(){
-            
+
           }
         });
 }
@@ -693,7 +693,7 @@ else  {
           dataType: 'json',
           success: function(data){
              var t = $('#querytblNotVerifiedEV').DataTable();
-    
+
             var i;
           for(i=0; i<data.length; i++){
             t.row.add( [
@@ -714,11 +714,10 @@ else  {
            $('#statustype').val("-- Select Status --");
           },
           error: function(){
-            
+
           }
         });
 }
 });
-    
-</script>
 
+</script>

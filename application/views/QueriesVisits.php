@@ -142,19 +142,19 @@
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-       
-         
+
+
 
                 </li>
               </ul>
-            </li
-<li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
-                <ul id="QueriesDropdown" class="collapse list-unstyled ">
+            </li>
+<li class="active"><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
+                <ul id="QueriesDropdown" class="collapse list-unstyled show">
                   <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
                   <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
-                   <li><a href="<?php echo base_url(); ?>admin/QueriesDeposits">&nbsp &nbsp &nbsp Deposits</a></li>
-                    <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
-                     <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesDeposits">&nbsp &nbsp &nbsp Deposits</a></li>
+                  <li class="active"><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
                 </li>              <li><a href="<?php echo base_url();?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
@@ -211,7 +211,7 @@
           </div></a></li>
                   </ul>
                 </li>
- 
+
                 <!-- Log out-->
                  <li class="nav-item"><a href="<?php echo base_url()?>admin/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
@@ -484,7 +484,7 @@ if(data.intcount!=0){
      $('#divTableAllV').hide();
   });
 
-</script> 
+</script>
 
 <script type="text/javascript">
 
@@ -498,7 +498,7 @@ if(data.intcount!=0){
     $('#divTableDidNotArriveV').hide();
 }
 else if(val=='For Visiting')
-{ 
+{
    $('#divTablePendingV').hide();
     $('#divTableForVisitingV').show();
     $('#divTableRejectedV').hide();
@@ -506,7 +506,7 @@ else if(val=='For Visiting')
     $('#divTableDidNotArriveV').hide();
 }
 else if(val=='Rejected')
-{ 
+{
    $('#divTablePendingV').hide();
     $('#divTableForDepositV').hide();
     $('#divTableRejectedV').show();
@@ -514,7 +514,7 @@ else if(val=='Rejected')
     $('#divTableDidNotArriveV').hide();
 }
 else if(val=='Arrived')
-{ 
+{
    $('#divTablePendingV').hide();
     $('#divTableForDepositV').hide();
     $('#divTableRejectedV').show();
@@ -522,7 +522,7 @@ else if(val=='Arrived')
     $('#divTableDidNotArriveV').hide();
 }
 else if(val=="Did not Arrive")
-{ 
+{
     $('#divTablePendingV').hide();
     $('#divTableForDepositV').hide();
     $('#divTableRejectedV').hide();
@@ -530,7 +530,7 @@ else if(val=="Did not Arrive")
     $('#divTableDidNotArriveV').show();
 }
 else
-{ 
+{
     $('#divTablePendingV').hide();
     $('#divTableForDepositV').hide();
     $('#divTableRejectedV').hide();
@@ -549,7 +549,7 @@ else
   $('#querytblPendingV').dataTable().fnDraw();
   $('#querytblPendingV').dataTable().fnDestroy();
   $('#querytblPendingV').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
@@ -567,7 +567,7 @@ else
   $('#querytblForDepositV').dataTable().fnDraw();
   $('#querytblForDepositV').dataTable().fnDestroy();
   $('#querytblForDepositV').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
@@ -586,7 +586,7 @@ else
   $('#querytblRejectedV').dataTable().fnDraw();
   $('#querytblRejectedV').dataTable().fnDestroy();
   $('#querytblRejectedV').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
@@ -603,7 +603,7 @@ else
   $('#querytblArrivedV').dataTable().fnDraw();
   $('#querytblArrivedV').dataTable().fnDestroy();
   $('#querytblArrivedV').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
@@ -621,7 +621,7 @@ else
   $('#querytblDidNotArriveV').dataTable().fnDraw();
   $('#querytblDidNotArriveV').dataTable().fnDestroy();
   $('#querytblDidNotArriveV').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
@@ -639,7 +639,7 @@ else
   $('#querytblAllV').dataTable().fnDraw();
   $('#querytblAllV').dataTable().fnDestroy();
   $('#querytblAllV').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
@@ -695,7 +695,7 @@ else
            // location.reload(true);
 
           },
-          error: function(){ 
+          error: function(){
           }
         });
 }
@@ -709,7 +709,7 @@ else if(val=='For Visiting') {
           dataType: 'json',
           success: function(data){
              var t = $('#querytblForVisitingV').DataTable();
-    
+
             var i;
           for(i=0; i<data.length; i++){
             t.row.add( [
@@ -732,7 +732,7 @@ else if(val=='For Visiting') {
            $('#statustype').val("-- Select Status --");
           },
           error: function(){
-            
+
           }
         });
 }
@@ -746,7 +746,7 @@ else if(val=='Arrived') {
           dataType: 'json',
           success: function(data){
              var t = $('#querytblArrivedV').DataTable();
-    
+
             var i;
           for(i=0; i<data.length; i++){
             t.row.add( [
@@ -768,7 +768,7 @@ else if(val=='Arrived') {
            $('#statustype').val("-- Select Status --");
           },
           error: function(){
-            
+
           }
         });
 }
@@ -782,7 +782,7 @@ else if(val=='Rejected') {
           dataType: 'json',
           success: function(data){
              var t = $('#querytblArrivedV').DataTable();
-    
+
             var i;
           for(i=0; i<data.length; i++){
             t.row.add( [
@@ -806,7 +806,7 @@ else if(val=='Rejected') {
            $('#statustype').val("-- Select Status --");
           },
           error: function(){
-            
+
           }
         });
 }
@@ -820,7 +820,7 @@ else if(val=='Did not arrive') {
           dataType: 'json',
           success: function(data){
              var t = $('#querytblDidNotArriveV').DataTable();
-    
+
             var i;
           for(i=0; i<data.length; i++){
             t.row.add( [
@@ -842,7 +842,7 @@ else if(val=='Did not arrive') {
            $('#statustype').val("-- Select Status --");
           },
           error: function(){
-            
+
           }
         });
 }
@@ -856,7 +856,7 @@ else  {
           dataType: 'json',
           success: function(data){
              var t = $('#querytblAllV').DataTable();
-    
+
             var i;
           for(i=0; i<data.length; i++){
             t.row.add( [
@@ -878,12 +878,12 @@ else  {
            $('#statustype').val("-- Select Status --");
           },
           error: function(){
-            
+
           }
         });
 }
 
-    });   
+    });
 
 
 </script>
