@@ -1824,12 +1824,13 @@ public function SendtoExValidator(){
 
 The following plant specimen that was deposited in our center needs your outmost help and knowledge in validating the said collection. Attached below are the details of the plant specimen for your reference. <br><br>
 
-To evaluate, please refer on this link  ".base_url()."user/confirm/".". In order to access the form, enter this code:<strong></strong> <br><br>
+To evaluate, please refer on this link  ".base_url()."user/confirm/".". 
 
-<strong>We look forward to hearing from you once you have received this message.</strong> Your response is a huge help for us and would be highly appreciated. Thank you and God bless! <br><br>
+<strong>We look forward to hearing from you once you have received this message. We will send the access code once our team receive your answer.</strong> Your response is a huge help for us and would be highly appreciated. Thank you and God bless! <br><br>
 Sincerly yours,<br>
 
-PUP Herbarium Team <br>
+PUP Herbarium Team <br> <br>
+<strong> ***************************************************************** </strong>
 	<br><strong>Family Name:</strong> ".$familyname. "<br> <strong>Scientific Name: </strong>" .$scientificname. "<br> <strong>Common Name: </strong>".$commonname."<br><strong> Description: </strong>".$description."");
 
 // Please let us know if you already read this message.
@@ -1906,9 +1907,9 @@ $email=$this->input->post('txtadd');
       $this->email->set_newline("\r\n");
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
-      $this->email->subject('Entry Code - PUP Herbarium External Validation');
+      $this->email->subject('Access Code - PUP Herbarium External Validation');
       $this->email->message("To Whom It May Concern, <br><br>
-	Good day! This will be the entry code [<strong>".$strcode."</strong>] that you will use to access the verification form. Thank you very much and God Bless! <br><br> Sincerly, <br> PUP Herbarium Team  ");
+	Good day! This will be the  code [<strong>".$strcode."</strong>] that you will use to access the verification form. Thank you very much and God Bless! <br><br> Sincerly, <br> PUP Herbarium Team  ");
 
       if($this->email->send())
      {
