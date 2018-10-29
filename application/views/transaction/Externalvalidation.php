@@ -675,6 +675,7 @@ if(data.intcount!=0){
                     showAllExValidators();
                     showExValOkay();
                     showExValAll();
+                    showExValForConfirmation();
                     $('#EVEmailCon').modal('hide');
                     document.getElementById("EVemailform").reset();
                          });
@@ -764,6 +765,7 @@ if(data.intcount!=0){
                     showAllExValidators();
                     showExValOkay();
                     showExValAll();
+                             showExValForConfirmation();
                     $('#EVForConfirmation').modal('hide');
                     document.getElementById("EVForConfirmationForm").reset();
                          });
@@ -1085,7 +1087,7 @@ $('#btnConfirm').click(function(event){
             if(response==true){
             let timerInterval
                     swal({
-                      title: 'MAMA Mo',
+                      title: 'Are you sure?',
                       text: 'Succesful!',
                       type: 'success',
                       timer: 1500,
@@ -1195,7 +1197,7 @@ $('#btnConfirm').click(function(event){
  $(document).on('click', '.view-EVForConfirmation', function(){
       var id = $(this).attr('data');
       $('#EVForConfirmation').modal('show');
-      $('#EVForConfirmation').find('.modal-title').text('Send Entry Code');
+      $('#EVForConfirmation').find('.modal-title').text('Send Access Code');
       $.ajax({
         type: 'ajax',
         method: 'get',
