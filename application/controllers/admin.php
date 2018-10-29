@@ -1837,10 +1837,13 @@ PUP Herbarium Team <br>
             $handle=opendir($path);
             while (($file = readdir($handle)))
                   {
-                       if(strlen($file)>3)
-                           $this->email->attach($path.$file);
+                       if(strlen($file)>0)
+                            $this->email->attach($path.$file);
                   }
             closedir($handle);
+
+
+
 	        if($this->email->send())
 	        {
 	        		//nagsend here
@@ -1856,15 +1859,12 @@ PUP Herbarium Team <br>
 			rmdir($path);
 			$this->exvalchangestatus($getdepositid);
 
- redirect('admin/Externalvalidation');
+ 			redirect('admin/Externalvalidation');
 	        }
 	        else
 	        {
 	        	//di nagsend here
 
-
-
-	        	//dedelete yung files
 	        redirect('admin/Externalvalidation');
             $handle=opendir($path);
             while (($file = readdir($handle)))
@@ -1874,6 +1874,9 @@ PUP Herbarium Team <br>
                   }
             closedir($handle);
             rmdir($path);
+
+	        	//dedelete yung files
+
 	        }
 
 
