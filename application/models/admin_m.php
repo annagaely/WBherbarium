@@ -2417,7 +2417,7 @@ public function updateEVStatus($getdepositid){
 	DECLARE @depositid 		INT;
 
 	Set @depositid ='$depositid'
-insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress,strCode) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."','".$getdepositid."')
+insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress,strCode,strNotif) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."','".$getdepositid."','Not Yet Done')
 
 		UPDATE tblPlantDeposit
 		SET strStatus = 'For Confirmation'
@@ -2439,6 +2439,8 @@ insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress,strCo
 		UPDATE tblPlantDeposit
 		SET strStatus = 'Sent For External Validation'
 		WHERE intPlantDepositID = ".$pdid.";
+
+		update tblSentForVerify set dtDateSent = getdate() where intDepositID=".$pdid."
 
 			";
 		if($this->db->query($query)){
@@ -3619,8 +3621,52 @@ tr:nth-child(even) {
 	}
 
 
+public function checkexvalnotif(){
+$query= $this->db->query("select * from tblSentForVerify where dtDateSent = CONVERT(VARCHAR(10),DATEADD(mm,2,CONVERT(VARCHAR(10), getdate(), 111)),111) AND strNotif !='Done'
 
 
+
+
+	");
+if($query->num_rows() > 0){
+		foreach ($query->result() as $r)
+		{
+			$result[] = array(
+					$r->intDepositID
+					);
+
+
+
+		}
+		 return $this->addexvalnotif($result);
+		}else{
+
+			return false;
+		}
+}
+
+
+
+	public function addexvalnotif($idarray){
+		foreach ($idarray as $r)
+		{
+
+$i = 0;
+	$query="
+		update tblSentForVerify 
+		set strNotif = 'Done'
+		where intDepositID = '".$r[$i]."';
+
+		insert into tblNotif(strNotifContent,intNotifStatus) VALUES ('2 Months passed since plant deposit ID:".$r[$i]." was sent to external validator',0);
+			";
+			$this->db->query($query);
+			$i+= $i+1;
+			
+		}
+return $i;
+
+
+	}
 
 }?>
 

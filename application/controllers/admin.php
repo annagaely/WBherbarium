@@ -1824,7 +1824,7 @@ public function SendtoExValidator(){
 
 The following plant specimen that was deposited in our center needs your outmost help and knowledge in validating the said collection. Attached below are the details of the plant specimen for your reference. <br><br>
 
-To evaluate, please refer on this link  ".base_url()."user/confirm/".". In order to access the form, enter this code:<strong> ".$getdepositid." </strong> <br><br>
+To evaluate, please refer on this link  ".base_url()."user/confirm/".". In order to access the form, enter this code:<strong></strong> <br><br>
 
 <strong>We look forward to hearing from you once you have received this message.</strong> Your response is a huge help for us and would be highly appreciated. Thank you and God bless! <br><br>
 Sincerly yours,<br>
@@ -2363,5 +2363,12 @@ $result = $this->m->showeacheval();
 echo json_encode($result);
 
 }
+
+
+public function exvalnotif(){
+	$result = $this->m->checkexvalnotif();
+	echo json_encode($result);
+	}
+
 
 }?>
