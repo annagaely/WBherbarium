@@ -2313,6 +2313,75 @@ $status = $this->input->post('txtStatus');
 		return $result;
 }
 
+	public function showExValForConfirmation(){
+		$result = array();
+		
+		$query = $this->db->query("select *,Concat(V.strLastname,', ',V.strFirstname,' ',V.strMiddlename,' ',V.strNameSuffix) as strFullName 
+from tblSentForVerify sfv 
+join tblPlantDeposit vd on sfv.intDepositID = vd.intPlantDepositID 
+join tblValidator v on sfv.intExValidatorID = v.intValidatorID where strStatus = 'For Confirmation'");
+		foreach ($query->result() as $r)
+		{
+
+
+			$btn = '<button class="btn btn-primary view-EVForConfirmation" data="'.$r->intSentVerifyID.'"><i class="fas fa-eye"></i></button>';
+
+
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->strFullName,
+					$r->strEmailAddress,
+					$btn,
+					$r->intSentVerifyID
+
+					);
+		}
+
+		return $result;
+}
+	public function showExValEval(){
+		$result = array();
+		$query = $this->db->query("select Concat(cl.strLastname,', ',cl.strFirstname,' ',cl.strMiddlename,' ',cl.strNameSuffix) as strFullName, intPlantDepositID,intAccessionNumber,dateDeposited,strStatus
+
+		from tblPlantDeposit pd join tblCollector cl
+		on pd.intCollectorID = cl.intCollectorID
+		where strStatus= 'Sent For External Validation'");
+
+
+		foreach ($query->result() as $r)
+		{
+
+		$btn = '<button class="btn btn-primary view-EVemailcon" data="'.$r->intPlantDepositID.'"><i class="fas fa-check"></i></button>';
+
+
+			$result[] = array(
+					$r->intPlantDepositID,
+					$r->intAccessionNumber,
+					$r->strFullName,
+					$r->dateDeposited,
+					$r->strStatus,
+					$btn,
+					$r->intPlantDepositID
+
+					);
+		}
+
+		return $result;
+}
+
+	public function viewEVForConfirmation(){
+		$id = $this->input->get('id');
+		$query = $this->db->query("select intPlantDepositID,strCode,sfv.strEmailAddress,Concat(V.strLastname,', ',V.strFirstname,' ',V.strMiddlename,' ',V.strNameSuffix) as strFullName 
+from tblSentForVerify sfv 
+join tblPlantDeposit vd on sfv.intDepositID = vd.intPlantDepositID 
+join tblValidator v on sfv.intExValidatorID = v.intValidatorID where strStatus = 'For Confirmation' AND intSentVerifyID = ".$id."");
+			if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return false;
+		}
+	}
+
 	public function viewEV(){
 		$id = $this->input->get('id');
 
@@ -2348,11 +2417,30 @@ public function updateEVStatus($getdepositid){
 	DECLARE @depositid 		INT;
 
 	Set @depositid ='$depositid'
-insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress,strCode) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."','".$getdepositid."')
+insert into tblSentForVerify(intDepositID,intExValidatorID,strEmailAddress,strCode,strNotif) values (@depositid,'".$result_explode[0]."','".$result_explode[1]."','".$getdepositid."','Not Yet Done')
+
+		UPDATE tblPlantDeposit
+		SET strStatus = 'For Confirmation'
+		WHERE intPlantDepositID = @depositid;
+
+			";
+		if($this->db->query($query)){
+			return true;
+
+		}else{
+			return false;
+		}
+	}
+
+	public function updateEVConfirmStatus($pdid){
+
+	$query="
 
 		UPDATE tblPlantDeposit
 		SET strStatus = 'Sent For External Validation'
-		WHERE intPlantDepositID = @depositid;
+		WHERE intPlantDepositID = ".$pdid.";
+
+		update tblSentForVerify set dtDateSent = getdate() where intDepositID=".$pdid."
 
 			";
 		if($this->db->query($query)){
@@ -2371,7 +2459,7 @@ public function showExValOkay(){
 
 		from tblPlantDeposit pd join tblCollector cl
 		on pd.intCollectorID = cl.intCollectorID
-		where strStatus= 'Sent For External Validation'");
+		where strStatus= 'With Results'");
 
 
 		foreach ($query->result() as $r)
@@ -2964,9 +3052,17 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 </style>
-&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly External Validation Report - '.$monthName.' '.date("Y").' </h3></center><br><br>
-			<table width="100%" cellspacing="5" cellpadding="5">
+
+&nbsp; &nbsp; &nbsp;
+
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly External Validation Report - '.$monthName.' '.date("Y").' 
+</h3>
+</center>
+<br><br>
+		<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
 			<td><center><b>Accession Number</td>
@@ -3001,14 +3097,14 @@ tr:nth-child(even) {
 					<p>'.$row->strCommonName.'</p></center>
 
 				</td>
-								<td width="50%">
+								<td width="50%"><center>
 
-					<p>'.$row->strFullLocality.' </p>
+					<p>'.$row->strFullLocality.' </p></center>
 
 				</td>
-								<td width="30%">
+								<td width="30%"><center>
 
-					<p>'.$row->dateVerified.' </p>
+					<p>'.$row->dateVerified.' </p> </center>
 				</td>
 			</tr>
 			';
@@ -3341,12 +3437,12 @@ tr:nth-child(even) {
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
-			<td><b>Plant Deposit ID</td>
-			<td><b>Collector Name</td>
-			<td><b>Date Collected</td>
-			<td><b>Scientific Name</td>
-			<td><b>Common Name</td>
-			<td><b>Location</td>
+			<td><strong><center>Plant Deposit ID</center></td>
+			<td><strong><center>Collector Name</center></td>
+			<td><strong><center>Date Collected</center></td>
+			<td><strong><center>Scientific Name</center></td>
+			<td><strong><center>Common Name</center></td>
+			<td><strong><center>Location</center></td>
 			
 			</tr>
 			</thead>';
@@ -3355,33 +3451,33 @@ tr:nth-child(even) {
 			$output .= '
 
 			<tr>
-				<td width="20%">
-					<p>'.$row->intDepositReqID.'</p>
+				<td width="20%"><center>
+					<p>'.$row->intDepositReqID.'</p></center>
 
 				</td>
-								<td width="20%">
+								<td width="20%"><center>
 
-					<p>'.$row->strFullName.'</p>
-
-				</td>
-								<td width="20%">
-
-					<p>'.$row->dtDateCollected.'</p>
+					<p>'.$row->strFullName.'</p></center>
 
 				</td>
-								<td width="20%">
+								<td width="20%"><center>
 
-					<p>'.$row->strScientificName.'</p>
-
-				</td>
-								<td width="20%">
-
-					<p>'.$row->strCommonName.' </p>
+					<p>'.$row->dtDateCollected.'</p></center>
 
 				</td>
-								<td width="50%">
+								<td width="20%"><center>
 
-					<p>'.$row->strFullLocation.' </p>
+					<p>'.$row->strScientificName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strCommonName.' </p></center>
+
+				</td>
+								<td width="50%"><center>
+
+					<p>'.$row->strFullLocation.' </p></center>
 				</td>
 			</tr>
 			';
@@ -3422,12 +3518,12 @@ tr:nth-child(even) {
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
-			<td><b>Visit Appointment ID</td>
-			<td><b>Date of Appointment</td>
-			<td><b>Name</td>
-			<td><b>Visit Purpose</td>
-			<td><b>Visit Description</td>
-			<td><b>Status</td>
+			<td><strong><center>Visit Appointment ID</center></strong></td>
+			<td><strong><center>Date of Appointment</center></strong></td>
+			<td><strong><center>Name</center></strong></td>
+			<td><strong><center>Visit Purpose</center></strong></td>
+			<td><strong><center>Visit Description</center></strong></td>
+			<td><strong><center>Status</center></strong></td>
 			
 			</tr>
 			</thead>';
@@ -3436,23 +3532,23 @@ tr:nth-child(even) {
 			$output .= '
 
 			<tr>
-				<td width="20%">
-					<p>'.$row->intAppointmentID.'</p>
+				<td width="20%"><center>
+					<p>'.$row->intAppointmentID.'</p></center>
 
 				</td>
-								<td width="20%">
+								<td width="20%"><center>
 
-					<p>'.$row->dtAppointmentDate.'</p>
-
-				</td>
-								<td width="20%">
-
-					<p>'.$row->strFullName.'</p>
+					<p>'.$row->dtAppointmentDate.'</p></center>
 
 				</td>
-								<td width="20%">
+								<td width="20%"><center>
 
-					<p>'.$row->strVisitPurpose.'</p>
+					<p>'.$row->strFullName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strVisitPurpose.'</p></center>
 
 				</td>
 								<td width="50%">
@@ -3460,9 +3556,9 @@ tr:nth-child(even) {
 					<p>'.$row->strVisitDescription.' </p>
 
 				</td>
-								<td width="20%">
+								<td width="20%"><center>
 
-					<p>'.$row->strStatus.' </p>
+					<p>'.$row->strStatus.' </p></center>
 				</td>
 			</tr>
 			';
@@ -3525,8 +3621,52 @@ tr:nth-child(even) {
 	}
 
 
+public function checkexvalnotif(){
+$query= $this->db->query("select * from tblSentForVerify where dtDateSent = CONVERT(VARCHAR(10),DATEADD(mm,2,CONVERT(VARCHAR(10), getdate(), 111)),111) AND strNotif !='Done'
 
 
+
+
+	");
+if($query->num_rows() > 0){
+		foreach ($query->result() as $r)
+		{
+			$result[] = array(
+					$r->intDepositID
+					);
+
+
+
+		}
+		 return $this->addexvalnotif($result);
+		}else{
+
+			return false;
+		}
+}
+
+
+
+	public function addexvalnotif($idarray){
+		foreach ($idarray as $r)
+		{
+
+$i = 0;
+	$query="
+		update tblSentForVerify 
+		set strNotif = 'Done'
+		where intDepositID = '".$r[$i]."';
+
+		insert into tblNotif(strNotifContent,intNotifStatus) VALUES ('2 Months passed since plant deposit ID:".$r[$i]." was sent to external validator',0);
+			";
+			$this->db->query($query);
+			$i+= $i+1;
+			
+		}
+return $i;
+
+
+	}
 
 }?>
 

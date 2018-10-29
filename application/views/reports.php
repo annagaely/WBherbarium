@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <!--
@@ -126,14 +125,28 @@
               <ul id="TransactionDropdown" class="collapse list-unstyled ">
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
+                   <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
-                <li><a href="<?php echo base_url(); ?>admin/Externalvalidation">External Validation</a></li>
-                <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
+                <li><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
+                  <ul id="ExValidationDropdown" class="collapse list-unstyled">
+                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp; Send to External Validator</a></li>
+                    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;Evaluation Results</a></li>
+                  </ul>
+                </li>
+                
 
                 </li>
               </ul>
             </li>
-              <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Queries</a></li>
+              <li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
+                <ul id="QueriesDropdown" class="collapse list-unstyled ">
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
+                   <li><a href="<?php echo base_url(); ?>admin/QueriesDeposits">&nbsp &nbsp &nbsp Deposits</a></li>
+                    <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
+                     <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
+                   </ul>
+                </li> 
             <li class="active"><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
 
 
@@ -319,18 +332,21 @@ if(data.intcount!=0){
               </div>
       </div>
 
-      <div class="card mx-4">
-        <div class="card-header align-items-center container-fluid">
-          <div class="row">
-            <div class="col-md-12">
           <!-- <a href="<?php echo base_url(); ?>admin/pdf" >Print Reports</a> -->
           <form method="post" action="<?php echo base_url(); ?>admin/pdf" enctype="multipart/form-data">
-            <label>Select a transaction</label><br/>
+
+  <div class="container-fluid mt-4">
+  <div class="row">
+
+   <div class="col-md-4">
+             <label>Select a transaction</label><br/>
           <select name='transaction' class="form-control">
             <option value='deposit'>Deposit</option>
             <option value='exval'>External Validation</option>
             <option value='visit'>Visit</option>
           </select>
+  </div>
+  <div class="col-md-4">
             <label>Select a month</label><br/>
           <select name='month' class="form-control">
             <option value=1>January</option>
@@ -346,49 +362,11 @@ if(data.intcount!=0){
             <option value=11>November</option>
             <option value=12>December</option>
           </select>
-          </div>
-          <div class="row">
-            <div class="col mx-3 mt-3">
-             <input type="submit" value ='Print Report' class="btn btn-primary">
-            </div>
-          </div>
-          </form>
-        
-      </div>
-        
-    
-      </div>
-    </div>
-<!--
-      <div class="card mx-4">
-
-        <div class="card-header"><h4>External Validation Reports</h4></div>
-       <div class="card-body">
-        <div class="table-responsive">
-          <table cellspacing="5" cellpadding="5" border="0">
-        <tbody><tr>
-            <td>Start Date:</td>
-            <td><input id="min" name="min" type="text"></td>
-        </tr>
-        <tr>
-            <td>End Date:</td>
-            <td><input id="max" name="max" type="text"></td>
-        </tr>
-    </tbody></table>
-           <table class="table dataTable no-footer" id="manageEVReqAlltbl">
-             <thead>
-               <tr>
-                 <th scope="col" width= "10%">Accession Number</th>
-                 <th scope="col" width= "10%">Species Name</th>
-                 <th scope="col" width= "10%">Collector Name</th>
-                 <th scope="col" width= "10%">Date Deposited</th>
-                 <th scope="col" width= "10%">Status</th>
-               </tr>
-             </thead>
-           </table>
-       </div>
-     </div>
-   </div>-->
-   <script type="text/javascript">
-       
-   </script>
+  </div>
+            <div class="col-md-8 mt-4" >
+             <input type="submit" value ='Print Report' class="btn btn-primary"  style="float: right;" >
+         </div>
+   
+  </div>
+</div>
+</form>
