@@ -2324,7 +2324,7 @@ join tblValidator v on sfv.intExValidatorID = v.intValidatorID where strStatus =
 		{
 
 
-			$btn = '<button class="btn btn-primary view-EVForConfirmation" data="'.$r->intSentVerifyID.'"><i class="fas fa-eye"></i></button>';
+			$btn = '<button class="btn btn-primary view-EVForConfirmation" data="'.$r->intSentVerifyID.'"><i class="fas fa-envelope"></i></button>';
 
 
 			$result[] = array(
