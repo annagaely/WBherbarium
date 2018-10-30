@@ -3668,5 +3668,33 @@ return $i;
 
 	}
 
+
+public function conSenttoOther(){
+
+    $depositid = $_POST['txtpdid'];
+
+
+	$query="
+
+
+		UPDATE tblPlantDeposit
+		SET strStatus = 'Send to other Validator'
+		WHERE intPlantDepositID = '".$depositid."';
+
+
+		delete tblSentForVerify
+		where intDepositID = ".$depositid.";
+
+			";
+		if($this->db->query($query)){
+			return true;
+
+		}else{
+			return false;
+		}
+	}
+
+
+
 }?>
 

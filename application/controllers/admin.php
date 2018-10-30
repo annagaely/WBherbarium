@@ -2375,4 +2375,10 @@ public function exvalnotif(){
 	}
 
 
+public function conSenttoOther(){
+$result = $this->m->conSenttoOther();
+echo json_encode($result);
+}
+
+
 }?>
