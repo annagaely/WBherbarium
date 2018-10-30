@@ -130,18 +130,18 @@
               </ul>
             </li>
             <li class="active"><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
-              <ul id="TransactionDropdown" class="collapse list-unstyled ">
+              <ul id="TransactionDropdown" class="collapse list-unstyled show">
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                    <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
-                <li><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
-  <ul id="ExValidationDropdown" class="collapse list-unstyled">
-    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp;Send to External Validator</a></li>
+                <li class="active"><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
+  <ul id="ExValidationDropdown" class="collapse list-unstyled show">
+    <li class="active" style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp;Send to External Validator</a></li>
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-            
+
 
                 </li>
               </ul>
@@ -154,6 +154,7 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
+
                 </li>       
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
@@ -164,10 +165,11 @@
 </li>
 
 
+
           <!-- STUDENT ASSISTANT PART-->
           <?php elseif($this->session->userdata('strRole')==='STUDENT ASSISTANT'):?>
              <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
-              <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
+              <ul id="MaintenanceDropdown" class="collapse list-unstyled">
 
 
               <!--  <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
@@ -177,8 +179,8 @@
 
               </ul>
             </li>
-            <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
-              <ul id="TransactionDropdown" class="collapse list-unstyled ">
+            <li class="active"><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
+              <ul id="TransactionDropdown" class="collapse list-unstyled show">
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
@@ -393,7 +395,7 @@ if(data.intcount!=0){
           <button class="tablinks" onclick="openCity(event, 'ForConfirmationTab') " style="color:white;">For Confirmation</button>
           <button class="tablinks" onclick="openCity(event, 'FourthTab') " style="color:white;">Sent For Validation</button>
           <button class="tablinks" onclick="openCity(event, 'SecondTab') " style="color:white;">Evaluated Specimen</button>
-          <button class="tablinks" onclick="openCity(event, 'ThirdTab') " style="color:white;">All</button>
+<!--           <button class="tablinks" onclick="openCity(event, 'ThirdTab') " style="color:white;">All</button> -->
 </div>
 
 
@@ -677,9 +679,10 @@ if(data.intcount!=0){
                       showConfirmButton: false
                     }).then(function() {
 
-                    showAllExValidators();
+                    showExValPending();
                     showExValOkay();
                     showExValAll();
+                   showExValEval();
                     showExValForConfirmation();
                     $('#EVEmailCon').modal('hide');
                     document.getElementById("EVemailform").reset();
@@ -734,6 +737,8 @@ if(data.intcount!=0){
 
                   <div class="modal-footer">
                     <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-secondary"> Cancel</button>
+                    <button type="button" id="btnMovetoPending" aria-label="Close" class="btn btn-secondary"> Send to Other Validator</button>
+
                      <input type="submit" id="btnSendCode" value="Send" class="btn btn-primary">
                      <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
                      <script type="text/javascript">
@@ -760,25 +765,72 @@ if(data.intcount!=0){
                                   },
                                   error: function(){
                                      let timerInterval
-                    swal({
-                      title: 'Email has been sent!',
-                      type: 'success',
-                      timer: 1500,
-                      showConfirmButton: false
-                    }).then(function() {
+                                  swal({
+                                    title: 'Email has been sent!',
+                                    type: 'success',
+                                    timer: 1500,
+                                    showConfirmButton: false
+                                  }).then(function() {
 
-                    showAllExValidators();
-                    showExValOkay();
-                    showExValAll();
-                             showExValForConfirmation();
-                    $('#EVForConfirmation').modal('hide');
-                    document.getElementById("EVForConfirmationForm").reset();
+                                  showExValPending();
+                                  showExValOkay();
+                                  showExValAll();
+                                  showExValEval();
+                                  showExValForConfirmation();
+                                  $('#EVForConfirmation').modal('hide');
+                                  document.getElementById("EVForConfirmationForm").reset();
                          });
                         }
                        });
                       }
                     })
                    });
+
+                            $('#btnMovetoPending').click(function(event){
+                                var data = $('#EVForConfirmationForm').serialize();
+                                event.preventDefault();
+                              swal({
+                                     title: 'Are you sure to move?',
+                                     type: 'warning',
+                                     showCancelButton: true,
+                                     confirmButtonColor: '#3085d6',
+                                     cancelButtonColor: '#d33',
+                                     confirmButtonText: 'Yes'
+                                   }).then((result) => {
+                                     if (result.value) {
+                                  $.ajax({
+                                  type: 'ajax',
+                                  method: 'post',
+                                  url: '<?php echo base_url() ?>admin/conSenttoOther',
+                                  data: data,
+                                  async: false,
+                                  dataType: 'json',
+                                  success: function(){
+                                  let timerInterval
+                                  swal({
+                                    title: 'Moved to Pending tab!',
+                                    type: 'success',
+                                    timer: 1500,
+                                    showConfirmButton: false
+                                  }).then(function() {
+
+                                  showExValPending();
+                                  showExValOkay();
+                                  showExValAll();
+                                  showExValEval();
+                                  showExValForConfirmation();
+                                  $('#EVForConfirmation').modal('hide');
+                                  document.getElementById("EVForConfirmationForm").reset();
+                         });
+                                  },
+                                  error: function(){
+
+                        }
+                       });
+                      }
+                    })
+                   });
+
                      </script>
                   </div>
           </form>
@@ -822,7 +874,7 @@ if(data.intcount!=0){
                      <div class="col-sm-8">
                      <select name="txtStatus" id="strStatus"  class="form-control">
                         <option value="Verified">Verified</option>
-                        <option value="Send to other Validator">Send to other Validator</option>
+                        <!-- <option value="Send to other Validator">Send to other Validator</option> -->
                         <option value="Needs Correction">Needs Correction</option>
                       </select>
                      </div>
@@ -924,6 +976,8 @@ showAllExValidators();
                     }).then(function() {
 
                     showExValPending();
+                    showExValEval();
+                    showExValForConfirmation();
                     showExValOkay();
                     showExValAll();
                     $('#viewEV').modal('hide');
@@ -1092,7 +1146,7 @@ $('#btnConfirm').click(function(event){
             if(response==true){
             let timerInterval
                     swal({
-                      title: 'Are you sure?',
+                      title: '',
                       text: 'Succesful!',
                       type: 'success',
                       timer: 1500,
@@ -1102,6 +1156,8 @@ $('#btnConfirm').click(function(event){
                     showExValPending();
                     showExValOkay();
                     showExValAll();
+                     showExValEval();
+                    showExValForConfirmation();
                     $('#EVConfirmation').modal('hide');
                     document.getElementById("EVConfirmForm").reset();
                   });
@@ -1218,7 +1274,7 @@ $('#btnConfirm').click(function(event){
           $('input[name=txtadd').val(data.strEmailAddress);
           $('input[name=txtID').val(data.strCode);
           $('input[name=txtpdid').val(data.intPlantDepositID);
-          
+
 
 
    },

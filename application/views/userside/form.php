@@ -180,7 +180,6 @@
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
       <script type="text/javascript">
         $('#btnSave').click(function(event){
-
       var data = $('#evalForm').serialize();
       //validate form
       if($('input[name=q1]:checked').length){
@@ -213,7 +212,6 @@
                             dataType: 'json',
                             success: function(response){
                               if(response==true){
-
                                 let timerInterval
                                 swal({
                                   title: 'Saved',
@@ -238,9 +236,7 @@
                             }
                           });
                           }
-
                           })
-
                       }else{
                             event.preventDefault();
                             swal({
@@ -329,9 +325,7 @@
             text: 'Please fill up all the required fields.'
           });
           }
-
            
-
       //     }else{
       //       event.preventDefault();
       //       swal({

@@ -142,21 +142,22 @@
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-       
-         
+
+
 
                 </li>
               </ul>
             </li>
 
-<li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
-                <ul id="QueriesDropdown" class="collapse list-unstyled ">
-                  <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
+<li class="active"><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
+                <ul id="QueriesDropdown" class="collapse list-unstyled show">
+                  <li class="active"><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
                   <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
                    <li><a href="<?php echo base_url(); ?>admin/QueriesDeposits">&nbsp &nbsp &nbsp Deposits</a></li>
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
+
                 </li>  
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
@@ -165,6 +166,7 @@
                   <li><a href="<?php echo base_url(); ?>admin/ReportsExVal">&nbsp;&nbsp;&nbsp;External Validation</a></li>
 </ul>
 </li>
+
 
 
           <!-- STUDENT ASSISTANT PART-->
@@ -218,7 +220,7 @@
           </div></a></li>
                   </ul>
                 </li>
- 
+
                 <!-- Log out-->
                  <li class="nav-item"><a href="<?php echo base_url()?>admin/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
@@ -439,7 +441,7 @@ else{
   $('#querytblOUser').dataTable().fnDraw();
   $('#querytblOUser').dataTable().fnDestroy();
   $('#querytblOUser').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
@@ -457,7 +459,7 @@ else{
   $('#querytblHerbariumStaff').dataTable().fnDraw();
   $('#querytblHerbariumStaff').dataTable().fnDestroy();
   $('#querytblHerbariumStaff').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllAdmin')?>",
@@ -506,7 +508,7 @@ else{
            $('#accounttype').val("-- Select Account Type --");
 
           },
-          error: function(){ 
+          error: function(){
           }
         });
 }
@@ -520,7 +522,7 @@ else {
           dataType: 'json',
           success: function(data){
              var t = $('#querytblHerbariumStaff').DataTable();
-    
+
             var i;
           for(i=0; i<data.length; i++){
             t.row.add( [
@@ -540,12 +542,12 @@ else {
            $('#accounttype').val("-- Select Account Type --");
           },
           error: function(){
-            
+
           }
         });
 }
 
-    });   
+    });
 
 
 </script>

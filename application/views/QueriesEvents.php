@@ -142,20 +142,22 @@
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-       
-         
+
+
 
                 </li>
               </ul>
             </li>
+
 <li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
                 <ul id="QueriesDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
-                  <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
+                  <li class="active"><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
                    <li><a href="<?php echo base_url(); ?>admin/QueriesDeposits">&nbsp &nbsp &nbsp Deposits</a></li>
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
+
                 </li>  
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
@@ -164,6 +166,7 @@
                   <li><a href="<?php echo base_url(); ?>admin/ReportsExVal">&nbsp;&nbsp;&nbsp;External Validation</a></li>
 </ul>
 </li>
+
 
           <!-- STUDENT ASSISTANT PART-->
           <?php elseif($this->session->userdata('strRole')==='STUDENT ASSISTANT'):?>
@@ -216,7 +219,7 @@
           </div></a></li>
                   </ul>
                 </li>
- 
+
                 <!-- Log out-->
                  <li class="nav-item"><a href="<?php echo base_url()?>admin/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
@@ -385,7 +388,7 @@ if(data.intcount!=0){
   $('#querytblEvents').dataTable().fnDraw();
   $('#querytblEvents').dataTable().fnDestroy();
   $('#querytblEvents').dataTable({
- 
+
        "processing": true,
        "serverSide": false,
        // "sAjaxSource": "<?php echo base_url('admin/showAllEvents')?>",
@@ -397,7 +400,7 @@ if(data.intcount!=0){
        }
    });
 }
-  
+
    $('#btnApply').click(function(event){
       var data = $('#queriesDateForm').serialize();
 
@@ -419,7 +422,7 @@ if(data.intcount!=0){
             data[i].eventtitle,
             data[i].description,
             data[i].startdate,
-           
+
         ] ).draw( false );
           }
            $('#divTableEvents').show();
@@ -427,7 +430,7 @@ if(data.intcount!=0){
            $('#dtEnd').val("");
 
           },
-          error: function(){ 
+          error: function(){
           }
         });
       });
