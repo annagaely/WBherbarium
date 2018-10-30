@@ -1824,12 +1824,13 @@ public function SendtoExValidator(){
 
 The following plant specimen that was deposited in our center needs your outmost help and knowledge in validating the said collection. Attached below are the details of the plant specimen for your reference. <br><br>
 
-To evaluate, please refer on this link  ".base_url()."user/confirm/".". In order to access the form, enter this code:<strong></strong> <br><br>
+To evaluate, please refer on this link  ".base_url()."user/confirm/".". 
 
-<strong>We look forward to hearing from you once you have received this message.</strong> Your response is a huge help for us and would be highly appreciated. Thank you and God bless! <br><br>
+<strong>We look forward to hearing from you once you have received this message. We will send the access code once our team receive your answer.</strong> Your response is a huge help for us and would be highly appreciated. Thank you and God bless! <br><br>
 Sincerly yours,<br>
 
-PUP Herbarium Team <br>
+PUP Herbarium Team <br> <br>
+<strong> ***************************************************************** </strong>
 	<br><strong>Family Name:</strong> ".$familyname. "<br> <strong>Scientific Name: </strong>" .$scientificname. "<br> <strong>Common Name: </strong>".$commonname."<br><strong> Description: </strong>".$description."");
 
 // Please let us know if you already read this message.
@@ -1837,10 +1838,13 @@ PUP Herbarium Team <br>
             $handle=opendir($path);
             while (($file = readdir($handle)))
                   {
-                       if(strlen($file)>3)
-                           $this->email->attach($path.$file);
+                       if(strlen($file)>0)
+                            $this->email->attach($path.$file);
                   }
             closedir($handle);
+
+
+
 	        if($this->email->send())
 	        {
 	        		//nagsend here
@@ -1856,15 +1860,12 @@ PUP Herbarium Team <br>
 			rmdir($path);
 			$this->exvalchangestatus($getdepositid);
 
- redirect('admin/Externalvalidation');
+ 			redirect('admin/Externalvalidation');
 	        }
 	        else
 	        {
 	        	//di nagsend here
 
-
-
-	        	//dedelete yung files
 	        redirect('admin/Externalvalidation');
             $handle=opendir($path);
             while (($file = readdir($handle)))
@@ -1874,6 +1875,9 @@ PUP Herbarium Team <br>
                   }
             closedir($handle);
             rmdir($path);
+
+	        	//dedelete yung files
+
 	        }
 
 
@@ -1903,9 +1907,9 @@ $email=$this->input->post('txtadd');
       $this->email->set_newline("\r\n");
       $this->email->from('WBHerbariumTA@gmail.com'); // change it to yours
       $this->email->to($email);// change it to yours
-      $this->email->subject('Entry Code - PUP Herbarium External Validation');
+      $this->email->subject('Access Code - PUP Herbarium External Validation');
       $this->email->message("To Whom It May Concern, <br><br>
-	Good day! This will be the entry code [<strong>".$strcode."</strong>] that you will use to access the verification form. Thank you very much and God Bless! <br><br> Sincerly, <br> PUP Herbarium Team  ");
+	Good day! This will be the  code [<strong>".$strcode."</strong>] that you will use to access the verification form. Thank you very much and God Bless! <br><br> Sincerly, <br> PUP Herbarium Team  ");
 
       if($this->email->send())
      {
@@ -2079,17 +2083,21 @@ echo json_encode($result);
 }
 
 
+// DEPOSIT REPORTS 
+// *************************************************************************
 
+public function ReportsDeposits() {
+		$title['title'] = "PUPHerbarium | Reports";
+		$this->load->view('ReportsDeposits', $title);
+		$this->load->view('templates/footer');
+	}
 
-
-
-
-public function pdf(){
-$transac= $this->input->post('transaction');
+public function depositpdf(){
+$status= $this->input->post('status');
 $month = $this->input->post('month');
 //$document->loadHtml($html);
-if($transac=='exval'){
-		$html_content = $this->m->pdfgetfromdb($month);
+if($status=='Pending'){
+		$html_content = $this->m->pdfgetfromdepositpending($month);
 		//$document->loadHtml($page);
 
 		//echo $output;
@@ -2112,9 +2120,34 @@ if($transac=='exval'){
 		}else{
 			
 		};
-}else if($transac=='deposit'){
-//deposit
-$html_content = $this->m->pdfgetfromdbdeposit($month);
+}else if($status=='For Depositing'){
+
+$html_content = $this->m->pdfgetfromdepositfordepo($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}else if($status=='Arrived'){
+
+$html_content = $this->m->pdfgetfromdepositarrived($month);
 		//$document->loadHtml($page);
 
 		//echo $output;
@@ -2138,8 +2171,216 @@ $html_content = $this->m->pdfgetfromdbdeposit($month);
 			
 		};
 }else{
-  //visit
-$html_content = $this->m->pdfgetfromdbvisit($month);
+
+$html_content = $this->m->pdfgetfromdepositdnarrive($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+	}
+}
+
+//****************************************************************************
+
+// VISITS REPORTS 
+// **************************************************************************
+
+public function ReportsVisits() {
+		$title['title'] = "PUPHerbarium | Reports";
+		$this->load->view('ReportsVisits', $title);
+		$this->load->view('templates/footer');
+	}
+
+public function visitspdf(){
+$status= $this->input->post('status');
+$month = $this->input->post('month');
+//$document->loadHtml($html);
+if($status=='Pending'){
+		$html_content = $this->m->pdfgetfromvisitpending($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}else if($status=='For Visiting'){
+
+$html_content = $this->m->pdfgetfromvisitforvisiting($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}
+else if($status=='Rejected'){
+
+$html_content = $this->m->pdfgetfromvisitrejected($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}else if($status=='Arrived'){
+
+$html_content = $this->m->pdfgetfromvisitarrived($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}else{
+
+$html_content = $this->m->pdfgetfromvisitdnarrive($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+	}
+}
+
+// EXVAL REPORTS 
+// *************************************************************************
+
+public function ReportsExVal() {
+		$title['title'] = "PUPHerbarium | Reports";
+		$this->load->view('ReportsExVal', $title);
+		$this->load->view('templates/footer');
+	}
+
+public function exvalpdf(){
+$status= $this->input->post('status');
+$month = $this->input->post('month');
+//$document->loadHtml($html);
+if($status=='Further Verification'){
+		$html_content = $this->m->pdfgetfromexvalfv($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}else if($status=='Verified'){
+
+$html_content = $this->m->pdfgetfromexvalverified($month);
 		//$document->loadHtml($page);
 
 		//echo $output;
@@ -2163,10 +2404,121 @@ $html_content = $this->m->pdfgetfromdbvisit($month);
 			
 		};
 
+}else{
+
+$html_content = $this->m->pdfgetfromexvaldisapproved($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+	}
 }
 
+//****************************************************************************
 
-}
+//****************************************************************************
+
+// public function pdf(){
+// $transac= $this->input->post('transaction');
+// $month = $this->input->post('month');
+// //$document->loadHtml($html);
+// if($transac=='exval'){
+// 		$html_content = $this->m->pdfgetfromdb($month);
+// 		//$document->loadHtml($page);
+
+// 		//echo $output;
+// 		if($html_content!='false'){
+// 		$this->pdf->loadHtml($html_content);
+
+// 		//set page size and orientation
+
+// 		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+// 		//Render the HTML as PDF
+
+// 		$this->pdf->render();
+
+// 		//Get output of generated pdf in Browser
+
+// 		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+// 		//1  = Download
+// 		//0 = Preview
+// 		}else{
+			
+// 		};
+// }else if($transac=='deposit'){
+// //deposit
+// $html_content = $this->m->pdfgetfromdbdeposit($month);
+// 		//$document->loadHtml($page);
+
+// 		//echo $output;
+// 		if($html_content!='false'){
+// 		$this->pdf->loadHtml($html_content);
+
+// 		//set page size and orientation
+
+// 		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+// 		//Render the HTML as PDF
+
+// 		$this->pdf->render();
+
+// 		//Get output of generated pdf in Browser
+
+// 		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+// 		//1  = Download
+// 		//0 = Preview
+// 		}else{
+			
+// 		};
+// }else{
+//   //visit
+// $html_content = $this->m->pdfgetfromdbvisit($month);
+// 		//$document->loadHtml($page);
+
+// 		//echo $output;
+// 		if($html_content!='false'){
+// 		$this->pdf->loadHtml($html_content);
+
+// 		//set page size and orientation
+
+// 		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+// 		//Render the HTML as PDF
+
+// 		$this->pdf->render();
+
+// 		//Get output of generated pdf in Browser
+
+// 		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+// 		//1  = Download
+// 		//0 = Preview
+// 		}else{
+			
+// 		};
+
+// }
+
+
+// }
 
 //QUERIES
 public function QueriesAccounts() {
@@ -2260,13 +2612,6 @@ public function QueriesVisits() {
 	$this->load->view('templates/footer');
 }
 
-public function showAllPendingV()
-{
-
-    $output = $this->admin_m->showAllPendingV();
- echo json_encode($output);
-
-}
 public function showAllForVisitingV()
 {
 
@@ -2369,6 +2714,12 @@ public function exvalnotif(){
 	$result = $this->m->checkexvalnotif();
 	echo json_encode($result);
 	}
+
+
+public function conSenttoOther(){
+$result = $this->m->conSenttoOther();
+echo json_encode($result);
+}
 
 
 }?>

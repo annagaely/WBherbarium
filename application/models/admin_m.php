@@ -2324,7 +2324,7 @@ join tblValidator v on sfv.intExValidatorID = v.intValidatorID where strStatus =
 		{
 
 
-			$btn = '<button class="btn btn-primary view-EVForConfirmation" data="'.$r->intSentVerifyID.'"><i class="fas fa-eye"></i></button>';
+			$btn = '<button class="btn btn-primary view-EVForConfirmation" data="'.$r->intSentVerifyID.'"><i class="fas fa-envelope"></i></button>';
 
 
 			$result[] = array(
@@ -3013,106 +3013,6 @@ if($querycheckeventtbl->num_rows()==0){
 		}
 	}
 
-// 	public function getmonth($key){
-// 		$query = $this->db->query("declare @currentyr int;
-
-// set @currentyr=(select YEAR(getdate()))
-
-// SELECT *
-// FROM viewHerbariumSheet
-// WHERE MONTH(dateVerified)='10' AND YEAR(dateVerified)=@currentyr");
-
-// 		if($query->num_rows() > 0){
-
-
-// }}
-	public function pdfgetfromdb($key){
-		$query = $this->db->query("SELECT *
-FROM viewHerbariumSheet vh 
-join tblSentForVerify SFV
-on sfv.intDepositID = vh.intPlantDepositID
-WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018' ");
-$month = $this->input->post('month');
-$dateObj   = DateTime::createFromFormat('!m', $month);
-$monthName = $dateObj->format('F');
-			$output = '<style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-</style>
-
-&nbsp; &nbsp; &nbsp;
-
-<img src="assets/bower_components/pdfheader.png" />
-<center>
-<h3>
-Monthly External Validation Report - '.$monthName.' '.date("Y").' 
-</h3>
-</center>
-<br><br>
-		<table width="100%" cellspacing="5" cellpadding="5">
-			<thead>
-			<tr>
-			<td><center><b>Accession Number</td>
-			<td><center><b>Family Name</td>
-			<td><center><b>Scientific Name</td>
-			<td><center><b>Common Name</td>
-			<td><center><b>Full Locality</td>
-			<td><center><b>Date Verified</td>
-			</tr>
-			</thead>';
-		foreach($query->result() as $row)
-		{
-			$output .= '
-
-			<tr>
-				<td width="20%">
-					<p>'.$row->strAccessionNumber.'</p>
-
-				</td>
-								<td width="20%">
-
-					<p>'.$row->strFamilyName.'</p>
-
-				</td>
-								<td width="20%">
-
-					<p>'.$row->strScientificName.'</p>
-
-				</td>
-								<td width="20%"><center>
-
-					<p>'.$row->strCommonName.'</p></center>
-
-				</td>
-								<td width="50%"><center>
-
-					<p>'.$row->strFullLocality.' </p></center>
-
-				</td>
-								<td width="30%"><center>
-
-					<p>'.$row->dateVerified.' </p> </center>
-				</td>
-			</tr>
-			';
-		}
-		$output .= '</table>';
-		return $output;
-
-	}
 
 //Queries
 public function showAllOUser()
@@ -3342,21 +3242,6 @@ public function showAllV()
 return $query->result();
 	}
 
-public function showAllPendingEV()
-	{
-
-		$startdate =$this->input->post('dateStart');
-		$enddate =$this->input->post('dateEnd');
-		$status = $this->input->post('status');
-
-		$result = array();
-		$query = $this->db->query("select strAccessionNumber,strScientificName,strCollector,dateDeposited,strStatus
-
-		from viewVerifyingDeposit
-		   where (dateDeposited BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
-
-return $query->result();
-	}
 
 public function showAllEV()
 	{
@@ -3366,9 +3251,9 @@ public function showAllEV()
 		$status = $this->input->post('status');
 
 		$result = array();
-		$query = $this->db->query("select strAccessionNumber,strScientificName,strCollector,dateDeposited,strStatus
+		$query = $this->db->query("select strAccessionNumber,strCollector,dateDeposited,strStatus
 
-		from viewVerifyingDeposit
+		from viewPlantDeposit
 		   where (dateDeposited BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
 
 return $query->result();
@@ -3382,9 +3267,9 @@ public function showAllVerifiedEV()
 		$status = $this->input->post('status');
 
 		$result = array();
-		$query = $this->db->query("select strAccessionNumber,strScientificName,strCollector,dateDeposited,strStatus
+		$query = $this->db->query("select strAccessionNumber,strCollector,dateDeposited,strStatus
 
-		from viewVerifyingDeposit
+		from viewPlantDeposit
 		   where (dateDeposited BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
 
 return $query->result();
@@ -3398,20 +3283,44 @@ public function showAllNotVErifiedEV()
 		$status = $this->input->post('status');
 
 		$result = array();
-		$query = $this->db->query("select strAccessionNumber,strScientificName,strCollector,dateDeposited,strStatus
+		$query = $this->db->query("select strAccessionNumber,strCollector,dateDeposited,strStatus
 
 		from viewVerifyingDeposit
 		   where (dateDeposited BETWEEN '".$startdate."' AND '".$enddate."') AND (strStatus = '".$status."')");
 
 return $query->result();
 	}
- 	public function pdfgetfromdbdeposit($key){
-		$query = $this->db->query("SELECT *,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
-FROM tblDepositReq dr
-join tblOnlineUser ou
-on ou.intOUserID = dr.intOUserID
-WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Arrived'");
 
+
+
+
+
+public function getmonth($key){
+		$query = $this->db->query("declare @currentyr int;
+
+set @currentyr=(select YEAR(getdate()))
+
+SELECT *
+FROM viewHerbariumSheet
+WHERE MONTH(dateVerified)='10' AND YEAR(dateVerified)=@currentyr");
+
+		if($query->num_rows() > 0){
+
+
+}}
+
+
+//EXTERNAL VALIDATION REPORTS
+//***************************************************************************
+public function pdfgetfromexvalverified($key){
+		$query = $this->db->query("SELECT *
+FROM viewHerbariumSheet vh 
+join tblSentForVerify SFV
+on sfv.intDepositID = vh.intPlantDepositID
+WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018' ");
+
+
+$status = $this->input->post('status');
 $month = $this->input->post('month');
 $dateObj   = DateTime::createFromFormat('!m', $month);
 $monthName = $dateObj->format('F');
@@ -3432,8 +3341,283 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 </style>
+
+&nbsp; &nbsp; &nbsp;
+
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly External Validation Report - '.$monthName.' '.date("Y").' 
+</h3><h4> '.$status.' Requests </h4>
+</center>
+<br><br>
+		<table width="100%" cellspacing="5" cellpadding="5">
+			<thead>
+			<tr>
+			<td><center><b>Accession Number</td>
+			<td><center><b>Family Name</td>
+			<td><center><b>Scientific Name</td>
+			<td><center><b>Common Name</td>
+			<td><center><b>Full Locality</td>
+			<td><center><b>Date Verified</td>
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="20%">
+					<p>'.$row->strAccessionNumber.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strFamilyName.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strScientificName.'</p>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strCommonName.'</p></center>
+
+				</td>
+								<td width="50%"><center>
+
+					<p>'.$row->strFullLocality.' </p></center>
+
+				</td>
+								<td width="30%"><center>
+
+					<p>'.$row->dateVerified.' </p> </center>
+				</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output;
+
+	}
+
+public function pdfgetfromexvaldisapproved($key){
+		$query = $this->db->query("SELECT *
+FROM viewPlantDeposit WHERE strStatus = 'Disapproved'");
+
+
+$status = $this->input->post('status');
+$month = $this->input->post('month');
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+&nbsp; &nbsp; &nbsp;
+
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly External Validation Report - '.$monthName.' '.date("Y").' 
+</h3><h4> '.$status.' Requests </h4>
+</center>
+<br><br>
+		<table width="100%" cellspacing="5" cellpadding="5">
+			<thead>
+			<tr>
+			<td><center><b>Accession Number</td>
+			<td><center><b>Family Name</td>
+			<td><center><b>Scientific Name</td>
+			<td><center><b>Common Name</td>
+			<td><center><b>Full Locality</td>
+
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="20%">
+					<p>'.$row->strAccessionNumber.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strFamilyName.'</p>
+
+				</td>
+								<td width="20%">
+
+					<p>'.$row->strScientificName.'</p>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strCommonName.'</p></center>
+
+				</td>
+								<td width="50%"><center>
+
+					<p>'.$row->strFullLocality.' </p></center>
+
+				</td>
+								
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output;
+
+	}
+
+// public function getmonth1($key){
+// 		$query = $this->db->query("declare @currentyr int;
+
+// set @currentyr=(select YEAR(getdate()))
+
+// SELECT *
+// FROM viewPlantDeposit
+// WHERE MONTH(dateDeposited)='10' AND YEAR(dateDeposited)=@currentyr");
+
+// 		if($query->num_rows() > 0){
+
+
+// }}
+
+public function pdfgetfromexvalfv($key){
+	
+
+
+$status = $this->input->post('status');
+$month = $this->input->post('month');
+
+// 	$query = $this->db->query("SELECT *
+// FROM tblPlantDeposit
+// WHERE (dateDeposited BETWEEN '2018-".$month."-01' AND '2018-".$month."-31') AND strStatus='Further Verification'");
+
+
+	$query = $this->db->query("SELECT *
+FROM tblPlantDeposit
+WHERE MONTH(dateDeposited)='".$key."' AND YEAR(dateDeposited)='2018' AND strStatus='Further Verification'");
+
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+&nbsp; &nbsp; &nbsp;
+
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly External Validation Report - '.$monthName.' '.date("Y").' 
+</h3><h4> '.$status.' Requests </h4>
+</center>
+<br><br>
+		<table width="100%" cellspacing="5" cellpadding="5">
+			<thead>
+			<tr>
+			<td><center><b>Accession Number</td>
+			<td><center><b>Deposit ID</td>
+			<td><center><b>Full Locality</td>
+			<td><center><b>Description</td>
+			<td><center><b>Date Deposited</td>
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="10%">
+					<p>'.$row->strAccessionNumber.'</p>
+				</td>
+				<td width="10%"><center>
+					<p>'.$row->intPlantDepositID.'</p></center>
+				</td>
+				<td width="30%">
+					<p>'.$row->strFullLocality.' </p>
+				</td>
+				<td width="20%">
+					<p>'.$row->strDescription.'</p>
+				<td width="20%"><center>
+					<p>'.$row->dateDeposited.' </p> </center>
+				</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output;
+
+	}
+
+  
+ //DEPOSIT REPORTS
+
+//**********************************************************//
+public function pdfgetfromdepositpending($key){
+		$query = $this->db->query("SELECT *,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
+FROM tblDepositReq dr
+join tblOnlineUser ou
+on ou.intOUserID = dr.intOUserID
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Pending'");
+
+$month = $this->input->post('month');
+$status = $this->input->post('status');
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
 &nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' </h3></center><br><br>
+<center><h3>Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -3486,13 +3670,15 @@ tr:nth-child(even) {
 		return $output;
 
 	}
-	public function pdfgetfromdbvisit($key){
+
+public function pdfgetfromdepositfordepo($key){
 		$query = $this->db->query("SELECT *,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
-FROM tblAppointments dr
+FROM tblDepositReq dr
 join tblOnlineUser ou
 on ou.intOUserID = dr.intOUserID
-WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Arrived'");
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND (strStatus='For Depositing' OR strstatus = 'Email Sent')");
 
+$status = $this->input->post('status');
 $month = $this->input->post('month');
 $dateObj   = DateTime::createFromFormat('!m', $month);
 $monthName = $dateObj->format('F');
@@ -3514,7 +3700,260 @@ tr:nth-child(even) {
 }
 </style>
 &nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' </h3></center><br><br>
+<center><h3>Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+			<table width="100%" cellspacing="5" cellpadding="5">
+			<thead>
+			<tr>
+			<td><strong><center>Plant Deposit ID</center></td>
+			<td><strong><center>Collector Name</center></td>
+			<td><strong><center>Date Collected</center></td>
+			<td><strong><center>Scientific Name</center></td>
+			<td><strong><center>Common Name</center></td>
+			<td><strong><center>Location</center></td>
+			
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="20%"><center>
+					<p>'.$row->intDepositReqID.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strFullName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->dtDateCollected.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strScientificName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strCommonName.' </p></center>
+
+				</td>
+								<td width="50%"><center>
+
+					<p>'.$row->strFullLocation.' </p></center>
+				</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output;
+
+	}
+
+public function pdfgetfromdepositarrived($key){
+		$query = $this->db->query("SELECT *,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
+FROM tblDepositReq dr
+join tblOnlineUser ou
+on ou.intOUserID = dr.intOUserID
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Arrived'");
+
+$status = $this->input->post('status');
+$month = $this->input->post('month');
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
+<center><h3>Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+			<table width="100%" cellspacing="5" cellpadding="5">
+			<thead>
+			<tr>
+			<td><strong><center>Plant Deposit ID</center></td>
+			<td><strong><center>Collector Name</center></td>
+			<td><strong><center>Date Collected</center></td>
+			<td><strong><center>Scientific Name</center></td>
+			<td><strong><center>Common Name</center></td>
+			<td><strong><center>Location</center></td>
+			
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="20%"><center>
+					<p>'.$row->intDepositReqID.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strFullName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->dtDateCollected.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strScientificName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strCommonName.' </p></center>
+
+				</td>
+								<td width="50%"><center>
+
+					<p>'.$row->strFullLocation.' </p></center>
+				</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output;
+
+	}
+
+ public function pdfgetfromdepositdnarrive($key){
+		$query = $this->db->query("SELECT *,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
+FROM tblDepositReq dr
+join tblOnlineUser ou
+on ou.intOUserID = dr.intOUserID
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Did not arrive'");
+
+$status = $this->input->post('status');
+$month = $this->input->post('month');
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
+<center><h3>Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+			<table width="100%" cellspacing="5" cellpadding="5">
+			<thead>
+			<tr>
+			<td><strong><center>Plant Deposit ID</center></td>
+			<td><strong><center>Collector Name</center></td>
+			<td><strong><center>Date Collected</center></td>
+			<td><strong><center>Scientific Name</center></td>
+			<td><strong><center>Common Name</center></td>
+			<td><strong><center>Location</center></td>
+			
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="20%"><center>
+					<p>'.$row->intDepositReqID.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strFullName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->dtDateCollected.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strScientificName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strCommonName.' </p></center>
+
+				</td>
+								<td width="50%"><center>
+
+					<p>'.$row->strFullLocation.' </p></center>
+				</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output;
+
+	}
+//*************************************************************************//
+
+ //VISIT REPORTS
+
+//**********************************************************//
+public function pdfgetfromvisitpending($key){
+		$query = $this->db->query("SELECT *,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
+FROM tblAppointments dr
+join tblOnlineUser ou
+on ou.intOUserID = dr.intOUserID
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Pending'");
+
+$status = $this->input->post('status');
+$month = $this->input->post('month');
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
+<center><h3>Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -3566,10 +4005,340 @@ tr:nth-child(even) {
 		$output .= '</table>';
 		return $output; 
 	}
-  
 
 
-	public function showalleval()
+	public function pdfgetfromvisitforvisiting($key){
+		$query = $this->db->query("SELECT *,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
+FROM tblAppointments dr
+join tblOnlineUser ou
+on ou.intOUserID = dr.intOUserID
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND (strStatus='For Visiting' OR strStatus= 'Email Sent')");
+
+$month = $this->input->post('month');
+$status = $this->input->post('status');
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
+<center><h3>Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+			<table width="100%" cellspacing="5" cellpadding="5">
+			<thead>
+			<tr>
+			<td><strong><center>Visit Appointment ID</center></strong></td>
+			<td><strong><center>Date of Appointment</center></strong></td>
+			<td><strong><center>Name</center></strong></td>
+			<td><strong><center>Visit Purpose</center></strong></td>
+			<td><strong><center>Visit Description</center></strong></td>
+			<td><strong><center>Status</center></strong></td>
+			
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="20%"><center>
+					<p>'.$row->intAppointmentID.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->dtAppointmentDate.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strFullName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strVisitPurpose.'</p></center>
+
+				</td>
+								<td width="50%">
+
+					<p>'.$row->strVisitDescription.' </p>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strStatus.' </p></center>
+				</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output; 
+	}
+
+public function pdfgetfromvisitrejected($key){
+		$query = $this->db->query("SELECT *,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
+FROM tblAppointments dr
+join tblOnlineUser ou
+on ou.intOUserID = dr.intOUserID
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Rejected'");
+
+$month = $this->input->post('month');
+$status = $this->input->post('status');
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
+<center><h3>Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+			<table width="100%" cellspacing="5" cellpadding="5">
+			<thead>
+			<tr>
+			<td><strong><center>Visit Appointment ID</center></strong></td>
+			<td><strong><center>Date of Appointment</center></strong></td>
+			<td><strong><center>Name</center></strong></td>
+			<td><strong><center>Visit Purpose</center></strong></td>
+			<td><strong><center>Visit Description</center></strong></td>
+			<td><strong><center>Status</center></strong></td>
+			
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="20%"><center>
+					<p>'.$row->intAppointmentID.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->dtAppointmentDate.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strFullName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strVisitPurpose.'</p></center>
+
+				</td>
+								<td width="50%">
+
+					<p>'.$row->strVisitDescription.' </p>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strStatus.' </p></center>
+				</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output; 
+	}
+
+public function pdfgetfromvisitarrived($key){
+		$query = $this->db->query("SELECT *,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
+FROM tblAppointments dr
+join tblOnlineUser ou
+on ou.intOUserID = dr.intOUserID
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Arrived'");
+
+$month = $this->input->post('month');
+$status = $this->input->post('status');
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
+<center><h3>Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+			<table width="100%" cellspacing="5" cellpadding="5">
+			<thead>
+			<tr>
+			<td><strong><center>Visit Appointment ID</center></strong></td>
+			<td><strong><center>Date of Appointment</center></strong></td>
+			<td><strong><center>Name</center></strong></td>
+			<td><strong><center>Visit Purpose</center></strong></td>
+			<td><strong><center>Visit Description</center></strong></td>
+			<td><strong><center>Status</center></strong></td>
+			
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="20%"><center>
+					<p>'.$row->intAppointmentID.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->dtAppointmentDate.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strFullName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strVisitPurpose.'</p></center>
+
+				</td>
+								<td width="50%">
+
+					<p>'.$row->strVisitDescription.' </p>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strStatus.' </p></center>
+				</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output; 
+	}
+
+
+public function pdfgetfromvisitdnarrive($key){
+		$query = $this->db->query("SELECT *,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName
+FROM tblAppointments dr
+join tblOnlineUser ou
+on ou.intOUserID = dr.intOUserID
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Did not arrive'");
+
+$month = $this->input->post('month');
+$status = $this->input->post('status');
+$dateObj   = DateTime::createFromFormat('!m', $month);
+$monthName = $dateObj->format('F');
+			$output = '<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
+<center><h3>Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+			<table width="100%" cellspacing="5" cellpadding="5">
+			<thead>
+			<tr>
+			<td><strong><center>Visit Appointment ID</center></strong></td>
+			<td><strong><center>Date of Appointment</center></strong></td>
+			<td><strong><center>Name</center></strong></td>
+			<td><strong><center>Visit Purpose</center></strong></td>
+			<td><strong><center>Visit Description</center></strong></td>
+			<td><strong><center>Status</center></strong></td>
+			
+			</tr>
+			</thead>';
+		foreach($query->result() as $row)
+		{
+			$output .= '
+
+			<tr>
+				<td width="20%"><center>
+					<p>'.$row->intAppointmentID.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->dtAppointmentDate.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strFullName.'</p></center>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strVisitPurpose.'</p></center>
+
+				</td>
+								<td width="50%">
+
+					<p>'.$row->strVisitDescription.' </p>
+
+				</td>
+								<td width="20%"><center>
+
+					<p>'.$row->strStatus.' </p></center>
+				</td>
+			</tr>
+			';
+		}
+		$output .= '</table>';
+		return $output; 
+	}
+
+//*************************************************************************//
+
+public function showalleval()
 	{
 		$result = array();
 		$query = $this->db->select("*,Concat(strLastname,', ',strFirstname,' ',strMiddlename,' ',strNameSuffix) as strFullName")
@@ -3667,6 +4436,34 @@ return $i;
 
 
 	}
+
+
+public function conSenttoOther(){
+
+    $depositid = $_POST['txtpdid'];
+
+
+	$query="
+
+
+		UPDATE tblPlantDeposit
+		SET strStatus = 'Send to other Validator'
+		WHERE intPlantDepositID = '".$depositid."';
+
+
+		delete tblSentForVerify
+		where intDepositID = ".$depositid.";
+
+			";
+		if($this->db->query($query)){
+			return true;
+
+		}else{
+			return false;
+		}
+	}
+
+
 
 }?>
 
