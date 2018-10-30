@@ -147,7 +147,7 @@
 
                 </li>
               </ul>
-            </li
+            </li>
 <li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
                 <ul id="QueriesDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
@@ -158,9 +158,13 @@
                    </ul>
                 </li>  
   
-            <li><a href="<?php echo base_url();?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
-
-
+             <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
+                <ul id="ReportsDropdown" class="collapse list-unstyled ">
+                  <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/ReportsVisits">&nbsp;&nbsp;&nbsp;Visits</a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/ReportsExVal">&nbsp;&nbsp;&nbsp;External Validation</a></li>
+</ul>
+</li>
 
           <!-- STUDENT ASSISTANT PART-->
           <?php elseif($this->session->userdata('strRole')==='STUDENT ASSISTANT'):?>
@@ -336,7 +340,6 @@ if(data.intcount!=0){
   <label>Status:</label>
    <select id="statustype" name="status" class="form-control">
       <option>-- Select Status --</option>
-      <option>Pending</option>
       <option>Further Verification</option>
       <option>Verified</option>
       <option>Not Verified</option>
@@ -359,25 +362,7 @@ if(data.intcount!=0){
 </div>
 </form>
 
-<div class="mx-4">
-   <div class="col-md-20 mt-4" id="divTablePendingEV">
-      <div class="card  px-3 py-3 ">
-        <div class="table-responsive">
-          <table class="table table-striped table-hover" id="querytblPendingEV">
-            <thead>
-              <tr role="row">
-                <th scope="col" width= "10%">Accession Number</th>
-                <th scope="col" width= "20%">Scientific Name</th>
-                <th scope="col" width= "10%">Collector's Name</th>
-                <th scope="col" width= "10%">Date Deposited</th>
-                <th scope="col" width= "10%">Status</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
 <div class="mx-4">
    <div class="col-md-20 mt-4" id="divTableEV">
@@ -387,7 +372,6 @@ if(data.intcount!=0){
             <thead>
               <tr role="row">
                 <th scope="col" width= "10%">Accession Number</th>
-                <th scope="col" width= "20%">Scientific Name</th>
                 <th scope="col" width= "10%">Collector's Name</th>
                 <th scope="col" width= "10%">Date Deposited</th>
                 <th scope="col" width= "10%">Status</th>
@@ -407,7 +391,6 @@ if(data.intcount!=0){
             <thead>
               <tr role="row">
                 <th scope="col" width= "10%">Accession Number</th>
-                <th scope="col" width= "20%">Scientific Name</th>
                 <th scope="col" width= "10%">Collector's Name</th>
                 <th scope="col" width= "10%">Date Deposited</th>
                 <th scope="col" width= "10%">Status</th>
@@ -428,7 +411,6 @@ if(data.intcount!=0){
             <thead>
               <tr role="row">
                 <th scope="col" width= "10%">Accession Number</th>
-                <th scope="col" width= "20%">Scientific Name</th>
                 <th scope="col" width= "10%">Collector's Name</th>
                 <th scope="col" width= "10%">Date Deposited</th>
                 <th scope="col" width= "10%">Status</th>
@@ -443,7 +425,7 @@ if(data.intcount!=0){
 <script type="text/javascript">
 
   $(document).ready(function () {
-    $('#divTablePendingEV').hide();
+
     $('#divTableEV').hide();
     $('#divTableNotVerifiedEV').hide();
     $('#divTableVerifiedEV').hide();
@@ -455,16 +437,8 @@ if(data.intcount!=0){
 
  $("#statustype").change(function () {
   var val = $(this).val();
-  if(val=='Pending'){
-    $('#divTablePendingEV').show();
-    $('#divTableEV').hide();
-    $('#divTableNotVerifiedEV').hide();
-    $('#divTableVerifiedEV').hide();
- 
-}
-else if(val=='Further Verification')
+  if(val=='Further Verification')
 { 
-    $('#divTablePendingEV').hide();
     $('#divTableEV').show();
     $('#divTableNotVerifiedEV').hide();
     $('#divTableVerifiedEV').hide();
@@ -472,7 +446,7 @@ else if(val=='Further Verification')
 }
 else if(val=='Verified')
 { 
-    $('#divTablePendingEV').hide();
+  
     $('#divTableEV').hide();
     $('#divTableNotVerifiedEV').hide();
     $('#divTableVerifiedEV').show();
@@ -480,7 +454,7 @@ else if(val=='Verified')
 }
 else 
 { 
-    $('#divTablePendingEV').hide();
+  
     $('#divTableEV').hide();
     $('#divTableNotVerifiedEV').show();
     $('#divTableVerifiedEV').hide();
@@ -494,23 +468,7 @@ else
 
 <script type="text/javascript">
 
-  function showAllPendingEV(){
-  $('#querytblPendingEV').dataTable().fnClearTable();
-  $('#querytblPendingEV').dataTable().fnDraw();
-  $('#querytblPendingEV').dataTable().fnDestroy();
-  $('#querytblPendingEV').dataTable({
- 
-       "processing": true,
-       "serverSide": false,
-       // "sAjaxSource": "<?php echo base_url('admin/showAllOUser')?>",
-       "deferLoading": 10,
-       "bPaginate": true,
-       "aaSorting": [],
-       "fnInitComplete": function(){
 
-       }
-   });
-  }
 
    function showAllEV(){
   $('#querytblEV').dataTable().fnClearTable();
@@ -572,47 +530,7 @@ else
 
 
   var val = $('#statustype').val();
-  if(val=='Pending'){
-        $.ajax({
-          type: 'ajax',
-          method: 'post',
-          url: '<?php echo base_url() ?>admin/showAllPendingEV',
-          data: data,
-          async: false,
-          dataType: 'json',
-          success: function(data){
-              $('#querytblPendingEV').dataTable().fnClearTable();
-              $('#querytblPendingEV').dataTable().fnDraw();
-              $('#querytblPendingEV').dataTable().fnDestroy();
-            var t = $('#querytblPendingEV').DataTable();
-            var i;
-          for(i=0; i<data.length; i++){
-            t.row.add( [
-            data[i].strAccessionNumber,
-            data[i].strScientificName,
-            data[i].strCollector,
-            data[i].dateDeposited,
-            data[i].strStatus
-
-
-        ] ).draw( false );
-          }
-           $('#divTablePendingEV').show();
-           $('#divTableEV').hide();
-           $('#divTableVerifiedEV').hide();
-           $('#divTableNotVerifiedEV').hide();
-
-           $('#dtStart').val("");
-           $('#dtEnd').val("");
-           $('#statustype').val("-- Select Status --");
-           // location.reload(true);
-
-          },
-          error: function(){ 
-          }
-        });
-}
-else if(val=='Further Verification') {
+ if(val=='Further Verification') {
    $.ajax({
           type: 'ajax',
           method: 'post',
@@ -627,7 +545,6 @@ else if(val=='Further Verification') {
           for(i=0; i<data.length; i++){
             t.row.add( [
             data[i].strAccessionNumber,
-            data[i].strScientificName,
             data[i].strCollector,
             data[i].dateDeposited,
             data[i].strStatus
@@ -635,7 +552,7 @@ else if(val=='Further Verification') {
         ] ).draw( false );
           }
 
-            $('#divTablePendingEV').hide();
+      
            $('#divTableEV').show();
            $('#divTableVerifiedEV').hide();
            $('#divTableNotVerifiedEV').hide();
@@ -663,14 +580,13 @@ else if(val=='Verified') {
           for(i=0; i<data.length; i++){
             t.row.add( [
             data[i].strAccessionNumber,
-            data[i].strScientificName,
             data[i].strCollector,
             data[i].dateDeposited,
             data[i].strStatus
 
         ] ).draw( false );
           }
-           $('#divTablePendingEV').hide();
+   
            $('#divTableEV').hide();
            $('#divTableVerifiedEV').show();
            $('#divTableNotVerifiedEV').hide();
@@ -698,14 +614,13 @@ else  {
           for(i=0; i<data.length; i++){
             t.row.add( [
             data[i].strAccessionNumber,
-            data[i].strScientificName,
-            data[i].strCollector,
+                 data[i].strCollector,
             data[i].dateDeposited,
             data[i].strStatus
 
         ] ).draw( false );
           }
-           $('#divTablePendingEV').hide();
+
            $('#divTableEV').hide();
            $('#divTableVerifiedEV').hide();
            $('#divTableNotVerifiedEV').show();

@@ -2083,17 +2083,21 @@ echo json_encode($result);
 }
 
 
+// DEPOSIT REPORTS 
+// *************************************************************************
 
+public function ReportsDeposits() {
+		$title['title'] = "PUPHerbarium | Reports";
+		$this->load->view('ReportsDeposits', $title);
+		$this->load->view('templates/footer');
+	}
 
-
-
-
-public function pdf(){
-$transac= $this->input->post('transaction');
+public function depositpdf(){
+$status= $this->input->post('status');
 $month = $this->input->post('month');
 //$document->loadHtml($html);
-if($transac=='exval'){
-		$html_content = $this->m->pdfgetfromdb($month);
+if($status=='Pending'){
+		$html_content = $this->m->pdfgetfromdepositpending($month);
 		//$document->loadHtml($page);
 
 		//echo $output;
@@ -2116,9 +2120,34 @@ if($transac=='exval'){
 		}else{
 			
 		};
-}else if($transac=='deposit'){
-//deposit
-$html_content = $this->m->pdfgetfromdbdeposit($month);
+}else if($status=='For Depositing'){
+
+$html_content = $this->m->pdfgetfromdepositfordepo($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}else if($status=='Arrived'){
+
+$html_content = $this->m->pdfgetfromdepositarrived($month);
 		//$document->loadHtml($page);
 
 		//echo $output;
@@ -2142,8 +2171,216 @@ $html_content = $this->m->pdfgetfromdbdeposit($month);
 			
 		};
 }else{
-  //visit
-$html_content = $this->m->pdfgetfromdbvisit($month);
+
+$html_content = $this->m->pdfgetfromdepositdnarrive($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+	}
+}
+
+//****************************************************************************
+
+// VISITS REPORTS 
+// **************************************************************************
+
+public function ReportsVisits() {
+		$title['title'] = "PUPHerbarium | Reports";
+		$this->load->view('ReportsVisits', $title);
+		$this->load->view('templates/footer');
+	}
+
+public function visitspdf(){
+$status= $this->input->post('status');
+$month = $this->input->post('month');
+//$document->loadHtml($html);
+if($status=='Pending'){
+		$html_content = $this->m->pdfgetfromvisitpending($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}else if($status=='For Visiting'){
+
+$html_content = $this->m->pdfgetfromvisitforvisiting($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}
+else if($status=='Rejected'){
+
+$html_content = $this->m->pdfgetfromvisitrejected($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}else if($status=='Arrived'){
+
+$html_content = $this->m->pdfgetfromvisitarrived($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}else{
+
+$html_content = $this->m->pdfgetfromvisitdnarrive($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+	}
+}
+
+// EXVAL REPORTS 
+// *************************************************************************
+
+public function ReportsExVal() {
+		$title['title'] = "PUPHerbarium | Reports";
+		$this->load->view('ReportsExVal', $title);
+		$this->load->view('templates/footer');
+	}
+
+public function exvalpdf(){
+$status= $this->input->post('status');
+$month = $this->input->post('month');
+//$document->loadHtml($html);
+if($status=='Further Verification'){
+		$html_content = $this->m->pdfgetfromexvalfv($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+}else if($status=='Verified'){
+
+$html_content = $this->m->pdfgetfromexvalverified($month);
 		//$document->loadHtml($page);
 
 		//echo $output;
@@ -2167,10 +2404,121 @@ $html_content = $this->m->pdfgetfromdbvisit($month);
 			
 		};
 
+}else{
+
+$html_content = $this->m->pdfgetfromexvaldisapproved($month);
+		//$document->loadHtml($page);
+
+		//echo $output;
+		if($html_content!='false'){
+		$this->pdf->loadHtml($html_content);
+
+		//set page size and orientation
+
+		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+		//Render the HTML as PDF
+
+		$this->pdf->render();
+
+		//Get output of generated pdf in Browser
+
+		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+		//1  = Download
+		//0 = Preview
+		}else{
+			
+		};
+	}
 }
 
+//****************************************************************************
 
-}
+//****************************************************************************
+
+// public function pdf(){
+// $transac= $this->input->post('transaction');
+// $month = $this->input->post('month');
+// //$document->loadHtml($html);
+// if($transac=='exval'){
+// 		$html_content = $this->m->pdfgetfromdb($month);
+// 		//$document->loadHtml($page);
+
+// 		//echo $output;
+// 		if($html_content!='false'){
+// 		$this->pdf->loadHtml($html_content);
+
+// 		//set page size and orientation
+
+// 		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+// 		//Render the HTML as PDF
+
+// 		$this->pdf->render();
+
+// 		//Get output of generated pdf in Browser
+
+// 		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+// 		//1  = Download
+// 		//0 = Preview
+// 		}else{
+			
+// 		};
+// }else if($transac=='deposit'){
+// //deposit
+// $html_content = $this->m->pdfgetfromdbdeposit($month);
+// 		//$document->loadHtml($page);
+
+// 		//echo $output;
+// 		if($html_content!='false'){
+// 		$this->pdf->loadHtml($html_content);
+
+// 		//set page size and orientation
+
+// 		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+// 		//Render the HTML as PDF
+
+// 		$this->pdf->render();
+
+// 		//Get output of generated pdf in Browser
+
+// 		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+// 		//1  = Download
+// 		//0 = Preview
+// 		}else{
+			
+// 		};
+// }else{
+//   //visit
+// $html_content = $this->m->pdfgetfromdbvisit($month);
+// 		//$document->loadHtml($page);
+
+// 		//echo $output;
+// 		if($html_content!='false'){
+// 		$this->pdf->loadHtml($html_content);
+
+// 		//set page size and orientation
+
+// 		$this->pdf->setPaper('Letter 8"x13" ', 'Portrait');
+
+// 		//Render the HTML as PDF
+
+// 		$this->pdf->render();
+
+// 		//Get output of generated pdf in Browser
+
+// 		$this->pdf->stream("Webslesson", array("Attachment"=>0));
+// 		//1  = Download
+// 		//0 = Preview
+// 		}else{
+			
+// 		};
+
+// }
+
+
+// }
 
 //QUERIES
 public function QueriesAccounts() {
@@ -2264,13 +2612,6 @@ public function QueriesVisits() {
 	$this->load->view('templates/footer');
 }
 
-public function showAllPendingV()
-{
-
-    $output = $this->admin_m->showAllPendingV();
- echo json_encode($output);
-
-}
 public function showAllForVisitingV()
 {
 
