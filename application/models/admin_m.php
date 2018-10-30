@@ -3313,11 +3313,14 @@ WHERE MONTH(dateVerified)='10' AND YEAR(dateVerified)=@currentyr");
 //EXTERNAL VALIDATION REPORTS
 //***************************************************************************
 public function pdfgetfromexvalverified($key){
-		$query = $this->db->query("SELECT *
+		$query = $this->db->query("
+declare @currentyr int;
+set @currentyr=(select YEAR(getdate()))
+SELECT *
 FROM viewHerbariumSheet vh 
 join tblSentForVerify SFV
 on sfv.intDepositID = vh.intPlantDepositID
-WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)='2018' ");
+WHERE MONTH(dateVerified)='".$key."' AND YEAR(dateVerified)=year(getdate())");
 
 
 $status = $this->input->post('status');
@@ -3340,10 +3343,43 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+            /** 
+                Set the margins of the page to 0, so the footer and the header
+                can be of the full height and width !
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Define now the real margins of every page in the PDF **/
+            body {
+                margin-top: 5.5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Define the header rules **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 2cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Define the footer rules **/
+            footer {
+                position: fixed; 
+                bottom: .5cm; 
+                left: 1cm; 
+                right: 0cm;
+                height: 3cm;
+            }
 </style>
-
+<body>
 &nbsp; &nbsp; &nbsp;
-
+<header>
 <img src="assets/bower_components/pdfheader.png" />
 <center>
 <h3>
@@ -3351,6 +3387,9 @@ Monthly External Validation Report - '.$monthName.' '.date("Y").'
 </h3><h4> '.$status.' Requests </h4>
 </center>
 <br><br>
+</header>
+		<footer> <img src="assets/bower_components/pdffooter.JPG" />
+		</footer>
 		<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -3405,7 +3444,7 @@ Monthly External Validation Report - '.$monthName.' '.date("Y").'
 
 public function pdfgetfromexvaldisapproved($key){
 		$query = $this->db->query("SELECT *
-FROM viewPlantDeposit WHERE strStatus = 'Disapproved'");
+FROM viewPlantDeposit WHERE MONTH(dateDeposited)='".$key."' AND YEAR(dateDeposited)=year(getdate()) AND strStatus = 'Disapproved'");
 
 
 $status = $this->input->post('status');
@@ -3428,10 +3467,43 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+            /** 
+                Set the margins of the page to 0, so the footer and the header
+                can be of the full height and width !
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Define now the real margins of every page in the PDF **/
+            body {
+                margin-top: 5.5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Define the header rules **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 2cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Define the footer rules **/
+            footer {
+                position: fixed; 
+                bottom: .5cm; 
+                left: 1cm; 
+                right: 0cm;
+                height: 3cm;
+            }
 </style>
-
+<body>
 &nbsp; &nbsp; &nbsp;
-
+<header>
 <img src="assets/bower_components/pdfheader.png" />
 <center>
 <h3>
@@ -3439,15 +3511,18 @@ Monthly External Validation Report - '.$monthName.' '.date("Y").'
 </h3><h4> '.$status.' Requests </h4>
 </center>
 <br><br>
+</header>
+		<footer> <img src="assets/bower_components/pdffooter.JPG" />
+		</footer>
+		<main>
 		<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
 			<td><center><b>Accession Number</td>
-			<td><center><b>Family Name</td>
-			<td><center><b>Scientific Name</td>
-			<td><center><b>Common Name</td>
+			<td><center><b>Deposit ID</td>
 			<td><center><b>Full Locality</td>
-
+			<td><center><b>Description</td>
+			<td><center><b>Date Deposited</td>
 			</tr>
 			</thead>';
 		foreach($query->result() as $row)
@@ -3455,35 +3530,25 @@ Monthly External Validation Report - '.$monthName.' '.date("Y").'
 			$output .= '
 
 			<tr>
-				<td width="20%">
+				<td width="10%">
 					<p>'.$row->strAccessionNumber.'</p>
-
 				</td>
-								<td width="20%">
-
-					<p>'.$row->strFamilyName.'</p>
-
+				<td width="10%"><center>
+					<p>'.$row->intPlantDepositID.'</p></center>
 				</td>
-								<td width="20%">
-
-					<p>'.$row->strScientificName.'</p>
-
+				<td width="30%">
+					<p>'.$row->strFullLocality.' </p>
 				</td>
-								<td width="20%"><center>
-
-					<p>'.$row->strCommonName.'</p></center>
-
+				<td width="20%">
+					<p>'.$row->strDescription.'</p>
+				<td width="20%"><center>
+					<p>'.$row->dateDeposited.' </p> </center>
 				</td>
-								<td width="50%"><center>
-
-					<p>'.$row->strFullLocality.' </p></center>
-
-				</td>
-								
 			</tr>
 			';
 		}
-		$output .= '</table>';
+		$output .= '</table></main> </body>
+';
 		return $output;
 
 	}
@@ -3515,8 +3580,8 @@ $month = $this->input->post('month');
 
 
 	$query = $this->db->query("SELECT *
-FROM tblPlantDeposit
-WHERE MONTH(dateDeposited)='".$key."' AND YEAR(dateDeposited)='2018' AND strStatus='Further Verification'");
+FROM viewPlantDeposit
+WHERE MONTH(dateDeposited)='".$key."' AND YEAR(dateDeposited)=year(getdate()) AND strStatus='Further Verification'");
 
 $dateObj   = DateTime::createFromFormat('!m', $month);
 $monthName = $dateObj->format('F');
@@ -3593,7 +3658,7 @@ public function pdfgetfromdepositpending($key){
 FROM tblDepositReq dr
 join tblOnlineUser ou
 on ou.intOUserID = dr.intOUserID
-WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Pending'");
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)=year(getdate()) AND strStatus='Pending'");
 
 $month = $this->input->post('month');
 $status = $this->input->post('status');
@@ -3676,7 +3741,7 @@ public function pdfgetfromdepositfordepo($key){
 FROM tblDepositReq dr
 join tblOnlineUser ou
 on ou.intOUserID = dr.intOUserID
-WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND (strStatus='For Depositing' OR strstatus = 'Email Sent')");
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)=year(getdate()) AND (strStatus='For Depositing' OR strstatus = 'Email Sent')");
 
 $status = $this->input->post('status');
 $month = $this->input->post('month');
@@ -3759,7 +3824,7 @@ public function pdfgetfromdepositarrived($key){
 FROM tblDepositReq dr
 join tblOnlineUser ou
 on ou.intOUserID = dr.intOUserID
-WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Arrived'");
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)=year(getdate()) AND strStatus='Arrived'");
 
 $status = $this->input->post('status');
 $month = $this->input->post('month');
@@ -3842,7 +3907,7 @@ tr:nth-child(even) {
 FROM tblDepositReq dr
 join tblOnlineUser ou
 on ou.intOUserID = dr.intOUserID
-WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Did not arrive'");
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)=year(getdate()) AND strStatus='Did not arrive'");
 
 $status = $this->input->post('status');
 $month = $this->input->post('month');
@@ -3929,7 +3994,7 @@ public function pdfgetfromvisitpending($key){
 FROM tblAppointments dr
 join tblOnlineUser ou
 on ou.intOUserID = dr.intOUserID
-WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Pending'");
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)=year(getdate()) AND strStatus='Pending'");
 
 $status = $this->input->post('status');
 $month = $this->input->post('month');
@@ -4012,7 +4077,7 @@ tr:nth-child(even) {
 FROM tblAppointments dr
 join tblOnlineUser ou
 on ou.intOUserID = dr.intOUserID
-WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND (strStatus='For Visiting' OR strStatus= 'Email Sent')");
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)=year(getdate()) AND (strStatus='For Visiting' OR strStatus= 'Email Sent')");
 
 $month = $this->input->post('month');
 $status = $this->input->post('status');
@@ -4094,7 +4159,7 @@ public function pdfgetfromvisitrejected($key){
 FROM tblAppointments dr
 join tblOnlineUser ou
 on ou.intOUserID = dr.intOUserID
-WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Rejected'");
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)=year(getdate()) AND strStatus='Rejected'");
 
 $month = $this->input->post('month');
 $status = $this->input->post('status');
@@ -4176,7 +4241,7 @@ public function pdfgetfromvisitarrived($key){
 FROM tblAppointments dr
 join tblOnlineUser ou
 on ou.intOUserID = dr.intOUserID
-WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Arrived'");
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)=year(getdate()) AND strStatus='Arrived'");
 
 $month = $this->input->post('month');
 $status = $this->input->post('status');
@@ -4259,7 +4324,7 @@ public function pdfgetfromvisitdnarrive($key){
 FROM tblAppointments dr
 join tblOnlineUser ou
 on ou.intOUserID = dr.intOUserID
-WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)='2018' AND strStatus='Did not arrive'");
+WHERE MONTH(dtAppointmentDate)='".$key."' AND YEAR(dtAppointmentDate)=year(getdate()) AND strStatus='Did not arrive'");
 
 $month = $this->input->post('month');
 $status = $this->input->post('status');
