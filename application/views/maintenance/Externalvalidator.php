@@ -134,13 +134,12 @@
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                    <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
-                <li><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
-  <ul id="ExValidationDropdown" class="collapse list-unstyled">
-    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp;
-    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
+                <li class="active"><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
+  <ul id="ExValidationDropdown" class="collapse list-unstyled show">
+    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp; &nbsp; &nbsp; Send to External Validator</a></li>
+    <li style="background-color: #303030;"  class="active"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp; &nbsp; &nbsp; Evaluation Results</a></li>
   </ul>
-</li>
-            
+</li>    
 
                 </li>
               </ul>
@@ -154,7 +153,13 @@
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
                 </li>       
-            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
+             <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
+                <ul id="ReportsDropdown" class="collapse list-unstyled ">
+                  <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
+                 <li><a href="<?php echo base_url(); ?>admin/ReportsVisits">&nbsp;&nbsp;&nbsp;Visits</a></li>
+                  <li><a href="<?php echo base_url(); ?>admin/ReportsExVal">&nbsp;&nbsp;&nbsp;External Validation</a></li>
+</ul>
+</li>
 
 
 

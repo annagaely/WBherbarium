@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <!--
@@ -87,8 +86,8 @@
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
 <?php if(($this->session->userdata('strRole')=='CURATOR') || ($this->session->userdata('strRole')=='ADMINISTRATOR')):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
-              <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
+            <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+              <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
                   <ul id="TaxHierDropdown" class="collapse list-unstyled">
@@ -107,7 +106,7 @@
                   </ul>
                 </li>
                 <li><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
-                <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
+                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
 
                 <li><a href="<?php echo base_url(); ?>admin/accounts">Access Accounts</a></li>
@@ -117,29 +116,29 @@
                  <li><a href="<?php echo base_url(); ?>admin/SpeciesAltName">Species Alternate Name</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/Plantborrower">Plant Borrower</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-                <li class="active"><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
+                <li><a href="<?php echo base_url(); ?>admin/CalendarManagement">Calendar Management</a></li>
 <!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
 
               </ul>
             </li>
-                       <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
+            <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
               <ul id="TransactionDropdown" class="collapse list-unstyled ">
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                    <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
                 <li><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
-  <ul id="ExValidationDropdown" class="collapse list-unstyled">
-    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp;;Send to External Validator</a></li>
-    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
-  </ul>
-</li>
-            
+                  <ul id="ExValidationDropdown" class="collapse list-unstyled">
+                    <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp; Send to External Validator</a></li>
+                    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;Evaluation Results</a></li>
+                  </ul>
+                </li>
+                
 
                 </li>
               </ul>
             </li>
-                           <li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
+              <li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
                 <ul id="QueriesDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
                   <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
@@ -147,14 +146,15 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
-                </li>
-             <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
-                <ul id="ReportsDropdown" class="collapse list-unstyled ">
+                </li> 
+            <li class="active"><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
+                <ul id="ReportsDropdown" class="collapse list-unstyled show">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
-                 <li><a href="<?php echo base_url(); ?>admin/ReportsVisits">&nbsp;&nbsp;&nbsp;Visits</a></li>
-                  <li><a href="<?php echo base_url(); ?>admin/ReportsExVal">&nbsp;&nbsp;&nbsp;External Validation</a></li>
+                 <li ><a href="<?php echo base_url(); ?>admin/ReportsVisits">&nbsp;&nbsp;&nbsp;Visits</a></li>
+                  <li  class="active"><a href="<?php echo base_url(); ?>admin/ReportsExVal">&nbsp;&nbsp;&nbsp;External Validation</a></li>
 </ul>
 </li>
+
 
 
           <!-- STUDENT ASSISTANT PART-->
@@ -163,10 +163,10 @@
               <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
 
-                <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
+                <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-<!--                 <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
+                <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
 
               </ul>
             </li>
@@ -181,7 +181,7 @@
               </ul>
             </li>
               <li><a href="<?php echo base_url(); ?>admin/Queries"> <i class="fa fa-database"></i>Query</a></li>
-            <li><a href="<?php echo base_url(); ?>admin/Reports"> <i class="fa fa-file"></i>Reports</a></li>
+            <li class="active"><a href="#"> <i class="fa fa-file"></i>Reports</a></li>
             <?php endif;?>
         </div>
       </div>
@@ -208,27 +208,7 @@
           </div></a></li>
                   </ul>
                 </li>
-                <!-- Messages dropdown-->
-                <!--<li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i onclick="myFunction1()" class="fa fa-envelope"></i><span id= "MessageIcon" class="badge badge-info">3</span></a>
-                  <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-                        <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/Nins.png" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Ni&ntildeo Escueta</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-                        <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/sheng.png" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Rhisiel Valle</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex">
-                        <div class="msg-profile"> <img src="<?php echo base_url();?>assets/bower_components/mai.png" alt="..." class="img-fluid rounded-circle"></div>
-                        <div class="msg-body">
-                          <h3 class="h5">Maica Ope&ntildea</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                        </div></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
-                  </ul>
-                </li>-->
+            
                 <!-- Log out-->
                  <li class="nav-item"><a href="<?php echo base_url()?>admin/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
@@ -329,5 +309,52 @@ if(data.intcount!=0){
       </div>
       </nav>
       </header>
+      <div class="breadcrumb-holder">
+              <div class="container-fluid">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard" >Home</a></li>
+                  <li class="breadcrumb-item ">Reports</li> 
+                  <li class="breadcrumb-item active"> Eternal Validation</li>
+                </ul>
+              </div>
+      </div>
 
-    <iframe src="<?php echo site_url('admin/view_calendar');?>" width="100%" height="650px" style="border:none; "></iframe>
+          <!-- <a href="<?php echo base_url(); ?>admin/pdf" >Print Reports</a> -->
+          <form method="post" action="<?php echo base_url(); ?>admin/exvalpdf" enctype="multipart/form-data">
+
+  <div class="container-fluid mt-4">
+  <div class="row">
+
+   <div class="col-md-4">
+             <label>Select External Validation Status:</label><br/>
+          <select name='status' class="form-control">
+            <option value='Further Verification'>Further Verification</option>
+            <option value='Verified'>Approved/Verified</option>
+            <option value='Disapproved'>Disapproved</option>
+
+          </select>
+  </div>
+  <div class="col-md-4">
+            <label>Select a month</label><br/>
+          <select name='month' class="form-control">
+            <option value=1>January</option>
+            <option value=2>February</option>
+            <option value=3>March</option>
+            <option value=4>April</option>
+            <option value=5>May</option>
+            <option value=6>June</option>
+            <option value=7>July</option>
+            <option value=8>August</option>
+            <option value=9>September</option>
+            <option value=10>October</option>
+            <option value=11>November</option>
+            <option value=12>December</option>
+          </select>
+  </div>
+            <div class="col-md-8 mt-4" >
+             <input type="submit" value ='Print Report' class="btn btn-primary"  style="float: right;" >
+         </div>
+   
+  </div>
+</div>
+</form>
