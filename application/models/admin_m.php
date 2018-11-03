@@ -1425,6 +1425,27 @@ UPDATE tblHerbariumStaff
 		return $result;
 	}
 
+// public function showAllAccountsAdmin(){
+// 		$result = array();
+// 		$query = $this->db->query("select * from viewAccounts
+
+// 		");
+
+// 	foreach ($query->result() as $r)
+// 		{
+// 			$btn = '<button class="btn btn-primary account-edit" data="'.$r->intStaffID.'"><i class=""far fa-eye></i></button>';
+
+// 			$result[] = array(
+// 					// $r->intStaffID,
+// 					$r->strFullName,
+// 					$r->strUsername,
+// 					$btn,
+// 					$r->intStaffID
+// 					);
+// 		}
+
+// 		return $result;
+// 	}
 	public function addAccounts(){
 
 	$staffname = $this->input->post('StaffName');

@@ -94,8 +94,8 @@
           <ul id="side-main-menu" class="side-menu list-unstyled show">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
 <?php if($this->session->userdata('strRole')==='CURATOR'):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
-              <ul id="MaintenanceDropdown" class="collapse list-unstyled show ">
+            <li><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+              <ul id="MaintenanceDropdown" class="collapse list-unstyled ">
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
                   <ul id="TaxHierDropdown" class="collapse list-unstyled">
@@ -117,7 +117,7 @@
                 <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
 
-              
+                
                  <li><a href="<?php echo base_url(); ?>admin/Speciesauthor">Species Author</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/PlantType">Plant Type</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/SpeciesAltName">Species Alternate Name</a></li>
@@ -166,7 +166,7 @@
  
 <?php elseif($this->session->userdata('strRole')=='ADMINISTRATOR'):?>
             <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
-              <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
+              <ul id="MaintenanceDropdown" class="collapse list-unstyled show ">
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
                   <ul id="TaxHierDropdown" class="collapse list-unstyled">
@@ -244,8 +244,8 @@
               <!--  <li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
                 <li><a href="<?php echo base_url(); ?>admin/Externalvalidator">External Validators</a></li>
-                <!-- <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li> -->
-
+                <!-- <li><a href="<?php echo base_url(); ?>admin/Featuredplant">Featured Plant</a></li>
+ -->
               </ul>
             </li>
             <li><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
@@ -402,9 +402,9 @@ if(data.intcount!=0){
       </div>
       <!-- ADD ACCES ACC MODAL-->
       <div class="card mx-4">
-        <div class="card-header d-flex align-items-center">
+<!--         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Add Account</button>
-        </div>
+        </div> -->
 
         <!-- Modal-->
         <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left hide" data-backdrop="static" data-keyboard="false">
@@ -419,20 +419,21 @@ if(data.intcount!=0){
 
                <form id= "addAccountForm" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
-                    <label>Staff Name:</label> <label style="color: red">*</label>
+                    <label>Staff Name:</label> <label style="color: red"></label>
                      <select id="showStaffName" name ="StaffName" class="form-control">
                      </select>
                   </div>
 
                    <div class = "row">
                     <div class="col-sm-6" >
-                    <label>Username:</label> <label style="color: red">*</label>
+                    <label>Username:</label> <label style="color: red"></label>
                     <input id="username" type="text" name="AAUName" placeholder="Username" class="form-control">
                   </div>
                   <div class="col-sm-6" >
-                    <label>Password:</label> <label style="color: red">*</label>
+                    <label>Password:</label> <label style="color: red"></label>
                     <input type="Password" name="AAPass" id="AApassword" placeholder="Password" class="form-control">
-                    
+                   <!--  <input name="checkPass" id= "checkPass" type="checkbox">
+                   <label for="checkPass"> Show Password</label> -->
                   </div>
                 </div>
 
@@ -454,7 +455,7 @@ if(data.intcount!=0){
           <div role="document" class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 id="exampleModalLabel" class="modal-title">Edit Account</h5>
+                <h5 id="exampleModalLabel" class="modal-title">View Admin Account</h5>
                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">&times;</span></button>
               </div>
 
@@ -462,7 +463,7 @@ if(data.intcount!=0){
 
                <form id= "editAccountForm" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
-                    <label>Staff Name:</label> <label style="color: red">*</label>
+                    <label>Staff Name:</label> <label style="color: red"></label>
                      <input type="text" id="editstaffname" name ="eStaffName" class="form-control" disabled>
 
                   </div>
@@ -470,25 +471,26 @@ if(data.intcount!=0){
                    <div class = "row">
 
                     <div class="col-sm-6" >
-                    <label>Username:</label> <label style="color: red">*</label>
-                    <input id="username2" type="text" name="eAAUName" placeholder="Username" class="form-control">
+                    <label>Username:</label> <label style="color: red"></label>
+                    <input id="username2" type="text" name="eAAUName" placeholder="Username" class="form-control" disabled="">
                     <input type="hidden" name="txtId" value="0">
                   </div>
 
 
                   <div class="col-sm-6" >
-                    <label>Password:</label> <label style="color: red">*</label>
-                    <input type="Password" name="eAAPass"  id= "eAAPassword" placeholder="Password" class="form-control">
-                  
+                    <label>Password:</label> <label style="color: red"></label>
+                    <input type="Password" name="eAAPass"  id= "eAAPassword" placeholder="Password" class="form-control" disabled="">
+                    <!-- <input name="echeckPass" id= "echeckPass" type="checkbox">
+                   <label for="echeckPass"> Show Password</label> -->
                   </div>
                 </div>
                 <br>
 
 
-                  <div class="modal-footer">
+                 <!--  <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
                     <input type="submit" id="btnEditSave" value="Save" class="btn btn-primary">
-                  </div>
+                  </div> -->
                 </form>
               </div>
             </div>
@@ -531,7 +533,7 @@ function resetForm() {
 </script>
 
  <script type="text/javascript">
-    function showAllAccounts(){
+    function showAllAccountsAdmin(){
 
           $('#manageAAccountstbl').dataTable().fnClearTable();
           $('#manageAAccountstbl').dataTable().fnDraw();
@@ -552,7 +554,7 @@ function resetForm() {
 
 $(document).ready(function(){
     //show-
-    showAllAccounts();
+    showAllAccountsAdmin();
     showStaffName();
 
 

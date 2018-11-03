@@ -715,6 +715,19 @@ public function updateFamilyBox(){
 	redirect(base_url().'admin');
 	}
 }
+
+	public function AccessAccountsAdmin()
+	{
+	if($this->session->userdata('strUsername')!=''){
+		$title['title'] = "PUPHerbarium | Access Accounts";
+		$this->load->view('maintenance/AccessAccountsAdmin', $title);
+		$this->load->view('templates/footer');
+	}
+	else{
+	redirect(base_url().'admin');
+	}
+}
+
 	public function showAllAccounts(){
 		$output = $this->admin_m->showAllAccounts();
        	 $response = array(
@@ -727,6 +740,17 @@ public function updateFamilyBox(){
           exit();
     }
 
+	// public function showAllAccountsAdmin(){
+	// 	$output = $this->admin_m->showAllAccounts();
+ //       	 $response = array(
+ //          'aaData' => $output,
+ //          'iTotalRecords' => count($output),
+ //          'iTotalDisplayRecords' => count($output),
+ //          'iDisplayStart' => 0
+ //          );
+ //          echo json_encode($response);
+ //          exit();
+ //    }
 
 
 
