@@ -206,12 +206,23 @@ if(document.getElementById('dtnewDateid').disabled == false){
 
 
                  }else{
-                  event.preventDefault();
-                 swal({
-                   type: 'error',
-                   title: 'Incorrect Date!',
-                   text: 'Herbarium Center is not Available on that date.'
-                 });
+                                                                 if(response=='conflict'){
+                                               event.preventDefault();
+                                                swal({
+                                                  type: 'error',
+                                                  title: 'Invalid Date!',
+                                                  text: 'The Herbarium center is not available on the selected date.',
+                                                  showConfirmButton: true
+                                                });
+                                               }else{
+                                                event.preventDefault();
+                                                swal({
+                                                  type: 'error',
+                                                  title: 'Invalid Date!',
+                                                  text: "Can't reschedule to the same date.",
+                                                  showConfirmButton: true
+                                                });
+                                               }
                  }
                },
                error: function(){

@@ -482,18 +482,18 @@ if(data.intcount!=0){
 
                   <div class="form-group">
                     <label>Domain Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtedName" id="strDomainName1" placeholder="Domain Name" class="form-control">
+                    <input type="text" name="txtedName" id="strDomainName1" placeholder="Domain Name" class="form-control" disabled>
                   </div>
                   <div class="form-group">
                     <label>Kingdom Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtekName" id="strKingdomName1" placeholder="Kingdom Name" class="form-control">
+                    <input type="text" name="txtekName" id="strKingdomName1" placeholder="Kingdom Name" class="form-control" disabled="">
                   </div>
-                  <div class="form-group">
-                    <label>
-                      <input type="checkbox" name="check1" id="plantCategory1" onclick="disableMyText1(); "> Under the Plant Category
+<!--                   <div class="form-group">
+                    <label> -->
+                      <!-- <input type="checkbox" name="check1" id="plantCategory1" onclick="disableMyText1(); "> Under the Plant Category -->
                       <input type="hidden" name="txtId" value="0">
-                    </label>
-                  </div>
+<!--                     </label> -->
+                  <!-- </div> -->
                   <div class="form-group">
                     <label>Phylum Name:</label> <label style="color: red">*</label>
                     <input list="phylumname" name="txtepName" id="pNameid1" placeholder="Phylum Name" class="form-control">

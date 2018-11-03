@@ -788,6 +788,7 @@ if(data.intcount!=0){
                                                           document.getElementById("VReschedForm").reset();
                                                         });
                                                }else{
+                                               if(response=='conflict'){
                                                event.preventDefault();
                                                 swal({
                                                   type: 'error',
@@ -795,6 +796,15 @@ if(data.intcount!=0){
                                                   text: 'The Herbarium center is not available on the selected date.',
                                                   showConfirmButton: true
                                                 });
+                                               }else{
+                                                event.preventDefault();
+                                                swal({
+                                                  type: 'error',
+                                                  title: 'Invalid Date!',
+                                                  text: "Can't reschedule to the same date.",
+                                                  showConfirmButton: true
+                                                });
+                                               }
                                                   }
 
                                                 },
