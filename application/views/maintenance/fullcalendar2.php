@@ -26,7 +26,7 @@
 <style>
 
   body {
-  
+
     font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
     font-size: 14px;
   }
@@ -46,7 +46,7 @@
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    
+
     background-color: #fefefe; /* Black w/ opacity */
 }
 
@@ -107,7 +107,7 @@
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#addModal" class="btn btn-primary">Add Event</button>
         </div>
-      
+
   <div class="modal" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -136,7 +136,7 @@
                     <input type="date" class="form-control" id='start_date' name="start_date">
                 </div>
         </div>
-      
+
       <div class="modal-footer">
         <input type="button" class="btn btn-secondary" value="Close" data-dismiss="modal">
         <input type="submit" class="btn btn-primary" id='btnSave' value="Add Event">
@@ -154,23 +154,23 @@ var yyyy = today.getFullYear();
 
 if(dd<10) {
     dd = '0'+dd
-} 
+}
 
 if(mm<10) {
     mm = '0'+mm
-} 
+}
 
 today = yyyy + '-' + mm + '-' +dd ;
 
       if($('#start_date').val()<today){//check if date is before today
-        
+
         event.preventDefault();
         swal({
           type: 'error',
           title: 'Invalid Date!',
           text: 'Date selected is past the current date.'
         });
-     
+
        }else{
         if($('#name').val()!=''){//check ng values
         if($('#description').val()!=''){
@@ -247,7 +247,7 @@ today = yyyy + '-' + mm + '-' +dd ;
           title: 'Incomplete input!',
           text: 'Please fill up all the required fields.'
         });
-      } 
+      }
        }
     });
 
@@ -257,163 +257,20 @@ today = yyyy + '-' + mm + '-' +dd ;
   </div>
 </div>
 </div>
+</div>
 
 
       <div class="col-md-13 mx-0 px-0">
-<div class="container">
-    <div id="calendar"></div></div>   
+        <section>
 
-  <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Update Calendar Event</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-      <!-- ?php echo form_open(base_url("admin/edit_event"), array("class" => "form-horizontal")) ?> -->
-      <form id= "edit_event" method="POST" enctype="multipart/form-data">
-      <div class="form-group">
-                <label for="p-in" class="col-md-4 label-heading">Event Name</label>
-                <div class="col-md-8 ui-front">
-                    <input type="text" class="form-control" name="name" value="" id="eeventname">
-                </div>
-        </div>
-        <div class="form-group">
-                <label for="p-in" class="col-md-4 label-heading">Description</label>
-                <div class="col-md-8 ui-front">
-                    <input type="text" class="form-control" name="description" id="edescription">
-                </div>
-        </div>
-        <div class="form-group">
-                <label for="p-in" class="col-md-4 label-heading">Date</label>
-                <div class="col-md-8">
-                    <input type="text" class="form-control" name="start_date" id="estart_date">
-                </div>
-        </div>
-<!--         <div class="form-group">
-                    <label for="p-in" class="col-md-4 label-heading">Delete Event</label>
-                    <div class="col-md-8">
-                        <input type="checkbox" name="delete" value="1">
-                    </div>
-            </div> -->
-            <input type="hidden" name="eventid" id="event_id" value="0" />
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-primary" id=btnEditSave value="Update Event">
-        <!-- <?php echo form_close() ?> -->
-      </form>
-      <script type="text/javascript">
-        $('#btnEditSave').click(function(event){
-      var url = '<?php echo base_url()?>admin/edit_event';
-      var data = $('#edit_event').serialize();
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1; //January is 0!
-var yyyy = today.getFullYear();
+          <div class="container-fluid">
+            <div class="card">
+              <div id="calendar"></div>
+            </div>
+              </div>
 
-if(dd<10) {
-    dd = '0'+dd
-} 
-if(mm<10) {
-    mm = '0'+mm
-} 
-today = yyyy + '-' + mm + '-' +dd ;
-      //validate form
-    if(moment($('#estart_date').val()).format('YYYY-MM-DD')<today){//check if date is before today
-      event.preventDefault();
-      swal({
-        type: 'error',
-        title: 'Invalid Date!',
-        text: 'Date selected is past the current date.'
-      });
-    }else{
-      if($('#eeventname').val()!=''){
-        if($('#edescription').val()!=''){
-          if($('#estart_date').val()!=''){
-          event.preventDefault();
-          swal({
-            title: 'Are you sure?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, save it!'
-          }).then((result) => {
-            if (result.value) {
-              $.ajax({
-              type: 'ajax',
-              method: 'post',
-              url: url,
-              data: data,
-              async: false,
-              dataType: 'json',
-              success: function(response){
-                if(response.success){
-                    let timerInterval
-                    swal({
-                      title: 'Saved',
-                      text: 'Your Event has been saved.',
-                      type: 'success',
-                      timer: 1500,
-                      showConfirmButton: true
-                    }).then(function() {
-                      location.reload();
-                    });
-                }else{swal({
-                  type: 'error',
-                  title: 'Date Invalid',
-                  text: 'Date has pending appointments or on going appointments, cancel it first.'
-                });
-              }
-              },
-              error: function(){
-                event.preventDefault();
-                swal({
-                  type: 'error',
-                  title: 'Date Invalid',
-                  text: 'Date has pending appointments or on going appointments, cancel it first.'
-                });
-              }
-            });
+        </section>
 
-         }
-
-       })
-        }else{
-          event.preventDefault();
-          swal({
-            type: 'error',
-            title: 'Incomplete input!',
-            text: 'Please fill up all the required fields.'
-          });
-        }
-      }else{
-        event.preventDefault();
-        swal({
-          type: 'error',
-          title: 'Incomplete input!',
-          text: 'Please fill up all the required fields.'
-        });
-      }
-     }else{
-        event.preventDefault();
-        swal({
-          type: 'error',
-          title: 'Incomplete input!',
-          text: 'Please fill up all the required fields.'
-        });
-      } 
-    }
-
-
-    });
-      </script>
-      </div>
-    </div>
-  </div>
-</div>
 </div>
 </body>
 
@@ -465,8 +322,8 @@ $(document).ready(function() {
 
 <!--   $('#calendar').fullCalendar({
 
-        dayClick: function(date, jsEvent, view) { 
-            alert('Clicked on: ' + date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear());  
+        dayClick: function(date, jsEvent, view) {
+            alert('Clicked on: ' + date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear());
         },
 
     }); -->
