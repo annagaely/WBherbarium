@@ -397,7 +397,7 @@ if(data.intcount!=0){
                 <ul class="breadcrumb">
                   <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard" >Home</a></li>
                   <li class="breadcrumb-item ">Reports</li> 
-                  <li class="breadcrumb-item active"> Eternal Validation</li>
+                  <li class="breadcrumb-item active"> External Validation</li>
                 </ul>
               </div>
       </div>

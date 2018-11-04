@@ -496,7 +496,7 @@ if(data.intcount!=0){
                   <!-- </div> -->
                   <div class="form-group">
                     <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <input list="phylumname" name="txtepName" id="pNameid1" placeholder="Phylum Name" class="form-control">
+                    <input list="phylumname" name="txtepName" id="pNameid1" placeholder="Phylum Name" class="form-control" autocomplete="off">
                     <datalist id ='phylumname'>
                      </datalist>
                   </div>

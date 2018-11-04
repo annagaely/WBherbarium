@@ -418,17 +418,17 @@ if(data.intcount!=0){
 
                   <div class="form-group">
                     <label>Taxon Name:</label> <label style="color: red">*</label>
-                    <select name="txttaxonName" id="strTaxonName" placeholder="Taxon Name" class="form-control" >
+                    <select name="txttaxonName" id="strTaxonName" placeholder="Taxon Name" class="form-control" autocomplete="off">
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Language:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtLanguage" id="strLanguage" placeholder="Language" class="form-control" >
+                    <input type="text" name="txtLanguage" id="strLanguage" placeholder="Language" class="form-control" autocomplete="off" >
                   </div>
 
                   <div class="form-group">
                     <label>Alternate Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtAName" id="strAlternateName" placeholder="Alternate Name" class="form-control" >
+                    <input type="text" name="txtAName" id="strAlternateName" placeholder="Alternate Name" class="form-control"  autocomplete="off" >
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -460,17 +460,17 @@ if(data.intcount!=0){
 
                 <div class="form-group">
                     <label>Taxon Name:</label> <label style="color: red">*</label>
-                    <input list="speciesname" name="txtetaxonName" id="strTaxonName1" placeholder="Taxon Name" class="form-control" >
+                    <input list="speciesname" name="txtetaxonName" id="strTaxonName1" placeholder="Taxon Name" class="form-control"  autocomplete="off">
                     <datalist id="speciesname">
                     </datalist>
                </div>
                 <div class="form-group">
                     <label>Language:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteLanguage" id="strLanguage1" placeholder="Language" class="form-control" >
+                    <input type="text" name="txteLanguage" id="strLanguage1" placeholder="Language" class="form-control"  autocomplete="off">
               </div>
               <div class="form-group">
                     <label>Alternate Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteAName" id="strAlternateName1" placeholder="Alternate Name" class="form-control" >
+                    <input type="text" name="txteAName" id="strAlternateName1" placeholder="Alternate Name" class="form-control"  autocomplete="off">
               </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">

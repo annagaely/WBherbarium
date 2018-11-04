@@ -432,42 +432,42 @@ if(data.intcount!=0){
                   <div class="row">
                     <div class="form-group col-sm-12">
                       <label>First Name:</label> <label style="color: red">*</label>
-                      <input id="firstName" type="text" name="txtFName" placeholder="First Name " class="form-control">
+                      <input id="firstName" type="text" name="txtFName" placeholder="First Name " class="form-control"  autocomplete="off">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Middle Name:</label>
-                      <input type="text" name="txtMName" placeholder="Middle Name" class="form-control">
+                      <input type="text" name="txtMName" placeholder="Middle Name" class="form-control"  autocomplete="off">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Middle Initial:</label>
-                      <input type="text" name="txtMInitial" placeholder="Middle Initial" class="form-control">
+                      <input type="text" name="txtMInitial" placeholder="Middle Initial" class="form-control"  autocomplete="off">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Last Name:</label> <label style="color: red">*</label>
-                      <input id="lastName" type="text" name="txtLName" placeholder="Last Name" class="form-control">
+                      <input id="lastName" type="text" name="txtLName" placeholder="Last Name" class="form-control"  autocomplete="off">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Name Suffix:</label>
-                      <input type="text" name="txtNSuffix" placeholder="Name Suffix" class="form-control">
+                      <input type="text" name="txtNSuffix" placeholder="Name Suffix" class="form-control"  autocomplete="off">
                     </div>
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input id="contactNum" type="text"  data-mask="99999999999"name="txtCNumber" placeholder="Contact Number" class="form-control">
+                    <input id="contactNum" type="text"  data-mask="99999999999"name="txtCNumber" placeholder="Contact Number" class="form-control"  autocomplete="off">
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
-                    <input id="emailAdd" type="text" name="txtEMail" placeholder="Email Address" class="form-control">
+                    <input id="emailAdd" type="text" name="txtEMail" placeholder="Email Address" class="form-control"  autocomplete="off">
                   </div>
                 </div>
                   <div class="form-group">
                     <label>Institution:</label> <label style="color: red">*</label>
-                    <input id="institution" type="text" name="txtInstitution" placeholder="Institution" class="form-control">
+                    <input id="institution" type="text" name="txtInstitution" placeholder="Institution" class="form-control"  autocomplete="off">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -494,42 +494,42 @@ if(data.intcount!=0){
                     <div class="form-group col-sm-12">
                       <input type="hidden" name="txtId" value="0">
                       <label>First Name:</label> <label style="color: red">*</label>
-                      <input id="firstName1" type="text" name="txteFName" placeholder="First Name " class="form-control">
+                      <input id="firstName1" type="text" name="txteFName" placeholder="First Name " class="form-control"  autocomplete="off">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Middle Name:</label>
-                      <input type="text" name="txteMName" placeholder="Middle Name" class="form-control">
+                      <input type="text" name="txteMName" placeholder="Middle Name" class="form-control"  autocomplete="off">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Middle Initial:</label>
-                      <input type="text" name="txteMInitial" placeholder="Middle Initial" class="form-control">
+                      <input type="text" name="txteMInitial" placeholder="Middle Initial" class="form-control"  autocomplete="off">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Last Name:</label> <label style="color: red">*</label>
-                      <input id="lastName1" type="text" name="txteLName" placeholder="Last Name" class="form-control">
+                      <input id="lastName1" type="text" name="txteLName" placeholder="Last Name" class="form-control"  autocomplete="off">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Name Suffix:</label> <label style="color: red">*</label>
-                      <input type="text" name="txteNSuffix" placeholder="Name Suffix" class="form-control">
+                      <input type="text" name="txteNSuffix" placeholder="Name Suffix" class="form-control"  autocomplete="off">
                     </div>
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input id="contactNum1" type="text"  data-mask="99999999999" name="txteCNumber" placeholder="Contact Number" class="form-control">
+                    <input id="contactNum1" type="text"  data-mask="99999999999" name="txteCNumber" placeholder="Contact Number" class="form-control"  autocomplete="off">
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
-                    <input id="emailAdd1" type="text" name="txteEMail" placeholder="Email Address" class="form-control">
+                    <input id="emailAdd1" type="text" name="txteEMail" placeholder="Email Address" class="form-control"  autocomplete="off">
                   </div>
                 </div>
                   <div class="form-group">
                     <label>Institution:</label> <label style="color: red">*</label>
-                    <input id="institution1" type="text" name="txteInstitution" placeholder="Institution" class="form-control">
+                    <input id="institution1" type="text" name="txteInstitution" placeholder="Institution" class="form-control"  autocomplete="off">
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">

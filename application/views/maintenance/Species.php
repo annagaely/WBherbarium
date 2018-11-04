@@ -449,7 +449,7 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Common Name:</label> <label style="color: red">*</label>
-                    <input id="commonName" type="text" name="txtcoName" placeholder="Common Name" class="form-control">
+                    <input id="commonName" type="text" name="txtcoName" placeholder="Common Name" class="form-control" autocomplete="off">
                   </div>
                     <label>
 
@@ -458,7 +458,7 @@ if(data.intcount!=0){
                     </label>
                     <div class="form-group">
                     <label>Author Name:</label> <label style="color: red">*</label>
-                     <input list="authorname" name ="txtaID"  id = 'author' class="form-control" autocomplete="off" placeholder="Author's Name" disabled>
+                     <input list="authorname" name ="txtaID"  id = 'author' class="form-control" autocomplete="off" autocomplete="off" placeholder="Author's Name" disabled >
                      <datalist id ='authorname'>
                      </datalist>
                   </div>
@@ -505,7 +505,7 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Common Name:</label> <label style="color: red">*</label>
-                    <input id="commonName1" type="text" name="txtecName" placeholder="Common Name" class="form-control">
+                    <input id="commonName1" type="text" name="txtecName" placeholder="Common Name" class="form-control" autocomplete="off">
                   </div>
                     <div class="form-group">
                     <label>Author Name:</label> <label style="color: red">*</label>
