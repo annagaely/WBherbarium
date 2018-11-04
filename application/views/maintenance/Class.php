@@ -99,7 +99,7 @@
             <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
 
-                <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
+                <li class="active"><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
                   <ul id="TaxHierDropdown" class="collapse list-unstyled show">
 
                     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Phylum"> &nbsp; &nbsp; &nbsp; &nbsp; Phylum</a></li>
@@ -436,7 +436,7 @@ if(data.intcount!=0){
                <form id= "addClassForm" method="POST" enctype="multipart/form-data"> <!--dito ka magbabago sa loob nito-->
                  <div class="form-group">
                    <label>Phylum Name:</label> <label style="color: red">*</label>
-                     <input list="phylumname" name ="spID" placeholder="Phylum Name" class="form-control" autocomplete=off>
+                     <input list="phylumname" name ="spID" placeholder="Phylum Name" class="form-control" autocomplete="off">
                      <datalist id ='phylumname'>
                      </datalist>
                  </div>
@@ -660,8 +660,8 @@ if(data.intcount!=0){
                  event.preventDefault();
                  swal({
                    type: 'error',
-                   title: 'Incorrect input!',
-                   text: 'Phylum name does not exist.'
+                     title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
                  });
                }
              });
@@ -741,8 +741,8 @@ if(data.intcount!=0){
            event.preventDefault();
            swal({
              type: 'error',
-             title: 'Incorrect input!',
-             text: 'Phylum name does not exist.'
+                  title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
            });
          }
        });

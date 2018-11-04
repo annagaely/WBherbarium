@@ -420,7 +420,7 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
-                    <input list="ordername" type="text" name="txtOName" placeholder="Order Name" class="form-control" autocomplete="off">
+                    <input list="ordername" type="text" name="txtOName" zzplaceholder="Order Name" class="form-control" autocomplete="off">
                     <datalist id = 'ordername'></datalist>
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">

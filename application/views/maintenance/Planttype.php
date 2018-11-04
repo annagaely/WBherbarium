@@ -439,11 +439,11 @@ if(data.intcount!=0){
 
                   <div class="form-group">
                     <label>Plant Code:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtPlantCode" id="strPlantCode" placeholder="Plant Code" class="form-control" >
+                    <input type="text" name="txtPlantCode" id="strPlantCode" placeholder="Plant Code" class="form-control" autocomplete="off" >
                   </div>
                   <div class="form-group">
                     <label>Plant Type:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtPlantType" id="strPlantType" placeholder="Plant Type" class="form-control" >
+                    <input type="text" name="txtPlantType" id="strPlantType" placeholder="Plant Type" class="form-control" autocomplete="off">
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -476,11 +476,11 @@ if(data.intcount!=0){
                 <div class="form-group">
                   <input type="hidden" name="txtId" value="0">
                     <label>Plant Code:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtePlantCode" id="strPlantCode1" placeholder="Plant Code" class="form-control" >
+                    <input type="text" name="txtePlantCode" id="strPlantCode1" placeholder="Plant Code" class="form-control" autocomplete="off" >
                   </div>
                   <div class="form-group">
                     <label>Plant Type:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtePlantType" id="strPlantType1" placeholder="Palnt Type" class="form-control" >
+                    <input type="text" name="txtePlantType" id="strPlantType1" placeholder="Palnt Type" class="form-control" autocomplete="off">
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">

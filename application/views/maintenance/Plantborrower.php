@@ -439,45 +439,45 @@ if(data.intcount!=0){
 
                   <div class="form-group">
                   <label>First Name:</label> <label style="color: red">*</label>
-                  <input type="text" id="strFirstname" name="PBFName" placeholder="First Name " class="form-control">
+                  <input type="text" id="strFirstname" name="PBFName" placeholder="First Name " class="form-control"  autocomplete="off">
                 </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Middle Name:</label>
-                      <input type="text" name="PBMName" id="strMiddlename" placeholder="Middle Name" class="form-control">
+                      <input type="text" name="PBMName" id="strMiddlename" placeholder="Middle Name" class="form-control"  autocomplete="off">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Middle Initial:</label>
-                      <input type="text" id="strMiddleInitial" name="PBMInitial" placeholder="Middle Initial" class="form-control">
+                      <input type="text" id="strMiddleInitial" name="PBMInitial" placeholder="Middle Initial" class="form-control"  autocomplete="off">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Last Name:</label> <label style="color: red">*</label>
-                      <input type="text" id="strLastname" name="PBLName" placeholder="Last Name" class="form-control">
+                      <input type="text" id="strLastname" name="PBLName" placeholder="Last Name" class="form-control"  autocomplete="off">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Name Suffix:</label>
-                      <input type="text" id="strNameSuffix" name="PBNSuffix" placeholder="Name Suffix" class="form-control">
+                      <input type="text" id="strNameSuffix" name="PBNSuffix" placeholder="Name Suffix" class="form-control"  autocomplete="off">
                     </div>
                   </div>
                 <div class="form-group">
                   <label>Home Address:</label> <label style="color: red">*</label>
-                    <input type="text" name="PBHAddress" id="strHomeAddress" placeholder="Home Address" class="form-control">
+                    <input type="text" name="PBHAddress" id="strHomeAddress" placeholder="Home Address" class="form-control"  autocomplete="off">
                 </div>
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input  data-mask="99999999999" type="text" name= "PBCNumber" id="strContactNumber" placeholder="Contact Number" class="form-control">
+                    <input  data-mask="99999999999" type="text" name= "PBCNumber" id="strContactNumber" placeholder="Contact Number" class="form-control"  autocomplete="off">
                   </div>
                 <div class="col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
-                    <input type="text" name= "PBEAddress" id="strEmailAddress" placeholder="emailaddress@example.com" class="form-control">
+                    <input type="text" name= "PBEAddress" id="strEmailAddress" placeholder="emailaddress@example.com" class="form-control"  autocomplete="off">
                 </div>
                 </div>
                 <div class="form-group">
                   <label>Affliation:</label> <label style="color: red">*</label>
-                    <input type="text" name="PBAffiliation" id="strAffiliation" placeholder="Affliation" class="form-control">
+                    <input type="text" name="PBAffiliation" id="strAffiliation" placeholder="Affliation" class="form-control"  autocomplete="off">
                 </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -510,45 +510,45 @@ if(data.intcount!=0){
                   <div class="form-group">
                    <input type="hidden" name="txtId" value="0">
                   <label>First Name:</label> <label style="color: red">*</label>
-                  <input type="text" id="strFirstname1" name="PBFName" placeholder="First Name " class="form-control">
+                  <input type="text" id="strFirstname1" name="PBFName" placeholder="First Name " class="form-control"  autocomplete="off">
                 </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Middle Name:</label>
-                      <input type="text" name="PBMName" id="strMiddlename" placeholder="Middle Name" class="form-control">
+                      <input type="text" name="PBMName" id="strMiddlename" placeholder="Middle Name" class="form-control"  autocomplete="off">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Middle Initial:</label>
-                      <input type="text" id="strMiddleInitial" name="PBMInitial" placeholder="Middle Initial" class="form-control">
+                      <input type="text" id="strMiddleInitial" name="PBMInitial" placeholder="Middle Initial" class="form-control"  autocomplete="off">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Last Name:</label> <label style="color: red">*</label>
-                      <input type="text" id="strLastname1" name="PBLName" placeholder="Last Name" class="form-control">
+                      <input type="text" id="strLastname1" name="PBLName" placeholder="Last Name" class="form-control"  autocomplete="off">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Name Suffix:</label>
-                      <input type="text" id="strNameSuffix" name="PBNSuffix" placeholder="Name Suffix" class="form-control">
+                      <input type="text" id="strNameSuffix" name="PBNSuffix" placeholder="Name Suffix" class="form-control"  autocomplete="off">
                     </div>
                   </div>
                 <div class="form-group">
                   <label>Home Address:</label> <label style="color: red">*</label>
-                    <input type="text" name="PBHAddress" id="strHomeAddress1" placeholder="Home Address" class="form-control">
+                    <input type="text" name="PBHAddress" id="strHomeAddress1" placeholder="Home Address" class="form-control"  autocomplete="off">
                 </div>
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
-                    <input  data-mask="99999999999" type="text" name= "PBCNumber" id="strContactNumber1" placeholder="Contact Number" class="form-control">
+                    <input  data-mask="99999999999" type="text" name= "PBCNumber" id="strContactNumber1" placeholder="Contact Number" class="form-control"  autocomplete="off">
                   </div>
                 <div class="col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
-                    <input type="text" name= "PBEAddress" id="strEmailAddress1" placeholder="emailaddress@example.com" class="form-control">
+                    <input type="text" name= "PBEAddress" id="strEmailAddress1" placeholder="emailaddress@example.com" class="form-control"  autocomplete="off">
                 </div>
                 </div>
                 <div class="form-group">
                   <label>Affliation:</label> <label style="color: red">*</label>
-                    <input type="text" name="PBAffiliation" id="strAffiliation1" placeholder="Affliation" class="form-control">
+                    <input type="text" name="PBAffiliation" id="strAffiliation1" placeholder="Affliation" class="form-control"  autocomplete="off">
                 </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">

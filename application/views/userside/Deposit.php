@@ -15,14 +15,14 @@
             <div class="md-form">
               <div class="row">
                 <div class="col-md-6">
-                  <input type="text" name="txtScientificName" id="strScientificName" class="form-control" required>
+                  <input type="text" name="txtScientificName" id="strScientificName" autocomplete = "off"class="form-control" required>
                   <label for="strScientificName" class="font-weight-light ml-3">Scientific Name<span style="color: red"> *</span></label>
                   <div class="invalid-feedback">
                     Please enter the scientific name.
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <input type="text" name="txtCommonName" id="strCommonName" class="form-control" required>
+                  <input type="text" name="txtCommonName" id="strCommonName" class="form-control"  autocomplete="off"  required>
                   <label for="strCommonName" class="font-weight-light ml-3">Common Name<span style="color: red"> *</span></label>
                   <div class="invalid-feedback">
                     Please enter the common name.
@@ -33,8 +33,8 @@
 
 
             <div class="md-form">
-              <input type="text" id="strLocation" name="txtLocation" class="form-control" required>
-              <label for="strLocation" class="font-weight-light">Location<span style="color: red"> *</span></label>
+              <input  autocomplete="off"  type="text" id="strLocation" name="txtLocation" class="form-control" required>
+              <label  for="strLocation" class="font-weight-light">Location<span style="color: red"> *</span></label>
               <div class="invalid-feedback">
                 Please enter the location.
               </div>

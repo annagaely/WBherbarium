@@ -438,11 +438,11 @@ if(data.intcount!=0){
 
                   <div class="form-group">
                     <label>Author's Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtAName" id="strAuthorName" placeholder="Author's Name" class="form-control" >
+                    <input type="text" name="txtAName" id="strAuthorName" placeholder="Author's Name" class="form-control" autocomplete="off">
                   </div>
                   <div class="form-group">
                     <label>Species Author Suffix:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtSASuffix" id="strAuthorSuffix" placeholder="Species Author Suffix" class="form-control" >
+                    <input type="text" name="txtSASuffix" id="strAuthorSuffix" placeholder="Species Author Suffix" class="form-control" autocomplete="off" >
                   </div>
 
                   <div class="modal-footer">
@@ -476,11 +476,11 @@ if(data.intcount!=0){
                  <div class="form-group">
                   <input type="hidden" name="txtId" value="0">
                     <label>Author's Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteAName" id="strAuthorName1" placeholder="Author's Name" class="form-control" >
+                    <input type="text" name="txteAName" id="strAuthorName1" placeholder="Author's Name" class="form-control" autocomplete="off" >
                   </div>
                   <div class="form-group">
                     <label>Species Author Suffix:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteSASuffix" id="strAuthorSuffix1" placeholder="Species Author Suffix" class="form-control" >
+                    <input type="text" name="txteSASuffix" id="strAuthorSuffix1" placeholder="Species Author Suffix" autocomplete="off" class="form-control" >
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
