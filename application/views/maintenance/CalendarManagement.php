@@ -8,6 +8,12 @@
 ?> -->
 
 <head>
+      <!--SWAL-->
+    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 <!--
  <meta http-equiv="Content-Type" content="text/html; charset= utf-8"> -->
   <meta charset="utf-8">
