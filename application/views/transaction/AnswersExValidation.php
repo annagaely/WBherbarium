@@ -128,13 +128,19 @@
 
               </ul>
             </li>
-            <li class="active"><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
+
+            <li class="active">
+              <a href="#TransactionDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
+
               <ul id="TransactionDropdown" class="collapse list-unstyled show">
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                    <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
-                <li class="active"><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
+                <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
+
+                </li>
+                <li class="active"><a href="#ExValidationDropdown" aria-expanded="true" data-toggle="collapse">External Validation</a>
   <ul id="ExValidationDropdown" class="collapse list-unstyled show">
     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp;Send to External Validator</a></li>
     <li class="active" style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
@@ -212,9 +218,7 @@
     <li class="active" style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-            
 
-                </li>
               </ul>
             </li>
  <li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
@@ -225,7 +229,7 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
-                </li>       
+                </li>
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
@@ -502,7 +506,7 @@ if(data.intcount!=0){
                         <input type="hidden" name="txtfn" id="txtFN" value="">
                         <input type="text" name="txtValidatorName" id="strFamilyName" class="form-control" disabled>
                   </div>
-                  
+
               </div>
               <div class = "row"  style="margin-top: 5px">
 
@@ -516,7 +520,7 @@ if(data.intcount!=0){
                        <input type="hidden" name="txtsn" id="txtSN" value="">
                       <input type="text" name="q2" id="strScientificName" class="form-control" disabled="">
                   </div>
-                  
+
               </div>
               <div class = "row"  style="margin-top: 5px">
                 <div class="col-sm-6" >
@@ -529,7 +533,7 @@ if(data.intcount!=0){
                        <input type="hidden" name="txtsn" id="txtSN" value="">
                       <input type="text" name="q4" id="strScientificName" class="form-control" disabled="">
                   </div>
-                  
+
               </div>
               <div class = "row"  style="margin-top: 5px">
                 <div class="col-sm-6" >
@@ -585,7 +589,7 @@ if(data.intcount!=0){
         </div>
       </div>
 
- 
+
       <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 
 
@@ -635,7 +639,7 @@ if(data.intcount!=0){
           $('input[name=q6]').val(data.strQ6);
           $('input[name=q7]').val(data.strQ7);
           $('input[name=q8]').val(data.strQ8);
-          $('input[name=q9]').val(data.strQ9);  
+          $('input[name=q9]').val(data.strQ9);
           $('#comment').val(data.strComments);
           $('#txtscoreid').val(data.strScore+' out of 9');
           $('input[name=txtremarks]').val(data.strRemarks);
@@ -647,5 +651,5 @@ if(data.intcount!=0){
     });
 
 
-   
+
 </script>

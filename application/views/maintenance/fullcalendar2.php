@@ -26,7 +26,7 @@
 <style>
 
   body {
-  
+
     font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
     font-size: 14px;
   }
@@ -46,7 +46,7 @@
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    
+
     background-color: #fefefe; /* Black w/ opacity */
 }
 
@@ -107,7 +107,7 @@
         <div class="card-header d-flex align-items-center">
           <button type="button" data-toggle="modal" data-target="#addModal" class="btn btn-primary">Add Event</button>
         </div>
-      
+
   <div class="modal" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -136,7 +136,7 @@
                     <input type="date" class="form-control" id='start_date' name="start_date">
                 </div>
         </div>
-      
+
       <div class="modal-footer">
         <input type="button" class="btn btn-secondary" value="Close" data-dismiss="modal">
         <input type="submit" class="btn btn-primary" id='btnSave' value="Add Event">
@@ -154,23 +154,23 @@ var yyyy = today.getFullYear();
 
 if(dd<10) {
     dd = '0'+dd
-} 
+}
 
 if(mm<10) {
     mm = '0'+mm
-} 
+}
 
 today = yyyy + '-' + mm + '-' +dd ;
 
       if($('#start_date').val()<today){//check if date is before today
-        
+
         event.preventDefault();
         swal({
           type: 'error',
           title: 'Invalid Date!',
           text: 'Date selected is past the current date.'
         });
-     
+
        }else{
         if($('#name').val()!=''){//check ng values
         if($('#description').val()!=''){
@@ -247,7 +247,7 @@ today = yyyy + '-' + mm + '-' +dd ;
           title: 'Incomplete input!',
           text: 'Please fill up all the required fields.'
         });
-      } 
+      }
        }
     });
 
@@ -261,7 +261,7 @@ today = yyyy + '-' + mm + '-' +dd ;
 
       <div class="col-md-13 mx-0 px-0">
 <div class="container">
-    <div id="calendar"></div></div>   
+    <div id="calendar"></div></div>
 
   <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -315,10 +315,10 @@ var yyyy = today.getFullYear();
 
 if(dd<10) {
     dd = '0'+dd
-} 
+}
 if(mm<10) {
     mm = '0'+mm
-} 
+}
 today = yyyy + '-' + mm + '-' +dd ;
       //validate form
     if(moment($('#estart_date').val()).format('YYYY-MM-DD')<today){//check if date is before today
@@ -404,7 +404,7 @@ today = yyyy + '-' + mm + '-' +dd ;
           title: 'Incomplete input!',
           text: 'Please fill up all the required fields.'
         });
-      } 
+      }
     }
 
 
@@ -465,8 +465,8 @@ $(document).ready(function() {
 
 <!--   $('#calendar').fullCalendar({
 
-        dayClick: function(date, jsEvent, view) { 
-            alert('Clicked on: ' + date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear());  
+        dayClick: function(date, jsEvent, view) {
+            alert('Clicked on: ' + date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear());
         },
 
     }); -->

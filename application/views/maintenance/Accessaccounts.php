@@ -93,9 +93,11 @@
 
           <ul id="side-main-menu" class="side-menu list-unstyled show">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
+
 <?php if($this->session->userdata('strRole')==='CURATOR'):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show ">
+
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
                   <ul id="TaxHierDropdown" class="collapse list-unstyled">
@@ -184,6 +186,7 @@
                     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Species"> &nbsp; &nbsp; &nbsp; &nbsp; Species</a></li>
                   </ul>
                 </li>
+
                 <li><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
@@ -213,6 +216,7 @@
   </ul>
 </li>
             
+
 
                 </li>
               </ul>
@@ -289,7 +293,7 @@
                     </a></li>
                   </ul>
               </li>
-               
+
                 <!-- Log out-->
                  <li class="nav-item"><a href="<?php echo base_url()?>admin/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >

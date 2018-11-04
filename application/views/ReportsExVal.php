@@ -176,7 +176,7 @@
                     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Species"> &nbsp; &nbsp; &nbsp; &nbsp; Species</a></li>
                   </ul>
                 </li>
-                <li><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
+              <li><a href="<?php echo base_url(); ?>admin/Familyboxes">Family Boxes</a></li>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Locality">Locality</a></li>-->
                 <li><a href="<?php echo base_url(); ?>admin/Collector">Collector</a></li>
 
@@ -206,6 +206,7 @@
 </li>
             
 
+
                 </li>
               </ul>
             </li>
@@ -217,8 +218,10 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
-                </li>       
-             <li class="active"><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
+
+                </li>
+            <li class="active"><a href="#ReportsDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
+
                 <ul id="ReportsDropdown" class="collapse list-unstyled show">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
                  <li><a href="<?php echo base_url(); ?>admin/ReportsVisits">&nbsp;&nbsp;&nbsp;Visits</a></li>
@@ -291,7 +294,7 @@
           </div></a></li>
                   </ul>
                 </li>
-            
+
                 <!-- Log out-->
                  <li class="nav-item"><a href="<?php echo base_url()?>admin/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
@@ -396,8 +399,10 @@ if(data.intcount!=0){
               <div class="container-fluid">
                 <ul class="breadcrumb">
                   <li class="breadcrumb-item"><a href="<?php echo base_url(); ?>admin/Dashboard" >Home</a></li>
-                  <li class="breadcrumb-item ">Reports</li> 
-                  <li class="breadcrumb-item active"> External Validation</li>
+
+                  <li class="breadcrumb-item ">Reports</li>
+                  <li class="breadcrumb-item active"> Eternal Validation</li>
+
                 </ul>
               </div>
       </div>
@@ -437,7 +442,7 @@ if(data.intcount!=0){
             <div class="col-md-8 mt-4" >
              <input type="submit" value ='Print Report' class="btn btn-primary"  style="float: right;" >
          </div>
-   
+
   </div>
 </div>
 </form>
