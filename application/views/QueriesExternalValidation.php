@@ -149,16 +149,16 @@
               </ul>
             </li>
 
-<li><a href="#QueriesDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
-                <ul id="QueriesDropdown" class="collapse list-unstyled ">
+<li class="active"><a href="#QueriesDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-database"></i>Queries </a>
+                <ul id="QueriesDropdown" class="collapse list-unstyled show">
                   <li><a href="<?php echo base_url(); ?>admin/QueriesAccounts">&nbsp &nbsp &nbsp Accounts</a></li>
                   <li><a href="<?php echo base_url(); ?>admin/QueriesEvents">&nbsp &nbsp &nbsp Events </a></li>
                    <li><a href="<?php echo base_url(); ?>admin/QueriesDeposits">&nbsp &nbsp &nbsp Deposits</a></li>
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
-                     <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
+                     <li class="active"><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
-                </li>  
-  
+                </li>
+
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
@@ -441,7 +441,7 @@ if(data.intcount!=0){
   var val = $(this).val();
 
   if(val=='Further Verification')
-{ 
+{
 
     $('#divTableEV').show();
     $('#divTableNotVerifiedEV').hide();
@@ -450,8 +450,8 @@ if(data.intcount!=0){
 }
 else if(val=='Verified')
 
-{ 
-  
+{
+
 
     $('#divTableEV').hide();
     $('#divTableNotVerifiedEV').hide();
@@ -459,9 +459,9 @@ else if(val=='Verified')
 
 }
 
-else 
-{ 
-  
+else
+{
+
 
     $('#divTableEV').hide();
     $('#divTableNotVerifiedEV').show();
@@ -563,7 +563,7 @@ else
         ] ).draw( false );
           }
 
-      
+
            $('#divTableEV').show();
            $('#divTableVerifiedEV').hide();
            $('#divTableNotVerifiedEV').hide();
@@ -597,7 +597,7 @@ else if(val=='Verified') {
 
         ] ).draw( false );
           }
-   
+
            $('#divTableEV').hide();
            $('#divTableVerifiedEV').show();
            $('#divTableNotVerifiedEV').hide();
