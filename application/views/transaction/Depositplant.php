@@ -497,7 +497,7 @@ if(data.intcount!=0){
            <div class="modal-header">
 
              <h5 id="exampleModalLabel" class="modal-title">Plant Deposit</h5>
-            <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close" >
                <span aria-hidden="true">&times;</span>
              </button>
            </div>
@@ -588,7 +588,7 @@ if(data.intcount!=0){
            <div class="modal-header">
 
              <h5 id="exampleModalLabel" class="modal-title">Re-schedule</h5>
-            <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close" >
                <span aria-hidden="true">&times;</span>
              </button>
            </div>
@@ -695,6 +695,7 @@ if(data.intcount!=0){
                                                           document.getElementById("reschedform").reset();
                                                         });
                                                   }else{
+                                               if(response=='conflict'){
                                                event.preventDefault();
                                                 swal({
                                                   type: 'error',
@@ -702,8 +703,16 @@ if(data.intcount!=0){
                                                   text: 'The Herbarium center is not available on the selected date.',
                                                   showConfirmButton: true
                                                 });
-                                                  }
-
+                                               }else{
+                                                event.preventDefault();
+                                                swal({
+                                                  type: 'error',
+                                                  title: 'Invalid Date!',
+                                                  text: "Can't reschedule to the same date.",
+                                                  showConfirmButton: true
+                                                });
+                                               }
+                                                }
                                                 },
                                                 error: function(){
                                                event.preventDefault();

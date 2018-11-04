@@ -426,7 +426,7 @@ if(data.intcount!=0){
    <select id="accounttype" class="form-control">
       <option>-- Select Account Type --</option>
       <option>User</option>
-      <option>Admin</option>
+      <option>Herbarium Staff</option>
     </select>
   </div>
    <div class="col-md-4">

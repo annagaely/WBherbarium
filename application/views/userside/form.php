@@ -165,7 +165,7 @@
          <div class="md-form mt-3">
          <select name='remarks' id='remark' class="md-select form-control">
            <option>Approved</option>
-           <option>Unidentifiable</option>
+          <!--  <option>Unidentifiable</option> -->
            <option>Needs Correction</option>
          </select>
         </div>

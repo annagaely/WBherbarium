@@ -66,7 +66,7 @@ class admin_m extends CI_Model{
 			$querycheckphylum=$this->db->query("select * from tblPhylum where [strPhylumName] = '".$phylumName."'");
 			if($querycheckphylum->num_rows() == 0){
 				$query="
-				insert into tblPhylum(strDomainName,strKingdomName,strPhylumName) VALUES ('".$domainName."','".$kingdomName."','".$phylumName."')
+				insert into tblPhylum(strDomainName,strKingdomName,strPhylumName) VALUES ('Eukaryota','Plantae','".$phylumName."')
 
 				";
 			if($this->db->query($query)){
@@ -96,8 +96,6 @@ class admin_m extends CI_Model{
     $id = $this->input->post('txtId');
 		$phylumName = $this->input->post('txtepName');
     $field = array(
-    'strDomainName'=>$this->input->post('txtedName'),
-    'strKingdomName'=>$this->input->post('txtekName'),
     'strPhylumName'=>$this->input->post('txtepName')
     );
 			$this->db->where('intPhylumID', $id);
@@ -1304,7 +1302,7 @@ public function editValidator(){
 		      ,[strEmailAddress]
 		      ,[strRole]
 		      ,[strCollegeDepartment]
-		      ,[strHasAccount]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."','No')
+		      ,[strHasAccount]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."','No',, getdate())
 
 			";
 				$this->db->query($query);
@@ -1464,7 +1462,7 @@ UPDATE tblHerbariumStaff
 		Set @password ='$password'
 
 				INSERT INTO tblAccounts(intStaffID, strUsername, strPassword)
-				VALUES (@staffID, @username, @password, getdate())
+				VALUES (@staffID, @username, @password)
 
 				update tblHerbariumStaff
 				set strHasAccount = 'Yes'
@@ -2975,6 +2973,8 @@ public function depreschedadmin(){
 
     $id=$this->input->post('txtId');
 $date=$this->input->post('txtReschedDate');
+$querychecksamedt=$this->db->query("select * from tblDepositReq where dtAppointmentDate = '".$date."' ");
+if($querychecksamedt->num_rows()==0){
 $querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$date."' ");
 if($querycheckeventtbl->num_rows()==0){
 	$query="
@@ -2994,11 +2994,20 @@ if($querycheckeventtbl->num_rows()==0){
 			$msg='conflict';
 		echo json_encode($msg);
 	}
+}else{
+		$msg='samedate';
+		echo json_encode($msg);
+}
+
+
+
 }
 public function visitreschedadmin(){
 
     $id=$this->input->post('txtId');
 $date=$this->input->post('txtReschedDate');
+$querychecksamedt=$this->db->query("select * from tblAppointments where dtAppointmentDate = '".$date."' ");
+if($querychecksamedt->num_rows()==0){
 $querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$date."' ");
 if($querycheckeventtbl->num_rows()==0){
 	$query="
@@ -3018,6 +3027,11 @@ if($querycheckeventtbl->num_rows()==0){
 			$msg='conflict';
 		echo json_encode($msg);
 	}
+}else{
+		$msg='samedate';
+		echo json_encode($msg);
+}
+
 }
 
 
@@ -3622,10 +3636,43 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+            /** 
+                Set the margins of the page to 0, so the footer and the header
+                can be of the full height and width !
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Define now the real margins of every page in the PDF **/
+            body {
+                margin-top: 5.5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Define the header rules **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 2cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Define the footer rules **/
+            footer {
+                position: fixed; 
+                bottom: .5cm; 
+                left: 1cm; 
+                right: 0cm;
+                height: 3cm;
+            }
 </style>
-
+<body>
 &nbsp; &nbsp; &nbsp;
-
+<header>
 <img src="assets/bower_components/pdfheader.png" />
 <center>
 <h3>
@@ -3633,6 +3680,9 @@ Monthly External Validation Report - '.$monthName.' '.date("Y").'
 </h3><h4> '.$status.' Requests </h4>
 </center>
 <br><br>
+</header>
+		<footer> <img src="assets/bower_components/pdffooter.JPG" />
+		</footer>
 		<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -3701,9 +3751,53 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+            /** 
+                Set the margins of the page to 0, so the footer and the header
+                can be of the full height and width !
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Define now the real margins of every page in the PDF **/
+            body {
+                margin-top: 5.5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Define the header rules **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 2cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Define the footer rules **/
+            footer {
+                position: fixed; 
+                bottom: .5cm; 
+                left: 1cm; 
+                right: 0cm;
+                height: 3cm;
+            }
 </style>
-&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+<body>
+&nbsp; &nbsp; &nbsp;
+<header>
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' 
+</h3><h4> '.$status.' Requests </h4>
+</center>
+<br><br>
+</header>
+		<footer> <img src="assets/bower_components/pdffooter.JPG" />
+		</footer>
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -3784,9 +3878,53 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+            /** 
+                Set the margins of the page to 0, so the footer and the header
+                can be of the full height and width !
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Define now the real margins of every page in the PDF **/
+            body {
+                margin-top: 5.5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Define the header rules **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 2cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Define the footer rules **/
+            footer {
+                position: fixed; 
+                bottom: .5cm; 
+                left: 1cm; 
+                right: 0cm;
+                height: 3cm;
+            }
 </style>
-&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+<body>
+&nbsp; &nbsp; &nbsp;
+<header>
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' 
+</h3><h4> '.$status.' Requests </h4>
+</center>
+<br><br>
+</header>
+		<footer> <img src="assets/bower_components/pdffooter.JPG" />
+		</footer>
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -3867,9 +4005,53 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+            /** 
+                Set the margins of the page to 0, so the footer and the header
+                can be of the full height and width !
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Define now the real margins of every page in the PDF **/
+            body {
+                margin-top: 5.5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Define the header rules **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 2cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Define the footer rules **/
+            footer {
+                position: fixed; 
+                bottom: .5cm; 
+                left: 1cm; 
+                right: 0cm;
+                height: 3cm;
+            }
 </style>
-&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+<body>
+&nbsp; &nbsp; &nbsp;
+<header>
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' 
+</h3><h4> '.$status.' Requests </h4>
+</center>
+<br><br>
+</header>
+		<footer> <img src="assets/bower_components/pdffooter.JPG" />
+		</footer>
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -3950,9 +4132,53 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+            /** 
+                Set the margins of the page to 0, so the footer and the header
+                can be of the full height and width !
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Define now the real margins of every page in the PDF **/
+            body {
+                margin-top: 5.5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Define the header rules **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 2cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Define the footer rules **/
+            footer {
+                position: fixed; 
+                bottom: .5cm; 
+                left: 1cm; 
+                right: 0cm;
+                height: 3cm;
+            }
 </style>
-&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+<body>
+&nbsp; &nbsp; &nbsp;
+<header>
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly Deposit Requests Report - '.$monthName.' '.date("Y").' 
+</h3><h4> '.$status.' Requests </h4>
+</center>
+<br><br>
+</header>
+		<footer> <img src="assets/bower_components/pdffooter.JPG" />
+		</footer>
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -4022,7 +4248,7 @@ $month = $this->input->post('month');
 $dateObj   = DateTime::createFromFormat('!m', $month);
 $monthName = $dateObj->format('F');
 			$output = '<style>
-table {
+			table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -4037,9 +4263,53 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+            /** 
+                Set the margins of the page to 0, so the footer and the header
+                can be of the full height and width !
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Define now the real margins of every page in the PDF **/
+            body {
+                margin-top: 5.5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Define the header rules **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 2cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Define the footer rules **/
+            footer {
+                position: fixed; 
+                bottom: .5cm; 
+                left: 1cm; 
+                right: 0cm;
+                height: 3cm;
+            }
 </style>
-&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+<body>
+&nbsp; &nbsp; &nbsp;
+<header>
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' 
+</h3><h4> '.$status.' Requests </h4>
+</center>
+<br><br>
+</header>
+		<footer> <img src="assets/bower_components/pdffooter.JPG" />
+		</footer>
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -4105,7 +4375,7 @@ $status = $this->input->post('status');
 $dateObj   = DateTime::createFromFormat('!m', $month);
 $monthName = $dateObj->format('F');
 			$output = '<style>
-table {
+			table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -4120,9 +4390,54 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+            /** 
+                Set the margins of the page to 0, so the footer and the header
+                can be of the full height and width !
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Define now the real margins of every page in the PDF **/
+            body {
+                margin-top: 5.5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Define the header rules **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 2cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Define the footer rules **/
+            footer {
+                position: fixed; 
+                bottom: .5cm; 
+                left: 1cm; 
+                right: 0cm;
+                height: 3cm;
+            }
 </style>
-&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+<body>
+&nbsp; &nbsp; &nbsp;
+<header>
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' 
+</h3><h4> '.$status.' Requests </h4>
+</center>
+<br><br>
+</header>
+		<footer> <img src="assets/bower_components/pdffooter.JPG" />
+		</footer>
+
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -4187,7 +4502,7 @@ $status = $this->input->post('status');
 $dateObj   = DateTime::createFromFormat('!m', $month);
 $monthName = $dateObj->format('F');
 			$output = '<style>
-table {
+			table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -4202,9 +4517,54 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+            /** 
+                Set the margins of the page to 0, so the footer and the header
+                can be of the full height and width !
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Define now the real margins of every page in the PDF **/
+            body {
+                margin-top: 5.5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Define the header rules **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 2cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Define the footer rules **/
+            footer {
+                position: fixed; 
+                bottom: .5cm; 
+                left: 1cm; 
+                right: 0cm;
+                height: 3cm;
+            }
 </style>
-&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+<body>
+&nbsp; &nbsp; &nbsp;
+<header>
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' 
+</h3><h4> '.$status.' Requests </h4>
+</center>
+<br><br>
+</header>
+		<footer> <img src="assets/bower_components/pdffooter.JPG" />
+		</footer>
+
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -4269,7 +4629,7 @@ $status = $this->input->post('status');
 $dateObj   = DateTime::createFromFormat('!m', $month);
 $monthName = $dateObj->format('F');
 			$output = '<style>
-table {
+			table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -4284,9 +4644,54 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+            /** 
+                Set the margins of the page to 0, so the footer and the header
+                can be of the full height and width !
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Define now the real margins of every page in the PDF **/
+            body {
+                margin-top: 5.5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Define the header rules **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 2cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Define the footer rules **/
+            footer {
+                position: fixed; 
+                bottom: .5cm; 
+                left: 1cm; 
+                right: 0cm;
+                height: 3cm;
+            }
 </style>
-&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+<body>
+&nbsp; &nbsp; &nbsp;
+<header>
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' 
+</h3><h4> '.$status.' Requests </h4>
+</center>
+<br><br>
+</header>
+		<footer> <img src="assets/bower_components/pdffooter.JPG" />
+		</footer>
+
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>
@@ -4352,7 +4757,7 @@ $status = $this->input->post('status');
 $dateObj   = DateTime::createFromFormat('!m', $month);
 $monthName = $dateObj->format('F');
 			$output = '<style>
-table {
+			table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -4367,9 +4772,53 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+            /** 
+                Set the margins of the page to 0, so the footer and the header
+                can be of the full height and width !
+             **/
+            @page {
+                margin: 0cm 0cm;
+            }
+
+            /** Define now the real margins of every page in the PDF **/
+            body {
+                margin-top: 5.5cm;
+                margin-left: 2cm;
+                margin-right: 2cm;
+                margin-bottom: 2cm;
+            }
+
+            /** Define the header rules **/
+            header {
+                position: fixed;
+                top: 0cm;
+                left: 2cm;
+                right: 0cm;
+                height: 3cm;
+            }
+
+            /** Define the footer rules **/
+            footer {
+                position: fixed; 
+                bottom: .5cm; 
+                left: 1cm; 
+                right: 0cm;
+                height: 3cm;
+            }
 </style>
-&nbsp; &nbsp; &nbsp;<img src="assets/bower_components/pdfheader.png" />
-<center><h3>Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' </h3><h4> '.$status.' Requests </h4></center><br><br>
+<body>
+&nbsp; &nbsp; &nbsp;
+<header>
+<img src="assets/bower_components/pdfheader.png" />
+<center>
+<h3>
+Monthly Visit Appointments Report - '.$monthName.' '.date("Y").' 
+</h3><h4> '.$status.' Requests </h4>
+</center>
+<br><br>
+</header>
+		<footer> <img src="assets/bower_components/pdffooter.JPG" />
+		</footer>
 			<table width="100%" cellspacing="5" cellpadding="5">
 			<thead>
 			<tr>

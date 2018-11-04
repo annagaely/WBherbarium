@@ -409,6 +409,9 @@ public function updateCurrentVisitResched(){
     $lastname = $this->session->userdata['strLastName'];
 $date = $this->input->post('dtnewDate');
 
+$querychecksamedt=$this->db->query("select * from tblAppointments where dtAppointmentDate = '".$date."' ");
+if($querychecksamedt->num_rows()==0){
+
  $querycheckdate=$this->db->query("select * from tblEvents where [start] = '".$date."'");
 
 if($querycheckdate->num_rows() == 0){
@@ -429,8 +432,15 @@ if($this->db->query($queryupdate)){
 		}
 
 }else{
-	return false;
+	$msg='conflict';
+		echo json_encode($msg);
 }
+}
+else{
+		$msg='samedate';
+		echo json_encode($msg);
+}
+
 
 }
 
@@ -530,7 +540,9 @@ public function updateCurrentDepositResched(){
     $lastname = $this->session->userdata['strLastName'];
 $date = $this->input->post('dtnewDate');
 
- $querycheckdate=$this->db->query("select * from tblEvents where [start] = '".$date."'");
+$querychecksamedt=$this->db->query("select * from tblDepositReq where dtAppointmentDate = '".$date."' ");
+if($querychecksamedt->num_rows()==0){
+$querycheckdate=$this->db->query("select * from tblEvents where [start] = '".$date."'");
 
 if($querycheckdate->num_rows() == 0){
  $queryupdate="
@@ -550,7 +562,12 @@ if($this->db->query($queryupdate)){
 		}
 
 }else{
-	return false;
+	$msg='conflict';
+		echo json_encode($msg);
+}
+}else{
+		$msg='samedate';
+		echo json_encode($msg);
 }
 
 }
