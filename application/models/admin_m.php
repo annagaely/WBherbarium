@@ -1684,25 +1684,38 @@ public function updateAccounts(){
 public function add_event($data)
 {
       $start_date = $this->input->post("start_date", TRUE);
-$querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+          $start_time = $this->input->post("start_time", TRUE);
+    $end_time = $this->input->post("end_time", TRUE);
+$querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='For Depositing' or strStatus='Email Sent') and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querycheckdepreqtbl->num_rows()==0){
 
-		$querycheckvisittbl=$this->db->query("select * from tblAppointments where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+		$querycheckvisittbl=$this->db->query("select * from tblAppointments where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus ='For Visiting' or strStatus='Email Sent') and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 						if($querycheckvisittbl->num_rows()==0){
+
+
+							$querycheckeventtbl=$this->db->query("select * from tblEvents where( start = '".$start_date."' ) and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
+						if($querycheckeventtbl->num_rows()==0){
 							$this->db->insert("tblEvents", $data);
 
-
 									 if($this->db->affected_rows() > 0){
-										return true;
+										$msg = 'true';
+										echo json_encode($msg);
 									}else{
 										return false;
 									}
+
 						}else{
-							return false;
+							$msg = 'eventsamedttime';
+							echo json_encode($msg);
+							}
+							}else{
+							$msg = 'visitsamedttime';
+							echo json_encode($msg);
 								}
 
 }else{
-	return false;
+								$msg = 'depositsamedttime';
+							echo json_encode($msg);
 }
 
 
@@ -1718,26 +1731,38 @@ public function get_event($id)
 public function update_event($id, $data)
 {
 
-     $start_date = $this->input->post("start_date", TRUE);
-$querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+      $start_date = $this->input->post("start_date", TRUE);
+          $start_time = $this->input->post("start_time", TRUE);
+    $end_time = $this->input->post("end_time", TRUE);
+$querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='For Depositing' or strStatus='Email Sent') and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querycheckdepreqtbl->num_rows()==0){
 
-		$querycheckvisittbl=$this->db->query("select * from tblAppointments where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+		$querycheckvisittbl=$this->db->query("select * from tblAppointments where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus ='For Visiting' or strStatus='Email Sent') and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 						if($querycheckvisittbl->num_rows()==0){
+
+
+							$querycheckeventtbl=$this->db->query("select * from tblEvents where( start = '".$start_date."' ) and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
+						if($querycheckeventtbl->num_rows()==0){
 							$this->db->where("ID", $id)->update("tblEvents", $data);
-
-
 									 if($this->db->affected_rows() > 0){
-										return true;
+										$msg = 'true';
+										echo json_encode($msg);
 									}else{
 										return false;
 									}
+
 						}else{
-							return false;
+							$msg = 'eventsamedttime';
+							echo json_encode($msg);
+							}
+							}else{
+							$msg = 'visitsamedttime';
+							echo json_encode($msg);
 								}
 
 }else{
-	return false;
+								$msg = 'depositsamedttime';
+							echo json_encode($msg);
 }
 
 }
@@ -3010,14 +3035,24 @@ public function depreschedadmin(){
 
     $id=$this->input->post('txtId');
 $date=$this->input->post('txtReschedDate');
-$querychecksamedt=$this->db->query("select * from tblDepositReq where dtAppointmentDate = '".$date."' ");
+$start_time = $this->input->post('start_time');
+$end_time = $this->input->post('end_time');
+$querychecksamedt=$this->db->query("select * from tblDepositReq where dtAppointmentDate = '".$date."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querychecksamedt->num_rows()==0){
-$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$date."' ");
+$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$date."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querycheckeventtbl->num_rows()==0){
 	$query="
 
 		UPDATE tblDepositReq
 		SET dtAppointmentDate = '".$date."'
+		WHERE intDepositReqID = '".$id."';
+
+		UPDATE tblDepositReq
+		SET start_time = '".$start_time."'
+		WHERE intDepositReqID = '".$id."';
+
+		UPDATE tblDepositReq
+		SET end_time = '".$end_time."'
 		WHERE intDepositReqID = '".$id."';
 
 			";
@@ -3043,15 +3078,24 @@ public function visitreschedadmin(){
 
     $id=$this->input->post('txtId');
 $date=$this->input->post('txtReschedDate');
-$querychecksamedt=$this->db->query("select * from tblAppointments where dtAppointmentDate = '".$date."' ");
+$start_time = $this->input->post('start_time');
+$end_time = $this->input->post('end_time');
+$querychecksamedt=$this->db->query("select * from tblAppointments where dtAppointmentDate = '".$date."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querychecksamedt->num_rows()==0){
-$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$date."' ");
+$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$date."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querycheckeventtbl->num_rows()==0){
 	$query="
 		update tblAppointments
 		SET dtAppointmentDate = '".$date."'
 		WHERE intAppointmentID = '".$id."';
 
+		UPDATE tblAppointments
+		SET start_time = '".$start_time."'
+		WHERE intAppointmentID = '".$id."';
+
+		UPDATE tblAppointments
+		SET end_time = '".$end_time."'
+		WHERE intAppointmentID = '".$id."';
 			";
 		if($this->db->query($query)){
 			return true;
