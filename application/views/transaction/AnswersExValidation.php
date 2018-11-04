@@ -482,6 +482,17 @@ if(data.intcount!=0){
               <div class = "row">
 
                   <div class="col-sm-6" >
+                        <label style="font-size: 14px;">Score:</label>
+                        <input type="text" name="txtscore" id="txtscoreid" class="form-control" disabled="">
+                  </div>
+                    <div class="col-sm-6" >
+                       <label style="font-size: 14px;; color: red">Remarks</label>
+                       <input type="text" name="txtremarks" class="form-control" id="dtDateCollected" disabled="">
+                     </div>
+              </div><hr>
+              <div class = "row">
+
+                  <div class="col-sm-6" >
                         <label style="font-size: 14px;">Deposit ID:</label>
                         <input type="hidden" name="txtId" id="txtID" value="0">
                         <input type="text" name="txtDepositID" id="strAccessionNumber" class="form-control" disabled="">
@@ -548,10 +559,6 @@ if(data.intcount!=0){
                      <div class="col-sm-6" >
                        <label style="font-size: 14px;">Are the indicated details of Herbarium Sheet accurate? (e.g Description, Scientific Name, Common Name)</label>
                        <input type="text" name="q9" class="form-control" id="strStaff" disabled="">
-                     </div>
-                    <div class="col-sm-6" >
-                       <label style="font-size: 14px;; color: red">Remarks</label>
-                       <input type="text" name="txtremarks" class="form-control" id="dtDateCollected" disabled="">
                      </div>
               </div>
                     <div class="form-group"  style="margin-top: 5px">
@@ -630,6 +637,7 @@ if(data.intcount!=0){
           $('input[name=q8]').val(data.strQ8);
           $('input[name=q9]').val(data.strQ9);  
           $('#comment').val(data.strComments);
+          $('#txtscoreid').val(data.strScore+' out of 9');
           $('input[name=txtremarks]').val(data.strRemarks);
         },
         error: function(){

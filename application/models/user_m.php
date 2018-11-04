@@ -659,8 +659,47 @@ $q7=$this->input->post('q7');
 $q8=$this->input->post('q8');
 $q9=$this->input->post('q9');
 $comment =$this->input->post('comments');
-$remarks=$this->input->post('remarks');
-	$query="insert into tblAnswers(intDepositID,strQ1,strQ2,strQ3,strQ4,strQ5,strQ6,strQ7,strQ8,strQ9,strComments,strRemarks) values (".$id.",'".$q1."','".$q2."','".$q3."','".$q4."','".$q5."','".$q6."','".$q7."','".$q8."','".$q9."','".$comment."','".$remarks."')
+// $remarks=$this->input->post('remarks');
+
+$count= 0;
+if($q1== 'Yes'){
+$count+=1;
+};
+if($q2== 'Yes'){
+	$count+=1;
+};
+if($q3== 'Yes'){
+	$count+=1;
+};
+if($q4== 'Yes'){
+	$count+=1;
+};
+if($q5== 'Yes'){
+	$count+=1;
+};
+if($q6== 'Yes'){
+	$count+=1;
+};
+if($q7== 'Yes'){
+	$count+=1;
+};
+if($q8== 'Yes'){
+	$count+=1;
+};
+if($q9== 'Yes'){
+	$count+=1;
+};
+
+if($count == 9){
+	$remarks = 'Approved';
+}else if($count == 0){
+	$remarks = 'Disaapproved';
+}else{
+$remarks = 'Needs Correction';
+}
+
+
+	$query="insert into tblAnswers(intDepositID,strQ1,strQ2,strQ3,strQ4,strQ5,strQ6,strQ7,strQ8,strQ9,strComments,strRemarks,strScore) values (".$id.",'".$q1."','".$q2."','".$q3."','".$q4."','".$q5."','".$q6."','".$q7."','".$q8."','".$q9."','".$comment."','".$remarks."',".$count.")
 
 		insert into tblNotif(strNotifContent,intNotifStatus) VALUES ('External Validator has evaluated the Plant Deposit: ".$id."',0)
 

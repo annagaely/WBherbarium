@@ -12,7 +12,16 @@ class admin extends CI_Controller {
 
    	public function index()
 	{
-		$this->load->view('login');
+
+	if($this->session->userdata('strUsername')!=''){
+
+	$title['title'] = "PUPHerbarium | Dashboard";
+	$this->load->view('maintenance/Dashboard', $title);
+	}
+	else{
+			$this->load->view('login');
+	}
+		
 	}
 
 	public function Adminhome()

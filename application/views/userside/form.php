@@ -49,26 +49,26 @@
           <label class="custom-control-label" for="q1Yes">Yes</label>
         </div>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="No" id="q1No" name="q1">
+          <input type="radio" class="custom-control-input" value="No" id="q1No" name="q1" >
           <label class="custom-control-label" for="q1No">No</label>
         </div>
         <li>Is the specimen identifiable using the images?</li>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="Yes" id="q2Yes" name="q2">
+          <input type="radio" class="custom-control-input" value="Yes" id="q2Yes" name="q2" >
           <label class="custom-control-label" for="q2Yes">Yes</label>
         </div>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="No" id="q2No" name="q2">
+          <input type="radio" class="custom-control-input" value="No" id="q2No" name="q2" >
           <label class="custom-control-label" for="q2No">No</label>
         </div>
 
         <li>Does the flower of the specimen match the indicated Specie?</li>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="Yes" id="q3Yes" name="q3">
+          <input type="radio" class="custom-control-input" value="Yes" id="q3Yes" name="q3" >
           <label class="custom-control-label" for="q3Yes">Yes</label>
         </div>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="No" id="q3No" name="q3">
+          <input type="radio" class="custom-control-input" value="No" id="q3No" name="q3" >
           <label class="custom-control-label" for="q3No">No</label>
         </div>
         <li>Does the stem of the specimen match the indicated Specie?</li>
@@ -77,12 +77,12 @@
           <label class="custom-control-label" for="q4Yes">Yes</label>
         </div>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="No" id="q4No" name="q4">
+          <input type="radio" class="custom-control-input" value="No" id="q4No" name="q4" >
           <label class="custom-control-label" for="q4No">No</label>
         </div>
         <li>Does the leaf of the specimen match the indicated Specie?</li>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="Yes" id="q5Yes" name="q5">
+          <input type="radio" class="custom-control-input" value="Yes" id="q5Yes" name="q5" >
           <label class="custom-control-label" for="q5Yes">Yes</label>
         </div>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
@@ -95,36 +95,36 @@
           <label class="custom-control-label" for="q6Yes">Yes</label>
         </div>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="No" id="q6No" name="q6">
+          <input type="radio" class="custom-control-input" value="No" id="q6No" name="q6" >
           <label class="custom-control-label" for="q6No">No</label>
         </div>
         <li>Does the seed of the specimen match the indicated Specie?</li>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="Yes" id="q7Yes" name="q7">
+          <input type="radio" class="custom-control-input" value="Yes" id="q7Yes" name="q7" >
           <label class="custom-control-label" for="q7Yes">Yes</label>
         </div>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="No" id="q7NO" name="q7">
+          <input type="radio" class="custom-control-input" value="No" id="q7No" name="q7" >
           <label class="custom-control-label" for="q7No">No</label>
         </div>
         <li>Is the Herbarium specimen correctly attached in the herbarium sheet?</li>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="Yes" id="q8Yes" name="q8">
+          <input type="radio" class="custom-control-input" value="Yes" id="q8Yes" name="q8" >
           <label class="custom-control-label" for="q8Yes">Yes</label>
         </div>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="No" id="q8No" name="q8">
+          <input type="radio" class="custom-control-input" value="No" id="q8No" name="q8" >
           <label class="custom-control-label" for="q8No">No</label>
         </div>
 
 
         <li>Are the indicated details of Herbarium Sheet accurate? (e.g Description, Scientific Name, Common Name)</li>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="Yes" id="q9Yes" name="q9">
+          <input type="radio" class="custom-control-input" value="Yes" id="q9Yes" name="q9" >
           <label class="custom-control-label" for="q9Yes">Yes</label>
         </div>
         <div class="custom-control custom-radio"  style="margin-left: 38px;">
-          <input type="radio" class="custom-control-input" value="No" id="q9No" name="q9">
+          <input type="radio" class="custom-control-input" value="No" id="q9No" name="q9" >
           <label class="custom-control-label" for="q9No">No</label>
         </div> 
 
@@ -161,14 +161,14 @@
           <textarea type="text" name='comments' id='comment' class="md-textarea form-control" rows="2"></textarea>
           <label for="form7">Comments/Corrections</label>
         </div>
-        <label>Remarks: </label>
-         <div class="md-form mt-3">
+<!--        <label>Remarks: </label>
+          <div class="md-form mt-3">
          <select name='remarks' id='remark' class="md-select form-control">
            <option>Approved</option>
-          <!--  <option>Unidentifiable</option> -->
+           <option>Unidentifiable</option>
            <option>Needs Correction</option>
          </select>
-        </div>
+        </div>  -->
       </ol>
       <!-- Default unchecked -->
 
@@ -325,32 +325,9 @@
             text: 'Please fill up all the required fields.'
           });
           }
-           
-      //     }else{
-      //       event.preventDefault();
-      //       swal({
-      //         type: 'error',
-      //         title: 'Incomplete input!',
-      //         text: 'Please fill up all the required fields.'
-      //       });
-      //       }
-      //   }else{
-      //     event.preventDefault();
-      //     swal({
-      //       type: 'error',
-      //       title: 'Incomplete input!',
-      //       text: 'Please fill up all the required fields.'
-      //     });
-      //     }
-      // }else{
-      //   event.preventDefault();
-      //   swal({
-      //     type: 'error',
-      //     title: 'Incomplete input!',
-      //     text: 'Please fill up all the required fields.'
-      //   });
-      //   }
     });
+    
+
       </script>
 
 
