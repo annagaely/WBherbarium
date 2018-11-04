@@ -169,8 +169,32 @@ $(document).ready(function () {
 $('#btnSave').click(function(event){
      var data = $('#editCurrentVisitform').serialize();
      //validate form
+
     if($('#txtChange').val()==='Reschedule'){
-if(document.getElementById('dtnewDateid').disabled == false){
+                                     var todayadd3 = new Date();
+                          var dd = todayadd3.getDate()+3;
+                          var mm = todayadd3.getMonth()+1; //January is 0!
+                          var yyyy = todayadd3.getFullYear();
+
+                          if(dd<10) {
+                              dd = '0'+dd
+                          }
+
+                          if(mm<10) {
+                              mm = '0'+mm
+                          }
+
+                          todayadd3 = yyyy + '-' + mm + '-' +dd ;
+
+                                if($('#dtnewDateid').val()<todayadd3){
+                                           event.preventDefault();
+                                            swal({
+                                               type: 'error',
+                                               title: 'Invalid Date!',
+                                               text: 'The new appointment date should be 3 days from now.'
+                                             });
+                                }else{
+  if(document.getElementById('dtnewDateid').disabled == false){
   if($('#dtnewDateid').val()!=''){
          event.preventDefault();
          swal({
@@ -190,7 +214,7 @@ if(document.getElementById('dtnewDateid').disabled == false){
                async: false,
                dataType: 'json',
                success: function(response){
-                 if(response.success){
+                 if(response=='true'){
                    let timerInterval
                    swal({
                      title: 'Saved',
@@ -241,6 +265,8 @@ if(document.getElementById('dtnewDateid').disabled == false){
           });
         }
 }
+                                }
+
             }else if($('#txtChange').val()==='Cancel'){
 
 event.preventDefault();

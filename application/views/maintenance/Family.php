@@ -437,14 +437,14 @@ if(data.intcount!=0){
                 <form id= "addFamilyForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
-                     <input list="ordername" name ="txtoID" placeholder="Order Name" class="form-control" autocomplete="off">
+                     <input list="ordername" name ="txtoID" placeholder="Order Name"  id='orderName' class="form-control" autocomplete="off">
                      <datalist id ='ordername'>
                      </datalist>
 
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <input list="familyname" id="famName"  name="txtfName" placeholder="Family Name" class="form-control" autocomplete="off">
+                    <input list="familyname" id="famName"  name="txtfName" placeholder="Family Name" id='famName' class="form-control" autocomplete="off">
                     <datalist id = "familyname"></datalist>
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
@@ -479,13 +479,13 @@ if(data.intcount!=0){
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Order Name:</label> <label style="color: red">*</label>
-                     <input list="ordername" name ="seOID" placeholder="Order Name" class="form-control" autocomplete="off">
+                     <input list="ordername" name ="seOID" placeholder="Order Name"  id='orderName1' class="form-control" autocomplete="off">
                      <datalist id ='ordername'>
                      </datalist>
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <input list="familyname" id="famName1"  name="txteFName" placeholder="Family Name" class="form-control" autocomplete="off">
+                    <input list="familyname" id="famName1"  name="txteFName" placeholder="Family Name" id='famName1' class="form-control" autocomplete="off">
                     <datalist id="familyname"></datalist>
                   </div>
                   <div class="modal-footer">

@@ -416,13 +416,13 @@ if(data.intcount!=0){
                 <form id= "addOrderForm" method="POST" enctype="multipart/form-data"> <!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Class Name:</label> <label style="color: red">*</label>
-                     <input list="classname" name ="txtcID" placeholder="Class Name" class="form-control" autocomplete="off">
+                     <input list="classname" name ="txtcID" placeholder="Class Name" id='orderClassName' class="form-control" autocomplete="off">
                      <datalist id ='classname'>
                      </datalist>
                   </div>
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
-                    <input list="ordername" type="text" name="txtOName" zzplaceholder="Order Name" class="form-control" autocomplete="off">
+                    <input list="ordername" type="text" name="txtOName" placeholder="Order Name" id='orderName' class="form-control" autocomplete="off">
                     <datalist id = 'ordername'></datalist>
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
@@ -457,13 +457,13 @@ if(data.intcount!=0){
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Class Name:</label><label style="color: red">*</label>
-                     <input list="classname" name ="sceID" placeholder="Class Name" class="form-control" autocomplete="off">
+                     <input list="classname" name ="sceID" placeholder="Class Name" id='orderClassName1' class="form-control" autocomplete="off">
                      <datalist id ='classname'>
                      </datalist>
                   </div>
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
-                    <input list="ordername" id="orderName1" name="txteOName" placeholder="Order Name" class="form-control" autocomplete="off">
+                    <input list="ordername" id="orderName1" name="txteOName" placeholder="Order Name" id='orderName1' class="form-control" autocomplete="off">
                     <datalist id="ordername"></datalist>
                   </div>
                   <div class="modal-footer">

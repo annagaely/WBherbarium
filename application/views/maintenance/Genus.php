@@ -438,13 +438,13 @@ if(data.intcount!=0){
                 <form id= "addGenusForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                     <input list="familyname" name ="txtoID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <input list="familyname" name ="txtoID" placeholder="Family Name" id='famName' class="form-control" autocomplete="off">
                      <datalist id ='familyname'>
                      </datalist>
                   </div>
                   <div class="form-group">
                     <label>Genus Name:</label> <label style="color: red">*</label>
-                    <input list="genusname" id="genusName"  name="txtgName" placeholder="Genus Name" class="form-control" autocomplete="off">
+                    <input list="genusname" id="genusName"  name="txtgName" placeholder="Genus Name" id='genusName' class="form-control" autocomplete="off">
                     <datalist id="genusname"></datalist>
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
@@ -468,7 +468,7 @@ if(data.intcount!=0){
               <div class="modal-header">
 
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"  onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
 
@@ -479,7 +479,7 @@ if(data.intcount!=0){
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Family Name:</label> <label style="color: red">*</label>
-                     <input list="familyname" name ="segFID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <input list="familyname" name ="segFID" placeholder="Family Name" id='famName1'  class="form-control" autocomplete="off">
                      <datalist id ='familyname'>
                      </datalist>
                   </div>

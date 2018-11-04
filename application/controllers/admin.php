@@ -452,12 +452,7 @@ public function showSpeciesGenusName(){
 	//add Order
 	public function addSpecies(){
 		$result = $this->m->addSpecies();
-		$msg['success'] = false;
-		$msg['type'] = 'add';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
+		
 	}
 	public function editSpecies(){
 		$result = $this->m->editSpecies();

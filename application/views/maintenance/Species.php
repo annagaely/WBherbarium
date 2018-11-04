@@ -564,14 +564,14 @@ if(data.intcount!=0){
           if(document.getElementById("plantknown").checked == true)
           {
               document.getElementById("author").disabled=false;
-              // document.getElementById("commonName").disabled=false;
+               document.getElementById("commonName").disabled=false;
               $("#commonName").val('');
 
           }
           else
           {
             document.getElementById("author").disabled=true;
-            // document.getElementById("commonName").disabled=true;
+             document.getElementById("commonName").disabled=true;
            $("#commonName").val('sp.');
           }
      }
@@ -694,14 +694,7 @@ $('#btnSave').click(function(event){
                         async: false,
                         dataType: 'json',
                         success: function(response){
-                          if(response.success){
-                            $('#addSpeciesForm').modal('hide');
-                            $('#addSpeciesForm')[0].reset();
-                            if(response.type=='add'){
-                              var type = 'added'
-                            }else if(response.type=='update'){
-                              var type ="updated"
-                            }
+                          if(response=='true'){
                             let timerInterval
                             swal({
                               title: 'Saved',
@@ -712,10 +705,20 @@ $('#btnSave').click(function(event){
                             }).then(function() {
                               location.reload();
                             });
+                          }else{
+                            if(response=='nogenus'){
+                             event.preventDefault();
+                              swal({
+                                type: 'error',
+                                title: 'Incorrect input!',
+                                text: 'Genus name not found!'
+                              });
+                            }
                           }
+                      
                         },
                         error: function(){
-                          alert('Could not save Data');
+
                         }
                       });
                              }
@@ -730,7 +733,7 @@ $('#btnSave').click(function(event){
             }
 
         }else{
-                                      event.preventDefault();
+           event.preventDefault();
                           swal({
                             title: 'Are you sure?',
                             type: 'warning',
@@ -748,14 +751,7 @@ $('#btnSave').click(function(event){
                         async: false,
                         dataType: 'json',
                         success: function(response){
-                          if(response.success){
-                            $('#addSpeciesForm').modal('hide');
-                            $('#addSpeciesForm')[0].reset();
-                            if(response.type=='add'){
-                              var type = 'added'
-                            }else if(response.type=='update'){
-                              var type ="updated"
-                            }
+                          if(response=='true'){
                             let timerInterval
                             swal({
                               title: 'Saved',
@@ -766,6 +762,15 @@ $('#btnSave').click(function(event){
                             }).then(function() {
                               location.reload();
                             });
+                          }else{
+                            if(response=='nogenus'){
+                             event.preventDefault();
+                              swal({
+                                type: 'error',
+                                title: 'Incorrect input!',
+                                text: 'Genus name not found!'
+                              });
+                            }
                           }
                         },
                         error: function(){

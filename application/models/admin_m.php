@@ -623,9 +623,20 @@ public function showSpecieName(){
 
 			$intGenusID=$this->input->post('txtgID');
 			$strSpeciesName=$this->input->post('txtsName');
-			$strCommonName=$this->input->post('txtcoName');
+			
 			$strAuthorsName=$this->input->post('txtaID');
 			$isverified = $this->input->post('check1');
+			if($isverified=='on'){
+				$strCommonName=$this->input->post('txtcoName');
+			}else{
+				$strCommonName='sp.';
+			}
+
+
+
+$querycheckgenus=$this->db->query("select * from tblGenus where strGenusName = '".$intGenusID."'");
+
+		if($querycheckgenus->num_rows() > 0){
 			$query="
 			declare @genusid int;
 			declare @speciesID int;
@@ -646,11 +657,19 @@ set @isVerified = '$isverified'
 			";
 
 
-					if($this->db->query($query)){
-			return true;
+			if($this->db->query($query)){
+						$msg='true';
+			echo json_encode($msg);
 		}else{
 			return false;
 		}
+
+		}else{
+			$msg='nogenus';
+			echo json_encode($msg);
+		}
+			
+			
 
 	}
 	public function editSpecies(){
@@ -666,7 +685,24 @@ set @isVerified = '$isverified'
 		if($query->num_rows() > 0){
 			return $query->row();
 		}else{
-			return false;
+			return $this->editSpecies1();
+			// return false;
+		}
+	}
+		public function editSpecies1(){
+
+		$id = $this->input->get('id');
+		$this->db->where('intSpeciesID', $id);
+		$query = $this->db->select('intSpeciesID,
+			 strGenusName,
+			 strSpeciesName,
+			 strCommonName')->join('tblGenus g','g.intGenusID = s.intGenusID')
+			->get('tblSpecies s');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			
+			 return false;
 		}
 	}
     public function updateSpecies(){
@@ -1302,7 +1338,8 @@ public function editValidator(){
 		      ,[strEmailAddress]
 		      ,[strRole]
 		      ,[strCollegeDepartment]
-		      ,[strHasAccount]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."','No',, getdate())
+		      ,[strHasAccount],
+		      dtDateAdded) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."','No', getdate())
 
 			";
 				$this->db->query($query);

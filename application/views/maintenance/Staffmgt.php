@@ -710,7 +710,7 @@ $('#btnSave').click(function(event){
                             let timerInterval
                             swal({
                               title: 'Saved',
-                              text: 'Account has been saved.',
+                              text: 'Staff has been saved.',
                               type: 'success',
                               timer: 1500,
                               showConfirmButton: false

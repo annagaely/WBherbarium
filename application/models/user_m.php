@@ -426,7 +426,8 @@ if($querycheckdate->num_rows() == 0){
 			";
 
 if($this->db->query($queryupdate)){
-			return true;
+				$msg='true';
+		echo json_encode($msg);
 		}else{
 			return false;
 		}
@@ -556,7 +557,8 @@ if($querycheckdate->num_rows() == 0){
 			";
 
 if($this->db->query($queryupdate)){
-			return true;
+						$msg='true';
+		echo json_encode($msg);
 		}else{
 			return false;
 		}

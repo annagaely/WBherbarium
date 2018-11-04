@@ -376,12 +376,7 @@ echo json_encode($result);
 
 public function updateCurrentVisitResched(){
 $result = $this->m->updateCurrentVisitResched();
-$msg['success'] = false;
-$msg['type'] = 'update';
-if($result){
-  $msg['success'] = true;
-}
-echo json_encode($msg);
+
 }
 
 
@@ -493,12 +488,7 @@ echo json_encode($result);
 
 public function updateCurrentDepositResched(){
 $result = $this->m->updateCurrentDepositResched();
-$msg['success'] = false;
-$msg['type'] = 'update';
-if($result){
-  $msg['success'] = true;
-}
-echo json_encode($msg);
+
 }
 
 public function updateCurrentDepositCancel(){
