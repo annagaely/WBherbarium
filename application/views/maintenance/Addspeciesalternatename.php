@@ -94,8 +94,9 @@
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
 <?php if($this->session->userdata('strRole')==='CURATOR'):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show ">
+
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
                   <ul id="TaxHierDropdown" class="collapse list-unstyled">
@@ -140,7 +141,7 @@
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-            
+
 
                 </li>
               </ul>
@@ -153,7 +154,7 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
-                </li>       
+                </li>
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
@@ -285,7 +286,7 @@
           </div></a></li>
                   </ul>
                 </li>
-              
+
                 <!-- Log out-->
                  <li class="nav-item"><a href="<?php echo base_url()?>admin/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" >
@@ -418,17 +419,17 @@ if(data.intcount!=0){
 
                   <div class="form-group">
                     <label>Taxon Name:</label> <label style="color: red">*</label>
-                    <select name="txttaxonName" id="strTaxonName" placeholder="Taxon Name" class="form-control" >
+                    <select name="txttaxonName" id="strTaxonName" placeholder="Taxon Name" class="form-control" autocomplete="off">
                     </select>
                   </div>
                   <div class="form-group">
                     <label>Language:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtLanguage" id="strLanguage" placeholder="Language" class="form-control" >
+                    <input type="text" name="txtLanguage" id="strLanguage" placeholder="Language" class="form-control" autocomplete="off" >
                   </div>
 
                   <div class="form-group">
                     <label>Alternate Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtAName" id="strAlternateName" placeholder="Alternate Name" class="form-control" >
+                    <input type="text" name="txtAName" id="strAlternateName" placeholder="Alternate Name" class="form-control"  autocomplete="off" >
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">
@@ -460,17 +461,17 @@ if(data.intcount!=0){
 
                 <div class="form-group">
                     <label>Taxon Name:</label> <label style="color: red">*</label>
-                    <input list="speciesname" name="txtetaxonName" id="strTaxonName1" placeholder="Taxon Name" class="form-control" >
+                    <input list="speciesname" name="txtetaxonName" id="strTaxonName1" placeholder="Taxon Name" class="form-control"  autocomplete="off">
                     <datalist id="speciesname">
                     </datalist>
                </div>
                 <div class="form-group">
                     <label>Language:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteLanguage" id="strLanguage1" placeholder="Language" class="form-control" >
+                    <input type="text" name="txteLanguage" id="strLanguage1" placeholder="Language" class="form-control"  autocomplete="off">
               </div>
               <div class="form-group">
                     <label>Alternate Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteAName" id="strAlternateName1" placeholder="Alternate Name" class="form-control" >
+                    <input type="text" name="txteAName" id="strAlternateName1" placeholder="Alternate Name" class="form-control"  autocomplete="off">
               </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">

@@ -9,7 +9,9 @@
 
 
             <div class="md-form">
+              <span style="color: red">Click the calendar events to view all the details of the event.</span>
               <div class="row">
+
                 <div class="col-md-5 pl-4">
                   <p class="font-weight-light">Date of Visit:<span style="color: red"> *</span></p>
                 <input type="date" name="dateAppointment" id= "dtAppointmentDate" class="form-control grey-text font-weight-light" style="font-size: 15px;">
@@ -38,7 +40,56 @@
                 Please provide visit description.
               </div>
             </div>
-
+            <div class="form-group">
+                  <label for="p-in" class="col-md-4 label-heading">Start Time:</label>
+                  <div class="col-md-8">
+                      <select class="form-control" id='start_time' name="start_time">
+                        <option>08:00</option>
+                        <option>08:30</option>
+                        <option>09:00</option>
+                        <option>09:30</option>
+                        <option>10:00</option>
+                        <option>10:30</option>
+                        <option>11:00</option>
+                        <option>11:30</option>
+                        <option>13:00</option>
+                        <option>13:30</option>
+                        <option>14:00</option>
+                        <option>14:30</option>
+                        <option>15:00</option>
+                        <option>15:30</option>
+                        <option>16:00</option>
+                        <option>16:30</option>
+                        <option>17:00</option>
+                        <option>17:30</option>
+                      </select>
+                  </div>
+          </div>
+                    <div class="form-group">
+                  <label for="p-in" class="col-md-4 label-heading">End time:</label>
+                  <div class="col-md-8">
+                      <select class="form-control" id='end_time' name="end_time">
+                        <option>08:00</option>
+                        <option>08:30</option>
+                        <option>09:00</option>
+                        <option>09:30</option>
+                        <option>10:00</option>
+                        <option>10:30</option>
+                        <option>11:00</option>
+                        <option>11:30</option>
+                        <option>13:00</option>
+                        <option>13:30</option>
+                        <option>14:00</option>
+                        <option>14:30</option>
+                        <option>15:00</option>
+                        <option>15:30</option>
+                        <option>16:00</option>
+                        <option>16:30</option>
+                        <option>17:00</option>
+                        <option>17:30</option>
+                      </select>
+                  </div>
+                </div>
             <div class="text-center py-4 mt-3">
               <button class="btn btn-danger" type="reset">Clear</button>
               <button id = "btnSubmit" class="btn btn-primary" type="submit" >Submit</button>
@@ -84,6 +135,7 @@ todayadd3 = yyyy + '-' + mm + '-' +dd ;
                      text: 'The appointment should be 3 days from now.'
                    });
       }else{
+      if($('#end_time').val()>$('#start_time').val()){
         if($('#dtAppointmentDate').val()!=''){
         if($('input[name=radios]:checked').length){
           if($('#strVisitDescription').val()!=''){
@@ -160,6 +212,15 @@ todayadd3 = yyyy + '-' + mm + '-' +dd ;
           text: 'Please fill up all the required fields.'
         });
         }
+           }else{
+            event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incorrect input!',
+            text: 'Please set a correct time.'
+          });
+        }
+
 
       }
 

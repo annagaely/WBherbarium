@@ -128,7 +128,9 @@
 
               </ul>
             </li>
-            <li class="active"><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
+
+             <li class="active"><a href="#TransactionDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
+
               <ul id="TransactionDropdown" class="collapse list-unstyled show">
 
                 <li class="active"><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
@@ -226,6 +228,7 @@
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
                 </li>       
+
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
@@ -497,7 +500,7 @@ if(data.intcount!=0){
            <div class="modal-header">
 
              <h5 id="exampleModalLabel" class="modal-title">Plant Deposit</h5>
-            <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close" >
                <span aria-hidden="true">&times;</span>
              </button>
            </div>
@@ -588,7 +591,7 @@ if(data.intcount!=0){
            <div class="modal-header">
 
              <h5 id="exampleModalLabel" class="modal-title">Re-schedule</h5>
-            <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close" >
                <span aria-hidden="true">&times;</span>
              </button>
            </div>
@@ -622,7 +625,56 @@ if(data.intcount!=0){
                        <label>New Date :</label>
                        <input type="Date" name="txtReschedDate" id="dtReschedDate"   class="form-control">
                    </div>
-
+<div class="form-group">
+                  <label for="p-in" class="col-md-4 label-heading">Start Time:</label>
+                  <div class="col-md-8">
+                      <select class="form-control" id='start_time' name="start_time">
+                        <option>08:00</option>
+                        <option>08:30</option>
+                        <option>09:00</option>
+                        <option>09:30</option>
+                        <option>10:00</option>
+                        <option>10:30</option>
+                        <option>11:00</option>
+                        <option>11:30</option>
+                        <option>13:00</option>
+                        <option>13:30</option>
+                        <option>14:00</option>
+                        <option>14:30</option>
+                        <option>15:00</option>
+                        <option>15:30</option>
+                        <option>16:00</option>
+                        <option>16:30</option>
+                        <option>17:00</option>
+                        <option>17:30</option>
+                      </select>
+                  </div>
+          </div>
+                    <div class="form-group">
+                  <label for="p-in" class="col-md-4 label-heading">End time:</label>
+                  <div class="col-md-8">
+                      <select class="form-control" id='end_time' name="end_time">
+                        <option>08:00</option>
+                        <option>08:30</option>
+                        <option>09:00</option>
+                        <option>09:30</option>
+                        <option>10:00</option>
+                        <option>10:30</option>
+                        <option>11:00</option>
+                        <option>11:30</option>
+                        <option>13:00</option>
+                        <option>13:30</option>
+                        <option>14:00</option>
+                        <option>14:30</option>
+                        <option>15:00</option>
+                        <option>15:30</option>
+                        <option>16:00</option>
+                        <option>16:30</option>
+                        <option>17:00</option>
+                        <option>17:30</option>
+                      </select>
+                  </div>
+          </div>
                    </div>
 
                      <div class="modal-footer">
@@ -657,6 +709,8 @@ if(data.intcount!=0){
                                                text: 'The new appointment date should be 3 days from now.'
                                              });
                                 }else{
+
+                                  if($('#end_time').val()>$('#start_time').val()){
                                     if($('#txtreason').val()!=''){
                                       if($('#dtReschedDate').val()!=''){
                                       event.preventDefault();
@@ -695,6 +749,7 @@ if(data.intcount!=0){
                                                           document.getElementById("reschedform").reset();
                                                         });
                                                   }else{
+                                               if(response=='conflict'){
                                                event.preventDefault();
                                                 swal({
                                                   type: 'error',
@@ -702,8 +757,16 @@ if(data.intcount!=0){
                                                   text: 'The Herbarium center is not available on the selected date.',
                                                   showConfirmButton: true
                                                 });
-                                                  }
-
+                                               }else{
+                                                event.preventDefault();
+                                                swal({
+                                                  type: 'error',
+                                                  title: 'Invalid Date!',
+                                                  text: "Can't reschedule to the same date.",
+                                                  showConfirmButton: true
+                                                });
+                                               }
+                                                }
                                                 },
                                                 error: function(){
                                                event.preventDefault();
@@ -731,6 +794,17 @@ if(data.intcount!=0){
                                       text: 'Please fill up all the required fields.'
                                     });
                                   }
+                                     }else{
+                                    event.preventDefault();
+                                    swal({
+                                      type: 'error',
+                                      title: 'Incorrect input!',
+                                      text: 'Please set a correct time.'
+                                    });
+                                  }
+                                  
+                                 
+                                    
                                   }
                                 });
                      </script>

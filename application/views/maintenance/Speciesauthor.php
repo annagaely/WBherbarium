@@ -93,8 +93,10 @@
 
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
+
 <?php if($this->session->userdata('strRole')==='CURATOR'):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
@@ -212,7 +214,7 @@
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-            
+
 
                 </li>
               </ul>
@@ -225,7 +227,7 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
-                </li>       
+                </li>
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
@@ -438,11 +440,11 @@ if(data.intcount!=0){
 
                   <div class="form-group">
                     <label>Author's Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtAName" id="strAuthorName" placeholder="Author's Name" class="form-control" >
+                    <input type="text" name="txtAName" id="strAuthorName" placeholder="Author's Name" class="form-control" autocomplete="off">
                   </div>
                   <div class="form-group">
                     <label>Species Author Suffix:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtSASuffix" id="strAuthorSuffix" placeholder="Species Author Suffix" class="form-control" >
+                    <input type="text" name="txtSASuffix" id="strAuthorSuffix" placeholder="Species Author Suffix" class="form-control" autocomplete="off" >
                   </div>
 
                   <div class="modal-footer">
@@ -476,11 +478,11 @@ if(data.intcount!=0){
                  <div class="form-group">
                   <input type="hidden" name="txtId" value="0">
                     <label>Author's Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteAName" id="strAuthorName1" placeholder="Author's Name" class="form-control" >
+                    <input type="text" name="txteAName" id="strAuthorName1" placeholder="Author's Name" class="form-control" autocomplete="off" >
                   </div>
                   <div class="form-group">
                     <label>Species Author Suffix:</label> <label style="color: red">*</label>
-                    <input type="text" name="txteSASuffix" id="strAuthorSuffix1" placeholder="Species Author Suffix" class="form-control" >
+                    <input type="text" name="txteSASuffix" id="strAuthorSuffix1" placeholder="Species Author Suffix" autocomplete="off" class="form-control" >
                   </div>
                   <div class="modal-footer">
                     <input type="reset" value="Clear" class="btn btn-secondary">

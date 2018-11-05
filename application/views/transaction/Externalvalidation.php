@@ -136,7 +136,7 @@
                 <li class="active"><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
   <ul id="ExValidationDropdown" class="collapse list-unstyled show">
     <li class= "active" style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp;Send to External Validator</a></li>
-    <li class="active" style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
+    <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
             
@@ -200,13 +200,13 @@
 
               </ul>
             </li>
-            <li class="active"><a href="#TransactionDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
+            <li class="active"><a href="#TransactionDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-undo"></i>Transaction </a>
               <ul id="TransactionDropdown" class="collapse list-unstyled show">
 
                 <li><a href="<?php echo base_url(); ?>admin/Depositplant">Deposit Plant</a></li>
                    <li><a href="<?php echo base_url(); ?>admin/Visits">Visits</a>
                 <!--<li><a href="<?php echo base_url(); ?>admin/Loanplant">Loan Plant</a></li>-->
-                <li class="active"><a href="#ExValidationDropdown" data-toggle="collapse">External Validation</a>
+                <li class="active"><a href="#ExValidationDropdown" aria-expanded="true" data-toggle="collapse">External Validation</a>
   <ul id="ExValidationDropdown" class="collapse list-unstyled show">
     <li class="active" style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Externalvalidation"> &nbsp; &nbsp;Send to External Validator</a></li>
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
@@ -225,7 +225,9 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
+
                 </li>       
+
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
@@ -941,7 +943,7 @@ if(data.intcount!=0){
                      </div>
                      <div class="col-sm-8">
                      <select name="txtStatus" id="strStatus"  class="form-control">
-                        <option value="Verified">Verified</option>
+                        <option value="Verified">Verified/Approved</option>
                         <!-- <option value="Send to other Validator">Send to other Validator</option> -->
                         <option value="Needs Correction">Needs Correction</option>
                       </select>

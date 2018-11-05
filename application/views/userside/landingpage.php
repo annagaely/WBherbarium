@@ -261,7 +261,7 @@
     </div>
   <div class="py-5" style="padding-left: 200px; padding-right: 200px;">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="card mb-4">
           <div class="view overlay">
             <img class="card-img-top" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/staff/coronado.jpg" alt="Card image cap">
@@ -276,7 +276,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="card mb-4">
           <div class="view overlay">
             <img class="card-img-top" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/staff/getimage.jpg" alt="Card image cap">
@@ -291,7 +291,7 @@
           </div>
           </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         <div class="card mb-4">
           <div class="view overlay">
             <img class="card-img-top" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/staff/enrykie.jpg" alt="Card image cap">
@@ -301,12 +301,12 @@
           </div>
           <div class="card-body">
             <h6 class="card-title">Enrykie Fortajada</h6>
-            <p class="card-text" style="font-size: 12px">Curator - PUP Herbarium Center<br><br><br></p>
+            <p class="card-text" style="font-size: 12px">Curator - PUP Herbarium Center<br><br></p>
             <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modal3">Read more</button>
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+  <!--     <div class="col-md-3">
         <div class="card mb-4">
           <div class="view overlay">
             <img class="card-img-top" src="<?php echo base_url();?>assets/bower_components/mdbootstrap/img/shirt.jpg" alt="Card image cap">
@@ -320,7 +320,7 @@
             <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modal4">Read more</button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

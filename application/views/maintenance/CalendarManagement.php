@@ -8,6 +8,12 @@
 ?> -->
 
 <head>
+      <!--SWAL-->
+    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/package/dist/sweetalert2.min.css">
 <!--
  <meta http-equiv="Content-Type" content="text/html; charset= utf-8"> -->
   <meta charset="utf-8">
@@ -30,7 +36,8 @@
   <!-- DataTables CSS-->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/datatables.net-bs4/css/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
-
+  <!-- Full Calendar-->
+      <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/vendor/fullcalendar/fullcalendar.min.css">
   <!-- jQuery Circle-->
   <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/demo/d19m59y37dris4.cloudfront.net/dashboard-premium/1-4-4/css/grasp_mobile_progress_circle-1.0.0.min.css">
   <!-- Custom Scrollbar-->
@@ -86,8 +93,9 @@
 
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
+
 <?php if($this->session->userdata('strRole')==='CURATOR'):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show ">
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
@@ -157,7 +165,7 @@
 <!--ADMIN-->
  
 <?php elseif($this->session->userdata('strRole')=='ADMINISTRATOR'):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
@@ -205,7 +213,7 @@
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-            
+
 
                 </li>
               </ul>
@@ -400,4 +408,482 @@ if(data.intcount!=0){
       </nav>
       </header>
 
-    <iframe src="<?php echo site_url('admin/view_calendar');?>" width="100%" height="650px" style="border:none; "></iframe>
+
+
+  <div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Update Calendar Event</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+      <!-- ?php echo form_open(base_url("admin/edit_event"), array("class" => "form-horizontal")) ?> -->
+      <form id= "edit_event" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Event Name</label>
+                <div class="col-md-8 ui-front">
+                    <input type="text" class="form-control" name="name" value="" id="eeventname">
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Description</label>
+                <div class="col-md-8 ui-front">
+                    <input type="text" class="form-control" name="description" id="edescription">
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Date</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="estart_date" id="estart_date">
+                </div>
+        </div>
+                <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Start Time</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="estart_time" id="estart_time">
+                </div>
+        </div>
+                <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">End Time</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="eend_time" id="eend_time">
+                </div>
+        </div>
+<!--         <div class="form-group">
+                    <label for="p-in" class="col-md-4 label-heading">Delete Event</label>
+                    <div class="col-md-8">
+                        <input type="checkbox" name="delete" value="1">
+                    </div>
+            </div> -->
+            <input type="hidden" name="eventid" id="event_id" value="0" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" id=btnEditSave value="Update Event">
+        <!-- <?php echo form_close() ?> -->
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+      <section class="pt-4">
+        <div class="container-fluid">
+          <div class="card">
+          <div class="card-header d-flex align-items-center">
+            <button type="button" data-toggle="modal" data-target="#addModal" class="btn btn-primary">Add Event</button>
+          </div>
+    <div class="modal fade text-left hide" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Add Calendar Event</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <form id= "add_event" method="POST" enctype="multipart/form-data">
+      <!--   <?php echo form_open(base_url("admin/add_event"), array("class" => "form-horizontal")) ?> -->
+        <div class="form-group">
+                  <label for="p-in" class="col-md-4 label-heading">Event Name</label>
+                  <div class="col-md-8 ui-front">
+                      <input type="text" class="form-control" id='name' name="name" value="" autocomplete="off">
+                  </div>
+          </div>
+          <div class="form-group">
+                  <label for="p-in" class="col-md-4 label-heading">Description</label>
+                  <div class="col-md-8 ui-front">
+                      <input type="text" class="form-control" id='description' name="description">
+                  </div>
+          </div>
+          <div class="form-group">
+                  <label for="p-in" class="col-md-4 label-heading">Date:</label>
+                  <div class="col-md-8">
+                      <input type="date" class="form-control" id='start_date' name="start_date">
+                  </div>
+          </div>
+          <div class="form-group">
+                  <label for="p-in" class="col-md-4 label-heading">Start Time:</label>
+                  <div class="col-md-8">
+                      <select class="form-control" id='start_time' name="start_time">
+                        <option>08:00</option>
+                        <option>08:30</option>
+                        <option>09:00</option>
+                        <option>09:30</option>
+                        <option>10:00</option>
+                        <option>10:30</option>
+                        <option>11:00</option>
+                        <option>11:30</option>
+                        <option>13:00</option>
+                        <option>13:30</option>
+                        <option>14:00</option>
+                        <option>14:30</option>
+                        <option>15:00</option>
+                        <option>15:30</option>
+                        <option>16:00</option>
+                        <option>16:30</option>
+                        <option>17:00</option>
+                        <option>17:30</option>
+                      </select>
+                  </div>
+          </div>
+                    <div class="form-group">
+                  <label for="p-in" class="col-md-4 label-heading">End time:</label>
+                  <div class="col-md-8">
+                      <select class="form-control" id='end_time' name="end_time">
+                                                <option>8:00</option>
+                        <option>08:30</option>
+                        <option>09:00</option>
+                        <option>09:30</option>
+                        <option>10:00</option>
+                        <option>10:30</option>
+                        <option>11:00</option>
+                        <option>11:30</option>
+                        <option>13:00</option>
+                        <option>13:30</option>
+                        <option>14:00</option>
+                        <option>14:30</option>
+                        <option>15:00</option>
+                        <option>15:30</option>
+                        <option>16:00</option>
+                        <option>16:30</option>
+                        <option>17:00</option>
+                        <option>17:30</option>
+                      </select>
+                  </div>
+          </div>
+
+        <div class="modal-footer">
+          <input type="button" class="btn btn-secondary" value="Close" data-dismiss="modal">
+          <input type="submit" class="btn btn-primary" id='btnSave' value="Add Event">
+          <!-- <?php echo form_close() ?> -->
+        </form>
+        <script type="text/javascript">
+          $('#btnSave').click(function(event){
+        var url = '<?php echo base_url()?>admin/add_event';
+        var data = $('#add_event').serialize();
+        alert($('#start_date').val())
+        //validate form
+             var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+      dd = '0'+dd
+    }
+
+    if(mm<10) {
+      mm = '0'+mm
+    }
+
+    today = yyyy + '-' + mm + '-' +dd ;
+
+        if($('#start_date').val()<today){//check if date is before today
+
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Invalid Date!',
+            text: 'Date selected is past the current date.'
+          });
+
+         }else{
+           
+             
+            if($('#end_time').val()>$('#start_time').val()){
+             //check if bigger end time
+          if($('#name').val()!=''){//check ng values
+          if($('#description').val()!=''){
+            if($('#start_date').val()!=''){
+            event.preventDefault();
+            swal({
+              title: 'Are you sure?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, save it!'
+            }).then((result) => {
+              if (result.value) {
+                $.ajax({
+                type: 'ajax',
+                method: 'post',
+                url: url,
+                data: data,
+                async: false,
+                dataType: 'json',
+                success: function(response){
+                  if(response=='true'){
+                      let timerInterval
+                      swal({
+                        title: 'Saved',
+                        text: 'Your Event has been saved.',
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: true
+                      }).then(function() {
+                        location.reload();
+                      });
+                  }else{
+                    if(response=='eventsamedttime'){
+                      swal({
+                    type: 'error',
+                    title: 'Already have an Event',
+                    text: 'Date and time Already have an Event.'
+                   });
+                    }else if(response=='visitsamedttime'){
+                    swal({
+                    type: 'error',
+                    title: 'Conflict with Visits',
+                    text: 'Date has pending appointments or on going appointments, cancel it first.'
+                  });
+                    }else{
+                    swal({
+                    type: 'error',
+                    title: 'Conflict with Deposits',
+                    text: 'Date has pending appointments or on going appointments, cancel it first.'
+                  });
+                    }
+                }
+                },
+                error: function(){
+alert('error');
+                }
+              });
+
+           }
+
+         })
+          }else{
+            event.preventDefault();
+            swal({
+              type: 'error',
+              title: 'Incomplete input!',
+              text: 'Please fill up all the required fields.'
+            });
+          }
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+       }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+            }else{
+         event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incorrect input!',
+            text: 'Please set a correct time.'
+          });
+            }
+           }
+
+         
+      });
+
+        $('#btnEditSave').click(function(event){
+      var url = '<?php echo base_url()?>admin/edit_event';
+      var data = $('#edit_event').serialize();
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+}
+if(mm<10) {
+    mm = '0'+mm
+}
+today = yyyy + '-' + mm + '-' +dd ;
+      //validate form
+    if($('#estart_date').val()<today){//check if date is before today
+      event.preventDefault();
+      swal({
+        type: 'error',
+        title: 'Invalid Date!',
+        text: 'Date selected is past the current date.'
+      });
+    }else{
+      if($('#eeventname').val()!=''){
+        if($('#edescription').val()!=''){
+          if($('#estart_date').val()!=''){
+          event.preventDefault();
+          swal({
+            title: 'Are you sure?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, save it!'
+          }).then((result) => {
+            if (result.value) {
+              $.ajax({
+              type: 'ajax',
+              method: 'post',
+              url: url,
+              data: data,
+              async: false,
+              dataType: 'json',
+              success: function(response){
+                  if(response=='true'){
+                      let timerInterval
+                      swal({
+                        title: 'Saved',
+                        text: 'Your Event has been saved.',
+                        type: 'success',
+                        timer: 1500,
+                        showConfirmButton: true
+                      }).then(function() {
+                        location.reload();
+                      });
+                  }else{
+                    if(response=='eventsamedttime'){
+                      swal({
+                    type: 'error',
+                    title: 'Already have an Event',
+                    text: 'Date and time Already have an Event.'
+                   });
+                    }else if(response=='visitsamedttime'){
+                    swal({
+                    type: 'error',
+                    title: 'Conflict with Visits',
+                    text: 'Date has pending appointments or on going appointments, cancel it first.'
+                  });
+                    }else{
+                    swal({
+                    type: 'error',
+                    title: 'Conflict with Deposits',
+                    text: 'Date has pending appointments or on going appointments, cancel it first.'
+                  });
+                    }
+                }
+              },
+              error: function(){
+                event.preventDefault();
+                swal({
+                  type: 'error',
+                  title: 'Date Invalid',
+                  text: 'Date has pending appointments or on going appointments, cancel it first.'
+                });
+              }
+            });
+
+         }
+
+       })
+        }else{
+          event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incomplete input!',
+            text: 'Please fill up all the required fields.'
+          });
+        }
+      }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      }
+     }else{
+        event.preventDefault();
+        swal({
+          type: 'error',
+          title: 'Incomplete input!',
+          text: 'Please fill up all the required fields.'
+        });
+      }
+    }
+
+
+    });
+
+
+        </script>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+        </div>
+
+</section>
+      <section>
+              <div class="container-fluid">
+
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Calendar</h4>
+                  </div>
+                  <div class="card-body">
+
+                    <div id="calendar"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <script type="text/javascript">
+            $(document).ready(function() {
+              var date_last_clicked = null;
+              $('#calendar').fullCalendar({
+                eventSources: [
+                {
+                  events: function(start, end, timezone, callback) {
+                    $.ajax({
+                      url: '<?php echo base_url() ?>admin/get_events',
+                      dataType: 'json',
+                      data: {
+                      // our hypothetical feed requires UNIX timestamps
+                      start: start.unix(),
+                      end: end.unix()
+                    },
+                    success: function(msg) {
+                      var events = msg.events;
+                      callback(events);
+                    }
+                  });
+                  }
+                },
+                ],
+                eventClick: function(event, jsEvent, view) {
+                      $('#eeventname').val(event.title);
+                      $('#edescription').val(event.description);
+                      $('#estart_date').val(moment(event.start).format('YYYY-MM-DD'));
+                      if(event.end) {
+                        $('#end_date').val(moment(event.end).format('YYYY-MM-DD'));
+                      } else {
+                        $('#end_date').val(moment(event.start).format('YYYY-MM-DD'));
+                      }
+                      $('#event_id').val(event.id);
+                      $('#estart_time').val(event.start_time);
+                      $('#eend_time').val(event.end_time);
+                      $('#editModal').modal();
+
+            },
+
+              });
+
+
+            });
+
+
+            </script>

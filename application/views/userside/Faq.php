@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <div class="card">
+ <!--        <div class="card">
             <div class="card-header blue lighten-3 z-depth-1" role="tab" id="heading98">
                 <h5 class="text-uppercase mb-0 py-1">
                     <a class="collapsed font-weight-bold white-text" data-toggle="collapse" href="#collapse98" aria-expanded="false" aria-controls="collapse98">
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <!--Accordion wrapper-->
 

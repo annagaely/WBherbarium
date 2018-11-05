@@ -93,8 +93,9 @@
 
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
+
 <?php if($this->session->userdata('strRole')==='CURATOR'):?>
-            <li Dashboard><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+            <li Dashboard><a href="#MaintenanceDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show ">
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
@@ -212,7 +213,7 @@
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-            
+
 
                 </li>
               </ul>
@@ -225,7 +226,7 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
-                </li>       
+                </li>
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
@@ -436,51 +437,51 @@ if(data.intcount!=0){
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>First Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="fName" id="strFirstname" placeholder="First Name " class="form-control" required>
+                      <input type="text" name="fName" id="strFirstname" placeholder="First Name " class="form-control" autocomplete="off" required>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Middle Name:</label>
-                      <input type="text" name="mName"  id="strMiddlename" placeholder="Middle Name" class="form-control">
+                      <input type="text" name="mName"  id="strMiddlename" placeholder="Middle Name" autocomplete="off" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Middle Initial:</label>
-                      <input type="text" name="mInitial"  id="strMiddleInitial" placeholder="Middle Initial" class="form-control">
+                      <input type="text" name="mInitial"  id="strMiddleInitial" placeholder="Middle Initial"  autocomplete="off" class="form-control">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Last Name:</label> <label style="color: red">*</label>
-                      <input type="text" name="lName"  id="strLastname" placeholder="Last Name" class="form-control" required>
+                      <input type="text" name="lName"  id="strLastname" placeholder="Last Name" autocomplete="off" class="form-control" required>
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Name Suffix:</label>
-                      <input type="text" name="nSuffix"  id="strNameSuffix" placeholder="Name Suffix" class="form-control">
+                      <input type="text" name="nSuffix"  id="strNameSuffix" placeholder="Name Suffix" autocomplete="off" class="form-control">
                     </div>
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
 
-                    <input id="contactNum" type="text" name="cName" data-mask="9999 999 9999" placeholder="Contact Number" class="form-control" required>
+                    <input id="contactNum" type="text" name="cName" data-mask="9999 999 9999" autocomplete="off" placeholder="Contact Number" class="form-control" required>
 
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
-                    <input id="emailAdd" type="text" name="eMail" placeholder="Email Address" class="form-control" required>
+                    <input id="emailAdd" type="text" autocomplete="off" name="eMail" placeholder="Email Address" class="form-control" required>
                   </div>
                 </div>
                   <div class="row">
                     <div class="form-group col-sm-12">
                     <label>Home Address:</label> <label style="color: red">*</label>
-                    <input type='text' name="cdName" id="strCollege" placeholder="Home Address" class="form-control" required>
+                    <input type='text' name="cdName" id="strCollege" placeholder="Home Address" autocomplete="off" class="form-control" required>
                   </div>
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-12">
                     <label>Affiliation:</label> <label style="color: red">*</label>
-                    <input id="affiliation" type="text" name="secName" placeholder="Affiliation" class="form-control" required>
+                    <input id="affiliation" type="text" name="secName" placeholder="Affiliation" autocomplete="off" class="form-control" required>
                   </div>
                 </div>
                   <!--HANGGANG DITO LANG BOI-->
@@ -510,51 +511,51 @@ if(data.intcount!=0){
                     <div class="form-group col-sm-8">
                        <input type="hidden" name="txtId" value="0">
                       <label>First Name:</label> <label style="color: red">*</label>
-                      <input type="text" id="strFirstname1" name="feName" placeholder="First Name " class="form-control" >
+                      <input type="text" id="strFirstname1" name="feName" placeholder="First Name " autocomplete="off" class="form-control" >
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Middle Name:</label>
-                      <input type="text" name="meName" placeholder="Middle Name" class="form-control" >
+                      <input type="text" name="meName" autocomplete="off"placeholder="Middle Name" class="form-control" >
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Middle Initial:</label>
-                      <input type="text" name="meInitial" placeholder="Middle Initial" class="form-control">
+                      <input type="text" name="meInitial" autocomplete="off" placeholder="Middle Initial" class="form-control">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-sm-8">
                       <label>Last Name:</label> <label style="color: red">*</label>
-                      <input id="strLastname1" type="text" name="leName" placeholder="Last Name" class="form-control">
+                      <input id="strLastname1" type="text" name="leName" placeholder="Last Name" autocomplete="off" class="form-control">
                     </div>
                     <div class="form-group col-sm-4">
                       <label>Name Suffix:</label> <label style="color: red">*</label>
-                      <input type="text" name="neSuffix" placeholder="Name Suffix" class="form-control">
+                      <input type="text" name="neSuffix" autocomplete="off" placeholder="Name Suffix" class="form-control">
                     </div>
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-6">
                     <label>Contact Number:</label> <label style="color: red">*</label>
 
-                    <input id="contactNum1" type="text" name="ceName" data-mask="9999 999 9999" placeholder="Contact Number" class="form-control">
+                    <input id="contactNum1" type="text" name="ceName" data-mask="9999 999 9999" autocomplete="off" placeholder="Contact Number" class="form-control">
 
                   </div>
                   <div class="form-group col-sm-6">
                     <label>Email Address:</label> <label style="color: red">*</label>
-                    <input id="emailAdd1" type="text" name="eeMail" placeholder="Email Address" class="form-control">
+                    <input id="emailAdd1" type="text" name="eeMail" placeholder="Email Address" autocomplete="off" class="form-control">
                   </div>
                 </div>
                   <div class="row">
                     <div class="form-group col-sm-12">
                     <label>Home Address:</label> <label style="color: red">*</label>
-                    <input id="strCollege1" type='text' name="cedName"  placeholder="Home Address" class="form-control">
+                    <input id="strCollege1" type='text' name="cedName"  placeholder="Home Address" autocomplete="off" class="form-control">
                   </div>
                   </div>
                   <div class="row">
                   <div class="form-group col-sm-12">
                     <label>Affiliation:</label> <label style="color: red">*</label>
-                    <input id="affiliation1" type="text" name="esecName" placeholder="Affiliation" class="form-control">
+                    <input id="affiliation1" type="text" name="esecName" placeholder="Affiliation" autocomplete="off" class="form-control">
                   </div>
                 </div>
                   <!--HANGGANG DITO LANG BOI-->

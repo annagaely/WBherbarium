@@ -93,8 +93,9 @@
 
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
+
 <?php if($this->session->userdata('strRole')==='CURATOR'):?>
-            <li  class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+            <li  class="active"><a href="#MaintenanceDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
 
                 <li  class="active"><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
@@ -165,10 +166,11 @@
 <!--ADMIN-->
  
 <?php elseif($this->session->userdata('strRole')=='ADMINISTRATOR'):?>
-            <li  class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+            <li  class="active"><a href="#MaintenanceDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
 
-                <li class="active"><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
+                <li class="active"><a href="#TaxHierDropdown" aria-expanded="true" data-toggle="collapse">Taxonomic Hierarchy</a>
                   <ul id="TaxHierDropdown" class="collapse list-unstyled show">
 
                     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Phylum"> &nbsp; &nbsp; &nbsp; &nbsp; Phylum</a></li>
@@ -212,7 +214,7 @@
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-            
+
 
                 </li>
               </ul>
@@ -225,7 +227,7 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
-                </li>       
+                </li>
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
@@ -436,13 +438,13 @@ if(data.intcount!=0){
                 <form id= "addGenusForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                     <input list="familyname" name ="txtoID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <input list="familyname" name ="txtoID" placeholder="Family Name" id='famName' class="form-control" autocomplete="off">
                      <datalist id ='familyname'>
                      </datalist>
                   </div>
                   <div class="form-group">
                     <label>Genus Name:</label> <label style="color: red">*</label>
-                    <input list="genusname" id="genusName"  name="txtgName" placeholder="Genus Name" class="form-control" autocomplete="off">
+                    <input list="genusname" id="genusName"  name="txtgName" placeholder="Genus Name" id='genusName' class="form-control" autocomplete="off">
                     <datalist id="genusname"></datalist>
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
@@ -466,7 +468,7 @@ if(data.intcount!=0){
               <div class="modal-header">
 
                 <h5 id="exampleModalLabel" class="modal-title">Edit Phylum</h5>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
+                <button type="button" data-dismiss="modal" aria-label="Close" class="close"  onclick="resetForm()"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
 
@@ -477,7 +479,7 @@ if(data.intcount!=0){
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Family Name:</label> <label style="color: red">*</label>
-                     <input list="familyname" name ="segFID" placeholder="Family Name" class="form-control" autocomplete="off">
+                     <input list="familyname" name ="segFID" placeholder="Family Name" id='famName1'  class="form-control" autocomplete="off">
                      <datalist id ='familyname'>
                      </datalist>
                   </div>
@@ -576,7 +578,7 @@ function showGenusFamilyName(){
       });
     };
 
-    
+
 function showGenusName(){
      $.ajax({
        type: 'ajax',

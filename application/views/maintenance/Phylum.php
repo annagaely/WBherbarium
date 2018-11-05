@@ -93,8 +93,9 @@
 
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
+
 <?php if($this->session->userdata('strRole')==='CURATOR'):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show ">
 
                 <li class="active"><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
@@ -165,10 +166,11 @@
 <!--ADMIN-->
  
 <?php elseif($this->session->userdata('strRole')=='ADMINISTRATOR'):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
 
-                <li class="active"><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
+                <li class="active"><a href="#TaxHierDropdown" aria-expanded="true" data-toggle="collapse">Taxonomic Hierarchy</a>
                   <ul id="TaxHierDropdown" class="collapse list-unstyled show">
 
                     <li class="active" style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Phylum"> &nbsp; &nbsp; &nbsp; &nbsp; Phylum</a></li>
@@ -212,7 +214,7 @@
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-            
+
 
                 </li>
               </ul>
@@ -225,7 +227,7 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
-                </li>       
+                </li>
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
@@ -482,21 +484,21 @@ if(data.intcount!=0){
 
                   <div class="form-group">
                     <label>Domain Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtedName" id="strDomainName1" placeholder="Domain Name" class="form-control">
+                    <input type="text" name="txtedName" id="strDomainName1" placeholder="Domain Name" class="form-control" disabled>
                   </div>
                   <div class="form-group">
                     <label>Kingdom Name:</label> <label style="color: red">*</label>
-                    <input type="text" name="txtekName" id="strKingdomName1" placeholder="Kingdom Name" class="form-control">
+                    <input type="text" name="txtekName" id="strKingdomName1" placeholder="Kingdom Name" class="form-control" disabled="">
                   </div>
-                  <div class="form-group">
-                    <label>
-                      <input type="checkbox" name="check1" id="plantCategory1" onclick="disableMyText1(); "> Under the Plant Category
+<!--                   <div class="form-group">
+                    <label> -->
+                      <!-- <input type="checkbox" name="check1" id="plantCategory1" onclick="disableMyText1(); "> Under the Plant Category -->
                       <input type="hidden" name="txtId" value="0">
-                    </label>
-                  </div>
+<!--                     </label> -->
+                  <!-- </div> -->
                   <div class="form-group">
                     <label>Phylum Name:</label> <label style="color: red">*</label>
-                    <input list="phylumname" name="txtepName" id="pNameid1" placeholder="Phylum Name" class="form-control">
+                    <input list="phylumname" name="txtepName" id="pNameid1" placeholder="Phylum Name" class="form-control" autocomplete="off">
                     <datalist id ='phylumname'>
                      </datalist>
                   </div>

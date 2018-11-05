@@ -91,8 +91,10 @@
 
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
+
 <?php if($this->session->userdata('strRole')==='CURATOR'):?>
-            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+            <li class="active"><a href="#MaintenanceDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
 
                 <li><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
@@ -138,7 +140,7 @@
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-            
+
 
                 </li>
               </ul>
@@ -151,7 +153,7 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
-                </li>       
+                </li>
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
@@ -442,19 +444,19 @@ if(data.intcount!=0){
                   </div>
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
-                    <input id="boxLimit" type="number" min="1" name="txtBLLimit" placeholder="Box Limit" class="form-control">
+                    <input id="boxLimit" type="number" min="1" name="txtBLLimit" placeholder="Box Limit" class="form-control" onkeypress="return isNumber(event)">
                   </div>
                    <div class="form-group">
                     <label>Rack Number:</label> <label style="color: red">*</label>
-                    <input id="rackNum" type="number" min="1"  name="txtrackno" placeholder="Rack Number" class="form-control">
+                    <input id="rackNum" type="number" min="1"  name="txtrackno" placeholder="Rack Number" class="form-control" onkeypress="return isNumber(event)">
                   </div>
                   <div class="form-group">
                     <label>Rack Row:</label> <label style="color: red">*</label>
-                    <input id="rackRow" type="number" min="1"  name="txtrackrow" placeholder="Rack Row" class="form-control">
+                    <input id="rackRow" type="number" min="1"  name="txtrackrow" placeholder="Rack Row" class="form-control" onkeypress="return isNumber(event)">
                   </div>
                   <div class="form-group">
                     <label>Rack Column:</label> <label style="color: red">*</label>
-                    <input id="rackCol" type="number" min="1"  name="txtrackcol" placeholder="Rack Column" class="form-control">
+                    <input id="rackCol" type="number" min="1"  name="txtrackcol" placeholder="Rack Column" class="form-control" onkeypress="return isNumber(event)">
                   </div>
                   <!--HANGGANG DITO LANG BOI-->
 
@@ -497,19 +499,19 @@ if(data.intcount!=0){
                   <div class="form-group">
                     <label>Box Limit:</label> <label style="color: red">*</label>
 
-                   <input id="boxLimit1" type="number" min="1" name="txteBLLimit" placeholder="Box Limit" class="form-control">
+                   <input id="boxLimit1" type="number" min="1" name="txteBLLimit" placeholder="Box Limit" class="form-control" onkeypress="return isNumber(event)">
                   </div>
                     <div class="form-group">
                     <label>Rack Number:</label> <label style="color: red">*</label>
-                    <input id="rackNum1" type="number" min="1" name="txterackno" placeholder="Rack Number" class="form-control">
+                    <input id="rackNum1" type="number" min="1" name="txterackno" placeholder="Rack Number" class="form-control" onkeypress="return isNumber(event)">
                   </div>
                   <div class="form-group">
                     <label>Rack Row:</label> <label style="color: red">*</label>
-                    <input id="rackRow1" type="number" min="1" name="txterackrow" placeholder="Rack Row" class="form-control">
+                    <input id="rackRow1" type="number" min="1" name="txterackrow" placeholder="Rack Row" class="form-control" onkeypress="return isNumber(event)">
                   </div>
                   <div class="form-group">
                     <label>Rack Column:</label> <label style="color: red">*</label>
-                    <input id="rackCol1" type="number" min="1" name="txterackcol" placeholder="Rack Column" class="form-control">
+                    <input id="rackCol1" type="number" min="1" name="txterackcol" placeholder="Rack Column" class="form-control" onkeypress="return isNumber(event)">
 
                   </div>
                   <div class="modal-footer">
@@ -583,12 +585,19 @@ function resetForm() {
      });
    }
 
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
 
    $(document).ready(function() {
       //show
     showAllFamilyBoxes();
     showFBFamilyName();
-
 
   function showFBFamilyName(){
       $.ajax({
@@ -615,15 +624,17 @@ function resetForm() {
           var url = '<?php echo base_url()?>admin/addFamilyBox';
           var data = $('#addFBForm').serialize();
       //validate form
+
+
           if($('#famName').val()!=''){
             if($('#boxLimit').val()!=''){
               if($('#rackNum').val()!=''){
                 if($('#rackRow').val()!=''){
                   if($('#rackCol').val()!=''){
-                    if($('#boxLimit').val()!='0'){
-                     if($('#rackNum').val()!='0'){
-                      if($('#rackRow').val()!='0'){
-                       if($('#rackCol').val()!='0'){
+                    if($('#boxLimit').val()>0){
+                     if($('#rackNum').val()>0){
+                      if($('#rackRow').val()>0){
+                       if($('#rackCol').val()>0){
                     event.preventDefault();
                     swal({
                       title: 'Are you sure?',
@@ -672,7 +683,7 @@ function resetForm() {
                     event.preventDefault();
                     swal({
                       type: 'error',
-                      title: 'Rack Column cannot be zero',
+                      title: 'Rack Column cannot be less than or equal to zero',
                       text: 'Please fill up the fields with valid details.'
                     });
                   }
@@ -680,7 +691,7 @@ function resetForm() {
                     event.preventDefault();
                     swal({
                       type: 'error',
-                      title: 'Rack Row cannot be zero',
+                      title: 'Rack Row cannot be less than or equal to zero',
                       text: 'Please fill up the fields with valid details.'
                     });
                   }
@@ -688,7 +699,7 @@ function resetForm() {
                     event.preventDefault();
                     swal({
                       type: 'error',
-                      title: 'Rack Number cannot be zero',
+                      title: 'Rack Number cannot be less than or equal to zero',
                       text: 'Please fill up the fields with valid details.'
                     });
                   }
@@ -696,7 +707,7 @@ function resetForm() {
                     event.preventDefault();
                     swal({
                       type: 'error',
-                      title: 'Box Limit cannot be zero',
+                      title: 'Box Limit cannot be less than or equal to zero',
                       text: 'Please fill up the fields with valid details.'
                     });
                   }
@@ -749,10 +760,10 @@ $('#btnEditSave').click(function(event){
        if($('#rackNum1').val()!=''){
          if($('#rackRow1').val()!=''){
            if($('#rackCol1').val()!=''){
-             if($('#boxLimit1').val()!='0'){
-              if($('#rackNum1').val()!='0'){
-                if($('#rackRow1').val()!='0'){
-                  if($('#rackCol1').val()!='0'){
+             if($('#boxLimit1').val()>0){
+              if($('#rackNum1').val()>0){
+                if($('#rackRow1').val()>0){
+                  if($('#rackCol1').val()>0){
 
 
              event.preventDefault();

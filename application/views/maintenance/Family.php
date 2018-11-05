@@ -92,11 +92,13 @@
 
           <ul id="side-main-menu" class="side-menu list-unstyled">
             <li><a href="<?php echo base_url(); ?>admin/Dashboard" > <i class="fa fa-home"></i>Home</a></li>
+
 <?php if($this->session->userdata('strRole')==='CURATOR'):?>
-            <li  class="active"><a href="#MaintenanceDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
+            <li  class="active"><a href="#MaintenanceDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-cogs"></i>Maintenance </a>
               <ul id="MaintenanceDropdown" class="collapse list-unstyled show">
 
                 <li  class="active"><a href="#TaxHierDropdown" data-toggle="collapse">Taxonomic Hierarchy</a>
+
                   <ul id="TaxHierDropdown" class="collapse list-unstyled show">
 
                     <li style="background-color: #303030;"><a href="<?php echo base_url(); ?>admin/Phylum"> &nbsp; &nbsp; &nbsp; &nbsp; Phylum</a></li>
@@ -211,7 +213,7 @@
     <li style="background-color: #303030;"><a href="<?php echo base_url();?>admin/AnswersExValidation"> &nbsp; &nbsp;  Evaluation Results</a></li>
   </ul>
 </li>
-            
+
 
                 </li>
               </ul>
@@ -224,7 +226,7 @@
                     <li><a href="<?php echo base_url(); ?>admin/QueriesVisits">&nbsp &nbsp &nbsp Visits</a></li>
                      <li><a href="<?php echo base_url(); ?>admin/QueriesExternalvalidation">&nbsp &nbsp &nbsp External Validation</a></li>
                    </ul>
-                </li>       
+                </li>
              <li><a href="#ReportsDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-file"></i>Reports </a>
                 <ul id="ReportsDropdown" class="collapse list-unstyled ">
                   <li><a href="<?php echo base_url(); ?>admin/ReportsDeposits">&nbsp;&nbsp;&nbsp;Deposits</a></li>
@@ -435,14 +437,14 @@ if(data.intcount!=0){
                 <form id= "addFamilyForm" method="POST" enctype="multipart/form-data"><!--dito ka magbabago sa loob nito-->
                   <div class="form-group">
                     <label>Order Name:</label> <label style="color: red">*</label>
-                     <input list="ordername" name ="txtoID" placeholder="Order Name" class="form-control" autocomplete="off">
+                     <input list="ordername" name ="txtoID" placeholder="Order Name"  id='orderName' class="form-control" autocomplete="off">
                      <datalist id ='ordername'>
                      </datalist>
 
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <input list="familyname" id="famName"  name="txtfName" placeholder="Family Name" class="form-control" autocomplete="off">
+                    <input list="familyname" id="famName"  name="txtfName" placeholder="Family Name" id='famName' class="form-control" autocomplete="off">
                     <datalist id = "familyname"></datalist>
                   </div><!--HANGGANG DITO LANG BOI-->
                   <div class="modal-footer">
@@ -477,13 +479,13 @@ if(data.intcount!=0){
                       <input type="hidden" name="txtId" value="0">
                     </label>
                     <label>Order Name:</label> <label style="color: red">*</label>
-                     <input list="ordername" name ="seOID" placeholder="Order Name" class="form-control" autocomplete="off">
+                     <input list="ordername" name ="seOID" placeholder="Order Name"  id='orderName1' class="form-control" autocomplete="off">
                      <datalist id ='ordername'>
                      </datalist>
                   </div>
                   <div class="form-group">
                     <label>Family Name:</label> <label style="color: red">*</label>
-                    <input list="familyname" id="famName1"  name="txteFName" placeholder="Family Name" class="form-control" autocomplete="off">
+                    <input list="familyname" id="famName1"  name="txteFName" placeholder="Family Name" id='famName1' class="form-control" autocomplete="off">
                     <datalist id="familyname"></datalist>
                   </div>
                   <div class="modal-footer">
@@ -555,7 +557,7 @@ function resetForm() {
         showAllFamily();
         showFamilyOrderName();
         showFamilyName();
-    
+
 
 
 function showFamilyOrderName(){

@@ -12,7 +12,16 @@ class admin extends CI_Controller {
 
    	public function index()
 	{
-		$this->load->view('login');
+
+	if($this->session->userdata('strUsername')!=''){
+
+	$title['title'] = "PUPHerbarium | Dashboard";
+	$this->load->view('maintenance/Dashboard', $title);
+	}
+	else{
+			$this->load->view('login');
+	}
+		
 	}
 
 	public function Adminhome()
@@ -443,12 +452,7 @@ public function showSpeciesGenusName(){
 	//add Order
 	public function addSpecies(){
 		$result = $this->m->addSpecies();
-		$msg['success'] = false;
-		$msg['type'] = 'add';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
+		
 	}
 	public function editSpecies(){
 		$result = $this->m->editSpecies();
@@ -1093,7 +1097,9 @@ public function Plantborrower()
              "title" => $r->title,
              "description" => $r->description,
              "end" => $r->end,
-             "start" => $r->start
+             "start" => $r->start,
+             "start_time" => $r->start_time,
+             "end_time" => $r->end_time
          );
      }
 
@@ -1108,6 +1114,8 @@ public function add_event()
     $desc = $this->input->post("description", TRUE);
     $start_date = $this->input->post("start_date", TRUE);
     $end_date = $this->input->post("end_date", TRUE);
+    $start_time = $this->input->post("start_time", TRUE);
+    $end_time = $this->input->post("end_time", TRUE);
 
     if(!empty($start_date)) {
        $start_date = DateTime::createFromFormat('Y-m-d', $start_date)->format('Y-m-d H:i:s');
@@ -1130,16 +1138,11 @@ public function add_event()
        "title" => $name,
        "description" => $desc,
        "start" => $start_date,
-       "end" => $start_date
+       "end" => $start_date,
+       "start_time" => $start_time,
+       "end_time" => $end_time
        )
     );
-$msg['success'] = false;
-$msg['type'] = 'add';
-if($result){
-  $msg['success'] = true;
-}
-echo json_encode($msg);
-
 
 }
 
@@ -1157,43 +1160,42 @@ public function edit_event()
           /* Our calendar data */
           $name = $this->input->post("name");
           $desc = $this->input->post("description");
-          $start_date = $this->input->post("start_date");
-          $end_date = $this->input->post("end_date");
+          $start_date = $this->input->post("estart_date");
+          $end_date = $this->input->post("eend_date");
           $delete = intval($this->input->post("delete"));
+              $start_time = $this->input->post("estart_time");
+    $end_time = $this->input->post("eend_time");
+
 
           if(!$delete) {
 
-               if(!empty($start_date)) {
-                    $sd = DateTime::createFromFormat("Y/m/d", $start_date);
-                    $start_date = $sd->format('Y-m-d H:i:s');
-                    $start_date_timestamp = $sd->getTimestamp();
-               } else {
-                    $start_date = date("Y-m-d H:i:s", time());
-                    $start_date_timestamp = time();
-               }
 
-               if(!empty($end_date)) {
-                    $ed = DateTime::createFromFormat("Y/m/d", $end_date);
-                    $end_date = $ed->format('Y-m-d H:i:s');
-                    $end_date_timestamp = $ed->getTimestamp();
-               } else {
-                    $end_date = date("Y-m-d H:i:s", time());
-                    $end_date_timestamp = time();
-               }
+    if(!empty($start_date)) {
+       $start_date = DateTime::createFromFormat('Y-m-d', $start_date)->format('Y-m-d H:i:s');
+       //$start_date_timestamp = $sd->getTimestamp();
+       	//$start_date = DateTime::createFromFormat('Y-m-d', $start_date)->format('Y-m-d H:i:s');
+    	//echo '<script>alert("'.$start_date.'")</script>';
+    } else {
+       $start_date = date("Y-m-d h:i:s", time());
+       $start_date_timestamp = time();
+    }
+
+    if(!empty($end_date)) {
+       $end_date = DateTime::createFromFormat('Y-m-d', $end_date)->format('Y-m-d H:i:s');
+    } else {
+       $end_date = date("Y-m-d H:i:s", time());
+       $end_date_timestamp = time();
+    }
 
                $result=$this->admin_m->update_event($eventid, array(
                     "title" => $name,
                     "description" => $desc,
                     "start" => $start_date,
                     "end" => $start_date,
+                    "start_time" => $start_time,
+       				"end_time" => $end_time
                     )
            			);
-               	$msg['success'] = false;
-				$msg['type'] = 'add';
-				if($result){
-				  $msg['success'] = true;
-				}
-				echo json_encode($msg);
 
 
           } else {
