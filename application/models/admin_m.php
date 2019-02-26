@@ -623,9 +623,20 @@ public function showSpecieName(){
 
 			$intGenusID=$this->input->post('txtgID');
 			$strSpeciesName=$this->input->post('txtsName');
-			$strCommonName=$this->input->post('txtcoName');
+			
 			$strAuthorsName=$this->input->post('txtaID');
 			$isverified = $this->input->post('check1');
+			if($isverified=='on'){
+				$strCommonName=$this->input->post('txtcoName');
+			}else{
+				$strCommonName='sp.';
+			}
+
+
+
+$querycheckgenus=$this->db->query("select * from tblGenus where strGenusName = '".$intGenusID."'");
+
+		if($querycheckgenus->num_rows() > 0){
 			$query="
 			declare @genusid int;
 			declare @speciesID int;
@@ -646,11 +657,19 @@ set @isVerified = '$isverified'
 			";
 
 
-					if($this->db->query($query)){
-			return true;
+			if($this->db->query($query)){
+						$msg='true';
+			echo json_encode($msg);
 		}else{
 			return false;
 		}
+
+		}else{
+			$msg='nogenus';
+			echo json_encode($msg);
+		}
+			
+			
 
 	}
 	public function editSpecies(){
@@ -666,7 +685,24 @@ set @isVerified = '$isverified'
 		if($query->num_rows() > 0){
 			return $query->row();
 		}else{
-			return false;
+			return $this->editSpecies1();
+			// return false;
+		}
+	}
+		public function editSpecies1(){
+
+		$id = $this->input->get('id');
+		$this->db->where('intSpeciesID', $id);
+		$query = $this->db->select('intSpeciesID,
+			 strGenusName,
+			 strSpeciesName,
+			 strCommonName')->join('tblGenus g','g.intGenusID = s.intGenusID')
+			->get('tblSpecies s');
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			
+			 return false;
 		}
 	}
     public function updateSpecies(){
@@ -1302,7 +1338,8 @@ public function editValidator(){
 		      ,[strEmailAddress]
 		      ,[strRole]
 		      ,[strCollegeDepartment]
-		      ,[strHasAccount]) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."','No',, getdate())
+		      ,[strHasAccount],
+		      dtDateAdded) VALUES ('".$fname."','".$mname."','".$lname."','".$minitial."','".$nsuffix."','".$cname."','".$email."','".$role."','".$department."','No', getdate())
 
 			";
 				$this->db->query($query);
@@ -1647,30 +1684,55 @@ public function updateAccounts(){
 public function add_event($data)
 {
       $start_date = $this->input->post("start_date", TRUE);
-$querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+          $start_time = $this->input->post("start_time", TRUE);
+    $end_time = $this->input->post("end_time", TRUE);
+
+
+$querycheckrangeevent=$this->db->query("select * from tblevents where (start = '".$start_date."') and (start_time <= '".$start_time."' and end_time >='".$end_time."' )");
+if($querycheckrangeevent->num_rows()==0){
+$querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='For Depositing' or strStatus='Email Sent') and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querycheckdepreqtbl->num_rows()==0){
 
-		$querycheckvisittbl=$this->db->query("select * from tblAppointments where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+		$querycheckvisittbl=$this->db->query("select * from tblAppointments where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus ='For Visiting' or strStatus='Email Sent') and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 						if($querycheckvisittbl->num_rows()==0){
+
+
+							$querycheckeventtbl=$this->db->query("select * from tblEvents where( [start] = '".$start_date."' ) and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
+						if($querycheckeventtbl->num_rows()==0){
 							$this->db->insert("tblEvents", $data);
 
-
 									 if($this->db->affected_rows() > 0){
-										return true;
+										$msg = 'true';
+										echo json_encode($msg);
 									}else{
 										return false;
 									}
+
 						}else{
-							return false;
+							$msg = 'eventsamedttime';
+							echo json_encode($msg);
+							}
+							}else{
+							$msg = 'visitsamedttime';
+							echo json_encode($msg);
 								}
 
 }else{
-	return false;
+								$msg = 'depositsamedttime';
+							echo json_encode($msg);
+}
+
+}else{
+								$msg = 'eventrange';
+							echo json_encode($msg);
+}	
 }
 
 
 
-}
+
+
+
 
 
 public function get_event($id)
@@ -1681,26 +1743,38 @@ public function get_event($id)
 public function update_event($id, $data)
 {
 
-     $start_date = $this->input->post("start_date", TRUE);
-$querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+      $start_date = $this->input->post("start_date", TRUE);
+          $start_time = $this->input->post("start_time", TRUE);
+    $end_time = $this->input->post("end_time", TRUE);
+$querycheckdepreqtbl=$this->db->query("select * from tblDepositReq where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='For Depositing' or strStatus='Email Sent') and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querycheckdepreqtbl->num_rows()==0){
 
-		$querycheckvisittbl=$this->db->query("select * from tblAppointments where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus='Approved')");
+		$querycheckvisittbl=$this->db->query("select * from tblAppointments where( dtAppointmentDate = '".$start_date."' ) and ( strStatus='Pending' or strStatus ='For Visiting' or strStatus='Email Sent') and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 						if($querycheckvisittbl->num_rows()==0){
+
+
+							$querycheckeventtbl=$this->db->query("select * from tblEvents where( start = '".$start_date."' ) and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
+						if($querycheckeventtbl->num_rows()==0){
 							$this->db->where("ID", $id)->update("tblEvents", $data);
-
-
 									 if($this->db->affected_rows() > 0){
-										return true;
+										$msg = 'true';
+										echo json_encode($msg);
 									}else{
 										return false;
 									}
+
 						}else{
-							return false;
+							$msg = 'eventsamedttime';
+							echo json_encode($msg);
+							}
+							}else{
+							$msg = 'visitsamedttime';
+							echo json_encode($msg);
 								}
 
 }else{
-	return false;
+								$msg = 'depositsamedttime';
+							echo json_encode($msg);
 }
 
 }
@@ -1874,7 +1948,7 @@ $status = $this->input->post('txtStatus');
 public function showAllDepositReqPending()
 {
 	$result = array();
-	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, dtDateCollected, strFullLocation, dtAppointmentDate, strStatus, intDepositReqID
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, dtDateCollected, strFullLocation, dtAppointmentDate, strStatus, intDepositReqID, start_time,end_time
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID
@@ -1888,10 +1962,11 @@ public function showAllDepositReqPending()
 					$r->intDepositReqID,
 					$r->strFullName,
 					$r->strCommonName,
-					$r->dtDateCollected,
 					$r->strFullLocation,
 					$r->dtAppointmentDate,
-					$r->strStatus,
+					
+					$r->start_time,
+					$r->end_time,
 					$btn,
 					$r->intDepositReqID
 					);
@@ -1903,7 +1978,7 @@ public function showAllDepositReqPending()
 public function showAllDepositReqOkay()
 {
 	$result = array();
-	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, strFullLocation, dtAppointmentDate, strStatus, intDepositReqID
+	$query = $this->db->query("select Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, strCommonName, strFullLocation, dtAppointmentDate, strStatus, intDepositReqID,start_time,end_time
 
 		from tblDepositReq td join tblOnlineUser ou
 		on td.intOUserID = ou.intOUserID
@@ -1916,9 +1991,11 @@ public function showAllDepositReqOkay()
 					$r->intDepositReqID,
 					$r->strFullName,
 					$r->strCommonName,
-					$r->strFullLocation,
+					
 					$r->dtAppointmentDate,
-					$r->strStatus,
+					
+										$r->start_time,
+					$r->end_time,
 					$btn,
 					$r->intDepositReqID
 					);
@@ -2072,7 +2149,7 @@ public function updateAcceptStatus(){
 
 
 		$result = array();
-		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose, strStatus
+		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose, strStatus,start_time,end_time
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
@@ -2087,7 +2164,8 @@ public function updateAcceptStatus(){
 					$r->strFullName,
 					$r->dtAppointmentDate,
 					$r->strVisitPurpose,
-					$r->strStatus,
+					$r->start_time,
+					$r->end_time,
 					$btn,
 					$r->intAppointmentID
 					);
@@ -2098,7 +2176,7 @@ public function updateAcceptStatus(){
 public function showAllAppointmentReject(){
 
 		$result = array();
-		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose,strStatus
+		$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose,strStatus,start_time,end_time
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
@@ -2114,7 +2192,8 @@ public function showAllAppointmentReject(){
 					$r->strFullName,
 					$r->dtAppointmentDate,
 					$r->strVisitPurpose,
-					$r->strStatus,
+					$r->start_time,
+					$r->end_time,
 					$btn,
 					$r->intAppointmentID
 					);
@@ -2172,7 +2251,7 @@ DECLARE @status 		varchar(255);
 	public function showAllAppointmentExpect(){
 
 	$result = array();
-	$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose, strStatus
+	$query = $this->db->query("select intAppointmentID,Concat(ou.strLastname,', ',ou.strFirstname,' ',ou.strMiddlename,' ',ou.strNameSuffix) as strFullName, dtAppointmentDate,  strVisitPurpose, strStatus,start_time,end_time
 
 		from tblAppointments ap join tblOnlineUser ou
 		on ap.intOUserID = ou.intOUserID
@@ -2186,7 +2265,8 @@ DECLARE @status 		varchar(255);
 					$r->strFullName,
 					$r->dtAppointmentDate,
 					$r->strVisitPurpose,
-					$r->strStatus,
+					$r->start_time,
+					$r->end_time,
 					$btn,
 					$r->intAppointmentID
 					);
@@ -2973,14 +3053,24 @@ public function depreschedadmin(){
 
     $id=$this->input->post('txtId');
 $date=$this->input->post('txtReschedDate');
-$querychecksamedt=$this->db->query("select * from tblDepositReq where dtAppointmentDate = '".$date."' ");
+$start_time = $this->input->post('start_time');
+$end_time = $this->input->post('end_time');
+$querychecksamedt=$this->db->query("select * from tblDepositReq where dtAppointmentDate = '".$date."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querychecksamedt->num_rows()==0){
-$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$date."' ");
+$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$date."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querycheckeventtbl->num_rows()==0){
 	$query="
 
 		UPDATE tblDepositReq
 		SET dtAppointmentDate = '".$date."'
+		WHERE intDepositReqID = '".$id."';
+
+		UPDATE tblDepositReq
+		SET start_time = '".$start_time."'
+		WHERE intDepositReqID = '".$id."';
+
+		UPDATE tblDepositReq
+		SET end_time = '".$end_time."'
 		WHERE intDepositReqID = '".$id."';
 
 			";
@@ -3006,15 +3096,24 @@ public function visitreschedadmin(){
 
     $id=$this->input->post('txtId');
 $date=$this->input->post('txtReschedDate');
-$querychecksamedt=$this->db->query("select * from tblAppointments where dtAppointmentDate = '".$date."' ");
+$start_time = $this->input->post('start_time');
+$end_time = $this->input->post('end_time');
+$querychecksamedt=$this->db->query("select * from tblAppointments where dtAppointmentDate = '".$date."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querychecksamedt->num_rows()==0){
-$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$date."' ");
+$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$date."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querycheckeventtbl->num_rows()==0){
 	$query="
 		update tblAppointments
 		SET dtAppointmentDate = '".$date."'
 		WHERE intAppointmentID = '".$id."';
 
+		UPDATE tblAppointments
+		SET start_time = '".$start_time."'
+		WHERE intAppointmentID = '".$id."';
+
+		UPDATE tblAppointments
+		SET end_time = '".$end_time."'
+		WHERE intAppointmentID = '".$id."';
 			";
 		if($this->db->query($query)){
 			return true;

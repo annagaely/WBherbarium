@@ -116,48 +116,56 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Update Calendar Event</h4>
+        <h4 class="modal-title" id="myModalLabel">View Event</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-      <?php echo form_open(base_url("admin/edit_event"), array("class" => "form-horizontal")) ?>
+      <!-- ?php echo form_open(base_url("admin/edit_event"), array("class" => "form-horizontal")) ?> -->
+      <form id= "edit_event" method="POST" enctype="multipart/form-data">
       <div class="form-group">
                 <label for="p-in" class="col-md-4 label-heading">Event Name</label>
                 <div class="col-md-8 ui-front">
-                    <input type="text" class="form-control" name="name" value="" id="name">
+                    <input type="text" class="form-control" name="name" value="" id="eeventname" disabled>
                 </div>
         </div>
         <div class="form-group">
                 <label for="p-in" class="col-md-4 label-heading">Description</label>
                 <div class="col-md-8 ui-front">
-                    <input type="text" class="form-control" name="description" id="description">
+                    <input type="text" class="form-control" name="description" id="edescription" disabled>
                 </div>
         </div>
         <div class="form-group">
-                <label for="p-in" class="col-md-4 label-heading">Start Date</label>
+                <label for="p-in" class="col-md-4 label-heading">Date</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" name="start_date" id="start_date">
+                    <input type="text" class="form-control" name="estart_date" id="estart_date" disabled>
                 </div>
         </div>
-        <div class="form-group">
-                <label for="p-in" class="col-md-4 label-heading">End Date</label>
+                <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Start Time</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" name="end_date" id="end_date">
+                    <input type="text" class="form-control" name="estart_time" id="estart_time" disabled>
                 </div>
         </div>
-        <div class="form-group">
+                <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">End Time</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="eend_time" id="eend_time" disabled>
+                </div>
+        </div>
+<!--         <div class="form-group">
                     <label for="p-in" class="col-md-4 label-heading">Delete Event</label>
                     <div class="col-md-8">
                         <input type="checkbox" name="delete" value="1">
                     </div>
-            </div>
+            </div> -->
             <input type="hidden" name="eventid" id="event_id" value="0" />
+            </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-primary" value="Update Event">
-        <?php echo form_close() ?>
-      </div>
+
+
+        <!-- <?php echo form_close() ?> -->
+      
+      
     </div>
   </div>
 </div>
@@ -189,7 +197,21 @@ $(document).ready(function() {
       });
       }
     },
-    ],
+    ],                eventClick: function(event, jsEvent, view) {
+                      $('#eeventname').val(event.title);
+                      $('#edescription').val(event.description);
+                      $('#estart_date').val(moment(event.start).format('YYYY-MM-DD'));
+                      if(event.end) {
+                        $('#end_date').val(moment(event.end).format('YYYY-MM-DD'));
+                      } else {
+                        $('#end_date').val(moment(event.start).format('YYYY-MM-DD'));
+                      }
+                      $('#event_id').val(event.id);
+                      $('#estart_time').val(event.start_time);
+                      $('#eend_time').val(event.end_time);
+                      $('#editModal').modal();
+
+            },
 
 
   });

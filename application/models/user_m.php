@@ -150,9 +150,10 @@ public function addDeposit(){
 	$plantDesc = $this->input->post('txtplantDesc');
 	$desiredDateDeposit = $this->input->post('txtDateDesired');
 	$getusername = $this->session->userdata['strUserName'];
+$start_time = $this->input->post('start_time');
+$end_time = $this->input->post('end_time');
 
-
-$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$desiredDateDeposit."' ");
+$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$desiredDateDeposit."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querycheckeventtbl->num_rows()==0){
 	$query="
 
@@ -177,9 +178,9 @@ SET NOCOUNT ON;
 
 
 		BEGIN
-			INSERT INTO tblDepositReq(strScientificName, strCommonName, strFullLocation,dtDateCollected,intOUserID, dtAppointmentDate, strStatus,strPlantDesc)
+			INSERT INTO tblDepositReq(strScientificName, strCommonName, strFullLocation,dtDateCollected,intOUserID, dtAppointmentDate, strStatus,strPlantDesc,start_time,end_time)
 
-			VALUES (@scientificname	, @commonname, @location, @datecollected, @sessionid, @desiredDate, 'Pending',@plantdescription)
+			VALUES (@scientificname	, @commonname, @location, @datecollected, @sessionid, @desiredDate, 'Pending',@plantdescription,'".$start_time."','".$end_time."')
 		END
 		";
 		if($this->db->query($query))
@@ -201,9 +202,10 @@ $doA = $this->input->post('dateAppointment');
 	$appPurpose = $this->input->post('radios');
 	$appdesc = $this->input->post('txtappdesc');
 $getusername = $this->session->userdata['strUserName'];
+$start_time = $this->input->post('start_time');
+$end_time = $this->input->post('end_time');
 
-
-$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$doA."' ");
+$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$doA."'and (start_time ='".$start_time."' AND end_time ='".$end_time."') ");
 if($querycheckeventtbl->num_rows()==0){
 $query="
 
@@ -223,9 +225,9 @@ declare @sessionid int;
 
 
 	BEGIN
-		INSERT INTO tblAppointments(dtAppointmentDate,strVisitPurpose, intOUserID, strVisitDescription,strStatus)
+		INSERT INTO tblAppointments(dtAppointmentDate,strVisitPurpose, intOUserID, strVisitDescription,strStatus,start_time,end_time)
 
-		VALUES (@dateofappointment,@appointmenttype, @sessionid, @applicationdesc, 'Pending')
+		VALUES (@dateofappointment,@appointmenttype, @sessionid, @applicationdesc, 'Pending','".$start_time."','".$end_time."')
 	END
 	";
 	if($this->db->query($query))
@@ -342,7 +344,7 @@ public function updatePassword(){
 		$result = array();
 		$query = $this->db->query(" declare @id int; set @id = (select intOUserID from tblOnlineUser where strUserName ='".$this->session->userdata('strUserName')."')
 
-			select * from tblAppointments where intOUserID = @id AND strStatus='Pending'
+			select * from tblAppointments where intOUserID = @id AND (strStatus='Pending' or strStatus='For Visiting')
 
 			");
 
@@ -355,6 +357,8 @@ public function updatePassword(){
 					$r->dtAppointmentDate,
 					$r->strVisitPurpose,
 					$r->strVisitDescription,
+					$r->start_time,
+					$r->end_time,
 					$r->strStatus,
 					$btn,
 					$r->intAppointmentID
@@ -409,24 +413,32 @@ public function updateCurrentVisitResched(){
     $lastname = $this->session->userdata['strLastName'];
 $date = $this->input->post('dtnewDate');
 
-$querychecksamedt=$this->db->query("select * from tblAppointments where dtAppointmentDate = '".$date."' ");
+$start_time = $this->input->post('start_time');
+$end_time = $this->input->post('end_time');
+$querychecksamedt=$this->db->query("select * from tblAppointments where dtAppointmentDate = '".$date."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querychecksamedt->num_rows()==0){
+$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$date."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
+if($querycheckeventtbl->num_rows()==0){
+	$queryupdate="
+		update tblAppointments
+		SET dtAppointmentDate = '".$date."'
+		WHERE intAppointmentID = '".$id."';
 
- $querycheckdate=$this->db->query("select * from tblEvents where [start] = '".$date."'");
+		UPDATE tblAppointments
+		SET start_time = '".$start_time."'
+		WHERE intAppointmentID = '".$id."';
 
-if($querycheckdate->num_rows() == 0){
- $queryupdate="
-
-			update tblAppointments
-			set dtAppointmentDate = '".$date."'
-				where intAppointmentID = ".$id."
+		UPDATE tblAppointments
+		SET end_time = '".$end_time."'
+		WHERE intAppointmentID = '".$id."';
 
 			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has rescheduled his/her Visit appointment to: ''".$date.", Visit ID: ','".$id."'),0)
 
 			";
 
 if($this->db->query($queryupdate)){
-			return true;
+				$msg='true';
+		echo json_encode($msg);
 		}else{
 			return false;
 		}
@@ -499,7 +511,7 @@ if($this->db->query($queryupdate)){
 		$result = array();
 		$query = $this->db->query(" declare @id int; set @id = (select intOUserID from tblOnlineUser where strUserName ='".$this->session->userdata('strUserName')."')
 
-			select * from tblDepositReq where intOUserID = @id AND strStatus ='Pending'
+			select * from tblDepositReq where intOUserID = @id AND (strStatus ='Pending' or strStatus = 'For Depositing')
 
 			");
 
@@ -511,6 +523,8 @@ if($this->db->query($queryupdate)){
 					$r->dtAppointmentDate,
 					$r->strScientificName,
 					$r->strCommonName,
+					$r->start_time,
+					$r->end_time,
 					$r->strStatus,
 					 $btn,
 					$r->intDepositReqID
@@ -539,24 +553,34 @@ public function updateCurrentDepositResched(){
     $midinit = $this->session->userdata['strMiddleInitial'];
     $lastname = $this->session->userdata['strLastName'];
 $date = $this->input->post('dtnewDate');
-
-$querychecksamedt=$this->db->query("select * from tblDepositReq where dtAppointmentDate = '".$date."' ");
+$start_time = $this->input->post('start_time');
+$end_time = $this->input->post('end_time');
+$querychecksamedt=$this->db->query("select * from tblDepositReq where dtAppointmentDate = '".$date."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 if($querychecksamedt->num_rows()==0){
-$querycheckdate=$this->db->query("select * from tblEvents where [start] = '".$date."'");
+$querycheckeventtbl=$this->db->query("select * from tblEvents where [start] = '".$date."' and (start_time ='".$start_time."' AND end_time ='".$end_time."')");
 
-if($querycheckdate->num_rows() == 0){
+if($querycheckeventtbl->num_rows() == 0){
  $queryupdate="
 
 			update tblDepositReq
 			set dtAppointmentDate = '".$date."'
-				where intDepositReqID = ".$id."
+				where intDepositReqID = '".$id."';
+
+		UPDATE tblDepositReq
+		SET start_time = '".$start_time."'
+		WHERE intDepositReqID = '".$id."';
+
+		UPDATE tblDepositReq
+		SET end_time = '".$end_time."'
+		WHERE intDepositReqID = '".$id."';
 
 			insert into tblNotif(strNotifContent,intNotifStatus) VALUES (CONCAT('".$firstname." ', '".$midinit.". ', '".$lastname." ','has rescheduled his/her Deposit Request appointment to: ''".$date.", Deposit Request ID: ','".$id."'),0)
 
 			";
 
 if($this->db->query($queryupdate)){
-			return true;
+						$msg='true';
+		echo json_encode($msg);
 		}else{
 			return false;
 		}
@@ -659,8 +683,47 @@ $q7=$this->input->post('q7');
 $q8=$this->input->post('q8');
 $q9=$this->input->post('q9');
 $comment =$this->input->post('comments');
-$remarks=$this->input->post('remarks');
-	$query="insert into tblAnswers(intDepositID,strQ1,strQ2,strQ3,strQ4,strQ5,strQ6,strQ7,strQ8,strQ9,strComments,strRemarks) values (".$id.",'".$q1."','".$q2."','".$q3."','".$q4."','".$q5."','".$q6."','".$q7."','".$q8."','".$q9."','".$comment."','".$remarks."')
+// $remarks=$this->input->post('remarks');
+
+$count= 0;
+if($q1== 'Yes'){
+$count+=1;
+};
+if($q2== 'Yes'){
+	$count+=1;
+};
+if($q3== 'Yes'){
+	$count+=1;
+};
+if($q4== 'Yes'){
+	$count+=1;
+};
+if($q5== 'Yes'){
+	$count+=1;
+};
+if($q6== 'Yes'){
+	$count+=1;
+};
+if($q7== 'Yes'){
+	$count+=1;
+};
+if($q8== 'Yes'){
+	$count+=1;
+};
+if($q9== 'Yes'){
+	$count+=1;
+};
+
+if($count == 9){
+	$remarks = 'Approved';
+}else if($count == 0){
+	$remarks = 'Disaapproved';
+}else{
+$remarks = 'Needs Correction';
+}
+
+
+	$query="insert into tblAnswers(intDepositID,strQ1,strQ2,strQ3,strQ4,strQ5,strQ6,strQ7,strQ8,strQ9,strComments,strRemarks,strScore) values (".$id.",'".$q1."','".$q2."','".$q3."','".$q4."','".$q5."','".$q6."','".$q7."','".$q8."','".$q9."','".$comment."','".$remarks."',".$count.")
 
 		insert into tblNotif(strNotifContent,intNotifStatus) VALUES ('External Validator has evaluated the Plant Deposit: ".$id."',0)
 

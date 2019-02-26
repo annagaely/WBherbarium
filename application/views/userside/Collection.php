@@ -72,7 +72,7 @@
           </div>
           <div class="card-body">
             <h4 class="card-title">Angiosperms</h4>
-            <p class="card-text">Flowering Plants.</p>
+            <p class="card-text">Flowering Plants.</p><br>
             <button type="button" id= "btnAngiosperm" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modalAngiosperm">Read more</button>
           </div>
         </div>
@@ -88,7 +88,7 @@
           </div>
           <div class="card-body">
             <h4 class="card-title">Gymnosperms</h4>
-            <p class="card-text">Vascular plants.</p>
+            <p class="card-text">Vascular plants.</p><br>
               <button type="button" data-toggle="modal" data-target="#modalGymnosperm" class="btn btn-light-blue btn-md">Read more</button>
             </div>
           </div>
@@ -120,7 +120,7 @@
           </div>
           <div class="card-body">
             <h4 class="card-title">Bryophytes</h4>
-            <p class="card-text">Mosses and liverworts.</p>
+            <p class="card-text">Mosses and liverworts.</p><br>
             <button type="button" class="btn btn-light-blue btn-md" data-toggle="modal" data-target="#modalBryophytes">Read more</button>
           </div>
         </div>

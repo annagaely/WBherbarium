@@ -13,6 +13,9 @@
             </div> -->
 
             <div class="md-form">
+              <span style="color: red">Click the calendar events to view all the details of the event.</span>
+             <br>
+                <br>
               <div class="row">
                 <div class="col-md-6">
                   <input type="text" name="txtScientificName" id="strScientificName" autocomplete = "off"class="form-control" required>
@@ -65,6 +68,57 @@
                 Please choose a date of deposit.
               </div>
             </div>
+              <div class="form-group">
+                  <label for="p-in" class="col-md-4 label-heading">Start Time:</label>
+                  <div class="col-md-8">
+                      <select class="form-control" id='start_time' name="start_time">
+                        <option>08:00</option>
+                        <option>08:30</option>
+                        <option>09:00</option>
+                        <option>09:30</option>
+                        <option>10:00</option>
+                        <option>10:30</option>
+                        <option>11:00</option>
+                        <option>11:30</option>
+                        <option>12:00</option>
+                        <option>13:00</option>
+                        <option>13:30</option>
+                        <option>14:00</option>
+                        <option>14:30</option>
+                        <option>15:00</option>
+                        <option>15:30</option>
+                        <option>16:00</option>
+                        <option>16:30</option>
+                        <option>17:00</option>
+                        <option>17:30</option>
+                      </select>
+                  </div>
+          </div>
+                    <div class="form-group">
+                  <label for="p-in" class="col-md-4 label-heading">End time:</label>
+                  <div class="col-md-8">
+                      <select class="form-control" id='end_time' name="end_time">
+                        <option>08:00</option>
+                        <option>08:30</option>
+                        <option>09:00</option>
+                        <option>09:30</option>
+                        <option>10:00</option>
+                        <option>10:30</option>
+                        <option>11:00</option>
+                        <option>11:30</option>
+                        <option>13:00</option>
+                        <option>13:30</option>
+                        <option>14:00</option>
+                        <option>14:30</option>
+                        <option>15:00</option>
+                        <option>15:30</option>
+                        <option>16:00</option>
+                        <option>16:30</option>
+                        <option>17:00</option>
+                        <option>17:30</option>
+                      </select>
+                  </div>
+          </div>
             <div class="text-center py-4 mt-3">
               <button class="btn btn-danger" type="reset">Clear</button>
               <button class="btn btn-primary" type="submit" id="btnDeposit">Deposit</button>
@@ -74,12 +128,68 @@
       </div>
     </div>
   </div>
-  <div class="col-md-7 py-5">
-    <iframe src="<?php echo site_url('user/view_calendar');?>" width="100%" height="100%" style="border: none;"></iframe>
+  <div class="col-md-7 py-5 pr-5">
+    <div id="calendar"></div>
   </div>
 </div>
 
+<div class="modal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">View Event</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+      <!-- ?php echo form_open(base_url("admin/edit_event"), array("class" => "form-horizontal")) ?> -->
+      <form id= "edit_event" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Event Name</label>
+                <div class="col-md-8 ui-front">
+                    <input type="text" class="form-control" name="name" value="" id="eeventname" disabled>
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Description</label>
+                <div class="col-md-8 ui-front">
+                    <input type="text" class="form-control" name="description" id="edescription" disabled>
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Date</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="estart_date" id="estart_date" disabled>
+                </div>
+        </div>
+                <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">Start Time</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="estart_time" id="estart_time" disabled>
+                </div>
+        </div>
+                <div class="form-group">
+                <label for="p-in" class="col-md-4 label-heading">End Time</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="eend_time" id="eend_time" disabled>
+                </div>
+        </div>
+<!--         <div class="form-group">
+                    <label for="p-in" class="col-md-4 label-heading">Delete Event</label>
+                    <div class="col-md-8">
+                        <input type="checkbox" name="delete" value="1">
+                    </div>
+            </div> -->
+            <input type="hidden" name="eventid" id="event_id" value="0" />
+            </form>
+      </div>
 
+
+        <!-- <?php echo form_close() ?> -->
+      
+      
+    </div>
+  </div>
+</div>
 
 <script src="<?php echo base_url();?>assets/bower_components/distribution/vendor/jquery/jquery.min.js"></script>
 
@@ -135,6 +245,7 @@ todayadd3 = yyyy + '-' + mm + '-' +dd ;
                      text: 'Invalid date collected.'
                    });
         }else{
+           if($('#end_time').val()>$('#start_time').val()){
           if($('#strScientificName').val()!=''){
           if($('#strCommonName').val()!=''){
             if($('#strLocation').val()!=''){
@@ -236,6 +347,14 @@ todayadd3 = yyyy + '-' + mm + '-' +dd ;
             text: 'Please fill up all the required fields.'
           });
           }
+           }else{
+            event.preventDefault();
+          swal({
+            type: 'error',
+            title: 'Incorrect input!',
+            text: 'Please set a correct time.'
+          });}
+
         }
         
       }
@@ -268,3 +387,49 @@ window.addEventListener('load', function() {
 </script>
 
 <!--  -->
+<script type="text/javascript">
+            $(document).ready(function() {
+              var date_last_clicked = null;
+              $('#calendar').fullCalendar({
+                eventSources: [
+                {
+                  events: function(start, end, timezone, callback) {
+                    $.ajax({
+                      url: '<?php echo base_url() ?>admin/get_events',
+                      dataType: 'json',
+                      data: {
+                      // our hypothetical feed requires UNIX timestamps
+                      start: start.unix(),
+                      end: end.unix()
+                    },
+                    success: function(msg) {
+                      var events = msg.events;
+                      callback(events);
+                    }
+                  });
+                  }
+                },
+                ],
+                eventClick: function(event, jsEvent, view) {
+                      $('#eeventname').val(event.title);
+                      $('#edescription').val(event.description);
+                      $('#estart_date').val(moment(event.start).format('YYYY-MM-DD'));
+                      if(event.end) {
+                        $('#end_date').val(moment(event.end).format('YYYY-MM-DD'));
+                      } else {
+                        $('#end_date').val(moment(event.start).format('YYYY-MM-DD'));
+                      }
+                      $('#event_id').val(event.id);
+                      $('#estart_time').val(event.start_time);
+                      $('#eend_time').val(event.end_time);
+                      $('#editModal').modal();
+
+            },
+
+              });
+
+
+            });
+
+
+            </script>
